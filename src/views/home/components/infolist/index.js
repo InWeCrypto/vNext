@@ -2,16 +2,32 @@ import React, { Component } from "react";
 import StackGrid from "react-stack-grid";
 import "./index.less";
 class InfoBox extends Component {
-	componentDidMount() {}
+	constructor() {
+		super();
+		this.state = {
+			itemW: 0
+		};
+	}
+	componentDidMount() {
+		this.setW();
+		window.onresize = () => {
+			this.setW();
+		};
+	}
 	setW() {
 		if (!document) {
 			return;
 		}
+		console.log(11);
 		var w = document.body.clientWidth;
 		if (w >= 1000) {
-			return 980 / 3;
+			this.setState({
+				itemW: 980 / 3
+			});
 		} else {
-			return w;
+			this.setState({
+				itemW: w
+			});
 		}
 	}
 	render() {
@@ -19,7 +35,7 @@ class InfoBox extends Component {
 		console.log(infoList);
 		return (
 			<div className="info-box">
-				<StackGrid columnWidth={this.setW()}>
+				<StackGrid columnWidth={this.state.itemW}>
 					{infoList &&
 						infoList.length > 0 &&
 						infoList.map((item, index) => {
