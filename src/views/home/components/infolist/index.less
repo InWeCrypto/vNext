@@ -7,6 +7,8 @@
 		cursor: pointer;
 		//box-shadow: 0 2px 7px 0 @shadow;
 		background: @white;
+		transition: transform 0.3s linear;
+		position: relative;
 		.img {
 			width: 100%;
 		}
@@ -20,5 +22,9 @@
 			padding: 0.1rem;
 			box-sizing: border-box;
 		}
+	}
+	.info-item:hover {
+		transform: scale(1.02);
+		z-index: 10;
 	}
 }

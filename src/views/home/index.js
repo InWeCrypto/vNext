@@ -6,6 +6,7 @@ import Project from "./components/project/";
 import InfoBox from "./components/infolist/";
 import Banner from "./components/banner/";
 import actions from "../../actions/";
+import ProjectAll from "./components/projectall/";
 class Home extends Component {
 	componentWillMount() {
 		this.props.getInfoListAction();
@@ -60,6 +61,7 @@ class Home extends Component {
 				<div className="infolist-box">
 					<InfoBox infoList={infoList} />
 				</div>
+				{/* <ProjectAll projectList={projectList} /> */}
 			</div>
 		);
 	}

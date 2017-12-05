@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./index.less";
+import projectMore from "../../../../lib/images/project_down.png";
 class Project extends Component {
 	render() {
 		let { projectList } = this.props;
@@ -21,7 +22,9 @@ class Project extends Component {
 										<br />
 										<span>{item.name}</span>
 									</div>
-									{/* <div className="project-data">111</div> */}
+									<div className="project-more">
+										<img src={projectMore} />
+									</div>
 								</div>
 							);
 						})}
