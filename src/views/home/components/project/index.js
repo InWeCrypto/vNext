@@ -2,6 +2,13 @@ import React, { Component } from "react";
 import "./index.less";
 import projectMore from "../../../../lib/images/project_down.png";
 class Project extends Component {
+	constructor() {
+		super();
+		this.onClickMore = this.onClickMore.bind(this);
+	}
+	onClickMore() {
+		this.props.changeState(true);
+	}
 	render() {
 		let { projectList } = this.props;
 		return (
@@ -26,7 +33,7 @@ class Project extends Component {
 							);
 						})}
 				</div>
-				<div className="project-more">
+				<div className="project-more" onClick={this.onClickMore}>
 					<img src={projectMore} />
 				</div>
 			</div>

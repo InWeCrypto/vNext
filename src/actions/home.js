@@ -14,7 +14,7 @@ const infoList = data => {
 	};
 };
 const getInfoListAction = dispatch => data => {
-	getData(`${requestUrl}/article/all`).then(res => {
+	getData(`${requestUrl}/article/img-txt-video`).then(res => {
 		if (res.code === 4000) {
 			dispatch(infoList(res.data));
 		} else {

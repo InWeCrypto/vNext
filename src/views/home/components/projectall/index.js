@@ -3,6 +3,13 @@ import searchbtn from "../../../../lib/images/search_focus.png";
 import close from "../../../../lib/images/project_up.png";
 import "./index.less";
 class ProjectAll extends Component {
+	constructor() {
+		super();
+		this.onClickChange = this.onClickChange.bind(this);
+	}
+	onClickChange() {
+		this.props.changeState(false);
+	}
 	render() {
 		let { projectList } = this.props;
 		return (
@@ -40,7 +47,7 @@ class ProjectAll extends Component {
 								})}
 						</div>
 						<div className="projectall-ctrl">
-							<img src={close} />
+							<img onClick={this.onClickChange} src={close} />
 						</div>
 					</div>
 				</div>

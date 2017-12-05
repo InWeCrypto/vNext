@@ -15,7 +15,14 @@ class Home extends Component {
 		this.props.getBannerListAction();
 	}
 	render() {
-		let { infoList, projectList, newsList, bannerList } = this.props;
+		let {
+			infoList,
+			projectList,
+			newsList,
+			bannerList,
+			showMoreProject,
+			changeProjectStateAction
+		} = this.props;
 		let project = projectList
 			? projectList.filter(item => {
 					if (item.type > 4) {
@@ -26,7 +33,10 @@ class Home extends Component {
 		return (
 			<div>
 				<div className="home-box container">
-					<Project projectList={project} />
+					<Project
+						changeState={changeProjectStateAction}
+						projectList={project}
+					/>
 					<div className="home1 ui-box">
 						<div className="group left">
 							<div className="item">
@@ -61,7 +71,12 @@ class Home extends Component {
 				<div className="infolist-box">
 					<InfoBox infoList={infoList} />
 				</div>
-				<ProjectAll projectList={project} />
+				{showMoreProject && (
+					<ProjectAll
+						changeState={changeProjectStateAction}
+						projectList={project}
+					/>
+				)}
 			</div>
 		);
 	}
