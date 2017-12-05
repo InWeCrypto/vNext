@@ -61,7 +61,7 @@ class Home extends Component {
 				<div className="infolist-box">
 					<InfoBox infoList={infoList} />
 				</div>
-				{/* <ProjectAll projectList={projectList} /> */}
+				<ProjectAll projectList={project} />
 			</div>
 		);
 	}
@@ -72,7 +72,8 @@ const mapStateToProps = state => {
 		infoList: state.homeInfo.infoList,
 		projectList: state.homeInfo.projectList,
 		newsList: state.homeInfo.newsList,
-		bannerList: state.homeInfo.bannerList
+		bannerList: state.homeInfo.bannerList,
+		showMoreProject: state.homeInfo.showMoreProject
 	};
 };
 const mapDispatchToProps = (dispatch, ownProps) => {
@@ -80,7 +81,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 		getInfoListAction: actions.getInfoListAction(dispatch),
 		getProjectListAction: actions.getProjectListAction(dispatch),
 		getNewsListAction: actions.getNewsListAction(dispatch),
-		getBannerListAction: actions.getBannerListAction(dispatch)
+		getBannerListAction: actions.getBannerListAction(dispatch),
+		changeProjectStateAction: actions.changeProjectStateAction(dispatch)
 	};
 };
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Home));

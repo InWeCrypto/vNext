@@ -22,12 +22,12 @@ class Project extends Component {
 										<br />
 										<span>{item.name}</span>
 									</div>
-									<div className="project-more">
-										<img src={projectMore} />
-									</div>
 								</div>
 							);
 						})}
+				</div>
+				<div className="project-more">
+					<img src={projectMore} />
 				</div>
 			</div>
 		);

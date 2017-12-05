@@ -2,12 +2,14 @@ import {
 	getInfoListAction,
 	getProjectListAction,
 	getNewsListAction,
-	getBannerListAction
+	getBannerListAction,
+	changeProjectStateAction
 } from "./home";
 
 export default {
 	getInfoListAction,
 	getProjectListAction,
 	getNewsListAction,
-	getBannerListAction
+	getBannerListAction,
+	changeProjectStateAction
 };

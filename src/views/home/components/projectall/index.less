@@ -6,5 +6,65 @@
 	height: 100%;
 	right: 0;
 	background: rgba(0, 0, 0, 0.7);
-	z-index: 10;
+	z-index: 20;
+	.projectadd-box {
+		box-sizing: border-box;
+		padding-top: 0.15rem;
+		.projectall-search {
+			display: flex;
+			justify-content: center;
+			.projectall-searchbox {
+				background: @white;
+				width: 2.13rem;
+				height: 0.25rem;
+				border-radius: 0.04rem;
+				line-height: 0.25rem;
+				display: flex;
+				overflow: hidden;
+			}
+			.projectall-searchtxt {
+				flex: 1;
+				display: flex;
+				outline: none;
+				border-left: none;
+				border-top: none;
+				border-bottom: none;
+			}
+			.projectall-searchbtn {
+				padding: 0 0.05rem;
+				display: block;
+				img {
+					vertical-align: middle;
+				}
+			}
+		}
+		.projectall-cont {
+			position: relative;
+			margin-top: 0.3rem;
+			.projectall-list {
+				display: flex;
+				flex-wrap: wrap;
+			}
+			.projectall-item {
+				background: @white;
+				width: 1.25rem;
+				height: 0.8rem;
+				justify-content: center;
+				align-items: center;
+				display: flex;
+				cursor: pointer;
+				.projectall-img {
+					max-width: 80%;
+				}
+				.projectall-itembox {
+					text-align: center;
+				}
+			}
+			.projectall-ctrl {
+				text-align: center;
+				cursor: pointer;
+				padding: 0.1rem 0;
+			}
+		}
+	}
 }

@@ -1,4 +1,10 @@
-import { INFOLIST, PROJECTLIST, NEWSLIST, BANNERLIST } from "../actionTypes/";
+import {
+	INFOLIST,
+	PROJECTLIST,
+	NEWSLIST,
+	BANNERLIST,
+	PROJECTSTATE
+} from "../actionTypes/";
 import { getData } from "../lib/js/app";
 import { requestUrl } from "../config/";
 const infoList = data => {
@@ -72,9 +78,20 @@ const getBannerListAction = dispatch => dat => {
 			console.log(e);
 		});
 };
+
+const projectState = data => {
+	return {
+		type: PROJECTSTATE,
+		data
+	};
+};
+const changeProjectStateAction = dispatch => data => {
+	dispatch(projectState(data));
+};
 export {
 	getInfoListAction,
 	getProjectListAction,
 	getNewsListAction,
-	getBannerListAction
+	getBannerListAction,
+	changeProjectStateAction
 };

@@ -1,9 +1,16 @@
-import { INFOLIST, PROJECTLIST, NEWSLIST, BANNERLIST } from "../actionTypes/";
+import {
+	INFOLIST,
+	PROJECTLIST,
+	NEWSLIST,
+	BANNERLIST,
+	PROJECTSTATE
+} from "../actionTypes/";
 const homeData = {
 	infoList: null,
 	projectList: null,
 	newsList: null,
-	bannerList: null
+	bannerList: null,
+	showMoreProject: false
 };
 
 const homeInfo = (state = homeData, action) => {
@@ -16,6 +23,8 @@ const homeInfo = (state = homeData, action) => {
 			return { ...state, newsList: action.data };
 		case BANNERLIST:
 			return { ...state, bannerList: action.data };
+		case PROJECTSTATE:
+			return { ...state, showMoreProject: action.data };
 		default:
 			return state;
 	}
