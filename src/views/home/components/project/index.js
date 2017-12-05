@@ -9,15 +9,19 @@ class Project extends Component {
 					{projectList &&
 						projectList.length > 0 &&
 						projectList.map((item, index) => {
+							if (index >= 8) {
+								return null;
+							}
 							return (
 								<div className="project-item" key={index}>
-									<div>
+									<div className="project-cont">
 										<span>
 											<img src={item.img} />
 										</span>
 										<br />
 										<span>{item.name}</span>
 									</div>
+									{/* <div className="project-data">111</div> */}
 								</div>
 							);
 						})}

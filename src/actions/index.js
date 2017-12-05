@@ -1,3 +1,13 @@
-import { getInfoListAction, getProjectListAction } from "./home";
+import {
+	getInfoListAction,
+	getProjectListAction,
+	getNewsListAction,
+	getBannerListAction
+} from "./home";
 
-export default { getInfoListAction, getProjectListAction };
+export default {
+	getInfoListAction,
+	getProjectListAction,
+	getNewsListAction,
+	getBannerListAction
+};

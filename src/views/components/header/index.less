@@ -1,7 +1,7 @@
 @import "../../../lib/css/base.less";
 .header-box {
-	background: @orange;
-	color: @white;
+	background: @white;
+	color: @text;
 	padding: 0.1rem 0;
 	.middle {
 		flex: 1;
@@ -10,11 +10,48 @@
 		font-size: 0.14rem;
 	}
 	.a {
-		color: @white;
-		padding: 0 0.1rem;
+		color: @text;
+		padding: 0.1rem 0.2rem;
 		vertical-align: middle;
+		border-bottom: 2px solid transparent;
+	}
+	.a.cur {
+		color: @orange;
+		border-bottom: 2px solid @orange;
 	}
 	.ctrl {
 		margin-left: 0.1rem;
+
+		.arrow-more {
+			display: inline-block;
+			border-left: 0.06rem solid transparent;
+			border-right: 0.06rem solid transparent;
+			border-top: 0.06rem solid @orange;
+			cursor: pointer;
+		}
+	}
+	.search {
+		.searchbtn {
+			vertical-align: middle;
+			line-height: 0.25rem;
+			img {
+				vertical-align: middle;
+				position: relative;
+				top: -0.01rem;
+				cursor: pointer;
+			}
+		}
+		.search-input {
+			width: 1.75rem;
+			height: 0.25rem;
+			box-sizing: border-box;
+			line-height: 0.23rem;
+			padding: 0 0.1rem;
+			margin-right: 0.1rem;
+			vertical-align: middle;
+		}
+		.search-input:focus {
+			outline: none;
+		}
 	}
 }

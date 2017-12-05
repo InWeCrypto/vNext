@@ -1,30 +1,41 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "./index.less";
+import logo from "../../../lib/images/logo1.png";
+import search from "../../../lib/images/search.png";
 class Header extends Component {
 	render() {
 		return (
 			<div className="header-box">
 				<div className="container ui-box">
-					<div className="logo">1</div>
+					<Link to="/" className="logo">
+						<img src={logo} />
+					</Link>
 					<div className="middle" />
 					<div className="nav">
-						<Link className="a" to="">
+						<Link activeClassName="cur" className="a" to="/news">
 							NEWS
 						</Link>
-						<span>|</span>
-						<Link className="a" to="">
+						<Link activeClassName="cur" className="a" to="/ico">
 							ICO评测
 						</Link>
-						<span>|</span>
-						<Link className="a" to="">
+						<Link
+							activeClassName="cur"
+							className="a"
+							to="/candybox"
+						>
 							CandyBox
 						</Link>
 					</div>
+					<div className="search">
+						<input className="search-input" type="search" />
+						<span className="searchbtn">
+							<img src={search} />
+						</span>
+					</div>
 					<div className="ctrl">
-						<span>2</span>
-						<span>|</span>
 						<span>中文</span>
+						<span className="arrow-more" />
 					</div>
 				</div>
 			</div>

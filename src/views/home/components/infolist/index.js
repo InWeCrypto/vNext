@@ -32,7 +32,6 @@ class InfoBox extends Component {
 	}
 	render() {
 		let { infoList } = this.props;
-		console.log(infoList);
 		return (
 			<div className="info-box">
 				<StackGrid columnWidth={this.state.itemW}>
