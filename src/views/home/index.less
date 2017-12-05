@@ -1,0 +1,56 @@
+@import "../../lib/css/base.less";
+.home-box {
+	.group {
+		//box-shadow: 0 2px 7px 0 @shadow;
+		//border: 1px solid @border;
+		box-sizing: border-box;
+		padding: 0.05rem;
+		background: @white;
+	}
+	.group.right {
+		padding: 0;
+	}
+
+	.home1 {
+		height: 4rem;
+		display: flex;
+		align-items: stretch;
+		.left {
+			width: 3rem;
+			margin-right: 0.2rem;
+			height: 100%;
+			overflow: hidden;
+			.title {
+				text-align: center;
+				padding: 0.1rem 0;
+			}
+		}
+		.right {
+			flex: 1;
+			overflow: hidden;
+		}
+	}
+	.news-item {
+		box-sizing: border-box;
+		padding: 0.05rem 0.1rem;
+		.news-item-title {
+			font-size: 0.2rem;
+			line-height: 0.24rem;
+		}
+		.news-item-desc {
+			margin-top: 0.1rem;
+			color: #a4a4a4;
+			font-size: 0.12rem;
+			line-height: 0.18rem;
+		}
+		.news-item-time {
+			color: #a4a4a4;
+			font-size: 0.12rem;
+			line-height: 0.18rem;
+		}
+	}
+}
+.infolist-box {
+	width: 10.4rem;
+	margin: 0 auto;
+}
