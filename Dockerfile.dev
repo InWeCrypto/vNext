@@ -4,7 +4,7 @@ FROM node:9.2.0
 MAINTAINER inwecrypto <support@inwecrypto.com>
 
 COPY ./ /tmp/build
-COPY ./env.cn.js /tmp/build/src/config/config.js
+COPY ./env.dev.js /tmp/build/src/config/config.js
 
 WORKDIR /tmp/build/
 RUN yarn && yarn run build
