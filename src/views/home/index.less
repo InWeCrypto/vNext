@@ -19,7 +19,21 @@
 			width: 3rem;
 			margin-right: 0.2rem;
 			height: 100%;
-			overflow: hidden;
+			overflow-y: auto;
+			overflow-x: auto;
+			position: relative;
+			.newslist-box {
+				position: absolute;
+				left: 0;
+				top: 0.4rem;
+				right: -0.2rem;
+				bottom: 0;
+				overflow: auto;
+			}
+			.news-item {
+				box-sizing: border-box;
+				padding-right: 0.2rem;
+			}
 			.title {
 				text-align: center;
 				padding: 0.1rem 0;

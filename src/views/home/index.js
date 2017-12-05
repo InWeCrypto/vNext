@@ -39,8 +39,8 @@ class Home extends Component {
 					/>
 					<div className="home1 ui-box">
 						<div className="group left">
-							<div className="item">
-								<h2 className="title">24H NEWS</h2>
+							<h2 className="title">24H NEWS</h2>
+							<div className="newslist-box">
 								{newsList &&
 									newsList.length > 0 &&
 									newsList.map((item, index) => {

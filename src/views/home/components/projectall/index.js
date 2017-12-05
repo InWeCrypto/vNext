@@ -14,6 +14,7 @@ class ProjectAll extends Component {
 		let { projectList } = this.props;
 		return (
 			<div className="projectall">
+				<div onClick={this.onClickChange} className="projectall-bg" />
 				<div className="container projectadd-box">
 					<div className="projectall-search">
 						<div className="projectall-searchbox">
@@ -32,7 +33,10 @@ class ProjectAll extends Component {
 								projectList.length > 0 &&
 								projectList.map((item, index) => {
 									return (
-										<div className="projectall-item">
+										<div
+											key={index}
+											className="projectall-item"
+										>
 											<div className="projectall-itembox">
 												<img
 													className="projectall-img"
@@ -45,9 +49,6 @@ class ProjectAll extends Component {
 										</div>
 									);
 								})}
-						</div>
-						<div className="projectall-ctrl">
-							<img onClick={this.onClickChange} src={close} />
 						</div>
 					</div>
 				</div>
