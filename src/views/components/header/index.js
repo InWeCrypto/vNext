@@ -22,9 +22,9 @@ class Header extends Component {
 						<Link
 							activeClassName="cur"
 							className="a"
-							to="/candybox"
+							to="/candybowl"
 						>
-							CandyBox
+							CandyBowl
 						</Link>
 					</div>
 					<div className="search">

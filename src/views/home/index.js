@@ -23,36 +23,43 @@ class Home extends Component {
 				})
 			: null;
 		return (
-			<div className="home-box container">
-				<Project projectList={project} />
-				<div className="home1 ui-box">
-					<div className="group left">
-						<div className="item">
-							<h2 className="title">24H NEWS</h2>
-							{newsList &&
-								newsList.length > 0 &&
-								newsList.map((item, index) => {
-									return (
-										<div key={index} className="news-item">
-											<h3 className="news-item-titme">
-												{item.title}
-											</h3>
-											<div className="news-item-desc">
-												{item.desc}
+			<div>
+				<div className="home-box container">
+					<Project projectList={project} />
+					<div className="home1 ui-box">
+						<div className="group left">
+							<div className="item">
+								<h2 className="title">24H NEWS</h2>
+								{newsList &&
+									newsList.length > 0 &&
+									newsList.map((item, index) => {
+										return (
+											<div
+												key={index}
+												className="news-item"
+											>
+												<h3 className="news-item-titme">
+													{item.title}
+												</h3>
+												<div className="news-item-desc">
+													{item.desc}
+												</div>
+												<div className="news-item-time">
+													{item.created_at}
+												</div>
 											</div>
-											<div className="news-item-time">
-												{item.created_at}
-											</div>
-										</div>
-									);
-								})}
+										);
+									})}
+							</div>
+						</div>
+						<div className="group right">
+							<Banner bannerList={bannerList} />
 						</div>
 					</div>
-					<div className="group right">
-						<Banner bannerList={bannerList} />
-					</div>
 				</div>
-				<InfoBox infoList={infoList} />
+				<div className="infolist-box">
+					<InfoBox infoList={infoList} />
+				</div>
 			</div>
 		);
 	}

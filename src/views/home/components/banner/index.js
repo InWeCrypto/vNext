@@ -25,7 +25,7 @@ class Banner extends Component {
 										<img src={item.img} />
 									</div>
 									<div className="banner-title">
-										{item.title}
+										{item.name}
 									</div>
 									<div className="banner-desc">
 										{item.desc}

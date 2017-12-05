@@ -18,7 +18,6 @@ class InfoBox extends Component {
 		if (!document) {
 			return;
 		}
-		console.log(11);
 		var w = document.body.clientWidth;
 		if (w >= 1000) {
 			this.setState({
@@ -34,7 +33,13 @@ class InfoBox extends Component {
 		let { infoList } = this.props;
 		return (
 			<div className="info-box">
-				<StackGrid columnWidth={this.state.itemW}>
+				<StackGrid
+					style={{ width: "100%" }}
+					gutterWidth={10}
+					gutterHeight={10}
+					columnWidth={this.state.itemW}
+					monitorImagesLoaded={true}
+				>
 					{infoList &&
 						infoList.length > 0 &&
 						infoList.map((item, index) => {
