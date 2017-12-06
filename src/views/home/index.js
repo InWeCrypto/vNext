@@ -20,6 +20,9 @@ class Home extends Component {
 		q.day = d.getDate();
 		this.props.getCandyDataAction(q);
 	}
+	componentDidMount() {
+		document.title = "首页";
+	}
 	render() {
 		let {
 			infoList,
