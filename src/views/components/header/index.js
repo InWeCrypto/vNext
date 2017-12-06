@@ -3,7 +3,33 @@ import { Link } from "react-router-dom";
 import "./index.less";
 import logo from "../../../lib/images/logo1.png";
 import search from "../../../lib/images/search.png";
+import more from "../../../lib/images/home_more.png";
 class Header extends Component {
+	constructor() {
+		super();
+		this.state = {
+			isShowMore: false
+		};
+		//this.toggleMenu = this.toggleMenu.bind(this);
+	}
+	toggleMenu(e) {
+		e.nativeEvent.stopImmediatePropagation();
+		//e.nativeEvent.preventDefault();
+		this.setState({
+			isShowMore: !this.state.isShowMore
+		});
+	}
+	componentDidMount() {
+		document.addEventListener(
+			"click",
+			() => {
+				this.setState({
+					isShowMore: false
+				});
+			},
+			false
+		);
+	}
 	render() {
 		return (
 			<div className="header-box">
@@ -36,6 +62,24 @@ class Header extends Component {
 					<div className="ctrl">
 						<span>中文</span>
 						<span className="arrow-more" />
+					</div>
+					<div className="more-menu">
+						<span onClick={e => this.toggleMenu(e)}>
+							<img src={more} />
+						</span>
+						{this.state.isShowMore && (
+							<div className="more-list">
+								<Link to="/news" className="more-item">
+									NEWS
+								</Link>
+								<Link className="more-item" to="/ico">
+									ICO评测
+								</Link>
+								<Link className="more-item" to="/candybowl">
+									CandyBowl
+								</Link>
+							</div>
+						)}
 					</div>
 				</div>
 			</div>
