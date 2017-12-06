@@ -3,14 +3,16 @@ import {
 	PROJECTLIST,
 	NEWSLIST,
 	BANNERLIST,
-	PROJECTSTATE
+	PROJECTSTATE,
+	CANDYDATA
 } from "../actionTypes/";
 const homeData = {
 	infoList: null,
 	projectList: null,
 	newsList: null,
 	bannerList: null,
-	showMoreProject: false
+	showMoreProject: false,
+	candyData: null
 };
 
 const homeInfo = (state = homeData, action) => {
@@ -25,6 +27,8 @@ const homeInfo = (state = homeData, action) => {
 			return { ...state, bannerList: action.data };
 		case PROJECTSTATE:
 			return { ...state, showMoreProject: action.data };
+		case CANDYDATA:
+			return { ...state, candyData: action.data };
 		default:
 			return state;
 	}

@@ -21,7 +21,8 @@ class Home extends Component {
 			newsList,
 			bannerList,
 			showMoreProject,
-			changeProjectStateAction
+			changeProjectStateAction,
+			candyData
 		} = this.props;
 		let project = projectList
 			? projectList.filter(item => {
@@ -88,7 +89,8 @@ const mapStateToProps = state => {
 		projectList: state.homeInfo.projectList,
 		newsList: state.homeInfo.newsList,
 		bannerList: state.homeInfo.bannerList,
-		showMoreProject: state.homeInfo.showMoreProject
+		showMoreProject: state.homeInfo.showMoreProject,
+		candyData: state.homeInfo.candyData
 	};
 };
 const mapDispatchToProps = (dispatch, ownProps) => {
@@ -97,7 +99,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 		getProjectListAction: actions.getProjectListAction(dispatch),
 		getNewsListAction: actions.getNewsListAction(dispatch),
 		getBannerListAction: actions.getBannerListAction(dispatch),
-		changeProjectStateAction: actions.changeProjectStateAction(dispatch)
+		changeProjectStateAction: actions.changeProjectStateAction(dispatch),
+		getCandyDataAction: actions.getCandyDataAction(dispatch)
 	};
 };
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Home));
