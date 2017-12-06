@@ -34,8 +34,27 @@ class InfoBox extends Component {
 			});
 		}
 	}
+	setMonth(m) {
+		const me = [
+			"January",
+			"February",
+			"March",
+			"April",
+			"May",
+			"June",
+			"July",
+			"August",
+			"September",
+			"October",
+			"November",
+			"December"
+		];
+		if (m) {
+			return me[m - 1];
+		}
+	}
 	render() {
-		let { infoList } = this.props;
+		let { infoList, candyData } = this.props;
 		return (
 			<div className="info-box">
 				<StackGrid
@@ -45,21 +64,33 @@ class InfoBox extends Component {
 					columnWidth={this.state.itemW}
 					monitorImagesLoaded={true}
 				>
-					<div className="info-item candy-box">
-						<div className="candy-title">Candy Bowl</div>
-						<div className="candy-day">
-							<span className="day">13</span>
-							<div className="month">Octber</div>
-						</div>
-						<div className="product-list">
-							<div className="product-item">
-								<a href="">ETH AirDrop</a>
+					{candyData &&
+						candyData.length > 0 && (
+							<div className="info-item candy-box">
+								<div className="candy-title">Candy Bowl</div>
+								<div className="candy-day">
+									<span className="day">
+										{candyData[0].day}
+									</span>
+									<div className="month">
+										{this.setMonth(candyData[0].month)}
+									</div>
+								</div>
+								<div className="product-list">
+									{candyData.map((item, index) => {
+										return (
+											<div
+												key={index}
+												className="product-item"
+											>
+												<a href="">{item.name}</a>
+											</div>
+										);
+									})}
+								</div>
 							</div>
-							<div className="product-item">
-								<a href="">NEO AirDrop</a>
-							</div>
-						</div>
-					</div>
+						)}
+
 					<div className="info-item wallet">
 						<div className="wallet-title">IN WE WALLET</div>
 						<div className="wallet-desc">多数字资产管理钱包</div>

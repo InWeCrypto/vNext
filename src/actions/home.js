@@ -114,8 +114,8 @@ const getCandyDataAction = dispatch => data => {
 		query += `?category_id=${data.id}`;
 	}
 	getData(`${requestUrl}/home/candy_bow/${query}`).then(res => {
-		console.log(res);
 		if (res.code === 4000) {
+			dispatch(candyData(res.data));
 		} else {
 			throw new Error(res.msg);
 		}

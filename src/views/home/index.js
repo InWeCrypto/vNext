@@ -13,6 +13,12 @@ class Home extends Component {
 		this.props.getProjectListAction();
 		this.props.getNewsListAction();
 		this.props.getBannerListAction();
+		let d = new Date();
+		let q = {};
+		q.year = d.getFullYear();
+		q.month = d.getMonth() + 1;
+		q.day = d.getDate();
+		this.props.getCandyDataAction(q);
 	}
 	render() {
 		let {
@@ -70,7 +76,7 @@ class Home extends Component {
 					</div>
 				</div>
 				<div className="infolist-box">
-					<InfoBox infoList={infoList} />
+					<InfoBox candyData={candyData} infoList={infoList} />
 				</div>
 				{showMoreProject && (
 					<ProjectAll
