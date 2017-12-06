@@ -15,7 +15,14 @@ class Home extends Component {
 		this.props.getBannerListAction();
 	}
 	render() {
-		let { infoList, projectList, newsList, bannerList } = this.props;
+		let {
+			infoList,
+			projectList,
+			newsList,
+			bannerList,
+			showMoreProject,
+			changeProjectStateAction
+		} = this.props;
 		let project = projectList
 			? projectList.filter(item => {
 					if (item.type > 4) {
@@ -26,11 +33,14 @@ class Home extends Component {
 		return (
 			<div>
 				<div className="home-box container">
-					<Project projectList={project} />
+					<Project
+						changeState={changeProjectStateAction}
+						projectList={project}
+					/>
 					<div className="home1 ui-box">
 						<div className="group left">
-							<div className="item">
-								<h2 className="title">24H NEWS</h2>
+							<h2 className="title">24H NEWS</h2>
+							<div className="newslist-box">
 								{newsList &&
 									newsList.length > 0 &&
 									newsList.map((item, index) => {
@@ -61,7 +71,12 @@ class Home extends Component {
 				<div className="infolist-box">
 					<InfoBox infoList={infoList} />
 				</div>
-				{/* <ProjectAll projectList={projectList} /> */}
+				{showMoreProject && (
+					<ProjectAll
+						changeState={changeProjectStateAction}
+						projectList={project}
+					/>
+				)}
 			</div>
 		);
 	}
@@ -72,7 +87,8 @@ const mapStateToProps = state => {
 		infoList: state.homeInfo.infoList,
 		projectList: state.homeInfo.projectList,
 		newsList: state.homeInfo.newsList,
-		bannerList: state.homeInfo.bannerList
+		bannerList: state.homeInfo.bannerList,
+		showMoreProject: state.homeInfo.showMoreProject
 	};
 };
 const mapDispatchToProps = (dispatch, ownProps) => {
@@ -80,7 +96,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 		getInfoListAction: actions.getInfoListAction(dispatch),
 		getProjectListAction: actions.getProjectListAction(dispatch),
 		getNewsListAction: actions.getNewsListAction(dispatch),
-		getBannerListAction: actions.getBannerListAction(dispatch)
+		getBannerListAction: actions.getBannerListAction(dispatch),
+		changeProjectStateAction: actions.changeProjectStateAction(dispatch)
 	};
 };
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Home));
