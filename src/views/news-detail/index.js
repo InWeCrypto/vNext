@@ -161,7 +161,7 @@ class NewsDetail extends Component {
 											</div>
 											<div className="info">
 												<span>{item.created_at}</span>
-												<span>
+												<span className="news-more-type">
 													{this.setType(item.type)}
 												</span>
 											</div>
