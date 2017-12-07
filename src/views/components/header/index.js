@@ -53,16 +53,19 @@ class Header extends Component {
 				let l = this.refs.logo;
 				let se = this.refs.search;
 				let c = this.refs.contact;
+				let m = this.refs.moreMenu;
 				if (s <= 50) {
 					h.setAttribute("class", "header-box");
 					l.setAttribute("src", logo3);
 					se.setAttribute("src", search);
 					c.setAttribute("src", more);
+					m.setAttribute("src", more);
 				} else {
 					h.setAttribute("class", "header-box green");
 					l.setAttribute("src", logo2);
 					se.setAttribute("src", search1);
 					c.setAttribute("src", more1);
+					m.setAttribute("src", more1);
 				}
 			},
 			false
@@ -108,7 +111,7 @@ class Header extends Component {
 						</div>
 						<div className="more-menu">
 							<span onClick={e => this.toggleMenu(e)}>
-								<img src={more} />
+								<img src={more} ref="moreMenu" />
 							</span>
 							{this.state.isShowMore && (
 								<div className="more-list">

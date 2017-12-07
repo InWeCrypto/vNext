@@ -63,8 +63,8 @@ class NewsDetail extends Component {
 				//播放方式二：点播用户推荐
 				vid: "1e067a2831b641db90d570b6480fbc40",
 				playauth: "",
-				cover:
-					"http://liveroom-img.oss-cn-qingdao.aliyuncs.com/logo.png",
+				// cover:
+				// 	"http://liveroom-img.oss-cn-qingdao.aliyuncs.com/logo.png",
 				//播放方式三：仅MTS用户使用
 				vid: "1e067a2831b641db90d570b6480fbc40",
 				accId: "",
@@ -106,14 +106,15 @@ class NewsDetail extends Component {
 									{newsDetail.created_at}
 								</div>
 								{newsDetail.type === 3 && (
-									<div
-										onClick={() => {
-											this.playVideo(newsDetail.video);
-										}}
-										ref="videoBtn"
-										className="video"
-									>
-										<div className="video-btn">
+									<div ref="videoBtn" className="video">
+										<div
+											className="video-btn"
+											onClick={() => {
+												this.playVideo(
+													newsDetail.video
+												);
+											}}
+										>
 											<img
 												className="img"
 												src={newsDetail.img}
