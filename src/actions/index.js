@@ -3,7 +3,8 @@ import {
 	getProjectListAction,
 	getNewsListAction,
 	getBannerListAction,
-	changeProjectStateAction
+	changeProjectStateAction,
+	getCandyDataAction
 } from "./home";
 
 export default {
@@ -11,5 +12,6 @@ export default {
 	getProjectListAction,
 	getNewsListAction,
 	getBannerListAction,
-	changeProjectStateAction
+	changeProjectStateAction,
+	getCandyDataAction
 };

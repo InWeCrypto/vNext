@@ -13,6 +13,15 @@ class Home extends Component {
 		this.props.getProjectListAction();
 		this.props.getNewsListAction();
 		this.props.getBannerListAction();
+		let d = new Date();
+		let q = {};
+		q.year = d.getFullYear();
+		q.month = d.getMonth() + 1;
+		q.day = d.getDate();
+		this.props.getCandyDataAction(q);
+	}
+	componentDidMount() {
+		document.title = "首页";
 	}
 	render() {
 		let {
@@ -21,7 +30,8 @@ class Home extends Component {
 			newsList,
 			bannerList,
 			showMoreProject,
-			changeProjectStateAction
+			changeProjectStateAction,
+			candyData
 		} = this.props;
 		let project = projectList
 			? projectList.filter(item => {
@@ -69,7 +79,7 @@ class Home extends Component {
 					</div>
 				</div>
 				<div className="infolist-box">
-					<InfoBox infoList={infoList} />
+					<InfoBox candyData={candyData} infoList={infoList} />
 				</div>
 				{showMoreProject && (
 					<ProjectAll
@@ -88,7 +98,8 @@ const mapStateToProps = state => {
 		projectList: state.homeInfo.projectList,
 		newsList: state.homeInfo.newsList,
 		bannerList: state.homeInfo.bannerList,
-		showMoreProject: state.homeInfo.showMoreProject
+		showMoreProject: state.homeInfo.showMoreProject,
+		candyData: state.homeInfo.candyData
 	};
 };
 const mapDispatchToProps = (dispatch, ownProps) => {
@@ -97,7 +108,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 		getProjectListAction: actions.getProjectListAction(dispatch),
 		getNewsListAction: actions.getNewsListAction(dispatch),
 		getBannerListAction: actions.getBannerListAction(dispatch),
-		changeProjectStateAction: actions.changeProjectStateAction(dispatch)
+		changeProjectStateAction: actions.changeProjectStateAction(dispatch),
+		getCandyDataAction: actions.getCandyDataAction(dispatch)
 	};
 };
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Home));

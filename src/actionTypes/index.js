@@ -3,3 +3,4 @@ export const PROJECTLIST = "PROJECTLIST";
 export const NEWSLIST = "NEWSLIST";
 export const BANNERLIST = "BANNERLIST";
 export const PROJECTSTATE = "PROJECTSTATE";
+export const CANDYDATA = "CANDYDATA";

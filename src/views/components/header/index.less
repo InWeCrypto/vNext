@@ -1,8 +1,17 @@
 @import "../../../lib/css/base.less";
+.header-container {
+	height: 0.5rem;
+}
 .header-box {
 	background: @white;
 	color: @text;
 	padding: 0.1rem 0;
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	z-index: 19;
+	transition: background 0.3s linear;
 	.middle {
 		flex: 1;
 	}
@@ -49,9 +58,94 @@
 			padding: 0 0.1rem;
 			margin-right: 0.1rem;
 			vertical-align: middle;
+			border: 1px solid #ccc;
 		}
 		.search-input:focus {
 			outline: none;
+		}
+	}
+	.more-menu {
+		display: none;
+	}
+}
+.header-box.green {
+	background: @green;
+	color: @white;
+	.a {
+		color: @white;
+	}
+}
+@media screen and (min-width: 750px) and (max-width: 1000px) {
+	.header-box {
+		box-sizing: border-box;
+		padding: 0.1rem;
+		.nav {
+			display: none;
+		}
+		.search {
+			display: none;
+		}
+		.more-menu {
+			display: block;
+			position: relative;
+			margin-left: 0.1rem;
+			.more-list {
+				position: absolute;
+				right: 0;
+				top: 0.2rem;
+				background: #f4f4f4;
+				width: 0.8rem;
+				text-align: center;
+				z-index: 30;
+				padding: 0 0.05rem;
+				border-radius: 0.04rem;
+				.more-item {
+					display: block;
+					padding: 0.1rem 0;
+					border-bottom: 1px solid @grey;
+					color: @text;
+				}
+				.more-item:nth-last-child(1) {
+					border-bottom: 0;
+				}
+			}
+		}
+	}
+}
+@media screen and (max-width: 750px) {
+	.header-box {
+		box-sizing: border-box;
+		padding: 0.1rem;
+		.nav {
+			display: none;
+		}
+		.search {
+			display: none;
+		}
+		.more-menu {
+			display: block;
+			position: relative;
+			margin-left: 0.1rem;
+			.more-list {
+				position: absolute;
+				right: 0;
+				top: 0.2rem;
+				background: #f4f4f4;
+				width: 0.8rem;
+				text-align: center;
+				z-index: 30;
+				padding: 0 0.05rem;
+				border-radius: 0.04rem;
+				.more-item {
+					display: block;
+					padding: 0.1rem 0;
+					border-bottom: 1px solid @grey;
+					color: @text;
+				}
+				.more-item:nth-last-child(1) {
+					border-bottom: 0;
+				}
+			}
 		}
 	}
 }

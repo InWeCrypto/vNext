@@ -17,7 +17,10 @@ entries.vendor = [
 	"babel-polyfill",
 	`${rootPath}/views/index`
 ];
-
+entries.pace = [
+	rootPath + "/lib/css/pace.theme.css",
+	rootPath + "/lib/js/pace.js"
+];
 function resolve(dir) {
 	return path.join(__dirname, "..", dir);
 }
@@ -128,7 +131,7 @@ config.entries.forEach(function(entry) {
 	var options = {
 		filename: entry.filename,
 		template: entry.template,
-		chunks: ["manifest", "vendor", "app", entry.entryName],
+		chunks: ["manifest", "pace", "vendor", "app", entry.entryName],
 		env:
 			process.env.NODE_ENV === "development"
 				? JSON.parse(config.dev.env.NODE_ENV)

@@ -3,7 +3,8 @@ import {
 	PROJECTLIST,
 	NEWSLIST,
 	BANNERLIST,
-	PROJECTSTATE
+	PROJECTSTATE,
+	CANDYDATA
 } from "../actionTypes/";
 import { getData } from "../lib/js/app";
 import { requestUrl } from "../config/";
@@ -88,10 +89,44 @@ const projectState = data => {
 const changeProjectStateAction = dispatch => data => {
 	dispatch(projectState(data));
 };
+const candyData = data => {
+	return {
+		type: CANDYDATA,
+		data
+	};
+};
+const getCandyDataAction = dispatch => data => {
+	let query = "";
+	if (data.year) {
+		query = data.year;
+	}
+	if (data.year && data.month) {
+		query += "/" + data.month;
+	}
+	if (data.year && data.month && data.day) {
+		query += "/" + data.day;
+	}
+	if (query.length == 0) {
+		console.log("candybox时间参数错误");
+		return;
+	}
+	if (data.id) {
+		query += `?category_id=${data.id}`;
+	}
+	getData(`${requestUrl}/home/candy_bow/${query}`).then(res => {
+		if (res.code === 4000) {
+			dispatch(candyData(res.data));
+		} else {
+			throw new Error(res.msg);
+		}
+	});
+};
+
 export {
 	getInfoListAction,
 	getProjectListAction,
 	getNewsListAction,
 	getBannerListAction,
-	changeProjectStateAction
+	changeProjectStateAction,
+	getCandyDataAction
 };

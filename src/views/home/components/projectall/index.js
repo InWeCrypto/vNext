@@ -3,15 +3,45 @@ import searchbtn from "../../../../lib/images/search_focus.png";
 import close from "../../../../lib/images/project_up.png";
 import "./index.less";
 class ProjectAll extends Component {
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
+
+		this.state = {
+			projectList: props.projectList ? props.projectList : null,
+			keyWord: ""
+		};
 		this.onClickChange = this.onClickChange.bind(this);
+		this.searchInputChange = this.searchInputChange.bind(this);
+		this.searchBtnClick = this.searchBtnClick.bind(this);
 	}
 	onClickChange() {
 		this.props.changeState(false);
 	}
+	searchInputChange(e) {
+		this.setState({
+			keyWord: e.target.value
+		});
+	}
+	searchBtnClick() {
+		let arr;
+		let word = this.state.keyWord.toLocaleLowerCase();
+		if (word == "") {
+			this.setState({
+				projectList: this.props.projectList
+			});
+			return;
+		}
+		arr = this.props.projectList.filter((item, index) => {
+			if (item.name.toLocaleLowerCase().indexOf(word) != -1) {
+				return item;
+			}
+		});
+		this.setState({
+			projectList: arr
+		});
+	}
 	render() {
-		let { projectList } = this.props;
+		let { projectList } = this.state;
 		return (
 			<div className="projectall">
 				<div onClick={this.onClickChange} className="projectall-bg" />
@@ -21,8 +51,12 @@ class ProjectAll extends Component {
 							<input
 								className="projectall-searchtxt"
 								type="search"
+								onChange={this.searchInputChange}
 							/>
-							<span className="projectall-searchbtn">
+							<span
+								className="projectall-searchbtn"
+								onClick={this.searchBtnClick}
+							>
 								<img src={searchbtn} />
 							</span>
 						</div>
