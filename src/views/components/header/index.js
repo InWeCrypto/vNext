@@ -17,11 +17,9 @@ class Header extends Component {
 			isShowMore: false,
 			isShowContact: false
 		};
-		//this.toggleMenu = this.toggleMenu.bind(this);
 	}
 	toggleMenu(e) {
 		e.nativeEvent.stopImmediatePropagation();
-		//e.nativeEvent.preventDefault();
 		this.setState({
 			isShowMore: !this.state.isShowMore
 		});
