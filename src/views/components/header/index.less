@@ -40,6 +40,7 @@
 		}
 	}
 	.search {
+		margin-left: 0.2rem;
 		.searchbtn {
 			vertical-align: middle;
 			line-height: 0.25rem;
@@ -66,6 +67,51 @@
 	}
 	.more-menu {
 		display: none;
+	}
+	.contact-box {
+		margin-left: 0.2rem;
+		position: relative;
+		text-align: right;
+		.contact-more {
+			position: absolute;
+			right: 0;
+			top: 0.2rem;
+
+			.contact-list {
+				background: @white;
+				border: 1px solid #f2f2f2;
+			}
+			.contact-item {
+				text-align: left;
+				padding: 0.1rem;
+				display: block;
+				white-space: nowrap;
+				cursor: pointer;
+				color: @text;
+			}
+			.contact-img {
+				width: 0.19rem;
+				height: 0.14rem;
+				margin-right: 0.1rem;
+				vertical-align: middle;
+			}
+			.contact-text {
+				vertical-align: middle;
+			}
+			.arrow {
+				right: 0.05rem;
+			}
+		}
+	}
+	.arrow {
+		border-left: 0.06rem solid transparent;
+		border-right: 0.06rem solid transparent;
+		border-bottom: 0.06rem solid @white;
+		width: 0;
+		height: 0;
+		display: inline-block;
+		top: 0.04rem;
+		position: relative;
 	}
 }
 .header-box.green {
@@ -110,6 +156,9 @@
 				}
 			}
 		}
+		.contact-box {
+			display: none;
+		}
 	}
 }
 @media screen and (max-width: 750px) {
@@ -146,6 +195,9 @@
 					border-bottom: 0;
 				}
 			}
+		}
+		.contact-box {
+			display: none;
 		}
 	}
 }

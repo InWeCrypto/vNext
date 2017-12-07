@@ -19,6 +19,7 @@ entries.vendor = [
 ];
 entries.pace = [
 	rootPath + "/lib/css/pace.theme.css",
+	rootPath + "/lib/js/util.js",
 	rootPath + "/lib/js/pace.js"
 ];
 function resolve(dir) {

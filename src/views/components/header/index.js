@@ -5,12 +5,17 @@ import logo from "../../../lib/images/logo1.png";
 import logo2 from "../../../lib/images/logo2.png";
 import logo3 from "../../../lib/images/logo3.png";
 import search from "../../../lib/images/search.png";
+import search1 from "../../../lib/images/search1.png";
 import more from "../../../lib/images/home_more.png";
+import more1 from "../../../lib/images/home_more1.png";
+import tele from "../../../lib/images/tele.png";
+import mail from "../../../lib/images/mail.png";
 class Header extends Component {
 	constructor() {
 		super();
 		this.state = {
-			isShowMore: false
+			isShowMore: false,
+			isShowContact: false
 		};
 		//this.toggleMenu = this.toggleMenu.bind(this);
 	}
@@ -21,14 +26,20 @@ class Header extends Component {
 			isShowMore: !this.state.isShowMore
 		});
 	}
+	toggleContact(e) {
+		e.nativeEvent.stopImmediatePropagation();
+		this.setState({
+			isShowContact: !this.state.isShowMore
+		});
+	}
 	componentDidMount() {
 		Pace.start();
-		console.log();
 		document.addEventListener(
 			"click",
 			() => {
 				this.setState({
-					isShowMore: false
+					isShowMore: false,
+					isShowContact: false
 				});
 			},
 			false
@@ -40,12 +51,18 @@ class Header extends Component {
 				let s = body.scrollTop;
 				let h = this.refs.headerBox;
 				let l = this.refs.logo;
+				let se = this.refs.search;
+				let c = this.refs.contact;
 				if (s <= 50) {
 					h.setAttribute("class", "header-box");
 					l.setAttribute("src", logo3);
+					se.setAttribute("src", search);
+					c.setAttribute("src", more);
 				} else {
 					h.setAttribute("class", "header-box green");
 					l.setAttribute("src", logo2);
+					se.setAttribute("src", search1);
+					c.setAttribute("src", more1);
 				}
 			},
 			false
@@ -61,13 +78,13 @@ class Header extends Component {
 						</Link>
 						<div className="middle" />
 						<div className="nav">
-							<Link
+							{/* <Link
 								activeClassName="cur"
 								className="a"
 								to="/news"
 							>
 								NEWS
-							</Link>
+							</Link> */}
 							<Link activeClassName="cur" className="a" to="/ico">
 								ICO评测
 							</Link>
@@ -79,15 +96,15 @@ class Header extends Component {
 								CandyBowl
 							</Link>
 						</div>
-						<div className="search">
-							<input className="search-input" type="search" />
-							<span className="searchbtn">
-								<img src={search} />
-							</span>
-						</div>
 						<div className="ctrl">
 							<span>中文</span>
 							<span className="arrow-more" />
+						</div>
+						<div className="search">
+							{/* <input className="search-input" type="search" /> */}
+							<span className="searchbtn">
+								<img ref="search" src={search} />
+							</span>
 						</div>
 						<div className="more-menu">
 							<span onClick={e => this.toggleMenu(e)}>
@@ -104,6 +121,41 @@ class Header extends Component {
 									<Link className="more-item" to="/candybowl">
 										CandyBowl
 									</Link>
+									<a className="more-item" href="">
+										email
+									</a>
+									<a className="more-item" href="">
+										telegram
+									</a>
+								</div>
+							)}
+						</div>
+
+						<div className="contact-box">
+							<span onClick={e => this.toggleContact(e)}>
+								<img src={more} ref="contact" />
+							</span>
+							{this.state.isShowContact && (
+								<div className="contact-more">
+									<div className="arrow" />
+									<div className="contact-list">
+										<a className="contact-item">
+											<img
+												src={mail}
+												className="contact-img"
+											/>
+											<span>email</span>
+										</a>
+										<a className="contact-item">
+											<img
+												src={tele}
+												className="contact-img"
+											/>
+											<span className="contact-text">
+												telegram
+											</span>
+										</a>
+									</div>
 								</div>
 							)}
 						</div>

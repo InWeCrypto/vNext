@@ -8,6 +8,7 @@ import { Provider, connect } from "react-redux";
 import reducers from "../reducers/";
 import actions from "../actions/";
 import Home from "./home/";
+import NewsDetail from "./news-detail/";
 import Header from "./components/header/";
 import "../lib/css/app.less";
 let store;
@@ -34,6 +35,7 @@ export default class AppComponent extends Component {
 						<Header />
 						<Switch>
 							<Route path="/" exact component={Home} />
+							<Route path="/news-detail" component={NewsDetail} />
 						</Switch>
 					</div>
 				</Router>

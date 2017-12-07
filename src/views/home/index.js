@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 import "./index.less";
 import Project from "./components/project/";
 import InfoBox from "./components/infolist/";
@@ -55,7 +55,11 @@ class Home extends Component {
 									newsList.length > 0 &&
 									newsList.map((item, index) => {
 										return (
-											<div
+											<Link
+												to={{
+													pathname: "news-detail",
+													search: "?id=" + item.id
+												}}
 												key={index}
 												className="news-item"
 											>
@@ -68,7 +72,7 @@ class Home extends Component {
 												<div className="news-item-time">
 													{item.created_at}
 												</div>
-											</div>
+											</Link>
 										);
 									})}
 							</div>
