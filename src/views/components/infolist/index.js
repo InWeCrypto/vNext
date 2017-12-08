@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import StackGrid from "react-stack-grid";
 import { Link } from "react-router-dom";
 import "./index.less";
-import walletpng from "../../../../lib/images/wallet.png";
+import walletpng from "../../../lib/images/wallet.png";
 class InfoBox extends Component {
 	constructor() {
 		super();

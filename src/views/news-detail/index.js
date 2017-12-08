@@ -5,6 +5,7 @@ import "./index.less";
 import actions from "../../actions/";
 import { setTimeout } from "timers";
 import playbtn from "../../lib/images/playvideo.png";
+import InfoBox from "../components/infolist";
 var player = null;
 class NewsDetail extends Component {
 	constructor() {
@@ -14,28 +15,29 @@ class NewsDetail extends Component {
 			isShowVideo: false
 		};
 	}
-	componentWillReceiveProps(nextProps) {
+	async componentWillReceiveProps(nextProps) {
 		if (nextProps.location.search != this.props.location.search) {
 			let q = util.getQuery(window.location.href);
-			this.setState({
+			let info = await this.props.getNewsDetailAction({
 				id: q.id
 			});
-			this.props.getNewsDetailAction({
-				id: q.id
+			this.props.getNewNewsListAction({
+				id: info.category_id,
+				ownId: info.id
 			});
 		}
 	}
-	componentWillMount = () => {
+	async componentWillMount() {
 		document.title = "详情";
 		let q = util.getQuery(window.location.href);
-		this.setState({
+		let info = await this.props.getNewsDetailAction({
 			id: q.id
 		});
-		this.props.getNewsDetailAction({
-			id: q.id
+		this.props.getNewNewsListAction({
+			id: info.category_id,
+			ownId: info.id
 		});
-		this.props.getNewNewsListAction();
-	};
+	}
 	setType(t) {
 		if (!t) {
 			return;
@@ -143,7 +145,7 @@ class NewsDetail extends Component {
 							{/* <div className="right">more></div> */}
 						</div>
 						<div className="news-more-list">
-							{newNewsList.length > 0 &&
+							{/* {newNewsList.length > 0 &&
 								newNewsList.map((item, index) => {
 									return (
 										<Link
@@ -168,7 +170,8 @@ class NewsDetail extends Component {
 											</div>
 										</Link>
 									);
-								})}
+                                })} */}
+							<InfoBox infoList={newNewsList} />
 						</div>
 					</div>
 				)}

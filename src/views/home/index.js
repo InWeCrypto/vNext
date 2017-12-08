@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { withRouter, Link } from "react-router-dom";
 import "./index.less";
 import Project from "./components/project/";
-import InfoBox from "./components/infolist/";
+import InfoBox from "../components/infolist/";
 import Banner from "./components/banner/";
 import actions from "../../actions/";
 import ProjectAll from "./components/projectall/";

@@ -1,4 +1,5 @@
 import { combineReducers } from "redux";
 import { homeInfo } from "./home";
 import { newsDetailData } from "./newsdetail";
-export default combineReducers({ homeInfo, newsDetailData });
+import { projectData } from "./project";
+export default combineReducers({ homeInfo, newsDetailData, projectData });

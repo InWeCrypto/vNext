@@ -10,6 +10,7 @@ import actions from "../actions/";
 import Home from "./home/";
 import NewsDetail from "./news-detail/";
 import Header from "./components/header/";
+import Project from "./project/";
 import "../lib/css/app.less";
 let store;
 if (window.__REDUX_DEVTOOLS_EXTENSION__) {
@@ -36,6 +37,7 @@ export default class AppComponent extends Component {
 						<Switch>
 							<Route path="/" exact component={Home} />
 							<Route path="/news-detail" component={NewsDetail} />
+							<Route path="/project" component={Project} />
 						</Switch>
 					</div>
 				</Router>

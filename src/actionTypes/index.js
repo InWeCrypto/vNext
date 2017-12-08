@@ -7,3 +7,6 @@ export const CANDYDATA = "CANDYDATA";
 //新闻详情页面
 export const NEWSDETAIL = "NEWSDETAIL";
 export const NEWNEWSLIST = "NEWNEWSLIST";
+//项目详情
+export const PROJECTDETAIL = "PROJECTDETAIL";
+export const MARKETDATA = "MARKETDATA";

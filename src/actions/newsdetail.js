@@ -9,12 +9,16 @@ const newsDetail = data => {
 	};
 };
 const getNewsDetailAction = dispatch => data => {
-	getData(`${requestUrl}/article/${data.id}`).then(res => {
-		if (res.code === 4000) {
-			dispatch(newsDetail(res.data));
-		} else {
-			throw new Error(res.msg);
-		}
+	return new Promise((resolve, reject) => {
+		getData(`${requestUrl}/article/${data.id}`).then(res => {
+			if (res.code === 4000) {
+				dispatch(newsDetail(res.data));
+				resolve(res.data);
+			} else {
+				reject(res.msg);
+				throw new Error(res.msg);
+			}
+		});
 	});
 };
 const newNews = data => {
@@ -25,18 +29,15 @@ const newNews = data => {
 };
 
 const getNewNewsListAction = dispatch => data => {
-	getData(`${requestUrl}/article/all`).then(res => {
-		console.log(res);
+	getData(`${requestUrl}/category/${data.id}/articles/all`).then(res => {
 		if (res.code === 4000) {
-			let r = res.data;
-			let a = [];
-			r.map((item, index) => {
-				if (index >= 3) {
-					return;
+			let arr = res.data;
+			let r = arr.filter(item => {
+				if (item.id !== data.ownId) {
+					return item;
 				}
-				a.push(item);
 			});
-			dispatch(newNews(a));
+			dispatch(newNews(r));
 		} else {
 			throw new Error(res.msg);
 		}

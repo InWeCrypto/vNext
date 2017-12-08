@@ -1,0 +1,31 @@
+@import "../../lib/css/base.less";
+
+.project-detail {
+	margin: 0.2rem auto;
+	max-width: 10rem;
+	display: flex;
+	align-items: flex-start;
+	.project-left {
+		width: 7rem;
+		margin-right: 0.2rem;
+	}
+	.project-right {
+		flex: 1;
+	}
+	.project-info {
+		background: @white;
+		box-sizing: border-box;
+		padding: 0.1rem;
+		.project-title-box {
+			padding: 0.1rem 0;
+			border-bottom: 1px dashed #979797;
+			text-align: center;
+			.h2 {
+				font-size: 0.3rem;
+			}
+			.project-state {
+				font-size: 0.14rem;
+			}
+		}
+	}
+}
