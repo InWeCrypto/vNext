@@ -1,4 +1,4 @@
-import { PROJECTDETAIL, MARKETDATA } from "../actionTypes/";
+import { PROJECTDETAIL, MARKETDATA, TIMEPRICEDATA } from "../actionTypes/";
 import { getData } from "../lib/js/app";
 import { requestUrl } from "../config/";
 const projectDetail = data => {
@@ -20,22 +20,21 @@ const getProjectDetailAction = dispatch => data => {
 	});
 };
 
-const marketData = data => {
+const timePrice = data => {
 	return {
-		type: MARKETDATA,
+		type: TIMEPRICEDATA,
 		data: {
 			type: data.type,
 			data: data.data
 		}
 	};
 };
-
-const getMarketDataAction = dispatch => data => {
+const getTimePriceAction = dispatch => data => {
 	getData(`${requestUrl}/${data.url}`)
 		.then(res => {
 			if (res.code === 4000) {
 				dispatch(
-					marketData({
+					timePrice({
 						type: data.type,
 						data: res.data
 					})
@@ -49,4 +48,4 @@ const getMarketDataAction = dispatch => data => {
 		});
 };
 
-export { getProjectDetailAction, getMarketDataAction };
+export { getProjectDetailAction, getTimePriceAction };

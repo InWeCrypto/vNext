@@ -8,7 +8,7 @@ import {
 } from "./home";
 import { getNewsDetailAction, getNewNewsListAction } from "./newsdetail";
 
-import { getProjectDetailAction, getMarketDataAction } from "./project";
+import { getProjectDetailAction, getTimePriceAction } from "./project";
 export default {
 	//首页
 	getInfoListAction,
@@ -22,5 +22,5 @@ export default {
 	getNewNewsListAction,
 	//项目
 	getProjectDetailAction,
-	getMarketDataAction
+	getTimePriceAction
 };

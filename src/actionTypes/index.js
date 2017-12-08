@@ -10,3 +10,4 @@ export const NEWNEWSLIST = "NEWNEWSLIST";
 //项目详情
 export const PROJECTDETAIL = "PROJECTDETAIL";
 export const MARKETDATA = "MARKETDATA";
+export const TIMEPRICEDATA = "TIMEPRICEDATA";

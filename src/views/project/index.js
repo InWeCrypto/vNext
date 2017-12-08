@@ -14,11 +14,14 @@ class Project extends Component {
 		let detail = await this.props.getProjectDetailAction({
 			id: q.id
 		});
-		if (detail.project_markets && detail.project_markets.length > 0) {
-			detail.project_markets.map((item, index) => {
-				this.props.getMarketDataAction({
+		if (
+			detail.project_time_prices &&
+			detail.project_time_prices.length > 0
+		) {
+			detail.project_time_prices.map((item, index) => {
+				this.props.getTimePriceAction({
 					type: item.name,
-					url: item.url
+					url: item.current_url
 				});
 			});
 		}
@@ -39,7 +42,7 @@ class Project extends Component {
 		}
 	}
 	render() {
-		const { projectDetail, marketData } = this.props;
+		const { projectDetail, timePrice } = this.props;
 		return (
 			<div className="project-detail">
 				<div className="project-left">
@@ -47,21 +50,43 @@ class Project extends Component {
 						{projectDetail && (
 							<div className="project-title-box">
 								<h2 className="h2">{projectDetail.name}</h2>
-								<h3>22</h3>
+								{/* <h3>22</h3> */}
 								<div className="project-state">
 									{this.setType(projectDetail.type)}
 								</div>
 							</div>
 						)}
-						{projectDetail && (
-							<RealTime
-								typeList={projectDetail}
-								marketData={marketData}
-							/>
-						)}
+						{projectDetail &&
+							timePrice && (
+								<RealTime
+									website={projectDetail.website}
+									typeList={projectDetail.project_time_prices}
+									timePrice={timePrice}
+								/>
+							)}
+						<div className="box2">
+							<div className="box2-nav">
+								<span className="nav-item cur">K线</span>
+								<span className="nav-item">交易市场</span>
+							</div>
+							<div className="k-box">
+								<div className="k-nav">
+									<span className="k-navbtn">5m</span>
+									<span className="k-navbtn">15m</span>
+									<span className="k-navbtn">30m</span>
+									<span className="k-navbtn">1h</span>
+									<span className="k-navbtn">2h</span>
+									<span className="k-navbtn">4h</span>
+									<span className="k-navbtn">6h</span>
+									<span className="k-navbtn">1d</span>
+									<span className="k-navbtn">1w</span>
+								</div>
+								<div className="k-content" />
+							</div>
+						</div>
 					</div>
 				</div>
-				<div className="project-right">11</div>
+				<div className="project-right" />
 			</div>
 		);
 	}
@@ -69,13 +94,13 @@ class Project extends Component {
 const mapStateToProps = state => {
 	return {
 		projectDetail: state.projectData.projectDetail,
-		marketData: state.projectData.marketData
+		timePrice: state.projectData.timePrice
 	};
 };
 const mapDispatchToProps = (dispatch, ownProps) => {
 	return {
 		getProjectDetailAction: actions.getProjectDetailAction(dispatch),
-		getMarketDataAction: actions.getMarketDataAction(dispatch)
+		getTimePriceAction: actions.getTimePriceAction(dispatch)
 	};
 };
 export default withRouter(

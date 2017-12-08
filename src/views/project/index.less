@@ -15,7 +15,7 @@
 	.project-info {
 		background: @white;
 		box-sizing: border-box;
-		padding: 0.1rem;
+		padding: 0.2rem;
 		.project-title-box {
 			padding: 0.1rem 0;
 			border-bottom: 1px dashed #979797;
@@ -26,6 +26,42 @@
 			.project-state {
 				font-size: 0.14rem;
 			}
+		}
+	}
+	.box2 {
+		margin-top: 0.1rem;
+		.box2-nav {
+			border-bottom: 0.01rem solid #d2d2d2;
+		}
+		.nav-item {
+			display: inline-block;
+			box-sizing: border-box;
+			padding: 0.1rem 0;
+			margin-right: 0.18rem;
+			border-bottom: 0.03rem solid transparent;
+			font-size: 0.2rem;
+		}
+		.nav-item.cur {
+			border-bottom: 0.03rem solid @orange;
+			color: @orange;
+		}
+	}
+	.k-box {
+		.k-nav {
+			margin-bottom: 0.1rem;
+		}
+		.k-navbtn {
+			display: inline-block;
+			padding: 0.05rem;
+			color: @green;
+			border: 0.01rem solid @green;
+			margin: 0.05rem 0.05rem 0.05rem 0;
+			border-radius: 0.04rem;
+			cursor: pointer;
+		}
+		.k-content {
+			height: 3.75rem;
+			background: #fbfbfb;
 		}
 	}
 }

@@ -2,7 +2,19 @@
 .real-time {
 	.realtime-title {
 		padding: 0.2rem 0;
-		font-size: 0.16rem;
+		font-size: 0.22rem;
+		display: flex;
+		align-items: center;
+		.realtime-txt {
+			flex: 1;
+		}
+		.gowebsite {
+			display: block;
+			color: @white;
+			padding: 0.05rem 0.15rem;
+			background: @green;
+			font-size: 0.16rem;
+		}
 	}
 	.realtime-box1 {
 		padding: 0 0 0.1rem 0;
@@ -13,17 +25,20 @@
 		}
 		.realtime-trend {
 			vertical-align: middle;
-			font-size: 0.14rm;
+			font-size: 0.16rem;
 			margin-left: 0.1rem;
+			color: @green;
 		}
-	}
-	.reactime-box2 {
+		.btc {
+			font-size: 0.16rem;
+		}
 	}
 	.realtime-item {
 		display: flex;
 		align-items: flex-start;
 		box-sizing: border-box;
 		padding: 0.1rem 0;
+		font-size: 0.16rem;
 		.left {
 			width: 1rem;
 		}
