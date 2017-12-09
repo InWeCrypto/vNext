@@ -3,9 +3,6 @@ import "./index.less";
 class RealTime extends Component {
 	render() {
 		const { typeList, timePrice, website } = this.props;
-		if (timePrice && timePrice[typeList[1].name]) {
-			console.log(timePrice[typeList[1].name].price);
-		}
 		// let name = [];
 		// if (typeList && typeList.length > 0) {
 		// 	typeList.map(item => {
@@ -32,17 +29,20 @@ class RealTime extends Component {
 							</div>
 							<div className="realtime-box1">
 								<span className="realtime-now">
-									${timePrice[typeList[1].name] &&
+									${typeList[1] &&
+										timePrice[typeList[1].name] &&
 										timePrice[typeList[1].name].price}
 								</span>
 								<span className="realtime-trend">
-									{timePrice[typeList[1].name] &&
+									{typeList[1] &&
+										timePrice[typeList[1].name] &&
 										timePrice[typeList[1].name][
 											"24h_change"
 										]}
 								</span>
 								<div className="btc">
-									({timePrice[`${typeList[0].name}`] &&
+									({typeList[0] &&
+										timePrice[`${typeList[0].name}`] &&
 										timePrice[`${typeList[0].name}`]
 											.price}BTC)
 								</div>
@@ -54,10 +54,12 @@ class RealTime extends Component {
 										{typeList.map((item, index) => {
 											return (
 												<span key={index}>
-													{
-														timePrice[item.name]
-															.volume
-													}
+													<span>
+														{timePrice[item.name] &&
+															timePrice[
+																item.name
+															]["volume"]}
+													</span>
 													<span
 														style={{
 															padding: "0 .04rem"
@@ -79,11 +81,12 @@ class RealTime extends Component {
 										{typeList.map((item, index) => {
 											return (
 												<span key={index}>
-													{
-														timePrice[item.name][
-															"24h_max_price"
-														]
-													}
+													<span>
+														{timePrice[item.name] &&
+															timePrice[
+																item.name
+															]["24h_max_price"]}
+													</span>
 													<span
 														style={{
 															padding: "0 .04rem"
@@ -105,11 +108,10 @@ class RealTime extends Component {
 										{typeList.map((item, index) => {
 											return (
 												<span key={index}>
-													{
+													{timePrice[item.name] &&
 														timePrice[item.name][
 															"24h_min_price"
-														]
-													}
+														]}
 													<span
 														style={{
 															padding: "0 .04rem"

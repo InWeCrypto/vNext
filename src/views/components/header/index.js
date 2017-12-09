@@ -73,7 +73,7 @@ class Header extends Component {
 		return (
 			<div className="header-container">
 				<div className="header-box" ref="headerBox">
-					<div className="container ui-box">
+					<div className="container-main  ui-box">
 						<Link to="/" className="logo">
 							<img ref="logo" src={logo3} />
 						</Link>

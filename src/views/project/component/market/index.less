@@ -1,0 +1,27 @@
+@import "../../../../lib/css/base.less";
+.market-box {
+	.market-group {
+		box-sizing: border-box;
+		padding: 0.1rem;
+		.market-item {
+			display: flex;
+			align-items: center;
+			.market-left {
+				flex: 1;
+			}
+		}
+		.market-pair {
+			color: @grey;
+		}
+		.market-t {
+			margin-bottom: 0.05rem;
+		}
+	}
+	.market-more {
+		padding: 0.1rem 0;
+		text-align: center;
+		color: @grey;
+		text-decoration: underline;
+		cursor: pointer;
+	}
+}

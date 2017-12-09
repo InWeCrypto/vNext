@@ -1,0 +1,72 @@
+@import "../../../lib/css/base.less";
+.inews {
+	background: @white;
+	.inews-title {
+		color: @text;
+		padding: 0.1rem;
+		font-size: 0.18rem;
+	}
+	.inews-container {
+		box-sizing: border-box;
+	}
+	.inews-nav {
+		border-bottom: 0.01rem solid #d2d2d2;
+		box-sizing: border-box;
+		padding: 0 0.1rem;
+		font-size: 0.16rem;
+		.inews-navbox {
+			display: inline-block;
+			border-radius: 0.03rem;
+			.inews-navbtn {
+				padding: 0 0 0.1rem 0;
+				color: @text;
+				text-align: center;
+				display: inline-block;
+				margin-right: 0.1rem;
+			}
+			.inews-navbtn.cur {
+				border-bottom: 0.03rem solid @orange;
+			}
+		}
+	}
+	.inews-list {
+		padding: 0 0.1rem 0.1rem;
+		.inews-item {
+			display: flex;
+			align-items: flex-start;
+			padding: 0.1rem 0;
+			border-bottom: 0.01rem solid #d2d2d2;
+			.img-box {
+				width: 1.6rem;
+				height: 0.9rem;
+				margin-right: 0.1rem;
+				img {
+					width: 100%;
+					height: 100%;
+				}
+			}
+			.inews-cont {
+				flex: 1;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+				.item-title {
+					font-size: 0.14rem;
+					color: @orange;
+					overflow: hidden;
+					text-overflow: ellipsis;
+					white-space: nowrap;
+				}
+				.item-desc {
+					margin: 0.05rem 0 0 0;
+					color: #333;
+					white-space: normal;
+					height: 0.57rem;
+				}
+				.item-time {
+					color: #333;
+				}
+			}
+		}
+	}
+}

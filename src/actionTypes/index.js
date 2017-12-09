@@ -9,5 +9,13 @@ export const NEWSDETAIL = "NEWSDETAIL";
 export const NEWNEWSLIST = "NEWNEWSLIST";
 //项目详情
 export const PROJECTDETAIL = "PROJECTDETAIL";
-export const MARKETDATA = "MARKETDATA";
 export const TIMEPRICEDATA = "TIMEPRICEDATA";
+export const KDATA = "KDATA";
+export const KTYPE = "KTYPE";
+export const MARKETDATA = "MARKETDATA";
+
+export const INEWSINDEX = "INEWSINDEX";
+export const VIDEOLIST = "VIDEOLIST";
+export const IMGTXTLIST = "IMGTXTLIST";
+export const NEWSFLASH = "NEWSFLASH";
+export const RESETPROJECT = "RESETPROJECT";

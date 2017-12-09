@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import searchbtn from "../../../../lib/images/search_focus.png";
 import close from "../../../../lib/images/project_up.png";
 import "./index.less";
@@ -45,7 +46,7 @@ class ProjectAll extends Component {
 		return (
 			<div className="projectall">
 				<div onClick={this.onClickChange} className="projectall-bg" />
-				<div className="container projectadd-box">
+				<div className="container-main projectadd-box">
 					<div className="projectall-search">
 						<div className="projectall-searchbox">
 							<input
@@ -67,7 +68,11 @@ class ProjectAll extends Component {
 								projectList.length > 0 &&
 								projectList.map((item, index) => {
 									return (
-										<div
+										<Link
+											to={{
+												pathname: "/project",
+												search: "?id=" + item.id
+											}}
 											key={index}
 											className="projectall-item"
 										>
@@ -80,7 +85,7 @@ class ProjectAll extends Component {
 													{item.name}
 												</div>
 											</div>
-										</div>
+										</Link>
 									);
 								})}
 						</div>

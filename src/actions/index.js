@@ -8,7 +8,18 @@ import {
 } from "./home";
 import { getNewsDetailAction, getNewNewsListAction } from "./newsdetail";
 
-import { getProjectDetailAction, getTimePriceAction } from "./project";
+import {
+	getProjectDetailAction,
+	getTimePriceAction,
+	getKDataAction,
+	changeKTypeAction,
+	getMarketDataAction,
+	changeInewsIndex,
+	getVideoListAction,
+	getImgTxtListAction,
+	getProjectNewsListAction,
+	resetProjectAction
+} from "./project";
 export default {
 	//首页
 	getInfoListAction,
@@ -22,5 +33,13 @@ export default {
 	getNewNewsListAction,
 	//项目
 	getProjectDetailAction,
-	getTimePriceAction
+	getTimePriceAction,
+	getKDataAction,
+	changeKTypeAction,
+	getMarketDataAction,
+	changeInewsIndex,
+	getVideoListAction,
+	getImgTxtListAction,
+	getProjectNewsListAction,
+	resetProjectAction
 };

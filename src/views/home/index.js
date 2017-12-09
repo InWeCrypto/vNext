@@ -42,7 +42,7 @@ class Home extends Component {
 			: null;
 		return (
 			<div>
-				<div className="home-box container">
+				<div className="home-box container-main">
 					<Project
 						changeState={changeProjectStateAction}
 						projectList={project}
