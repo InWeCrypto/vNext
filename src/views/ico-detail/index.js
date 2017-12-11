@@ -206,7 +206,7 @@ class IcoDetail extends Component {
 								<div className="img-box">
 									<img src={icoDetail.img} alt="" />
 								</div>
-								<div>{icoDetail.content}</div>
+								<div className="">{icoDetail.content}</div>
 							</div>
 						</div>
 						{icoDetail.ico_assess_project_analyse &&
