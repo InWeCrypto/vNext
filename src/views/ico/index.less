@@ -1,0 +1,47 @@
+@import "../../lib/css/base.less";
+.ico-box {
+	.ico-title {
+		max-width: 10rem;
+		margin: 0.2rem auto;
+		padding: 0.1rem 0;
+		font-size: 0.18rem;
+		border-bottom: 0.01rem solid #d2d2d2;
+	}
+	.ico-content {
+		max-width: 10.4rem;
+		margin: 0 auto;
+		.ico-item {
+			background: @white;
+			cursor: pointer;
+			.ico-item-img {
+				width: 100%;
+			}
+			.ico-item-title {
+				padding: 0.1rem;
+				box-sizing: border-box;
+				font-size: 0.18rem;
+				background: @white;
+				color: @text;
+			}
+			.ico-item-info {
+				display: flex;
+				align-items: center;
+				padding: 0.3rem 0.1rem 0.1rem 0.1rem;
+				box-sizing: border-box;
+				color: @grey;
+				background: @white;
+			}
+			.ico-item-time {
+				flex: 1;
+			}
+			.ico-item-desc {
+				padding-bottom: 0.3rem;
+				color: @grey;
+				font-size: 0.14rem;
+				padding: 0 0.1rem;
+				box-sizing: border-box;
+				background: @white;
+			}
+		}
+	}
+}

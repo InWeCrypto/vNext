@@ -20,6 +20,10 @@ import {
 	getProjectNewsListAction,
 	resetProjectAction
 } from "./project";
+
+import { getIcoListAction } from "./ico";
+import { getIcoDetailAction } from "./icodetail";
+
 export default {
 	//首页
 	getInfoListAction,
@@ -41,5 +45,9 @@ export default {
 	getVideoListAction,
 	getImgTxtListAction,
 	getProjectNewsListAction,
-	resetProjectAction
+	resetProjectAction,
+	//ico
+	getIcoListAction,
+	//ico详情
+	getIcoDetailAction
 };

@@ -1,0 +1,191 @@
+@import "../../lib/css/base.less";
+.icodetail-box {
+	max-width: 10rem;
+	margin: 0.2rem auto;
+	background: @white;
+	padding: 0 0.2rem;
+	box-sizing: border-box;
+	.icodetail-title {
+		font-size: 0.18rem;
+		text-align: center;
+		padding: 0.2rem 0;
+	}
+	.icodetail-time {
+		font-size: 0.14rem;
+		color: @grey;
+		text-align: center;
+	}
+	.icodetail-medias {
+		padding: 0.05rem 0;
+		border-bottom: 0.01rem dashed @grey;
+		text-align: right;
+	}
+	.icodetail-intro {
+		padding: 0.2rem 0;
+	}
+	.icodetail-info {
+		box-sizing: border-box;
+		border: 0.01rem solid #818181;
+		display: flex;
+		align-items: center;
+		padding: 0.2rem 0.3rem;
+		.left {
+			text-align: center;
+			width: 2.6rem;
+			.icodetail-scope {
+				width: 1.2rem;
+				height: 1.2rem;
+				background: @orange;
+				color: @white;
+				font-size: 0.18rem;
+				line-height: 1.2rem;
+				border-radius: 50%;
+				display: inline-block;
+			}
+			.icodetail-scope-txt {
+				margin-top: 0.2rem;
+				font-size: 0.14rem;
+			}
+		}
+		.middle {
+			flex: 1;
+			.color-rect {
+				width: 0.2rem;
+				height: 0.2rem;
+				display: inline-block;
+				margin: 0 0.2rem;
+				vertical-align: middle;
+			}
+		}
+		.right {
+			width: 2.6rem;
+			.ico-tag-box {
+				margin: 0.2rem 0;
+				text-align: center;
+				.ico-tag {
+					padding: 0.05rem;
+					border: 0.01rem solid #979797;
+					border-radius: 0.03rem;
+				}
+			}
+		}
+	}
+	.icodetail-detail {
+		box-sizing: border-box;
+		padding: 0.3rem 0;
+		border-bottom: 0.01rem dashed #979797;
+		.detail-title {
+			display: flex;
+			align-items: center;
+			.detail-left {
+				flex: 1;
+			}
+			.detail-left {
+				font-size: 0.18rem;
+			}
+			.gowebsite {
+				display: inline-block;
+				background: @green;
+				padding: 0.05rem 0.15rem;
+				color: @white;
+				vertical-align: middle;
+			}
+		}
+		.icodetail-detail-item {
+			display: flex;
+			align-items: flex-state;
+			padding: 0.1rem 0;
+			.name {
+				width: 1.5rem;
+			}
+			.value {
+				flex: 1;
+			}
+		}
+	}
+	.icodetail-framework {
+		padding: 0.3rem 0;
+		border-bottom: 0.01rem dashed #979797;
+		.framework-title {
+			font-size: 0.18rem;
+			margin-bottom: 0.2rem;
+		}
+		.framework-cont {
+			display: flex;
+			align-items: center;
+			.echarts {
+				height: 3rem;
+				width: 3rem;
+			}
+			.framework-item {
+				padding: 0.1rem;
+				font-size: 0.16rem;
+			}
+		}
+	}
+	.icodetail-desc {
+		padding: 0.3rem 0;
+		border-bottom: 0.01rem dashed #979797;
+		.icodetail-desc-title {
+			font-size: 0.18rem;
+			margin-bottom: 0.2rem;
+		}
+		.icodetail-desc-cont {
+			.img-box {
+				text-align: center;
+				img {
+					max-width: 100%;
+				}
+			}
+		}
+	}
+	.icodetail-analy {
+		padding: 0.3rem 0;
+		//border-bottom: 0.01rem dashed #979797;
+		.icodetail-analy-title {
+			font-size: 0.18rem;
+			margin-bottom: 0.2rem;
+		}
+		.icodetail-analy-cont {
+			border-left: 1px solid #c9c9c9;
+			border-top: 1px solid #c9c9c9;
+			box-sizing: border-box;
+			.icodetail-analy-item {
+				display: flex;
+				align-items: stretch;
+				.item {
+					box-sizing: border-box;
+					flex: 0 0 33.33%;
+					border-right: 1px solid #c9c9c9;
+					border-bottom: 1px solid #c9c9c9;
+					padding: 0.1rem;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+				}
+			}
+		}
+	}
+}
+@media screen and (max-width: 750px) {
+	.icodetail-box {
+		.icodetail-info {
+			flex-wrap: wrap;
+			.left {
+				width: 100%;
+			}
+			.middle {
+				width: 100%;
+				margin: 0.1rem 0;
+				text-align: center;
+			}
+			.right {
+				width: 100%;
+				.ico-tag-box {
+					display: inline-block;
+					margin: 0 0.05rem 0.2rem 0;
+				}
+			}
+		}
+	}
+}

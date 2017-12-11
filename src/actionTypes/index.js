@@ -19,3 +19,7 @@ export const VIDEOLIST = "VIDEOLIST";
 export const IMGTXTLIST = "IMGTXTLIST";
 export const NEWSFLASH = "NEWSFLASH";
 export const RESETPROJECT = "RESETPROJECT";
+//ico
+export const ICOLIST = "ICOLIST";
+//ico详情
+export const ICODETAIL = "ICODETAIL";

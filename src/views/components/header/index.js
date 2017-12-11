@@ -113,9 +113,9 @@ class Header extends Component {
 							</span>
 							{this.state.isShowMore && (
 								<div className="more-list">
-									<Link to="/news" className="more-item">
+									{/* <Link to="/news" className="more-item">
 										NEWS
-									</Link>
+									</Link> */}
 									<Link className="more-item" to="/ico">
 										ICO评测
 									</Link>
