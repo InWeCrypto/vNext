@@ -1,0 +1,95 @@
+@import "../../lib/css/base.less";
+
+.candybowl-container {
+	max-width: 10rem;
+	margin: 0.2rem auto;
+	.candybowl-title {
+		padding: 0.1rem 0;
+		text-align: center;
+		font-size: 0.3rem;
+	}
+	.candybowl-must {
+		background: #da394b;
+		box-sizing: border-box;
+		text-align: center;
+		padding: 0.1rem;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		font-size: 0.16rem;
+		color: @white;
+		display: block;
+	}
+	.candybowl-cont {
+		background: #fff;
+		display: flex;
+		align-items: center;
+		margin-bottom: 0.2rem;
+	}
+	.candybowl-calendar {
+		width: 5.8rem;
+		box-sizing: border-box;
+	}
+	.candybowl-data {
+		flex: 1;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		.candybowl-cont {
+			width: 2.4rem;
+			background: #da394b;
+			box-shadow: -9px 2px 21px #bbbbbb;
+			align-items: center;
+			display: flex;
+			flex-flow: column;
+			justify-content: center;
+			color: @white;
+			font-size: 0.4rem;
+			padding: 0.2rem 0;
+			min-height: 2.5rem;
+			.project-list {
+				font-size: 0.3rem;
+				padding: 0.2rem 0;
+			}
+			.project-name {
+				cursor: pointer;
+				padding: 0.05rem 0;
+			}
+		}
+		.candybowl-cont.none {
+			background: #7d7d7d;
+		}
+	}
+	.project-big {
+		.project-item {
+			margin-bottom: 0.2rem;
+			background: @white;
+			box-sizing: border-box;
+			padding: 0.2rem;
+			display: flex;
+			align-items: center;
+			.project-img {
+				width: 1rem;
+				margin-right: 0.2rem;
+				text-align: center;
+				font-size: 0.24rem;
+				img {
+					max-width: 100%;
+				}
+			}
+			.project-cont {
+				flex: 1;
+				font-size: 0.18rem;
+				.project-more {
+					text-align: right;
+					margin-top: 0.2rem;
+					cursor: pointer;
+					display: block;
+				}
+				.project-more-btn {
+					color: @text;
+				}
+			}
+		}
+	}
+}

@@ -10,7 +10,7 @@ class IcoDetail extends Component {
 		let data = await this.props.getIcoDetailAction({
 			id: q.id
 		});
-		this.viewEcharts.call(this, data.ico_assess_structure);
+		this.viewEcharts(data.ico_assess_structure);
 	}
 	viewEcharts(data) {
 		let strcture = this.refs.strcture;

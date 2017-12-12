@@ -23,6 +23,7 @@ import {
 
 import { getIcoListAction } from "./ico";
 import { getIcoDetailAction } from "./icodetail";
+import { getCandyBowlByMonthAction } from "./candybowl";
 
 export default {
 	//首页
@@ -49,5 +50,7 @@ export default {
 	//ico
 	getIcoListAction,
 	//ico详情
-	getIcoDetailAction
+	getIcoDetailAction,
+	//空投
+	getCandyBowlByMonthAction
 };

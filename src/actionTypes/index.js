@@ -23,3 +23,5 @@ export const RESETPROJECT = "RESETPROJECT";
 export const ICOLIST = "ICOLIST";
 //ico详情
 export const ICODETAIL = "ICODETAIL";
+//按月空投
+export const CANDYBOWLBYMONTH = "CANDYBOWLBYMONTH";

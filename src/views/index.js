@@ -13,6 +13,7 @@ import Header from "./components/header/";
 import Project from "./project/";
 import Ico from "./ico/";
 import IcoDetail from "./ico-detail/";
+import CandyBowl from "./candybowl/";
 import "../lib/css/app.less";
 let store;
 if (window.__REDUX_DEVTOOLS_EXTENSION__) {
@@ -42,6 +43,7 @@ export default class AppComponent extends Component {
 							<Route path="/project" component={Project} />
 							<Route path="/ico" component={Ico} />
 							<Route path="/ico-detail" component={IcoDetail} />
+							<Route path="/candybowl" component={CandyBowl} />
 						</Switch>
 					</div>
 				</Router>
