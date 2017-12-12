@@ -7,6 +7,7 @@ class Calendar extends Component {
 		const newDate = new Date();
 		this.state = {
 			itemw: 0,
+			clickDay: null,
 			year: props.year ? props.year : newDate.getFullYear(),
 			month: props.month ? props.month : newDate.getMonth() + 1,
 			curDay: `${newDate.getFullYear()}-${newDate.getMonth() +
@@ -104,9 +105,21 @@ class Calendar extends Component {
 	}
 	setCurrentDayClass(idx) {
 		let hasData = this.props.hasData ? this.props.hasData : [];
-		return idx == this.state.curDay
-			? "day-item cur"
-			: hasData.indexOf(idx) == -1 ? "day-item" : "day-item has-data";
+		if (idx == this.state.curDay) {
+			return "day-item cur";
+		}
+		if (idx == this.state.clickDay) {
+			if (hasData.indexOf(idx) == -1) {
+				return "day-item click-item";
+			}
+			if (hasData.indexOf(idx) != -1) {
+				return "day-item click-item has-data";
+			}
+		}
+		if (hasData.indexOf(idx) != -1) {
+			return "day-item has-data";
+		}
+		return "day-item";
 	}
 	getOtherMonth(type) {
 		let goM, goY;
@@ -146,6 +159,9 @@ class Calendar extends Component {
 				day: item
 			});
 		}
+		this.setState({
+			clickDay: `${this.state.year}-${this.state.month}-${item}`
+		});
 	}
 	render() {
 		const iw = this.state.itemw;
