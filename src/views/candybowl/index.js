@@ -193,7 +193,6 @@ const mapStateToProps = state => {
 	};
 };
 const mapDispatchToProps = (dispatch, ownProps) => {
-	console.log(actions);
 	return {
 		getCandyBowlByMonthAction: actions.getCandyBowlByMonthAction(dispatch)
 	};

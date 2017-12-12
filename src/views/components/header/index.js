@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import "./index.less";
 import logo from "../../../lib/images/logo1.png";
 import logo2 from "../../../lib/images/logo2.png";
@@ -74,9 +74,9 @@ class Header extends Component {
 			<div className="header-container">
 				<div className="header-box" ref="headerBox">
 					<div className="container-main  ui-box">
-						<Link to="/" className="logo">
+						<NavLink to="/" className="logo">
 							<img ref="logo" src={logo3} />
-						</Link>
+						</NavLink>
 						<div className="middle" />
 						<div className="nav">
 							{/* <Link
@@ -86,16 +86,20 @@ class Header extends Component {
 							>
 								NEWS
 							</Link> */}
-							<Link activeClassName="cur" className="a" to="/ico">
+							<NavLink
+								activeClassName="cur"
+								className="a"
+								to="/ico"
+							>
 								ICO评测
-							</Link>
-							<Link
+							</NavLink>
+							<NavLink
 								activeClassName="cur"
 								className="a"
 								to="/candybowl"
 							>
 								CandyBowl
-							</Link>
+							</NavLink>
 						</div>
 						<div className="ctrl">
 							<span>中文</span>
@@ -116,12 +120,15 @@ class Header extends Component {
 									{/* <Link to="/news" className="more-item">
 										NEWS
 									</Link> */}
-									<Link className="more-item" to="/ico">
+									<NavLink className="more-item" to="/ico">
 										ICO评测
-									</Link>
-									<Link className="more-item" to="/candybowl">
+									</NavLink>
+									<NavLink
+										className="more-item"
+										to="/candybowl"
+									>
 										CandyBowl
-									</Link>
+									</NavLink>
 									<a className="more-item" href="">
 										email
 									</a>
