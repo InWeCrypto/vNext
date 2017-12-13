@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import "./index.less";
 import projectMore from "../../../../lib/images/project_down.png";
 class Project extends Component {
@@ -21,7 +22,14 @@ class Project extends Component {
 								return null;
 							}
 							return (
-								<div className="project-item" key={index}>
+								<Link
+									to={{
+										pathname: "/project",
+										search: "?id=" + item.id
+									}}
+									className="project-item"
+									key={index}
+								>
 									<div className="project-cont">
 										<span>
 											<img src={item.img} />
@@ -29,7 +37,7 @@ class Project extends Component {
 										<br />
 										<span>{item.name}</span>
 									</div>
-								</div>
+								</Link>
 							);
 						})}
 				</div>

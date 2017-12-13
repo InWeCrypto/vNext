@@ -1,4 +1,4 @@
-@import "../../../../lib/css/base.less";
+@import "../../../lib/css/base.less";
 .info-box {
 	padding: 0.1rem 0;
 
@@ -6,7 +6,8 @@
 		//border: 1px solid @border;
 		cursor: pointer;
 		//box-shadow: 0 2px 7px 0 @shadow;
-		background: @white;
+		color: @text;
+		background: @white !important;
 		transition: transform 0.3s linear;
 		position: relative;
 		.img {
@@ -16,11 +17,13 @@
 			padding: 0.1rem;
 			box-sizing: border-box;
 			font-size: 0.16rem;
+			background: @white;
 		}
 		.info-time {
 			color: @grey;
 			padding: 0.1rem;
 			box-sizing: border-box;
+			background: @white;
 		}
 	}
 	.info-item:hover {

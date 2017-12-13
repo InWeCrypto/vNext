@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 import "./index.less";
 import Project from "./components/project/";
-import InfoBox from "./components/infolist/";
+import InfoBox from "../components/infolist/";
 import Banner from "./components/banner/";
 import actions from "../../actions/";
 import ProjectAll from "./components/projectall/";
@@ -42,7 +42,7 @@ class Home extends Component {
 			: null;
 		return (
 			<div>
-				<div className="home-box container">
+				<div className="home-box container-main">
 					<Project
 						changeState={changeProjectStateAction}
 						projectList={project}
@@ -55,7 +55,11 @@ class Home extends Component {
 									newsList.length > 0 &&
 									newsList.map((item, index) => {
 										return (
-											<div
+											<Link
+												to={{
+													pathname: "news-detail",
+													search: "?id=" + item.id
+												}}
 												key={index}
 												className="news-item"
 											>
@@ -68,7 +72,7 @@ class Home extends Component {
 												<div className="news-item-time">
 													{item.created_at}
 												</div>
-											</div>
+											</Link>
 										);
 									})}
 							</div>

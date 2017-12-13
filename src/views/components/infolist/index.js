@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import StackGrid from "react-stack-grid";
+import { Link } from "react-router-dom";
 import "./index.less";
-import walletpng from "../../../../lib/images/wallet.png";
+import walletpng from "../../../lib/images/wallet.png";
 class InfoBox extends Component {
 	constructor() {
 		super();
@@ -102,7 +103,14 @@ class InfoBox extends Component {
 						infoList.length > 0 &&
 						infoList.map((item, index) => {
 							return (
-								<div key={index} className="info-item">
+								<Link
+									to={{
+										pathname: "/news-detail",
+										search: "?id=" + item.id
+									}}
+									key={index}
+									className="info-item"
+								>
 									{item.type != 1 && (
 										<img className="img" src={item.img} />
 									)}
@@ -112,7 +120,7 @@ class InfoBox extends Component {
 									<div className="info-time">
 										{item.created_at}
 									</div>
-								</div>
+								</Link>
 							);
 						})}
 				</StackGrid>

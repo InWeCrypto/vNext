@@ -1,0 +1,218 @@
+@import "../../lib/css/base.less";
+.news-detail {
+	margin: 0.2rem auto;
+	max-width: 10rem;
+
+	.detail-box {
+		box-sizing: border-box;
+		background: @white;
+		padding: 0.2rem 0.1rem;
+		.detail-title {
+			font-size: 0.24rem;
+			text-align: center;
+		}
+		.detail-time {
+			color: @grey;
+			text-align: center;
+			margin: 0.2rem 0;
+		}
+		.detail-content {
+			img {
+				max-width: 100% !important;
+				width: 100% !important;
+				margin: 0.1rem 0 !important;
+				height: auto !important;
+			}
+			p {
+				text-align: left;
+				font-size: 0.16rem !important;
+				line-height: 0.2rem !important;
+				img {
+					max-width: 100% !important;
+					width: 100% !important;
+					margin: 0.1rem 0 !important;
+				}
+				span,
+				a {
+					text-align: left;
+					font-size: 0.16rem !important;
+					line-height: 0.2rem !important;
+				}
+			}
+		}
+	}
+	.news-more {
+		margin-top: 0.2rem;
+		border-top: 0.01rem solid @lightgrey;
+		.news-more-top {
+			display: flex;
+			align-items: center;
+			padding: 0.1rem 0;
+			.left {
+				flex: 1;
+				font-size: 0.18rem;
+				font-size: 600;
+			}
+			.right {
+				color: @orange2;
+			}
+		}
+		.news-more-list {
+			width: 10.4rem !important;
+			position: relative;
+			left: -0.2rem;
+			// display: flex;
+			// align-items: stretch;
+			// .news-more-item {
+			// 	flex: 1;
+			// 	background: @white;
+			// 	padding-bottom: 0.1rem;
+			// }
+			// .news-more-item:nth-child(2) {
+			// 	margin: 0 0.1rem;
+			// }
+			// .news-more-img {
+			// 	width: 100%;
+			// 	height: 1.4rem;
+			// 	overflow: hidden;
+			// 	img {
+			// 		width: 100%;
+			// 	}
+			// }
+			// .title {
+			// 	font-size: 0.16rem;
+			// 	font-weight: 600;
+			// 	margin: 0.1rem 0.05rem 0.2rem 0.05rem;
+			// }
+			// .info {
+			// 	color: @grey;
+			// 	padding: 0 0.05rem;
+			// }
+			// .news-more-type {
+			// 	margin-left: 0.1rem;
+			// }
+		}
+	}
+	.video {
+		text-align: center;
+		.video-btn {
+			max-width: 4rem;
+			display: inline-block;
+			position: relative;
+			.video-play {
+				position: absolute;
+				left: 0;
+				top: 0;
+				right: 0;
+				bottom: 0;
+				background: rgba(0, 0, 0, 0.5);
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				.playbtn {
+					width: 0.4rem;
+					height: 0.4rem;
+				}
+			}
+		}
+		.img {
+			width: 100%;
+			height: 100%;
+		}
+	}
+	.video-box {
+		position: fixed;
+		left: 0;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		background: rgba(0, 0, 0, 0.7);
+		z-index: 40;
+		text-align: center;
+		display: none;
+		.video-bg {
+			position: absolute;
+			left: 0;
+			right: 0;
+			top: 0;
+			bottom: 0;
+		}
+	}
+	.video-box.show {
+		display: block;
+	}
+	.J_prismPlayer-box {
+		max-width: 10rem;
+		margin: 0 auto;
+		position: relative;
+	}
+	#J_prismPlayer {
+		//display: inline-block;
+		width: 100%;
+		height: 5rem !important;
+		// position: absolute;
+		// top: 50%;
+		// left: 0;
+		margin-top: 0.5rem !important;
+	}
+}
+@media screen and(max-width:768px) {
+	.news-detail {
+		#J_prismPlayer {
+			height: 3rem !important;
+			margin-top: 0.2rem !important;
+		}
+		.news-more-type {
+			display: block !important;
+			margin-left: 0 !important;
+		}
+		.news-more {
+			.news-more-top {
+				padding: 0.1rem;
+			}
+			.news-more-list {
+				display: block;
+				width: 100% !important;
+				left: 0;
+
+				// .news-more-item {
+				// 	display: block;
+				// 	margin-bottom: 0.1rem;
+				// }
+				// .news-more-item:nth-child(2) {
+				// 	margin: 0 0 0.1rem 0;
+				// }
+			}
+		}
+	}
+}
+@media screen and(min-width:768px) and(max-width:1000px) {
+	.news-detail {
+		#J_prismPlayer {
+			height: 4rem !important;
+			margin-top: 0.5rem !important;
+		}
+		// .news-more-type {
+		// 	display: block !important;
+		// 	margin-left: 0 !important;
+		// }
+		.news-more {
+			.news-more-top {
+				padding: 0.1rem;
+			}
+			.news-more-list {
+				width: 100%;
+				width: 100% !important;
+				left: 0;
+
+				// 	display: block;
+				// 	.news-more-item {
+				// 		display: block;
+				// 	}
+				// 	.news-more-item:nth-child(2) {
+				// 		margin: 0;
+				// 	}
+			}
+		}
+	}
+}

@@ -1,4 +1,15 @@
 import { combineReducers } from "redux";
 import { homeInfo } from "./home";
-
-export default combineReducers({ homeInfo });
+import { newsDetailData } from "./newsdetail";
+import { projectData } from "./project";
+import { icoData } from "./ico";
+import { icoDetailData } from "./icodetail";
+import { candayBowlData } from "./candybowl";
+export default combineReducers({
+	homeInfo,
+	newsDetailData,
+	projectData,
+	icoData,
+	icoDetailData,
+	candayBowlData
+});

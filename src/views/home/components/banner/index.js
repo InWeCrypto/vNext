@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import "./index.less";
 class Banner extends Component {
@@ -20,7 +21,12 @@ class Banner extends Component {
 						bannerList.length > 0 &&
 						bannerList.map((item, index) => {
 							return (
-								<div key={index} className="banner-item">
+								<a
+									href={item.url}
+									target="_blank"
+									key={index}
+									className="banner-item"
+								>
 									<div className="banner-img">
 										<img src={item.img} />
 									</div>
@@ -30,7 +36,7 @@ class Banner extends Component {
 									<div className="banner-desc">
 										{item.desc}
 									</div>
-								</div>
+								</a>
 							);
 						})}
 				</Slider>
