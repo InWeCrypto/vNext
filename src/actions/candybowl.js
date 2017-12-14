@@ -33,7 +33,12 @@ const mustRead = data => {
 const getMustReadAction = dispatch => data => {
 	return new Promise((resolve, reject) => {
 		getData(`${requestUrl}/home/candy_bow?is_scroll`).then(res => {
-			console.log(res);
+			//console.log(res);
+			if (res.code === 4000) {
+				dispatch(mustRead(res.data));
+			} else {
+				throw new Error(res.msg);
+			}
 		});
 	});
 };

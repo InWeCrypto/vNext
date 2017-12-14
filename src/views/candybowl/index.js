@@ -48,7 +48,7 @@ class CandyBowl extends Component {
 		});
 	}
 	render() {
-		const { candyBowlByMonth } = this.props;
+		const { candyBowlByMonth, mustRead } = this.props;
 		let hasData = [];
 		let dataObj = {};
 		if (candyBowlByMonth && candyBowlByMonth.length > 0) {
@@ -185,14 +185,15 @@ class CandyBowl extends Component {
 							);
 						})}
 				</div>
-				<MustRead />
+				<MustRead content={mustRead} />
 			</div>
 		);
 	}
 }
 const mapStateToProps = state => {
 	return {
-		candyBowlByMonth: state.candayBowlData.candyBowlByMonth
+		candyBowlByMonth: state.candayBowlData.candyBowlByMonth,
+		mustRead: state.candayBowlData.mustRead
 	};
 };
 const mapDispatchToProps = (dispatch, ownProps) => {
