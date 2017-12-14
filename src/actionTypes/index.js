@@ -25,3 +25,5 @@ export const ICOLIST = "ICOLIST";
 export const ICODETAIL = "ICODETAIL";
 //按月空投
 export const CANDYBOWLBYMONTH = "CANDYBOWLBYMONTH";
+//必读
+export const MUSTREAD = "MUSTREAD";

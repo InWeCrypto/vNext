@@ -95,7 +95,6 @@ const marketData = data => {
 const getMarketDataAction = dispatch => data => {
 	return new Promise((resolve, reject) => {
 		getData(`${requestUrl}/${data.url}`).then(res => {
-			console.log(res);
 			if (res.code === 4000) {
 				dispatch(marketData(res.data));
 			} else {

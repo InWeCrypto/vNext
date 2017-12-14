@@ -6,6 +6,7 @@ import echarts from "echarts";
 import "./index.less";
 class IcoDetail extends Component {
 	async componentDidMount() {
+		document.title = "项目精选";
 		let q = util.getQuery(window.location.href);
 		let data = await this.props.getIcoDetailAction({
 			id: q.id
@@ -19,10 +20,26 @@ class IcoDetail extends Component {
 		let value = [];
 		let theColor = [];
 		strctureData.map(item => {
-			value.push({ value: item.percentage });
+			value.push({
+				value: item.percentage,
+				color_name: item.color_name,
+				desc: item.desc
+			});
 			theColor.push(item.color_value);
 		});
 		let option = {
+			tooltip: {
+				trigger: "item",
+				formatter: (value, a) => {
+					return (
+						value.data.color_name +
+						"<br />占比：" +
+						value.data.value +
+						"%<br/>描述：" +
+						value.data.desc
+					);
+				}
+			},
 			series: [
 				{
 					type: "pie",
@@ -39,7 +56,7 @@ class IcoDetail extends Component {
 						emphasis: {
 							shadowBlur: 10,
 							shadowOffsetX: 0,
-							shadowColor: "rgba(0, 0, 0, 0.5)"
+							shadowColor: "#fff"
 						}
 					}
 				}

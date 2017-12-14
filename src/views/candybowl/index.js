@@ -3,6 +3,7 @@ import { withRouter, Link } from "react-router-dom";
 import { connect } from "react-redux";
 import actions from "../../actions/";
 import Calendar from "../components/calendar/";
+import MustRead from "./components/mustread/";
 
 import "./index.less";
 
@@ -31,6 +32,7 @@ class CandyBowl extends Component {
 			year: this.state.year,
 			month: this.state.month
 		});
+		this.props.getMustReadAction();
 	}
 	changeMonthClick(res) {
 		this.setState({
@@ -183,6 +185,7 @@ class CandyBowl extends Component {
 							);
 						})}
 				</div>
+				<MustRead />
 			</div>
 		);
 	}
@@ -194,7 +197,8 @@ const mapStateToProps = state => {
 };
 const mapDispatchToProps = (dispatch, ownProps) => {
 	return {
-		getCandyBowlByMonthAction: actions.getCandyBowlByMonthAction(dispatch)
+		getCandyBowlByMonthAction: actions.getCandyBowlByMonthAction(dispatch),
+		getMustReadAction: actions.getMustReadAction(dispatch)
 	};
 };
 export default withRouter(

@@ -1,4 +1,4 @@
-import { CANDYBOWLBYMONTH } from "../actionTypes/";
+import { CANDYBOWLBYMONTH, MUSTREAD } from "../actionTypes/";
 import { getData } from "../lib/js/app";
 import { requestUrl } from "../config/";
 
@@ -23,4 +23,19 @@ const getCandyBowlByMonthAction = dispatch => data => {
 	});
 };
 
-export { getCandyBowlByMonthAction };
+const mustRead = data => {
+	return {
+		type: MUSTREAD,
+		data
+	};
+};
+
+const getMustReadAction = dispatch => data => {
+	return new Promise((resolve, reject) => {
+		getData(`${requestUrl}/home/candy_bow?is_scroll`).then(res => {
+			console.log(res);
+		});
+	});
+};
+
+export { getCandyBowlByMonthAction, getMustReadAction };

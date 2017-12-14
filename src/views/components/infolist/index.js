@@ -3,6 +3,7 @@ import StackGrid from "react-stack-grid";
 import { Link } from "react-router-dom";
 import "./index.less";
 import walletpng from "../../../lib/images/wallet.png";
+import playbtn from "../../../lib/images/playvideo.png";
 class InfoBox extends Component {
 	constructor() {
 		super();
@@ -60,37 +61,35 @@ class InfoBox extends Component {
 			<div className="info-box">
 				<StackGrid
 					style={{ width: "100%" }}
+					gridRef={grid => (this.grid = grid)}
 					gutterWidth={10}
 					gutterHeight={10}
 					columnWidth={this.state.itemW}
 					monitorImagesLoaded={true}
 				>
-					{candyData &&
-						candyData.length > 0 && (
-							<div className="info-item candy-box">
-								<div className="candy-title">Candy Bowl</div>
-								<div className="candy-day">
-									<span className="day">
-										{candyData[0].day}
-									</span>
-									<div className="month">
-										{this.setMonth(candyData[0].month)}
-									</div>
-								</div>
-								<div className="product-list">
-									{candyData.map((item, index) => {
-										return (
-											<div
-												key={index}
-												className="product-item"
-											>
-												<a href="">{item.name}</a>
-											</div>
-										);
-									})}
-								</div>
+					<div className="info-item candy-box">
+						<div className="candy-title">Candy Bowl</div>
+						<div className="candy-day">
+							<span className="day">{new Date().getDate()}</span>
+							<div className="month">
+								{this.setMonth(new Date().getMonth() + 1)}
 							</div>
-						)}
+						</div>
+						<div className="product-list">
+							{candyData &&
+								candyData.length > 0 &&
+								candyData.map((item, index) => {
+									return (
+										<div
+											key={index}
+											className="product-item"
+										>
+											<a href="">{item.name}</a>
+										</div>
+									);
+								})}
+						</div>
+					</div>
 
 					<div className="info-item wallet">
 						<div className="wallet-title">IN WE WALLET</div>
@@ -109,16 +108,31 @@ class InfoBox extends Component {
 										search: "?id=" + item.id
 									}}
 									key={index}
-									className="info-item"
 								>
-									{item.type != 1 && (
-										<img className="img" src={item.img} />
-									)}
-									<div className="info-title">
-										{item.title}
-									</div>
-									<div className="info-time">
-										{item.created_at}
+									<div className="info-item">
+										{item.type == 2 && (
+											<img
+												className="img"
+												src={item.img}
+											/>
+										)}
+										{item.type == 3 && (
+											<div className="videobox">
+												<img
+													className="img"
+													src={item.img}
+												/>
+												<div className="videobox-cover">
+													<img src={playbtn} />
+												</div>
+											</div>
+										)}
+										<div className="info-title">
+											{item.title}
+										</div>
+										<div className="info-time">
+											{item.created_at}
+										</div>
 									</div>
 								</Link>
 							);

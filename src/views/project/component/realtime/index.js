@@ -1,6 +1,14 @@
 import React, { Component } from "react";
 import "./index.less";
 class RealTime extends Component {
+	setToFixed(num, times = 2) {
+		if (!num) {
+			return;
+		}
+		let s = new Number(num);
+		let r = (s + 0).toFixed(times);
+		return r;
+	}
 	render() {
 		const { typeList, timePrice, website } = this.props;
 		// let name = [];
@@ -31,20 +39,26 @@ class RealTime extends Component {
 								<span className="realtime-now">
 									${typeList[1] &&
 										timePrice[typeList[1].name] &&
-										timePrice[typeList[1].name].price}
+										this.setToFixed(
+											timePrice[typeList[1].name].price
+										)}
 								</span>
 								<span className="realtime-trend">
 									{typeList[1] &&
 										timePrice[typeList[1].name] &&
-										timePrice[typeList[1].name][
-											"24h_change"
-										]}
+										this.setToFixed(
+											timePrice[typeList[1].name][
+												"24h_change"
+											]
+										)}%
 								</span>
 								<div className="btc">
 									({typeList[0] &&
 										timePrice[`${typeList[0].name}`] &&
-										timePrice[`${typeList[0].name}`]
-											.price}BTC)
+										this.setToFixed(
+											timePrice[`${typeList[0].name}`]
+												.price
+										)}BTC)
 								</div>
 							</div>
 							<div className="reactime-box2">
@@ -54,12 +68,16 @@ class RealTime extends Component {
 										{typeList.map((item, index) => {
 											return (
 												<span key={index}>
+													{index == 1 && "$"}
 													<span>
 														{timePrice[item.name] &&
-															timePrice[
-																item.name
-															]["volume"]}
+															this.setToFixed(
+																timePrice[
+																	item.name
+																]["volume"]
+															)}
 													</span>
+													{index == 0 && "BTC"}
 													<span
 														style={{
 															padding: "0 .04rem"
@@ -81,12 +99,18 @@ class RealTime extends Component {
 										{typeList.map((item, index) => {
 											return (
 												<span key={index}>
+													{index == 1 && "$"}
 													<span>
 														{timePrice[item.name] &&
-															timePrice[
-																item.name
-															]["24h_max_price"]}
+															this.setToFixed(
+																timePrice[
+																	item.name
+																][
+																	"24h_max_price"
+																]
+															)}
 													</span>
+													{index == 0 && "BTC"}
 													<span
 														style={{
 															padding: "0 .04rem"
@@ -108,10 +132,14 @@ class RealTime extends Component {
 										{typeList.map((item, index) => {
 											return (
 												<span key={index}>
+													{index == 1 && "$"}
 													{timePrice[item.name] &&
-														timePrice[item.name][
-															"24h_min_price"
-														]}
+														this.setToFixed(
+															timePrice[
+																item.name
+															]["24h_min_price"]
+														)}
+													{index == 0 && "BTC"}
 													<span
 														style={{
 															padding: "0 .04rem"

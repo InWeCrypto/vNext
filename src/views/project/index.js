@@ -305,7 +305,9 @@ class Project extends Component {
 									params.value +
 									(seriesValue != null
 										? "\n" +
-											echarts.format.addCommas(seriesValue)
+											echarts.format.addCommas(
+												seriesValue
+											)
 										: "")
 								);
 							}
@@ -461,19 +463,25 @@ class Project extends Component {
 	changeInewsType(idx) {
 		this.props.changeInewsIndex(idx);
 	}
+	setIntroHeight(idx) {
+		const iframebox = this.refs[`introIframe_${idx}`];
+		if (!iframebox) {
+			return;
+		}
+		iframebox.style.height = "auto";
+		let h = iframebox.clientHeight;
+		if (h > 200) {
+			iframebox.style.height = "200px";
+		} else {
+			this.refs[`morebtn_${idx}`].style.display = "none";
+		}
+	}
 	toggleIntro(idx, e) {
 		const iframebox = this.refs[`introIframe_${idx}`];
 		const t = this.refs[`introCont_${idx}`].style.display;
 		if (t === "none") {
 			e.target.className = "arrow show";
 			this.refs[`introCont_${idx}`].style.display = "block";
-			iframebox.style.height = "auto";
-			let h = iframebox.clientHeight;
-			if (h > 200) {
-				iframebox.style.height = "200px";
-			} else {
-				this.refs[`morebtn_${idx}`].style.display = "none";
-			}
 		} else {
 			e.target.className = "arrow";
 			this.refs[`introCont_${idx}`].style.display = "none";
@@ -695,12 +703,15 @@ class Project extends Component {
 														key={index}
 														className="intro-group"
 													>
+														{this.setIntroHeight(
+															index
+														)}
 														<div className="intro-title">
 															<div className="txt">
 																{item.title}
 															</div>
 															<div
-																className="arrow"
+																className="arrow show"
 																onClick={this.toggleIntro.bind(
 																	this,
 																	index
@@ -709,23 +720,17 @@ class Project extends Component {
 														</div>
 														<div
 															className="intro-cont"
-															ref={`introCont_${
-																index
-															}`}
+															ref={`introCont_${index}`}
 															style={{
-																display: "none"
+																display: "block"
 															}}
 														>
 															<div
-																ref={`introIframe_${
-																	index
-																}`}
+																ref={`introIframe_${index}`}
 																className="iframe"
 															/>
 															<div
-																ref={`morebtn_${
-																	index
-																}`}
+																ref={`morebtn_${index}`}
 																className="morebtn"
 																onClick={this.showIframeAll.bind(
 																	this,

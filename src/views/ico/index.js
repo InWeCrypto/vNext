@@ -12,7 +12,7 @@ class Ico extends Component {
 		};
 	}
 	componentDidMount() {
-		document.title = "ICO评测";
+		document.title = "项目精选";
 		this.setW();
 		window.onresize = () => {
 			this.setW();

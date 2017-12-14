@@ -91,7 +91,7 @@ class Header extends Component {
 								className="a"
 								to="/ico"
 							>
-								ICO评测
+								项目精选
 							</NavLink>
 							<NavLink
 								activeClassName="cur"
@@ -101,10 +101,10 @@ class Header extends Component {
 								CandyBowl
 							</NavLink>
 						</div>
-						<div className="ctrl">
+						{/* <div className="ctrl">
 							<span>中文</span>
 							<span className="arrow-more" />
-						</div>
+						</div> */}
 						<div className="search">
 							{/* <input className="search-input" type="search" /> */}
 							<span className="searchbtn">
@@ -121,7 +121,7 @@ class Header extends Component {
 										NEWS
 									</Link> */}
 									<NavLink className="more-item" to="/ico">
-										ICO评测
+										项目精选
 									</NavLink>
 									<NavLink
 										className="more-item"

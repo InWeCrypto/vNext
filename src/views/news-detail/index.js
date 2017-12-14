@@ -17,14 +17,16 @@ class NewsDetail extends Component {
 	}
 	async componentWillReceiveProps(nextProps) {
 		if (nextProps.location.search != this.props.location.search) {
-			let q = util.getQuery(window.location.href);
-			let info = await this.props.getNewsDetailAction({
-				id: q.id
-			});
-			this.props.getNewNewsListAction({
-				id: info.category_id,
-				ownId: info.id
-			});
+			// let q = util.getQuery(window.location.href);
+			// let info = await this.props.getNewsDetailAction({
+			// 	id: q.id
+			// });
+			// this.props.getNewNewsListAction({
+			// 	id: info.category_id,
+			// 	ownId: info.id
+			// });
+			// document.body.scrollTop = 0;
+			window.location.reload();
 		}
 	}
 	async componentWillMount() {
