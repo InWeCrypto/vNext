@@ -29,6 +29,7 @@ class CandyBowl extends Component {
 		}
 	}
 	componentDidMount() {
+		document.title = "Candy Bowl";
 		this.props.getCandyBowlByMonthAction({
 			year: this.state.year,
 			month: this.state.month

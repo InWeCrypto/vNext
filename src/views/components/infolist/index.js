@@ -5,10 +5,12 @@ import "./index.less";
 import walletpng from "../../../lib/images/wallet.png";
 import playbtn from "../../../lib/images/playvideo.png";
 class InfoBox extends Component {
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
 		this.state = {
-			itemW: 0
+			itemW: 0,
+			showCandyBowl: props.showCandyBowl ? props.showCandyBowl : false,
+			showWallet: props.showWallet ? props.showWallet : false
 		};
 	}
 	componentDidMount() {
@@ -67,45 +69,58 @@ class InfoBox extends Component {
 					columnWidth={this.state.itemW}
 					monitorImagesLoaded={true}
 				>
-					<Link
-						to={{
-							pathname: "/candybowl"
-						}}
-					>
-						<div className="info-item candy-box">
-							<div className="candy-title">Candy Bowl</div>
-							<div className="candy-day">
-								<span className="day">
-									{new Date().getDate()}
-								</span>
-								<div className="month">
-									{this.setMonth(new Date().getMonth() + 1)}
+					{this.state.showCandyBowl && (
+						<Link
+							to={{
+								pathname: "/candybowl"
+							}}
+						>
+							<div className="info-item candy-box">
+								<div className="candy-title">Candy Bowl</div>
+								<div className="candy-day">
+									<span className="day">
+										{new Date().getDate()}
+									</span>
+									<div className="month">
+										{this.setMonth(
+											new Date().getMonth() + 1
+										)}
+									</div>
+								</div>
+								<div className="product-list">
+									{candyData &&
+										candyData.length > 0 &&
+										candyData.map((item, index) => {
+											return (
+												<div
+													key={index}
+													className="product-item"
+												>
+													<span href="">
+														{item.name}
+													</span>
+												</div>
+											);
+										})}
 								</div>
 							</div>
-							<div className="product-list">
-								{candyData &&
-									candyData.length > 0 &&
-									candyData.map((item, index) => {
-										return (
-											<div
-												key={index}
-												className="product-item"
-											>
-												<span href="">{item.name}</span>
-											</div>
-										);
-									})}
+						</Link>
+					)}
+					{this.state.showWallet && (
+						<div
+							onClick={
+								this.props.showDownWallet
+									? this.props.showDownWallet
+									: ""
+							}
+							className="info-item wallet"
+						>
+							<div className="wallet-img">
+								<img src={walletpng} />
 							</div>
 						</div>
-					</Link>
+					)}
 
-					<div className="info-item wallet">
-						<div className="wallet-title">IN WE WALLET</div>
-						<div className="wallet-desc">多数字资产管理钱包</div>
-						<div className="wallet-img">
-							<img src={walletpng} />
-						</div>
-					</div>
 					{infoList &&
 						infoList.length > 0 &&
 						infoList.map((item, index) => {

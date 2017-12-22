@@ -7,7 +7,14 @@ import InfoBox from "../components/infolist/";
 import Banner from "./components/banner/";
 import actions from "../../actions/";
 import ProjectAll from "./components/projectall/";
+import DownWallet from "../components/downwallet/";
 class Home extends Component {
+	constructor() {
+		super();
+		this.state = {
+			showDownWallet: false
+		};
+	}
 	componentWillMount() {
 		this.props.getInfoListAction();
 		this.props.getProjectListAction();
@@ -22,6 +29,16 @@ class Home extends Component {
 	}
 	componentDidMount() {
 		document.title = "首页";
+	}
+	closeDownWalletClick() {
+		this.setState({
+			showDownWallet: false
+		});
+	}
+	showDownWalletClick() {
+		this.setState({
+			showDownWallet: true
+		});
 	}
 	render() {
 		let {
@@ -83,12 +100,23 @@ class Home extends Component {
 					</div>
 				</div>
 				<div className="infolist-box">
-					<InfoBox candyData={candyData} infoList={infoList} />
+					<InfoBox
+						showDownWallet={this.showDownWalletClick.bind(this)}
+						showCandyBowl={true}
+						showWallet={true}
+						candyData={candyData}
+						infoList={infoList}
+					/>
 				</div>
 				{showMoreProject && (
 					<ProjectAll
 						changeState={changeProjectStateAction}
 						projectList={project}
+					/>
+				)}
+				{this.state.showDownWallet && (
+					<DownWallet
+						closeMethod={this.closeDownWalletClick.bind(this)}
 					/>
 				)}
 			</div>

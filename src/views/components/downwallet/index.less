@@ -1,0 +1,99 @@
+@import "../../../lib/css/base.less";
+.downwallet {
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 100;
+
+	.downwallet-cont {
+		position: relative;
+		width: 100%;
+		height: 100%;
+		display: flex;
+		background: rgba(0, 0, 0, 0.7);
+		align-items: center;
+		justify-content: center;
+	}
+	.downwallet-box {
+		width: 9.5rem;
+		background: @white;
+		display: flex;
+		align-items: stretch;
+		position: relative;
+	}
+	.downwallet-close {
+		position: absolute;
+		left: 0.1rem;
+		top: 0.1rem;
+		width: 0.25rem;
+		height: 0.25rem;
+		cursor: pointer;
+		transition: transform 0.2s ease-in-out;
+	}
+	.downwallet-close:hover {
+		-webkit-transform: rotate(180deg);
+		-moz-transform: rotate(180deg);
+		-ms-transform: rotate(180deg);
+		transform: rotate(180deg);
+	}
+	.downwallet-item {
+		flex: 1;
+	}
+	.downwallet-left {
+		text-align: center;
+		padding: 1rem 0;
+	}
+	.downwallet-right {
+		background: #f2f2f2;
+		text-align: center;
+		box-sizing: border-box;
+		padding: 0 0.2rem;
+		.downwallet-title {
+			padding: 0.4rem 0;
+			font-size: 0.24rem;
+		}
+		.downwallet-text {
+			font-size: 0.16rem;
+			text-align: left;
+			text-indent: 2em;
+			line-height: 0.3rem;
+		}
+		.downwallet-down {
+			box-sizing: border-box;
+			padding: 0.3rem 0;
+		}
+		.downwallet-btnbox {
+			padding: 0.25rem 0;
+		}
+		.downwallet-btn {
+			display: inline-block;
+			padding: 0.06rem 0;
+			font-size: 0.18rem;
+			color: #000;
+			border: 0.01rem solid #000;
+			border-radius: 0.25rem;
+			text-align: center;
+			width: 1.7rem;
+			img {
+				vertical-align: middle;
+				margin-right: 0.05rem;
+			}
+			span {
+				vertical-align: middle;
+			}
+		}
+	}
+}
+@media screen and (max-width: 900px) {
+	.downwallet {
+		.downwallet-box {
+			width: 100%;
+			height: 80%;
+		}
+		.downwallet-left {
+			display: none;
+		}
+	}
+}
