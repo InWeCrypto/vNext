@@ -16,7 +16,8 @@ class CandyBowl extends Component {
 				1}-${nowD.getDate()}`,
 			year: nowD.getFullYear(),
 			month: nowD.getMonth() + 1,
-			day: nowD.getDate()
+			day: nowD.getDate(),
+			showMustRead: false
 		};
 	}
 	componentWillUpdate(nextProps, nextState) {
@@ -47,6 +48,16 @@ class CandyBowl extends Component {
 			day: res.day
 		});
 	}
+	showMustRead() {
+		this.setState({
+			showMustRead: true
+		});
+	}
+	closeMustRead() {
+		this.setState({
+			showMustRead: false
+		});
+	}
 	render() {
 		const { candyBowlByMonth, mustRead } = this.props;
 		let hasData = [];
@@ -73,11 +84,19 @@ class CandyBowl extends Component {
 				];
 			});
 		}
-
 		return (
 			<div className="candybowl-container">
 				<div className="candybowl-title">Candy Bowl</div>
-				<div className="candybowl-must">22</div>
+				{mustRead &&
+					mustRead.length > 0 && (
+						<div
+							onClick={this.showMustRead.bind(this)}
+							className="candybowl-must"
+						>
+							必读：{mustRead[0].name}
+						</div>
+					)}
+
 				<div className="candybowl-cont">
 					<div className="candybowl-calendar">
 						<Calendar
@@ -185,7 +204,12 @@ class CandyBowl extends Component {
 							);
 						})}
 				</div>
-				<MustRead content={mustRead} />
+				{this.state.showMustRead && (
+					<MustRead
+						closeMethod={this.closeMustRead.bind(this)}
+						content={mustRead}
+					/>
+				)}
 			</div>
 		);
 	}
