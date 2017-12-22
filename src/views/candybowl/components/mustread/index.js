@@ -30,7 +30,16 @@ class MustRead extends Component {
 							<img src={closeBtn} />
 						</span>
 						<div>
-							{content && content.length > 0 && content[0].desc}
+							<div className="mustread-title">
+								{content &&
+									content.length > 0 &&
+									content[0].name}
+							</div>
+							<div>
+								{content &&
+									content.length > 0 &&
+									content[0].desc}
+							</div>
 						</div>
 					</div>
 				</div>
