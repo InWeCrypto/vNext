@@ -12,6 +12,7 @@ body {
 .container {
 	max-width: 10rem;
 	margin: 0 auto;
+	font-family: "Microsoft YaHei", "HelveticaNeueLTPro-Lt";
 }
 .container .header {
 	padding: 0.13rem 0;
@@ -26,6 +27,7 @@ body {
 .container .cont1 .t1 {
 	color: #c4653f;
 	font-size: 0.48rem;
+	font-family: "Microsoft YaHei", "helveticaneueltstd-th";
 }
 .container .cont1 .t2 {
 	color: rgba(255, 255, 255, 0.5);

@@ -12,13 +12,13 @@
 		url("../fonts/helveticaneueltstd-th.ttf"),
 		url("../fonts/helveticaneueltstd-th.woff2");
 }
-@font-face {
+/* @font-face {
 	font-family: "HelveticaNeue-Bold";
 	src: url("../fonts/HelveticaNeue-Bold.woff"),
 		url("../fonts/HelveticaNeue-Bold.eot"),
 		url("../fonts/HelveticaNeue-Bold.ttf"),
 		url("../fonts/HelveticaNeue-Bold.woff2");
-}
+} */
 /* @font-face {
 	font-family: "Lato Hairline";
 	src: url("../fonts/Lato-Hairline.woff"), url("../fonts/Lato-Hairline.eot"),
