@@ -19,7 +19,7 @@ body {
 	width: 1.5rem;
 }
 .container .cont1 {
-	padding-top: 1.2rem;
+	padding-top: 0.6rem;
 	text-align: center;
 }
 .container .cont1 .t1 {
@@ -49,4 +49,43 @@ body {
 	font-size: 0.16rem;
 	margin-top: 0.1rem;
 	color: rgba(255, 255, 255, 0.5);
+}
+.time-box {
+	width: 100%;
+	text-align: center;
+	padding: 1rem 0;
+}
+.time-item {
+	text-align: center;
+	display: inline-block;
+	vertical-align: middle;
+	margin: 0 0.2rem;
+	height: 1.3rem;
+}
+.time-item .num {
+	width: 0.7rem;
+	position: relative;
+	height: 1.3rem;
+	overflow: hidden;
+	display: inline-block;
+}
+.num-inner {
+	position: absolute;
+	top: 0;
+}
+.time-item .iconfont {
+	font-size: 1.2rem;
+	color: #fff;
+	position: relative;
+	left: -0.25rem;
+	display: inline-block;
+}
+.time-item .time-type {
+	margin-top: 0.2rem;
+	color: rgba(255, 255, 255, 0.5);
+}
+.time-box .t {
+	font-size: 1.1rem;
+	color: #fff;
+	vertical-align: middle;
 }
