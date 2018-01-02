@@ -1,2 +1,0 @@
-# vNext
-next version website 
