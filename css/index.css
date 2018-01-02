@@ -1,0 +1,52 @@
+html,
+body {
+	height: 100%;
+	min-height: 100%;
+}
+.box {
+	height: 100%;
+	background: url("../images/bg.jpg") left top no-repeat;
+	background-size: 100% 100%;
+}
+.container {
+	max-width: 10rem;
+	margin: 0 auto;
+}
+.container .header {
+	padding: 0.13rem 0;
+}
+.container .header .logo {
+	width: 1.5rem;
+}
+.container .cont1 {
+	padding-top: 1.2rem;
+	text-align: center;
+}
+.container .cont1 .t1 {
+	color: #c4653f;
+	font-size: 0.48rem;
+}
+.container .cont1 .t2 {
+	color: rgba(255, 255, 255, 0.5);
+	font-size: 0.16rem;
+}
+
+.container .qcode-box {
+	text-align: center;
+}
+.container .qcode-box .qcode-item {
+	display: inline-block;
+	text-align: center;
+	padding: 0.3rem 0;
+	margin: 0 0.2rem;
+}
+.container .qcode-box .qcode-img {
+	width: 0.75rem;
+	height: 0.75rem;
+	border: 0.05rem solid #fff;
+}
+.container .qcode-box .t {
+	font-size: 0.16rem;
+	margin-top: 0.1rem;
+	color: rgba(255, 255, 255, 0.5);
+}
