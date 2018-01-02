@@ -4,9 +4,10 @@ body {
 	min-height: 100%;
 }
 .box {
-	height: 100%;
+	min-height: 100%;
 	background: url("../images/bg.jpg") left top no-repeat;
-	background-size: 100% 100%;
+	background-size: cover;
+	background-origin: 50% 50%;
 }
 .container {
 	max-width: 10rem;
@@ -58,7 +59,7 @@ body {
 .time-item {
 	text-align: center;
 	display: inline-block;
-	vertical-align: middle;
+	vertical-align: top;
 	margin: 0 0.2rem;
 	height: 1.3rem;
 }
@@ -72,6 +73,7 @@ body {
 .num-inner {
 	position: absolute;
 	top: 0;
+	left: 50%;
 }
 .time-item .iconfont {
 	font-size: 1.2rem;
@@ -80,6 +82,7 @@ body {
 	left: -0.25rem;
 	display: inline-block;
 }
+
 .time-item .time-type {
 	margin-top: 0.2rem;
 	color: rgba(255, 255, 255, 0.5);
@@ -87,5 +90,14 @@ body {
 .time-box .t {
 	font-size: 1.1rem;
 	color: #fff;
-	vertical-align: middle;
+	vertical-align: top;
+	display: inline-block;
+}
+@media screen and (max-width: 1000px) {
+	.container .header {
+		padding-left: 0.1rem;
+	}
+	.container .cont1 .t1 {
+		font-size: 0.4rem;
+	}
 }

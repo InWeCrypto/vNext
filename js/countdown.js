@@ -7,19 +7,51 @@
 		this.now = new Date();
 		this.showTime = countTime.call(this);
 		renderHtml.call(this);
-		//setTimeToDom.call(this);
+		setDom.call(this);
 		intervalTime.call(this);
+		$(window).on(
+			"resize",
+			function() {
+				setDom.call(this);
+			}.bind(this)
+		);
 	};
 	var intervalTime = function() {
 		this.now = new Date();
 		this.showTime = countTime.call(this);
 		setTimeToDom.call(this);
-		setTimeout(
+		var timer = null;
+		timer = setTimeout(
 			function() {
 				intervalTime.call(this);
 			}.bind(this),
 			1000
 		);
+	};
+	var setDom = function() {
+		var box = $("#timeBox");
+		var w = box.width();
+		var lw = w / 11;
+		box.find(".iconfont").css({
+			fontSize: lw + 15,
+			left: 0
+		});
+		box.find(".num-inner").css({
+			marginLeft: -(lw + 15) / 2
+		});
+		box.find(".num").css({
+			width: lw,
+			height: lw + 17
+		});
+		box.find(".t").css({
+			fontSize: lw + 15,
+			height: lw + 17
+			//lineHeight: lw + 2
+		});
+		box.find(".time-item").css({
+			height: box.find(".num-box").height() + 37,
+			margin: "0"
+		});
 	};
 	var setTimeToDom = function() {
 		var showTime = this.showTime;
@@ -39,9 +71,37 @@
 		var pix = p;
 
 		for (var i = 0; i < arr.length; i++) {
+			if (
+				arr[i] == 9 &&
+				$("#timeBox .num[data-index='" + pix + i + "'] .num-inner").css(
+					"top"
+				) !=
+					-(h * 9) + "px"
+			) {
+				$("#timeBox .num[data-index='" + pix + i + "'] .num-inner").css(
+					{
+						top: -(h * 10)
+					}
+				);
+			}
+			if (
+				pix !== "days" &&
+				i != 1 &&
+				arr[i] == 5 &&
+				$("#timeBox .num[data-index='" + pix + i + "'] .num-inner").css(
+					"top"
+				) !=
+					-(h * 5) + "px"
+			) {
+				$("#timeBox .num[data-index='" + pix + i + "'] .num-inner").css(
+					{
+						top: -(h * 6)
+					}
+				);
+			}
 			$("#timeBox .num[data-index='" + pix + i + "'] .num-inner").animate(
 				{ top: -(h * arr[i]) },
-				300
+				400
 			);
 		}
 	};
@@ -79,7 +139,7 @@
 			);
 			str.push("                            <div class='num-inner'>");
 
-			str.push(renderNumber());
+			str.push(renderNumber(i == 0 ? 5 : null));
 			str.push("                            </div>");
 			str.push("                        </div>");
 		}
@@ -99,7 +159,7 @@
 			);
 			str.push("                            <div class='num-inner'>");
 
-			str.push(renderNumber());
+			str.push(renderNumber(i == 0 ? 5 : null));
 			str.push("                            </div>");
 			str.push("                        </div>");
 		}
@@ -118,7 +178,7 @@
 			);
 			str.push("                            <div class='num-inner'>");
 
-			str.push(renderNumber());
+			str.push(renderNumber(i == 0 ? 5 : null));
 			str.push("                            </div>");
 			str.push("                        </div>");
 		}
@@ -130,9 +190,10 @@
 		str.push("</div>");
 		$(this).append(str.join(""));
 	};
-	var renderNumber = function() {
+	var renderNumber = function(num) {
+		var num = num ? num : 9;
 		var numStr = [];
-		for (var n = 0; n <= 9; n++) {
+		for (var n = 0; n <= num; n++) {
 			numStr.push("<i class='iconfont icon-" + n + "'></i>");
 		}
 		return numStr.join("");
@@ -159,7 +220,6 @@
 		if (res.sec < 10) {
 			res.sec = "0" + res.sec;
 		}
-		console.log(res);
 		return res;
 	};
 })(window, jQuery);
