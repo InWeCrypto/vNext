@@ -33,19 +33,19 @@
 		var w = box.width();
 		var lw = w / 11;
 		box.find(".iconfont").css({
-			fontSize: lw + 15,
+			fontSize: lw,
 			left: 0
 		});
 		box.find(".num-inner").css({
-			marginLeft: -(lw + 15) / 2
+			marginLeft: -lw / 2
 		});
 		box.find(".num").css({
 			width: lw,
-			height: lw + 17
+			height: lw + 2
 		});
 		box.find(".t").css({
-			fontSize: lw + 15,
-			height: lw + 17
+			fontSize: lw,
+			height: lw + 2
 			//lineHeight: lw + 2
 		});
 		box.find(".time-item").css({
@@ -128,7 +128,7 @@
 		str.push("                    </div>");
 		str.push("                    <div class='time-type'>DAYS</div>");
 		str.push("                </div>");
-		str.push("<span>&nbsp;&nbsp;</span>");
+		str.push("<span class='t3'></span>");
 		str.push("                <div class='time-item' id='hoursItem'>");
 		str.push("                    <div class='num-box'>");
 		for (var i = 0; i < showTime.hours.length; i++) {

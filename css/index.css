@@ -54,7 +54,7 @@ body {
 .time-box {
 	width: 100%;
 	text-align: center;
-	padding: 1rem 0;
+	padding: 1rem 0 0.5rem 0;
 }
 .time-item {
 	text-align: center;
@@ -92,12 +92,31 @@ body {
 	color: #fff;
 	vertical-align: top;
 	display: inline-block;
+	margin: 0 0.1rem;
+}
+.time-box .t3 {
+	width: 0.7rem;
+	display: inline-block;
 }
 @media screen and (max-width: 1000px) {
 	.container .header {
 		padding-left: 0.1rem;
 	}
+	.container .cont1 {
+		padding-top: 0.2rem;
+	}
 	.container .cont1 .t1 {
 		font-size: 0.4rem;
+	}
+	.time-box .t {
+		margin: 0 0.1rem;
+	}
+	.time-box .t3 {
+		width: 0.3rem;
+		display: block;
+		margin-bottom: 0.3rem;
+	}
+	.time-box {
+		padding: 0.3rem 0;
 	}
 }
