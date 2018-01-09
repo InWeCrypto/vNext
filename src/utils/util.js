@@ -10,6 +10,18 @@ export const getQuery = query => {
 	});
 	return res;
 };
+export const getMainMinHeight = () => {
+	let header = parseInt(
+		document.querySelector("#headerBox").clientHeight,
+		10
+	);
+	let footer = parseInt(
+		document.querySelector("#footerBox").clientHeight,
+		10
+	);
+	let wh = parseInt(window.innerHeight, 10);
+	return wh - header - footer;
+};
 export const formatTimeToChina = t => {
 	if (!t) {
 		return "";
