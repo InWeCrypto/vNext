@@ -2,5 +2,49 @@
 	padding-top: 0.38rem;
 	.heder-middle {
 		text-align: center;
+		font-size: 0.4rem;
+		font-weight: 600;
+		font-family: "impact";
+	}
+	.heder-right {
+		position: relative;
+	}
+	.member {
+		width: 0.38rem;
+		height: 0.38rem;
+		border-radius: 50%;
+		position: relative;
+		background: #e3e3e3;
+		z-index: 2;
+		.member-info {
+			width: 0.08rem;
+			height: 0.08rem;
+			border-radius: 50%;
+			display: block;
+			background: #ff0d0d;
+			position: absolute;
+			right: 0.02rem;
+			top: 0.02rem;
+		}
+	}
+	.member-more {
+		position: absolute;
+		width: 1.38rem;
+		background: #f6f6f6;
+		left: -0.5rem;
+		top: 0.19rem;
+		z-index: 1;
+		box-sizing: border-box;
+		padding-top: 0.3rem;
+		.member-item {
+			box-sizing: border-box;
+			padding: 0.05rem 0 0.05rem 0.2rem;
+			.member-itemtext {
+				display: inline-block;
+				width: 0.6rem;
+				text-align: center;
+				vertical-align: middle;
+			}
+		}
 	}
 }
