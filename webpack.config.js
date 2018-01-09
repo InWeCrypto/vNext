@@ -1,14 +1,13 @@
-var rimraf = require("rimraf");
-
-var webpackConfig =
-  process.env.NODE_ENV === "development"
-    ? require("./build/webpack.dev.config.js")
-    : require("./build/webpack.prod.config.js");
-
-if (process.env.NODE_ENV !== "development") {
-  rimraf("./dist", function(err) {
-    if (err) throw err;
-  });
+var webpackBaseConfig = require("./build/webpack.base");
+var webpackDevConfig = require("./build/webpack.dev");
+var webpackProConfig = require("./build/webpack.pro");
+var webpackMerge = require("webpack-merge");
+var webpackConfig;
+if (process.env.NODE_ENV === "development") {
+	webpackConfig = webpackMerge(webpackBaseConfig, webpackDevConfig);
+}
+if (process.env.NODE_ENV === "production") {
+	webpackConfig = webpackMerge(webpackBaseConfig, webpackProConfig);
 }
 
 module.exports = webpackConfig;

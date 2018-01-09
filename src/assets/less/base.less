@@ -1,0 +1,183 @@
+// @font-face {
+// 	font-family: "HelveticaNeueLTPro-Lt";
+// 	src: url("./fonts/HelveticaNeueLTPro-Lt.woff"),
+// 		url("./fonts/HelveticaNeueLTPro-Lt.eot"),
+// 		url("./fonts/HelveticaNeueLTPro-Lt.ttf"),
+// 		url("./fonts/HelveticaNeueLTPro-Lt.woff2");
+// }
+// @font-face {
+// 	font-family: "HelveticaNeue-Bold";
+// 	src: url("./fonts/HelveticaNeue-Bold.woff"),
+// 		url("./fonts/HelveticaNeue-Bold.eot"),
+// 		url("./fonts/HelveticaNeue-Bold.ttf"),
+// 		url("./fonts/HelveticaNeue-Bold.woff2");
+// }
+// @font-face {
+// 	font-family: "helveticaneueltstd-th";
+// 	src: url("./fonts/helveticaneueltstd-th.woff"),
+// 		url("./fonts/helveticaneueltstd-th.eot"),
+// 		url("./fonts/helveticaneueltstd-th.ttf"),
+// 		url("./fonts/helveticaneueltstd-th.woff2");
+// }
+// @font-face {
+// 	font-family: "HelveticaNeueLTPro-Md";
+// 	src: url("./fonts/HelveticaNeueLTPro-Md.woff"),
+// 		url("./fonts/HelveticaNeueLTPro-Md.eot"),
+// 		url("./fonts/HelveticaNeueLTPro-Md.ttf"),
+// 		url("./fonts/HelveticaNeueLTPro-Md.woff2");
+// }
+// @font-face {
+// 	font-family: "MyriadPro-Regular";
+// 	src: url("./fonts/MyriadPro-Regular.woff"),
+// 		url("./fonts/MyriadPro-Regular.eot"),
+// 		url("./fonts/MyriadPro-Regular.ttf"),
+// 		url("./fonts/MyriadPro-Regular.woff2");
+// }
+
+html {
+	font-size: 100px;
+}
+
+body {
+	font-size: 0.12rem;
+}
+/* iphone 6 */
+@media (min-device-width: 375px) and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) {
+	html {
+		/*font-size: 117.1875px;*/
+		font-size: 100px;
+	}
+}
+/* iphone6 plus */
+@media (min-device-width: 414px) and (max-device-width: 736px) and (-webkit-min-device-pixel-ratio: 3) {
+	html {
+		/*font-size: 115.375px;*/
+		font-size: 110px;
+	}
+}
+
+html,
+body {
+	background-color: #fff;
+	margin: 0;
+	padding: 0;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	font-family: "HelveticaNeueLTPro-Md", Arial, Helvetica, "freesans",
+		sans-serif;
+	-webkit-text-size-adjust: none;
+	overflow: auto;
+	-webkit-overflow-scrolling: touch;
+}
+
+.img-response {
+	display: block;
+	max-width: 100%;
+	height: auto;
+}
+.box {
+	box-shadow: 0 0.01rem 0 0.01rem rgba(192, 192, 192, 0.35);
+	background-color: #fff;
+
+	.box-header {
+		border-bottom: 0.01rem solid #eee;
+		padding: 0 0.16rem;
+		color: #666;
+		font-size: 0.14rem;
+		line-height: normal;
+		font-family: "helveticaneueltstd-th";
+		height: 0.31rem;
+		display: flex;
+		align-items: center;
+	}
+
+	& + .box {
+		margin-top: 0.18rem;
+	}
+}
+
+.pagination {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	li {
+		margin: 0 0.07rem;
+		height: 0.35rem;
+		width: 0.35rem;
+		border: 0.01rem solid transparent;
+		border-radius: 50%;
+
+		a {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			height: 100%;
+			width: 100%;
+			border-radius: 50%;
+			box-sizing: border-box;
+			color: #666;
+			font-size: 0.14rem;
+			text-decoration: none;
+			font-family: "HelveticaNeueLTPro-Lt";
+			margin: 0;
+			outline: none;
+			position: relative;
+			top: 0.01rem;
+		}
+
+		&:hover {
+			border-color: none;
+
+			a {
+				color: #666;
+			}
+		}
+		&.ant-pagination-item-active {
+			border: 1px solid #d9d9d9;
+		}
+		&:first-child,
+		&:last-child {
+			font-size: 0.18rem;
+
+			&:hover {
+				border-color: transparent;
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 750px) {
+	.content {
+		width: auto;
+		padding: 0.12rem 0 0;
+	}
+
+	.container {
+		display: flex;
+		flex-direction: column;
+
+		.main {
+			padding-right: 0;
+		}
+
+		.aside {
+			width: 100%;
+		}
+	}
+
+	.box {
+		box-shadow: none;
+
+		.box-header {
+			color: #000;
+			justify-content: center;
+		}
+
+		& + .box {
+			margin-top: 0.06rem;
+		}
+	}
+}
