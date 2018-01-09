@@ -47,19 +47,26 @@ class Header extends PureComponent {
 					{showMember && (
 						<div className="member-more">
 							<div className="member-item">
-								<i>22</i>
+								<span className="icon-box">
+									<i className="icon-message" />
+									<i className="circle" />
+								</span>
 								<span className="member-itemtext">
 									未读消息
 								</span>
 							</div>
 							<div className="member-item">
-								<i>22</i>
+								<span className="icon-box">
+									<i className="icon-personal" />
+								</span>
 								<span className="member-itemtext">
 									个人中心
 								</span>
 							</div>
 							<div className="member-item">
-								<i>22</i>
+								<span className="icon-box">
+									<i className="icon-out" />
+								</span>
 								<span className="member-itemtext">退出</span>
 							</div>
 						</div>

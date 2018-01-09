@@ -55,6 +55,20 @@
 				text-align: center;
 				vertical-align: middle;
 			}
+			.icon-box {
+				margin-right: 0.1rem;
+				position: relative;
+				.circle {
+					width: 0.06rem;
+					height: 0.06rem;
+					border-radius: 50%;
+					display: block;
+					background: #ff0d0d;
+					position: absolute;
+					right: 0;
+					top: 0.02rem;
+				}
+			}
 		}
 	}
 	.heder-left {
@@ -67,6 +81,8 @@
 		.headernews-box {
 			height: 0.2rem;
 			width: 1rem;
+			position: relative;
+			top: 0.01rem;
 			.headernews-item {
 				display: block;
 				height: 0.2rem;
@@ -77,5 +93,31 @@
 				color: @orange;
 			}
 		}
+	}
+	.icon-message {
+		background: url("../../assets/images/header_message.png") left top
+			no-repeat;
+		background-size: 100%;
+		height: 100%;
+		display: inline-block;
+		width: 0.1rem;
+		height: 0.1rem;
+	}
+	.icon-personal {
+		background: url("../../assets/images/header_personal.png") left top
+			no-repeat;
+		background-size: 100%;
+		height: 100%;
+		display: inline-block;
+		width: 0.1rem;
+		height: 0.1rem;
+	}
+	.icon-out {
+		background: url("../../assets/images/header_out.png") left top no-repeat;
+		background-size: 100%;
+		height: 100%;
+		display: inline-block;
+		width: 0.1rem;
+		height: 0.1rem;
 	}
 }
