@@ -20,7 +20,6 @@ export const getMainMinHeight = () => {
 		10
 	);
 	let wh = parseInt(window.innerHeight, 10);
-	console.log(wh - header - footer);
 	return wh - header - footer;
 };
 export const formatTimeToChina = t => {
