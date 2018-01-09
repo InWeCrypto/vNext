@@ -1,6 +1,7 @@
 import React, { PureComponent } from "react";
 import "./index.less";
 import defaultHeader from "../../assets/images/member_img.png";
+import headerNews from "../../assets/images/headernews.png";
 class Header extends PureComponent {
 	constructor() {
 		super();
@@ -24,7 +25,14 @@ class Header extends PureComponent {
 		const { showMember } = this.state;
 		return (
 			<div className="header-box ui start">
-				<div className="heder-left">1</div>
+				<div className="heder-left ui center">
+					<img className="img" src={headerNews} />
+					<div className="headernews-box f1">
+						<span className="headernews-item">
+							BTC $15366 +9.9%
+						</span>
+					</div>
+				</div>
 				<div className="heder-middle f1">InWeCrypto</div>
 				<div className="heder-right">
 					<div
@@ -34,6 +42,7 @@ class Header extends PureComponent {
 						}}
 					>
 						<i className="member-info" />
+						<img className="img" src={defaultHeader} />
 					</div>
 					{showMember && (
 						<div className="member-more">
