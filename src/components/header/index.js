@@ -24,7 +24,7 @@ class Header extends PureComponent {
 	render() {
 		const { showMember } = this.state;
 		return (
-			<div className="header-box ui start">
+			<div id="headerBox" className="header-box ui start">
 				<div className="heder-left ui center">
 					<img className="img" src={headerNews} />
 					<div className="headernews-box f1">
