@@ -1,0 +1,27 @@
+@project-height: 6.58rem;
+@project-li-height:3.70rem;
+.project{
+    height: @project-height;
+    .projectContent{
+        overflow: hidden;
+        ul{
+            width: @project-li-height*4;
+            flex-wrap:wrap;
+            li{
+                width: @project-li-height;
+                height: @project-height/2;
+                flex-shrink:0;
+                background-color: #FFF;
+                border-right: 0.01rem solid #ECECEC;
+                border-bottom: 0.01rem solid #ECECEC;
+                box-sizing: border-box;
+                &:hover{
+                    background-color: #F6F6F6;
+                }
+                .projectLiTop{
+                    width:42px;
+                }
+            }
+        }
+    }
+}
