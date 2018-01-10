@@ -1,6 +1,6 @@
 import "whatwg-fetch";
 import { requestUrl } from "../config/";
-import { notification } from "antd";
+// import { notification } from "antd";
 const METHODS = ["get", "delete"];
 const BODY_METHODS = ["post", "put", "patch"];
 
@@ -22,12 +22,12 @@ function checkRight(response) {
 	if (response.code === 4000) {
 		return response;
 	} else {
-		notification.warn({
-			duration: 2,
-			placement: "bottomLeft",
-			message: "警告",
-			description: response.msg
-		});
+		// notification.warn({
+		// 	duration: 2,
+		// 	placement: "bottomLeft",
+		// 	message: "警告",
+		// 	description: response.msg
+		// });
 		return {
 			msg: response.msg,
 			data: null,
