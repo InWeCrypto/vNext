@@ -1,17 +1,38 @@
+@import "../../assets/less/basestyle.less";
 .left-menu {
 	width: 2rem;
 	.left-menu-item {
+		height: 0.24rem;
+		padding: 0.1rem 0;
+		display: block;
 		cursor: pointer;
 		.line {
 			width: 0.12rem;
 			height: 0.03rem;
 			display: inline-block;
 			vertical-align: middle;
-			margin-right: 0.1rem;
+			margin-right: 0.05rem;
 			background: #333333;
+			transition: margin-left 0.2s linear;
 		}
 		.text {
 			color: #e7e7e7;
+			font-size: 0.12rem;
+			vertical-align: middle;
+			font-size: 200;
+		}
+	}
+	.left-menu-item.cur,
+	.left-menu-item:hover {
+		.line {
+			width: 0.3rem;
+			background: @orange;
+			margin-left: 0.16rem;
+		}
+		.text {
+			font-size: 0.16rem;
+			color: #333;
+			font-size: 400;
 		}
 	}
 }

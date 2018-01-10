@@ -1,5 +1,6 @@
 import React, { PureComponent } from "react";
 import { I18n, Trans } from "react-i18next";
+import { NavLink } from "react-router-dom";
 import "./index.less";
 class LeftMenuBox extends PureComponent {
 	render() {
@@ -8,18 +9,78 @@ class LeftMenuBox extends PureComponent {
 			<I18n>
 				{(t, { I18n }) => (
 					<div className="left-menu">
-						<div className="left-menu-item">
+						<NavLink
+							to={{
+								pathname: "/"
+							}}
+							className="left-menu-item"
+							activeClassName="cur"
+						>
 							<span className="line" />
 							<span className="text">
-								{t("leftMenu.home", lng)}
+								{t("navMenu.home", lng)}
 							</span>
-						</div>
-						<div className="left-menu-item">
+						</NavLink>
+						<NavLink
+							to={{
+								pathname: "/project"
+							}}
+							className="left-menu-item"
+							activeClassName="cur"
+						>
 							<span className="line" />
 							<span className="text">
-								{t("leftMenu.project", lng)}
+								{t("navMenu.project", lng)}
 							</span>
-						</div>
+						</NavLink>
+						<NavLink
+							to={{
+								pathname: "/news"
+							}}
+							className="left-menu-item"
+							activeClassName="cur"
+						>
+							<span className="line" />
+							<span className="text">
+								{t("navMenu.news", lng)}
+							</span>
+						</NavLink>
+						<NavLink
+							to={{
+								pathname: "/candybowl"
+							}}
+							className="left-menu-item"
+							activeClassName="cur"
+						>
+							<span className="line" />
+							<span className="text">
+								{t("navMenu.candybowl", lng)}
+							</span>
+						</NavLink>
+						<NavLink
+							to={{
+								pathname: "/trading"
+							}}
+							className="left-menu-item"
+							activeClassName="cur"
+						>
+							<span className="line" />
+							<span className="text">
+								{t("navMenu.trading", lng)}
+							</span>
+						</NavLink>
+						<NavLink
+							to={{
+								pathname: "/announcment"
+							}}
+							className="left-menu-item"
+							activeClassName="cur"
+						>
+							<span className="line" />
+							<span className="text">
+								{t("navMenu.announcment", lng)}
+							</span>
+						</NavLink>
 					</div>
 				)}
 			</I18n>
