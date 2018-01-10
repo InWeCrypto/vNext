@@ -25,7 +25,9 @@ export default class Root extends PureComponent {
 			<div className="container">
 				<Header />
 				<div ref="mainBox" className="projectList ui">
-					<span>123</span>
+					<div className="projectListRetuen">
+						<span />
+					</div>
 				</div>
 			</div>
 		);
