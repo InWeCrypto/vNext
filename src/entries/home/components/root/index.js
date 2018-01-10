@@ -11,6 +11,7 @@ export default class Root extends PureComponent {
 		this.props.getNewsList();
 		let minH = getMainMinHeight();
 		this.refs.mainBox.style.minHeight = minH + "px";
+		window.onresize;
 	}
 	render() {
 		return (
