@@ -25,8 +25,58 @@ export default class Root extends PureComponent {
 			<div className="container">
 				<Header />
 				<div ref="mainBox" className="projectList ui">
-					<div className="projectListRetuen">
+					<div className="projectListReturn ui center">
 						<span />
+					</div>
+					<div className="projectListCon ui">
+						{[1, 2, 3, 4].map((item, index) => {
+							return (
+								<div
+									key={index}
+									className="projectListConChild"
+								>
+									<div className="projectListConChildTitle">
+										<span className="ellitext">
+											Trading
+										</span>
+									</div>
+									<ul className="projectListConChildUl">
+										<li>
+											<div className="projectListLiTop ui center">
+												<div className="projectListLiTopLeft ui center">
+													<div className="projectListImg newMsg">
+														<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1515589318224&di=6418f077b77d7451a1246c6cfe793406&imgtype=0&src=http%3A%2F%2Fpic36.nipic.com%2F20131124%2F6608733_084856944000_2.jpg" />
+													</div>
+													<p>
+														<span class="ellitext">
+															NEO
+														</span>
+														<b class="ellitext">
+															(neo)
+														</b>
+													</p>
+												</div>
+												<div
+													className={
+														index == 4
+															? "projectListLiTopRight collect"
+															: "projectListLiTopRight nocollect"
+													}
+												/>
+											</div>
+											<div className="projectListLiCenter">
+												<div className="left">
+													Blockchain
+												</div>
+												<div className="right">
+													$90.00<span>(-12.00%)</span>
+												</div>
+											</div>
+										</li>
+									</ul>
+								</div>
+							);
+						})}
 					</div>
 				</div>
 			</div>
