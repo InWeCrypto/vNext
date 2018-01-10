@@ -4,9 +4,9 @@ import http from "../../../utils/ajax";
 const PRE_FIX = "PROJECT_";
 export const NEWSLIST = `${PRE_FIX}NEWSLIST`;
 
-export const getProject = createAction(NEWSLIST, () => {
+export const getProjectList = createAction(NEWSLIST, () => {
 	return http.post({
-		url: "",
-		params: {}
-	});
+        url:'',
+        params:{}
+    })
 });
