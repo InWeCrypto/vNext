@@ -1,4 +1,5 @@
 import React, { PureComponent } from "react";
+import { I18n, Trans } from "react-i18next";
 import "./index.less";
 class TopText extends PureComponent {
 	constructor() {
@@ -52,22 +53,26 @@ class TopText extends PureComponent {
 	render() {
 		const { txtArr, txtLength, textIndex } = this.state;
 		return (
-			<div className="toptext-box">
-				<span className="t1">InWeCrypto </span>
-				{txtArr &&
-					txtArr.length > 0 &&
-					txtArr.map((item, index) => {
-						if (index >= textIndex) {
-							return null;
-						}
-						return (
-							<i key={index} className="t2">
-								{item}
-							</i>
-						);
-					})}
-				<span className="text-end">|</span>
-			</div>
+			<I18n>
+				{(t, { i18n }) => (
+					<div className="toptext-box">
+						<span className="t1">InWeCrypto </span>
+						{txtArr &&
+							txtArr.length > 0 &&
+							txtArr.map((item, index) => {
+								if (index >= textIndex) {
+									return null;
+								}
+								return (
+									<i key={index} className="t2">
+										{item}
+									</i>
+								);
+							})}
+						<span className="text-end">|</span>
+					</div>
+				)}
+			</I18n>
 		);
 	}
 }
