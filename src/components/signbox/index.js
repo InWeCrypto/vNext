@@ -17,7 +17,7 @@ class SignBox extends PureComponent {
 							<div className="sign-inbox">
 								{/* <SignIn lng={lng} /> */}
 								{/* <FastSign lng={lng} /> */}
-								{/* <Register lng={lng} /> */}
+								<Register lng={lng} />
 							</div>
 						</div>
 					</div>
