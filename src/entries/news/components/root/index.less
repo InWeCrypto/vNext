@@ -1,1 +1,128 @@
-
+.newsBox {
+	margin-right: 1rem;
+	flex-direction: column;
+	// overflow-y: auto;
+	.newsBoxMod {
+		width: 100%;
+		.newsBoxModTop {
+			width: 100%;
+			padding: 0.28rem 0.29rem 0rem;
+			// height: 0.76rem;
+			box-sizing: border-box;
+			overflow: hidden;
+			p {
+				overflow: hidden;
+				border-bottom: 1px solid #ececec;
+				padding-bottom: 4px;
+			}
+			span.title {
+				float: left;
+				height: 0.28rem;
+				line-break: 0.28rem;
+				color: #067e2a;
+				font-size: 0.2rem;
+				font-weight: bold;
+			}
+			span.nums {
+				float: right;
+				height: 0.17rem;
+				line-height: 0.17rem;
+				font-size: 0.16rem;
+				color: #333;
+				margin-top: 0.055rem;
+			}
+		}
+		.newsBoxModCon {
+			width: 100%;
+			justify-content: space-between;
+			span {
+				display: block;
+				width: 0.09rem;
+				height: 0.13rem;
+				flex-shrink: 0;
+				background: url("../../../../assets/images/news_left.png")
+					no-repeat center;
+				background-size: 100%;
+				&.leftArrow.more {
+					background: url("../../../../assets/images/news_left_s.png")
+						no-repeat center;
+					background-size: 100%;
+				}
+				&.rightArrow {
+					background: url("../../../../assets/images/news_right.png")
+						no-repeat center;
+					background-size: 100%;
+				}
+				&.rightArrow.more {
+					background: url("../../../../assets/images/news_right_s.png")
+						no-repeat center;
+					background-size: 100%;
+				}
+			}
+			ul {
+				width: 100%;
+				margin: 0 0.2rem;
+				border-bottom: 1px solid #ececec;
+				li {
+					width: 20%;
+					box-sizing: border-box;
+					padding: 0.14rem 0.2rem;
+					p.desc {
+						width: 100%;
+						position: relative;
+						line-height: 0.22rem;
+						height: 0.44rem;
+						overflow: hidden;
+						// &::after {
+						// 	content: "...";
+						// 	position: absolute;
+						// 	bottom: 0;
+						// 	right: 0;
+						// 	padding-left: 40px;
+						// 	background: linear-gradient(
+						// 		to right,
+						// 		transparent,
+						// 		#fff 55%
+						// 	);
+						// }
+						display: -webkit-box;
+						-webkit-box-orient: vertical;
+						-webkit-line-clamp: 2;
+					}
+					.newsBoxModConDate {
+						width: 100%;
+						height: 0.17rem;
+						color: #c9c6c6;
+						font-size: 12px;
+						margin-top: 0.14rem;
+						p {
+							float: left;
+							line-height: 0.17rem;
+						}
+						img {
+							float: right;
+							width: 0.14rem;
+							height: 0.14rem;
+							margin-top: 0.015rem;
+						}
+					}
+				}
+			}
+		}
+		&.ceefax .newsBoxModCon ul li {
+			width: 25%;
+			padding-top: 0.08rem;
+			.newsBoxModConDate {
+				margin: 0.05rem auto 0.06rem;
+			}
+			.newsBoxModConShow {
+				width: 100%;
+				height: 130px;
+				overflow: hidden;
+				img {
+					width: 100%;
+				}
+			}
+		}
+	}
+}
