@@ -80,7 +80,7 @@ class Header extends PureComponent {
 							</div>
 						</div>
 					)}
-					<SignBox />
+					{/* <SignBox /> */}
 				</div>
 			</div>
 		);
