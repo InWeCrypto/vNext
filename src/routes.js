@@ -5,6 +5,7 @@ import Project from "./entries/project";
 import ProjectList from "./entries/projectlist";
 import ProjectOpen from "./entries/projectopen";
 import News from "./entries/news";
+import NewsDetail from "./entries/newsdetail";
 
 export default () => {
 	return (
@@ -14,6 +15,7 @@ export default () => {
 			<Route path="/projectlist" component={ProjectList} />
 			<Route path="/projectopen" component={ProjectOpen} />
 			<Route path="/news" component={News} />
+			<Route path="/newsdetail" component={NewsDetail} />
 		</Switch>
 	);
 };
