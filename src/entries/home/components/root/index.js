@@ -6,17 +6,22 @@ import Footer from "../../../../components/footer";
 import LeftMenu from "../../../../components/leftmenu";
 import FixedMenu from "../../../../components/fixedmenu";
 import TopText from "../toptext/";
+import { getQuery } from "../../../../utils/util";
 import "./index.less";
 export default class Root extends PureComponent {
 	constructor(props) {
 		super();
 	}
-	componentWillReceiveProps(nextProps) {}
+	componentWillReceiveProps(nextProps) {
+		if (nextProps.location.search != this.props.location.search) {
+		}
+	}
 	componentDidMount() {
 		document.title = "InWe-首页";
 		this.props.getNewsList();
 		let minH = getMainMinHeight();
-		document.querySelector("#mainBox").style.minHeight = minH + "px";
+		let th = document.querySelector("#topText").clientHeight;
+		document.querySelector("#mainBox").style.minHeight = minH - th + "px";
 	}
 	componentDidUpdate() {}
 	render() {
@@ -25,15 +30,16 @@ export default class Root extends PureComponent {
 			<I18n>
 				{(t, { i18n }) => (
 					<div className="container">
-						<FixedMenu changeLng={changeLng} lng={lng} />
+						{/* <FixedMenu changeLng={changeLng} lng={lng} /> */}
 						<Header />
+						<div id="topText" className="top-text">
+							<TopText lng={lng} />
+						</div>
 						<div id="mainBox" className="main">
-							<div className="top-text">
-								<TopText lng={lng} />
-							</div>
-
 							<div className="left-menus ui center">
-								<LeftMenu lng={lng} />
+								<div className="left-menu-home">
+									<LeftMenu lng={lng} />
+								</div>
 							</div>
 						</div>
 						<Footer changeLng={changeLng} lng={lng} />

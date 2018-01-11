@@ -8,13 +8,20 @@ class Header extends PureComponent {
 		this.state = {
 			showMember: false
 		};
-		document.addEventListener("click", () => {
-			this.setState({
-				showMember: false
-			});
+		this.changeMember = this.changeMember.bind(this);
+		document.addEventListener("click", this.changeMember, false);
+	}
+	changeMember() {
+		this.setState({
+			showMember: false
 		});
 	}
-	componentDidMount() {}
+	componentWillUnmount() {
+		//重写组件的setState方法，直接返回空
+		this.setState = (state, callback) => {
+			return;
+		};
+	}
 	toggleMember(e) {
 		e.stopPropagation();
 		this.setState({
