@@ -14,7 +14,7 @@ export default class Root extends PureComponent {
 	}
 	componentDidMount() {
 		document.title = "InWe-Trading";
-		this.props.getProject();
+		this.props.getNews();
 		let minH = getMainMinHeight();
 		let liW =
 			(document.querySelector("#projectContentRef").clientWidth - 187) /

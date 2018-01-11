@@ -1,7 +1,10 @@
 export default {
 	home: {},
 	project: {
-		trading: "交易"
+		trading: "交易",
+		active: "活动",
+		upcoming: "即将到来",
+		ended: "结束"
 	},
 	navMenu: {
 		home: "首页",
