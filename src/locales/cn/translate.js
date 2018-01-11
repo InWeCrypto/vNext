@@ -14,5 +14,15 @@ export default {
 		trading: "交易观点",
 		announcment: "公告"
 	},
-	name: "home"
+	signBox: {
+		signIn: {
+			email: "邮箱",
+			user: "账户",
+			password: "密码",
+			forget: "忘记密码",
+			signIn: "登录",
+			fast: "InWe Wallet账号快捷登录",
+			register: "注册"
+		}
+	}
 };

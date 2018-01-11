@@ -1,5 +1,6 @@
 import React, { PureComponent } from "react";
 import "./index.less";
+import SignBox from "../signbox";
 import defaultHeader from "../../assets/images/member_img.png";
 import headerNews from "../../assets/images/headernews.png";
 class Header extends PureComponent {
@@ -8,13 +9,20 @@ class Header extends PureComponent {
 		this.state = {
 			showMember: false
 		};
-		document.addEventListener("click", () => {
-			this.setState({
-				showMember: false
-			});
+		this.changeMember = this.changeMember.bind(this);
+		document.addEventListener("click", this.changeMember, false);
+	}
+	changeMember() {
+		this.setState({
+			showMember: false
 		});
 	}
-	componentDidMount() {}
+	componentWillUnmount() {
+		//重写组件的setState方法，直接返回空
+		this.setState = (state, callback) => {
+			return;
+		};
+	}
 	toggleMember(e) {
 		e.stopPropagation();
 		this.setState({
@@ -22,6 +30,7 @@ class Header extends PureComponent {
 		});
 	}
 	render() {
+		const { lng } = this.props;
 		const { showMember } = this.state;
 		return (
 			<div id="headerBox" className="header-box ui start">
@@ -71,6 +80,7 @@ class Header extends PureComponent {
 							</div>
 						</div>
 					)}
+					<SignBox />
 				</div>
 			</div>
 		);

@@ -1,0 +1,92 @@
+@import "../../assets/less/basestyle.less";
+.sign-in {
+	background: #fff;
+	width: 5.5rem;
+	border-radius: 0.04rem;
+	position: relative;
+	.icon-close {
+		position: absolute;
+		right: 0.1rem;
+		top: 0.1rem;
+	}
+	.sign-in-content {
+		text-align: center;
+		box-sizing: border-box;
+		padding: 0 1rem;
+	}
+	.sign-in-title {
+		font-size: 0.24rem;
+		font-family: "Microsoft YaHei", "impact";
+		font-weight: 600;
+		color: #333;
+		padding: 0.2rem 0 0.6rem 0;
+	}
+	.sign-in-item {
+		display: flex;
+		align-items: center;
+		padding: 0.2rem 0;
+		border-bottom: 0.01rem solid #ececec;
+		font-size: 0.16rem;
+		position: relative;
+		.item-name {
+			width: 0.6rem;
+			color: #262626;
+		}
+		.item-input {
+			flex: 1;
+			.input {
+				width: 100%;
+				border: none;
+				outline: none;
+				box-shadow: none;
+				color: @orange;
+			}
+		}
+		.icon-see {
+			background: url("../../assets/images/seepass.png") left top
+				no-repeat;
+			display: inline-block;
+			width: 0.22rem;
+			height: 0.13rem;
+			margin-left: 0.1rem;
+			background-size: 100% 100%;
+			cursor: pointer;
+		}
+		.icon-see.show-text {
+			background: url("../../assets/images/seepass1.png") left top
+				no-repeat;
+			background-size: 100% 100%;
+		}
+	}
+	.forget {
+		text-align: right;
+		padding: 0.05rem;
+		color: #acacac;
+	}
+	.btn-box {
+		padding: 0.44rem 0 0.18rem 0;
+		.signbtn {
+			padding: 0.09rem 0;
+			width: 100%;
+			background: #008f2e;
+			color: #fff;
+			font-size: 0.16rem;
+			display: inline-block;
+			border-radius: 0.04rem;
+		}
+	}
+	.fast-sign {
+		font-size: 0.16rem;
+		color: #acacac;
+	}
+	.go-register {
+		padding: 0.54rem 0 0.1rem 0;
+		text-align: right;
+		.register-text {
+			position: relative;
+			right: -0.8rem;
+			color: @orange;
+			cursor: pointer;
+		}
+	}
+}
