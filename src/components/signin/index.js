@@ -30,13 +30,24 @@ class SignIn extends PureComponent {
 						<div className="sign-in-content">
 							<div className="sign-in-title">InWeCrypto</div>
 							<div className="sign-in-item">
-								<div className="item-name">账号:</div>
+								<div className="item-name">
+									{t("signBox.signIn.user", lng)}:
+								</div>
 								<div className="item-input">
-									<input className="input" type="text" />
+									<input
+										className="input"
+										type="text"
+										placeholder={t(
+											"signBox.signIn.email",
+											lng
+										)}
+									/>
 								</div>
 							</div>
 							<div className="sign-in-item">
-								<div className="item-name">密码:</div>
+								<div className="item-name">
+									{t("signBox.signIn.password", lng)}:
+								</div>
 								<div className="item-input">
 									<input
 										className="input"
@@ -49,21 +60,23 @@ class SignIn extends PureComponent {
 								/>
 							</div>
 							<div className="forget">
-								<span>忘记密码</span>
+								<span>{t("signBox.signIn.forget", lng)}</span>
 							</div>
 							<div className="btn-box">
 								<a
 									href="javascript:void(0)"
 									className="signbtn"
 								>
-									登录
+									{t("signBox.signIn.forget", lng)}
 								</a>
 							</div>
 							<div className="fast-sign">
-								<span>InWe Wallet账号快捷登录</span>
+								<span>{t("signBox.signIn.fast", lng)}</span>
 							</div>
 							<div className="go-register">
-								<span className="register-text">注册</span>
+								<span className="register-text">
+									{t("signBox.signIn.register", lng)}
+								</span>
 							</div>
 						</div>
 					</div>
