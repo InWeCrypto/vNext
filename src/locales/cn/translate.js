@@ -23,6 +23,9 @@ export default {
 			signIn: "登录",
 			fast: "InWe Wallet账号快捷登录",
 			register: "注册"
+		},
+		fastSign: {
+			text: "打开InWe Wallet，扫一扫进行快"
 		}
 	}
 };
