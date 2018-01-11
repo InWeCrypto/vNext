@@ -10,6 +10,7 @@ import "./index.less";
 
 export default class Root extends PureComponent {
 	componentDidMount() {
+		console.log(this);
 		document.title = "InWe-Trading";
 		this.props.getProject();
 		let minH = getMainMinHeight();
@@ -45,7 +46,8 @@ export default class Root extends PureComponent {
 		};
 	}
 	render() {
-		const { minH, showArrow, liW, lng } = this.state;
+		const { minH, showArrow, liW } = this.state;
+		const { lng, changeLng } = this.props;
 		return (
 			<I18n>
 				{(t, { i18n }) => (
@@ -139,7 +141,7 @@ export default class Root extends PureComponent {
 								)}
 							</div>
 						</div>
-						<Footer />
+						<Footer changeLng={changeLng} lng={lng} />
 					</div>
 				)}
 			</I18n>
