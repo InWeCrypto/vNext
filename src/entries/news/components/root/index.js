@@ -9,9 +9,7 @@ import LeftMenu from "../../../../components/leftmenu";
 import "./index.less";
 
 export default class Root extends PureComponent {
-	componentWillReceiveProps(nextProps) {
-		this.leftTwoMenusLinkTo(nextProps.location.search);
-	}
+	componentWillReceiveProps(nextProps) {}
 	componentDidMount() {
 		document.title = "InWe-Trading";
 		this.props.getNews();
@@ -24,31 +22,6 @@ export default class Root extends PureComponent {
 			liW: liW
 		});
 		document.querySelector("#mainBox").style.height = minH + "px";
-		document.querySelector("#projectUlRef").style.width = liW * 4 + "px";
-
-		this.leftTwoMenusLinkTo(this.props.location.search);
-	}
-	leftTwoMenusLinkTo(search) {
-		let q = getQuery(search);
-		this.state.leftTwoMenuCur = q.type || "";
-	}
-	listMove() {
-		let showArrow = this.state.showArrow;
-		if (showArrow == "right") {
-			let marLeft = 2 * this.state.liW;
-			document.querySelector("#projectUlRef").style.marginLeft =
-				-marLeft + "px";
-		} else if (showArrow == "left") {
-			document.querySelector("#projectUlRef").style.marginLeft = 0 + "px";
-		}
-		this.setState({
-			showArrow: showArrow == "left" ? "right" : "left"
-		});
-	}
-	setLeftTwoMenuItemClass(type) {
-		return this.state.leftTwoMenuCur == type
-			? "leftTwoMenuItem cur"
-			: "leftTwoMenuItem";
 	}
 	constructor(props) {
 		super(props);
@@ -60,123 +33,22 @@ export default class Root extends PureComponent {
 		};
 	}
 	render() {
-		const { minH, showArrow, liW, leftTwoMenuCur } = this.state;
+		const { minH, liW } = this.state;
 		const { lng, changeLng } = this.props;
 		return (
 			<I18n>
 				{(t, { i18n }) => (
 					<div className="container">
 						<Header />
-						<div id="mainBox" className="project ui">
+						<div id="mainBox" className="new ui">
 							<div className="left-menus ui center">
 								<LeftMenu lng={lng} />
-							</div>
-							<div className="leftTwoMenus ui center">
-								<div className="leftTwoMenu">
-									<Link
-										to={{
-											pathname: "/project",
-											search: ""
-										}}
-										className={(() =>
-											this.setLeftTwoMenuItemClass(""))()}
-									>
-										<span className="text">
-											{t("project.trading", lng)}
-										</span>
-									</Link>
-									<Link
-										to={{
-											pathname: "/project",
-											search: "?type=active"
-										}}
-										className={(() =>
-											this.setLeftTwoMenuItemClass(
-												"active"
-											))()}
-									>
-										<span className="text">
-											{t("project.active", lng)}
-										</span>
-									</Link>
-								</div>
 							</div>
 							<div
 								id="projectContentRef"
 								className="projectContent ui f1"
 							>
-								<ul id="projectUlRef" className="ui">
-									{[1, 2, 3, 4, 5, 6, 7, 8].map(
-										(item, index) => {
-											return (
-												<li
-													style={{
-														height: minH / 2 + "px",
-														width: liW
-													}}
-													key={index}
-												>
-													<div className="projectLiTop ui center">
-														<div className="projectLiTopLeft ui center">
-															<img src="" />
-															<p>
-																<span>NEO</span>
-																<b>(neo)</b>
-															</p>
-														</div>
-														<div
-															className={
-																index == 4
-																	? "projectLiTopRight collect"
-																	: "projectLiTopRight nocollect"
-															}
-														/>
-													</div>
-													<div className="projectLiType">
-														<span className="ellitext">
-															Blockchain
-														</span>
-													</div>
-													<div className="projectLiDesc">
-														<p className="ellitext">
-															高盛将构建加密货币交易平台
-														</p>
-													</div>
-													<div className="projectLiImg">
-														<img src="" alt="" />
-													</div>
-													<div className="projectLiDate">
-														2017-11-16 11:35:33
-													</div>
-												</li>
-											);
-										}
-									)}
-								</ul>
-								<Link
-									to={{
-										pathname: "/projectlist"
-									}}
-									className="viewAllProject ui center"
-								>
-									<span>view all the project</span>
-								</Link>
-								{showArrow == "left" && (
-									<span
-										className="projectSpanLeft"
-										onClick={() => {
-											this.listMove();
-										}}
-									/>
-								)}
-								{showArrow == "right" && (
-									<span
-										className="projectSpanRight"
-										onClick={() => {
-											this.listMove();
-										}}
-									/>
-								)}
+								1214
 							</div>
 						</div>
 						<Footer changeLng={changeLng} lng={lng} />
