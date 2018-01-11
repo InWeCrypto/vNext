@@ -1,10 +1,11 @@
 import React, { PureComponent } from "react";
-
 import { I18n, Trans } from "react-i18next";
+import { NavLink } from "react-router-dom";
 
 import { getMainMinHeight } from "../../../../utils/util";
 import Header from "../../../../components/header";
 import Footer from "../../../../components/footer";
+import LeftMenu from "../../../../components/leftmenu";
 import "./index.less";
 
 export default class Root extends PureComponent {
@@ -51,12 +52,20 @@ export default class Root extends PureComponent {
 					<div className="container">
 						<Header />
 						<div id="mainBox" className="project ui">
-							<div
-								style={{
-									width: 582,
-									backgroundColor: "#C9C6C6"
-								}}
-							/>
+							<div className="left-menus ui center">
+								<LeftMenu lng={lng} />
+							</div>
+							<div className="leftTwoMenu ui center">
+								<NavLink
+									to={{ pathname: "/projectList" }}
+									className="leftTwoMenuItem"
+									activeClassName="cur"
+								>
+									<span className="text">
+										{t("project.trading", lng)}
+									</span>
+								</NavLink>
+							</div>
 							<div
 								id="projectContentRef"
 								className="projectContent ui f1"

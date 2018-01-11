@@ -32,9 +32,8 @@ export default class Root extends PureComponent {
 								<TopText lng={lng} />
 							</div>
 
-							<div className="left-menu">
+							<div className="left-menus ui center">
 								<LeftMenu lng={lng} />
-								{i18n.t("name", { lng })}
 							</div>
 						</div>
 						<Footer changeLng={changeLng} lng={lng} />
