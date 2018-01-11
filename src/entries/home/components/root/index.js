@@ -31,7 +31,7 @@ export default class Root extends PureComponent {
 				{(t, { i18n }) => (
 					<div className="container">
 						{/* <FixedMenu changeLng={changeLng} lng={lng} /> */}
-						<Header />
+						<Header lng={lng} />
 						<div id="topText" className="top-text">
 							<TopText lng={lng} />
 						</div>

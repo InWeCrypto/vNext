@@ -1,5 +1,6 @@
 import React, { PureComponent } from "react";
 import "./index.less";
+import SignBox from "../signbox";
 import defaultHeader from "../../assets/images/member_img.png";
 import headerNews from "../../assets/images/headernews.png";
 class Header extends PureComponent {
@@ -29,6 +30,7 @@ class Header extends PureComponent {
 		});
 	}
 	render() {
+		const { lng } = this.props;
 		const { showMember } = this.state;
 		return (
 			<div id="headerBox" className="header-box ui start">
@@ -78,6 +80,7 @@ class Header extends PureComponent {
 							</div>
 						</div>
 					)}
+					<SignBox />
 				</div>
 			</div>
 		);
