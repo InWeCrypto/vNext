@@ -1,9 +1,13 @@
 export default {
 	home: {},
 	project: {},
-	leftMenu: {
+	navMenu: {
 		home: "首页",
-		project: "项目"
+		project: "项目",
+		news: "新闻",
+		candybowl: "空投",
+		trading: "交易观点",
+		announcment: "公告"
 	},
 	name: "home"
 };

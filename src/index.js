@@ -14,7 +14,7 @@ import i18n from "./i18n";
 const history = createHistory();
 const store = storeFun(history);
 
-//injectReducer("lng", globalReducer);
+window.i18n = i18n;
 
 const render = Component => {
 	domRender(
