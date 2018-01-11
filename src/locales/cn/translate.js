@@ -1,6 +1,8 @@
 export default {
 	home: {},
-	project: {},
+	project: {
+		trading: "交易"
+	},
 	navMenu: {
 		home: "首页",
 		project: "项目",

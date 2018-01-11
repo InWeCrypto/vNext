@@ -1,14 +1,16 @@
 import React, { PureComponent } from "react";
-
 import { I18n, Trans } from "react-i18next";
+import { NavLink } from "react-router-dom";
 
 import { getMainMinHeight } from "../../../../utils/util";
 import Header from "../../../../components/header";
 import Footer from "../../../../components/footer";
+import LeftMenu from "../../../../components/leftmenu";
 import "./index.less";
 
 export default class Root extends PureComponent {
 	componentDidMount() {
+		console.log(this);
 		document.title = "InWe-Trading";
 		this.props.getProject();
 		let minH = getMainMinHeight();
@@ -44,19 +46,28 @@ export default class Root extends PureComponent {
 		};
 	}
 	render() {
-		const { minH, showArrow, liW, lng } = this.state;
+		const { minH, showArrow, liW } = this.state;
+		const { lng, changeLng } = this.props;
 		return (
 			<I18n>
 				{(t, { i18n }) => (
 					<div className="container">
 						<Header />
 						<div id="mainBox" className="project ui">
-							<div
-								style={{
-									width: 582,
-									backgroundColor: "#C9C6C6"
-								}}
-							/>
+							<div className="left-menus ui center">
+								<LeftMenu lng={lng} />
+							</div>
+							<div className="leftTwoMenu ui center">
+								<NavLink
+									to={{ pathname: "/projectList" }}
+									className="leftTwoMenuItem"
+									activeClassName="cur"
+								>
+									<span className="text">
+										{t("project.trading", lng)}
+									</span>
+								</NavLink>
+							</div>
 							<div
 								id="projectContentRef"
 								className="projectContent ui f1"
@@ -130,7 +141,7 @@ export default class Root extends PureComponent {
 								)}
 							</div>
 						</div>
-						<Footer />
+						<Footer changeLng={changeLng} lng={lng} />
 					</div>
 				)}
 			</I18n>
