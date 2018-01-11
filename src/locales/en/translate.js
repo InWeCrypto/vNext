@@ -1,7 +1,10 @@
 export default {
 	home: {},
 	project: {
-		trading: "Trading"
+		trading: "Trading",
+		active: "Active",
+		upcoming: "Upcoming",
+		ended: "Ended"
 	},
 	navMenu: {
 		home: "Home",

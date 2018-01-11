@@ -6,8 +6,9 @@ import * as globalActions from "../../../globalactions";
 //    categoryList
 //}),
 export default connect(
-	({ projectlist: { newsList }, lng: { lng } }) => ({
-		newsList
+	({ news: { newsList }, lng: { lng } }) => ({
+		newsList,
+		lng
 	}),
 	{
 		...actions,
