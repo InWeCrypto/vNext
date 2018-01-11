@@ -11,7 +11,7 @@ export default class Root extends PureComponent {
 		this.setState({
 			minH: minH
 		});
-		this.refs.mainBox.style.height = minH + "px";
+		this.refs.mainBox.style.minHeight = minH + "px";
 	}
 	constructor(props) {
 		super(props);
