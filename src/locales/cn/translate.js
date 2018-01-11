@@ -26,6 +26,14 @@ export default {
 		},
 		fastSign: {
 			text: "打开InWe Wallet，扫一扫进行快"
+		},
+		register: {
+			email: "邮箱",
+			send: "发送",
+			code: "验证码",
+			password: "设定密码",
+			repeatPassword: "确定密码",
+			register: "注册"
 		}
 	}
 };
