@@ -1,6 +1,8 @@
 import React, { PureComponent } from "react";
 import { I18n, Trans } from "react-i18next";
 import SignIn from "../signin/";
+import FastSign from "../fastsign/";
+import Register from "../register/";
 import "./index.less";
 
 class SignBox extends PureComponent {
@@ -13,7 +15,9 @@ class SignBox extends PureComponent {
 						<div className="sign-content">
 							<div className="sign-bg" />
 							<div className="sign-inbox">
-								<SignIn lng={lng} />
+								{/* <SignIn lng={lng} /> */}
+								{/* <FastSign lng={lng} /> */}
+								{/* <Register lng={lng} /> */}
 							</div>
 						</div>
 					</div>
