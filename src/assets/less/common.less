@@ -1,3 +1,4 @@
+@import "./basestyle.less";
 .container {
 	max-width: @max-width;
 	min-width: @min-width;
@@ -54,8 +55,19 @@
 	border: none;
 	min-width: 0;
 }
+
 .ant-pagination-item a {
 	margin: 0;
+	font-style: oblique;
+	font-size: 0.16rem;
+}
+.ant-pagination-item:hover a,
+.ant-pagination-item::selection,
+.ant-pagination-item a:hover,
+.ant-pagination-item a:focus,
+.ant-pagination-item-active a {
+	color: @orange;
+	font-style: oblique;
 }
 .ant-pagination-prev .ant-pagination-item-link,
 .ant-pagination-next .ant-pagination-item-link {
@@ -66,4 +78,18 @@
 .ant-pagination-jump-prev,
 .ant-pagination-jump-next {
 	min-width: 0;
+}
+.icon-collect {
+	background: url("../images/collect.png") left top no-repeat;
+	display: inline-block;
+	width: 0.17rem;
+	height: 0.17rem;
+	background-size: 100% 100%;
+}
+.icon-uncollect {
+	background: url("../images/uncollect.png") left top no-repeat;
+	display: inline-block;
+	width: 0.17rem;
+	height: 0.17rem;
+	background-size: 100% 100%;
 }
