@@ -61,7 +61,7 @@ export default class Root extends PureComponent {
 								<div className="projectOpenConChild">
 									<div className="projectOpenConChildTitle">
 										<span className="ellitext">
-											Trading
+											{t("project.trading", lng)}
 										</span>
 									</div>
 									<ul

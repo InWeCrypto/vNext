@@ -132,7 +132,15 @@ export default class Root extends PureComponent {
 													}}
 												>
 													<span className="ellitext">
-														大约还有14个项目等你发现
+														{t(
+															"project.other",
+															lng
+														)}
+														14
+														{t(
+															"project.otherend",
+															lng
+														)}
 													</span>
 												</Link>
 											</div>
