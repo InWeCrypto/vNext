@@ -42,6 +42,19 @@ var webpackConfig = {
 				include: rootPath
 			},
 			{
+				test: /\.(js|jsx|mjs)$/,
+				include: /node_modules/,
+				loader: require.resolve("babel-loader"),
+				options: {
+					cacheDirectory: true,
+					plugins: [
+						["react-html-attrs"],
+						["import", { libraryName: "antd", style: "css" }],
+						["import", { libraryName: "antd", style: true }]
+					]
+				}
+			},
+			{
 				test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
 				use: [
 					{
