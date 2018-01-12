@@ -4,7 +4,8 @@ export default {
 		trading: "Trading",
 		active: "Active",
 		upcoming: "Upcoming",
-		ended: "Ended"
+		ended: "Ended",
+		more: "view all the project"
 	},
 	navMenu: {
 		home: "Home",

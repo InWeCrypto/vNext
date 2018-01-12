@@ -55,7 +55,34 @@ export default class Root extends PureComponent {
 										>
 											<div className="projectListConChildTitle">
 												<span className="ellitext">
-													Trading
+													{(() => {
+														switch (index) {
+															case 0:
+																return t(
+																	"project.trading",
+																	lng
+																);
+																break;
+															case 1:
+																return t(
+																	"project.active",
+																	lng
+																);
+																break;
+															case 2:
+																return t(
+																	"project.upcoming",
+																	lng
+																);
+																break;
+															case 3:
+																return t(
+																	"project.ended",
+																	lng
+																);
+																break;
+														}
+													})()}
 												</span>
 											</div>
 											<ul className="projectListConChildUl">
@@ -105,7 +132,15 @@ export default class Root extends PureComponent {
 													}}
 												>
 													<span className="ellitext">
-														大约还有14个项目等你发现
+														{t(
+															"project.other",
+															lng
+														)}
+														14
+														{t(
+															"project.otherend",
+															lng
+														)}
 													</span>
 												</Link>
 											</div>

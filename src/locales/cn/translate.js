@@ -4,7 +4,10 @@ export default {
 		trading: "交易",
 		active: "活动",
 		upcoming: "即将到来",
-		ended: "结束"
+		ended: "结束",
+		more: "查看更多",
+		other: "大约还有",
+		otherend: "个项目等你发现"
 	},
 	navMenu: {
 		home: "首页",
