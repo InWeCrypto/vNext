@@ -42,6 +42,22 @@ var webpackConfig = {
 				include: rootPath
 			},
 			{
+				test: /\.(js|jsx|mjs)$/,
+				include: /node_modules/,
+				loader: require.resolve("babel-loader"),
+				options: {
+					// This is a feature of `babel-loader` for webpack (not Babel itself).
+					// It enables caching results in ./node_modules/.cache/babel-loader/
+					// directory for faster rebuilds.
+					cacheDirectory: true,
+					plugins: [
+						["react-html-attrs"],
+						["import", { libraryName: "antd", style: "css" }],
+						["import", { libraryName: "antd", style: true }]
+					]
+				}
+			},
+			{
 				test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
 				use: [
 					{

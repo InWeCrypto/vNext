@@ -35,5 +35,20 @@ export default {
 			repeatPassword: "确定密码",
 			register: "注册"
 		}
+	},
+	member: {
+		memberset: {
+			ctrl: "编辑",
+			email: "邮箱登录",
+			nickName: "昵称",
+			password: "密码"
+		},
+		memberNav: {
+			project: "我的项目收藏",
+			news: "我的资讯收藏",
+			market: "我的行情提醒",
+			set: "个人设置",
+			message: "信息"
+		}
 	}
 };
