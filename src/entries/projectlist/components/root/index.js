@@ -55,7 +55,34 @@ export default class Root extends PureComponent {
 										>
 											<div className="projectListConChildTitle">
 												<span className="ellitext">
-													Trading
+													{(() => {
+														switch (index) {
+															case 0:
+																return t(
+																	"project.trading",
+																	lng
+																);
+																break;
+															case 1:
+																return t(
+																	"project.active",
+																	lng
+																);
+																break;
+															case 2:
+																return t(
+																	"project.upcoming",
+																	lng
+																);
+																break;
+															case 3:
+																return t(
+																	"project.ended",
+																	lng
+																);
+																break;
+														}
+													})()}
 												</span>
 											</div>
 											<ul className="projectListConChildUl">

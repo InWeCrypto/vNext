@@ -99,6 +99,34 @@ export default class Root extends PureComponent {
 											{t("project.active", lng)}
 										</span>
 									</Link>
+									<Link
+										to={{
+											pathname: "/project",
+											search: "?type=upcoming"
+										}}
+										className={(() =>
+											this.setLeftTwoMenuItemClass(
+												"upcoming"
+											))()}
+									>
+										<span className="text">
+											{t("project.upcoming", lng)}
+										</span>
+									</Link>
+									<Link
+										to={{
+											pathname: "/project",
+											search: "?type=ended"
+										}}
+										className={(() =>
+											this.setLeftTwoMenuItemClass(
+												"ended"
+											))()}
+									>
+										<span className="text">
+											{t("project.ended", lng)}
+										</span>
+									</Link>
 								</div>
 							</div>
 							<div
@@ -159,7 +187,7 @@ export default class Root extends PureComponent {
 									}}
 									className="viewAllProject ui center"
 								>
-									<span>view all the project</span>
+									<span>{t("project.more", lng)}</span>
 								</Link>
 								{showArrow == "left" && (
 									<span
