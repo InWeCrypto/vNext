@@ -6,6 +6,7 @@ import FixedMenu from "../../../../components/fixedmenu";
 import MemberNav from "../membernav/";
 import MemberSet from "../memberset/";
 import MemberMessage from "../membermessage/";
+import ProjectCollection from "../projectcollection";
 import "./index.less";
 export default class Root extends PureComponent {
 	componentDidMount() {
@@ -28,7 +29,8 @@ export default class Root extends PureComponent {
 								</div>
 								<div className="member-right f1">
 									{/* <MemberSet lng={lng} /> */}
-									<MemberMessage lng={lng} />
+									{/* <MemberMessage lng={lng} /> */}
+									<ProjectCollection lng={lng} />
 								</div>
 							</div>
 						</div>
