@@ -14,19 +14,22 @@ export default class Root extends PureComponent {
 		document.title = "InWe-Trading";
 		this.props.getTrading();
 		let minH = getMainMinHeight();
+		let liH = minH / 2;
 		this.setState({
-			minH: minH
+			minH: minH,
+			liH: liH
 		});
 		document.querySelector("#mainBox").style.minHeight = minH + "px";
 	}
 	constructor(props) {
 		super(props);
 		this.state = {
-			minH: "auto"
+			minH: "auto",
+			liH: "auto"
 		};
 	}
 	render() {
-		const { minH, liW } = this.state;
+		const { minH, liH } = this.state;
 		const { lng, changeLng } = this.props;
 		return (
 			<I18n>
@@ -39,36 +42,45 @@ export default class Root extends PureComponent {
 									<LeftMenu lng={lng} />
 								</div>
 							</div>
-							<div
-								id="tradingBox"
-								className="tradingBox ui center f1"
-							>
-								<span className="leftArrow" />
+							<div id="tradingBox" className="tradingBox ui f1">
+								<div className="annoBoxArrow ui center">
+									<span className="leftArrow" />
+								</div>
+
 								<ul className="">
 									{[1, 2, 3, 4, 5].map((item, index) => {
 										return (
-											<li key={index}>
+											<li
+												className="ui"
+												key={index}
+												style={{ maxHeight: liH }}
+											>
 												<div className="tradingBoxImg">
 													<img
 														src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1515681385865&di=5470a46770b7e7a80ef72d15df368fd9&imgtype=0&src=http%3A%2F%2Fimg4.duitang.com%2Fuploads%2Fitem%2F201312%2F05%2F20131205172421_QKF4K.thumb.600_0.jpeg"
 														alt=""
 													/>
 												</div>
-												<p className="desc">
-													纽约州议员提出四项区块链技术相关法案纽约州议员提出四项区块链技术相关法案
-												</p>
-												<div className="tradingBoxModConDate">
-													<p>2017-11-16 11:35:33</p>
-													<img
-														src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1515681385865&di=5470a46770b7e7a80ef72d15df368fd9&imgtype=0&src=http%3A%2F%2Fimg4.duitang.com%2Fuploads%2Fitem%2F201312%2F05%2F20131205172421_QKF4K.thumb.600_0.jpeg"
-														alt=""
-													/>
+												<div className="tradingBoxCon">
+													<p className="tradingBoxTitle ellitext">
+														支撑拖住，等待上涨信号
+													</p>
+													<p className="desc">
+														纽约州议员提出四项区块链技术相关法案纽约州议员提出四项区块链技术相关法案
+													</p>
+													<div className="tradingBoxModConDate">
+														<p>
+															2017-11-16 11:35:33
+														</p>
+													</div>
 												</div>
 											</li>
 										);
 									})}
 								</ul>
-								<span className="rightArrow more" />
+								<div className="annoBoxArrow ui center">
+									<span className="rightArrow more" />
+								</div>
 							</div>
 						</div>
 						<Footer changeLng={changeLng} lng={lng} />

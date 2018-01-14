@@ -22,12 +22,43 @@ export default class Root extends PureComponent {
 		});
 		document.querySelector("#mainBox").style.minHeight = minH + "px";
 	}
-	componentDidUpdate() {}
+	componentDidUpdate() {
+		this.textChange();
+	}
 	constructor(props) {
 		super(props);
 		this.state = {
-			minH: "auto"
+			minH: "auto",
+			isShowImg: true
 		};
+	}
+	inFocus() {
+		this.setState({
+			isShowImg: false
+		});
+	}
+	outFocus() {
+		this.setState({
+			isShowImg: true
+		});
+	}
+	textChange() {
+		let obj = document.getElementById("textareaId");
+		if (obj.value.length > 300) obj.value = obj.value.slice(0, 300);
+		if (true) {
+			obj.style.height = 0 + "px";
+			obj.style.height =
+				obj.clientHeight + obj.scrollHeight - obj.clientHeight + "px";
+		}
+	}
+	textEmpty() {
+		let obj = document.getElementById("textareaId");
+		obj.value = "";
+		this.textChange();
+	}
+	textSubmit() {
+		let obj = document.getElementById("textareaId");
+		console.log(obj.value);
 	}
 	render() {
 		const { minH } = this.state;
@@ -120,21 +151,46 @@ export default class Root extends PureComponent {
 									</div>
 									<div className="newsDetailCommmentBox">
 										<div className="newsDetailCommentBoxCenter ui center">
-											<div className="newsDetailHeadImg">
-												<img
-													src="http://a.hiphotos.baidu.com/zhidao/wh%3D450%2C600/sign=bbba1da0d60735fa91a546bdab612385/9825bc315c6034a84e7d073ac9134954082376e9.jpg"
-													alt=""
-												/>
-											</div>
+											{this.state.isShowImg && (
+												<div className="newsDetailHeadImg">
+													<img
+														src="http://a.hiphotos.baidu.com/zhidao/wh%3D450%2C600/sign=bbba1da0d60735fa91a546bdab612385/9825bc315c6034a84e7d073ac9134954082376e9.jpg"
+														alt=""
+													/>
+												</div>
+											)}
 											<textarea
 												name=""
-												id=""
+												id="textareaId"
 												placeholder="说点什么..."
+												onFocus={() => {
+													this.inFocus();
+												}}
+												onBlur={() => {
+													this.outFocus();
+												}}
+												onChange={() => {
+													this.textChange();
+												}}
 											/>
 										</div>
 										<div className="newsDetailCommentBoxBtn clearfix">
-											<span className="submit">提交</span>
-											<span className="cancel">取消</span>
+											<span
+												className="submit"
+												onClick={() => {
+													this.textSubmit();
+												}}
+											>
+												提交
+											</span>
+											<span
+												className="cancel"
+												onClick={() => {
+													this.textEmpty();
+												}}
+											>
+												取消
+											</span>
 										</div>
 									</div>
 									<ul className="newsDetailCommentList">
