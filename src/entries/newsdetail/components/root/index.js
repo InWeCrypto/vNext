@@ -24,6 +24,31 @@ export default class Root extends PureComponent {
 	}
 	componentDidUpdate() {
 		this.textChange();
+		let script = document.createElement("script");
+		script.src = "//g.alicdn.com/de/prismplayer/2.5.0/aliplayer-min.js";
+		script.type = "text/javascript";
+		let link = document.createElement("link");
+		link.href =
+			"//g.alicdn.com/de/prismplayer/2.5.0/skins/default/aliplayer-min.css";
+		link.rel = "stylesheet";
+		document.getElementsByTagName("head")[0].appendChild(link);
+		document.getElementsByTagName("head")[0].appendChild(script);
+		window.onload = function() {
+			var player = new Aliplayer(
+				{
+					id: "J_prismPlayer",
+					width: "100%",
+					autoplay: false,
+					cover:
+						"https://b-ssl.duitang.com/uploads/item/201801/10/20180110212314_ytxcG.thumb.700_0.jpeg",
+					//支持播放地址播放,此播放优先级最高
+					source: "http://abc.tanshikeji.com/video1.mp4"
+				},
+				function(player) {
+					console.log("播放器创建好了。");
+				}
+			);
+		};
 	}
 	constructor(props) {
 		super(props);
@@ -59,6 +84,7 @@ export default class Root extends PureComponent {
 	textSubmit() {
 		let obj = document.getElementById("textareaId");
 		console.log(obj.value);
+		Msg.alert(obj.value);
 	}
 	render() {
 		const { minH } = this.state;
@@ -121,6 +147,11 @@ export default class Root extends PureComponent {
 								</div>
 								<div className="newsDetailBox">
 									{/* 视频 */}
+									<div
+										className="prism-player"
+										id="J_prismPlayer"
+									/>
+
 									<div className="newsDetailContent">
 										<p>
 											NEO是一个非盈利的社区化的区块链项目，是利用区块链技术和数字身份进行资
