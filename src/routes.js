@@ -6,6 +6,7 @@ import ProjectList from "./entries/projectlist";
 import ProjectOpen from "./entries/projectopen";
 import News from "./entries/news";
 import NewsDetail from "./entries/newsdetail";
+import Trading from "./entries/trading";
 import Member from "./entries/member";
 
 export default () => {
@@ -17,6 +18,7 @@ export default () => {
 			<Route path="/projectopen" component={ProjectOpen} />
 			<Route path="/news" component={News} />
 			<Route path="/newsdetail" component={NewsDetail} />
+			<Route path="/trading" component={Trading} />
 			<Route path="/member" component={Member} />
 		</Switch>
 	);

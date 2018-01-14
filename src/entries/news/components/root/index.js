@@ -35,7 +35,9 @@ export default class Root extends PureComponent {
 						<Header />
 						<div id="mainBox" className="news ui">
 							<div className="left-menus ui center">
-								<LeftMenu lng={lng} />
+								<div className="left-menus-news">
+									<LeftMenu lng={lng} />
+								</div>
 							</div>
 							<div id="newsBox" className="newsBox ui f1">
 								<div className="newsBoxMod">
@@ -53,7 +55,7 @@ export default class Root extends PureComponent {
 											{[1, 2, 3, 4, 5].map(
 												(item, index) => {
 													return (
-														<li>
+														<li key={index}>
 															<p className="desc">
 																纽约州议员提出四项区块链技术相关法案纽约州议员提出四项区块链技术相关法案
 															</p>
@@ -89,7 +91,7 @@ export default class Root extends PureComponent {
 										<ul className="ui ">
 											{[1, 2, 3, 4].map((item, index) => {
 												return (
-													<li>
+													<li key={index}>
 														<p className="desc">
 															纽约州议员提出四项区块链技术相关法案纽约州议员提出四项区块链技术相关法案
 														</p>
@@ -131,7 +133,7 @@ export default class Root extends PureComponent {
 										<ul className="ui ">
 											{[1, 2, 3, 4].map((item, index) => {
 												return (
-													<li>
+													<li key={index}>
 														<p className="desc">
 															纽约州议员提出四项区块链技术相关法案纽约州议员提出四项区块链技术相关法案
 														</p>
