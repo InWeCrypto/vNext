@@ -30,14 +30,19 @@ class ProjectCollection extends PureComponent {
 								</div>
 								<div className="project-name">Bitcoin</div>
 								<div className="project-market">
-									<div>
+									<div className="price">
 										<span className="t1">$232</span>
-										<span className="t2">(+111.00%)</span>
+										<span className="t2 up">
+											(+111.00%)
+										</span>
 										<i />
 									</div>
-									<div>2233</div>
+									<div className="price-btc">≈0.1111BTC</div>
 								</div>
-								<div className="f1">222</div>
+								<div className="project-type">Trading</div>
+								<div className="f1 project-news">
+									最近gengxin最近gengxin最近gengxin最近gengxin最近gengxin最近gengxin最近gengxin最近gengxin最近gengxin最近gengxin
+								</div>
 							</div>
 						</div>
 						<div id="memberPagationBox" className="pagination-box">
