@@ -6,6 +6,10 @@ var path = require("path");
 var entries = {};
 var rootPath = path.resolve(__dirname, "../src");
 entries.app = [rootPath + "/index.js"];
+entries.message = [
+	rootPath + "/assets/less/message.less",
+	rootPath + "/assets/js/message.js"
+];
 var webpackConfig = {
 	entry: entries,
 	resolve: {
@@ -91,7 +95,8 @@ var webpackConfig = {
 	plugins: [
 		new HtmlWebpackPlugin({
 			template: rootPath + "/index.html"
-		})
+		}),
+		new webpack.optimize.CommonsChunkPlugin("message")
 	]
 };
 
