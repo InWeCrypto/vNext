@@ -1,6 +1,5 @@
 import "whatwg-fetch";
 import { requestUrl } from "../config/";
-// import { notification } from "antd";
 const METHODS = ["get", "delete"];
 const BODY_METHODS = ["post", "put", "patch"];
 
@@ -28,6 +27,7 @@ function checkRight(response) {
 		// 	message: "警告",
 		// 	description: response.msg
 		// });
+		Msg.prompt(response.msg);
 		return {
 			msg: response.msg,
 			data: null,

@@ -55,7 +55,9 @@ window.Msg = (function(win, undefined) {
 		if (type !== "prompt") {
 			str.push("            <div class='glob-message-container'>");
 			str.push(
-				"<div class='glob-message-close'><i class='icon-close'></i></div>"
+				"<div class='glob-message-close' id='globMessageCloseBtn_" +
+					this.timeId +
+					"'><i class='icon-close'></i></div>"
 			);
 			str.push(
 				"                <div class='glob-message-text'>" +
@@ -100,6 +102,13 @@ window.Msg = (function(win, undefined) {
 	var bindEvent = function() {
 		var timeId = this.timeId;
 		var type = this.opts.type;
+		if (type !== "prompt") {
+			document.querySelector(
+				"#globMessageCloseBtn_" + timeId
+			).onclick = function() {
+				this.hide();
+			}.bind(this);
+		}
 		if (type === "alert") {
 			document.querySelector("#alertBtn_" + timeId).onclick = function() {
 				this.hide();

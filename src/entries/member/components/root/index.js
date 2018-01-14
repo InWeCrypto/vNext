@@ -8,19 +8,13 @@ import MemberSet from "../memberset/";
 import MemberMessage from "../membermessage/";
 import ProjectCollection from "../projectcollection";
 import MemberQuotation from "../memberquotation";
+import EmailCode from "../../../../components/emailcode/";
 import "./index.less";
 export default class Root extends PureComponent {
 	componentDidMount() {
 		document.title = "InWe-个人中心";
 		let minH = getMainMinHeight();
 		document.querySelector("#mainBox").style.minHeight = minH + "px";
-		var m = Msg.alert({
-			text: "222",
-			autoHide: false
-		});
-		// setTimeout(() => {
-		// 	m.hide();
-		// }, 3000);
 	}
 	render() {
 		const { lng, changeLng } = this.props;
@@ -36,13 +30,14 @@ export default class Root extends PureComponent {
 									<MemberNav lng={lng} />
 								</div>
 								<div className="member-right f1">
-									{/* <MemberSet lng={lng} /> */}
+									<MemberSet lng={lng} />
 									{/* <MemberMessage lng={lng} /> */}
 									{/* <ProjectCollection lng={lng} /> */}
-									<MemberQuotation lng={lng} />
+									{/* <MemberQuotation lng={lng} /> */}
 								</div>
 							</div>
 						</div>
+						<EmailCode lng={lng} />
 					</div>
 				)}
 			</I18n>
