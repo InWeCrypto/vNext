@@ -37,7 +37,7 @@ export default class Root extends PureComponent {
 								</div>
 							</div>
 						</div>
-						<EmailCode lng={lng} />
+						{/* <EmailCode lng={lng} /> */}
 					</div>
 				)}
 			</I18n>
