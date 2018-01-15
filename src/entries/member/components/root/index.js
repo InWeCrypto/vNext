@@ -9,6 +9,8 @@ import MemberMessage from "../membermessage/";
 import ProjectCollection from "../projectcollection";
 import MemberQuotation from "../memberquotation";
 import EmailCode from "../../../../components/emailcode/";
+import ResetPassword from "../../../../components/resetpassword/";
+import MessageDetail from "../messagedetail/";
 import "./index.less";
 export default class Root extends PureComponent {
 	componentDidMount() {
@@ -38,6 +40,8 @@ export default class Root extends PureComponent {
 							</div>
 						</div>
 						{/* <EmailCode lng={lng} /> */}
+						{/* <ResetPassword lng={lng} /> */}
+						{/* <MessageDetail lng={lng} /> */}
 					</div>
 				)}
 			</I18n>

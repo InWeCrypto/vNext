@@ -8,7 +8,8 @@ class EmailCode extends PureComponent {
 		this.state = {
 			codeArr: [],
 			code: "",
-			isFocus: false
+			isFocus: false,
+			isShowError: false
 		};
 	}
 	inputEmailCode(e) {
@@ -30,7 +31,8 @@ class EmailCode extends PureComponent {
 	setFocus() {
 		document.querySelector("#emailCodeInputItem").focus();
 		this.setState({
-			isFocus: true
+			isFocus: true,
+			isShowError: false
 		});
 	}
 	render() {
@@ -61,20 +63,19 @@ class EmailCode extends PureComponent {
 						<div className="emailcode-content">
 							<div className="emailcode-container">
 								<i className="icon-close" />
-								<div className="emailcode-title">修改密码</div>
+								<div className="emailcode-title">
+									{t("emailCode.title", lng)}
+								</div>
 								<div className="emailcode-send">
-									<span>选择邮箱</span>
+									<span>{t("emailCode.t1", lng)}</span>
 									<span className="orange">
 										yx232@163.com
 									</span>
-									<span>
-										进行登录密码的修改，
-										APP的相关登录账号密码也会更改，
-									</span>
+									<span>{t("emailCode.t2", lng)}</span>
 									<span className="orange text-under">
-										点此
+										{t("emailCode.t3", lng)}
 									</span>
-									<span>发送验证码</span>
+									<span>{t("emailCode.t4", lng)}</span>
 								</div>
 								<div
 									className="emailcode-input"
@@ -95,9 +96,13 @@ class EmailCode extends PureComponent {
 									onBlur={this.InputFocus.bind(this)}
 								/>
 								<div className="emailcode-btn">
-									<span className="emailsure">确定</span>
+									<span className="emailsure">
+										{t("emailCode.btn", lng)}
+									</span>
 								</div>
-								<div className="emailcode-error">错误</div>
+								{isShowError && (
+									<div className="emailcode-error">错误</div>
+								)}
 							</div>
 						</div>
 					</div>
