@@ -155,13 +155,14 @@ class Calendar extends PureComponent {
 			});
 		}
 	}
-	dayClick(item) {
+	dayClick(item, idx) {
 		if (typeof this.props.dayClick == "function") {
 			this.props.dayClick({
 				year: this.state.year,
 				month: this.state.month,
 				day: item,
-				emonth: this.state.monthArr[this.state.month - 1].substr(0, 3)
+				emonth: this.state.monthArr[this.state.month - 1].substr(0, 3),
+				isToday: idx == this.state.curDay
 			});
 		}
 		this.setState({
@@ -256,7 +257,11 @@ class Calendar extends PureComponent {
 											lineHeight: `${iw}px`
 										}}
 										key={index}
-										onClick={this.dayClick.bind(this, item)}
+										onClick={this.dayClick.bind(
+											this,
+											item,
+											`${year}-${month}-${item}`
+										)}
 									>
 										{item}
 

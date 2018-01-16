@@ -10,6 +10,10 @@ entries.message = [
 	rootPath + "/assets/less/message.less",
 	rootPath + "/assets/js/message.js"
 ];
+entries.pace = [
+	rootPath + "/assets/less/pace.theme.less",
+	rootPath + "/assets/js/pace.js"
+];
 var webpackConfig = {
 	entry: entries,
 	resolve: {
@@ -96,7 +100,7 @@ var webpackConfig = {
 		new HtmlWebpackPlugin({
 			template: rootPath + "/index.html"
 		}),
-		new webpack.optimize.CommonsChunkPlugin("message")
+		new webpack.optimize.CommonsChunkPlugin(["message", "pace"])
 	]
 };
 

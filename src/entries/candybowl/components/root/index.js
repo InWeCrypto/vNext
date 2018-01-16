@@ -7,6 +7,16 @@ import LeftMenu from "../../../../components/leftmenu";
 import Calendar from "../../../../components/calendar";
 import "./index.less";
 class Root extends PureComponent {
+	constructor() {
+		super();
+		this.state = {
+			isToday: true,
+			year: "",
+			month: "",
+			emonth: "",
+			day: ""
+		};
+	}
 	componentDidMount() {
 		document.title = "InWe-CandyBowl";
 		let minH = getMainMinHeight();
@@ -17,10 +27,17 @@ class Root extends PureComponent {
 		};
 	}
 	dayClick(res) {
-		console.log(res);
+		this.setState({
+			isToday: res.isToday,
+			year: res.year,
+			month: res.month,
+			emonth: res.emonth,
+			day: res.day
+		});
 	}
 	render() {
 		const { lng, changeLng } = this.props;
+		const { isToday, day, emonth } = this.state;
 		return (
 			<I18n>
 				{(t, { I18n }) => (
@@ -43,9 +60,23 @@ class Root extends PureComponent {
 									<div className="data-box">
 										<div className="calendar-data-title ui center">
 											<i className="icon-cadenlar" />
-											<span className="calendar-text f1">
-												Today
-											</span>
+											{isToday && (
+												<span className="calendar-text f1">
+													Today
+												</span>
+											)}
+
+											{!isToday && (
+												<span className="f1">
+													<span className="txt1">
+														{day}/
+													</span>
+													<span className="txt2">
+														{emonth}
+													</span>
+												</span>
+											)}
+
 											<div className="switch open">
 												<span className="switch-item" />
 											</div>
