@@ -7,6 +7,7 @@ import Header from "../../../../components/header";
 import Footer from "../../../../components/footer";
 import FixedMenu from "../../../../components/fixedmenu";
 import "./index.less";
+import { platform } from "os";
 
 export default class Root extends PureComponent {
 	componentWillReceiveProps(nextProps) {}
@@ -24,37 +25,15 @@ export default class Root extends PureComponent {
 	}
 	componentDidUpdate() {
 		this.textChange();
-		let script = document.createElement("script");
-		script.src = "//g.alicdn.com/de/prismplayer/2.5.0/aliplayer-min.js";
-		script.type = "text/javascript";
-		let link = document.createElement("link");
-		link.href =
-			"//g.alicdn.com/de/prismplayer/2.5.0/skins/default/aliplayer-min.css";
-		link.rel = "stylesheet";
-		document.getElementsByTagName("head")[0].appendChild(link);
-		document.getElementsByTagName("head")[0].appendChild(script);
-		window.onload = function() {
-			var player = new Aliplayer(
-				{
-					id: "J_prismPlayer",
-					width: "100%",
-					autoplay: false,
-					cover:
-						"https://b-ssl.duitang.com/uploads/item/201801/10/20180110212314_ytxcG.thumb.700_0.jpeg",
-					//支持播放地址播放,此播放优先级最高
-					source: "http://abc.tanshikeji.com/video1.mp4"
-				},
-				function(player) {
-					console.log("播放器创建好了。");
-				}
-			);
-		};
+		this.creatVideo();
 	}
 	constructor(props) {
 		super(props);
 		this.state = {
 			minH: "auto",
-			isShowImg: true
+			isShowImg: true,
+			newsType: "video", // video img
+			isJump: "" // yes no
 		};
 	}
 	inFocus() {
@@ -83,8 +62,54 @@ export default class Root extends PureComponent {
 	}
 	textSubmit() {
 		let obj = document.getElementById("textareaId");
-		console.log(obj.value);
 		Msg.alert(obj.value);
+	}
+	videoPlay() {
+		this.setState({
+			newsType: ""
+		});
+		if (this.state.isJump == "yes") {
+			// 跳转
+			window.open("www.baidu.com");
+		} else {
+			// 不跳转
+			this.setState(
+				{
+					isJump: "no"
+				},
+				this.creatVideo()
+			);
+		}
+	}
+	creatVideo() {
+		let script = document.createElement("script");
+		script.src = "//g.alicdn.com/de/prismplayer/2.5.0/aliplayer-min.js";
+		script.type = "text/javascript";
+		let link = document.createElement("link");
+		link.href =
+			"//g.alicdn.com/de/prismplayer/2.5.0/skins/default/aliplayer-min.css";
+		link.rel = "stylesheet";
+		document.getElementsByTagName("head")[0].appendChild(link);
+		document.getElementsByTagName("head")[0].appendChild(script);
+		// window.onload = function() {
+		if (this.state.isJump == "no") {
+			var player = new Aliplayer(
+				{
+					id: "J_prismPlayer",
+					width: "100%",
+					autoplay: false,
+					cover:
+						"https://b-ssl.duitang.com/uploads/item/201801/10/20180110212314_ytxcG.thumb.700_0.jpeg",
+					//支持播放地址播放,此播放优先级最高
+					source: "http://abc.tanshikeji.com/video1.mp4"
+				},
+				function(player) {
+					console.log("播放器创建好了。");
+					console.log(player.play());
+				}
+			);
+		}
+		// };
 	}
 	render() {
 		const { minH } = this.state;
@@ -147,10 +172,26 @@ export default class Root extends PureComponent {
 								</div>
 								<div className="newsDetailBox">
 									{/* 视频 */}
-									<div
-										className="prism-player"
-										id="J_prismPlayer"
-									/>
+									{this.state.isJump == "no" && (
+										<div
+											className="prism-player"
+											id="J_prismPlayer"
+										/>
+									)}
+									{this.state.newsType == "video" && (
+										<div className="videoType">
+											<img
+												src="https://b-ssl.duitang.com/uploads/item/201801/10/20180110212314_ytxcG.thumb.700_0.jpeg"
+												alt=""
+											/>
+											<b
+												id="videoPlay"
+												onClick={() => {
+													this.videoPlay();
+												}}
+											/>
+										</div>
+									)}
 
 									<div className="newsDetailContent">
 										<p>
@@ -161,10 +202,13 @@ export default class Root extends PureComponent {
 											们相信，科技是这个时代变迁的原动力，在这股动力的推动下，我们将迈入新
 											的“智能经济”时代。
 										</p>
-										<img
-											src="http://img4.imgtn.bdimg.com/it/u=4004954884,1272926999&fm=214&gp=0.jpg"
-											alt=""
-										/>
+										{this.state.newsType == "img" && (
+											<img
+												src="http://img4.imgtn.bdimg.com/it/u=4004954884,1272926999&fm=214&gp=0.jpg"
+												alt=""
+											/>
+										)}
+
 										<p>
 											NEO是一个非盈利的社区化的区块链项目，是利用区块链技术和数字身份进行资
 											产数字化，利用智能合约对数字资产进行自动化管理，实现“智能经济”的一种分
