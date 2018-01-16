@@ -1,0 +1,117 @@
+@import "../../assets/less/basestyle.less";
+.calendar-box {
+	position: relative;
+	width: 100%;
+	background: #ffffff;
+	box-sizing: border-box;
+	.inline-box {
+		display: inline-block;
+		width: 4rem;
+		max-width: 100%;
+	}
+	.calendar-top {
+		position: relative;
+		box-sizing: border-box;
+		border-bottom: 0.01rem solid #ececec;
+		text-align: center;
+		padding: 0.1rem 0;
+		.year-box {
+			font-size: 1rem;
+			text-shadow: 0 0 0.1rem #bbbbbb;
+			color: #bbb;
+			box-sizing: border-box;
+			padding-left: 0.2rem;
+		}
+		.month-box {
+			left: 0.1rem;
+			background: rgba(255, 255, 255, 0.7);
+			display: flex;
+			align-items: center;
+			.month-txt {
+				font-size: 0.2rem;
+				display: block;
+				text-align: center;
+				flex: 1;
+			}
+			.leftbtn {
+				display: block;
+				background: url("../../assets/images/calendar_left.png") left
+					top no-repeat;
+				width: 0.06rem;
+				height: 0.11rem;
+				background-size: 100%;
+				cursor: pointer;
+			}
+			.rightbtn {
+				display: block;
+				background: url("../../assets/images/calendar_right.png") left
+					top no-repeat;
+				width: 0.06rem;
+				height: 0.11rem;
+				background-size: 100%;
+				cursor: pointer;
+			}
+		}
+	}
+	.week-box {
+		padding: 0.2rem 0.1rem;
+		text-align: center;
+		.week-item {
+			display: inline-block;
+			text-align: center;
+			//margin: 0.05rem 0.1rem;
+			font-size: 0.2rem;
+		}
+	}
+	.day-box {
+		align-items: center;
+		padding: 0 0.1rem;
+		text-align: center;
+		.day-item {
+			// margin: 0 0.1rem;
+			display: inline-block;
+			align-items: center;
+			justify-content: center;
+			flex-wrap: wrap;
+			cursor: pointer;
+			font-size: 0.16rem;
+			border-radius: 50%;
+			box-sizing: border-box;
+			position: relative;
+		}
+		.day-item:hover {
+			background: #f2f2f2;
+		}
+		.day-item.click-item {
+			background: #f2f2f2;
+		}
+		.day-item.prev,
+		.day-item.next {
+			cursor: default;
+			color: #eee;
+			//color: @grey;
+		}
+		.day-item.prev:hover,
+		.day-item.next:hover {
+			background: none;
+		}
+		.day-item.cur {
+			box-shadow: 0 0 0.2rem rgba(68, 68, 68, 0.2);
+			font-size: 0.24rem;
+			color: @orange;
+			//color: @white;
+		}
+		.day-item.has-data .circle {
+			width: 0.06rem;
+			height: 0.06rem;
+			display: inline-block;
+			border-radius: 50%;
+			background: @orange;
+			position: absolute;
+			left: 50%;
+			bottom: 50%;
+			margin-bottom: -0.15rem;
+			margin-left: -0.03rem;
+		}
+	}
+}

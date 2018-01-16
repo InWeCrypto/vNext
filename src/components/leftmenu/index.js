@@ -1,6 +1,6 @@
 import React, { PureComponent } from "react";
 import { I18n, Trans } from "react-i18next";
-import { NavLink } from "react-router-dom";
+import { NavLink, IndexLink } from "react-router-dom";
 import "./index.less";
 class LeftMenuBox extends PureComponent {
 	render() {
@@ -10,6 +10,7 @@ class LeftMenuBox extends PureComponent {
 				{(t, { I18n }) => (
 					<div className="left-menu">
 						<NavLink
+							exact
 							to={{
 								pathname: "/"
 							}}
