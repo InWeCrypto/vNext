@@ -141,11 +141,77 @@
 			width: 2.48rem;
 			.homeBoxCandyTop {
 				width: 100%;
-				margin: 0.3rem auto 0.2rem;
+				margin: 0.3rem auto 0rem;
+				padding-bottom: 0.2rem;
+				border-bottom: 1px solid #ececec;
 				overflow: hidden;
 				p.homeCandyDate {
 					width: 100%;
 					height: 0.42rem;
+					font-size: 0.12rem;
+					color: #262626;
+					b {
+						font-size: 0.3rem;
+						color: #ff2800;
+						line-height: 0.42rem;
+					}
+				}
+				span.homeCandySpan {
+					display: block;
+					width: 100%;
+					height: 0.22rem;
+					font-size: 0.16rem;
+					color: rgba(51, 51, 51, 1);
+					line-height: 0.22rem;
+					margin-top: 0.2rem;
+				}
+			}
+			.homeInweWallet {
+				width: 100%;
+				padding-top: 0.3rem;
+				img {
+					width: 100%;
+				}
+			}
+		}
+		&.homeBoxAnno {
+			width: 2.63rem;
+			margin-right: 0.6rem;
+			.homeBoxAnnoTop {
+				width: 100%;
+				margin: 0.3rem auto 0rem;
+				padding-bottom: 0.2rem;
+				border-bottom: 1px solid #ececec;
+				.homeBoxAnnoTopP {
+					width: 100%;
+					max-height: 0.44rem;
+					line-height: 0.22rem;
+					font-size: 0.16rem;
+					color: #333;
+					display: -webkit-box;
+					-webkit-box-orient: vertical;
+					-webkit-line-clamp: 2;
+					margin-bottom: 0.2rem;
+					:last-child {
+						margin-bottom: 0;
+					}
+				}
+			}
+			.homeBoxFllow {
+				width: 100%;
+				padding-top: 0.1rem;
+				.homeBoxFllowUl {
+					margin: 0.3rem auto 0.2rem;
+					overflow: hidden;
+					li {
+						width: 100%;
+						height: 0.22rem;
+						img {
+							width: 0.16rem;
+							height: 0.16rem;
+							margin-right: 0.12rem;
+						}
+					}
 				}
 			}
 		}

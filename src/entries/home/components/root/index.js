@@ -7,12 +7,35 @@ import LeftMenu from "../../../../components/leftmenu";
 import FixedMenu from "../../../../components/fixedmenu";
 import TopText from "../toptext/";
 import { getQuery } from "../../../../utils/util";
+
+import inweWallet from "../../../../assets/images/inwe_wallet.png";
+
 import "./index.less";
 export default class Root extends PureComponent {
 	constructor(props) {
 		super(props);
+		const newDate = new Date();
 		this.state = {
-			AcImgH: "auto"
+			AcImgH: "auto",
+			month: newDate.getMonth() + 1,
+			monthArr: [
+				"january",
+				"february",
+				"march",
+				"april",
+				"may",
+				"june",
+				"july",
+				"august",
+				"september",
+				"october",
+				"november",
+				"december"
+			],
+			curDay:
+				newDate.getDate() < 10
+					? "0" + newDate.getDate()
+					: newDate.getDate()
 		};
 	}
 	componentWillReceiveProps(nextProps) {
@@ -29,13 +52,14 @@ export default class Root extends PureComponent {
 		this.setState({
 			AcImgH: AcImgH
 		});
-		console.log(AcImgH);
 		document.getElementById("homeBoxArticleImg").style.maxHeight =
 			AcImgH + "px";
 	}
 	componentDidUpdate() {}
 	render() {
 		const { lng, changeLng } = this.props;
+		const { month, monthArr, curDay } = this.state;
+		const curMonth = monthArr[month].slice(0, 3);
 		return (
 			<I18n>
 				{(t, { i18n }) => (
@@ -99,9 +123,11 @@ export default class Root extends PureComponent {
 									</div>
 								</div>
 								<div className="homeBoxList homeBoxCandy">
-									<p className="homeBoxTitle">News</p>
+									<p className="homeBoxTitle">Candy?</p>
 									<div className="homeBoxCandyTop">
-										<p className="homeCandyDate">25/oct</p>
+										<p className="homeCandyDate">
+											<b>{curDay}</b>/{curMonth}
+										</p>
 										<span className="homeCandySpan">
 											+NEO Airdrop
 										</span>
@@ -109,11 +135,48 @@ export default class Root extends PureComponent {
 											+NEO Airdrop
 										</span>
 									</div>
+									<div className="homeInweWallet">
+										<img src={inweWallet} alt="" />
+									</div>
 									<div className="homeBoxReadMore">
 										<span className="readMore">
 											Read more
 										</span>
 										<b className="readMoreImg" />
+									</div>
+								</div>
+								<div className="homeBoxList homeBoxAnno">
+									<p className="homeBoxTitle">交易所公告</p>
+									<div className="homeBoxAnnoTop">
+										<p className="homeBoxAnnoTopP">
+											+火币：火币全球专业站12月27日14:00上线NEO…
+										</p>
+										<p className="homeBoxAnnoTopP">
+											+火币：火币全球专业站12月27日14:00上线NEO…
+										</p>
+										<div className="homeBoxReadMore">
+											<span className="readMore">
+												Read more
+											</span>
+											<b className="readMoreImg" />
+										</div>
+									</div>
+									<div className="homeBoxFllow">
+										<p className="homeBoxTitle">Follow…</p>
+										<ul className="homeBoxFllowUl">
+											<li className="ui center jcenter">
+												<img src="" alt="" />
+												<span className="f1 ellitext">
+													Ethereum
+												</span>
+											</li>
+										</ul>
+										<div className="homeBoxReadMore">
+											<span className="readMore">
+												Read more
+											</span>
+											<b className="readMoreImg" />
+										</div>
 									</div>
 								</div>
 							</div>
