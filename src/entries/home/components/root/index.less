@@ -3,13 +3,60 @@
 }
 .main {
 	display: flex;
-	align-items: center;
 }
 .left-menus {
 	width: 2rem;
-	height: 100%;
-
 	.left-menu-home {
 		margin-top: -1.04rem;
+	}
+}
+.homeBox {
+	padding: 0.1rem 0;
+	.homeBoxList {
+		padding: 0.3rem;
+		border-left: 0.01rem solid #ececec;
+		box-sizing: border-box;
+		flex-direction: column;
+		&:first-child {
+			border-left: 0;
+			padding-left: 0;
+		}
+		&.homeBoxArticle {
+			width: 3.24rem;
+			.homeBoxArticleTitle {
+				display: block;
+				max-height: 0.84rem;
+				line-height: 0.42rem;
+				font-size: 0.3rem;
+				color: #333;
+				font-weight: 200;
+				overflow: hidden;
+				display: -webkit-box;
+				-webkit-box-orient: vertical;
+				-webkit-line-clamp: 2;
+				flex-shrink: 0;
+			}
+			.homeBoxArticleImg {
+				width: 100%;
+				text-align: center;
+				margin: 0.3rem auto 0.2rem;
+				overflow: hidden;
+				img {
+					max-width: 100%;
+				}
+			}
+			.homeBoxArticleDesc {
+				display: block;
+				max-height: 0.44rem;
+				line-height: 0.22rem;
+				font-size: 0.16rem;
+				color: #262626;
+				overflow: hidden;
+				display: -webkit-box;
+				-webkit-box-orient: vertical;
+				-webkit-line-clamp: 2;
+				flex-shrink: 0;
+			}
+		}
 	}
 }
