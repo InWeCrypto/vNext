@@ -1,0 +1,81 @@
+@import "../../assets/less/basestyle.less";
+.resetp-box {
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 10;
+	.resetp-bg {
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		background: rgba(0, 0, 0, 0.7);
+	}
+	.resetp-cont {
+		position: relative;
+		width: 100%;
+		height: 100%;
+		z-index: 11;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+	.resetp-container {
+		background: #fff;
+		border-radius: 0.04rem;
+		padding: 0 0.38rem;
+		position: relative;
+		width: 4.7rem;
+		.icon-close {
+			position: absolute;
+			right: 0.1rem;
+			top: 0.1rem;
+			cursor: pointer;
+		}
+		.resetp-title {
+			padding: 0.3rem 0;
+			text-align: center;
+			font-size: 0.2rem;
+		}
+		.resetp-item {
+			padding: 0 0.2rem;
+			font-size: 0.16rem;
+			.key {
+				width: 0.8rem;
+				margin-right: 0.1rem;
+			}
+			.value {
+				padding: 0.2rem 0;
+				border-bottom: 0.01rem solid #ececec;
+				input {
+					width: 100%;
+					border: none;
+					outline: none;
+					display: block;
+					color: @orange;
+				}
+			}
+		}
+		.resetp-btn {
+			padding: 0.5rem 0;
+			text-align: center;
+			.btn {
+				width: 90%;
+				background: #008f2e;
+				color: #fff;
+				font-size: 0.16rem;
+				padding: 0.08rem 0;
+				display: inline-block;
+				cursor: pointer;
+				border-radius: 0.04rem;
+			}
+			.resetp-error {
+				margin-top: 0.1rem;
+				color: @orange;
+			}
+		}
+	}
+}
