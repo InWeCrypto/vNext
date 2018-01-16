@@ -12,6 +12,9 @@ class EmailCode extends PureComponent {
 			isShowError: false
 		};
 	}
+	changeEmail(data) {
+		this.props.changeSendEmail(data);
+	}
 	inputEmailCode(e) {
 		var value = e.target.value;
 		if (value.length > 6) {
@@ -37,7 +40,7 @@ class EmailCode extends PureComponent {
 	}
 	render() {
 		const { lng } = this.props;
-		const { code, codeArr, isFocus } = this.state;
+		const { code, codeArr, isFocus, isShowError } = this.state;
 		const item = () => {
 			let arr = [];
 			for (let i = 0; i < 6; i++) {
@@ -62,7 +65,10 @@ class EmailCode extends PureComponent {
 						<div className="emailcode-bg" />
 						<div className="emailcode-content">
 							<div className="emailcode-container">
-								<i className="icon-close" />
+								<i
+									className="icon-close"
+									onClick={this.changeEmail.bind(this, false)}
+								/>
 								<div className="emailcode-title">
 									{t("emailCode.title", lng)}
 								</div>

@@ -3,6 +3,9 @@ import { I18n, Trans } from "react-i18next";
 import "./index.less";
 import defaultHeader from "../../../../assets/images/member_img.png";
 class MemberSet extends PureComponent {
+	changeEmail(data) {
+		this.props.changeSendEmail(data);
+	}
 	render() {
 		const { lng } = this.props;
 		return (
@@ -59,7 +62,13 @@ class MemberSet extends PureComponent {
 										</div>
 										<div className="value ctrl f1 ui center">
 											<div className="f1">sss</div>
-											<span className="ctrlbtn">
+											<span
+												className="ctrlbtn"
+												onClick={this.changeEmail.bind(
+													this,
+													true
+												)}
+											>
 												{t(
 													"member.memberset.ctrl",
 													lng

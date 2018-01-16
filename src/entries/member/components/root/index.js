@@ -1,6 +1,6 @@
 import React, { PureComponent } from "react";
 import { I18n, Trans } from "react-i18next";
-import { getMainMinHeight } from "../../../../utils/util";
+import { getMainMinHeight, getQuery } from "../../../../utils/util";
 import Header from "../../../../components/header/";
 import FixedMenu from "../../../../components/fixedmenu";
 import MemberNav from "../membernav/";
@@ -13,13 +13,70 @@ import ResetPassword from "../../../../components/resetpassword/";
 import MessageDetail from "../messagedetail/";
 import "./index.less";
 export default class Root extends PureComponent {
+	constructor() {
+		super();
+		this.state = {
+			cur: "",
+			set: false,
+			news: false,
+			message: false,
+			collection: false,
+			quotation: false,
+			email: false,
+			resetP: false,
+			messageDetail: false
+		};
+	}
+	componentWillReceiveProps(nextProps) {
+		if (nextProps.location.search != this.props.location.search) {
+			this.initPage(nextProps.location.search);
+		}
+	}
 	componentDidMount() {
 		document.title = "InWe-个人中心";
 		let minH = getMainMinHeight();
 		document.querySelector("#mainBox").style.minHeight = minH + "px";
+		this.initPage(this.props.location.search);
+	}
+	initPage(location) {
+		let p = getQuery(location);
+		if (
+			p.type &&
+			["set", "message", "news", "collection", "quotation"].indexOf(
+				p.type
+			) != -1
+		) {
+			this.setShowItem(p.type);
+		}
+	}
+	setShowItem(type) {
+		let set = {
+			set: false,
+			news: false,
+			message: false,
+			collection: false,
+			quotation: false
+		};
+		set[type] = true;
+		set["cur"] = type;
+		this.setState(set);
+	}
+	changeSendEmail(data) {
+		this.setState({
+			email: data
+		});
 	}
 	render() {
 		const { lng, changeLng } = this.props;
+		const {
+			set,
+			message,
+			collection,
+			quotation,
+			cur,
+			email,
+			resetP
+		} = this.state;
 		return (
 			<I18n>
 				{(t, { I18n }) => (
@@ -29,18 +86,35 @@ export default class Root extends PureComponent {
 						<div className="member-main">
 							<div id="mainBox" className="container ui">
 								<div className="member-left">
-									<MemberNav lng={lng} />
+									<MemberNav cur={cur} lng={lng} />
 								</div>
 								<div className="member-right f1">
-									<MemberSet lng={lng} />
-									{/* <MemberMessage lng={lng} /> */}
-									{/* <ProjectCollection lng={lng} /> */}
-									{/* <MemberQuotation lng={lng} /> */}
+									{set && (
+										<MemberSet
+											changeSendEmail={this.changeSendEmail.bind(
+												this
+											)}
+											lng={lng}
+										/>
+									)}
+									{message && <MemberMessage lng={lng} />}
+									{collection && (
+										<ProjectCollection lng={lng} />
+									)}
+									{quotation && <MemberQuotation lng={lng} />}
 								</div>
 							</div>
 						</div>
-						{/* <EmailCode lng={lng} /> */}
-						{/* <ResetPassword lng={lng} /> */}
+						{email && (
+							<EmailCode
+								changeSendEmail={this.changeSendEmail.bind(
+									this
+								)}
+								lng={lng}
+							/>
+						)}
+						{resetP && <ResetPassword lng={lng} />}
+
 						{/* <MessageDetail lng={lng} /> */}
 					</div>
 				)}
