@@ -25,7 +25,7 @@ export default class Root extends PureComponent {
 		let minH = getMainMinHeight();
 		let th = document.querySelector("#topText").clientHeight;
 		document.querySelector("#mainBox").style.minHeight = minH - th + "px";
-		let AcImgH = minH - th - 200;
+		let AcImgH = minH - th - 320;
 		this.setState({
 			AcImgH: AcImgH
 		});
@@ -53,7 +53,7 @@ export default class Root extends PureComponent {
 							</div>
 							<div id="homeBox" className="homeBox ui f1">
 								<div className="homeBoxList ui homeBoxArticle">
-									<p className="homeBoxArticleTitle">
+									<p className="homeBoxTitle">
 										对菩提创始人林吓洪的专访对菩提创始人林吓洪的专访
 									</p>
 									<div
@@ -68,11 +68,53 @@ export default class Root extends PureComponent {
 									<p className="homeBoxArticleDesc">
 										纽约州议员提出四项区块链技术相关法案纽约州议员提出四项区块链技术相关法案纽约州议员提出四项区块链技术相关法…
 									</p>
+									<div className="homeBoxArticleBtn">
+										<span className="more right ui center jcenter">
+											<b />
+										</span>
+										<span className="left ui center jcenter">
+											<b />
+										</span>
+									</div>
 								</div>
-								<div className="homeBoxList homeBoxArticle">
-									<p className="homeBoxArticleTitle">
-										对菩提创始人林吓洪的专访
-									</p>
+								<div className="homeBoxList homeBoxNews">
+									<p className="homeBoxTitle">News</p>
+									<ul className="homeBoxNewsUl">
+										{[1, 2, 3, 4].map((item, index) => {
+											return (
+												<li key={index}>
+													<p>
+														纽约州议员提出四项区块链
+														技术相关法案
+													</p>
+												</li>
+											);
+										})}
+									</ul>
+									<div className="homeBoxReadMore">
+										<span className="readMore">
+											Read more
+										</span>
+										<b className="readMoreImg" />
+									</div>
+								</div>
+								<div className="homeBoxList homeBoxCandy">
+									<p className="homeBoxTitle">News</p>
+									<div className="homeBoxCandyTop">
+										<p className="homeCandyDate">25/oct</p>
+										<span className="homeCandySpan">
+											+NEO Airdrop
+										</span>
+										<span className="homeCandySpan">
+											+NEO Airdrop
+										</span>
+									</div>
+									<div className="homeBoxReadMore">
+										<span className="readMore">
+											Read more
+										</span>
+										<b className="readMoreImg" />
+									</div>
 								</div>
 							</div>
 						</div>
