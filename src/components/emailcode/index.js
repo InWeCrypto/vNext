@@ -38,8 +38,9 @@ class EmailCode extends PureComponent {
 			isShowError: false
 		});
 	}
+	sendEmailCode() {}
 	render() {
-		const { lng } = this.props;
+		const { lng, closeEmail } = this.props;
 		const { code, codeArr, isFocus, isShowError } = this.state;
 		const item = () => {
 			let arr = [];
@@ -67,7 +68,7 @@ class EmailCode extends PureComponent {
 							<div className="emailcode-container">
 								<i
 									className="icon-close"
-									onClick={this.changeEmail.bind(this, false)}
+									onClick={closeEmail}
 								/>
 								<div className="emailcode-title">
 									{t("emailCode.title", lng)}
