@@ -119,7 +119,7 @@ export default class Root extends PureComponent {
 										Explore
 									</div>
 									<p>+Neotracker.io</p>
-									<p>+Neotracker.io Copy</p>
+									<p>+Neotracker.io</p>
 								</div>
 								<div className="projectDetailCon2Box">
 									<div className="projectDetailCon2Title">
