@@ -49,9 +49,16 @@ class Register extends PureComponent {
 	}
 	sendCode() {
 		this.sendEmail();
-		this.props.sendEmailCode(this.state.email).then(res => {
-			if (res.code) {
-			}
+		this.props.sendEmailCode(this.state.email);
+	}
+	registerClick() {
+		const { code, email, password, password1 } = this.state;
+		this.props.registerUser({
+			code: code,
+			email: email,
+			name: "",
+			password: password,
+			password_confirmation: password1
 		});
 	}
 	render() {
@@ -236,7 +243,12 @@ class Register extends PureComponent {
 											/>
 										</div>
 										<div className="register-btn">
-											<div className="btn">
+											<div
+												className="btn"
+												onClick={this.registerClick.bind(
+													this
+												)}
+											>
 												{t(
 													"signBox.register.register",
 													lng

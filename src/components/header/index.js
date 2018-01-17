@@ -87,7 +87,7 @@ class Header extends PureComponent {
 		});
 	}
 	render() {
-		const { lng, sendEmailCode } = this.props;
+		const { lng, sendEmailCode, registerUser } = this.props;
 		const {
 			showMember,
 			showSign,
@@ -193,6 +193,7 @@ class Header extends PureComponent {
 						hasBack={registerHasBack}
 						close={this.closeRegister.bind(this)}
 						sendEmailCode={sendEmailCode}
+						registerUser={registerUser}
 						lng={lng}
 					/>
 				)}
