@@ -5,6 +5,6 @@ import * as globalReducer from "../../globalreducer";
 import React, { PureComponent } from "react";
 
 injectReducer("lng", reducers);
-injectReducer("projectDetailIco", reducers);
+injectReducer("projectDetail", reducers);
 
 export default Root;

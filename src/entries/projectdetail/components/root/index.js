@@ -6,6 +6,7 @@ import { getMainMinHeight } from "../../../../utils/util";
 import Header from "../../../../components/header";
 import Footer from "../../../../components/footer";
 import FixedMenu from "../../../../components/fixedmenu";
+import GaiKuo from "../../../../components/gaikuo";
 import "./index.less";
 import { platform } from "os";
 
@@ -13,7 +14,7 @@ export default class Root extends PureComponent {
 	componentWillReceiveProps(nextProps) {}
 	componentDidMount() {
 		document.title = "InWe-ICO";
-		this.props.getProjectDetailIco();
+		this.props.getProjectDetail();
 		let minH = getMainMinHeight();
 		this.setState({
 			minH: minH
@@ -56,7 +57,10 @@ export default class Root extends PureComponent {
 										</div>
 									</div>
 									<div className="projectDetailConTopRight">
-										分享
+										<GaiKuo
+											changeLng={changeLng}
+											lng={lng}
+										/>
 									</div>
 								</div>
 								<div className="projectDetailCon1Box ui">
