@@ -8,7 +8,7 @@ class GaiKuo extends PureComponent {
 		super();
 		this.state = {
 			showShareList: false,
-			remind: true,
+			remind: false,
 			collect: false,
 			home: false,
 			share: false
@@ -23,24 +23,11 @@ class GaiKuo extends PureComponent {
 		});
 	}
 	toggleList(val, e) {
+		let set = {};
+		set[val] = !this.state[val];
+		this.setState(set);
 		if (val == "share") {
-			this.setState({
-				share: !this.state[val]
-			});
 			this.toggleShareList(e);
-		} else {
-			val == "remind" &&
-				this.setState({
-					remind: !this.state[val]
-				});
-			val == "collect" &&
-				this.setState({
-					collect: !this.state[val]
-				});
-			val == "home" &&
-				this.setState({
-					home: !this.state[val]
-				});
 		}
 	}
 	render() {
