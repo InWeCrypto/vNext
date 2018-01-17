@@ -1,4 +1,5 @@
 import React, { PureComponent } from "react";
+import { Link } from "react-router-dom";
 import "./index.less";
 import SignBox from "../signbox";
 import defaultHeader from "../../assets/images/member_img.png";
@@ -55,7 +56,13 @@ class Header extends PureComponent {
 					</div>
 					{showMember && (
 						<div className="member-more">
-							<div className="member-item">
+							<Link
+								to={{
+									pathname: "/member",
+									search: "?type=message"
+								}}
+								className="member-item"
+							>
 								<span className="icon-box">
 									<i className="icon-message" />
 									<i className="circle" />
@@ -63,15 +70,21 @@ class Header extends PureComponent {
 								<span className="member-itemtext">
 									未读消息
 								</span>
-							</div>
-							<div className="member-item">
+							</Link>
+							<Link
+								to={{
+									pathname: "/member",
+									search: "?type=collection"
+								}}
+								className="member-item"
+							>
 								<span className="icon-box">
 									<i className="icon-personal" />
 								</span>
 								<span className="member-itemtext">
 									个人中心
 								</span>
-							</div>
+							</Link>
 							<div className="member-item">
 								<span className="icon-box">
 									<i className="icon-out" />

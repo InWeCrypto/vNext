@@ -10,11 +10,12 @@ import Routes from "./routes";
 import registerServiceWorker from "./registerServiceWorker";
 import "./assets/less/app.less";
 import i18n from "./i18n";
-
+import { changeLng } from "./globalactions";
 const history = createHistory();
 const store = storeFun(history);
 
 window.i18n = i18n;
+store.dispatch(changeLng(window.i18n.language));
 
 const render = Component => {
 	domRender(
