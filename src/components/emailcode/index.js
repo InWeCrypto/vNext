@@ -38,9 +38,11 @@ class EmailCode extends PureComponent {
 			isShowError: false
 		});
 	}
-	sendEmailCode() {}
+	sendEmail() {
+		this.props.sendEmail(this.props.email);
+	}
 	render() {
-		const { lng, closeEmail } = this.props;
+		const { lng, closeEmail, email } = this.props;
 		const { code, codeArr, isFocus, isShowError } = this.state;
 		const item = () => {
 			let arr = [];
@@ -103,7 +105,10 @@ class EmailCode extends PureComponent {
 									onBlur={this.InputFocus.bind(this)}
 								/>
 								<div className="emailcode-btn">
-									<span className="emailsure">
+									<span
+										onClick={this.sendEmail.bind(this)}
+										className="emailsure"
+									>
 										{t("emailCode.btn", lng)}
 									</span>
 								</div>

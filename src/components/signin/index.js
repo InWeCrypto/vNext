@@ -5,7 +5,9 @@ class SignIn extends PureComponent {
 	constructor() {
 		super();
 		this.state = {
-			showPassword: false
+			showPassword: false,
+			email: "",
+			password: ""
 		};
 	}
 	setPassType() {
@@ -19,6 +21,17 @@ class SignIn extends PureComponent {
 	}
 	setIconClass() {
 		return this.state.showPassword ? "icon-see show-text" : "icon-see";
+	}
+	inputChange(type, e) {
+		this.setState({
+			[type]: e.target.value
+		});
+	}
+	loginIn() {
+		this.props.loginIn({
+			email: this.state.email,
+			password: this.state.password
+		});
 	}
 	render() {
 		const {
@@ -50,6 +63,12 @@ class SignIn extends PureComponent {
 											</div>
 											<div className="item-input">
 												<input
+													onChange={e => {
+														this.inputChange(
+															"email",
+															e
+														);
+													}}
 													className="input"
 													type="text"
 													placeholder={t(
@@ -68,6 +87,12 @@ class SignIn extends PureComponent {
 											</div>
 											<div className="item-input">
 												<input
+													onChange={e => {
+														this.inputChange(
+															"password",
+															e
+														);
+													}}
 													className="input"
 													type={(() =>
 														this.setPassType())()}
@@ -93,9 +118,12 @@ class SignIn extends PureComponent {
 											<a
 												href="javascript:void(0)"
 												className="signbtn"
+												onClick={this.loginIn.bind(
+													this
+												)}
 											>
 												{t(
-													"signBox.signIn.forget",
+													"signBox.signIn.signIn",
 													lng
 												)}
 											</a>

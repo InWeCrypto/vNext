@@ -73,7 +73,8 @@ class Header extends PureComponent {
 	}
 	closeRegister() {
 		this.setState({
-			showRegister: false
+			showRegister: false,
+			registerHasBack: false
 		});
 	}
 	openFastSign() {
@@ -87,7 +88,7 @@ class Header extends PureComponent {
 		});
 	}
 	render() {
-		const { lng, sendEmailCode, registerUser } = this.props;
+		const { lng, sendEmail, registerUser, loginIn } = this.props;
 		const {
 			showMember,
 			showSign,
@@ -172,6 +173,7 @@ class Header extends PureComponent {
                 </div> */}
 				{showLogin && (
 					<SignIn
+						loginIn={loginIn}
 						openEmail={this.openEmail.bind(this)}
 						closeSign={this.closeSignIn.bind(this)}
 						openRegister={this.openRegisterByLogin.bind(this)}
@@ -181,6 +183,8 @@ class Header extends PureComponent {
 				)}
 				{showSendEmail && (
 					<EmailCode
+						email={"yx53074@163.com"}
+						sendEmail={sendEmail}
 						closeEmail={this.closeEmail.bind(this)}
 						lng={lng}
 					/>
@@ -192,7 +196,7 @@ class Header extends PureComponent {
 					<Register
 						hasBack={registerHasBack}
 						close={this.closeRegister.bind(this)}
-						sendEmailCode={sendEmailCode}
+						sendEmail={sendEmail}
 						registerUser={registerUser}
 						lng={lng}
 					/>

@@ -31,3 +31,14 @@ export const registerUser = createAction(USERINFO, params => {
 			return res;
 		});
 });
+export const loginIn = createAction(USERINFO, params => {
+	return http
+		.post({
+			url: "login",
+			params: params
+		})
+		.then(res => {
+			console.log(res);
+			return res;
+		});
+});

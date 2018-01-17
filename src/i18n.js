@@ -4,10 +4,12 @@ import LanguageDetector from "i18next-browser-languagedetector";
 import LanguageJson from "./locales/";
 import { reactI18nextModule } from "react-i18next";
 import language from "./locales/";
-import { getLocalItem } from "./utils/util";
+import { getLocalItem, setLocalItem } from "./utils/util";
 var languageItem = getLocalItem("language");
 var languageType = languageItem ? languageItem.data : "cn";
-
+if (!languageItem) {
+	setLocalItem("language", "cn");
+}
 i18n
 	//.use(XHR)
 	.use(LanguageDetector)

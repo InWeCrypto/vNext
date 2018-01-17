@@ -48,21 +48,25 @@ class Register extends PureComponent {
 		});
 	}
 	sendCode() {
+		if (this.state.email.length <= 0) {
+			Msg.prompt(i18n.t("error.emailEmpty", this.props.lng));
+			return;
+		}
 		this.sendEmail();
-		this.props.sendEmailCode(this.state.email);
+		this.props.sendEmail(this.state.email);
 	}
 	registerClick() {
 		const { code, email, password, password1 } = this.state;
 		this.props.registerUser({
 			code: code,
 			email: email,
-			name: "",
+			name: "11",
 			password: password,
 			password_confirmation: password1
 		});
 	}
 	render() {
-		const { lng, close } = this.props;
+		const { lng, close, hasBack } = this.props;
 		const {
 			surePass,
 			repeatPass,
@@ -71,8 +75,7 @@ class Register extends PureComponent {
 			email,
 			code,
 			password,
-			password1,
-			hasBack
+			password1
 		} = this.state;
 		return (
 			<I18n>

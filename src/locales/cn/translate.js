@@ -71,5 +71,10 @@ export default {
 		btn: "确定",
 		error: "密码长度不得低于6位，大于16位",
 		error1: "两次密码输入不一致"
+	},
+	error: {
+		emailEmpty: "邮箱不能为空",
+		passwordEmpty: "密码不能为空",
+		rpasswordEmpty: "重复密码不能为空"
 	}
 };
