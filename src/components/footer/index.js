@@ -1,5 +1,6 @@
 import React, { PureComponent } from "react";
 import { I18n, Trans } from "react-i18next";
+import { setLocalItem } from "../../utils/util";
 import "./index.less";
 class Footer extends PureComponent {
 	setLanguageType(type) {
@@ -8,8 +9,10 @@ class Footer extends PureComponent {
 	changeLanguage(type) {
 		this.props.changeLng(type);
 		window.i18n.changeLanguage(type);
+		setLocalItem("language", type);
 	}
 	render() {
+		console.log(this.props.lng);
 		return (
 			<I18n>
 				{(t, { I18n }) => (

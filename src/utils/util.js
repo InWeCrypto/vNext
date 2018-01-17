@@ -53,3 +53,28 @@ export const formatTimeToChina = t => {
 	if (space > 60) return "一分钟以前";
 	return "刚刚";
 };
+export const setLocalItem = (key, value, ms) => {
+	var curTime = new Date().getTime;
+	var extime = null;
+	if (ms) {
+		extime = key + ms;
+	}
+
+	localStorage.setItem(key, JSON.stringify({ data: value, extime: extime }));
+};
+export const getLocalItem = key => {
+	var item = JSON.parse(localStorage.getItem(key));
+	if (!item) {
+		return null;
+	}
+	if (!item.extime) {
+		return item;
+	}
+	var curTime = new Date().getTime();
+	if (curTime - item.extime <= 0) {
+		localStorage.removeItem(key);
+		return null;
+	} else {
+		return item;
+	}
+};

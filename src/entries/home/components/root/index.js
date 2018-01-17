@@ -9,7 +9,6 @@ import TopText from "../toptext/";
 import { getQuery } from "../../../../utils/util";
 
 import inweWallet from "../../../../assets/images/inwe_wallet.png";
-
 import "./index.less";
 export default class Root extends PureComponent {
 	constructor(props) {

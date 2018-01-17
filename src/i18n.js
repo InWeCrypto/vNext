@@ -4,6 +4,13 @@ import LanguageDetector from "i18next-browser-languagedetector";
 import LanguageJson from "./locales/";
 import { reactI18nextModule } from "react-i18next";
 import language from "./locales/";
+import { getLocalItem } from "./utils/util";
+var languageItem = getLocalItem("language");
+var languageType = "cn";
+if (languageItem) {
+	languageType = languageItem.data;
+}
+
 i18n
 	//.use(XHR)
 	.use(LanguageDetector)
@@ -13,8 +20,8 @@ i18n
 			resources: language,
 			translations: ["translation"],
 			defaultNS: "translation",
-			fallbackLng: "cn",
-			lng: "cn",
+			fallbackLng: languageType,
+			lng: languageType,
 			debug: true,
 			interpolation: {
 				escapeValue: false // not needed for react!!
@@ -31,5 +38,4 @@ i18n
 			console.log("i18n successfully initialized");
 		}
 	);
-
 export default i18n;
