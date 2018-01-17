@@ -1,14 +1,23 @@
 import React, { PureComponent } from "react";
 import { Link } from "react-router-dom";
 import "./index.less";
-import SignBox from "../signbox";
+import SignIn from "../signin/";
+import FastSign from "../fastsign/";
+import Register from "../register/";
+import EmailCode from "../emailcode/";
+import ResetPassword from "../resetpassword/";
 import defaultHeader from "../../assets/images/member_img.png";
 import headerNews from "../../assets/images/headernews.png";
 class Header extends PureComponent {
 	constructor() {
 		super();
 		this.state = {
-			showMember: false
+			showMember: false,
+			showLogin: false,
+			showSendEmail: false,
+			showRegister: false,
+			registerHasBack: false,
+			fastSign: false
 		};
 		this.changeMember = this.changeMember.bind(this);
 		document.addEventListener("click", this.changeMember, false);
@@ -30,11 +39,66 @@ class Header extends PureComponent {
 			showMember: !this.state.showMember
 		});
 	}
+	Login() {
+		this.setState({
+			showLogin: true
+		});
+	}
+	closeSignIn() {
+		this.setState({
+			showLogin: false
+		});
+	}
+	openEmail() {
+		this.setState({
+			showSendEmail: true
+		});
+	}
+	closeEmail() {
+		this.setState({
+			showSendEmail: false
+		});
+	}
+	openRegisterByLogin() {
+		this.setState({
+			showRegister: true,
+			registerHasBack: true
+		});
+	}
+	openRegisterByHeader() {
+		this.setState({
+			showRegister: true,
+			registerHasBack: false
+		});
+	}
+	closeRegister() {
+		this.setState({
+			showRegister: false
+		});
+	}
+	openFastSign() {
+		this.setState({
+			fastSign: true
+		});
+	}
+	closeFastSign() {
+		this.setState({
+			fastSign: false
+		});
+	}
 	render() {
-		const { lng } = this.props;
-		const { showMember } = this.state;
+		const { lng, sendEmailCode } = this.props;
+		const {
+			showMember,
+			showSign,
+			showLogin,
+			showSendEmail,
+			showRegister,
+			registerHasBack,
+			fastSign
+		} = this.state;
 		return (
-			<div id="headerBox" className="header-box ui start">
+			<div id="headerBox" className="header-box container ui center">
 				<div className="heder-left ui center">
 					<img className="img" src={headerNews} />
 					<div className="headernews-box f1">
@@ -44,7 +108,18 @@ class Header extends PureComponent {
 					</div>
 				</div>
 				<div className="heder-middle f1">InWeCrypto</div>
-				<div className="heder-right">
+				<div className="header-right">
+					<span onClick={this.Login.bind(this)} className="rightbtn">
+						Login
+					</span>
+					<span
+						onClick={this.openRegisterByHeader.bind(this)}
+						className="rightbtn"
+					>
+						Sign Up
+					</span>
+				</div>
+				{/* <div className="heder-right">
 					<div
 						className="member"
 						onClick={e => {
@@ -93,8 +168,34 @@ class Header extends PureComponent {
 							</div>
 						</div>
 					)}
-					{/* <SignBox /> */}
-				</div>
+					
+                </div> */}
+				{showLogin && (
+					<SignIn
+						openEmail={this.openEmail.bind(this)}
+						closeSign={this.closeSignIn.bind(this)}
+						openRegister={this.openRegisterByLogin.bind(this)}
+						openFast={this.openFastSign.bind(this)}
+						lng={lng}
+					/>
+				)}
+				{showSendEmail && (
+					<EmailCode
+						closeEmail={this.closeEmail.bind(this)}
+						lng={lng}
+					/>
+				)}
+				{fastSign && (
+					<FastSign close={this.closeFastSign.bind(this)} lng={lng} />
+				)}
+				{showRegister && (
+					<Register
+						hasBack={registerHasBack}
+						close={this.closeRegister.bind(this)}
+						sendEmailCode={sendEmailCode}
+						lng={lng}
+					/>
+				)}
 			</div>
 		);
 	}

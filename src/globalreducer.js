@@ -1,5 +1,5 @@
 import { handleActions } from "redux-actions";
-import { LNG } from "./globalactions";
+import { LNG, EMAILCODE, USERINFO } from "./globalactions";
 export const lng = handleActions(
 	{
 		[LNG]: (state, { payload }) => {
@@ -7,4 +7,16 @@ export const lng = handleActions(
 		}
 	},
 	"cn"
+);
+export const userInfo = handleActions(
+	{
+		USERINFO: (state, { payload }) => payload
+	},
+	null
+);
+export const emailCode = handleActions(
+	{
+		EMAILCODE: (state, { payload }) => payload
+	},
+	null
 );

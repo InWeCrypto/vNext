@@ -67,7 +67,7 @@ export default class Root extends PureComponent {
 		});
 	}
 	render() {
-		const { lng, changeLng } = this.props;
+		const { lng, changeLng, sendEmailCode } = this.props;
 		const {
 			set,
 			message,
@@ -81,7 +81,7 @@ export default class Root extends PureComponent {
 			<I18n>
 				{(t, { I18n }) => (
 					<div className="member-box">
-						<Header lng={lng} />
+						<Header sendEmailCode={sendEmailCode} lng={lng} />
 						{/* <FixedMenu lng={lng} changeLng={changeLng} /> */}
 						<div className="member-main">
 							<div id="mainBox" className="container ui">
@@ -114,7 +114,7 @@ export default class Root extends PureComponent {
 							/>
 						)}
 						{resetP && <ResetPassword lng={lng} />}
-
+						<FixedMenu lng={lng} changeLng={changeLng} />
 						{/* <MessageDetail lng={lng} /> */}
 					</div>
 				)}

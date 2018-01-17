@@ -94,6 +94,11 @@
 			}
 		}
 	}
+	.rightbtn {
+		margin: 0 0.05rem;
+		cursor: pointer;
+		font-weight: 600;
+	}
 	.icon-message {
 		background: url("../../assets/images/header_message.png") left top
 			no-repeat;
@@ -119,5 +124,29 @@
 		display: inline-block;
 		width: 0.1rem;
 		height: 0.1rem;
+	}
+}
+.sign-box {
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 10;
+	.sign-bg {
+		position: absolute;
+		left: 0;
+		top: 0;
+		height: 100%;
+		width: 100%;
+		background: rgba(0, 0, 0, 0.7);
+	}
+	.sign-content {
+		width: 100%;
+		height: 100%;
+		position: relative;
+		display: flex;
+		align-items: center;
+		justify-content: center;
 	}
 }

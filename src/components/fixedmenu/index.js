@@ -1,6 +1,7 @@
 import React, { PureComponent } from "react";
 import { NavLink } from "react-router-dom";
 import { I18n, Trans } from "react-i18next";
+import { setLocalItem } from "../../utils/util";
 import fixedbtn from "../../assets/images/fixedbtn.png";
 import fixedbtn1 from "../../assets/images/fixedbtn1.png";
 import "./index.less";
@@ -11,14 +12,27 @@ class FixedMenu extends PureComponent {
 			isShow: false
 		};
 	}
+	componentDidMount() {
+		document.addEventListener(
+			"click",
+			() => {
+				this.setState({
+					isShow: false
+				});
+			},
+			false
+		);
+	}
 	setLanguageType(type) {
 		return type === this.props.lng ? "language-btn cur" : "language-btn";
 	}
 	changeLanguage(type) {
 		this.props.changeLng(type);
 		window.i18n.changeLanguage(type);
+		setLocalItem("language", type);
 	}
-	toggleType() {
+	toggleType(e) {
+		e.nativeEvent.stopImmediatePropagation();
 		this.setState({
 			isShow: !this.state.isShow
 		});
@@ -104,7 +118,11 @@ class FixedMenu extends PureComponent {
 							</div>
 
 							<div className="ctrlbtn ui center">
-								<span onClick={this.toggleType.bind(this)}>
+								<span
+									onClick={e => {
+										this.toggleType(e);
+									}}
+								>
 									<i className="icon-more" />
 								</span>
 							</div>
