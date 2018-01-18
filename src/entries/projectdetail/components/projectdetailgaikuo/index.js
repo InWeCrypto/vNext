@@ -89,10 +89,10 @@ class ProjectDetailGaiKuo extends PureComponent {
 								<div className="projectDetailCon2Title">
 									Social
 								</div>
-								<ul class="shareList ui center">
-									<li class="tele" />
-									<li class="wx" />
-									<li class="mail" />
+								<ul className="shareList ui center">
+									<li className="tele" />
+									<li className="wx" />
+									<li className="mail" />
 								</ul>
 							</div>
 						</div>
