@@ -73,7 +73,9 @@ export default class Root extends PureComponent {
 			sendEmailCode,
 			registerUser,
 			loginIn,
-			userInfo
+			userInfo,
+			setReduxUserInfo,
+			forgetUser
 		} = this.props;
 		const {
 			set,
@@ -94,6 +96,8 @@ export default class Root extends PureComponent {
 							registerUser={registerUser}
 							sendEmail={sendEmailCode}
 							loginIn={loginIn}
+							setReduxUserInfo={setReduxUserInfo}
+							forgetUser={forgetUser}
 							lng={lng}
 						/>
 						{/* <FixedMenu lng={lng} changeLng={changeLng} /> */}

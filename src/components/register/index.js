@@ -58,21 +58,36 @@ class Register extends PureComponent {
 	}
 	registerClick() {
 		const { code, email, password, password1 } = this.state;
-		this.props
-			.registerUser({
-				code: code,
-				email: email,
-				name: email,
-				password: password,
-				password_confirmation: password1
-			})
-			.then(res => {
-				if (res.code === 4000) {
-					Msg.prompt(i18n.t("success,login", this.props.lng));
-					//setLocalItem("userInfo", JSON.stringify(res.data));
-					this.props.close();
-				}
-			});
+		if (!this.props.isForget) {
+			this.props
+				.registerUser({
+					code: code,
+					email: email,
+					name: email,
+					password: password,
+					password_confirmation: password1
+				})
+				.then(res => {
+					if (res.code === 4000) {
+						Msg.prompt(i18n.t("success.login", this.props.lng));
+						this.props.close();
+					}
+				});
+		} else {
+			this.props
+				.forgetUser({
+					code: code,
+					email: email,
+					password: password,
+					password_confirmation: password1
+				})
+				.then(res => {
+					if (res.code === 4000) {
+						Msg.prompt(i18n.t("success.resetPass", this.props.lng));
+						this.props.close();
+					}
+				});
+		}
 	}
 	render() {
 		const { lng, close, hasBack, isForget } = this.props;
@@ -269,9 +284,21 @@ class Register extends PureComponent {
 													this
 												)}
 											>
-												{t(
-													"signBox.register.register",
-													lng
+												{isForget && (
+													<span>
+														{t(
+															"signBox.register.resetPass",
+															lng
+														)}
+													</span>
+												)}
+												{!isForget && (
+													<span>
+														{t(
+															"signBox.register.register",
+															lng
+														)}
+													</span>
 												)}
 											</div>
 										</div>

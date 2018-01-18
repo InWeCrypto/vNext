@@ -62,7 +62,9 @@ export default class Root extends PureComponent {
 			registerUser,
 			userInfo,
 			sendEmailCode,
-			loginIn
+			loginIn,
+			setReduxUserInfo,
+			forgetUser
 		} = this.props;
 		const { month, monthArr, curDay } = this.state;
 		const curMonth = monthArr[month].slice(0, 3);
@@ -76,6 +78,8 @@ export default class Root extends PureComponent {
 							registerUser={registerUser}
 							sendEmail={sendEmailCode}
 							loginIn={loginIn}
+							setReduxUserInfo={setReduxUserInfo}
+							forgetUser={forgetUser}
 							lng={lng}
 						/>
 						<div id="topText" className="top-text">
