@@ -3,7 +3,7 @@ import { NEWSLIST } from "./actions";
 
 export const newsList = handleActions(
 	{
-		[PUSH]: (state, { payload }) => payload
+		[NEWSLIST]: (state, { payload }) => payload
 	},
 	[]
 );
