@@ -37,7 +37,8 @@ export default {
 			code: "验证码",
 			password: "设定密码",
 			repeatPassword: "确定密码",
-			register: "注册"
+			register: "注册",
+			resetPass: "重置密码"
 		}
 	},
 	member: {
@@ -79,6 +80,7 @@ export default {
 		rpasswordEmpty: "重复密码不能为空"
 	},
 	success: {
-		login: "登录成功"
+		login: "登录成功",
+		resetPass: "密码重置成功，请重新登录"
 	}
 };

@@ -14,7 +14,7 @@ import { changeLng, setReduxUserInfo } from "./globalactions";
 import { getLocalItem } from "./utils/util";
 const history = createHistory();
 const store = storeFun(history);
-
+window.history = history;
 window.i18n = i18n;
 let userinfo = getLocalItem("userInfo");
 store.dispatch(changeLng(window.i18n.language));

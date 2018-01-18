@@ -52,3 +52,17 @@ export const loginIn = createAction(USERINFO, params => {
 export const setReduxUserInfo = createAction(USERINFO, data => {
 	return data;
 });
+export const forgetUser = createAction(USERINFO, params => {
+	return http
+		.post({
+			url: "forgot_password",
+			params: params
+		})
+		.then(res => {
+			console.log(res);
+			return {
+				code: res.code,
+				data: null
+			};
+		});
+});

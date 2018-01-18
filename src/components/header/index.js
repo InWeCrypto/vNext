@@ -8,8 +8,9 @@ import EmailCode from "../emailcode/";
 import ResetPassword from "../resetpassword/";
 import defaultHeader from "../../assets/images/member_img.png";
 import headerNews from "../../assets/images/headernews.png";
+import { browserHistory } from "react-router-dom";
 class Header extends PureComponent {
-	constructor() {
+	constructor(props) {
 		super();
 		this.state = {
 			showMember: false,
@@ -21,12 +22,15 @@ class Header extends PureComponent {
 			isForget: false
 		};
 		this.changeMember = this.changeMember.bind(this);
-		document.addEventListener("click", this.changeMember, false);
 	}
 	changeMember() {
 		this.setState({
 			showMember: false
 		});
+	}
+	componentDidMount() {
+		console.log(this.props);
+		document.addEventListener("click", this.changeMember, false);
 	}
 	componentWillUnmount() {
 		//重写组件的setState方法，直接返回空
@@ -35,7 +39,7 @@ class Header extends PureComponent {
 		};
 	}
 	toggleMember(e) {
-		e.stopPropagation();
+		e.nativeEvent.stopImmediatePropagation();
 		this.setState({
 			showMember: !this.state.showMember
 		});
@@ -86,8 +90,23 @@ class Header extends PureComponent {
 			fastSign: false
 		});
 	}
+	loginOut(e) {
+		e.nativeEvent.stopImmediatePropagation();
+		localStorage.removeItem("userInfo");
+		this.props.setReduxUserInfo(null);
+		if (window.location.href.indexOf("/member")) {
+			window.location.href = "/";
+		}
+	}
 	render() {
-		const { lng, sendEmail, registerUser, loginIn, userInfo } = this.props;
+		const {
+			lng,
+			sendEmail,
+			registerUser,
+			loginIn,
+			userInfo,
+			forgetUser
+		} = this.props;
 		const {
 			showMember,
 			showSign,
@@ -171,7 +190,12 @@ class Header extends PureComponent {
 										<span className="icon-box">
 											<i className="icon-out" />
 										</span>
-										<span className="member-itemtext">
+										<span
+											onClick={e => {
+												this.loginOut(e);
+											}}
+											className="member-itemtext"
+										>
 											退出
 										</span>
 									</div>
@@ -183,7 +207,6 @@ class Header extends PureComponent {
 				{showLogin && (
 					<SignIn
 						loginIn={loginIn}
-						isForget={isForget}
 						closeSign={this.closeSignIn.bind(this)}
 						openRegister={this.openRegisterByLogin.bind(this)}
 						openForget={this.openRegisterByForget.bind(this)}
@@ -196,6 +219,7 @@ class Header extends PureComponent {
 				)}
 				{showRegister && (
 					<Register
+						forgetUser={forgetUser}
 						isForget={isForget}
 						hasBack={registerHasBack}
 						close={this.closeRegister.bind(this)}
