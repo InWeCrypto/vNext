@@ -39,12 +39,17 @@ function checkRight(response) {
 
 function request(method, url, params = {}, header = {}) {
 	const languageItem = getLocalItem("language");
+	const userInfo = getLocalItem("userInfo");
 	const headers = {
 		"Content-Type": "application/json",
 		lang: languageItem.data,
+
 		//"Cache-Control": "no-cache",
 		...header
 	};
+	if (userInfo && userInfo.data) {
+		headers.Authorization = JSON.parse(userInfo.data).token;
+	}
 	let _url = requestUrl + url;
 	let body;
 

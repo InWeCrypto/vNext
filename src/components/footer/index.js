@@ -43,9 +43,9 @@ class Footer extends PureComponent {
 								</div>
 								<div
 									className={(() =>
-										this.setLanguageType("cn"))()}
+										this.setLanguageType("zh"))()}
 									onClick={() => {
-										this.changeLanguage("cn");
+										this.changeLanguage("zh");
 									}}
 								>
 									ZH

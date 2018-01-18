@@ -77,10 +77,15 @@ export default {
 	error: {
 		emailEmpty: "邮箱不能为空",
 		passwordEmpty: "密码不能为空",
-		rpasswordEmpty: "重复密码不能为空"
+		rpasswordEmpty: "重复密码不能为空",
+		emailSend: "邮件发送失败，请重试",
+		resetPass: "密码修改失败，请重试",
+		passLength: "密码长度不一致"
 	},
 	success: {
 		login: "登录成功",
-		resetPass: "密码重置成功，请重新登录"
+		resetPass: "密码重置成功，请重新登录",
+		emailSend: "邮件发送成功",
+		resetPass: "密码修改成功"
 	}
 };

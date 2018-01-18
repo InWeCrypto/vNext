@@ -143,9 +143,9 @@ class FixedMenu extends PureComponent {
 										</span>
 										<span
 											className={(() =>
-												this.setLanguageType("cn"))()}
+												this.setLanguageType("zh"))()}
 											onClick={() => {
-												this.changeLanguage("cn");
+												this.changeLanguage("zh");
 											}}
 										>
 											ZH

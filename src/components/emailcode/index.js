@@ -39,10 +39,10 @@ class EmailCode extends PureComponent {
 		});
 	}
 	sendEmail() {
-		this.props.sendEmail(this.props.email);
+		this.props.sendEmail(this.props.userInfo.email).then(res => {});
 	}
 	render() {
-		const { lng, closeEmail, email } = this.props;
+		const { lng, closeEmail, userInfo } = this.props;
 		const { code, codeArr, isFocus, isShowError } = this.state;
 		const item = () => {
 			let arr = [];
@@ -78,10 +78,13 @@ class EmailCode extends PureComponent {
 								<div className="emailcode-send">
 									<span>{t("emailCode.t1", lng)}</span>
 									<span className="orange">
-										yx232@163.com
+										{userInfo && userInfo.email}
 									</span>
 									<span>{t("emailCode.t2", lng)}</span>
-									<span className="orange text-under">
+									<span
+										className="orange text-under"
+										onClick={this.sendEmail.bind(this)}
+									>
 										{t("emailCode.t3", lng)}
 									</span>
 									<span>{t("emailCode.t4", lng)}</span>

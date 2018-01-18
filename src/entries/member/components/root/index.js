@@ -61,9 +61,19 @@ export default class Root extends PureComponent {
 		set["cur"] = type;
 		this.setState(set);
 	}
-	changeSendEmail(data) {
+	// changeSendEmail(data) {
+	// 	this.setState({
+	// 		email: data
+	// 	});
+	// }
+	openResetPass() {
 		this.setState({
-			email: data
+			resetP: true
+		});
+	}
+	closeResetPass() {
+		this.setState({
+			resetP: false
 		});
 	}
 	render() {
@@ -109,9 +119,10 @@ export default class Root extends PureComponent {
 								<div className="member-right f1">
 									{set && (
 										<MemberSet
-											changeSendEmail={this.changeSendEmail.bind(
+											openResetPass={this.openResetPass.bind(
 												this
 											)}
+											userInfo={userInfo}
 											lng={lng}
 										/>
 									)}
@@ -123,14 +134,20 @@ export default class Root extends PureComponent {
 								</div>
 							</div>
 						</div>
-						{email && (
+						{/* {email && (
 							<EmailCode
-								email={this.state.emailAddress}
+								userInfo={userInfo}
 								sendEmail={sendEmailCode}
 								lng={lng}
 							/>
+						)} */}
+						{resetP && (
+							<ResetPassword
+								close={this.closeResetPass.bind(this)}
+								resetPass={this.props.resetPassword}
+								lng={lng}
+							/>
 						)}
-						{resetP && <ResetPassword lng={lng} />}
 						<FixedMenu lng={lng} changeLng={changeLng} />
 						{/* <MessageDetail lng={lng} /> */}
 					</div>
