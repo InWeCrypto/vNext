@@ -4,6 +4,7 @@ import { setLocalItem, getLocalItem } from "./utils/util";
 export const LNG = "LNG";
 export const USERINFO = "USERINFO";
 export const EMAILCODE = "EMAILCODE";
+export const NICKNAME = "NICKNAME";
 export const changeLng = createAction(LNG, lng => {
 	return lng;
 });
@@ -83,8 +84,16 @@ export const resetPassword = createAction(USERINFO, params => {
 			return res;
 		});
 });
-export const resetNickName = createAction(USERINFO, params => {
-	return http.put({
-		url: ""
-	});
+export const resetNickName = createAction(NICKNAME, params => {
+	return http
+		.put({
+			url: "user",
+			params: params
+		})
+		.then(res => {
+			if (res.code === 4000) {
+				setLocalItem("userInfo", JSON.stringify(res.data));
+			}
+			return res;
+		});
 });

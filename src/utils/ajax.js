@@ -22,12 +22,6 @@ function checkRight(response) {
 	if (response.code === 4000) {
 		return response;
 	} else {
-		// notification.warn({
-		// 	duration: 2,
-		// 	placement: "bottomLeft",
-		// 	message: "警告",
-		// 	description: response.msg
-		// });
 		Msg.prompt(response.msg);
 		return {
 			msg: response.msg,
