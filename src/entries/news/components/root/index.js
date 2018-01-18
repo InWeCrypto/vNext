@@ -9,6 +9,12 @@ import LeftMenu from "../../../../components/leftmenu";
 import "./index.less";
 
 export default class Root extends PureComponent {
+	constructor(props) {
+		super(props);
+		this.state = {
+			minH: "auto"
+		};
+	}
 	componentWillReceiveProps(nextProps) {}
 	componentDidMount() {
 		document.title = "InWe-Trading";
@@ -19,20 +25,31 @@ export default class Root extends PureComponent {
 		});
 		document.querySelector("#mainBox").style.minHeight = minH + "px";
 	}
-	constructor(props) {
-		super(props);
-		this.state = {
-			minH: "auto"
-		};
-	}
 	render() {
 		const { minH, liW } = this.state;
-		const { lng, changeLng } = this.props;
+		const {
+			lng,
+			changeLng,
+			sendEmailCode,
+			registerUser,
+			loginIn,
+			userInfo,
+			setReduxUserInfo,
+			forgetUser
+		} = this.props;
 		return (
 			<I18n>
 				{(t, { i18n }) => (
 					<div className="container">
-						<Header />
+						<Header
+							userInfo={userInfo}
+							registerUser={registerUser}
+							sendEmail={sendEmailCode}
+							loginIn={loginIn}
+							setReduxUserInfo={setReduxUserInfo}
+							forgetUser={forgetUser}
+							lng={lng}
+						/>
 						<div id="mainBox" className="news ui">
 							<div className="left-menus ui center">
 								<div className="left-menus-news">
