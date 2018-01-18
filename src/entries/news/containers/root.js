@@ -4,8 +4,13 @@ import * as actions from "../controls/actions";
 import * as globalActions from "../../../globalactions";
 
 export default connect(
-	({ news: { newsList }, globData: { lng, userInfo } }) => ({
-		newsList,
+	({
+		news: { newsText, newsImg, newsVideo },
+		globData: { lng, userInfo }
+	}) => ({
+		newsText,
+		newsImg,
+		newsVideo,
 		userInfo,
 		lng
 	}),

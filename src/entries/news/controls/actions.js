@@ -2,16 +2,37 @@ import { createAction } from "redux-actions";
 import http from "../../../utils/ajax";
 
 const PRE_FIX = "NEWS_";
-export const NEWSLIST = `${PRE_FIX}NEWSLIST`;
+export const NEWSTEXT = `${PRE_FIX}NEWSTEXT`;
+export const NEWSIMG = `${PRE_FIX}NEWSIMG`;
+export const NEWSVIDEO = `${PRE_FIX}NEWSVIDEO`;
 
-export const getNews = createAction(NEWSLIST, () => {
+export const getNewsText = createAction(NEWSTEXT, params => {
 	return http
 		.get({
-			url: "article"
+			url: "article",
+			params: params
 		})
 		.then(res => {
-			if (res.code === 4000) {
-				console.log(res);
-			}
+			return res;
+		});
+});
+export const getNewsImg = createAction(NEWSIMG, params => {
+	return http
+		.get({
+			url: "article",
+			params: params
+		})
+		.then(res => {
+			return res;
+		});
+});
+export const getNewsVideo = createAction(NEWSVIDEO, params => {
+	return http
+		.get({
+			url: "article",
+			params: params
+		})
+		.then(res => {
+			return res;
 		});
 });

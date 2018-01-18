@@ -6,8 +6,10 @@ import * as globalActions from "../../../globalactions";
 //    categoryList
 //}),
 export default connect(
-	({ newsdetail: { newsList }, lng: { lng } }) => ({
-		newsList
+	({ newsdetail: { newsDetail }, globData: { lng, userInfo } }) => ({
+		newsDetail,
+		userInfo,
+		lng
 	}),
 	{
 		...actions,

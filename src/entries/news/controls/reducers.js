@@ -1,9 +1,27 @@
 import { handleActions } from "redux-actions";
-import { NEWSLIST } from "./actions";
+import { NEWSTEXT, NEWSIMG, NEWSVIDEO } from "./actions";
 
-export const newsList = handleActions(
+export const newsText = handleActions(
 	{
-		[NEWSLIST]: (state, { payload }) => payload
+		[NEWSTEXT]: (state, { payload }) => {
+			return payload;
+		}
+	},
+	[]
+);
+export const newsImg = handleActions(
+	{
+		[NEWSIMG]: (state, { payload }) => {
+			return payload;
+		}
+	},
+	[]
+);
+export const newsVideo = handleActions(
+	{
+		[NEWSVIDEO]: (state, { payload }) => {
+			return payload;
+		}
 	},
 	[]
 );
