@@ -9,6 +9,9 @@ import FixedMenu from "../../../../components/fixedmenu";
 import GaiKuo from "../../../../components/gaikuo";
 import ProjectDetailIco from "../projectdetailico";
 import ProjectDetailInfo from "../projectdetailinfo";
+import ProjectDetailIntro from "../projectdetailintro";
+import ProjectDetailGaiKuo from "../projectdetailgaikuo";
+import ProjectDetailChat from "../projectdetailchat";
 import "./index.less";
 
 export default class Root extends PureComponent {
@@ -65,7 +68,9 @@ export default class Root extends PureComponent {
 						<Header />
 						<div id="mainBox" className="projectDetail ui">
 							{ico && <ProjectDetailIco lng={lng} />}
+							{gaikuo && <ProjectDetailGaiKuo lng={lng} />}
 							{info && <ProjectDetailInfo lng={lng} />}
+							{intro && <ProjectDetailIntro lng={lng} />}
 							<div className="projectDetailCon3">
 								<ul className="projectDetailCon3Ul">
 									<li className={ico || gaikuo ? "cur" : ""}>
@@ -78,7 +83,7 @@ export default class Root extends PureComponent {
 										<span>项目介绍</span>
 									</li>
 								</ul>
-								{/* 评论 */}
+								<ProjectDetailChat lng={lng} />
 							</div>
 						</div>
 					</div>

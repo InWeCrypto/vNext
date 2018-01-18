@@ -44,9 +44,62 @@ class ProjectDetailInfo extends PureComponent {
 											</div>
 										</div>
 									</li>
-									<li>1123</li>
-									<li>1123</li>
+									<li className="infoVideo">
+										<div className="imgBox">
+											<img
+												src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1516195691228&di=92e63d9f27a65d105a43eb5847a1ae6f&imgtype=0&src=http%3A%2F%2Fimg2.niutuku.com%2F1312%2F0827%2F0827-niutuku.com-13638.jpg"
+												alt=""
+											/>
+										</div>
+										<div className="infoBot">
+											<p className="infoBotTitle ellitext">
+												新韩银行推出跨境比特币服务
+											</p>
+											<div className="infoBotDate">
+												<span>2017-11-16 11:35:33</span>
+												<i>原创</i>
+											</div>
+										</div>
+									</li>
+									<li>
+										<div className="imgBox">
+											<img
+												src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1516195691228&di=92e63d9f27a65d105a43eb5847a1ae6f&imgtype=0&src=http%3A%2F%2Fimg2.niutuku.com%2F1312%2F0827%2F0827-niutuku.com-13638.jpg"
+												alt=""
+											/>
+										</div>
+										<div className="infoBot">
+											<p className="infoBotTitle ellitext">
+												新韩银行推出跨境比特币服务
+											</p>
+											<div className="infoBotDate">
+												<span>2017-11-16 11:35:33</span>
+												<i>原创</i>
+											</div>
+										</div>
+									</li>
+									<li className="infoVideo">
+										<div className="imgBox">
+											<img
+												src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1516195691228&di=92e63d9f27a65d105a43eb5847a1ae6f&imgtype=0&src=http%3A%2F%2Fimg2.niutuku.com%2F1312%2F0827%2F0827-niutuku.com-13638.jpg"
+												alt=""
+											/>
+										</div>
+										<div className="infoBot">
+											<p className="infoBotTitle ellitext">
+												新韩银行推出跨境比特币服务
+											</p>
+											<div className="infoBotDate">
+												<span>2017-11-16 11:35:33</span>
+												<i>原创</i>
+											</div>
+										</div>
+									</li>
 								</ul>
+								<div className="pageTurn">
+									<span className="pageTurmLf" />
+									<span className="pageTurmRt more" />
+								</div>
 							</div>
 						</div>
 						<div className="projectDetailCon2">
@@ -68,6 +121,10 @@ class ProjectDetailInfo extends PureComponent {
 										纽约州议员提出四项区块链技术相关法案…
 									</li>
 								</ul>
+								<div className="pageTurn">
+									<span className="pageTurmLf" />
+									<span className="pageTurmRt more" />
+								</div>
 							</div>
 						</div>
 					</div>
