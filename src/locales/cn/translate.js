@@ -9,6 +9,10 @@ export default {
 		other: "大约还有",
 		otherend: "个项目等你发现"
 	},
+	news: {
+		ceefax: "图文资讯",
+		videoTitle: "视频资讯"
+	},
 	navMenu: {
 		home: "首页",
 		project: "项目",

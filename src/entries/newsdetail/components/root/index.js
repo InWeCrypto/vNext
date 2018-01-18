@@ -2,7 +2,7 @@ import React, { PureComponent } from "react";
 import { I18n, Trans } from "react-i18next";
 import { NavLink, Link } from "react-router-dom";
 
-import { getMainMinHeight } from "../../../../utils/util";
+import { getMainMinHeight, getQuery } from "../../../../utils/util";
 import Header from "../../../../components/header";
 import Footer from "../../../../components/footer";
 import FixedMenu from "../../../../components/fixedmenu";
@@ -10,10 +10,13 @@ import "./index.less";
 import { platform } from "os";
 
 export default class Root extends PureComponent {
-	componentWillReceiveProps(nextProps) {}
+	componentWillReceiveProps(nextProps) {
+		if (nextProps.location.search != this.props.location.search) {
+			this.initPage(nextProps.location.search);
+		}
+	}
 	componentDidMount() {
 		document.title = "InWe-News";
-		this.props.getNewsDetail();
 		let minH = getMainMinHeight();
 		let leftArrow = document.getElementById("newsDetailLeft").offsetLeft;
 		document.getElementById("newsDetailRight").style.right =
@@ -22,6 +25,16 @@ export default class Root extends PureComponent {
 			minH: minH
 		});
 		document.querySelector("#mainBox").style.minHeight = minH + "px";
+		this.initPage(this.props.location.search);
+	}
+	initPage(location) {
+		let p = getQuery(location);
+		if (p.art_id) {
+			this.setState({
+				art_id: p.art_id
+			});
+		}
+		this.getNewsDetailContent(p.art_id);
 	}
 	componentDidUpdate() {
 		this.textChange();
@@ -33,8 +46,22 @@ export default class Root extends PureComponent {
 			minH: "auto",
 			isShowImg: true,
 			newsType: "video", // video img
-			isJump: "" // yes no
+			isJump: "", // yes no
+			art_id: ""
 		};
+	}
+	getNewsDetailContent(art_id) {
+		this.props
+			.getNewsDetail({
+				art_id: art_id
+			})
+			.then(res => {
+				if (res.code === 4000) {
+					this.setState({
+						newsType: res.data.type
+					});
+				}
+			});
 	}
 	inFocus() {
 		this.setState({
@@ -113,13 +140,31 @@ export default class Root extends PureComponent {
 	}
 	render() {
 		const { minH } = this.state;
-		const { lng, changeLng } = this.props;
+		const {
+			lng,
+			changeLng,
+			sendEmailCode,
+			registerUser,
+			loginIn,
+			userInfo,
+			setReduxUserInfo,
+			forgetUser,
+			newsDetail
+		} = this.props;
 		return (
 			<I18n>
 				{(t, { i18n }) => (
 					<div className="container">
 						<FixedMenu changeLng={changeLng} lng={lng} />
-						<Header />
+						<Header
+							userInfo={userInfo}
+							registerUser={registerUser}
+							sendEmail={sendEmailCode}
+							loginIn={loginIn}
+							setReduxUserInfo={setReduxUserInfo}
+							forgetUser={forgetUser}
+							lng={lng}
+						/>
 						<div id="mainBox" className="newsDetail ui">
 							<div
 								id="newsDetailLeft"
@@ -136,14 +181,12 @@ export default class Root extends PureComponent {
 							</div>
 							<div className="newsDetailCon">
 								<div className="newsDetailConTitle">
-									<span>
-										纽约州议员提出四项区块链技术相关法案
-									</span>
+									<span>{newsDetail.title}</span>
 								</div>
 								<div className="newsMeta">
 									<div className="newsDetailConMeta">
 										<span className="metaDate">
-											2017-11-16 11:35:33
+											{newsDetail.updated_at}
 										</span>
 										<span className="metaCategory">
 											原创
@@ -178,7 +221,7 @@ export default class Root extends PureComponent {
 											id="J_prismPlayer"
 										/>
 									)}
-									{this.state.newsType == "video" && (
+									{this.state.newsType == 3 && (
 										<div className="videoType">
 											<img
 												src="https://b-ssl.duitang.com/uploads/item/201801/10/20180110212314_ytxcG.thumb.700_0.jpeg"
@@ -202,7 +245,7 @@ export default class Root extends PureComponent {
 											们相信，科技是这个时代变迁的原动力，在这股动力的推动下，我们将迈入新
 											的“智能经济”时代。
 										</p>
-										{this.state.newsType == "img" && (
+										{this.state.newsType == 2 && (
 											<img
 												src="http://img4.imgtn.bdimg.com/it/u=4004954884,1272926999&fm=214&gp=0.jpg"
 												alt=""
@@ -218,11 +261,13 @@ export default class Root extends PureComponent {
 											的“智能经济”时代。
 										</p>
 									</div>
-									<p className="newsReadNums">13人已读</p>
+									<p className="newsReadNums">
+										{newsDetail.click_rate}人已读
+									</p>
 								</div>
 								<div className="newsDetailComment">
 									<div className="newsDetailCommentNums">
-										<b>1</b>条评论
+										<b>{newsDetail.comment_count}</b>条评论
 									</div>
 									<div className="newsDetailCommmentBox">
 										<div className="newsDetailCommentBoxCenter ui center">
