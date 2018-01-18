@@ -50,7 +50,8 @@ export default {
 			ctrl: "编辑",
 			email: "邮箱登录",
 			nickName: "昵称",
-			password: "密码"
+			password: "密码",
+			resetNickLenth: "昵称长度不足"
 		},
 		memberNav: {
 			project: "我的项目收藏",
@@ -91,5 +92,7 @@ export default {
 		resetPass: "密码重置成功，请重新登录",
 		emailSend: "邮件发送成功",
 		resetPass: "密码修改成功"
-	}
+	},
+	sure: "确定",
+	cannel: "取消"
 };

@@ -1,3 +1,4 @@
+@import "../../../../assets/less/basestyle.less";
 .member-set {
 	text-align: center;
 	.member-title {
@@ -48,7 +49,21 @@
 			.ctrlbtn {
 				cursor: pointer;
 				font-weight: 200;
+				margin-left: 0.05rem;
 			}
+			.ctrlbtn.sure {
+				border-radius: 0.03rem;
+				background: #0a9234;
+				color: #fff;
+				padding: 0.01rem 0.05rem;
+			}
+		}
+		.newText {
+			width: 100%;
+			border: none;
+			box-shadow: none;
+			outline: none;
+			color: @orange;
 		}
 	}
 }

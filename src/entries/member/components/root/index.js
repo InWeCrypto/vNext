@@ -33,6 +33,9 @@ export default class Root extends PureComponent {
 		}
 	}
 	componentDidMount() {
+		if (!this.props.userInfo) {
+			window.location.href = "/";
+		}
 		document.title = "InWe-个人中心";
 		let minH = getMainMinHeight();
 		document.querySelector("#mainBox").style.minHeight = minH + "px";
@@ -85,7 +88,9 @@ export default class Root extends PureComponent {
 			loginIn,
 			userInfo,
 			setReduxUserInfo,
-			forgetUser
+			forgetUser,
+			getCollectionList,
+			collectionList
 		} = this.props;
 		const {
 			set,
@@ -123,12 +128,20 @@ export default class Root extends PureComponent {
 												this
 											)}
 											userInfo={userInfo}
+											resetNick={this.props.resetNickName}
 											lng={lng}
 										/>
 									)}
 									{message && <MemberMessage lng={lng} />}
 									{collection && (
-										<ProjectCollection lng={lng} />
+										<ProjectCollection
+											getCollectionList={
+												getCollectionList
+											}
+											collectionList={collectionList}
+											userInfo={userInfo}
+											lng={lng}
+										/>
 									)}
 									{quotation && <MemberQuotation lng={lng} />}
 								</div>

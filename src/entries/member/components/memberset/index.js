@@ -14,6 +14,42 @@ class MemberSet extends PureComponent {
 	openResetPass(data) {
 		this.props.openResetPass(data);
 	}
+	changeEdit(state) {
+		let set = {
+			isEditNickName: state
+		};
+		if (state) {
+			set.newText = this.state.oldText;
+		}
+		if (!state) {
+		}
+		this.setState({
+			...set
+		});
+	}
+	newText(e) {
+		this.setState({
+			newText: e.target.value
+		});
+	}
+	resetNick() {
+		if (this.state.newText.length <= 0) {
+			Msg.prompt(i18n.t("member.resetNickLenth", this.props.lng));
+			return;
+		}
+		this.props
+			.resetNick({
+				name: this.state.newText
+			})
+			.then(res => {
+				if (res.code === 4000) {
+					this.setState({
+						oldText: this.state.newText,
+						isEditNickName: false
+					});
+				}
+			});
+	}
 	render() {
 		const { lng, userInfo } = this.props;
 		const { isEditNickName } = this.state;
@@ -55,7 +91,13 @@ class MemberSet extends PureComponent {
 												<div className="f1">
 													{this.state.oldText}
 												</div>
-												<span className="ctrlbtn">
+												<span
+													onClick={this.changeEdit.bind(
+														this,
+														true
+													)}
+													className="ctrlbtn"
+												>
 													{t(
 														"member.memberset.ctrl",
 														lng
@@ -66,13 +108,33 @@ class MemberSet extends PureComponent {
 										{isEditNickName && (
 											<div className="value ctrl f1 ui center">
 												<div className="f1">
-													{this.state.oldText}
+													<input
+														value={
+															this.state.newText
+														}
+														onChange={e => {
+															this.newText(e);
+														}}
+														className="newText"
+														type="text"
+													/>
 												</div>
-												<span className="ctrlbtn">
-													{t(
-														"member.memberset.ctrl",
-														lng
+												<span
+													onClick={this.changeEdit.bind(
+														this,
+														false
 													)}
+													className="ctrlbtn"
+												>
+													{t("cannel", lng)}
+												</span>
+												<span
+													onClick={this.resetNick.bind(
+														this
+													)}
+													className="ctrlbtn sure"
+												>
+													{t("sure", lng)}
 												</span>
 											</div>
 										)}
