@@ -90,5 +90,6 @@ export default {
 		resetPass: "密码修改成功"
 	},
 	sure: "确定",
-	cannel: "取消"
+	cannel: "取消",
+	nodata: "暂无数据"
 };

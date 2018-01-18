@@ -17,6 +17,15 @@ class Root extends PureComponent {
 			day: ""
 		};
 	}
+	componentWillUpdate(nextProps, nextState) {
+		if (
+			nextState.year != this.state.year ||
+			nextState.month != this.state.month ||
+			nextState.day != this.state.day
+		) {
+			this.getData(nextState.year, nextState.month, nextState.day);
+		}
+	}
 	componentDidMount() {
 		document.title = "InWe-CandyBowl";
 		let minH = getMainMinHeight();
@@ -25,6 +34,13 @@ class Root extends PureComponent {
 			let minH = getMainMinHeight();
 			document.querySelector("#mainBox").style.minHeight = minH + "px";
 		};
+		var d = new Date();
+		this.setState({
+			year: d.getFullYear(),
+			month: d.getMonth() + 1,
+			emonth: "",
+			day: d.getDate()
+		});
 	}
 	dayClick(res) {
 		this.setState({
@@ -35,14 +51,39 @@ class Root extends PureComponent {
 			day: res.day
 		});
 	}
+	getData(year, month, day) {
+		let query = "?";
+		query += `year=${year}`;
+		query += `&month=${month}`;
+		query += `&day=${day}`;
+		this.props.getCandyList(query);
+	}
 	render() {
-		const { lng, changeLng } = this.props;
+		const {
+			lng,
+			changeLng,
+			userInfo,
+			registerUser,
+			loginIn,
+			sendEmailCode,
+			setReduxUserInfo,
+			forgetUser,
+			candyList
+		} = this.props;
 		const { isToday, day, emonth } = this.state;
 		return (
 			<I18n>
 				{(t, { I18n }) => (
 					<div>
-						<Header lng={lng} />
+						<Header
+							userInfo={userInfo}
+							registerUser={registerUser}
+							sendEmail={sendEmailCode}
+							loginIn={loginIn}
+							setReduxUserInfo={setReduxUserInfo}
+							forgetUser={forgetUser}
+							lng={lng}
+						/>
 						<div className="main-box ui container" id="mainBox">
 							<div className="candy-left">
 								<LeftMenu lng={lng} />
@@ -82,12 +123,28 @@ class Root extends PureComponent {
 											</div>
 										</div>
 										<div className="data-group">
-											<div className="data-item">
-												<div className="title">222</div>
-												<div className="content">
-													2323
-												</div>
-											</div>
+											{candyList &&
+												candyList.data &&
+												candyList.data.length > 0 &&
+												candyList.data.map(
+													(item, index) => {
+														return (
+															<div className="data-item">
+																<div className="title">
+																	222
+																</div>
+																<div className="content">
+																	2323
+																</div>
+															</div>
+														);
+													}
+												)}
+											{(!candyList ||
+												!candyList.data ||
+												candyList.data.length <= 0) && (
+												<div>{t("nodata", lng)}</div>
+											)}
 										</div>
 									</div>
 								</div>
