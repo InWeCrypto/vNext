@@ -10,13 +10,17 @@ import Routes from "./routes";
 import registerServiceWorker from "./registerServiceWorker";
 import "./assets/less/app.less";
 import i18n from "./i18n";
-import { changeLng } from "./globalactions";
+import { changeLng, setReduxUserInfo } from "./globalactions";
+import { getLocalItem } from "./utils/util";
 const history = createHistory();
 const store = storeFun(history);
 
 window.i18n = i18n;
+let userinfo = getLocalItem("userInfo");
 store.dispatch(changeLng(window.i18n.language));
-
+if (userinfo && userinfo.data) {
+	store.dispatch(setReduxUserInfo(JSON.parse(userinfo.data)));
+}
 const render = Component => {
 	domRender(
 		<Provider store={store}>

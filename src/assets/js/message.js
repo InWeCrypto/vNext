@@ -88,7 +88,9 @@ window.Msg = (function(win, undefined) {
 			str.push("                </div>");
 			str.push("            </div>");
 		} else {
-			str.push("            <div class='glob-message-warn'>ssss</div>");
+			str.push(
+				"            <div class='glob-message-warn'>" + text + "</div>"
+			);
 		}
 
 		str.push("        </div>");

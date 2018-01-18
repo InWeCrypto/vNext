@@ -1,5 +1,6 @@
 import "whatwg-fetch";
 import { requestUrl } from "../config/";
+import { getLocalItem } from "./util";
 const METHODS = ["get", "delete"];
 const BODY_METHODS = ["post", "put", "patch"];
 
@@ -37,8 +38,10 @@ function checkRight(response) {
 }
 
 function request(method, url, params = {}, header = {}) {
+	const languageItem = getLocalItem("language");
 	const headers = {
 		"Content-Type": "application/json",
+		lang: languageItem.data,
 		//"Cache-Control": "no-cache",
 		...header
 	};

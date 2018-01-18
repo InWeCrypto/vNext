@@ -1,5 +1,6 @@
 import React, { PureComponent } from "react";
 import { I18n, Trans } from "react-i18next";
+
 import "./index.less";
 class Register extends PureComponent {
 	constructor(props) {
@@ -48,14 +49,33 @@ class Register extends PureComponent {
 		});
 	}
 	sendCode() {
+		if (this.state.email.length <= 0) {
+			Msg.prompt(i18n.t("error.emailEmpty", this.props.lng));
+			return;
+		}
 		this.sendEmail();
-		this.props.sendEmailCode(this.state.email).then(res => {
-			if (res.code) {
-			}
-		});
+		this.props.sendEmail(this.state.email);
+	}
+	registerClick() {
+		const { code, email, password, password1 } = this.state;
+		this.props
+			.registerUser({
+				code: code,
+				email: email,
+				name: email,
+				password: password,
+				password_confirmation: password1
+			})
+			.then(res => {
+				if (res.code === 4000) {
+					Msg.prompt(i18n.t("success,login", this.props.lng));
+					//setLocalItem("userInfo", JSON.stringify(res.data));
+					this.props.close();
+				}
+			});
 	}
 	render() {
-		const { lng, close } = this.props;
+		const { lng, close, hasBack, isForget } = this.props;
 		const {
 			surePass,
 			repeatPass,
@@ -64,8 +84,7 @@ class Register extends PureComponent {
 			email,
 			code,
 			password,
-			password1,
-			hasBack
+			password1
 		} = this.state;
 		return (
 			<I18n>
@@ -82,7 +101,15 @@ class Register extends PureComponent {
 												onClick={close}
 											/>
 										)}
-										InWeCrypto
+										{!isForget && <span>InWeCrypto</span>}
+										{isForget && (
+											<span>
+												{t(
+													"signBox.register.forget",
+													lng
+												)}
+											</span>
+										)}
 										{!hasBack && (
 											<i
 												className="icon-close"
@@ -236,7 +263,12 @@ class Register extends PureComponent {
 											/>
 										</div>
 										<div className="register-btn">
-											<div className="btn">
+											<div
+												className="btn"
+												onClick={this.registerClick.bind(
+													this
+												)}
+											>
 												{t(
 													"signBox.register.register",
 													lng

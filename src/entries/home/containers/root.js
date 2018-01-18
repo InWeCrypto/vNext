@@ -3,8 +3,9 @@ import Root from "../components/root";
 import * as actions from "../controls/actions";
 import * as globalActions from "../../../globalactions";
 export default connect(
-	({ home: { newsList }, lng: { lng } }) => ({
+	({ home: { newsList }, globData: { lng, userInfo } }) => ({
 		newsList,
+		userInfo,
 		lng
 	}),
 	{
