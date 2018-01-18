@@ -56,6 +56,7 @@
 					margin-top: 0.24rem;
 					border: 1px solid #cecece;
 					.imgBox {
+						position: relative;
 						width: 100%;
 						height: 1.9rem;
 						overflow: hidden;
@@ -105,6 +106,30 @@
 							}
 						}
 					}
+					&.infoVideo .imgBox:before {
+						content: "";
+						position: absolute;
+						left: 0;
+						top: 0;
+						right: 0;
+						bottom: 0;
+						background-color: rgba(0, 0, 0, 0.48);
+					}
+					&.infoVideo .imgBox:after {
+						content: "";
+						position: absolute;
+						left: 50%;
+						top: 50%;
+						display: block;
+						width: 0.57rem;
+						height: 0.57rem;
+						margin-left: -0.285rem;
+						margin-top: -0.285rem;
+						background: url("../../../../assets/images/zixun_play.png")
+							no-repeat 0 0;
+						background-size: 100%;
+						cursor: pointer;
+					}
 				}
 			}
 		}
@@ -139,6 +164,38 @@
 					-webkit-box-orient: vertical;
 					-webkit-line-clamp: 2;
 				}
+			}
+		}
+	}
+	.pageTurn {
+		width: 100%;
+		height: 0.16rem;
+		overflow: hidden;
+		margin: 0.3rem 0 1rem;
+		.pageTurmLf {
+			float: left;
+			width: 0.11rem;
+			height: 0.16rem;
+			background: url("../../../../assets/images/news_left.png") no-repeat
+				0 0;
+			background-size: 100%;
+			&.more {
+				background: url("../../../../assets/images/news_left_s.png")
+					no-repeat 0 0;
+				background-size: 100%;
+			}
+		}
+		.pageTurmRt {
+			float: right;
+			width: 0.11rem;
+			height: 0.16rem;
+			background: url("../../../../assets/images/news_right.png")
+				no-repeat 0 0;
+			background-size: 100%;
+			&.more {
+				background: url("../../../../assets/images/news_right_s.png")
+					no-repeat 0 0;
+				background-size: 100%;
 			}
 		}
 	}
