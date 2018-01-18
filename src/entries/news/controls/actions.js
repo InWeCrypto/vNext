@@ -5,8 +5,13 @@ const PRE_FIX = "NEWS_";
 export const NEWSLIST = `${PRE_FIX}NEWSLIST`;
 
 export const getNews = createAction(NEWSLIST, () => {
-	return http.post({
-		url: "",
-		params: {}
-	});
+	return http
+		.get({
+			url: "article"
+		})
+		.then(res => {
+			if (res.code === 4000) {
+				console.log(res);
+			}
+		});
 });
