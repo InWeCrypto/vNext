@@ -6,9 +6,9 @@ import { reactI18nextModule } from "react-i18next";
 import language from "./locales/";
 import { getLocalItem, setLocalItem } from "./utils/util";
 var languageItem = getLocalItem("language");
-var languageType = languageItem ? languageItem.data : "cn";
+var languageType = languageItem ? languageItem.data : "zh";
 if (!languageItem) {
-	setLocalItem("language", "cn");
+	setLocalItem("language", "zh");
 }
 i18n
 	//.use(XHR)

@@ -6,7 +6,7 @@ export const lng = handleActions(
 			return payload;
 		}
 	},
-	"cn"
+	"zh"
 );
 export const userInfo = handleActions(
 	{

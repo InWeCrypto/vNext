@@ -3,11 +3,20 @@ import { I18n, Trans } from "react-i18next";
 import "./index.less";
 import defaultHeader from "../../../../assets/images/member_img.png";
 class MemberSet extends PureComponent {
-	changeEmail(data) {
-		this.props.changeSendEmail(data);
+	constructor(props) {
+		super(props);
+		this.state = {
+			isEditNickName: false,
+			oldText: props.userInfo.name,
+			newText: ""
+		};
+	}
+	openResetPass(data) {
+		this.props.openResetPass(data);
 	}
 	render() {
-		const { lng } = this.props;
+		const { lng, userInfo } = this.props;
+		const { isEditNickName } = this.state;
 		return (
 			<I18n>
 				{(t, { I18n }) => (
@@ -26,7 +35,9 @@ class MemberSet extends PureComponent {
 										<div className="key">
 											{t("member.memberset.email", lng)}:
 										</div>
-										<div className="value f1">yxyxy</div>
+										<div className="value f1">
+											{userInfo && userInfo.email}
+										</div>
 									</div>
 								</div>
 							</div>
@@ -39,15 +50,32 @@ class MemberSet extends PureComponent {
 												lng
 											)}:
 										</div>
-										<div className="value ctrl f1 ui center">
-											<div className="f1">sss</div>
-											<span className="ctrlbtn">
-												{t(
-													"member.memberset.ctrl",
-													lng
-												)}
-											</span>
-										</div>
+										{!isEditNickName && (
+											<div className="value ctrl f1 ui center">
+												<div className="f1">
+													{this.state.oldText}
+												</div>
+												<span className="ctrlbtn">
+													{t(
+														"member.memberset.ctrl",
+														lng
+													)}
+												</span>
+											</div>
+										)}
+										{isEditNickName && (
+											<div className="value ctrl f1 ui center">
+												<div className="f1">
+													{this.state.oldText}
+												</div>
+												<span className="ctrlbtn">
+													{t(
+														"member.memberset.ctrl",
+														lng
+													)}
+												</span>
+											</div>
+										)}
 									</div>
 								</div>
 							</div>
@@ -61,10 +89,10 @@ class MemberSet extends PureComponent {
 											)}:
 										</div>
 										<div className="value ctrl f1 ui center">
-											<div className="f1">sss</div>
+											<div className="f1">******</div>
 											<span
 												className="ctrlbtn"
-												onClick={this.changeEmail.bind(
+												onClick={this.openResetPass.bind(
 													this,
 													true
 												)}

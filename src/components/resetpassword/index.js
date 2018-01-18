@@ -6,6 +6,8 @@ class ResetPassword extends PureComponent {
 	constructor() {
 		super();
 		this.state = {
+			passwordOld: "",
+			isPasswordOld: false,
 			password1: "",
 			isShowPass1: false,
 			password2: "",
@@ -25,113 +27,150 @@ class ResetPassword extends PureComponent {
 			[type]: s
 		});
 	}
+	resetPass() {
+		if (this.state.password1 != this.state.password2) {
+			Msg.prompt(i18n.t("error.passLength", this.props.lng));
+			return;
+		}
+		this.props.resetPass({
+			password_old: this.state.passwordOld,
+			password: this.state.password1,
+			password_confirmation: this.state.password2
+		});
+	}
 	render() {
 		const { lng } = this.props;
-		const { isShowPass1, isShowPass2, isShowError } = this.state;
+		const {
+			passwordOld,
+			isPasswordOld,
+			isShowPass1,
+			isShowPass2,
+			isShowError
+		} = this.state;
 		return (
 			<I18n>
 				{(t, { I18n }) => (
-					<div className="sign-box">
-						<div className="sign-content">
-							<div className="sign-bg" />
-							<div className="sign-inbox">
-								<div className="resetp-box">
-									<div className="resetp-bg" />
-									<div className="resetp-cont">
-										<div className="resetp-container">
-											<i className="icon-close" />
-											<div className="resetp-title">
-												{t("resetPassword.title", lng)}
+					<div className="resetp-box">
+						<div className="resetp-bg" />
+						<div className="resetp-cont">
+							<div className="resetp-container">
+								<i
+									onClick={this.props.close}
+									className="icon-close"
+								/>
+								<div className="resetp-title">
+									{t("resetPassword.title", lng)}
+								</div>
+								<div className="resetp-group">
+									<div className="resetp-item center ui">
+										<div className="key">
+											{t("resetPassword.t1", lng)}:
+										</div>
+										<div className="value ui center f1">
+											<div className="f1">
+												<input
+													type={(() =>
+														isPasswordOld
+															? "text"
+															: "password")()}
+													onChange={e => {
+														this.inpputChange(
+															"passwordOld",
+															e
+														);
+													}}
+												/>
 											</div>
-											<div className="resetp-group">
-												<div className="resetp-item center ui">
-													<div className="key">
-														{t(
-															"resetPassword.t1",
-															lng
-														)}:
-													</div>
-													<div className="value ui center f1">
-														<div className="f1">
-															<input
-																type={(() =>
-																	isShowPass1
-																		? "text"
-																		: "password")()}
-																onChange={e => {
-																	this.inpputChange(
-																		"password1",
-																		e
-																	);
-																}}
-															/>
-														</div>
-														<i
-															className={(() =>
-																isShowPass1
-																	? "icon-see show-text"
-																	: "icon-see")()}
-															onClick={() => {
-																this.changePassShow(
-																	"isShowPass1"
-																);
-															}}
-														/>
-													</div>
-												</div>
-												<div className="resetp-item center ui">
-													<div className="key">
-														{t(
-															"resetPassword.t2",
-															lng
-														)}:
-													</div>
-													<div className="value ui center f1">
-														<div className="f1">
-															<input
-																type={(() =>
-																	isShowPass2
-																		? "text"
-																		: "password")()}
-																onChange={e => {
-																	this.inpputChange(
-																		"password2",
-																		e
-																	);
-																}}
-															/>
-														</div>
-														<i
-															onClick={() => {
-																this.changePassShow(
-																	"isShowPass2"
-																);
-															}}
-															className={(() =>
-																isShowPass2
-																	? "icon-see show-text"
-																	: "icon-see")()}
-														/>
-													</div>
-												</div>
-											</div>
-											<div className="resetp-btn">
-												<div>
-													<span className="btn">
-														{t(
-															"resetPassword.btn",
-															lng
-														)}
-													</span>
-												</div>
-												{isShowError && (
-													<div className="resetp-error">
-														22
-													</div>
-												)}
-											</div>
+											<i
+												className={(() =>
+													isPasswordOld
+														? "icon-see show-text"
+														: "icon-see")()}
+												onClick={() => {
+													this.changePassShow(
+														"isPasswordOld"
+													);
+												}}
+											/>
 										</div>
 									</div>
+									<div className="resetp-item center ui">
+										<div className="key">
+											{t("resetPassword.t1", lng)}:
+										</div>
+										<div className="value ui center f1">
+											<div className="f1">
+												<input
+													type={(() =>
+														isShowPass1
+															? "text"
+															: "password")()}
+													onChange={e => {
+														this.inpputChange(
+															"password1",
+															e
+														);
+													}}
+												/>
+											</div>
+											<i
+												className={(() =>
+													isShowPass1
+														? "icon-see show-text"
+														: "icon-see")()}
+												onClick={() => {
+													this.changePassShow(
+														"isShowPass1"
+													);
+												}}
+											/>
+										</div>
+									</div>
+									<div className="resetp-item center ui">
+										<div className="key">
+											{t("resetPassword.t2", lng)}:
+										</div>
+										<div className="value ui center f1">
+											<div className="f1">
+												<input
+													type={(() =>
+														isShowPass2
+															? "text"
+															: "password")()}
+													onChange={e => {
+														this.inpputChange(
+															"password2",
+															e
+														);
+													}}
+												/>
+											</div>
+											<i
+												onClick={() => {
+													this.changePassShow(
+														"isShowPass2"
+													);
+												}}
+												className={(() =>
+													isShowPass2
+														? "icon-see show-text"
+														: "icon-see")()}
+											/>
+										</div>
+									</div>
+								</div>
+								<div className="resetp-btn">
+									<div>
+										<span
+											onClick={this.resetPass.bind(this)}
+											className="btn"
+										>
+											{t("resetPassword.btn", lng)}
+										</span>
+									</div>
+									{isShowError && (
+										<div className="resetp-error">22</div>
+									)}
 								</div>
 							</div>
 						</div>
