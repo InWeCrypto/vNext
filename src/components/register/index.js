@@ -1,5 +1,6 @@
 import React, { PureComponent } from "react";
 import { I18n, Trans } from "react-i18next";
+
 import "./index.less";
 class Register extends PureComponent {
 	constructor(props) {
@@ -57,16 +58,24 @@ class Register extends PureComponent {
 	}
 	registerClick() {
 		const { code, email, password, password1 } = this.state;
-		this.props.registerUser({
-			code: code,
-			email: email,
-			name: "11",
-			password: password,
-			password_confirmation: password1
-		});
+		this.props
+			.registerUser({
+				code: code,
+				email: email,
+				name: email,
+				password: password,
+				password_confirmation: password1
+			})
+			.then(res => {
+				if (res.code === 4000) {
+					Msg.prompt(i18n.t("success,login", this.props.lng));
+					//setLocalItem("userInfo", JSON.stringify(res.data));
+					this.props.close();
+				}
+			});
 	}
 	render() {
-		const { lng, close, hasBack } = this.props;
+		const { lng, close, hasBack, isForget } = this.props;
 		const {
 			surePass,
 			repeatPass,
@@ -92,7 +101,15 @@ class Register extends PureComponent {
 												onClick={close}
 											/>
 										)}
-										InWeCrypto
+										{!isForget && <span>InWeCrypto</span>}
+										{isForget && (
+											<span>
+												{t(
+													"signBox.register.forget",
+													lng
+												)}
+											</span>
+										)}
 										{!hasBack && (
 											<i
 												className="icon-close"

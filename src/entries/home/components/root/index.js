@@ -56,7 +56,14 @@ export default class Root extends PureComponent {
 	}
 	componentDidUpdate() {}
 	render() {
-		const { lng, changeLng } = this.props;
+		const {
+			lng,
+			changeLng,
+			registerUser,
+			userInfo,
+			sendEmailCode,
+			loginIn
+		} = this.props;
 		const { month, monthArr, curDay } = this.state;
 		const curMonth = monthArr[month].slice(0, 3);
 		return (
@@ -64,7 +71,13 @@ export default class Root extends PureComponent {
 				{(t, { i18n }) => (
 					<div className="container">
 						{/* <FixedMenu changeLng={changeLng} lng={lng} /> */}
-						<Header lng={lng} />
+						<Header
+							userInfo={userInfo}
+							registerUser={registerUser}
+							sendEmail={sendEmailCode}
+							loginIn={loginIn}
+							lng={lng}
+						/>
 						<div id="topText" className="top-text">
 							<TopText lng={lng} />
 						</div>

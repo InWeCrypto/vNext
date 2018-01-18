@@ -31,6 +31,7 @@ export default {
 			text: "打开InWe Wallet，扫一扫进行快"
 		},
 		register: {
+			forget: "忘记密码",
 			email: "邮箱",
 			send: "发送",
 			code: "验证码",
@@ -76,5 +77,8 @@ export default {
 		emailEmpty: "邮箱不能为空",
 		passwordEmpty: "密码不能为空",
 		rpasswordEmpty: "重复密码不能为空"
+	},
+	success: {
+		login: "登录成功"
 	}
 };

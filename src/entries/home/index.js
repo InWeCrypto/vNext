@@ -4,7 +4,7 @@ import * as reducers from "./controls/reducers";
 import * as globalReducer from "../../globalreducer";
 import React, { PureComponent } from "react";
 
-injectReducer("lng", globalReducer);
+injectReducer("globData", globalReducer);
 injectReducer("home", reducers);
 
 export default Root;

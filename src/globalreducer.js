@@ -10,7 +10,10 @@ export const lng = handleActions(
 );
 export const userInfo = handleActions(
 	{
-		USERINFO: (state, { payload }) => payload
+		USERINFO: (state, { payload }) => {
+			console.log(payload);
+			return payload;
+		}
 	},
 	null
 );

@@ -17,7 +17,8 @@ class Header extends PureComponent {
 			showSendEmail: false,
 			showRegister: false,
 			registerHasBack: false,
-			fastSign: false
+			fastSign: false,
+			isForget: false
 		};
 		this.changeMember = this.changeMember.bind(this);
 		document.addEventListener("click", this.changeMember, false);
@@ -49,16 +50,6 @@ class Header extends PureComponent {
 			showLogin: false
 		});
 	}
-	openEmail() {
-		this.setState({
-			showSendEmail: true
-		});
-	}
-	closeEmail() {
-		this.setState({
-			showSendEmail: false
-		});
-	}
 	openRegisterByLogin() {
 		this.setState({
 			showRegister: true,
@@ -71,10 +62,18 @@ class Header extends PureComponent {
 			registerHasBack: false
 		});
 	}
+	openRegisterByForget() {
+		this.setState({
+			showRegister: true,
+			registerHasBack: true,
+			isForget: true
+		});
+	}
 	closeRegister() {
 		this.setState({
 			showRegister: false,
-			registerHasBack: false
+			registerHasBack: false,
+			isForget: false
 		});
 	}
 	openFastSign() {
@@ -88,15 +87,15 @@ class Header extends PureComponent {
 		});
 	}
 	render() {
-		const { lng, sendEmail, registerUser, loginIn } = this.props;
+		const { lng, sendEmail, registerUser, loginIn, userInfo } = this.props;
 		const {
 			showMember,
 			showSign,
 			showLogin,
-			showSendEmail,
 			showRegister,
 			registerHasBack,
-			fastSign
+			fastSign,
+			isForget
 		} = this.state;
 		return (
 			<div id="headerBox" className="header-box container ui center">
@@ -109,83 +108,86 @@ class Header extends PureComponent {
 					</div>
 				</div>
 				<div className="heder-middle f1">InWeCrypto</div>
-				<div className="header-right">
-					<span onClick={this.Login.bind(this)} className="rightbtn">
-						Login
-					</span>
-					<span
-						onClick={this.openRegisterByHeader.bind(this)}
-						className="rightbtn"
-					>
-						Sign Up
-					</span>
-				</div>
-				{/* <div className="heder-right">
-					<div
-						className="member"
-						onClick={e => {
-							this.toggleMember(e);
-						}}
-					>
-						<i className="member-info" />
-						<img className="img" src={defaultHeader} />
+				{!userInfo && (
+					<div className="header-right">
+						<span
+							onClick={this.Login.bind(this)}
+							className="rightbtn"
+						>
+							Login
+						</span>
+						<span
+							onClick={this.openRegisterByHeader.bind(this)}
+							className="rightbtn"
+						>
+							Sign Up
+						</span>
 					</div>
-					{showMember && (
-						<div className="member-more">
-							<Link
-								to={{
-									pathname: "/member",
-									search: "?type=message"
+				)}
+				{userInfo &&
+					userInfo.token && (
+						<div className="heder-right">
+							<div
+								className="member"
+								onClick={e => {
+									this.toggleMember(e);
 								}}
-								className="member-item"
 							>
-								<span className="icon-box">
-									<i className="icon-message" />
-									<i className="circle" />
-								</span>
-								<span className="member-itemtext">
-									未读消息
-								</span>
-							</Link>
-							<Link
-								to={{
-									pathname: "/member",
-									search: "?type=collection"
-								}}
-								className="member-item"
-							>
-								<span className="icon-box">
-									<i className="icon-personal" />
-								</span>
-								<span className="member-itemtext">
-									个人中心
-								</span>
-							</Link>
-							<div className="member-item">
-								<span className="icon-box">
-									<i className="icon-out" />
-								</span>
-								<span className="member-itemtext">退出</span>
+								<i className="member-info" />
+								<img className="img" src={defaultHeader} />
 							</div>
+							{showMember && (
+								<div className="member-more">
+									<Link
+										to={{
+											pathname: "/member",
+											search: "?type=message"
+										}}
+										className="member-item"
+									>
+										<span className="icon-box">
+											<i className="icon-message" />
+											<i className="circle" />
+										</span>
+										<span className="member-itemtext">
+											未读消息
+										</span>
+									</Link>
+									<Link
+										to={{
+											pathname: "/member",
+											search: "?type=collection"
+										}}
+										className="member-item"
+									>
+										<span className="icon-box">
+											<i className="icon-personal" />
+										</span>
+										<span className="member-itemtext">
+											个人中心
+										</span>
+									</Link>
+									<div className="member-item">
+										<span className="icon-box">
+											<i className="icon-out" />
+										</span>
+										<span className="member-itemtext">
+											退出
+										</span>
+									</div>
+								</div>
+							)}
 						</div>
 					)}
-					
-                </div> */}
+
 				{showLogin && (
 					<SignIn
 						loginIn={loginIn}
-						openEmail={this.openEmail.bind(this)}
+						isForget={isForget}
 						closeSign={this.closeSignIn.bind(this)}
 						openRegister={this.openRegisterByLogin.bind(this)}
+						openForget={this.openRegisterByForget.bind(this)}
 						openFast={this.openFastSign.bind(this)}
-						lng={lng}
-					/>
-				)}
-				{showSendEmail && (
-					<EmailCode
-						email={"yx53074@163.com"}
-						sendEmail={sendEmail}
-						closeEmail={this.closeEmail.bind(this)}
 						lng={lng}
 					/>
 				)}
@@ -194,6 +196,7 @@ class Header extends PureComponent {
 				)}
 				{showRegister && (
 					<Register
+						isForget={isForget}
 						hasBack={registerHasBack}
 						close={this.closeRegister.bind(this)}
 						sendEmail={sendEmail}

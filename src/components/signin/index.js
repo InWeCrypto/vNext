@@ -1,5 +1,6 @@
 import React, { PureComponent } from "react";
 import { I18n, Trans } from "react-i18next";
+import { setLocalItem } from "../../utils/util";
 import "./index.less";
 class SignIn extends PureComponent {
 	constructor() {
@@ -28,10 +29,17 @@ class SignIn extends PureComponent {
 		});
 	}
 	loginIn() {
-		this.props.loginIn({
-			email: this.state.email,
-			password: this.state.password
-		});
+		this.props
+			.loginIn({
+				email: this.state.email,
+				password: this.state.password
+			})
+			.then(res => {
+				if (res.code === 4000) {
+					Msg.prompt(i18n.t("success.login", this.props.lng));
+					this.props.closeSign();
+				}
+			});
 	}
 	render() {
 		const {
@@ -39,7 +47,9 @@ class SignIn extends PureComponent {
 			closeSign,
 			openEmail,
 			openRegister,
-			openFast
+			openForget,
+			openFast,
+			isForget
 		} = this.props;
 		return (
 			<I18n>
@@ -107,7 +117,7 @@ class SignIn extends PureComponent {
 											/>
 										</div>
 										<div className="forget">
-											<span onClick={openEmail}>
+											<span onClick={openForget}>
 												{t(
 													"signBox.signIn.forget",
 													lng

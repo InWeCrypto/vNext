@@ -1,5 +1,6 @@
 import { createAction } from "redux-actions";
 import http from "./utils/ajax";
+import { setLocalItem } from "./utils/util";
 export const LNG = "LNG";
 export const USERINFO = "USERINFO";
 export const EMAILCODE = "EMAILCODE";
@@ -28,6 +29,9 @@ export const registerUser = createAction(USERINFO, params => {
 		})
 		.then(res => {
 			console.log(res);
+			if (res.code === 4000) {
+				setLocalItem("userInfo", JSON.stringify(res.data));
+			}
 			return res;
 		});
 });
@@ -39,6 +43,12 @@ export const loginIn = createAction(USERINFO, params => {
 		})
 		.then(res => {
 			console.log(res);
+			if (res.code === 4000) {
+				setLocalItem("userInfo", JSON.stringify(res.data));
+			}
 			return res;
 		});
+});
+export const setReduxUserInfo = createAction(USERINFO, data => {
+	return data;
 });

@@ -72,7 +72,8 @@ export default class Root extends PureComponent {
 			changeLng,
 			sendEmailCode,
 			registerUser,
-			loginIn
+			loginIn,
+			userInfo
 		} = this.props;
 		const {
 			set,
@@ -89,6 +90,7 @@ export default class Root extends PureComponent {
 				{(t, { I18n }) => (
 					<div className="member-box">
 						<Header
+							userInfo={userInfo}
 							registerUser={registerUser}
 							sendEmail={sendEmailCode}
 							loginIn={loginIn}
