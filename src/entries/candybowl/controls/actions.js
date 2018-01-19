@@ -2,11 +2,10 @@ import { createAction } from "redux-actions";
 import http from "../../../utils/ajax";
 
 const PRE_FIX = "CANDYBOWL_";
-export const NEWSLIST = `${PRE_FIX}NEWSLIST`;
+export const CANDAYLIST = `${PRE_FIX}CANDAYLIST`;
 
-export const getNewsList = createAction(NEWSLIST, () => {
-	return http.post({
-		url: "",
-		params: {}
+export const getCandyList = createAction(CANDAYLIST, query => {
+	return http.get({
+		url: `candy_bow${query}`
 	});
 });

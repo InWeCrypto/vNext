@@ -1,6 +1,7 @@
 import React, { PureComponent } from "react";
 import { I18n, Trans } from "react-i18next";
-
+import { StyleSheet, css } from "aphrodite";
+import { puffIn } from "react-magic";
 import "./index.less";
 class Register extends PureComponent {
 	constructor(props) {
@@ -16,6 +17,12 @@ class Register extends PureComponent {
 			password1: "",
 			hasBack: props.hasBack ? this.props.hasBac : false
 		};
+		this.styles = StyleSheet.create({
+			magic: {
+				animationName: puffIn,
+				animationDuration: ".3s"
+			}
+		});
 		this.inputChange = this.inputChange.bind(this);
 	}
 	togglePass(type) {
@@ -107,199 +114,203 @@ class Register extends PureComponent {
 					<div className="sign-box">
 						<div className="sign-content">
 							<div className="sign-bg" />
-							<div className="sign-inbox">
-								<div className="register-box">
-									<div className="register-title">
-										{hasBack && (
-											<i
-												className="icon-return"
-												onClick={close}
-											/>
-										)}
-										{!isForget && <span>InWeCrypto</span>}
-										{isForget && (
-											<span>
-												{t(
-													"signBox.register.forget",
-													lng
-												)}
-											</span>
-										)}
-										{!hasBack && (
-											<i
-												className="icon-close"
-												onClick={close}
-											/>
-										)}
-									</div>
-									<div className="register-cont">
-										<div className="register-item ui center">
-											<div className="register-name">
-												{t(
-													"signBox.register.email",
-													lng
-												)}:
-											</div>
-											<div className="register-input">
-												<input
-													onChange={e => {
-														this.inputChange(
-															"email",
-															e
-														);
-													}}
-													value={email}
-													className="input"
-													type="text"
-													placeholder={t(
+							<div className={css(this.styles.magic)}>
+								<div className="sign-inbox">
+									<div className="register-box">
+										<div className="register-title">
+											{hasBack && (
+												<i
+													className="icon-return"
+													onClick={close}
+												/>
+											)}
+											{!isForget && (
+												<span>InWeCrypto</span>
+											)}
+											{isForget && (
+												<span>
+													{t(
+														"signBox.register.forget",
+														lng
+													)}
+												</span>
+											)}
+											{!hasBack && (
+												<i
+													className="icon-close"
+													onClick={close}
+												/>
+											)}
+										</div>
+										<div className="register-cont">
+											<div className="register-item ui center">
+												<div className="register-name">
+													{t(
 														"signBox.register.email",
 														lng
-													)}
-												/>
+													)}:
+												</div>
+												<div className="register-input">
+													<input
+														onChange={e => {
+															this.inputChange(
+																"email",
+																e
+															);
+														}}
+														value={email}
+														className="input"
+														type="text"
+														placeholder={t(
+															"signBox.register.email",
+															lng
+														)}
+													/>
+												</div>
 											</div>
-										</div>
-										<div className="register-item ui center">
-											<div className="register-name">
-												{t(
-													"signBox.register.code",
-													lng
-												)}:
-											</div>
-											<div className="register-input">
-												<input
-													onChange={e => {
-														this.inputChange(
-															"code",
-															e
-														);
-													}}
-													value={code}
-													className="input"
-													type="text"
-													placeholder={t(
+											<div className="register-item ui center">
+												<div className="register-name">
+													{t(
 														"signBox.register.code",
 														lng
-													)}
-												/>
+													)}:
+												</div>
+												<div className="register-input">
+													<input
+														onChange={e => {
+															this.inputChange(
+																"code",
+																e
+															);
+														}}
+														value={code}
+														className="input"
+														type="text"
+														placeholder={t(
+															"signBox.register.code",
+															lng
+														)}
+													/>
+												</div>
+												{!isSending && (
+													<button
+														onClick={this.sendCode.bind(
+															this
+														)}
+														className="btn1"
+													>
+														{t(
+															"signBox.register.send",
+															lng
+														)}
+													</button>
+												)}
+												{isSending && (
+													<button className="btn2">
+														{time}s
+													</button>
+												)}
 											</div>
-											{!isSending && (
-												<button
-													onClick={this.sendCode.bind(
-														this
-													)}
-													className="btn1"
-												>
+											<div className="register-item ui center">
+												<div className="register-name">
 													{t(
-														"signBox.register.send",
-														lng
-													)}
-												</button>
-											)}
-											{isSending && (
-												<button className="btn2">
-													{time}s
-												</button>
-											)}
-										</div>
-										<div className="register-item ui center">
-											<div className="register-name">
-												{t(
-													"signBox.register.password",
-													lng
-												)}:
-											</div>
-											<div className="register-input">
-												<input
-													onChange={e => {
-														this.inputChange(
-															"password",
-															e
-														);
-													}}
-													value={password}
-													className="input"
-													placeholder={t(
 														"signBox.register.password",
 														lng
+													)}:
+												</div>
+												<div className="register-input">
+													<input
+														onChange={e => {
+															this.inputChange(
+																"password",
+																e
+															);
+														}}
+														value={password}
+														className="input"
+														placeholder={t(
+															"signBox.register.password",
+															lng
+														)}
+														type={(() =>
+															surePass
+																? "text"
+																: "password")()}
+													/>
+												</div>
+												<i
+													onClick={this.togglePass.bind(
+														this,
+														"surePass"
 													)}
-													type={(() =>
+													className={(() =>
 														surePass
-															? "text"
-															: "password")()}
+															? "icon-see show-text"
+															: "icon-see")()}
 												/>
 											</div>
-											<i
-												onClick={this.togglePass.bind(
-													this,
-													"surePass"
-												)}
-												className={(() =>
-													surePass
-														? "icon-see show-text"
-														: "icon-see")()}
-											/>
-										</div>
-										<div className="register-item ui center">
-											<div className="register-name">
-												{t(
-													"signBox.register.repeatPassword",
-													lng
-												)}:
-											</div>
-											<div className="register-input">
-												<input
-													onChange={e => {
-														this.inputChange(
-															"password1",
-															e
-														);
-													}}
-													value={password1}
-													className="input"
-													placeholder={t(
+											<div className="register-item ui center">
+												<div className="register-name">
+													{t(
 														"signBox.register.repeatPassword",
 														lng
+													)}:
+												</div>
+												<div className="register-input">
+													<input
+														onChange={e => {
+															this.inputChange(
+																"password1",
+																e
+															);
+														}}
+														value={password1}
+														className="input"
+														placeholder={t(
+															"signBox.register.repeatPassword",
+															lng
+														)}
+														type={(() =>
+															repeatPass
+																? "text"
+																: "password")()}
+													/>
+												</div>
+												<i
+													onClick={this.togglePass.bind(
+														this,
+														"repeatPass"
 													)}
-													type={(() =>
+													className={(() =>
 														repeatPass
-															? "text"
-															: "password")()}
+															? "icon-see show-text"
+															: "icon-see")()}
 												/>
 											</div>
-											<i
-												onClick={this.togglePass.bind(
-													this,
-													"repeatPass"
-												)}
-												className={(() =>
-													repeatPass
-														? "icon-see show-text"
-														: "icon-see")()}
-											/>
-										</div>
-										<div className="register-btn">
-											<div
-												className="btn"
-												onClick={this.registerClick.bind(
-													this
-												)}
-											>
-												{isForget && (
-													<span>
-														{t(
-															"signBox.register.resetPass",
-															lng
-														)}
-													</span>
-												)}
-												{!isForget && (
-													<span>
-														{t(
-															"signBox.register.register",
-															lng
-														)}
-													</span>
-												)}
+											<div className="register-btn">
+												<div
+													className="btn"
+													onClick={this.registerClick.bind(
+														this
+													)}
+												>
+													{isForget && (
+														<span>
+															{t(
+																"signBox.register.resetPass",
+																lng
+															)}
+														</span>
+													)}
+													{!isForget && (
+														<span>
+															{t(
+																"signBox.register.register",
+																lng
+															)}
+														</span>
+													)}
+												</div>
 											</div>
 										</div>
 									</div>

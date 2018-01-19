@@ -3,8 +3,9 @@ import Root from "../components/root";
 import * as actions from "../controls/actions";
 import * as globalActions from "../../../globalactions";
 export default connect(
-	({ candybowl: { newsList }, lng: { lng } }) => ({
+	({ candybowl: { newsList }, globData: { lng, userInfo } }) => ({
 		newsList,
+		userInfo,
 		lng
 	}),
 	{

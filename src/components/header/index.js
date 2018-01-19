@@ -1,5 +1,6 @@
 import React, { PureComponent } from "react";
 import { Link } from "react-router-dom";
+
 import "./index.less";
 import SignIn from "../signin/";
 import FastSign from "../fastsign/";
@@ -21,6 +22,7 @@ class Header extends PureComponent {
 			fastSign: false,
 			isForget: false
 		};
+
 		this.changeMember = this.changeMember.bind(this);
 	}
 	changeMember() {

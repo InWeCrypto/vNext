@@ -3,8 +3,12 @@ import Root from "../components/root";
 import * as actions from "../controls/actions";
 import * as globalActions from "../../../globalactions";
 export default connect(
-	({ member: { collectionList }, globData: { lng, userInfo } }) => ({
+	({
+		member: { collectionList, quotationList },
+		globData: { lng, userInfo }
+	}) => ({
 		collectionList,
+		quotationList,
 		userInfo,
 		lng
 	}),

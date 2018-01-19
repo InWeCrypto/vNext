@@ -7,8 +7,7 @@ class ProjectCollection extends PureComponent {
 	constructor() {
 		super();
 		this.state = {
-			per_page: 10,
-			page: 0
+			per_page: 10
 		};
 	}
 	componentDidMount() {
@@ -20,24 +19,27 @@ class ProjectCollection extends PureComponent {
 				boxH - pageH + "px";
 			let memberNameH = document.querySelector("#memberNameBox")
 				.offsetHeight;
-			let pre_page = parseInt(
+			let per_page = parseInt(
 				(boxH - pageH - memberNameH - 30) / (memberNameH - 10),
 				10
 			);
 			this.setState({
-				per_page: pre_page
+				per_page: per_page
 			});
-			this.getData(pre_page);
+			this.getData(1);
 		}, 0);
 	}
-	getData(pre_page) {
+	getData(page) {
 		let query = "";
-		query += `per_page=${this.state.per_page}`;
-		query += `&page=${pre_page}`;
+		query += `&per_page=${this.state.per_page}`;
+		query += `&page=${page}`;
 		this.props.getCollectionList(query);
 	}
+	changePagination(page, size) {
+		this.getData(page);
+	}
 	render() {
-		const { userInfo, collectionList } = this.props;
+		const { userInfo, collectionList, lng } = this.props;
 		return (
 			<I18n>
 				{(t, { I18n }) => (
@@ -88,9 +90,22 @@ class ProjectCollection extends PureComponent {
 										</div>
 									);
 								})}
+							{(!collectionList ||
+								!collectionList.data ||
+								collectionList.data.length <= 0) && (
+								<div>{t("nodata", lng)}</div>
+							)}
 						</div>
+
 						<div id="memberPagationBox" className="pagination-box">
-							<Pagination efaultCurrent={5} total={500} />
+							{collectionList && (
+								<Pagination
+									defaultPageSize={this.state.per_page}
+									defaultCurrent={collectionList.current_page}
+									total={collectionList.total}
+									onChange={this.changePagination.bind(this)}
+								/>
+							)}
 						</div>
 					</div>
 				)}

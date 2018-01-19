@@ -1,5 +1,6 @@
 import React, { PureComponent } from "react";
 import { I18n, Trans } from "react-i18next";
+
 import { getMainMinHeight, getQuery } from "../../../../utils/util";
 import Header from "../../../../components/header/";
 import FixedMenu from "../../../../components/fixedmenu";
@@ -90,7 +91,9 @@ export default class Root extends PureComponent {
 			setReduxUserInfo,
 			forgetUser,
 			getCollectionList,
-			collectionList
+			collectionList,
+			getQuotationList,
+			quotationList
 		} = this.props;
 		const {
 			set,
@@ -132,6 +135,7 @@ export default class Root extends PureComponent {
 											lng={lng}
 										/>
 									)}
+
 									{message && <MemberMessage lng={lng} />}
 									{collection && (
 										<ProjectCollection
@@ -143,7 +147,13 @@ export default class Root extends PureComponent {
 											lng={lng}
 										/>
 									)}
-									{quotation && <MemberQuotation lng={lng} />}
+									{quotation && (
+										<MemberQuotation
+											quotationList={quotationList}
+											getQuotationList={getQuotationList}
+											lng={lng}
+										/>
+									)}
 								</div>
 							</div>
 						</div>

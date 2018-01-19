@@ -15,5 +15,5 @@ export default {
 		trading: "Trading View",
 		announcment: "Announcment"
 	},
-	name: "22"
+	nodata: "no data"
 };

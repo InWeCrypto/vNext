@@ -1,7 +1,18 @@
 import React, { PureComponent } from "react";
 import { I18n, Trans } from "react-i18next";
+import { StyleSheet, css } from "aphrodite";
+import { puffIn } from "react-magic";
 import "./index.less";
 class FastSign extends PureComponent {
+	constructor() {
+		super();
+		this.styles = StyleSheet.create({
+			magic: {
+				animationName: puffIn,
+				animationDuration: ".3s"
+			}
+		});
+	}
 	render() {
 		const { lng, close } = this.props;
 		return (
@@ -10,23 +21,25 @@ class FastSign extends PureComponent {
 					<div className="sign-box">
 						<div className="sign-content">
 							<div className="sign-bg" />
-							<div className="sign-inbox">
-								<div className="fastsign-box">
-									<div className="fastsign-title">
-										<i
-											className="icon-return"
-											onClick={close}
-										/>
-										InWeCrypto
-									</div>
-									<div className="fastsign-qcode">
-										<img
-											className="img"
-											src="https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=2162811911,2962770632&fm=173&s=5E7528C404433D530A705D910300C080&w=218&h=146&img.JPEG"
-										/>
-									</div>
-									<div className="t1">
-										{t("signBox.fastSign.text", lng)}
+							<div className={css(this.styles.magic)}>
+								<div className="sign-inbox">
+									<div className="fastsign-box">
+										<div className="fastsign-title">
+											<i
+												className="icon-return"
+												onClick={close}
+											/>
+											InWeCrypto
+										</div>
+										<div className="fastsign-qcode">
+											<img
+												className="img"
+												src="https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=2162811911,2962770632&fm=173&s=5E7528C404433D530A705D910300C080&w=218&h=146&img.JPEG"
+											/>
+										</div>
+										<div className="t1">
+											{t("signBox.fastSign.text", lng)}
+										</div>
 									</div>
 								</div>
 							</div>
