@@ -5,6 +5,7 @@ const PRE_FIX = "MEMBER_";
 export const COLLECTION = `${PRE_FIX}COLLECTION`;
 export const QUOTATION = `${PRE_FIX}QUOTATION`;
 export const UPLOADKEY = `${PRE_FIX}UPLOADKEY`;
+export const UPLOADERHEADER = `${PRE_FIX}UPLOADERHEADER`;
 
 export const getCollectionList = createAction(COLLECTION, query => {
 	return http.get({

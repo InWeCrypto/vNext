@@ -5,6 +5,7 @@ export const LNG = "LNG";
 export const USERINFO = "USERINFO";
 export const EMAILCODE = "EMAILCODE";
 export const NICKNAME = "NICKNAME";
+export const USERHEADER = "USERHEADER";
 export const changeLng = createAction(LNG, lng => {
 	return lng;
 });
@@ -93,6 +94,25 @@ export const resetNickName = createAction(NICKNAME, params => {
 		.then(res => {
 			if (res.code === 4000) {
 				setLocalItem("userInfo", JSON.stringify(res.data));
+			}
+			return res;
+		});
+});
+export const uploadHeader = createAction(USERHEADER, img => {
+	return http
+		.put({
+			url: "user",
+			params: {
+				img: img
+			}
+		})
+		.then(res => {
+			if (res.code === 4000) {
+				return {
+					code: res.code,
+					msg: res.msg,
+					data: img //res.data.img
+				};
 			}
 			return res;
 		});

@@ -50,7 +50,7 @@ class MemberSet extends PureComponent {
 				option.dir +
 				option.expire +
 				option.filename;
-			console.log(imgAdd);
+			this.props.uploadHeader(imgAdd);
 		});
 	}
 
@@ -108,7 +108,13 @@ class MemberSet extends PureComponent {
 						<div className="member-title">
 							<div className="member-header-box">
 								<div className="member-img-box">
-									<img src={defaultHeader} />
+									<img
+										src={
+											userInfo.img
+												? userInfo.img
+												: defaultHeader
+										}
+									/>
 									<div id="ban_uploader" />
 								</div>
 							</div>
