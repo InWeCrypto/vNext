@@ -11,6 +11,7 @@ import { platform } from "os";
 
 export default class Root extends PureComponent {
 	componentWillReceiveProps(nextProps) {
+		console.log(nextProps);
 		if (nextProps.location.search != this.props.location.search) {
 			this.initPage(nextProps.location.search);
 		}
@@ -47,7 +48,8 @@ export default class Root extends PureComponent {
 			isShowImg: true,
 			newsType: "video", // video img
 			isJump: "", // yes no
-			art_id: ""
+			art_id: "",
+			enable: false
 		};
 	}
 	getNewsDetailContent(art_id) {
@@ -57,9 +59,48 @@ export default class Root extends PureComponent {
 			})
 			.then(res => {
 				if (res.code === 4000) {
+					let enableBool = false;
+					if (
+						res.data.article_user &&
+						res.data.article_user.user_id
+					) {
+						enableBool = true;
+					} else {
+						enableBool = false;
+					}
 					this.setState({
-						newsType: res.data.type
+						art_id: res.data.id,
+						newsType: res.data.type,
+						enable: enableBool
 					});
+				}
+			})
+			.then(res => {
+				this.getNewsComment();
+			});
+	}
+	getNewsCollect(art_id) {
+		this.props
+			.getNewsDetailCollect({
+				art_id: art_id,
+				enable: !this.state.enable
+			})
+			.then(res => {
+				if (res.code === 4000) {
+					this.setState({
+						enable: !this.state.enable
+					});
+				}
+			});
+	}
+	getNewsComment() {
+		this.props
+			.getNewsDetailCommentL({
+				art_id: this.state.art_id
+			})
+			.then(res => {
+				if (res.code === 4000) {
+					console.log(res);
 				}
 			});
 	}
@@ -89,7 +130,17 @@ export default class Root extends PureComponent {
 	}
 	textSubmit() {
 		let obj = document.getElementById("textareaId");
-		Msg.alert(obj.value);
+		this.props
+			.getNewsDetailComment({
+				art_id: this.state.art_id,
+				content: obj.value
+			})
+			.then(res => {
+				if (res.code === 4000) {
+					obj.value = "";
+					this.getNewsComment();
+				}
+			});
 	}
 	videoPlay() {
 		this.setState({
@@ -139,7 +190,7 @@ export default class Root extends PureComponent {
 		// };
 	}
 	render() {
-		const { minH } = this.state;
+		const { minH, enable } = this.state;
 		const {
 			lng,
 			changeLng,
@@ -149,7 +200,8 @@ export default class Root extends PureComponent {
 			userInfo,
 			setReduxUserInfo,
 			forgetUser,
-			newsDetail
+			newsDetail,
+			newsDetailCommentL
 		} = this.props;
 		return (
 			<I18n>
@@ -168,17 +220,27 @@ export default class Root extends PureComponent {
 						<div id="mainBox" className="newsDetail ui">
 							<div
 								id="newsDetailLeft"
-								className="newsDetailLeft ui center"
+								className={
+									newsDetail.article_prev
+										? "newsDetailLeft ui center show"
+										: "newsDetailLeft ui center"
+								}
 							>
-								<Link
-									to={{
-										pathname: "/project",
-										search: ""
-									}}
-								>
-									<span />
-								</Link>
+								{newsDetail.article_prev && (
+									<Link
+										to={{
+											pathname: "newsdetail",
+											search:
+												"?art_id=" +
+												newsDetail.article_prev.id
+										}}
+									>
+										<span />
+									</Link>
+								)}
+								{!newsDetail.article_prev && <span />}
 							</div>
+
 							<div className="newsDetailCon">
 								<div className="newsDetailConTitle">
 									<span>{newsDetail.title}</span>
@@ -188,28 +250,62 @@ export default class Root extends PureComponent {
 										<span className="metaDate">
 											{newsDetail.updated_at}
 										</span>
-										<span className="metaCategory">
-											原创
-										</span>
-										<img
-											src="http://down1.sucaitianxia.com/psd02/psd169/psds32262.jpg"
-											alt=""
-										/>
-										<img
-											src="http://down1.sucaitianxia.com/psd02/psd169/psds32262.jpg"
-											alt=""
-										/>
-										<img
-											src="http://down1.sucaitianxia.com/psd02/psd169/psds32262.jpg"
-											alt=""
-										/>
+										{newsDetail.is_sole && (
+											<span className="metaCategory">
+												原创
+											</span>
+										)}
+										{newsDetail &&
+											newsDetail.article_category_cc &&
+											newsDetail.article_category_cc
+												.length > 0 &&
+											newsDetail.article_category_cc.map(
+												(item, index) => {
+													return (
+														<Link
+															key={index}
+															to={{
+																pathname:
+																	"/projectdetail/" +
+																	item
+																		.category
+																		.id
+															}}
+														>
+															<img
+																src={
+																	item
+																		.category
+																		.img
+																}
+																alt={
+																	item
+																		.category
+																		.name
+																}
+															/>
+														</Link>
+													);
+												}
+											)}
 									</div>
 									<div className="newDetailConShare">
 										<span>
 											<b className="wxShare" />
 										</span>
 										<span>
-											<b className="collect active" />
+											<b
+												className={
+													enable
+														? "collect active"
+														: "collect"
+												}
+												onClick={() => {
+													this.getNewsCollect(
+														newsDetail.id
+													);
+												}}
+											/>
 										</span>
 									</div>
 								</div>
@@ -237,29 +333,14 @@ export default class Root extends PureComponent {
 									)}
 
 									<div className="newsDetailContent">
-										<p>
-											NEO是一个非盈利的社区化的区块链项目，是利用区块链技术和数字身份进行资
-											产数字化，利用智能合约对数字资产进行自动化管理，实现“智能经济”的一种分
-											布式网络。NEO于2014年正式立项，2015年6月在Github上实时开源，自成立以
-											来，NEO团队亲历了区块链行业的高潮与低谷，数字货币市场的狂热与冷却。我
-											们相信，科技是这个时代变迁的原动力，在这股动力的推动下，我们将迈入新
-											的“智能经济”时代。
-										</p>
+										{newsDetail.content}
+
 										{this.state.newsType == 2 && (
 											<img
 												src="http://img4.imgtn.bdimg.com/it/u=4004954884,1272926999&fm=214&gp=0.jpg"
 												alt=""
 											/>
 										)}
-
-										<p>
-											NEO是一个非盈利的社区化的区块链项目，是利用区块链技术和数字身份进行资
-											产数字化，利用智能合约对数字资产进行自动化管理，实现“智能经济”的一种分
-											布式网络。NEO于2014年正式立项，2015年6月在Github上实时开源，自成立以
-											来，NEO团队亲历了区块链行业的高潮与低谷，数字货币市场的狂热与冷却。我
-											们相信，科技是这个时代变迁的原动力，在这股动力的推动下，我们将迈入新
-											的“智能经济”时代。
-										</p>
 									</div>
 									<p className="newsReadNums">
 										{newsDetail.click_rate}人已读
@@ -274,7 +355,7 @@ export default class Root extends PureComponent {
 											{this.state.isShowImg && (
 												<div className="newsDetailHeadImg">
 													<img
-														src="http://a.hiphotos.baidu.com/zhidao/wh%3D450%2C600/sign=bbba1da0d60735fa91a546bdab612385/9825bc315c6034a84e7d073ac9134954082376e9.jpg"
+														src={userInfo.img}
 														alt=""
 													/>
 												</div>
@@ -314,42 +395,76 @@ export default class Root extends PureComponent {
 										</div>
 									</div>
 									<ul className="newsDetailCommentList">
-										<li>
-											<div className="newsDetailCommentListHead ui center">
-												<div className="newsDetailHeadImg">
-													<img
-														src="http://a.hiphotos.baidu.com/zhidao/wh%3D450%2C600/sign=bbba1da0d60735fa91a546bdab612385/9825bc315c6034a84e7d073ac9134954082376e9.jpg"
-														alt=""
-													/>
-												</div>
-												<div className="newsDetailHeadInfo">
-													<span className="newsDetailHeadName">
-														想要一只猫
-													</span>
-													<span className="newsDetailHeadDate">
-														2017.11.11 12:30:11
-													</span>
-												</div>
-											</div>
-											<div className="newsDetailCommentListContent">
-												<p>很有作用</p>
-											</div>
-										</li>
+										{newsDetailCommentL &&
+											newsDetailCommentL.data &&
+											newsDetailCommentL.data.length >
+												0 &&
+											newsDetailCommentL.data.map(
+												(item, index) => {
+													return (
+														<li key={index}>
+															<div className="newsDetailCommentListHead ui center">
+																<div className="newsDetailHeadImg">
+																	<img
+																		src={
+																			item
+																				.user
+																				.img
+																		}
+																		alt=""
+																	/>
+																</div>
+																<div className="newsDetailHeadInfo">
+																	<span className="newsDetailHeadName">
+																		{
+																			item
+																				.user
+																				.name
+																		}
+																	</span>
+																	<span className="newsDetailHeadDate">
+																		{
+																			item.created_at
+																		}
+																	</span>
+																</div>
+															</div>
+															<div className="newsDetailCommentListContent">
+																<p>
+																	{
+																		item.content
+																	}
+																</p>
+															</div>
+														</li>
+													);
+												}
+											)}
 									</ul>
 								</div>
 							</div>
+
 							<div
 								id="newsDetailRight"
-								className="newsDetailRight show ui center"
+								className={
+									newsDetail.article_next
+										? "newsDetailRight show ui center"
+										: "newsDetailRight ui center"
+								}
 							>
-								<Link
-									to={{
-										pathname: "/project",
-										search: ""
-									}}
-								>
-									<span />
-								</Link>
+								{newsDetail.article_next && (
+									<Link
+										to={{
+											pathname: "newsdetail",
+											search:
+												"?art_id=" +
+												newsDetail.article_next.id
+										}}
+									>
+										<span />
+									</Link>
+								)}
+								{!newsDetail.article_next && <span />}
 							</div>
 						</div>
 					</div>
