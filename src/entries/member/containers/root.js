@@ -4,9 +4,10 @@ import * as actions from "../controls/actions";
 import * as globalActions from "../../../globalactions";
 export default connect(
 	({
-		member: { collectionList, quotationList },
+		member: { collectionList, quotationList, uploadKey },
 		globData: { lng, userInfo }
 	}) => ({
+		uploadKey,
 		collectionList,
 		quotationList,
 		userInfo,

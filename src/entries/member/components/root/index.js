@@ -93,7 +93,9 @@ export default class Root extends PureComponent {
 			getCollectionList,
 			collectionList,
 			getQuotationList,
-			quotationList
+			quotationList,
+			getUploadKey,
+			uploadKey
 		} = this.props;
 		const {
 			set,
@@ -130,9 +132,11 @@ export default class Root extends PureComponent {
 											openResetPass={this.openResetPass.bind(
 												this
 											)}
+											uploadKey={uploadKey}
 											userInfo={userInfo}
 											resetNick={this.props.resetNickName}
 											lng={lng}
+											getUploadKey={getUploadKey}
 										/>
 									)}
 
