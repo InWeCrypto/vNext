@@ -11,7 +11,6 @@ import { platform } from "os";
 
 export default class Root extends PureComponent {
 	componentWillReceiveProps(nextProps) {
-		console.log(nextProps);
 		if (nextProps.location.search != this.props.location.search) {
 			this.initPage(nextProps.location.search);
 		}

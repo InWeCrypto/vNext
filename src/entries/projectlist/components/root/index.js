@@ -9,32 +9,87 @@ import FixedMenu from "../../../../components/fixedmenu";
 import "./index.less";
 
 export default class Root extends PureComponent {
-	componentWillReceiveProps(nextProps) {}
-	componentDidMount() {
-		document.title = "InWe-项目列表";
-		this.props.getProjectList();
-		let minH = getMainMinHeight();
-		this.setState({
-			minH: minH
-		});
-		document.querySelector("#mainBox").style.minHeight = minH + "px";
-	}
-	componentDidUpdate() {}
 	constructor(props) {
 		super(props);
 		this.state = {
 			minH: "auto"
 		};
 	}
+	componentWillReceiveProps(nextProps) {}
+	componentDidMount() {
+		document.title = "InWe-项目列表";
+		let minH = getMainMinHeight();
+		this.setState({
+			minH: minH
+		});
+		document.querySelector("#mainBox").style.minHeight = minH + "px";
+		this.initPage();
+	}
+	componentDidUpdate() {}
+	initPage() {
+		// 默认条数4
+		this.props.getProject({
+			type: 1,
+			per_page: 4
+		});
+		this.props.getProject2({
+			type: 2,
+			per_page: 4
+		});
+		this.props.getProject3({
+			type: 3,
+			per_page: 4
+		});
+		this.props.getProject4({
+			type: 4,
+			per_page: 4
+		});
+	}
+	projectCollect(c_id, enable) {
+		this.props
+			.getProjectCollect({
+				c_id: c_id,
+				enable: !enable
+			})
+			.then(res => {
+				if (res.code === 4000) {
+					this.setState({
+						// enable: !this.state.enable
+					});
+					console.log(this.props);
+				}
+			});
+	}
 	render() {
 		const { minH } = this.state;
-		const { lng, changeLng } = this.props;
+		const {
+			lng,
+			changeLng,
+			sendEmailCode,
+			registerUser,
+			loginIn,
+			userInfo,
+			setReduxUserInfo,
+			forgetUser,
+			project,
+			project2,
+			project3,
+			project4
+		} = this.props;
 		return (
 			<I18n>
 				{(t, { i18n }) => (
 					<div className="container">
 						<FixedMenu changeLng={changeLng} lng={lng} />
-						<Header />
+						<Header
+							userInfo={userInfo}
+							registerUser={registerUser}
+							sendEmail={sendEmailCode}
+							loginIn={loginIn}
+							setReduxUserInfo={setReduxUserInfo}
+							forgetUser={forgetUser}
+							lng={lng}
+						/>
 						<div id="mainBox" className="projectList ui">
 							<div className="projectListReturn ui center">
 								<Link
@@ -86,49 +141,246 @@ export default class Root extends PureComponent {
 												</span>
 											</div>
 											<ul className="projectListConChildUl">
-												<li>
-													<div className="projectListLiTop ui center">
-														<div className="projectListLiTopLeft ui center">
-															<div className="projectListImg newMsg">
-																<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1515589318224&di=6418f077b77d7451a1246c6cfe793406&imgtype=0&src=http%3A%2F%2Fpic36.nipic.com%2F20131124%2F6608733_084856944000_2.jpg" />
-															</div>
-															<p>
-																<span className="ellitext">
-																	NEO
-																</span>
-																<b className="ellitext">
-																	(neo)
-																</b>
-															</p>
-														</div>
-														<div
-															className={
-																index == 2
-																	? "projectListLiTopRight collect"
-																	: "projectListLiTopRight nocollect"
-															}
-														/>
-													</div>
-													<div className="projectListLiCenter">
-														<div className="left">
-															Blockchain
-														</div>
-														{index == 0 && (
-															<div className="right">
-																$90.00<span>
-																	(-12.00%)
-																</span>
-															</div>
-														)}
-													</div>
-												</li>
+												{index == 0 &&
+													project &&
+													project.data &&
+													project.data.length > 0 &&
+													project.data.map(
+														(item, index) => {
+															return (
+																<li key={index}>
+																	<div className="projectListLiTop ui center">
+																		<div className="projectListLiTopLeft ui center">
+																			<div className="projectListImg newMsg">
+																				<img
+																					src={
+																						item.img
+																					}
+																				/>
+																			</div>
+																			<p>
+																				<span className="ellitext">
+																					{item.name.toLocaleUpperCase()}
+																				</span>
+																				<b className="ellitext">
+																					({
+																						item.long_name
+																					})
+																				</b>
+																			</p>
+																		</div>
+																		<div
+																			className={
+																				item.category_user
+																					? "projectListLiTopRight collect"
+																					: "projectListLiTopRight nocollect"
+																			}
+																			onClick={() => {
+																				let enable = item.category_user
+																					? true
+																					: false;
+																				this.projectCollect(
+																					item.id,
+																					enable
+																				);
+																			}}
+																		/>
+																	</div>
+																	<div className="projectListLiCenter">
+																		<div className="left">
+																			{
+																				item.industry
+																			}
+																		</div>
+																		<div className="right">
+																			$90.00<span
+																			>
+																				(-12.00%)
+																			</span>
+																		</div>
+																	</div>
+																</li>
+															);
+														}
+													)}
+												{index == 1 &&
+													project2 &&
+													project2.data &&
+													project2.data.length > 0 &&
+													project2.data.map(
+														(item, index) => {
+															return (
+																<li key={index}>
+																	<div className="projectListLiTop ui center">
+																		<div className="projectListLiTopLeft ui center">
+																			<div className="projectListImg newMsg">
+																				<img
+																					src={
+																						item.img
+																					}
+																				/>
+																			</div>
+																			<p>
+																				<span className="ellitext">
+																					{item.name.toLocaleUpperCase()}
+																				</span>
+																				<b className="ellitext">
+																					({
+																						item.long_name
+																					})
+																				</b>
+																			</p>
+																		</div>
+																		<div
+																			className={
+																				item.category_user
+																					? "projectListLiTopRight collect"
+																					: "projectListLiTopRight nocollect"
+																			}
+																			onClick={() => {
+																				let enable = item.category_user
+																					? true
+																					: false;
+																				this.projectCollect(
+																					item.id,
+																					enable
+																				);
+																			}}
+																		/>
+																	</div>
+																	<div className="projectListLiCenter">
+																		<div className="left">
+																			{
+																				item.industry
+																			}
+																		</div>
+																	</div>
+																</li>
+															);
+														}
+													)}
+												{index == 2 &&
+													project3 &&
+													project3.data &&
+													project3.data.length > 0 &&
+													project3.data.map(
+														(item, index) => {
+															return (
+																<li key={index}>
+																	<div className="projectListLiTop ui center">
+																		<div className="projectListLiTopLeft ui center">
+																			<div className="projectListImg newMsg">
+																				<img
+																					src={
+																						item.img
+																					}
+																				/>
+																			</div>
+																			<p>
+																				<span className="ellitext">
+																					{item.name.toLocaleUpperCase()}
+																				</span>
+																				<b className="ellitext">
+																					({
+																						item.long_name
+																					})
+																				</b>
+																			</p>
+																		</div>
+																		<div
+																			className={
+																				item.category_user
+																					? "projectListLiTopRight collect"
+																					: "projectListLiTopRight nocollect"
+																			}
+																			onClick={() => {
+																				let enable = item.category_user
+																					? true
+																					: false;
+																				this.projectCollect(
+																					item.id,
+																					enable
+																				);
+																			}}
+																		/>
+																	</div>
+																	<div className="projectListLiCenter">
+																		<div className="left">
+																			{
+																				item.industry
+																			}
+																		</div>
+																	</div>
+																</li>
+															);
+														}
+													)}
+												{index == 3 &&
+													project4 &&
+													project4.data &&
+													project4.data.length > 0 &&
+													project4.data.map(
+														(item, index) => {
+															return (
+																<li key={index}>
+																	<div className="projectListLiTop ui center">
+																		<div className="projectListLiTopLeft ui center">
+																			<div className="projectListImg newMsg">
+																				<img
+																					src={
+																						item.img
+																					}
+																				/>
+																			</div>
+																			<p>
+																				<span className="ellitext">
+																					{item.name.toLocaleUpperCase()}
+																				</span>
+																				<b className="ellitext">
+																					({
+																						item.long_name
+																					})
+																				</b>
+																			</p>
+																		</div>
+																		<div
+																			className={
+																				item.category_user
+																					? "projectListLiTopRight collect"
+																					: "projectListLiTopRight nocollect"
+																			}
+																			onClick={() => {
+																				let enable = item.category_user
+																					? true
+																					: false;
+																				this.projectCollect(
+																					item.id,
+																					enable
+																				);
+																			}}
+																		/>
+																	</div>
+																	<div className="projectListLiCenter">
+																		<div className="left">
+																			{
+																				item.industry
+																			}
+																		</div>
+																	</div>
+																</li>
+															);
+														}
+													)}
 											</ul>
 											<div className="projectListConChildMore">
 												<Link
 													to={{
 														pathname:
 															"/projectopen",
-														search: ""
+														search:
+															"?type=" +
+															(index + 1) +
+															"&&page=1"
 													}}
 												>
 													<span className="ellitext">
@@ -136,7 +388,18 @@ export default class Root extends PureComponent {
 															"project.other",
 															lng
 														)}
-														14
+														{index == 0 &&
+															project.total -
+																project.to}
+														{index == 1 &&
+															project2.total -
+																project2.to}
+														{index == 2 &&
+															project3.total -
+																project3.to}
+														{index == 3 &&
+															project4.total -
+																project4.to}
 														{t(
 															"project.otherend",
 															lng

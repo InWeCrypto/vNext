@@ -9,12 +9,22 @@ import LeftMenu from "../../../../components/leftmenu";
 import "./index.less";
 
 export default class Root extends PureComponent {
+	constructor(props) {
+		super(props);
+		this.state = {
+			minH: "auto",
+			showArrow: "right",
+			liW: "auto",
+			leftTwoMenuCur: ""
+		};
+	}
 	componentWillReceiveProps(nextProps) {
-		this.leftTwoMenusLinkTo(nextProps.location.search);
+		if (nextProps.location.search != this.props.location.search) {
+			this.initPage(nextProps.location.search);
+		}
 	}
 	componentDidMount() {
 		document.title = "InWe-Trading";
-		this.props.getProject();
 		let minH = getMainMinHeight();
 		let liW =
 			(document.querySelector("#projectContentRef").clientWidth - 187) /
@@ -26,11 +36,24 @@ export default class Root extends PureComponent {
 		document.querySelector("#mainBox").style.height = minH + "px";
 		document.querySelector("#projectUlRef").style.width = liW * 4 + "px";
 
-		this.leftTwoMenusLinkTo(this.props.location.search);
+		this.initPage(this.props.location.search);
 	}
-	leftTwoMenusLinkTo(search) {
+	initPage(search) {
 		let q = getQuery(search);
-		this.state.leftTwoMenuCur = q.type || "";
+		this.setState({
+			leftTwoMenuCur: q.type || "1"
+		});
+		this.props
+			.getProject({
+				type: q.type,
+				per_page: 8
+			})
+			.then(res => {
+				this.setState({
+					showArrow: "left"
+				});
+				this.listMove();
+			});
 	}
 	listMove() {
 		let showArrow = this.state.showArrow;
@@ -50,23 +73,47 @@ export default class Root extends PureComponent {
 			? "leftTwoMenuItem cur"
 			: "leftTwoMenuItem";
 	}
-	constructor(props) {
-		super(props);
-		this.state = {
-			minH: "auto",
-			showArrow: "right",
-			liW: "auto",
-			leftTwoMenuCur: ""
-		};
+	projectCollect(c_id, enable) {
+		this.props
+			.getProjectCollect({
+				c_id: c_id,
+				enable: !enable
+			})
+			.then(res => {
+				if (res.code === 4000) {
+					this.setState({
+						// enable: !this.state.enable
+					});
+					console.log(this.props);
+				}
+			});
 	}
 	render() {
 		const { minH, showArrow, liW, leftTwoMenuCur } = this.state;
-		const { lng, changeLng } = this.props;
+		const {
+			lng,
+			changeLng,
+			sendEmailCode,
+			registerUser,
+			loginIn,
+			userInfo,
+			setReduxUserInfo,
+			forgetUser,
+			project
+		} = this.props;
 		return (
 			<I18n>
 				{(t, { i18n }) => (
 					<div className="container">
-						<Header />
+						<Header
+							userInfo={userInfo}
+							registerUser={registerUser}
+							sendEmail={sendEmailCode}
+							loginIn={loginIn}
+							setReduxUserInfo={setReduxUserInfo}
+							forgetUser={forgetUser}
+							lng={lng}
+						/>
 						<div id="mainBox" className="project ui">
 							<div className="left-menus ui center">
 								<LeftMenu lng={lng} />
@@ -76,10 +123,12 @@ export default class Root extends PureComponent {
 									<Link
 										to={{
 											pathname: "/project",
-											search: ""
+											search: "type=1"
 										}}
 										className={(() =>
-											this.setLeftTwoMenuItemClass(""))()}
+											this.setLeftTwoMenuItemClass(
+												"1"
+											))()}
 									>
 										<span className="text">
 											{t("project.trading", lng)}
@@ -88,11 +137,11 @@ export default class Root extends PureComponent {
 									<Link
 										to={{
 											pathname: "/project",
-											search: "?type=active"
+											search: "?type=2"
 										}}
 										className={(() =>
 											this.setLeftTwoMenuItemClass(
-												"active"
+												"2"
 											))()}
 									>
 										<span className="text">
@@ -102,11 +151,11 @@ export default class Root extends PureComponent {
 									<Link
 										to={{
 											pathname: "/project",
-											search: "?type=upcoming"
+											search: "?type=3"
 										}}
 										className={(() =>
 											this.setLeftTwoMenuItemClass(
-												"upcoming"
+												"3"
 											))()}
 									>
 										<span className="text">
@@ -116,11 +165,11 @@ export default class Root extends PureComponent {
 									<Link
 										to={{
 											pathname: "/project",
-											search: "?type=ended"
+											search: "?type=4"
 										}}
 										className={(() =>
 											this.setLeftTwoMenuItemClass(
-												"ended"
+												"4"
 											))()}
 									>
 										<span className="text">
@@ -134,8 +183,10 @@ export default class Root extends PureComponent {
 								className="projectContent ui f1"
 							>
 								<ul id="projectUlRef" className="ui">
-									{[1, 2, 3, 4, 5, 6, 7, 8].map(
-										(item, index) => {
+									{project &&
+										project.data &&
+										project.data.length > 0 &&
+										project.data.map((item, index) => {
 											return (
 												<li
 													style={{
@@ -146,40 +197,69 @@ export default class Root extends PureComponent {
 												>
 													<div className="projectLiTop ui center">
 														<div className="projectLiTopLeft ui center">
-															<img src="" />
+															<img
+																src={item.img}
+															/>
 															<p>
-																<span>NEO</span>
-																<b>(neo)</b>
+																<span>
+																	{item.name.toLocaleUpperCase()}
+																</span>
+																<b>
+																	({
+																		item.long_name
+																	})
+																</b>
 															</p>
 														</div>
 														<div
 															className={
-																index == 4
+																item.category_user
 																	? "projectLiTopRight collect"
 																	: "projectLiTopRight nocollect"
 															}
+															onClick={() => {
+																let enable = item.category_user
+																	? true
+																	: false;
+																this.projectCollect(
+																	item.id,
+																	enable
+																);
+															}}
 														/>
 													</div>
 													<div className="projectLiType">
 														<span className="ellitext">
-															Blockchain
+															{item.industry}
 														</span>
 													</div>
 													<div className="projectLiDesc">
 														<p className="ellitext">
-															高盛将构建加密货币交易平台
+															{item.last_article &&
+																item
+																	.last_article
+																	.title}
 														</p>
 													</div>
 													<div className="projectLiImg">
-														<img src="" alt="" />
+														<img
+															src={
+																item.last_article &&
+																item
+																	.last_article
+																	.img
+															}
+															alt=""
+														/>
 													</div>
 													<div className="projectLiDate">
-														2017-11-16 11:35:33
+														{item.last_article &&
+															item.last_article
+																.created_at}
 													</div>
 												</li>
 											);
-										}
-									)}
+										})}
 								</ul>
 								<Link
 									to={{

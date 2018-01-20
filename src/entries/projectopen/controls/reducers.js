@@ -1,9 +1,18 @@
 import { handleActions } from "redux-actions";
-import { NEWSLIST } from "./actions";
+import { PROJECT, PROJECTCOLLECT } from "./actions";
 
-export const newsList = handleActions(
+export const project = handleActions(
 	{
-		[NEWSLIST]: (state, { payload }) => payload
+		[PROJECT]: (state, { payload }) => {
+			return payload;
+		},
+		[PROJECTCOLLECT]: (state, { payload }) => {
+			state.data.map((item, index) => {
+				if (item.id === payload.id) {
+				}
+			});
+			return payload;
+		}
 	},
 	[]
 );

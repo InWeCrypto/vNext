@@ -2,17 +2,31 @@ import React, { PureComponent } from "react";
 import { I18n, Trans } from "react-i18next";
 import { NavLink, Link } from "react-router-dom";
 
-import { getMainMinHeight } from "../../../../utils/util";
+import { getMainMinHeight, getQuery } from "../../../../utils/util";
 import Header from "../../../../components/header";
 import Footer from "../../../../components/footer";
 import FixedMenu from "../../../../components/fixedmenu";
 import "./index.less";
 
 export default class Root extends PureComponent {
-	componentWillReceiveProps(nextProps) {}
+	constructor(props) {
+		super(props);
+		this.state = {
+			minH: "auto",
+			liW: "auto",
+			liH: "auto",
+			liMR: "auto",
+			type: 1,
+			page: 1
+		};
+	}
+	componentWillReceiveProps(nextProps) {
+		if (nextProps.location.search != this.props.location.search) {
+			this.initPage(nextProps.location.search);
+		}
+	}
 	componentDidMount() {
 		document.title = "InWe-项目列表";
-		this.props.getProjectOpen();
 		let minH = getMainMinHeight();
 		let U = (uiW = document.getElementById("projectOpenConChildUl")
 			.clientWidth);
@@ -26,50 +40,98 @@ export default class Root extends PureComponent {
 			liMR: liMR
 		});
 		document.querySelector("#mainBox").style.minHeight = minH + "px";
+		this.initPage(this.props.location.search);
 	}
 	componentDidUpdate() {}
-	constructor(props) {
-		super(props);
-		this.state = {
-			minH: "auto",
-			liW: "auto",
-			liH: "auto",
-			liMR: "auto"
-		};
+	initPage(search) {
+		let q = getQuery(search);
+		this.setState({
+			type: q.type || "1",
+			page: q.page || "1"
+		});
+		this.props
+			.getProject({
+				type: q.type,
+				per_page: 2,
+				page: q.page
+			})
+			.then(res => {
+				this.setState({});
+			});
 	}
 	render() {
-		const { minH, liW, liH, liMR } = this.state;
-		const { lng, changeLng } = this.props;
+		const { minH, liW, liH, liMR, type, page } = this.state;
+		const {
+			lng,
+			changeLng,
+			sendEmailCode,
+			registerUser,
+			loginIn,
+			userInfo,
+			setReduxUserInfo,
+			forgetUser,
+			project
+		} = this.props;
 		return (
 			<I18n>
 				{(t, { i18n }) => (
 					<div className="container">
 						<FixedMenu changeLng={changeLng} lng={lng} />
-						<Header />
+						<Header
+							userInfo={userInfo}
+							registerUser={registerUser}
+							sendEmail={sendEmailCode}
+							loginIn={loginIn}
+							setReduxUserInfo={setReduxUserInfo}
+							forgetUser={forgetUser}
+							lng={lng}
+						/>
 						<div id="mainBox" className="projectOpen ui">
-							<div className="projectOpenLeft ui center">
-								<Link
-									to={{
-										pathname: "/project",
-										search: ""
-									}}
-								>
-									<span />
-								</Link>
+							<div
+								className={
+									project.article_prev
+										? "projectOpenLeft ui center show"
+										: "projectOpenLeft ui center"
+								}
+							>
+								{project.article_prev && (
+									<Link
+										to={{
+											pathname: "/projectopen",
+											search:
+												"?type=" +
+												type +
+												"&&page=" +
+												(page - 1)
+										}}
+									>
+										<span />
+									</Link>
+								)}
+								{!project.article_prev && <span />}
 							</div>
 							<div className="projectOpenCon ui">
 								<div className="projectOpenConChild">
 									<div className="projectOpenConChildTitle">
 										<span className="ellitext">
-											{t("project.trading", lng)}
+											{type == 1 &&
+												t("project.trading", lng)}
+											{type == 2 &&
+												t("project.active", lng)}
+											{type == 3 &&
+												t("project.upcoming", lng)}
+											{type == 4 &&
+												t("project.ended", lng)}
 										</span>
 									</div>
 									<ul
 										id="projectOpenConChildUl"
 										className="projectOpenConChildUl"
 									>
-										{[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(
-											(item, index) => {
+										{project &&
+											project.data &&
+											project.data.length > 0 &&
+											project.data.map((item, index) => {
 												return (
 													<li
 														key={index}
@@ -82,30 +144,47 @@ export default class Root extends PureComponent {
 														<div className="projectOpenLiTop ui center">
 															<div className="projectOpenLiTopLeft ui center">
 																<div className="projectOpenImg newMsg">
-																	<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1515589318224&di=6418f077b77d7451a1246c6cfe793406&imgtype=0&src=http%3A%2F%2Fpic36.nipic.com%2F20131124%2F6608733_084856944000_2.jpg" />
+																	<img
+																		src={
+																			item.img
+																		}
+																	/>
 																</div>
 																<p>
 																	<span className="ellitext">
-																		NEO
+																		{
+																			item.name
+																		}
 																	</span>
 																	<b className="ellitext">
-																		(neo)
+																		{
+																			item.long_name
+																		}
 																	</b>
 																</p>
 															</div>
 															<div
 																className={
-																	index == 2
+																	item.category_user
 																		? "projectOpenLiTopRight collect"
 																		: "projectOpenLiTopRight nocollect"
 																}
+																onClick={() => {
+																	let enable = item.category_user
+																		? true
+																		: false;
+																	this.projectCollect(
+																		item.id,
+																		enable
+																	);
+																}}
 															/>
 														</div>
 														<div className="projectOpenLiCenter">
 															<div className="left">
-																Blockchain
+																{item.industry}
 															</div>
-															{index == 0 && (
+															{type == 1 && (
 																<div className="right">
 																	$90.00<span>
 																		(-12.00%)
@@ -115,20 +194,32 @@ export default class Root extends PureComponent {
 														</div>
 													</li>
 												);
-											}
-										)}
+											})}
 									</ul>
 								</div>
 							</div>
-							<div className="projectOpenRight show ui center">
-								<Link
-									to={{
-										pathname: "/project",
-										search: ""
-									}}
-								>
-									<span />
-								</Link>
+							<div
+								className={
+									project.article_next
+										? "projectOpenRight show ui center"
+										: "projectOpenRight ui center"
+								}
+							>
+								{project.article_next && (
+									<Link
+										to={{
+											ppathname: "/projectopen",
+											search:
+												"?type=" +
+												type +
+												"&&page=" +
+												(page - 1)
+										}}
+									>
+										<span />
+									</Link>
+								)}
+								{!project.article_next && <span />}
 							</div>
 						</div>
 					</div>
