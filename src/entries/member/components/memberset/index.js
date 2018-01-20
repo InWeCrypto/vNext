@@ -1,6 +1,7 @@
 import React, { PureComponent } from "react";
 import webUploader from "../../../../assets/js/webuploader.min.js";
 import { I18n, Trans } from "react-i18next";
+import { getLocalItem, setLocalItem } from "../../../../utils/util";
 import "./index.less";
 import defaultHeader from "../../../../assets/images/member_img.png";
 window.webUploader = webUploader;
@@ -51,6 +52,9 @@ class MemberSet extends PureComponent {
 				option.expire +
 				option.filename;
 			this.props.uploadHeader(imgAdd);
+			let item = JSON.parse(getLocalItem("userInfo").data);
+			item.img = imgAdd;
+			setLocalItem("userInfo", JSON.stringify(item));
 		});
 	}
 
