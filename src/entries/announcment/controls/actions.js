@@ -6,7 +6,7 @@ export const ANNOUNCMENT = `${PRE_FIX}ANNOUNCMENT`;
 
 export const getAnnouncment = createAction(ANNOUNCMENT, params => {
 	return http.get({
-		url: "ads",
+		url: "exchange_notice",
 		params: params
 	});
 });

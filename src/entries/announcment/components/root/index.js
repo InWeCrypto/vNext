@@ -32,11 +32,16 @@ export default class Root extends PureComponent {
 			liH: "auto",
 			lfMore: "leftArrow",
 			rtMore: "rightArrow more",
-			page: 1
+			page: 1,
+			nums: 8
 		};
 	}
 	initPage(location) {
 		let p = getQuery(location);
+		let annoBoxH = document.getElementById("annoCon").clientHeight;
+		let annoBoxLiH = 103;
+		let nums = Math.floor(annoBoxH / annoBoxLiH) * 2;
+
 		if (p.page) {
 			this.setState({
 				page: p.page
@@ -44,7 +49,8 @@ export default class Root extends PureComponent {
 		}
 
 		this.props.getAnnouncment({
-			page: p.page || 1
+			page: p.page || 1,
+			per_page: nums
 		});
 	}
 	annoMove(val) {
@@ -62,12 +68,30 @@ export default class Root extends PureComponent {
 	}
 	render() {
 		const { minH, liH, rtMore, lfMore } = this.state;
-		const { lng, changeLng } = this.props;
+		const {
+			lng,
+			changeLng,
+			sendEmailCode,
+			registerUser,
+			loginIn,
+			userInfo,
+			setReduxUserInfo,
+			forgetUser,
+			announcment
+		} = this.props;
 		return (
 			<I18n>
 				{(t, { i18n }) => (
 					<div className="container">
-						<Header />
+						<Header
+							userInfo={userInfo}
+							registerUser={registerUser}
+							sendEmail={sendEmailCode}
+							loginIn={loginIn}
+							setReduxUserInfo={setReduxUserInfo}
+							forgetUser={forgetUser}
+							lng={lng}
+						/>
 						<div id="mainBox" className="anno ui">
 							<div className="left-menus ui center">
 								<div className="left-menus-anno">
@@ -76,29 +100,74 @@ export default class Root extends PureComponent {
 							</div>
 							<div id="annoBox" className="annoBox ui f1">
 								<div className="annoBoxArrow ui center">
-									<span
-										className={this.state.lfMore}
-										onClick={() => {
-											this.annoMove("left");
-										}}
-									/>
+									{announcment.prev_page_url && (
+										<Link
+											to={{
+												pathname: "/announcment",
+												search:
+													"?page=" +
+													(announcment.current_page -
+														1)
+											}}
+										>
+											<span
+												className={
+													announcment.prev_page_url
+														? "leftArrow more"
+														: "leftArrow"
+												}
+											/>
+										</Link>
+									)}
+									{!announcment.prev_page_url && (
+										<span
+											className={
+												announcment.prev_page_url
+													? "leftArrow more"
+													: "leftArrow"
+											}
+										/>
+									)}
 								</div>
-								<div id="annoCon" className="annoCon ui">
+								<div id="annoCon" className="annoCon ">
 									<ul className="ui">
-										{[1, 2, 3, 4].map((item, index) => {
-											return (
-												<li key={index} className="">
-													<p className="annoBoxLiText ellitext">
-														+火币：火币全球专业站12月27日14:00上线NEO、GAS
-													</p>
-													<p className="annoBoxLiDate">
-														2017-11-16 11:35:33
-													</p>
-												</li>
-											);
-										})}
+										{announcment &&
+											announcment.data &&
+											announcment.data.length > 0 &&
+											announcment.data.map(
+												(item, index) => {
+													return (
+														<li
+															key={index}
+															className=""
+														>
+															<Link
+																to={{
+																	pathname:
+																		item.source_url
+																}}
+															>
+																<div className="liBox">
+																	<p className="annoBoxLiText ellitext">
+																		+{
+																			item.source_name
+																		}：{
+																			item.content
+																		}
+																	</p>
+																	<p className="annoBoxLiDate">
+																		{
+																			item.updated_at
+																		}
+																	</p>
+																</div>
+															</Link>
+														</li>
+													);
+												}
+											)}
 									</ul>
-									<ul className="ui">
+									{/* <ul className="ui">
 										{[1, 2].map((item, index) => {
 											return (
 												<li key={index} className="">
@@ -111,15 +180,37 @@ export default class Root extends PureComponent {
 												</li>
 											);
 										})}
-									</ul>
+									</ul> */}
 								</div>
 								<div className="annoBoxArrow ui center">
-									<span
-										className={this.state.rtMore}
-										onClick={() => {
-											this.annoMove("right");
-										}}
-									/>
+									{announcment.next_page_url && (
+										<Link
+											to={{
+												pathname: "/announcment",
+												search:
+													"?page=" +
+													(announcment.current_page +
+														1)
+											}}
+										>
+											<span
+												className={
+													announcment.next_page_url
+														? "rightArrow more"
+														: "rightArrow"
+												}
+											/>
+										</Link>
+									)}
+									{!announcment.next_page_url && (
+										<span
+											className={
+												announcment.next_page_url
+													? "rightArrow more"
+													: "rightArrow"
+											}
+										/>
+									)}
 								</div>
 							</div>
 						</div>

@@ -1,7 +1,7 @@
 import { handleActions } from "redux-actions";
 import { ANNOUNCMENT } from "./actions";
 
-export const announcmentList = handleActions(
+export const announcment = handleActions(
 	{
 		[ANNOUNCMENT]: (state, { payload }) => payload
 	},

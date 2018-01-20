@@ -6,8 +6,8 @@ import * as globalActions from "../../../globalactions";
 //    categoryList
 //}),
 export default connect(
-	({ announcment: { announcmentList }, globData: { lng, userInfo } }) => ({
-		announcmentList,
+	({ announcment: { announcment }, globData: { lng, userInfo } }) => ({
+		announcment,
 		userInfo,
 		lng
 	}),
