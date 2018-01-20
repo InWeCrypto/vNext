@@ -5,7 +5,7 @@ import GaiKuo from "../../../../components/gaikuo";
 import "./index.less";
 class ProjectDetailIco extends PureComponent {
 	render() {
-		const { lng, changeLng } = this.props;
+		const { lng, changeLng, projectDetail } = this.props;
 		return (
 			<I18n>
 				{(t, { I18n }) => (
@@ -15,10 +15,10 @@ class ProjectDetailIco extends PureComponent {
 								<div className="projectDetailConTopLeft">
 									<div className="projectDetailCenter1">
 										<div className="projectDetailImg">
-											<img src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1515589318224&amp;di=6418f077b77d7451a1246c6cfe793406&amp;imgtype=0&amp;src=http%3A%2F%2Fpic36.nipic.com%2F20131124%2F6608733_084856944000_2.jpg" />
+											<img src={projectDetail.img} />
 										</div>
-										<span>NEO</span>
-										<p>Blockchain</p>
+										<span>{projectDetail.name}</span>
+										<p>{projectDetail.intrusion}</p>
 									</div>
 
 									<div className="projectDetailCenter2">
@@ -84,14 +84,44 @@ class ProjectDetailIco extends PureComponent {
 								<div className="projectDetailCon2Title">
 									Explore
 								</div>
-								<p>+Neotracker.io</p>
-								<p>+Neotracker.io</p>
+								{projectDetail &&
+									projectDetail.category_explorer &&
+									projectDetail.category_explorer.length >
+										0 &&
+									projectDetail.category_explorer.map(
+										(item, index) => {
+											return;
+											<Link
+												to={{
+													pathname: item.url
+												}}
+											>
+												<p>+{item.name}</p>
+											</Link>;
+										}
+									)}
+								{/* <p>+qtumexplorer.io</p> */}
 							</div>
 							<div className="projectDetailCon2Box">
 								<div className="projectDetailCon2Title">
 									Wallet
 								</div>
-								<p>+Im token</p>
+								{projectDetail &&
+									projectDetail.category_wallet &&
+									projectDetail.category_wallet.length > 0 &&
+									projectDetail.category_wallet.map(
+										(item, index) => {
+											return;
+											<Link
+												to={{
+													pathname: item.url
+												}}
+											>
+												<p>+{item.name}</p>
+											</Link>;
+										}
+									)}
+								{/* <p>+Im token</p> */}
 							</div>
 						</div>
 					</div>

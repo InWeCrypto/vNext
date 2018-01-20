@@ -89,12 +89,12 @@ export default class Root extends PureComponent {
 						<div id="mainBox" className="projectOpen ui">
 							<div
 								className={
-									project.article_prev
+									project.prev_page_url
 										? "projectOpenLeft ui center show"
 										: "projectOpenLeft ui center"
 								}
 							>
-								{project.article_prev && (
+								{project.prev_page_url && (
 									<Link
 										to={{
 											pathname: "/projectopen",
@@ -102,13 +102,13 @@ export default class Root extends PureComponent {
 												"?type=" +
 												type +
 												"&&page=" +
-												(page - 1)
+												(project.current_page - 1)
 										}}
 									>
 										<span />
 									</Link>
 								)}
-								{!project.article_prev && <span />}
+								{!project.prev_page_url && <span />}
 							</div>
 							<div className="projectOpenCon ui">
 								<div className="projectOpenConChild">
@@ -200,12 +200,12 @@ export default class Root extends PureComponent {
 							</div>
 							<div
 								className={
-									project.article_next
+									project.next_page_url
 										? "projectOpenRight show ui center"
 										: "projectOpenRight ui center"
 								}
 							>
-								{project.article_next && (
+								{project.next_page_url && (
 									<Link
 										to={{
 											ppathname: "/projectopen",
@@ -213,13 +213,13 @@ export default class Root extends PureComponent {
 												"?type=" +
 												type +
 												"&&page=" +
-												(page - 1)
+												(project.current_page + 1)
 										}}
 									>
 										<span />
 									</Link>
 								)}
-								{!project.article_next && <span />}
+								{!project.next_page_url && <span />}
 							</div>
 						</div>
 					</div>
