@@ -7,6 +7,7 @@ import FixedMenu from "../../../../components/fixedmenu";
 import MemberNav from "../membernav/";
 import MemberSet from "../memberset/";
 import MemberMessage from "../membermessage/";
+import MemberNews from "../membernews/";
 import ProjectCollection from "../projectcollection";
 import MemberQuotation from "../memberquotation";
 import EmailCode from "../../../../components/emailcode/";
@@ -103,6 +104,7 @@ export default class Root extends PureComponent {
 			message,
 			collection,
 			quotation,
+			news,
 			cur,
 			email,
 			emailAddress,
@@ -141,7 +143,7 @@ export default class Root extends PureComponent {
 											uploadHeader={uploadHeader}
 										/>
 									)}
-
+									{news && <MemberNews />}
 									{message && <MemberMessage lng={lng} />}
 									{collection && (
 										<ProjectCollection
