@@ -66,11 +66,7 @@ export default class Root extends PureComponent {
 		set["cur"] = type;
 		this.setState(set);
 	}
-	// changeSendEmail(data) {
-	// 	this.setState({
-	// 		email: data
-	// 	});
-	// }
+
 	openResetPass() {
 		this.setState({
 			resetP: true

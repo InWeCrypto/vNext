@@ -4,7 +4,8 @@ var webpackDevConfig = {
 	devtool: "cheap-module-source-map",
 	output: {
 		path: config.outputRoot,
-		filename: "[name].js"
+		filename: "[name].js",
+		chunkFilename: "[name].[chunkhash:9].chunk.js"
 	}
 };
 module.exports = webpackDevConfig;

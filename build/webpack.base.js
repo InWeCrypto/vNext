@@ -2,6 +2,7 @@ var webpack = require("webpack");
 var path = require("path");
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var HtmlWebpackPlugin = require("html-webpack-plugin");
+const uglify = require("uglifyjs-webpack-plugin");
 var path = require("path");
 var entries = {};
 var rootPath = path.resolve(__dirname, "../src");
@@ -14,6 +15,14 @@ entries.pace = [
 	rootPath + "/assets/less/pace.theme.less",
 	rootPath + "/assets/js/pace.js"
 ];
+// entries.vendor = [
+// 	"react",
+// 	"react-router-dom",
+// 	"redux",
+// 	"react-redux",
+// 	"redux-actions",
+// 	"react-router-redux"
+// ];
 var webpackConfig = {
 	entry: entries,
 	resolve: {
@@ -42,6 +51,7 @@ var webpackConfig = {
 					"less-loader"
 				]
 			},
+
 			{
 				test: /\.js$/,
 				use: {
@@ -99,8 +109,7 @@ var webpackConfig = {
 	plugins: [
 		new HtmlWebpackPlugin({
 			template: rootPath + "/index.html"
-		}),
-		new webpack.optimize.CommonsChunkPlugin(["message", "pace"])
+		})
 	]
 };
 
