@@ -9,10 +9,13 @@ import LeftMenu from "../../../../components/leftmenu";
 import "./index.less";
 
 export default class Root extends PureComponent {
-	componentWillReceiveProps(nextProps) {}
+	componentWillReceiveProps(nextProps) {
+		if (nextProps.location.search != this.props.location.search) {
+			this.initPage(nextProps.location.search);
+		}
+	}
 	componentDidMount() {
 		document.title = "InWe-announcment";
-		this.props.getAnnouncment();
 		let minH = getMainMinHeight();
 		let liH = minH / 2;
 		this.setState({
@@ -20,6 +23,7 @@ export default class Root extends PureComponent {
 			liH: liH
 		});
 		document.querySelector("#mainBox").style.minHeight = minH + "px";
+		this.initPage(this.props.location.search);
 	}
 	constructor(props) {
 		super(props);
@@ -27,8 +31,21 @@ export default class Root extends PureComponent {
 			minH: "auto",
 			liH: "auto",
 			lfMore: "leftArrow",
-			rtMore: "rightArrow more"
+			rtMore: "rightArrow more",
+			page: 1
 		};
+	}
+	initPage(location) {
+		let p = getQuery(location);
+		if (p.page) {
+			this.setState({
+				page: p.page
+			});
+		}
+
+		this.props.getAnnouncment({
+			page: p.page || 1
+		});
 	}
 	annoMove(val) {
 		if (val == "left" && this.state.lfMore == "leftArrow more") {
