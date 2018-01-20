@@ -1,7 +1,9 @@
 import React, { PureComponent } from "react";
+import webUploader from "../../../../assets/js/webuploader.min.js";
 import { I18n, Trans } from "react-i18next";
 import "./index.less";
 import defaultHeader from "../../../../assets/images/member_img.png";
+window.webUploader = webUploader;
 class MemberSet extends PureComponent {
 	constructor(props) {
 		super(props);
@@ -10,6 +12,52 @@ class MemberSet extends PureComponent {
 			oldText: props.userInfo.name,
 			newText: ""
 		};
+	}
+	componentWillReceiveProps() {}
+	uploader() {
+		const option = this.props.uploadKey;
+		if (!option) {
+			return;
+		}
+		let uploader = window.webUploader.create({
+			auto: true,
+			pick: {
+				id: "#ban_uploader",
+				multiple: false
+			},
+			formData: {
+				key: option.dir + option.expire + "${filename}",
+				host: option.host,
+				policy: option.policy,
+				Signature: option.signature,
+				callback: "",
+				OSSAccessKeyId: option.accessid
+			},
+			server: option.host,
+			method: "POST",
+			accept: {
+				extensions: "jpg,jpeg,bmp,png",
+				mimeTypes: "image/jpg,image/jpeg,image/png,image/bmp"
+			}
+		});
+		uploader.on("fileQueued", file => {
+			option.filename = file.name;
+		});
+		uploader.on("uploadSuccess", res => {
+			var imgAdd =
+				option.host +
+				"/" +
+				option.dir +
+				option.expire +
+				option.filename;
+			this.props.uploadHeader(imgAdd);
+		});
+	}
+
+	componentDidMount() {
+		this.props.getUploadKey("img").then(res => {
+			this.uploader.call(this);
+		});
 	}
 	openResetPass(data) {
 		this.props.openResetPass(data);
@@ -60,7 +108,14 @@ class MemberSet extends PureComponent {
 						<div className="member-title">
 							<div className="member-header-box">
 								<div className="member-img-box">
-									<img src={defaultHeader} />
+									<img
+										src={
+											userInfo.img
+												? userInfo.img
+												: defaultHeader
+										}
+									/>
+									<div id="ban_uploader" />
 								</div>
 							</div>
 						</div>

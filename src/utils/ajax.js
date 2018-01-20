@@ -21,6 +21,13 @@ function parseJSON(response) {
 function checkRight(response) {
 	if (response.code === 4000) {
 		return response;
+	} else if (response.code === 4001) {
+		localStorage.removeItem("userInfo");
+		return {
+			msg: response.msg,
+			data: null,
+			code: response.code
+		};
 	} else {
 		Msg.prompt(response.msg);
 		return {

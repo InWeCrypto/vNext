@@ -1,6 +1,28 @@
 @import "../../../../assets/less/basestyle.less";
 .member-set {
 	text-align: center;
+	#ban_uploader {
+		display: inline-block;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+		position: absolute;
+		z-index: 10;
+		font-size: 200px;
+		div:nth-child(2) {
+			width: 100% !important;
+			height: 100% !important;
+			position: relative;
+			background: none;
+			color: none;
+			// z-index: -1;
+		}
+	}
+	.webuploader-pick {
+		width: 100%;
+		height: 100%;
+	}
 	.member-title {
 		padding: 0.7rem 0 0.1rem 0;
 		.member-header-box {
@@ -10,14 +32,19 @@
 			cursor: pointer;
 			border: 0.01rem dashed #eee;
 			.member-img-box {
+				// pointer-events: none;
 				width: 100%;
 				height: 100%;
 				display: block;
 				border-radius: 50%;
 				overflow: hidden;
+				position: relative;
 				img {
 					width: 100%;
 					height: 100%;
+					position: relative;
+					z-index: 100;
+					pointer-events: none;
 				}
 			}
 		}

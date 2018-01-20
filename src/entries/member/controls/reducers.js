@@ -1,5 +1,5 @@
 import { handleActions } from "redux-actions";
-import { COLLECTION, QUOTATION } from "./actions";
+import { COLLECTION, QUOTATION, UPLOADKEY } from "./actions";
 
 export const collectionList = handleActions(
 	{
@@ -10,6 +10,12 @@ export const collectionList = handleActions(
 export const quotationList = handleActions(
 	{
 		[QUOTATION]: (state, { payload }) => payload
+	},
+	null
+);
+export const uploadKey = handleActions(
+	{
+		[UPLOADKEY]: (state, { payload }) => payload
 	},
 	null
 );

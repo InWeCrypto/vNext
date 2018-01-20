@@ -155,7 +155,14 @@ class Header extends PureComponent {
 								}}
 							>
 								<i className="member-info" />
-								<img className="img" src={defaultHeader} />
+								<img
+									className="img"
+									src={
+										userInfo.img
+											? userInfo.img
+											: defaultHeader
+									}
+								/>
 							</div>
 							{showMember && (
 								<div className="member-more">
