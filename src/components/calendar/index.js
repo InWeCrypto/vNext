@@ -120,7 +120,11 @@ class Calendar extends PureComponent {
 				return "day-item click-item has-data";
 			}
 		}
+		// console.log(hasData);
+		//console.log(idx);
 		if (hasData.indexOf(idx) != -1) {
+			console.log(222);
+
 			return "day-item has-data";
 		}
 		return "day-item";

@@ -14,10 +14,18 @@ class Root extends PureComponent {
 			year: "",
 			month: "",
 			emonth: "",
-			day: ""
+			day: "",
+			year2: "",
+			month2: ""
 		};
 	}
 	componentWillUpdate(nextProps, nextState) {
+		if (
+			nextState.year2 != this.state.year2 ||
+			nextState.month2 != this.state.month2
+		) {
+			this.getMonthData(nextState.year2, nextState.month2);
+		}
 		if (
 			nextState.year != this.state.year ||
 			nextState.month != this.state.month ||
@@ -39,7 +47,9 @@ class Root extends PureComponent {
 			year: d.getFullYear(),
 			month: d.getMonth() + 1,
 			emonth: "",
-			day: d.getDate()
+			day: d.getDate(),
+			year2: d.getFullYear(),
+			month2: d.getMonth() + 1
 		});
 	}
 	dayClick(res) {
@@ -58,6 +68,18 @@ class Root extends PureComponent {
 		query += `&day=${day}`;
 		this.props.getCandyList(query);
 	}
+	getMonthData(year, month) {
+		let query = "?";
+		query += `year=${year}`;
+		query += `&month=${month}`;
+		this.props.getCandyMonth(query);
+	}
+	changeMonthClick(res) {
+		this.setState({
+			year2: res.year,
+			month2: res.month
+		});
+	}
 	render() {
 		const {
 			lng,
@@ -68,9 +90,11 @@ class Root extends PureComponent {
 			sendEmailCode,
 			setReduxUserInfo,
 			forgetUser,
-			candyList
+			candyList,
+			candyMonth
 		} = this.props;
 		const { isToday, day, emonth } = this.state;
+
 		return (
 			<I18n>
 				{(t, { I18n }) => (
@@ -91,6 +115,12 @@ class Root extends PureComponent {
 							<div className="ui f1">
 								<div className="candy-calendar f1">
 									<Calendar
+										year={this.state.year}
+										month={this.state.month}
+										hasData={candyMonth ? candyMonth : []}
+										changeMonth={this.changeMonthClick.bind(
+											this
+										)}
 										dayClick={this.dayClick.bind(this)}
 									/>
 									<div className="must-read">
@@ -118,7 +148,7 @@ class Root extends PureComponent {
 												</span>
 											)}
 
-											<div className="switch open">
+											<div className="switch">
 												<span className="switch-item" />
 											</div>
 										</div>
@@ -129,14 +159,25 @@ class Root extends PureComponent {
 												candyList.data.map(
 													(item, index) => {
 														return (
-															<div className="data-item">
+															<a
+																target="_blank"
+																href={
+																	item.url &&
+																	item.url
+																		.length >
+																		0
+																		? item.url
+																		: "javascript:void(0)"
+																}
+																className="data-item"
+															>
 																<div className="title">
 																	222
 																</div>
 																<div className="content">
 																	2323
 																</div>
-															</div>
+															</a>
 														);
 													}
 												)}
