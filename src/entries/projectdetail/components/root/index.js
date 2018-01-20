@@ -33,7 +33,6 @@ export default class Root extends PureComponent {
 	}
 	componentDidMount() {
 		document.title = "InWe-ICO";
-		this.props.getProjectDetail();
 		let minH = getMainMinHeight();
 		this.setState({
 			minH: minH
@@ -48,10 +47,19 @@ export default class Root extends PureComponent {
 			["ico", "gaikuo", "info", "intro"].indexOf(p.type) != -1
 		) {
 			this.setShowItem(p.type);
+			this.props.getProjectDetail({
+				c_id: p.c_id
+			});
 		}
 	}
 	setShowItem(type) {
-		let set = {};
+		let set = {
+			cur: "",
+			ico: false,
+			gaikuo: false,
+			info: false,
+			intro: false
+		};
 		set[type] = true;
 		set["cur"] = type;
 		this.setState(set);
@@ -59,28 +67,96 @@ export default class Root extends PureComponent {
 	componentDidUpdate() {}
 	render() {
 		const { minH, ico, gaikuo, info, intro } = this.state;
-		const { lng, changeLng } = this.props;
+		const {
+			lng,
+			changeLng,
+			sendEmailCode,
+			registerUser,
+			loginIn,
+			userInfo,
+			setReduxUserInfo,
+			forgetUser,
+			projectDetail
+		} = this.props;
 		return (
 			<I18n>
 				{(t, { i18n }) => (
 					<div className="container">
 						<FixedMenu changeLng={changeLng} lng={lng} />
-						<Header />
+						<Header
+							userInfo={userInfo}
+							registerUser={registerUser}
+							sendEmail={sendEmailCode}
+							loginIn={loginIn}
+							setReduxUserInfo={setReduxUserInfo}
+							forgetUser={forgetUser}
+							lng={lng}
+						/>
 						<div id="mainBox" className="projectDetail ui">
-							{ico && <ProjectDetailIco lng={lng} />}
-							{gaikuo && <ProjectDetailGaiKuo lng={lng} />}
-							{info && <ProjectDetailInfo lng={lng} />}
-							{intro && <ProjectDetailIntro lng={lng} />}
+							{ico && (
+								<ProjectDetailIco
+									lng={lng}
+									projectDetail={projectDetail}
+								/>
+							)}
+							{gaikuo && (
+								<ProjectDetailGaiKuo
+									lng={lng}
+									projectDetail={projectDetail}
+								/>
+							)}
+							{info && (
+								<ProjectDetailInfo
+									lng={lng}
+									projectDetail={projectDetail}
+								/>
+							)}
+							{intro && (
+								<ProjectDetailIntro
+									lng={lng}
+									projectDetail={projectDetail}
+								/>
+							)}
 							<div className="projectDetailCon3">
 								<ul className="projectDetailCon3Ul">
 									<li className={ico || gaikuo ? "cur" : ""}>
-										<span>项目概况</span>
+										<Link
+											to={{
+												pathname: "projectdetail",
+												search:
+													"?c_id=" +
+													projectDetail.id +
+													"&&type=ico"
+											}}
+										>
+											<span>项目概况</span>
+										</Link>
 									</li>
 									<li className={info ? "cur" : ""}>
-										<span>项目资讯</span>
+										<Link
+											to={{
+												pathname: "projectdetail",
+												search:
+													"?c_id=" +
+													projectDetail.id +
+													"&&type=info"
+											}}
+										>
+											<span>项目动态</span>
+										</Link>
 									</li>
 									<li className={intro ? "cur" : ""}>
-										<span>项目介绍</span>
+										<Link
+											to={{
+												pathname: "projectdetail",
+												search:
+													"?c_id=" +
+													projectDetail.id +
+													"&&type=intro"
+											}}
+										>
+											<span>项目介绍</span>
+										</Link>
 									</li>
 								</ul>
 								<ProjectDetailChat lng={lng} />

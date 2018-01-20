@@ -5,7 +5,7 @@ import GaiKuo from "../../../../components/gaikuo";
 import "./index.less";
 class ProjectDetailGaiKuo extends PureComponent {
 	render() {
-		const { lng, changeLng } = this.props;
+		const { lng, changeLng, projectDetail } = this.props;
 		return (
 			<I18n>
 				{(t, { I18n }) => (
@@ -15,10 +15,10 @@ class ProjectDetailGaiKuo extends PureComponent {
 								<div className="projectDetailConTopLeft">
 									<div className="projectDetailCenter1">
 										<div className="projectDetailImg">
-											<img src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1515589318224&amp;di=6418f077b77d7451a1246c6cfe793406&amp;imgtype=0&amp;src=http%3A%2F%2Fpic36.nipic.com%2F20131124%2F6608733_084856944000_2.jpg" />
+											<img src={projectDetail.img} />
 										</div>
-										<span>NEO</span>
-										<p>Blockchain</p>
+										<span>{projectDetail.name}</span>
+										<p>{projectDetail.industry}</p>
 									</div>
 								</div>
 								<div className="projectDetailConTopRight">
