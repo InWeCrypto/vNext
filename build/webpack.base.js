@@ -26,7 +26,7 @@ entries.pace = [
 var webpackConfig = {
 	entry: entries,
 	resolve: {
-		extensions: [".web.js", ".mjs", ".js", ".json", ".web.jsx", ".jsx"],
+		extensions: [".web.js", ".mjs", ".js", ".json", ".jsx"],
 		alias: {}
 	},
 	devServer: {
