@@ -68,18 +68,43 @@ class ProjectCollection extends PureComponent {
 												{item.name}
 											</div>
 											<div className="project-market">
-												<div className="price">
-													<span className="t1">
-														$232
-													</span>
-													<span className="t2 up">
-														(+111.00%)
-													</span>
-													<i />
-												</div>
-												<div className="price-btc">
-													≈0.1111BTC
-												</div>
+												{item.ico && (
+													<div>
+														<div className="price">
+															<span className="t1">
+																${item.ico &&
+																	item.ico
+																		.price_usd}
+															</span>
+															<span
+																className={(() => {
+																	if (
+																		!item.ico
+																	) {
+																		return "t2";
+																	}
+
+																	return item.ico &&
+																		item.ico
+																			.percent_change_24h >
+																			0
+																		? "t2 up"
+																		: "t2 down";
+																})()}
+															>
+																({item.ico &&
+																	item.ico
+																		.percent_change_24h})%
+															</span>
+															<i />
+														</div>
+														<div className="price-btc">
+															≈{item.ico &&
+																item.ico
+																	.price_btc}BTC
+														</div>
+													</div>
+												)}
 											</div>
 											<div className="project-type">
 												Trading
