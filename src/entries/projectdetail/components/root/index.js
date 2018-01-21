@@ -42,15 +42,32 @@ export default class Root extends PureComponent {
 	}
 	initPage(location) {
 		let p = getQuery(location);
-		if (
-			p.type &&
-			["ico", "gaikuo", "info", "intro"].indexOf(p.type) != -1
-		) {
-			this.setShowItem(p.type);
-			this.props.getProjectDetail({
+		this.props
+			.getProjectDetail({
 				c_id: p.c_id
+			})
+			.then(res => {
+				let type = "";
+				if (res.data.type == "Trading" || res.data.type == "上线中") {
+					type = "gaikuo";
+				} else if (
+					res.data.type == "Active" ||
+					res.data.type == "众筹中"
+				) {
+					type = "ico";
+				} else if (
+					res.data.type == "Upcoming" ||
+					res.data.type == "即将众筹"
+				) {
+					type = "ico";
+				}
+				if (
+					type &&
+					["ico", "gaikuo", "info", "intro"].indexOf(type) != -1
+				) {
+					this.setShowItem(type);
+				}
 			});
-		}
 	}
 	setShowItem(type) {
 		let set = {

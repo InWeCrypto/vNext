@@ -1,9 +1,9 @@
 import { handleActions } from "redux-actions";
-import { NEWSLIST } from "./actions";
+import { TRADING } from "./actions";
 
-export const tradingList = handleActions(
+export const trading = handleActions(
 	{
-		[NEWSLIST]: (state, { payload }) => payload
+		[TRADING]: (state, { payload }) => payload
 	},
 	[]
 );

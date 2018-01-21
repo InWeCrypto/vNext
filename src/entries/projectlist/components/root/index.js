@@ -149,56 +149,67 @@ export default class Root extends PureComponent {
 														(item, index) => {
 															return (
 																<li key={index}>
-																	<div className="projectListLiTop ui center">
-																		<div className="projectListLiTopLeft ui center">
-																			<div className="projectListImg newMsg">
-																				<img
-																					src={
-																						item.img
-																					}
-																				/>
+																	<Link
+																		to={{
+																			pathname:
+																				"projectdetail",
+																			search:
+																				"?c_id=" +
+																				item.id
+																		}}
+																	>
+																		<div className="projectListLiTop ui center">
+																			<div className="projectListLiTopLeft ui center">
+																				<div className="projectListImg newMsg">
+																					<img
+																						src={
+																							item.img
+																						}
+																					/>
+																				</div>
+																				<p
+																				>
+																					<span className="ellitext">
+																						{item.name.toLocaleUpperCase()}
+																					</span>
+																					<b className="ellitext">
+																						({
+																							item.long_name
+																						})
+																					</b>
+																				</p>
 																			</div>
-																			<p>
-																				<span className="ellitext">
-																					{item.name.toLocaleUpperCase()}
+																			<div
+																				className={
+																					item.category_user
+																						? "projectListLiTopRight collect"
+																						: "projectListLiTopRight nocollect"
+																				}
+																				onClick={() => {
+																					let enable = item.category_user
+																						? true
+																						: false;
+																					this.projectCollect(
+																						item.id,
+																						enable
+																					);
+																				}}
+																			/>
+																		</div>
+																		<div className="projectListLiCenter">
+																			<div className="left">
+																				{
+																					item.industry
+																				}
+																			</div>
+																			<div className="right">
+																				$90.00<span
+																				>
+																					(-12.00%)
 																				</span>
-																				<b className="ellitext">
-																					({
-																						item.long_name
-																					})
-																				</b>
-																			</p>
+																			</div>
 																		</div>
-																		<div
-																			className={
-																				item.category_user
-																					? "projectListLiTopRight collect"
-																					: "projectListLiTopRight nocollect"
-																			}
-																			onClick={() => {
-																				let enable = item.category_user
-																					? true
-																					: false;
-																				this.projectCollect(
-																					item.id,
-																					enable
-																				);
-																			}}
-																		/>
-																	</div>
-																	<div className="projectListLiCenter">
-																		<div className="left">
-																			{
-																				item.industry
-																			}
-																		</div>
-																		<div className="right">
-																			$90.00<span
-																			>
-																				(-12.00%)
-																			</span>
-																		</div>
-																	</div>
+																	</Link>
 																</li>
 															);
 														}
@@ -211,50 +222,61 @@ export default class Root extends PureComponent {
 														(item, index) => {
 															return (
 																<li key={index}>
-																	<div className="projectListLiTop ui center">
-																		<div className="projectListLiTopLeft ui center">
-																			<div className="projectListImg newMsg">
-																				<img
-																					src={
-																						item.img
-																					}
-																				/>
+																	<Link
+																		to={{
+																			pathname:
+																				"projectdetail",
+																			search:
+																				"?c_id=" +
+																				item.id
+																		}}
+																	>
+																		<div className="projectListLiTop ui center">
+																			<div className="projectListLiTopLeft ui center">
+																				<div className="projectListImg newMsg">
+																					<img
+																						src={
+																							item.img
+																						}
+																					/>
+																				</div>
+																				<p
+																				>
+																					<span className="ellitext">
+																						{item.name.toLocaleUpperCase()}
+																					</span>
+																					<b className="ellitext">
+																						({
+																							item.long_name
+																						})
+																					</b>
+																				</p>
 																			</div>
-																			<p>
-																				<span className="ellitext">
-																					{item.name.toLocaleUpperCase()}
-																				</span>
-																				<b className="ellitext">
-																					({
-																						item.long_name
-																					})
-																				</b>
-																			</p>
+																			<div
+																				className={
+																					item.category_user
+																						? "projectListLiTopRight collect"
+																						: "projectListLiTopRight nocollect"
+																				}
+																				onClick={() => {
+																					let enable = item.category_user
+																						? true
+																						: false;
+																					this.projectCollect(
+																						item.id,
+																						enable
+																					);
+																				}}
+																			/>
 																		</div>
-																		<div
-																			className={
-																				item.category_user
-																					? "projectListLiTopRight collect"
-																					: "projectListLiTopRight nocollect"
-																			}
-																			onClick={() => {
-																				let enable = item.category_user
-																					? true
-																					: false;
-																				this.projectCollect(
-																					item.id,
-																					enable
-																				);
-																			}}
-																		/>
-																	</div>
-																	<div className="projectListLiCenter">
-																		<div className="left">
-																			{
-																				item.industry
-																			}
+																		<div className="projectListLiCenter">
+																			<div className="left">
+																				{
+																					item.industry
+																				}
+																			</div>
 																		</div>
-																	</div>
+																	</Link>
 																</li>
 															);
 														}
@@ -267,50 +289,61 @@ export default class Root extends PureComponent {
 														(item, index) => {
 															return (
 																<li key={index}>
-																	<div className="projectListLiTop ui center">
-																		<div className="projectListLiTopLeft ui center">
-																			<div className="projectListImg newMsg">
-																				<img
-																					src={
-																						item.img
-																					}
-																				/>
+																	<Link
+																		to={{
+																			pathname:
+																				"projectdetail",
+																			search:
+																				"?c_id=" +
+																				item.id
+																		}}
+																	>
+																		<div className="projectListLiTop ui center">
+																			<div className="projectListLiTopLeft ui center">
+																				<div className="projectListImg newMsg">
+																					<img
+																						src={
+																							item.img
+																						}
+																					/>
+																				</div>
+																				<p
+																				>
+																					<span className="ellitext">
+																						{item.name.toLocaleUpperCase()}
+																					</span>
+																					<b className="ellitext">
+																						({
+																							item.long_name
+																						})
+																					</b>
+																				</p>
 																			</div>
-																			<p>
-																				<span className="ellitext">
-																					{item.name.toLocaleUpperCase()}
-																				</span>
-																				<b className="ellitext">
-																					({
-																						item.long_name
-																					})
-																				</b>
-																			</p>
+																			<div
+																				className={
+																					item.category_user
+																						? "projectListLiTopRight collect"
+																						: "projectListLiTopRight nocollect"
+																				}
+																				onClick={() => {
+																					let enable = item.category_user
+																						? true
+																						: false;
+																					this.projectCollect(
+																						item.id,
+																						enable
+																					);
+																				}}
+																			/>
 																		</div>
-																		<div
-																			className={
-																				item.category_user
-																					? "projectListLiTopRight collect"
-																					: "projectListLiTopRight nocollect"
-																			}
-																			onClick={() => {
-																				let enable = item.category_user
-																					? true
-																					: false;
-																				this.projectCollect(
-																					item.id,
-																					enable
-																				);
-																			}}
-																		/>
-																	</div>
-																	<div className="projectListLiCenter">
-																		<div className="left">
-																			{
-																				item.industry
-																			}
+																		<div className="projectListLiCenter">
+																			<div className="left">
+																				{
+																					item.industry
+																				}
+																			</div>
 																		</div>
-																	</div>
+																	</Link>
 																</li>
 															);
 														}
@@ -323,50 +356,61 @@ export default class Root extends PureComponent {
 														(item, index) => {
 															return (
 																<li key={index}>
-																	<div className="projectListLiTop ui center">
-																		<div className="projectListLiTopLeft ui center">
-																			<div className="projectListImg newMsg">
-																				<img
-																					src={
-																						item.img
-																					}
-																				/>
+																	<Link
+																		to={{
+																			pathname:
+																				"projectdetail",
+																			search:
+																				"?c_id=" +
+																				item.id
+																		}}
+																	>
+																		<div className="projectListLiTop ui center">
+																			<div className="projectListLiTopLeft ui center">
+																				<div className="projectListImg newMsg">
+																					<img
+																						src={
+																							item.img
+																						}
+																					/>
+																				</div>
+																				<p
+																				>
+																					<span className="ellitext">
+																						{item.name.toLocaleUpperCase()}
+																					</span>
+																					<b className="ellitext">
+																						({
+																							item.long_name
+																						})
+																					</b>
+																				</p>
 																			</div>
-																			<p>
-																				<span className="ellitext">
-																					{item.name.toLocaleUpperCase()}
-																				</span>
-																				<b className="ellitext">
-																					({
-																						item.long_name
-																					})
-																				</b>
-																			</p>
+																			<div
+																				className={
+																					item.category_user
+																						? "projectListLiTopRight collect"
+																						: "projectListLiTopRight nocollect"
+																				}
+																				onClick={() => {
+																					let enable = item.category_user
+																						? true
+																						: false;
+																					this.projectCollect(
+																						item.id,
+																						enable
+																					);
+																				}}
+																			/>
 																		</div>
-																		<div
-																			className={
-																				item.category_user
-																					? "projectListLiTopRight collect"
-																					: "projectListLiTopRight nocollect"
-																			}
-																			onClick={() => {
-																				let enable = item.category_user
-																					? true
-																					: false;
-																				this.projectCollect(
-																					item.id,
-																					enable
-																				);
-																			}}
-																		/>
-																	</div>
-																	<div className="projectListLiCenter">
-																		<div className="left">
-																			{
-																				item.industry
-																			}
+																		<div className="projectListLiCenter">
+																			<div className="left">
+																				{
+																					item.industry
+																				}
+																			</div>
 																		</div>
-																	</div>
+																	</Link>
 																</li>
 															);
 														}

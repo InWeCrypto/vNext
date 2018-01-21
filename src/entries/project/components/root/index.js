@@ -195,7 +195,11 @@ export default class Root extends PureComponent {
 													}}
 													key={index}
 												>
-													<div className="projectLiTop ui center">
+													<Link to={{
+                                                        pathname: 'projectdetail',
+                                                        search: "?c_id="+item.id
+                                                    }}>
+                                                    <div className="projectLiTop ui center">
 														<div className="projectLiTopLeft ui center">
 															<img
 																src={item.img}
@@ -256,7 +260,7 @@ export default class Root extends PureComponent {
 														{item.last_article &&
 															item.last_article
 																.created_at}
-													</div>
+													</div></Link>
 												</li>
 											);
 										})}
