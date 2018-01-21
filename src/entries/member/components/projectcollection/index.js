@@ -38,6 +38,9 @@ class ProjectCollection extends PureComponent {
 	changePagination(page, size) {
 		this.getData(page);
 	}
+	setFavorite(id, isFavorite) {
+		this.props.setProjectColletion(id, isFavorite ? false : true);
+	}
 	render() {
 		const { userInfo, collectionList, lng } = this.props;
 		return (
@@ -60,7 +63,20 @@ class ProjectCollection extends PureComponent {
 											key={index}
 											className="project-group ui center"
 										>
-											<i className="icon-collect" />
+											<div
+												onClick={this.setFavorite.bind(
+													this,
+													item.id,
+													item.category_user
+												)}
+											>
+												{!item.category_user && (
+													<i className="icon-uncollect" />
+												)}
+												{item.category_user && (
+													<i className="icon-collect" />
+												)}
+											</div>
 											<div className="project-icon">
 												<img src={item.img} />
 											</div>

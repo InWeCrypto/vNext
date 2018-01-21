@@ -93,7 +93,8 @@ export default class Root extends PureComponent {
 			quotationList,
 			getUploadKey,
 			uploadKey,
-			uploadHeader
+			uploadHeader,
+			setProjectColletion
 		} = this.props;
 		const {
 			set,
@@ -148,6 +149,9 @@ export default class Root extends PureComponent {
 											}
 											collectionList={collectionList}
 											userInfo={userInfo}
+											setProjectColletion={
+												setProjectColletion
+											}
 											lng={lng}
 										/>
 									)}
