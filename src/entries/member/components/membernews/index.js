@@ -69,7 +69,11 @@ class MemberNews extends PureComponent {
 													width: this.state.w + "px"
 												}}
 											>
-												<div className="membernews-item">
+												<a
+													href={item.utl}
+													target="_blank"
+													className="membernews-item"
+												>
 													<div className="img">
 														<img src={item.img} />
 													</div>
@@ -90,7 +94,7 @@ class MemberNews extends PureComponent {
 															)}
 														</div>
 													</div>
-												</div>
+												</a>
 											</div>
 										);
 									} else {
