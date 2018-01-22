@@ -94,7 +94,9 @@ export default class Root extends PureComponent {
 			getUploadKey,
 			uploadKey,
 			uploadHeader,
-			setProjectColletion
+			setProjectColletion,
+			memberNewsList,
+			getMemeberNewsList
 		} = this.props;
 		const {
 			set,
@@ -140,7 +142,12 @@ export default class Root extends PureComponent {
 											uploadHeader={uploadHeader}
 										/>
 									)}
-									{news && <MemberNews />}
+									{news && (
+										<MemberNews
+											getNewsList={getMemeberNewsList}
+											newsList={memberNewsList}
+										/>
+									)}
 									{message && <MemberMessage lng={lng} />}
 									{collection && (
 										<ProjectCollection

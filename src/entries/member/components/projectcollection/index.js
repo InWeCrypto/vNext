@@ -136,6 +136,7 @@ class ProjectCollection extends PureComponent {
 														</div>
 													</div>
 												)}
+												{!item.ico && <span>----</span>}
 											</div>
 											<div className="project-type">
 												{item.type_name}
