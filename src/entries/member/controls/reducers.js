@@ -3,7 +3,8 @@ import {
 	COLLECTION,
 	QUOTATION,
 	UPLOADKEY,
-	SETPROJECTCOLLETION
+	SETPROJECTCOLLETION,
+	NEWSLIST
 } from "./actions";
 
 export const collectionList = handleActions(
@@ -30,6 +31,12 @@ export const quotationList = handleActions(
 export const uploadKey = handleActions(
 	{
 		[UPLOADKEY]: (state, { payload }) => payload
+	},
+	null
+);
+export const memberNewsList = handleActions(
+	{
+		[NEWSLIST]: (state, { payload }) => payload
 	},
 	null
 );

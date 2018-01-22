@@ -7,6 +7,7 @@ export const QUOTATION = `${PRE_FIX}QUOTATION`;
 export const UPLOADKEY = `${PRE_FIX}UPLOADKEY`;
 export const UPLOADERHEADER = `${PRE_FIX}UPLOADERHEADER`;
 export const SETPROJECTCOLLETION = `${PRE_FIX}SETPROJECTCOLLETION`;
+export const NEWSLIST = `${PRE_FIX}NEWSLIST`;
 export const getCollectionList = createAction(COLLECTION, query => {
 	return http.get({
 		url: `category?user_favorite${query}` //
@@ -39,7 +40,6 @@ export const setProjectColletion = createAction(
 				}
 			})
 			.then(res => {
-				console.log(res);
 				if (res.code === 4000 && res.data && res.data.id) {
 					return {
 						code: res.code,
@@ -51,3 +51,13 @@ export const setProjectColletion = createAction(
 			});
 	}
 );
+export const getMemeberNewsList = createAction(NEWSLIST, query => {
+	return http
+		.get({
+			url: `article?user_favorite${query}`
+		})
+		.then(res => {
+			console.log(res);
+			return res;
+		});
+});

@@ -11,6 +11,7 @@ export const getProjectDetail = createAction(PROJECTDETAIL, params => {
 			url: "category/" + params.c_id
 		})
 		.then(res => {
+			console.log(res);
 			return res;
 		});
 });
