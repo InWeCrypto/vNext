@@ -15,14 +15,15 @@ entries.pace = [
 	rootPath + "/assets/less/pace.theme.less",
 	rootPath + "/assets/js/pace.js"
 ];
-// entries.vendor = [
-// 	"react",
-// 	"react-router-dom",
-// 	"redux",
-// 	"react-redux",
-// 	"redux-actions",
-// 	"react-router-redux"
-// ];
+entries.vendor = [
+	rootPath + "/assets/less/common.less",
+	"react",
+	"react-router-dom",
+	"redux",
+	"react-redux",
+	"redux-actions",
+	"react-router-redux"
+];
 var webpackConfig = {
 	entry: entries,
 	resolve: {

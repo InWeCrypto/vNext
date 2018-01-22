@@ -6,7 +6,7 @@ export const COLLECTION = `${PRE_FIX}COLLECTION`;
 export const QUOTATION = `${PRE_FIX}QUOTATION`;
 export const UPLOADKEY = `${PRE_FIX}UPLOADKEY`;
 export const UPLOADERHEADER = `${PRE_FIX}UPLOADERHEADER`;
-
+export const SETPROJECTCOLLETION = `${PRE_FIX}SETPROJECTCOLLETION`;
 export const getCollectionList = createAction(COLLECTION, query => {
 	return http.get({
 		url: `category?user_favorite${query}` //
@@ -28,3 +28,26 @@ export const getUploadKey = createAction(UPLOADKEY, type => {
 			return res;
 		});
 });
+export const setProjectColletion = createAction(
+	SETPROJECTCOLLETION,
+	(id, state) => {
+		return http
+			.put({
+				url: `category/${id}/collect`,
+				params: {
+					enable: state
+				}
+			})
+			.then(res => {
+				console.log(res);
+				if (res.code === 4000 && res.data && res.data.id) {
+					return {
+						code: res.code,
+						data: res.data,
+						msg: res.msg
+					};
+				}
+				return res;
+			});
+	}
+);

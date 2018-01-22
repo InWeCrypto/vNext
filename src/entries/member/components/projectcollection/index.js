@@ -38,6 +38,20 @@ class ProjectCollection extends PureComponent {
 	changePagination(page, size) {
 		this.getData(page);
 	}
+	setFavorite(item) {
+		this.props.setProjectColletion(
+			item.id,
+			item.category_user.is_favorite ? false : true
+		);
+	}
+	projectNews(artical, e) {
+		e.nativeEvent.stopImmediatePropagation();
+		if (artical.url) {
+			window.open(artical.url);
+		} else {
+			window.location.href = "/newsdetail?id=" + artical.id;
+		}
+	}
 	render() {
 		const { userInfo, collectionList, lng } = this.props;
 		return (
@@ -60,7 +74,24 @@ class ProjectCollection extends PureComponent {
 											key={index}
 											className="project-group ui center"
 										>
-											<i className="icon-collect" />
+											<div
+												onClick={this.setFavorite.bind(
+													this,
+													item
+												)}
+											>
+												{(!item.category_user ||
+													!item.category_user
+														.is_favorite) && (
+													<i className="icon-uncollect" />
+												)}
+
+												{item.category_user &&
+													item.category_user
+														.is_favorite && (
+														<i className="icon-collect" />
+													)}
+											</div>
 											<div className="project-icon">
 												<img src={item.img} />
 											</div>
@@ -68,24 +99,62 @@ class ProjectCollection extends PureComponent {
 												{item.name}
 											</div>
 											<div className="project-market">
-												<div className="price">
-													<span className="t1">
-														$232
-													</span>
-													<span className="t2 up">
-														(+111.00%)
-													</span>
-													<i />
-												</div>
-												<div className="price-btc">
-													≈0.1111BTC
-												</div>
+												{item.ico && (
+													<div>
+														<div className="price">
+															<span className="t1">
+																${item.ico &&
+																	item.ico
+																		.price_usd}
+															</span>
+															<span
+																className={(() => {
+																	if (
+																		!item.ico
+																	) {
+																		return "t2";
+																	}
+
+																	return item.ico &&
+																		item.ico
+																			.percent_change_24h >
+																			0
+																		? "t2 up"
+																		: "t2 down";
+																})()}
+															>
+																({item.ico &&
+																	item.ico
+																		.percent_change_24h})%
+															</span>
+															<i />
+														</div>
+														<div className="price-btc">
+															≈{item.ico &&
+																item.ico
+																	.price_btc}BTC
+														</div>
+													</div>
+												)}
 											</div>
 											<div className="project-type">
 												Trading
 											</div>
 											<div className="f1 project-news">
-												最近gengxin最近gengxin最近gengxin最近gengxin最近gengxin最近gengxin最近gengxin最近gengxin最近gengxin最近gengxin
+												{item.last_article && (
+													<span
+														onClick={this.projectNews.bind(
+															this,
+															item.last_article
+														)}
+														className="project-news-target"
+													>
+														{
+															item.last_article
+																.title
+														}
+													</span>
+												)}
 											</div>
 										</div>
 									);
