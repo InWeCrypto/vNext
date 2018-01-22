@@ -97,14 +97,15 @@ class ProjectDetailGaiKuo extends PureComponent {
 										0 &&
 									projectDetail.category_explorer.map(
 										(item, index) => {
-											return;
-											<Link
-												to={{
-													pathname: item.url
-												}}
-											>
-												<p>+{item.name}</p>
-											</Link>;
+											return (
+												<Link
+													to={{
+														pathname: item.url
+													}}
+												>
+													<p>+{item.name}</p>
+												</Link>
+											);
 										}
 									)}
 							</div>
@@ -117,14 +118,15 @@ class ProjectDetailGaiKuo extends PureComponent {
 									projectDetail.category_wallet.length > 0 &&
 									projectDetail.category_wallet.map(
 										(item, index) => {
-											return;
-											<Link
-												to={{
-													pathname: item.url
-												}}
-											>
-												<p>+{item.name}</p>
-											</Link>;
+											return (
+												<Link
+													to={{
+														pathname: item.url
+													}}
+												>
+													<p>+{item.name}</p>
+												</Link>
+											);
 										}
 									)}
 							</div>
@@ -145,24 +147,23 @@ class ProjectDetailGaiKuo extends PureComponent {
 											0 &&
 										projectDetail.category_media.map(
 											(item, index) => {
-												return;
-												<li>
-													<Link
-														to={{
-															pathname: item.url
-														}}
-													>
-														<img
-															src={item.img}
-															alt=""
-														/>
-													</Link>
-												</li>;
+												return (
+													<li>
+														<Link
+															to={{
+																pathname:
+																	item.url
+															}}
+														>
+															<img
+																src={item.img}
+																alt=""
+															/>
+														</Link>
+													</li>
+												);
 											}
 										)}
-									{/* <li className="tele" />
-									<li className="wx" />
-									<li className="mail" /> */}
 								</ul>
 							</div>
 						</div>

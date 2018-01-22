@@ -59,6 +59,8 @@ export default class Root extends PureComponent {
 				}
 				if (p.type && ["home", "info", "intro"].indexOf(p.type) != -1) {
 					this.setShowItem(p.type);
+				} else {
+					this.setShowItem("home");
 				}
 				return res;
 			})
