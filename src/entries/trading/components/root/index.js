@@ -42,7 +42,8 @@ export default class Root extends PureComponent {
 		this.props
 			.getTrading({
 				per_page: 6,
-				page: q.page || 1
+				page: q.page || 1,
+				type: 4
 			})
 			.then(res => {
 				console.log(res);
@@ -112,21 +113,22 @@ export default class Root extends PureComponent {
 												>
 													<div className="tradingBoxImg">
 														<img
-															src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1515681385865&di=5470a46770b7e7a80ef72d15df368fd9&imgtype=0&src=http%3A%2F%2Fimg4.duitang.com%2Fuploads%2Fitem%2F201312%2F05%2F20131205172421_QKF4K.thumb.600_0.jpeg"
+															src={item.img}
 															alt=""
 														/>
 													</div>
 													<div className="tradingBoxCon">
 														<p className="tradingBoxTitle ellitext">
-															支撑拖住，等待上涨信号
+															{item.title}
 														</p>
 														<p className="desc">
-															纽约州议员提出四项区块链技术相关法案纽约州议员提出四项区块链技术相关法案
+															{item.desc}
 														</p>
 														<div className="tradingBoxModConDate">
 															<p>
-																2017-11-16
-																11:35:33
+																{
+																	item.created_at
+																}
 															</p>
 														</div>
 													</div>

@@ -73,7 +73,8 @@ export default class Root extends PureComponent {
 			? "leftTwoMenuItem cur"
 			: "leftTwoMenuItem";
 	}
-	projectCollect(c_id, enable) {
+	projectCollect(e, c_id, enable) {
+		e.preventDefault();
 		this.props
 			.getProjectCollect({
 				c_id: c_id,
@@ -195,72 +196,82 @@ export default class Root extends PureComponent {
 													}}
 													key={index}
 												>
-													<Link to={{
-                                                        pathname: 'projectdetail',
-                                                        search: "?c_id="+item.id
-                                                    }}>
-                                                    <div className="projectLiTop ui center">
-														<div className="projectLiTopLeft ui center">
-															<img
-																src={item.img}
+													<Link
+														to={{
+															pathname:
+																"projectdetail",
+															search:
+																"?c_id=" +
+																item.id
+														}}
+													>
+														<div className="projectLiTop ui center">
+															<div className="projectLiTopLeft ui center">
+																<img
+																	src={
+																		item.img
+																	}
+																/>
+																<p>
+																	<span>
+																		{item.name.toLocaleUpperCase()}
+																	</span>
+																	<b>
+																		({
+																			item.long_name
+																		})
+																	</b>
+																</p>
+															</div>
+															<div
+																className={
+																	item.category_user
+																		? "projectLiTopRight collect"
+																		: "projectLiTopRight nocollect"
+																}
+																onClick={e => {
+																	let enable = item.category_user
+																		? true
+																		: false;
+																	this.projectCollect(
+																		e,
+																		item.id,
+																		enable
+																	);
+																}}
 															/>
-															<p>
-																<span>
-																	{item.name.toLocaleUpperCase()}
-																</span>
-																<b>
-																	({
-																		item.long_name
-																	})
-																</b>
+														</div>
+														<div className="projectLiType">
+															<span className="ellitext">
+																{item.industry}
+															</span>
+														</div>
+														<div className="projectLiDesc">
+															<p className="ellitext">
+																{item.last_article &&
+																	item
+																		.last_article
+																		.title}
 															</p>
 														</div>
-														<div
-															className={
-																item.category_user
-																	? "projectLiTopRight collect"
-																	: "projectLiTopRight nocollect"
-															}
-															onClick={() => {
-																let enable = item.category_user
-																	? true
-																	: false;
-																this.projectCollect(
-																	item.id,
-																	enable
-																);
-															}}
-														/>
-													</div>
-													<div className="projectLiType">
-														<span className="ellitext">
-															{item.industry}
-														</span>
-													</div>
-													<div className="projectLiDesc">
-														<p className="ellitext">
+														<div className="projectLiImg">
+															<img
+																src={
+																	item.last_article &&
+																	item
+																		.last_article
+																		.img
+																}
+																alt=""
+															/>
+														</div>
+														<div className="projectLiDate">
 															{item.last_article &&
 																item
 																	.last_article
-																	.title}
-														</p>
-													</div>
-													<div className="projectLiImg">
-														<img
-															src={
-																item.last_article &&
-																item
-																	.last_article
-																	.img
-															}
-															alt=""
-														/>
-													</div>
-													<div className="projectLiDate">
-														{item.last_article &&
-															item.last_article
-																.created_at}
-													</div></Link>
+																	.created_at}
+														</div>
+													</Link>
 												</li>
 											);
 										})}

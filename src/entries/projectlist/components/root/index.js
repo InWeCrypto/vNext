@@ -45,7 +45,8 @@ export default class Root extends PureComponent {
 			per_page: 4
 		});
 	}
-	projectCollect(c_id, enable) {
+	projectCollect(e, c_id, enable) {
+		e.preventDefault();
 		this.props
 			.getProjectCollect({
 				c_id: c_id,
@@ -56,7 +57,6 @@ export default class Root extends PureComponent {
 					this.setState({
 						// enable: !this.state.enable
 					});
-					console.log(this.props);
 				}
 			});
 	}
@@ -185,11 +185,12 @@ export default class Root extends PureComponent {
 																						? "projectListLiTopRight collect"
 																						: "projectListLiTopRight nocollect"
 																				}
-																				onClick={() => {
+																				onClick={e => {
 																					let enable = item.category_user
 																						? true
 																						: false;
 																					this.projectCollect(
+																						e,
 																						item.id,
 																						enable
 																					);
@@ -258,11 +259,12 @@ export default class Root extends PureComponent {
 																						? "projectListLiTopRight collect"
 																						: "projectListLiTopRight nocollect"
 																				}
-																				onClick={() => {
+																				onClick={e => {
 																					let enable = item.category_user
 																						? true
 																						: false;
 																					this.projectCollect(
+																						e,
 																						item.id,
 																						enable
 																					);
@@ -325,11 +327,12 @@ export default class Root extends PureComponent {
 																						? "projectListLiTopRight collect"
 																						: "projectListLiTopRight nocollect"
 																				}
-																				onClick={() => {
+																				onClick={e => {
 																					let enable = item.category_user
 																						? true
 																						: false;
 																					this.projectCollect(
+																						e,
 																						item.id,
 																						enable
 																					);
@@ -392,11 +395,12 @@ export default class Root extends PureComponent {
 																						? "projectListLiTopRight collect"
 																						: "projectListLiTopRight nocollect"
 																				}
-																				onClick={() => {
+																				onClick={e => {
 																					let enable = item.category_user
 																						? true
 																						: false;
 																					this.projectCollect(
+																						e,
 																						item.id,
 																						enable
 																					);

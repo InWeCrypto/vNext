@@ -22,7 +22,6 @@ export const getProjectCollect = createAction(PROJECTCOLLECT, params => {
 			params: { enable: params.enable }
 		})
 		.then(res => {
-			console.log(res);
 			if (res.code === 4000) {
 				return {
 					data: {

@@ -6,7 +6,7 @@ export const TRADING = `${PRE_FIX}TRADING`;
 
 export const getTrading = createAction(TRADING, params => {
 	return http.get({
-		url: "ads",
+		url: "article",
 		params: params
 	});
 });
