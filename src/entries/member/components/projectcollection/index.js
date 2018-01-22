@@ -138,7 +138,7 @@ class ProjectCollection extends PureComponent {
 												)}
 											</div>
 											<div className="project-type">
-												Trading
+												{item.type_name}
 											</div>
 											<div className="f1 project-news">
 												{item.last_article && (
