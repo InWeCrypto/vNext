@@ -25,7 +25,7 @@ export default class Root extends PureComponent {
 			});
 			document.querySelector("#mainBox").style.minHeight = minH + "px";
 			this.initPage(this.props.location.search);
-		});
+		}, 0);
 	}
 	constructor(props) {
 		super(props);

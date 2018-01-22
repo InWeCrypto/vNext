@@ -22,14 +22,6 @@ export const getProjectCollect = createAction(PROJECTCOLLECT, params => {
 			params: { enable: params.enable }
 		})
 		.then(res => {
-			if (res.code === 4000) {
-				return {
-					data: {
-						id: 1
-					},
-					code: 4000
-				};
-			}
 			return res;
 		});
 });
