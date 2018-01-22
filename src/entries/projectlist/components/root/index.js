@@ -17,32 +17,37 @@ export default class Root extends PureComponent {
 	}
 	componentWillReceiveProps(nextProps) {}
 	componentDidMount() {
-		document.title = "InWe-项目列表";
-		let minH = getMainMinHeight();
-		this.setState({
-			minH: minH
-		});
-		document.querySelector("#mainBox").style.minHeight = minH + "px";
-		this.initPage();
+		setTimeout(() => {
+			document.title = "InWe-项目列表";
+			let minH = getMainMinHeight();
+			this.setState({
+				minH: minH
+			});
+			document.querySelector("#mainBox").style.minHeight = minH + "px";
+			this.initPage();
+		}, 0);
 	}
 	componentDidUpdate() {}
 	initPage() {
+		let annoBoxH = document.getElementById("mainBox").clientHeight;
+		let annoBoxLiH = 103;
+		let nums = Math.floor((annoBoxH - 150) / annoBoxLiH) || 4;
 		// 默认条数4
 		this.props.getProject({
 			type: 1,
-			per_page: 4
+			per_page: nums
 		});
 		this.props.getProject2({
 			type: 2,
-			per_page: 4
+			per_page: nums
 		});
 		this.props.getProject3({
 			type: 3,
-			per_page: 4
+			per_page: nums
 		});
 		this.props.getProject4({
 			type: 4,
-			per_page: 4
+			per_page: nums
 		});
 	}
 	projectCollect(e, c_id, enable) {
@@ -54,9 +59,9 @@ export default class Root extends PureComponent {
 			})
 			.then(res => {
 				if (res.code === 4000) {
-					this.setState({
-						// enable: !this.state.enable
-					});
+					// this.setState({
+					// 	// enable: !this.state.enable
+					// });
 				}
 			});
 	}
@@ -181,14 +186,21 @@ export default class Root extends PureComponent {
 																			</div>
 																			<div
 																				className={
-																					item.category_user
+																					item.category_user &&
+																					item
+																						.category_user
+																						.is_favorite
 																						? "projectListLiTopRight collect"
 																						: "projectListLiTopRight nocollect"
 																				}
 																				onClick={e => {
-																					let enable = item.category_user
-																						? true
-																						: false;
+																					let enable =
+																						item.category_user &&
+																						item
+																							.category_user
+																							.is_favorite
+																							? true
+																							: false;
 																					this.projectCollect(
 																						e,
 																						item.id,
@@ -255,14 +267,21 @@ export default class Root extends PureComponent {
 																			</div>
 																			<div
 																				className={
-																					item.category_user
+																					item.category_user &&
+																					item
+																						.category_user
+																						.is_favorite
 																						? "projectListLiTopRight collect"
 																						: "projectListLiTopRight nocollect"
 																				}
 																				onClick={e => {
-																					let enable = item.category_user
-																						? true
-																						: false;
+																					let enable =
+																						item.category_user &&
+																						item
+																							.category_user
+																							.is_favorite
+																							? true
+																							: false;
 																					this.projectCollect(
 																						e,
 																						item.id,
@@ -323,14 +342,21 @@ export default class Root extends PureComponent {
 																			</div>
 																			<div
 																				className={
-																					item.category_user
+																					item.category_user &&
+																					item
+																						.category_user
+																						.is_favorite
 																						? "projectListLiTopRight collect"
 																						: "projectListLiTopRight nocollect"
 																				}
 																				onClick={e => {
-																					let enable = item.category_user
-																						? true
-																						: false;
+																					let enable =
+																						item.category_user &&
+																						item
+																							.category_user
+																							.is_favorite
+																							? true
+																							: false;
 																					this.projectCollect(
 																						e,
 																						item.id,
@@ -391,14 +417,21 @@ export default class Root extends PureComponent {
 																			</div>
 																			<div
 																				className={
-																					item.category_user
+																					item.category_user &&
+																					item
+																						.category_user
+																						.is_favorite
 																						? "projectListLiTopRight collect"
 																						: "projectListLiTopRight nocollect"
 																				}
 																				onClick={e => {
-																					let enable = item.category_user
-																						? true
-																						: false;
+																					let enable =
+																						item.category_user &&
+																						item
+																							.category_user
+																							.is_favorite
+																							? true
+																							: false;
 																					this.projectCollect(
 																						e,
 																						item.id,
