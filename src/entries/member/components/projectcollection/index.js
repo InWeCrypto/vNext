@@ -38,8 +38,19 @@ class ProjectCollection extends PureComponent {
 	changePagination(page, size) {
 		this.getData(page);
 	}
-	setFavorite(id, isFavorite) {
-		this.props.setProjectColletion(id, isFavorite ? false : true);
+	setFavorite(item) {
+		this.props.setProjectColletion(
+			item.id,
+			item.category_user.is_favorite ? false : true
+		);
+	}
+	projectNews(artical, e) {
+		e.nativeEvent.stopImmediatePropagation();
+		if (artical.url) {
+			window.open(artical.url);
+		} else {
+			window.location.href = "/newsdetail?id=" + artical.id;
+		}
 	}
 	render() {
 		const { userInfo, collectionList, lng } = this.props;
@@ -66,16 +77,20 @@ class ProjectCollection extends PureComponent {
 											<div
 												onClick={this.setFavorite.bind(
 													this,
-													item.id,
-													item.category_user
+													item
 												)}
 											>
-												{!item.category_user && (
+												{(!item.category_user ||
+													!item.category_user
+														.is_favorite) && (
 													<i className="icon-uncollect" />
 												)}
-												{item.category_user && (
-													<i className="icon-collect" />
-												)}
+
+												{item.category_user &&
+													item.category_user
+														.is_favorite && (
+														<i className="icon-collect" />
+													)}
 											</div>
 											<div className="project-icon">
 												<img src={item.img} />
@@ -126,7 +141,20 @@ class ProjectCollection extends PureComponent {
 												Trading
 											</div>
 											<div className="f1 project-news">
-												最近gengxin最近gengxin最近gengxin最近gengxin最近gengxin最近gengxin最近gengxin最近gengxin最近gengxin最近gengxin
+												{item.last_article && (
+													<span
+														onClick={this.projectNews.bind(
+															this,
+															item.last_article
+														)}
+														className="project-news-target"
+													>
+														{
+															item.last_article
+																.title
+														}
+													</span>
+												)}
 											</div>
 										</div>
 									);

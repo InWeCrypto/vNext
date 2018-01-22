@@ -10,7 +10,13 @@ export const collectionList = handleActions(
 	{
 		[COLLECTION]: (state, { payload }) => payload,
 		[SETPROJECTCOLLETION]: (state, { payload }) => {
-			return payload;
+			let data = state.data.map((item, index) => {
+				if (item.id === payload.category_id) {
+					item.category_user = payload;
+				}
+				return item;
+			});
+			return { ...state, data: data };
 		}
 	},
 	null

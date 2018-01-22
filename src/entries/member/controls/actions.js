@@ -32,7 +32,7 @@ export const setProjectColletion = createAction(
 	SETPROJECTCOLLETION,
 	(id, state) => {
 		return http
-			.post({
+			.put({
 				url: `category/${id}/collect`,
 				params: {
 					enable: state
@@ -40,6 +40,13 @@ export const setProjectColletion = createAction(
 			})
 			.then(res => {
 				console.log(res);
+				if (res.code === 4000 && res.data && res.data.id) {
+					return {
+						code: res.code,
+						data: res.data,
+						msg: res.msg
+					};
+				}
 				return res;
 			});
 	}
