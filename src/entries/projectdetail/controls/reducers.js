@@ -1,9 +1,12 @@
 import { handleActions } from "redux-actions";
-import { PROJECTDETAIL, COINTIMEPRICE } from "./actions";
+import { PROJECTDETAIL, COINTIMEPRICE, PROJECTREMIND } from "./actions";
 
 export const projectDetail = handleActions(
 	{
-		[PROJECTDETAIL]: (state, { payload }) => payload
+		[PROJECTDETAIL]: (state, { payload }) => payload,
+		[PROJECTREMIND]: (state, { payload }) => {
+			return { ...state, category_user: payload };
+		}
 	},
 	[]
 );

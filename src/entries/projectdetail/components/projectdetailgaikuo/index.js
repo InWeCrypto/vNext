@@ -5,7 +5,13 @@ import GaiKuo from "../../../../components/gaikuo";
 import "./index.less";
 class ProjectDetailGaiKuo extends PureComponent {
 	render() {
-		const { lng, changeLng, projectDetail, coinTimePrice } = this.props;
+		const {
+			lng,
+			changeLng,
+			projectDetail,
+			coinTimePrice,
+			setProjectRemind
+		} = this.props;
 		return (
 			<I18n>
 				{(t, { I18n }) => (
@@ -22,7 +28,12 @@ class ProjectDetailGaiKuo extends PureComponent {
 									</div>
 								</div>
 								<div className="projectDetailConTopRight">
-									<GaiKuo changeLng={changeLng} lng={lng} />
+									<GaiKuo
+										changeLng={changeLng}
+										lng={lng}
+										projectDetail={projectDetail}
+										setProjectRemind={setProjectRemind}
+									/>
 								</div>
 							</div>
 							<div className="projectDetailCon1Box">

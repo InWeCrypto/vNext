@@ -1,5 +1,7 @@
 import React, { PureComponent } from "react";
 import { I18n, Trans } from "react-i18next";
+import { StyleSheet, css } from "aphrodite";
+import { puffIn } from "react-magic";
 
 import "./index.less";
 
@@ -9,30 +11,96 @@ class GaiKuo extends PureComponent {
 		this.state = {
 			showShareList: false,
 			remind: false,
+			remindBox: false,
 			collect: false,
 			home: false,
-			share: false
+			share: false,
+			aboveVal: "",
+			belowVal: ""
 		};
+		this.styles = StyleSheet.create({
+			magic: {
+				animationName: puffIn,
+				animationDuration: ".3s"
+			}
+		});
 	}
-	componentWillUnmount() {}
+	componentDidMount() {
+		this.initPage();
+	}
+	initPage() {
+		if (
+			this.props.projectDetail.category_user &&
+			this.props.projectDetail.category_user.is_market_follow
+		) {
+			this.setState({
+				aboveVal:
+					this.props.projectDetail.category_user &&
+					this.props.projectDetail.category_user.market_hige,
+				belowVal:
+					this.props.projectDetail.category_user &&
+					this.props.projectDetail.category_user.market_lost
+			});
+		}
+	}
 	toggleShareList(e) {
-		console.log(this);
 		e.stopPropagation();
 		this.setState({
 			showShareList: !this.state.showShareList
 		});
 	}
 	toggleList(val, e) {
-		let set = {};
-		set[val] = !this.state[val];
-		this.setState(set);
+		// let set = {};
+		// set[val] = !this.state[val];
+		// this.setState(set);
+		if (val == "remind") {
+			this.setState({
+				remindBox: !this.state.remindBox
+			});
+		}
 		if (val == "share") {
 			this.toggleShareList(e);
 		}
 	}
+	closeRemind() {
+		this.setState({
+			remindBox: false
+		});
+	}
+	changeVal(e, type) {
+		let val = e.target.value;
+		if (!isNaN(val)) {
+			let obj = {};
+			obj[type] = val;
+			this.setState(obj);
+		}
+	}
+	remindUpdate(type, c_id, is_market_follow) {
+		this.props
+			.setProjectRemind({
+				c_id: c_id,
+				is_market_follow: is_market_follow,
+				market_hige: this.state.aboveVal,
+				market_lost: this.state.belowVal
+			})
+			.then(res => {
+				if (res.code == 4000) {
+					this.closeRemind();
+				}
+			});
+	}
 	render() {
-		const { lng } = this.props;
-		const { showShareList, remind, home, collect, share } = this.state;
+		const { lng, projectDetail } = this.props;
+		const {
+			showShareList,
+			remind,
+			home,
+			collect,
+			share,
+			remindBox,
+			aboveVal,
+			belowVal
+		} = this.state;
 		return (
 			<I18n>
 				{(t, { I18n }) => (
@@ -41,7 +109,9 @@ class GaiKuo extends PureComponent {
 							<ul className="gaikuoUl ui">
 								<li
 									className={
-										remind
+										projectDetail.category_user &&
+										projectDetail.category_user
+											.is_market_follow
 											? "gaikuoRemind cur"
 											: "gaikuoRemind"
 									}
@@ -55,7 +125,8 @@ class GaiKuo extends PureComponent {
 								</li>
 								<li
 									className={
-										collect
+										projectDetail.category_user &&
+										projectDetail.category_user.is_favorite
 											? "gaikuoCollect cur"
 											: "gaikuoCollect"
 									}
@@ -100,7 +171,113 @@ class GaiKuo extends PureComponent {
 								</ul>
 							)}
 						</div>
-						<div className="remindBox">1</div>
+						{remindBox && (
+							<div className="remindBox">
+								<div className="remind-content">
+									<div className="remind-bg" />
+									<div className={css(this.styles.magic)}>
+										<div className="remind-inbox">
+											<div className="remind-in">
+												<i
+													className="icon-close"
+													onClick={() => {
+														this.closeRemind();
+													}}
+												/>
+												<div className="remind-in-content">
+													<div className="remind-in-title">
+														行情提醒
+													</div>
+													<div className="remind-in-item">
+														<div className="item-name">
+															<img
+																src={
+																	projectDetail.img
+																}
+																alt=""
+															/>
+															<span>
+																{
+																	projectDetail.name
+																}
+															</span>
+														</div>
+														<div className="item-input">
+															<div className="remindAbove">
+																<span>
+																	Above
+																</span>
+																<div className="remindInput">
+																	<b>$</b>
+																	<input
+																		type="text"
+																		value={
+																			aboveVal
+																		}
+																		onChange={e => {
+																			this.changeVal(
+																				e,
+																				"aboveVal"
+																			);
+																		}}
+																	/>
+																</div>
+															</div>
+															<div className="remindBelow">
+																<span>
+																	Below
+																</span>
+																<div className="remindInput">
+																	<b>$</b>
+																	<input
+																		type="text"
+																		value={
+																			belowVal
+																		}
+																		onChange={e => {
+																			this.changeVal(
+																				e,
+																				"belowVal"
+																			);
+																		}}
+																	/>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div className="remind-in-btn">
+														<span
+															className="remindCancel"
+															onClick={() => {
+																this.remindUpdate(
+																	"cancel",
+																	projectDetail.id,
+																	false
+																);
+															}}
+														>
+															取消提醒
+														</span>
+														<span
+															className="remindConfirm"
+															onClick={() => {
+																this.remindUpdate(
+																	"confirm",
+																	projectDetail.id,
+																	true
+																);
+															}}
+														>
+															确定
+														</span>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						)}
 					</div>
 				)}
 			</I18n>

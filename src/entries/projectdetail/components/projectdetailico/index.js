@@ -83,7 +83,11 @@ class ProjectDetailIco extends PureComponent {
 									</div>
 								</div>
 								<div className="projectDetailConTopRight">
-									<GaiKuo changeLng={changeLng} lng={lng} />
+									<GaiKuo
+										changeLng={changeLng}
+										lng={lng}
+										projectDetail={projectDetail}
+									/>
 								</div>
 							</div>
 							<div className="projectDetailCon1Box ui">
