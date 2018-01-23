@@ -82,10 +82,10 @@ export default class Root extends PureComponent {
 			})
 			.then(res => {
 				if (res.code === 4000) {
-					this.setState({
-						// enable: !this.state.enable
-					});
-					console.log(this.props);
+					// this.setState({
+					// 	// enable: !this.state.enable
+					// });
+					// console.log(this.props);
 				}
 			});
 	}
@@ -225,14 +225,21 @@ export default class Root extends PureComponent {
 															</div>
 															<div
 																className={
-																	item.category_user
+																	item.category_user &&
+																	item
+																		.category_user
+																		.is_favorite
 																		? "projectLiTopRight collect"
 																		: "projectLiTopRight nocollect"
 																}
 																onClick={e => {
-																	let enable = item.category_user
-																		? true
-																		: false;
+																	let enable =
+																		item.category_user &&
+																		item
+																			.category_user
+																			.is_favorite
+																			? true
+																			: false;
 																	this.projectCollect(
 																		e,
 																		item.id,

@@ -22,6 +22,7 @@ export default class Root extends PureComponent {
 			minH: "auto",
 			ico: false,
 			gaikuo: false,
+			home: false,
 			info: false,
 			intro: false
 		};
@@ -47,33 +48,32 @@ export default class Root extends PureComponent {
 				c_id: p.c_id
 			})
 			.then(res => {
-				let type = "";
-				if (res.data.type == "Trading" || res.data.type == "上线中") {
-					type = "gaikuo";
-				} else if (
-					res.data.type == "Active" ||
-					res.data.type == "众筹中"
-				) {
-					type = "ico";
-				} else if (
-					res.data.type == "Upcoming" ||
-					res.data.type == "即将众筹"
-				) {
-					type = "ico";
+				if (res.data.type !== 1) {
+					this.setState({
+						ico: true
+					});
+				} else {
+					this.setState({
+						gaikuo: true
+					});
 				}
-				if (
-					type &&
-					["ico", "gaikuo", "info", "intro"].indexOf(type) != -1
-				) {
-					this.setShowItem(type);
+				if (p.type && ["home", "info", "intro"].indexOf(p.type) != -1) {
+					this.setShowItem(p.type);
+				} else {
+					this.setShowItem("home");
 				}
+				return res;
+			})
+			.then(res => {
+				this.props.getCoinTimePrice({
+					ico_type: res.data.unit
+				});
 			});
 	}
 	setShowItem(type) {
 		let set = {
 			cur: "",
-			ico: false,
-			gaikuo: false,
+			home: false,
 			info: false,
 			intro: false
 		};
@@ -83,7 +83,7 @@ export default class Root extends PureComponent {
 	}
 	componentDidUpdate() {}
 	render() {
-		const { minH, ico, gaikuo, info, intro } = this.state;
+		const { minH, ico, gaikuo, info, intro, home } = this.state;
 		const {
 			lng,
 			changeLng,
@@ -93,7 +93,8 @@ export default class Root extends PureComponent {
 			userInfo,
 			setReduxUserInfo,
 			forgetUser,
-			projectDetail
+			projectDetail,
+			coinTimePrice
 		} = this.props;
 		return (
 			<I18n>
@@ -110,18 +111,21 @@ export default class Root extends PureComponent {
 							lng={lng}
 						/>
 						<div id="mainBox" className="projectDetail ui">
-							{ico && (
-								<ProjectDetailIco
-									lng={lng}
-									projectDetail={projectDetail}
-								/>
-							)}
-							{gaikuo && (
-								<ProjectDetailGaiKuo
-									lng={lng}
-									projectDetail={projectDetail}
-								/>
-							)}
+							{home &&
+								ico && (
+									<ProjectDetailIco
+										lng={lng}
+										projectDetail={projectDetail}
+									/>
+								)}
+							{home &&
+								gaikuo && (
+									<ProjectDetailGaiKuo
+										lng={lng}
+										projectDetail={projectDetail}
+										coinTimePrice={coinTimePrice}
+									/>
+								)}
 							{info && (
 								<ProjectDetailInfo
 									lng={lng}
@@ -136,14 +140,14 @@ export default class Root extends PureComponent {
 							)}
 							<div className="projectDetailCon3">
 								<ul className="projectDetailCon3Ul">
-									<li className={ico || gaikuo ? "cur" : ""}>
+									<li className={home ? "cur" : ""}>
 										<Link
 											to={{
 												pathname: "projectdetail",
 												search:
 													"?c_id=" +
 													projectDetail.id +
-													"&&type=ico"
+													"&type=home"
 											}}
 										>
 											<span>项目概况</span>
@@ -156,7 +160,7 @@ export default class Root extends PureComponent {
 												search:
 													"?c_id=" +
 													projectDetail.id +
-													"&&type=info"
+													"&type=info"
 											}}
 										>
 											<span>项目动态</span>
@@ -169,7 +173,7 @@ export default class Root extends PureComponent {
 												search:
 													"?c_id=" +
 													projectDetail.id +
-													"&&type=intro"
+													"&type=intro"
 											}}
 										>
 											<span>项目介绍</span>

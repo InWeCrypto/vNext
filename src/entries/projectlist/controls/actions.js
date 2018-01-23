@@ -1,7 +1,7 @@
 import { createAction } from "redux-actions";
 import http from "../../../utils/ajax";
 
-const PRE_FIX = "PROJECT_";
+const PRE_FIX = "PROJECTLIST_";
 export const PROJECT = `${PRE_FIX}PROJECT`;
 export const PROJECT2 = `${PRE_FIX}PROJECT2`;
 export const PROJECT3 = `${PRE_FIX}PROJECT3`;
@@ -55,12 +55,11 @@ export const getProjectCollect = createAction(PROJECTCOLLECT, params => {
 			params: { enable: params.enable }
 		})
 		.then(res => {
-			if (res.code === 4000) {
+			if (res.code === 4000 && res.data && res.data.id) {
 				return {
-					data: {
-						id: 1
-					},
-					code: 4000
+					code: res.code,
+					data: res.data,
+					msg: res.msg
 				};
 			}
 			return res;

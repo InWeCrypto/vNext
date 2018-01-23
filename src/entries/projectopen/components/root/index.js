@@ -26,24 +26,29 @@ export default class Root extends PureComponent {
 		}
 	}
 	componentDidMount() {
-		document.title = "InWe-项目列表";
-		let minH = getMainMinHeight();
-		let U = (uiW = document.getElementById("projectOpenConChildUl")
-			.clientWidth);
-		let liW = parseInt(uiW * 0.22);
-		let liMR = parseInt(uiW * 0.04);
-		let liH = parseInt((minH - 160) / 6);
-		this.setState({
-			minH: minH,
-			liW: liW,
-			liH: liH,
-			liMR: liMR
-		});
-		document.querySelector("#mainBox").style.minHeight = minH + "px";
-		this.initPage(this.props.location.search);
+		setTimeout(() => {
+			document.title = "InWe-项目列表";
+			let minH = getMainMinHeight();
+			let U = (uiW = document.getElementById("projectOpenConChildUl")
+				.clientWidth);
+			let liW = parseInt(uiW * 0.22);
+			let liMR = parseInt(uiW * 0.04);
+			let liH = parseInt((minH - 160) / 6);
+			this.setState({
+				minH: minH,
+				liW: liW,
+				liH: liH,
+				liMR: liMR
+			});
+			document.querySelector("#mainBox").style.minHeight = minH + "px";
+			this.initPage(this.props.location.search);
+		}, 0);
 	}
 	componentDidUpdate() {}
 	initPage(search) {
+		let annoBoxH = document.getElementById("mainBox").clientHeight;
+		let annoBoxLiH = 103;
+		let nums = Math.floor((annoBoxH - 150) / annoBoxLiH) * 4;
 		let q = getQuery(search);
 		this.setState({
 			type: q.type || "1",
@@ -52,11 +57,26 @@ export default class Root extends PureComponent {
 		this.props
 			.getProject({
 				type: q.type,
-				per_page: 2,
+				per_page: nums || 16,
 				page: q.page
 			})
 			.then(res => {
 				this.setState({});
+			});
+	}
+	projectCollect(e, c_id, enable) {
+		e.preventDefault();
+		this.props
+			.getProjectCollect({
+				c_id: c_id,
+				enable: !enable
+			})
+			.then(res => {
+				if (res.code === 4000) {
+					// this.setState({
+					// 	// enable: !this.state.enable
+					// });
+				}
 			});
 	}
 	render() {
@@ -141,57 +161,78 @@ export default class Root extends PureComponent {
 															marginRight: liMR
 														}}
 													>
-														<div className="projectOpenLiTop ui center">
-															<div className="projectOpenLiTopLeft ui center">
-																<div className="projectOpenImg newMsg">
-																	<img
-																		src={
-																			item.img
-																		}
-																	/>
+														<Link
+															to={{
+																pathname:
+																	"projectdetail",
+																search:
+																	"?c_id=" +
+																	item.id
+															}}
+														>
+															<div className="projectOpenLiTop ui center">
+																<div className="projectOpenLiTopLeft ui center">
+																	<div className="projectOpenImg newMsg">
+																		<img
+																			src={
+																				item.img
+																			}
+																		/>
+																	</div>
+																	<p>
+																		<span className="ellitext">
+																			{
+																				item.name
+																			}
+																		</span>
+																		<b className="ellitext">
+																			{
+																				item.long_name
+																			}
+																		</b>
+																	</p>
 																</div>
-																<p>
-																	<span className="ellitext">
-																		{
-																			item.name
-																		}
-																	</span>
-																	<b className="ellitext">
-																		{
-																			item.long_name
-																		}
-																	</b>
-																</p>
+																<div
+																	className={
+																		item.category_user &&
+																		item
+																			.category_user
+																			.is_favorite
+																			? "projectOpenLiTopRight collect"
+																			: "projectOpenLiTopRight nocollect"
+																	}
+																	onClick={e => {
+																		let enable =
+																			item.category_user &&
+																			item
+																				.category_user
+																				.is_favorite
+																				? true
+																				: false;
+																		this.projectCollect(
+																			e,
+																			item.id,
+																			enable
+																		);
+																	}}
+																/>
 															</div>
-															<div
-																className={
-																	item.category_user
-																		? "projectOpenLiTopRight collect"
-																		: "projectOpenLiTopRight nocollect"
-																}
-																onClick={() => {
-																	let enable = item.category_user
-																		? true
-																		: false;
-																	this.projectCollect(
-																		item.id,
-																		enable
-																	);
-																}}
-															/>
-														</div>
-														<div className="projectOpenLiCenter">
-															<div className="left">
-																{item.industry}
-															</div>
-															{type == 1 && (
-																<div className="right">
-																	$90.00<span>
-																		(-12.00%)
-																	</span>
+															<div className="projectOpenLiCenter">
+																<div className="left">
+																	{
+																		item.industry
+																	}
 																</div>
-															)}
-														</div>
+																{type == 1 && (
+																	<div className="right">
+																		$90.00<span
+																		>
+																			(-12.00%)
+																		</span>
+																	</div>
+																)}
+															</div>
+														</Link>
 													</li>
 												);
 											})}

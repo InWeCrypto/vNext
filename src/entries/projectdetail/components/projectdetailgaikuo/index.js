@@ -5,7 +5,7 @@ import GaiKuo from "../../../../components/gaikuo";
 import "./index.less";
 class ProjectDetailGaiKuo extends PureComponent {
 	render() {
-		const { lng, changeLng, projectDetail } = this.props;
+		const { lng, changeLng, projectDetail, coinTimePrice } = this.props;
 		return (
 			<I18n>
 				{(t, { I18n }) => (
@@ -26,13 +26,22 @@ class ProjectDetailGaiKuo extends PureComponent {
 								</div>
 							</div>
 							<div className="projectDetailCon1Box">
-								<div className="gaiKuoMoney downs">
-									<span>$ 50.00</span>
-									<i>(-0.06%)</i>
+								<div
+									className={
+										coinTimePrice.percent_change_24h < 0
+											? "gaiKuoMoney downs"
+											: "gaiKuoMoney"
+									}
+								>
+									<span>$ {coinTimePrice.price_usd}</span>
+									<i>({coinTimePrice.percent_change_24h}%)</i>
 									<b />
 								</div>
 								<p className="volume">
-									Volume (24h)：$59,907,000 USD
+									Volume (24h)：${
+										coinTimePrice["24h_volume_usd"]
+									}{" "}
+									USD
 								</p>
 
 								<table>
@@ -47,11 +56,17 @@ class ProjectDetailGaiKuo extends PureComponent {
 									</thead>
 									<tbody>
 										<tr>
-											<td>01</td>
-											<td>$78.05 milion</td>
-											<td>7.85 milion NEO</td>
-											<td>7.85 milion NEO</td>
-											<td>$20.00</td>
+											<td>{coinTimePrice.rank}</td>
+											<td>
+												${coinTimePrice.market_cap_usd}
+											</td>
+											<td>
+												{coinTimePrice.available_supply}
+											</td>
+											<td>
+												{coinTimePrice.total_supply}
+											</td>
+											<td>${coinTimePrice.price_usd}</td>
 										</tr>
 									</tbody>
 								</table>
@@ -63,21 +78,57 @@ class ProjectDetailGaiKuo extends PureComponent {
 								<div className="projectDetailCon2Title">
 									Rank
 								</div>
-								<p>+关注热度：第1名</p>
-								<p>+用户评分：4.5</p>
+								<p>
+									+关注热度：第{projectDetail.category_score &&
+										projectDetail.category_score.sort}名
+								</p>
+								<p>
+									+用户评分：{projectDetail.category_score &&
+										projectDetail.category_score.value}
+								</p>
 							</div>
 							<div className="projectDetailCon2Box">
 								<div className="projectDetailCon2Title">
 									Explore
 								</div>
-								<p>+Neotracker.io</p>
-								<p>+Neotracker.io</p>
+								{projectDetail &&
+									projectDetail.category_explorer &&
+									projectDetail.category_explorer.length >
+										0 &&
+									projectDetail.category_explorer.map(
+										(item, index) => {
+											return (
+												<Link
+													to={{
+														pathname: item.url
+													}}
+												>
+													<p>+{item.name}</p>
+												</Link>
+											);
+										}
+									)}
 							</div>
 							<div className="projectDetailCon2Box">
 								<div className="projectDetailCon2Title">
 									Wallet
 								</div>
-								<p>+Im token</p>
+								{projectDetail &&
+									projectDetail.category_wallet &&
+									projectDetail.category_wallet.length > 0 &&
+									projectDetail.category_wallet.map(
+										(item, index) => {
+											return (
+												<Link
+													to={{
+														pathname: item.url
+													}}
+												>
+													<p>+{item.name}</p>
+												</Link>
+											);
+										}
+									)}
 							</div>
 							<div className="projectDetailCon2Box">
 								<div className="projectDetailCon2Title">
@@ -90,9 +141,29 @@ class ProjectDetailGaiKuo extends PureComponent {
 									Social
 								</div>
 								<ul className="shareList ui center">
-									<li className="tele" />
-									<li className="wx" />
-									<li className="mail" />
+									{projectDetail &&
+										projectDetail.category_media &&
+										projectDetail.category_media.length >
+											0 &&
+										projectDetail.category_media.map(
+											(item, index) => {
+												return (
+													<li>
+														<Link
+															to={{
+																pathname:
+																	item.url
+															}}
+														>
+															<img
+																src={item.img}
+																alt=""
+															/>
+														</Link>
+													</li>
+												);
+											}
+										)}
 								</ul>
 							</div>
 						</div>

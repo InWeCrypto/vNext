@@ -4,8 +4,12 @@ import * as actions from "../controls/actions";
 import * as globalActions from "../../../globalactions";
 
 export default connect(
-	({ projectDetail: { projectDetail }, globData: { lng, userInfo } }) => ({
+	({
+		projectDetail: { projectDetail, coinTimePrice },
+		globData: { lng, userInfo }
+	}) => ({
 		projectDetail,
+		coinTimePrice,
 		userInfo,
 		lng
 	}),
