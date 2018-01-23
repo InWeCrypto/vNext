@@ -80,6 +80,18 @@ class Root extends PureComponent {
 			month2: res.month
 		});
 	}
+	changeWarn() {
+		let params = {};
+		params.enable = this.props.candyList.candy_bow_user ? false : true;
+		params.bow_date = `${this.state.year}-${this.state.month}-${
+			this.state.day
+		}`;
+		this.props.changeCandyWarn(params).then(res => {
+			if (res.code === 4001) {
+				Msg.prompt(res.msg);
+			}
+		});
+	}
 	render() {
 		const {
 			lng,
@@ -148,8 +160,17 @@ class Root extends PureComponent {
 												</span>
 											)}
 
-											<div className="switch">
-												<span className="switch-item open" />
+											<div
+												onClick={this.changeWarn.bind(
+													this
+												)}
+												className={(() => {
+													return candyList.candy_bow_user
+														? "switch open"
+														: "switch";
+												})()}
+											>
+												<span className="switch-item" />
 											</div>
 										</div>
 										<div className="data-group">

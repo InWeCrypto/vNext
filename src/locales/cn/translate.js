@@ -96,5 +96,6 @@ export default {
 	},
 	sure: "确定",
 	cannel: "取消",
-	nodata: "暂无数据"
+	nodata: "暂无数据",
+	unLongin: "请登录"
 };
