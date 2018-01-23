@@ -24,7 +24,7 @@ var webpackProConfig = {
 				warnings: false
 			}
 		}),
-		new webpack.optimize.CommonsChunkPlugin("vendor")
+		new webpack.optimize.CommonsChunkPlugin(["pace", "message", "vendor"])
 	]
 };
 

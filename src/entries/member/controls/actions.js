@@ -19,7 +19,6 @@ export const getQuotationList = createAction(QUOTATION, query => {
 	});
 });
 export const getUploadKey = createAction(UPLOADKEY, type => {
-	console.log(type);
 	return http
 		.get({
 			url: `upload/${type}?get_oss_policy`

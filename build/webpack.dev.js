@@ -6,6 +6,9 @@ var webpackDevConfig = {
 		path: config.outputRoot,
 		filename: "[name].js",
 		chunkFilename: "[name].[chunkhash:9].chunk.js"
-	}
+	},
+	plugins: [
+		new webpack.optimize.CommonsChunkPlugin(["pace", "message", "vendor"])
+	]
 };
 module.exports = webpackDevConfig;
