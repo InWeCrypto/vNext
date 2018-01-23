@@ -5,6 +5,7 @@ const PRE_FIX = "PROJECTDETAIL_";
 export const PROJECTDETAIL = `${PRE_FIX}PROJECTDETAIL`;
 export const COINTIMEPRICE = `${PRE_FIX}COINTIMEPRICE`;
 export const PROJECTREMIND = `${PRE_FIX}PROJECTREMIND`;
+export const PROJECTCOLLECT = `${PRE_FIX}PROJECTCOLLECT`;
 
 export const getProjectDetail = createAction(PROJECTDETAIL, params => {
 	return http
@@ -30,6 +31,23 @@ export const setProjectRemind = createAction(PROJECTREMIND, params => {
 		.put({
 			url: `category/${params.c_id}/follow`,
 			params: params
+		})
+		.then(res => {
+			if (res.code === 4000 && res.data && res.data.id) {
+				return {
+					code: res.code,
+					data: res.data,
+					msg: res.msg
+				};
+			}
+			return res;
+		});
+});
+export const getProjectCollect = createAction(PROJECTCOLLECT, params => {
+	return http
+		.put({
+			url: "category/" + params.c_id + "/collect",
+			params: { enable: params.enable }
 		})
 		.then(res => {
 			if (res.code === 4000 && res.data && res.data.id) {

@@ -10,7 +10,8 @@ class ProjectDetailGaiKuo extends PureComponent {
 			changeLng,
 			projectDetail,
 			coinTimePrice,
-			setProjectRemind
+			setProjectRemind,
+			getProjectCollect
 		} = this.props;
 		return (
 			<I18n>
@@ -33,6 +34,7 @@ class ProjectDetailGaiKuo extends PureComponent {
 										lng={lng}
 										projectDetail={projectDetail}
 										setProjectRemind={setProjectRemind}
+										getProjectCollect={getProjectCollect}
 									/>
 								</div>
 							</div>

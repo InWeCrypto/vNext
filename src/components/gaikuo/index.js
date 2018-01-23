@@ -16,7 +16,8 @@ class GaiKuo extends PureComponent {
 			home: false,
 			share: false,
 			aboveVal: "",
-			belowVal: ""
+			belowVal: "",
+			is_favorite: ""
 		};
 		this.styles = StyleSheet.create({
 			magic: {
@@ -42,6 +43,11 @@ class GaiKuo extends PureComponent {
 					this.props.projectDetail.category_user.market_lost
 			});
 		}
+		this.setState({
+			is_favorite:
+				this.props.projectDetail.category_user &&
+				this.props.projectDetail.category_user.is_favorite
+		});
 	}
 	toggleShareList(e) {
 		e.stopPropagation();
@@ -57,6 +63,18 @@ class GaiKuo extends PureComponent {
 			this.setState({
 				remindBox: !this.state.remindBox
 			});
+		}
+		if (val == "collect") {
+			this.props
+				.getProjectCollect({
+					c_id: this.props.projectDetail.id,
+					enable: !this.state.is_favorite
+				})
+				.then(res => {
+					this.setState({
+						is_favorite: res.data.is_favorite
+					});
+				});
 		}
 		if (val == "share") {
 			this.toggleShareList(e);
@@ -145,8 +163,10 @@ class GaiKuo extends PureComponent {
 										this.toggleList("home", e);
 									}}
 								>
-									<b className="" />
-									<span>官网</span>
+									<a href={projectDetail.website}>
+										<b className="" />
+										<span>官网</span>
+									</a>
 								</li>
 								<li
 									className={
