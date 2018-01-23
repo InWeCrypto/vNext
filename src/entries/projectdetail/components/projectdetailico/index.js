@@ -4,6 +4,49 @@ import { Link } from "react-router-dom";
 import GaiKuo from "../../../../components/gaikuo";
 import "./index.less";
 class ProjectDetailIco extends PureComponent {
+	constructor(props) {
+		super(props);
+		this.state = {
+			monthArr: [
+				"january",
+				"february",
+				"march",
+				"april",
+				"may",
+				"june",
+				"july",
+				"august",
+				"september",
+				"october",
+				"november",
+				"december"
+			]
+		};
+	}
+	getEndDay(start, end) {
+		let now = new Date("2018-01-15 08:00:00");
+		let end_at = new Date(end);
+		let start_at = new Date(start);
+		if (now.getTime() < start_at.getTime()) {
+			return `starts ${
+				start_at.getDate() < 10
+					? "0" + start_at.getDate()
+					: start_at.getDate()
+			} ${this.state.monthArr[start_at.getMonth()].slice(0, 3)}`;
+		} else if (now.getTime() > end_at.getTime()) {
+			return `ended ${
+				end_at.getDate() < 10
+					? "0" + end_at.getDate()
+					: end_at.getDate()
+			} ${this.state.monthArr[end_at.getMonth()].slice(0, 3)}`;
+		} else {
+			let str = "ends in 2 days";
+			let day = Math.ceil(
+				(end_at.getTime() - now.getTime()) / 3600 / 1000 / 24
+			);
+			return `ends in ${day} days`;
+		}
+	}
 	render() {
 		const { lng, changeLng, projectDetail } = this.props;
 		return (
@@ -22,9 +65,20 @@ class ProjectDetailIco extends PureComponent {
 									</div>
 
 									<div className="projectDetailCenter2">
-										<span>Active</span>
+										<span>{projectDetail.type_name}</span>
 										<p>
-											Token Sale<i>ends in 4 DAYS</i>
+											Token Sale<i>
+												{(() => {
+													return this.getEndDay(
+														projectDetail
+															.category_desc
+															.start_at,
+														projectDetail
+															.category_desc
+															.end_at
+													);
+												})()}
+											</i>
 										</p>
 									</div>
 								</div>
@@ -37,19 +91,22 @@ class ProjectDetailIco extends PureComponent {
 									<div className="projectDetailCon1BoxLeftDate">
 										<b />
 										<p>
-											{projectDetail.category_desc.start_at
-												.slice(5, 10)
-												.replace(/-/, ".")}{" "}
+											{projectDetail.category_desc &&
+												projectDetail.category_desc.start_at
+													.slice(5, 10)
+													.replace(/-/, ".")}{" "}
 											-
-											{projectDetail.category_desc.end_at
-												.slice(5, 10)
-												.replace(/-/, ".")}
+											{projectDetail.category_desc &&
+												projectDetail.category_desc.end_at
+													.slice(5, 10)
+													.replace(/-/, ".")}
 										</p>
 									</div>
 									<div className="ul">
 										<p
 											dangerouslySetInnerHTML={{
 												__html:
+													projectDetail.category_desc &&
 													projectDetail.category_desc
 														.content
 											}}

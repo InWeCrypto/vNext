@@ -28,19 +28,26 @@ class ProjectDetailGaiKuo extends PureComponent {
 							<div className="projectDetailCon1Box">
 								<div
 									className={
+										coinTimePrice &&
 										coinTimePrice.percent_change_24h < 0
 											? "gaiKuoMoney downs"
 											: "gaiKuoMoney"
 									}
 								>
-									<span>$ {coinTimePrice.price_usd}</span>
-									<i>({coinTimePrice.percent_change_24h}%)</i>
+									<span>
+										${" "}
+										{coinTimePrice &&
+											coinTimePrice.price_usd}
+									</span>
+									<i>
+										({coinTimePrice &&
+											coinTimePrice.percent_change_24h}%)
+									</i>
 									<b />
 								</div>
 								<p className="volume">
-									Volume (24h)：${
-										coinTimePrice["24h_volume_usd"]
-									}{" "}
+									Volume (24h)：${coinTimePrice &&
+										coinTimePrice["24h_volume_usd"]}{" "}
 									USD
 								</p>
 
@@ -56,17 +63,26 @@ class ProjectDetailGaiKuo extends PureComponent {
 									</thead>
 									<tbody>
 										<tr>
-											<td>{coinTimePrice.rank}</td>
 											<td>
-												${coinTimePrice.market_cap_usd}
+												{coinTimePrice &&
+													coinTimePrice.rank}
 											</td>
 											<td>
-												{coinTimePrice.available_supply}
+												${coinTimePrice &&
+													coinTimePrice.market_cap_usd}
 											</td>
 											<td>
-												{coinTimePrice.total_supply}
+												{coinTimePrice &&
+													coinTimePrice.available_supply}
 											</td>
-											<td>${coinTimePrice.price_usd}</td>
+											<td>
+												{coinTimePrice &&
+													coinTimePrice.total_supply}
+											</td>
+											<td>
+												${coinTimePrice &&
+													coinTimePrice.price_usd}
+											</td>
 										</tr>
 									</tbody>
 								</table>
@@ -134,7 +150,12 @@ class ProjectDetailGaiKuo extends PureComponent {
 								<div className="projectDetailCon2Title">
 									Token Holders
 								</div>
-								<p className="viewMore">view more</p>
+								<a
+									href={projectDetail.token_holder}
+									target="_blank"
+								>
+									<p className="viewMore">view more</p>
+								</a>
 							</div>
 							<div className="projectDetailCon2Box">
 								<div className="projectDetailCon2Title">
@@ -148,7 +169,7 @@ class ProjectDetailGaiKuo extends PureComponent {
 										projectDetail.category_media.map(
 											(item, index) => {
 												return (
-													<li>
+													<li key={index}>
 														<Link
 															to={{
 																pathname:
