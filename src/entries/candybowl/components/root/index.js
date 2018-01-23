@@ -87,9 +87,9 @@ class Root extends PureComponent {
 			this.state.day
 		}`;
 		this.props.changeCandyWarn(params).then(res => {
-			if (res.code === 4001) {
-				Msg.prompt(res.msg);
-			}
+			// if (res.code === 4001) {
+			// 	Msg.prompt(res.msg);
+			// }
 		});
 	}
 	render() {
