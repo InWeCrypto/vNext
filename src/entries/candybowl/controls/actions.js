@@ -4,6 +4,7 @@ import http from "../../../utils/ajax";
 const PRE_FIX = "CANDYBOWL_";
 export const CANDYLIST = `${PRE_FIX}CANDAYLIST`;
 export const CANDYMONTH = `${PRE_FIX}CANDYMONTH`;
+export const CANDYWARN = `${PRE_FIX}CANDYWARN`;
 
 export const getCandyList = createAction(CANDYLIST, query => {
 	return http.get({
@@ -38,5 +39,30 @@ export const getCandyMonth = createAction(CANDYMONTH, query => {
 					msg: res.msg
 				};
 			}
+		});
+});
+export const changeCandyWarn = createAction(CANDYWARN, params => {
+	return http
+		.post({
+			url: "candy_bow",
+			params: params
+		})
+		.then(res => {
+			if (res.code === 4000) {
+				if (res.data.user_id) {
+					return {
+						code: res.code,
+						msg: res.msg,
+						data: res.data
+					};
+				} else {
+					return {
+						code: res.code,
+						msg: res.msg,
+						data: null
+					};
+				}
+			}
+			return res;
 		});
 });
