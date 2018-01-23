@@ -149,7 +149,7 @@ class Root extends PureComponent {
 											)}
 
 											<div className="switch">
-												<span className="switch-item" />
+												<span className="switch-item open" />
 											</div>
 										</div>
 										<div className="data-group">
