@@ -1,17 +1,17 @@
 @import "../../assets/less/basestyle.less";
 .header-box {
-	padding-top: 0.08rem;
+	padding-top: 0.36rem;
 	.heder-middle {
 		text-align: center;
 		font-size: 0.3rem;
+		line-height: 0.48rem;
 		font-weight: 600;
 		font-family: "impact";
 	}
 	.heder-right {
 		position: relative;
-		width: 1.5rem;
-		display: flex;
-		flex-flow: row-reverse;
+		text-align: right;
+		align-self: flex-start;
 	}
 	.member {
 		width: 0.38rem;
@@ -73,7 +73,7 @@
 		}
 	}
 	.heder-left {
-		width: 1.5rem;
+		padding-top: 0.02rem;
 		.img {
 			width: 0.19rem;
 			height: 0.15rem;
@@ -149,5 +149,175 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
+	}
+}
+.m-header-box,
+.m-header-hold {
+	display: none;
+}
+
+.mobile {
+	.header-box {
+		display: none;
+	}
+	.m-header-hold {
+		display: block;
+		width: 100%;
+		height: 0.96rem;
+	}
+	.m-header-box.fixed {
+		position: fixed;
+		left: 0;
+		top: 0;
+		z-index: 10;
+	}
+	.m-header-box {
+		position: relative;
+		display: block;
+		width: 100%;
+		height: 0.96rem;
+		background: #fff;
+		.m-menu-btn {
+            position: absolute;
+            top: 0.3rem;
+            left: 0.3rem;
+            padding: 0;
+            transform: scale(0.6);
+			// width: 0.4rem;
+			// height: 0.32rem;
+		}
+		.hamburger--elastic .hamburger-inner {
+			top: 0;
+			transition-duration: 0.4s;
+			transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+		}
+		.hamburger--elastic .hamburger-inner::before {
+			top: 10px;
+			transition: opacity 0.15s 0.4s ease;
+		}
+		.hamburger--elastic .hamburger-inner::after {
+			top: 20px;
+			transition: -webkit-transform 0.4s
+				cubic-bezier(0.68, -0.55, 0.265, 1.55);
+			transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+			transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55),
+				-webkit-transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+		}
+
+		.hamburger--elastic.is-active .hamburger-inner {
+			-webkit-transform: translate3d(0, 10px, 0) rotate(135deg);
+			transform: translate3d(0, 10px, 0) rotate(135deg);
+			transition-delay: 0.1s;
+		}
+		.hamburger--elastic.is-active .hamburger-inner::before {
+			transition-delay: 0s;
+			opacity: 0;
+		}
+		.hamburger--elastic.is-active .hamburger-inner::after {
+			-webkit-transform: translate3d(0, -20px, 0) rotate(-270deg);
+			transform: translate3d(0, -20px, 0) rotate(-270deg);
+			transition-delay: 0.1s;
+		}
+		.hamburger {
+			display: inline-block;
+			cursor: pointer;
+			transition-property: opacity, -webkit-filter;
+			transition-property: opacity, filter;
+			transition-property: opacity, filter, -webkit-filter;
+			transition-duration: 0.15s;
+			transition-timing-function: linear;
+			font: inherit;
+			color: inherit;
+			text-transform: none;
+			background-color: transparent;
+			border: 0;
+			margin: 0;
+			overflow: visible;
+		}
+
+		.hamburger-box {
+			width: 40px;
+			height: 24px;
+			display: inline-block;
+			position: relative;
+		}
+
+		.hamburger-inner {
+			display: block;
+			top: 50%;
+			margin-top: -2px;
+		}
+		.hamburger-inner,
+		.hamburger-inner::before, //252 62 26
+		.hamburger-inner::after {
+			width: 40px;
+			height: 4px;
+			background-color: rgb(252, 62, 26);
+			border-radius: 4px;
+			position: absolute;
+			transition-property: -webkit-transform;
+			transition-property: transform;
+			transition-property: transform, -webkit-transform;
+			transition-duration: 0.15s;
+			transition-timing-function: ease;
+		}
+		.hamburger-inner::before,
+		.hamburger-inner::after {
+			content: "";
+			display: block;
+		}
+		.hamburger-inner::before {
+			top: -10px;
+		}
+		.hamburger-inner::after {
+			bottom: -10px;
+		}
+		.m-header-title {
+			margin: 0 auto;
+			width: 100%;
+			height: 0.48rem;
+			text-align: center;
+			font-size: 0.4rem;
+			line-height: 0.48rem;
+			font-weight: 600;
+			font-family: "impact";
+			padding-top: 0.24rem;
+			img {
+				vertical-align: middle;
+				width: 0.32rem;
+				height: 0.32rem;
+				margin-right: 0.1rem;
+			}
+			span {
+				vertical-align: middle;
+			}
+		}
+	}
+	//menu
+	.menuMap {
+		position: absolute;
+		left: 0;
+		top: -100%;
+		z-index: 5;
+		width: 7.5rem;
+		height: 100%;
+		margin: 0 auto;
+		background: #fff;
+		transition: all 0.5s ease-in-out;
+		&.menuMapShow {
+			transform: translateY(100%);
+		}
+		.menuHold {
+			width: 100%;
+			height: 1.38rem;
+		}
+		.menuCell {
+			width: 5.56rem;
+			height: 0.94rem;
+			margin: 0 auto;
+			border-bottom: 1px solid #ececec;
+			font-size: 0.34rem;
+			line-height: 1.04rem;
+		}
 	}
 }

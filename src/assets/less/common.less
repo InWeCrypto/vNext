@@ -13,8 +13,17 @@
 .ui.center {
 	align-items: center;
 }
+.ui.end {
+	align-items: flex-end;
+}
 .ui.jcenter {
 	justify-content: center;
+}
+.ui.jstart {
+	justify-content: flex-start;
+}
+.ui.jend {
+	justify-content: flex-end;
 }
 .ui .f1 {
 	flex: 1;
@@ -124,4 +133,37 @@
 	background-size: 100% 100%;
 	width: 0.16rem;
 	height: 0.16rem;
+}
+
+// cdy
+.mobile {
+	width: 100%;
+	overflow: hidden;
+}
+.Center {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+}
+.Ycenter {
+	position: absolute;
+	top: 50%;
+	transform: translate(0, -50%);
+}
+.Xcenter {
+	position: absolute;
+	left: 50%;
+	transform: translate(-50%, 0);
+}
+.W {
+	width: 100%;
+}
+.Hide {
+	display: none !important;
+}
+.mobile{
+    .m-hide{
+        display: none !important;
+    }
 }
