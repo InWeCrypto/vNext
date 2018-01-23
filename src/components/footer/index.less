@@ -8,6 +8,7 @@
 			vertical-align: middle;
 		}
 		.item {
+			display: inline-block;
 			margin-left: 0.2rem;
 			vertical-align: middle;
 			cursor: pointer;
@@ -53,4 +54,83 @@
 			border-bottom: 0.03rem solid @orange;
 		}
 	}
+}
+.mobile{
+    .footer-box{
+        position: relative;
+        padding: 0;
+        width: 7.5rem;
+        margin: 0 auto;
+        height: 1.88rem;
+        background: #333;
+        .m-footer-container{
+           display: block;
+           .top{
+               width: jiang;
+               height: 1.12rem;
+               box-sizing: border-box;
+               border-bottom: 1px solid rgba(255,255,255,0.5);
+               .iconContainer{
+                   width: 2.16rem;
+                   height: .44rem;
+                   margin: 0 auto;
+                   padding-top: .34rem;
+                   display: flex;
+                   justify-content: space-between;
+               }
+               .item {
+                    display: block;
+                    width: .44rem;
+                    height: .44rem;
+                    i{
+                        display: block;
+                        width: 100%;
+                        height: 100%;
+                        border-radius: 100%;
+                    }
+                }
+                .icon-tele {
+                    background: url("../../assets/images/telegram_ico@2x.png") center center
+                        no-repeat / contain;
+                }
+                .icon-wechat {
+                    background: url("../../assets/images/wechat_ico@2x.png") center center
+                        no-repeat / contain;
+                 
+                }
+                .icon-mail {
+                    background: url("../../assets/images/email_ico@2x.png") center center
+                        no-repeat / contain;
+                }
+           }
+           .bottom{
+                margin-top: .25rem;
+                height: .28rem;
+                img{
+                    display: block;
+                    width: 100%;
+                    height: 100%;
+                    object-fit: contain;
+                }
+                .line{
+                    height: .16rem;
+                    width: .02rem;
+                    margin: 0 .2rem;
+                    background: #979797;
+                }
+                .logoInFooter{
+                    width: 1.74rem;
+                    height: .22rem;
+                }
+                .language-type{
+                    width: .4rem;
+                    height: .28rem;
+                }
+                .loginIn{
+                    width: 1.24rem;
+                    height: 2.8rem;
+                }
+           }
+        }
+    }
 }
