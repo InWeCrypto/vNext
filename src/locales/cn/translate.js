@@ -73,6 +73,7 @@ export default {
 	},
 	resetPassword: {
 		title: "修改密码",
+		t: "旧密码",
 		t1: "新密码",
 		t2: "确定密码",
 		btn: "确定",
@@ -95,5 +96,6 @@ export default {
 	},
 	sure: "确定",
 	cannel: "取消",
-	nodata: "暂无数据"
+	nodata: "暂无数据",
+	unLongin: "请登录"
 };

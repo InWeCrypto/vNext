@@ -93,7 +93,10 @@ export default class Root extends PureComponent {
 			quotationList,
 			getUploadKey,
 			uploadKey,
-			uploadHeader
+			uploadHeader,
+			setProjectColletion,
+			memberNewsList,
+			getMemeberNewsList
 		} = this.props;
 		const {
 			set,
@@ -106,6 +109,7 @@ export default class Root extends PureComponent {
 			emailAddress,
 			resetP
 		} = this.state;
+		console.log(uploadKey);
 		return (
 			<I18n>
 				{(t, { I18n }) => (
@@ -139,7 +143,12 @@ export default class Root extends PureComponent {
 											uploadHeader={uploadHeader}
 										/>
 									)}
-									{news && <MemberNews />}
+									{news && (
+										<MemberNews
+											getNewsList={getMemeberNewsList}
+											newsList={memberNewsList}
+										/>
+									)}
 									{message && <MemberMessage lng={lng} />}
 									{collection && (
 										<ProjectCollection
@@ -148,6 +157,9 @@ export default class Root extends PureComponent {
 											}
 											collectionList={collectionList}
 											userInfo={userInfo}
+											setProjectColletion={
+												setProjectColletion
+											}
 											lng={lng}
 										/>
 									)}

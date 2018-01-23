@@ -4,6 +4,49 @@ import { Link } from "react-router-dom";
 import GaiKuo from "../../../../components/gaikuo";
 import "./index.less";
 class ProjectDetailIco extends PureComponent {
+	constructor(props) {
+		super(props);
+		this.state = {
+			monthArr: [
+				"january",
+				"february",
+				"march",
+				"april",
+				"may",
+				"june",
+				"july",
+				"august",
+				"september",
+				"october",
+				"november",
+				"december"
+			]
+		};
+	}
+	getEndDay(start, end) {
+		let now = new Date("2018-01-15 08:00:00");
+		let end_at = new Date(end);
+		let start_at = new Date(start);
+		if (now.getTime() < start_at.getTime()) {
+			return `starts ${
+				start_at.getDate() < 10
+					? "0" + start_at.getDate()
+					: start_at.getDate()
+			} ${this.state.monthArr[start_at.getMonth()].slice(0, 3)}`;
+		} else if (now.getTime() > end_at.getTime()) {
+			return `ended ${
+				end_at.getDate() < 10
+					? "0" + end_at.getDate()
+					: end_at.getDate()
+			} ${this.state.monthArr[end_at.getMonth()].slice(0, 3)}`;
+		} else {
+			let str = "ends in 2 days";
+			let day = Math.ceil(
+				(end_at.getTime() - now.getTime()) / 3600 / 1000 / 24
+			);
+			return `ends in ${day} days`;
+		}
+	}
 	render() {
 		const { lng, changeLng, projectDetail } = this.props;
 		return (
@@ -22,9 +65,20 @@ class ProjectDetailIco extends PureComponent {
 									</div>
 
 									<div className="projectDetailCenter2">
-										<span>Active</span>
+										<span>{projectDetail.type_name}</span>
 										<p>
-											Token Sale<i>ends in 4 DAYS</i>
+											Token Sale<i>
+												{(() => {
+													return this.getEndDay(
+														projectDetail
+															.category_desc
+															.start_at,
+														projectDetail
+															.category_desc
+															.end_at
+													);
+												})()}
+											</i>
 										</p>
 									</div>
 								</div>
@@ -36,38 +90,60 @@ class ProjectDetailIco extends PureComponent {
 								<div className="projectDetailCon1BoxLeft">
 									<div className="projectDetailCon1BoxLeftDate">
 										<b />
-										<p>12.22-01.02</p>
+										<p>
+											{projectDetail.category_desc &&
+												projectDetail.category_desc.start_at
+													.slice(5, 10)
+													.replace(/-/, ".")}{" "}
+											-
+											{projectDetail.category_desc &&
+												projectDetail.category_desc.end_at
+													.slice(5, 10)
+													.replace(/-/, ".")}
+										</p>
 									</div>
-									<ul>
-										<li>Ticker: LOCICOIN</li>
-										<li>Token type: ERC20 ICO</li>
-										<li>
-											Token Price: 1 LOCICOIN = 0.44 USD
-										</li>
-										<li>
-											Fundraising Goal: 19,000,000 USD
-										</li>
-										<li>Sold on pre-sale: 1,661,884 USD</li>
-										<li>Total Tokens: 100,000,000</li>
-										<li>Available for Token Sale: 50%</li>
-										<li>
-											Bonus for the First: 25% DISCOUNT
-										</li>
-										<li>
-											Min/Max Personal Cap: 0.1 ETH / TBA
-										</li>
-										<li>Accepts: ETH</li>
-									</ul>
+									<div className="ul">
+										<p
+											dangerouslySetInnerHTML={{
+												__html:
+													projectDetail.category_desc &&
+													projectDetail.category_desc
+														.content
+											}}
+										/>
+									</div>
 								</div>
 								<div className="projectDetailCon1BoxRight">
 									<div className="projectDetailCon1BoxRightTit">
 										ICO 结构
 									</div>
 									<ul>
-										<li>
-											<b />
-											<span>25%用于团队建设</span>
-										</li>
+										{projectDetail &&
+											projectDetail.category_structure &&
+											projectDetail.category_structure
+												.length > 0 &&
+											projectDetail.category_structure.map(
+												(item, index) => {
+													return (
+														<li
+															key={index}
+															className="ui center"
+														>
+															<b
+																style={{
+																	backgroundColor:
+																		item.color_value
+																}}
+															/>
+															<span>
+																{
+																	item.percentage
+																}%{item.desc}
+															</span>
+														</li>
+													);
+												}
+											)}
 									</ul>
 								</div>
 							</div>
@@ -77,8 +153,14 @@ class ProjectDetailIco extends PureComponent {
 								<div className="projectDetailCon2Title">
 									Rank
 								</div>
-								<p>+关注热度：第1名</p>
-								<p>+用户评分：4.5</p>
+								<p>
+									+关注热度：第{projectDetail.category_score &&
+										projectDetail.category_score.sort}名
+								</p>
+								<p>
+									+用户评分：{projectDetail.category_score &&
+										projectDetail.category_score.value}
+								</p>
 							</div>
 							<div className="projectDetailCon2Box">
 								<div className="projectDetailCon2Title">
@@ -90,14 +172,16 @@ class ProjectDetailIco extends PureComponent {
 										0 &&
 									projectDetail.category_explorer.map(
 										(item, index) => {
-											return;
-											<Link
-												to={{
-													pathname: item.url
-												}}
-											>
-												<p>+{item.name}</p>
-											</Link>;
+											return (
+												<Link
+													to={{
+														pathname: item.url
+													}}
+													key={index}
+												>
+													<p>+{item.name}</p>
+												</Link>
+											);
 										}
 									)}
 								{/* <p>+qtumexplorer.io</p> */}
@@ -111,14 +195,16 @@ class ProjectDetailIco extends PureComponent {
 									projectDetail.category_wallet.length > 0 &&
 									projectDetail.category_wallet.map(
 										(item, index) => {
-											return;
-											<Link
-												to={{
-													pathname: item.url
-												}}
-											>
-												<p>+{item.name}</p>
-											</Link>;
+											return (
+												<Link
+													to={{
+														pathname: item.url
+													}}
+													key={index}
+												>
+													<p>+{item.name}</p>
+												</Link>
+											);
 										}
 									)}
 								{/* <p>+Im token</p> */}

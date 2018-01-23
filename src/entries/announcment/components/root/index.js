@@ -15,15 +15,17 @@ export default class Root extends PureComponent {
 		}
 	}
 	componentDidMount() {
-		document.title = "InWe-announcment";
-		let minH = getMainMinHeight();
-		let liH = minH / 2;
-		this.setState({
-			minH: minH,
-			liH: liH
-		});
-		document.querySelector("#mainBox").style.minHeight = minH + "px";
-		this.initPage(this.props.location.search);
+		setTimeout(() => {
+			document.title = "InWe-announcment";
+			let minH = getMainMinHeight();
+			let liH = minH / 2;
+			this.setState({
+				minH: minH,
+				liH: liH
+			});
+			document.querySelector("#mainBox").style.minHeight = minH + "px";
+			this.initPage(this.props.location.search);
+		}, 0);
 	}
 	constructor(props) {
 		super(props);
@@ -141,27 +143,56 @@ export default class Root extends PureComponent {
 															key={index}
 															className=""
 														>
-															<Link
-																to={{
-																	pathname:
-																		item.source_url
-																}}
-															>
-																<div className="liBox">
-																	<p className="annoBoxLiText ellitext">
-																		+{
-																			item.source_name
-																		}：{
-																			item.content
-																		}
-																	</p>
-																	<p className="annoBoxLiDate">
-																		{
-																			item.updated_at
-																		}
-																	</p>
-																</div>
-															</Link>
+															{item.source_url && (
+																<Link
+																	to={{
+																		pathname:
+																			item.source_url
+																	}}
+																	target="_blank"
+																>
+																	<div className="liBox">
+																		<p className="annoBoxLiText ellitext">
+																			+{
+																				item.source_name
+																			}：{
+																				item.content
+																			}
+																		</p>
+																		<p className="annoBoxLiDate">
+																			{
+																				item.updated_at
+																			}
+																		</p>
+																	</div>
+																</Link>
+															)}
+															{!item.source_url && (
+																<Link
+																	to={{
+																		pathname:
+																			"newsdetail",
+																		search:
+																			"?art_id=" +
+																			item.id
+																	}}
+																>
+																	<div className="liBox">
+																		<p className="annoBoxLiText ellitext">
+																			+{
+																				item.source_name
+																			}：{
+																				item.content
+																			}
+																		</p>
+																		<p className="annoBoxLiDate">
+																			{
+																				item.updated_at
+																			}
+																		</p>
+																	</div>
+																</Link>
+															)}
 														</li>
 													);
 												}

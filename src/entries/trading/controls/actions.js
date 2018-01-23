@@ -2,11 +2,11 @@ import { createAction } from "redux-actions";
 import http from "../../../utils/ajax";
 
 const PRE_FIX = "TRADING_";
-export const NEWSLIST = `${PRE_FIX}NEWSLIST`;
+export const TRADING = `${PRE_FIX}TRADING`;
 
-export const getTrading = createAction(NEWSLIST, () => {
-	return http.post({
-		url: "",
-		params: {}
+export const getTrading = createAction(TRADING, params => {
+	return http.get({
+		url: "article",
+		params: params
 	});
 });

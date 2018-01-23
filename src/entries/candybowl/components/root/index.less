@@ -7,7 +7,7 @@
 	}
 	.candy-calendar {
 		max-width: 100%;
-		border-right: 0.01rem solid #ececec;
+
 		.must-read {
 			border-top: 0.01rem solid #ececec;
 			text-align: center;
@@ -25,6 +25,7 @@
 		box-sizing: border-box;
 		padding: 0 0.5rem;
 		border-right: 0.01rem solid #ececec;
+		border-left: 0.01rem solid #ececec;
 		display: flex;
 		flex-flow: column;
 	}
@@ -62,14 +63,15 @@
 		line-height: 0.1rem;
 		cursor: pointer;
 		.switch-item {
-			width: 0.12rem;
-			height: 0.12rem;
+			width: 0.11rem;
+			height: 0.11rem;
 			background: #999;
 			display: inline-block;
 			vertical-align: middle;
 			margin: 0;
 			position: relative;
-			transition: left 0.3s linear;
+			transition: left 0.5s linear;
+			top: -0.01rem;
 		}
 	}
 	.switch.open {

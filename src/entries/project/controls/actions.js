@@ -22,13 +22,11 @@ export const getProjectCollect = createAction(PROJECTCOLLECT, params => {
 			params: { enable: params.enable }
 		})
 		.then(res => {
-			console.log(res);
-			if (res.code === 4000) {
+			if (res.code === 4000 && res.data && res.data.id) {
 				return {
-					data: {
-						id: 1
-					},
-					code: 4000
+					code: res.code,
+					data: res.data,
+					msg: res.msg
 				};
 			}
 			return res;

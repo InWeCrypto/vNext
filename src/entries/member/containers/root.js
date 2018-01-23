@@ -8,10 +8,16 @@ import * as globalActions from "../../../globalactions";
 export default withRouter(
 	connect(
 		({
-			member: { collectionList, quotationList, uoloadKey },
+			member: {
+				collectionList,
+				quotationList,
+				uoloadKey,
+				memberNewsList
+			},
 			globData: { lng, userInfo }
 		}) => ({
 			uoloadKey,
+			memberNewsList,
 			collectionList,
 			quotationList,
 			userInfo,

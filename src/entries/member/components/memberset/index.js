@@ -4,7 +4,7 @@ import { I18n, Trans } from "react-i18next";
 import { getLocalItem, setLocalItem } from "../../../../utils/util";
 import "./index.less";
 import defaultHeader from "../../../../assets/images/member_img.png";
-window.webUploader = webUploader;
+
 class MemberSet extends PureComponent {
 	constructor(props) {
 		super(props);
@@ -14,13 +14,13 @@ class MemberSet extends PureComponent {
 			newText: ""
 		};
 	}
-	componentWillReceiveProps() {}
-	uploader() {
-		const option = this.props.uploadKey;
+	componentWillReceiveProps(nextProps) {}
+	uploader(data) {
+		const option = data;
 		if (!option) {
 			return;
 		}
-		let uploader = window.webUploader.create({
+		let uploader = webUploader.create({
 			auto: true,
 			pick: {
 				id: "#ban_uploader",
@@ -57,10 +57,11 @@ class MemberSet extends PureComponent {
 			setLocalItem("userInfo", JSON.stringify(item));
 		});
 	}
-
 	componentDidMount() {
 		this.props.getUploadKey("img").then(res => {
-			this.uploader.call(this);
+			if (res.code === 4000) {
+				this.uploader(res.data);
+			}
 		});
 	}
 	openResetPass(data) {

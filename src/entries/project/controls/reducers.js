@@ -7,11 +7,14 @@ export const project = handleActions(
 			return payload;
 		},
 		[PROJECTCOLLECT]: (state, { payload }) => {
-			state.data.map((item, index) => {
-				if (item.id === payload.id) {
+			let data = state.data.map((item, index) => {
+				if (item.id === payload.category_id) {
+					item.category_user = payload;
 				}
+				return item;
 			});
-			return payload;
+
+			return { ...state, data: data };
 		}
 	},
 	[]
