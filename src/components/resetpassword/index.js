@@ -32,11 +32,19 @@ class ResetPassword extends PureComponent {
 			Msg.prompt(i18n.t("error.passLength", this.props.lng));
 			return;
 		}
-		this.props.resetPass({
-			password_old: this.state.passwordOld,
-			password: this.state.password1,
-			password_confirmation: this.state.password2
-		});
+		this.props
+			.resetPass({
+				password_old: this.state.passwordOld,
+				password: this.state.password1,
+				password_confirmation: this.state.password2
+			})
+			.then(res => {
+				if (res.code === 4000) {
+					this.props.close();
+					localStorage.removeItem("userInfo");
+					window.location.href = "/";
+				}
+			});
 	}
 	render() {
 		const { lng } = this.props;
@@ -64,7 +72,7 @@ class ResetPassword extends PureComponent {
 								<div className="resetp-group">
 									<div className="resetp-item center ui">
 										<div className="key">
-											{t("resetPassword.t1", lng)}:
+											{t("resetPassword.t", lng)}:
 										</div>
 										<div className="value ui center f1">
 											<div className="f1">

@@ -73,6 +73,7 @@ export default {
 	},
 	resetPassword: {
 		title: "修改密码",
+		t: "旧密码",
 		t1: "新密码",
 		t2: "确定密码",
 		btn: "确定",
