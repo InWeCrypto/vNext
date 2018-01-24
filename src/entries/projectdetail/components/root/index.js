@@ -95,7 +95,8 @@ export default class Root extends PureComponent {
 			forgetUser,
 			projectDetail,
 			coinTimePrice,
-			setProjectRemind
+			setProjectRemind,
+			getProjectCollect
 		} = this.props;
 		return (
 			<I18n>
@@ -118,6 +119,7 @@ export default class Root extends PureComponent {
 										lng={lng}
 										projectDetail={projectDetail}
 										setProjectRemind={setProjectRemind}
+										getProjectCollect={getProjectCollect}
 									/>
 								)}
 							{home &&
@@ -127,18 +129,23 @@ export default class Root extends PureComponent {
 										projectDetail={projectDetail}
 										coinTimePrice={coinTimePrice}
 										setProjectRemind={setProjectRemind}
+										getProjectCollect={getProjectCollect}
 									/>
 								)}
 							{info && (
 								<ProjectDetailInfo
 									lng={lng}
 									projectDetail={projectDetail}
+									setProjectRemind={setProjectRemind}
+									getProjectCollect={getProjectCollect}
 								/>
 							)}
 							{intro && (
 								<ProjectDetailIntro
 									lng={lng}
 									projectDetail={projectDetail}
+									setProjectRemind={setProjectRemind}
+									getProjectCollect={getProjectCollect}
 								/>
 							)}
 							<div className="projectDetailCon3">

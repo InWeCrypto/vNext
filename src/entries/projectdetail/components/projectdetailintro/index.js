@@ -5,7 +5,13 @@ import GaiKuo from "../../../../components/gaikuo";
 import "./index.less";
 class ProjectDetailIntro extends PureComponent {
 	render() {
-		const { lng, changeLng } = this.props;
+		const {
+			lng,
+			changeLng,
+			projectDetail,
+			setProjectRemind,
+			getProjectCollect
+		} = this.props;
 		return (
 			<I18n>
 				{(t, { I18n }) => (
@@ -26,6 +32,8 @@ class ProjectDetailIntro extends PureComponent {
 										changeLng={changeLng}
 										lng={lng}
 										projectDetail={projectDetail}
+										setProjectRemind={setProjectRemind}
+										getProjectCollect={getProjectCollect}
 									/>
 								</div>
 							</div>

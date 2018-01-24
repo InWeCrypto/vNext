@@ -24,7 +24,7 @@ class ProjectDetailIco extends PureComponent {
 		};
 	}
 	getEndDay(start, end) {
-		let now = new Date("2018-01-15 08:00:00");
+		let now = new Date();
 		let end_at = new Date(end);
 		let start_at = new Date(start);
 		if (now.getTime() < start_at.getTime()) {
@@ -48,7 +48,13 @@ class ProjectDetailIco extends PureComponent {
 		}
 	}
 	render() {
-		const { lng, changeLng, projectDetail } = this.props;
+		const {
+			lng,
+			changeLng,
+			projectDetail,
+			setProjectRemind,
+			getProjectCollect
+		} = this.props;
 		return (
 			<I18n>
 				{(t, { I18n }) => (
@@ -70,12 +76,14 @@ class ProjectDetailIco extends PureComponent {
 											Token Sale<i>
 												{(() => {
 													return this.getEndDay(
-														projectDetail
-															.category_desc
-															.start_at,
-														projectDetail
-															.category_desc
-															.end_at
+														projectDetail.category_desc &&
+															projectDetail
+																.category_desc
+																.start_at,
+														projectDetail.category_desc &&
+															projectDetail
+																.category_desc
+																.end_at
 													);
 												})()}
 											</i>
@@ -87,6 +95,8 @@ class ProjectDetailIco extends PureComponent {
 										changeLng={changeLng}
 										lng={lng}
 										projectDetail={projectDetail}
+										setProjectRemind={setProjectRemind}
+										getProjectCollect={getProjectCollect}
 									/>
 								</div>
 							</div>
