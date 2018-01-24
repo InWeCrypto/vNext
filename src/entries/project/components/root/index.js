@@ -114,6 +114,7 @@ export default class Root extends PureComponent {
 							setReduxUserInfo={setReduxUserInfo}
 							forgetUser={forgetUser}
 							lng={lng}
+							nofixed={true}
 						/>
 						<div id="mainBox" className="project ui">
 							<div className="left-menus ui center">
