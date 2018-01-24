@@ -9,6 +9,7 @@ export const PROJECTCOLLECT = `${PRE_FIX}PROJECTCOLLECT`;
 export const PROJECTDYNAMIC = `${PRE_FIX}PROJECTDYNAMIC`;
 export const PROJECTDYNAMICLIST = `${PRE_FIX}PROJECTDYNAMICLIST`;
 export const PROJECTSCORE = `${PRE_FIX}PROJECTSCORE`;
+export const PROJECTDOT = `${PRE_FIX}PROJECTDOT`;
 
 export const getProjectDetail = createAction(PROJECTDETAIL, params => {
 	return http
@@ -87,11 +88,27 @@ export const getProjectDynamicList = createAction(
 );
 export const getProjectScore = createAction(PROJECTSCORE, params => {
 	return http
-		.get({
-			url: "article",
+		.put({
+			url: `category/${params.c_id}/score`,
 			params: params
 		})
 		.then(res => {
+			if (res.code !== 4000) {
+				Msg.prompt(res.msg);
+			}
+			return res;
+		});
+});
+export const unProjectDot = createAction(PROJECTDOT, params => {
+	return http
+		.put({
+			url: `category/${params.c_id}/undot`,
+			params: params
+		})
+		.then(res => {
+			if (res.code !== 4000) {
+				Msg.prompt(res.msg);
+			}
 			return res;
 		});
 });

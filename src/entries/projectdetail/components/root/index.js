@@ -101,7 +101,9 @@ export default class Root extends PureComponent {
 			projectDynamicList,
 			setProjectRemind,
 			getProjectCollect,
-			getProjectDynamicList
+			getProjectDynamicList,
+			getProjectScore,
+			unProjectDot
 		} = this.props;
 		return (
 			<I18n>
@@ -148,6 +150,7 @@ export default class Root extends PureComponent {
 									getProjectDynamicList={
 										getProjectDynamicList
 									}
+									unProjectDot={unProjectDot}
 								/>
 							)}
 							{intro && (
@@ -200,7 +203,11 @@ export default class Root extends PureComponent {
 										</Link>
 									</li>
 								</ul>
-								<ProjectDetailChat lng={lng} />
+								<ProjectDetailChat
+									lng={lng}
+									projectDetail={projectDetail}
+									getProjectScore={getProjectScore}
+								/>
 							</div>
 						</div>
 					</div>

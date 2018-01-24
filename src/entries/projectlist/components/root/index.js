@@ -209,7 +209,16 @@ export default class Root extends PureComponent {
 																	>
 																		<div className="projectListLiTop ui center">
 																			<div className="projectListLiTopLeft ui center">
-																				<div className="projectListImg newMsg">
+																				<div
+																					className={
+																						item.category_user &&
+																						item
+																							.category_user
+																							.is_favorite_dot
+																							? "projectListImg newMsg"
+																							: "projectListImg"
+																					}
+																				>
 																					<img
 																						src={
 																							item.img
@@ -290,7 +299,16 @@ export default class Root extends PureComponent {
 																	>
 																		<div className="projectListLiTop ui center">
 																			<div className="projectListLiTopLeft ui center">
-																				<div className="projectListImg newMsg">
+																				<div
+																					className={
+																						item.category_user &&
+																						item
+																							.category_user
+																							.is_favorite_dot
+																							? "projectListImg newMsg"
+																							: "projectListImg"
+																					}
+																				>
 																					<img
 																						src={
 																							item.img
@@ -365,7 +383,16 @@ export default class Root extends PureComponent {
 																	>
 																		<div className="projectListLiTop ui center">
 																			<div className="projectListLiTopLeft ui center">
-																				<div className="projectListImg newMsg">
+																				<div
+																					className={
+																						item.category_user &&
+																						item
+																							.category_user
+																							.is_favorite_dot
+																							? "projectListImg newMsg"
+																							: "projectListImg"
+																					}
+																				>
 																					<img
 																						src={
 																							item.img
@@ -440,7 +467,16 @@ export default class Root extends PureComponent {
 																	>
 																		<div className="projectListLiTop ui center">
 																			<div className="projectListLiTopLeft ui center">
-																				<div className="projectListImg newMsg">
+																				<div
+																					className={
+																						item.category_user &&
+																						item
+																							.category_user
+																							.is_favorite_dot
+																							? "projectListImg newMsg"
+																							: "projectListImg"
+																					}
+																				>
 																					<img
 																						src={
 																							item.img

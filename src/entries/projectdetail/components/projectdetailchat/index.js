@@ -6,18 +6,46 @@ class ProjectDetailIco extends PureComponent {
 	constructor(props) {
 		super(props);
 		this.state = {
-			score: 4,
-			realScore: 4,
+			id: this.props.projectDetail.id,
+			score: 0,
+			realScore: 0,
 			isModify: true
 		};
 	}
+	componentDidMount() {
+		setTimeout(() => {
+			this.initPage();
+		}, 0);
+	}
+	componentWillReceiveProps(nextProps) {
+		this.initPage();
+	}
+	initPage() {
+		if (
+			this.props.projectDetail.category_user &&
+			this.props.projectDetail.category_user.score != "0"
+		) {
+			this.setState({
+				isModify: false,
+				score: this.props.projectDetail.category_user.score,
+				realScore: this.props.projectDetail.category_user.score
+			});
+		}
+	}
 	checkStar(index) {
 		if (this.state.isModify) {
-			this.setState({
-				score: index + 1,
-				realScore: index + 1,
-				isModify: false
-			});
+			this.props
+				.getProjectScore({
+					c_id: 7,
+					score: "4"
+				})
+				.then(res => {
+					this.setState({
+						score: index + 1,
+						realScore: index + 1,
+						isModify: false
+					});
+				});
 		}
 	}
 	toggleStar(index, type) {
@@ -35,7 +63,7 @@ class ProjectDetailIco extends PureComponent {
 		}
 	}
 	render() {
-		const { lng, changeLng } = this.props;
+		const { lng, changeLng, projectDetail, getProjectScore } = this.props;
 		const { score, realScore } = this.state;
 		return (
 			<I18n>
@@ -90,7 +118,7 @@ class ProjectDetailIco extends PureComponent {
 									);
 								})}
 							</p>
-							<b className="scoreNums">{realScore}</b>
+							<b className="scoreNums">{score}</b>
 						</div>
 					</div>
 				)}
