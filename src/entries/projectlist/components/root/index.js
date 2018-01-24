@@ -21,7 +21,8 @@ export default class Root extends PureComponent {
 			document.title = "InWe-项目列表";
 			let minH = getMainMinHeight();
 			this.setState({
-				minH: minH
+				minH: minH,
+				activeInde: 0
 			});
 			document.querySelector("#mainBox").style.minHeight = minH + "px";
 			this.initPage();
@@ -65,8 +66,13 @@ export default class Root extends PureComponent {
 				}
 			});
 	}
+	changeNav(index) {
+		this.setState({
+			activeInde: index
+		});
+	}
 	render() {
-		const { minH } = this.state;
+		const { minH, activeInde } = this.state;
 		const {
 			lng,
 			changeLng,
@@ -85,7 +91,9 @@ export default class Root extends PureComponent {
 			<I18n>
 				{(t, { i18n }) => (
 					<div className="container">
-						<FixedMenu changeLng={changeLng} lng={lng} />
+						{!IsTouchDevice && (
+							<FixedMenu changeLng={changeLng} lng={lng} />
+						)}
 						<Header
 							userInfo={userInfo}
 							registerUser={registerUser}
@@ -96,7 +104,7 @@ export default class Root extends PureComponent {
 							lng={lng}
 						/>
 						<div id="mainBox" className="projectList ui">
-							<div className="projectListReturn ui center">
+							<div className="projectListReturn ui center m-hide">
 								<Link
 									to={{
 										pathname: "/project",
@@ -106,6 +114,42 @@ export default class Root extends PureComponent {
 									<span />
 								</Link>
 							</div>
+							{IsTouchDevice && (
+								<div className="projectListNav ui center">
+									<p
+										className={
+											activeInde == 0 ? "active" : ""
+										}
+										onClick={this.changeNav.bind(this, 0)}
+									>
+										{t("project.trading", lng)}
+									</p>
+									<p
+										className={
+											activeInde == 1 ? "active" : ""
+										}
+										onClick={this.changeNav.bind(this, 1)}
+									>
+										{t("project.active", lng)}
+									</p>
+									<p
+										className={
+											activeInde == 2 ? "active" : ""
+										}
+										onClick={this.changeNav.bind(this, 2)}
+									>
+										{t("project.upcoming", lng)}
+									</p>
+									<p
+										className={
+											activeInde == 3 ? "active" : ""
+										}
+										onClick={this.changeNav.bind(this, 3)}
+									>
+										{t("project.ended", lng)}
+									</p>
+								</div>
+							)}
 							<div className="projectListCon ui">
 								{[1, 2, 3, 4].map((item, index) => {
 									return (
@@ -493,6 +537,7 @@ export default class Root extends PureComponent {
 								})}
 							</div>
 						</div>
+						<Footer changeLng={changeLng} lng={lng} />
 					</div>
 				)}
 			</I18n>

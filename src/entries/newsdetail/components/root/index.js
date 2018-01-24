@@ -6,6 +6,7 @@ import { getMainMinHeight, getQuery } from "../../../../utils/util";
 import Header from "../../../../components/header";
 import Footer from "../../../../components/footer";
 import FixedMenu from "../../../../components/fixedmenu";
+import origlePic from "../../../../assets/images/yuanchuang_pic.png";
 import "./index.less";
 import { platform } from "os";
 
@@ -206,7 +207,10 @@ export default class Root extends PureComponent {
 			<I18n>
 				{(t, { i18n }) => (
 					<div className="container">
-						<FixedMenu changeLng={changeLng} lng={lng} />
+						{!IsTouchDevice && (
+							<FixedMenu changeLng={changeLng} lng={lng} />
+						)}
+
 						<Header
 							userInfo={userInfo}
 							registerUser={registerUser}
@@ -221,8 +225,8 @@ export default class Root extends PureComponent {
 								id="newsDetailLeft"
 								className={
 									newsDetail.article_prev
-										? "newsDetailLeft ui center show"
-										: "newsDetailLeft ui center"
+										? "newsDetailLeft ui center show m-hide"
+										: "newsDetailLeft ui center m-hide"
 								}
 							>
 								{newsDetail.article_prev && (
@@ -249,11 +253,17 @@ export default class Root extends PureComponent {
 										<span className="metaDate">
 											{newsDetail.updated_at}
 										</span>
-										{newsDetail.is_sole && (
-											<span className="metaCategory">
-												原创
-											</span>
-										)}
+										{newsDetail.is_sole &&
+											(IsTouchDevice ? (
+												<img
+													className="origlePic"
+													src={origlePic}
+												/>
+											) : (
+												<span className="metaCategory">
+													原创
+												</span>
+											))}
 										{newsDetail &&
 											newsDetail.article_category_cc &&
 											newsDetail.article_category_cc
@@ -351,17 +361,18 @@ export default class Root extends PureComponent {
 									</div>
 									<div className="newsDetailCommmentBox">
 										<div className="newsDetailCommentBoxCenter ui center">
-											{this.state.isShowImg && (
-												<div className="newsDetailHeadImg">
-													<img
-														src={
-															userInfo &&
-															userInfo.img
-														}
-														alt=""
-													/>
-												</div>
-											)}
+											{this.state.isShowImg &&
+												!IsTouchDevice && (
+													<div className="newsDetailHeadImg">
+														<img
+															src={
+																userInfo &&
+																userInfo.img
+															}
+															alt=""
+														/>
+													</div>
+												)}
 											<textarea
 												name=""
 												id="textareaId"
@@ -377,7 +388,7 @@ export default class Root extends PureComponent {
 												}}
 											/>
 										</div>
-										<div className="newsDetailCommentBoxBtn clearfix">
+										<div className="newsDetailCommentBoxBtn clearfix m-hide">
 											<span
 												className="submit"
 												onClick={() => {
@@ -450,8 +461,8 @@ export default class Root extends PureComponent {
 								id="newsDetailRight"
 								className={
 									newsDetail.article_next
-										? "newsDetailRight show ui center"
-										: "newsDetailRight ui center"
+										? "newsDetailRight show ui center m-hide"
+										: "newsDetailRight ui center m-hide"
 								}
 							>
 								{newsDetail.article_next && (

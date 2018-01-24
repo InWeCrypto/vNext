@@ -47,12 +47,12 @@ class Header extends PureComponent {
 	}
 	componentDidMount() {
 		console.log(this.props);
-        document.addEventListener("click", this.changeMember, false);
-        this.setState(function(prevState, props){
-            return {
-                headerNoFixed: props.nofixed
-            }
-        })
+		document.addEventListener("click", this.changeMember, false);
+		this.setState(function(prevState, props) {
+			return {
+				headerNoFixed: props.nofixed
+			};
+		});
 	}
 	componentWillUnmount() {
 		//重写组件的setState方法，直接返回空
@@ -123,8 +123,8 @@ class Header extends PureComponent {
 	// 点击显示隐藏菜单
 	showMenu(e) {
 		e.nativeEvent.stopImmediatePropagation();
-        let menuShow = this.state.menuShow;
-        let that = this;
+		let menuShow = this.state.menuShow;
+		let that = this;
 		this.setState({ menuShow: !menuShow });
 
 		this.setState(function(prevState, props) {
@@ -133,10 +133,10 @@ class Header extends PureComponent {
 					return { headerNoFixed: false };
 				} else {
 					setTimeout(() => {
-                        that.setState({
+						that.setState({
 							headerNoFixed: true
 						});
-                    }, 500);
+					}, 500);
 				}
 			} else {
 				return { headerNoFixed: false };
@@ -168,10 +168,26 @@ class Header extends PureComponent {
 			menuMap,
 			headerNoFixed
 		} = this.state;
-		return <div>
-				{IsTouchDevice && !headerNoFixed && <div className="m-header-hold" />}
-				{IsTouchDevice && <div className={headerNoFixed ? "m-header-box" : "m-header-box fixed"}>
-						<div className={menuShow ? "m-menu-btn hamburger hamburger--elastic is-active" : "m-menu-btn hamburger hamburger--elastic"} onClick={this.showMenu}>
+		return (
+			<div>
+				{IsTouchDevice &&
+					!headerNoFixed && <div className="m-header-hold" />}
+				{IsTouchDevice && (
+					<div
+						className={
+							headerNoFixed
+								? "m-header-box"
+								: "m-header-box fixed"
+						}
+					>
+						<div
+							className={
+								menuShow
+									? "m-menu-btn hamburger hamburger--elastic is-active"
+									: "m-menu-btn hamburger hamburger--elastic"
+							}
+							onClick={this.showMenu}
+						>
 							<div className="hamburger-box">
 								<div className="hamburger-inner" />
 							</div>

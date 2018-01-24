@@ -33,9 +33,9 @@ export default class Root extends PureComponent {
 			minH: minH,
 			liW: liW
 		});
-		document.querySelector("#mainBox").style.height = minH + "px";
+		if (!IsTouchDevice)
+			document.querySelector("#mainBox").style.height = minH + "px";
 		document.querySelector("#projectUlRef").style.width = liW * 4 + "px";
-
 		this.initPage(this.props.location.search);
 	}
 	initPage(search) {
@@ -117,7 +117,7 @@ export default class Root extends PureComponent {
 							nofixed={true}
 						/>
 						<div id="mainBox" className="project ui">
-							<div className="left-menus ui center">
+							<div className="left-menus ui center m-hide">
 								<LeftMenu lng={lng} />
 							</div>
 							<div className="leftTwoMenus ui center">
@@ -182,9 +182,12 @@ export default class Root extends PureComponent {
 							</div>
 							<div
 								id="projectContentRef"
-								className="projectContent ui f1"
+								className="projectContent ui f1 m-hide"
 							>
-								<ul id="projectUlRef" className="ui">
+								<ul
+									id="projectUlRef"
+									className="ui m-projectUl"
+								>
 									{project &&
 										project.data &&
 										project.data.length > 0 &&
@@ -230,8 +233,8 @@ export default class Root extends PureComponent {
 																	item
 																		.category_user
 																		.is_favorite
-																		? "projectLiTopRight collect"
-																		: "projectLiTopRight nocollect"
+																		? "projectLiTopRight collect m-hide"
+																		: "projectLiTopRight nocollect m-hide"
 																}
 																onClick={e => {
 																	let enable =
@@ -309,6 +312,130 @@ export default class Root extends PureComponent {
 									/>
 								)}
 							</div>
+							{IsTouchDevice && (
+								<div className="m-projectContent">
+									<ul className="m-projectUl">
+										{project &&
+											project.data &&
+											project.data.length > 0 &&
+											project.data.map((item, index) => {
+												return (
+													<li key={index}>
+														<Link
+															to={{
+																pathname:
+																	"projectdetail",
+																search:
+																	"?c_id=" +
+																	item.id
+															}}
+														>
+															<div className="projectLiTop ui center">
+																<div className="projectLiTopLeft ui center">
+																	<img
+																		src={
+																			item.img
+																		}
+																	/>
+																	<p>
+																		<span>
+																			{item.name.toLocaleUpperCase()}
+																		</span>
+																		<b>
+																			({
+																				item.long_name
+																			})
+																		</b>
+																	</p>
+																</div>
+																<div
+																	className={
+																		item.category_user &&
+																		item
+																			.category_user
+																			.is_favorite
+																			? "projectLiTopRight collect"
+																			: "projectLiTopRight nocollect"
+																	}
+																	onClick={e => {
+																		let enable =
+																			item.category_user &&
+																			item
+																				.category_user
+																				.is_favorite
+																				? true
+																				: false;
+																		this.projectCollect(
+																			e,
+																			item.id,
+																			enable
+																		);
+																	}}
+																/>
+															</div>
+															<div className="projectLiType">
+																<span className="ellitext">
+																	{
+																		item.industry
+																	}
+																</span>
+															</div>
+															<div className="projectLiDesc">
+																<p className="ellitext">
+																	{item.last_article &&
+																		item
+																			.last_article
+																			.title}
+																</p>
+															</div>
+															<div className="projectLiImg">
+																<img
+																	src={
+																		item.last_article &&
+																		item
+																			.last_article
+																			.img
+																	}
+																	alt=""
+																/>
+															</div>
+															<div className="projectLiDate">
+																{item.last_article &&
+																	item
+																		.last_article
+																		.created_at}
+															</div>
+														</Link>
+													</li>
+												);
+											})}
+									</ul>
+									<Link
+										to={{
+											pathname: "/projectlist"
+										}}
+										className="viewAllProject ui center"
+									>
+										<span>{t("project.more", lng)}</span>
+									</Link>
+									{showArrow == "left" && (
+										<span
+											className="projectSpanLeft"
+											onClick={() => {
+												this.listMove();
+											}}
+										/>
+									)}
+									{showArrow == "right" && (
+										<span
+											className="projectSpanRight"
+											onClick={() => {
+												this.listMove();
+											}}
+										/>
+									)}
+								</div>
+							)}
 						</div>
 						<Footer changeLng={changeLng} lng={lng} />
 					</div>
