@@ -176,7 +176,7 @@
 	.m-header-box {
 		position: relative;
 		display: block;
-		width: 100%;
+		width: 7.5rem;
 		height: 0.96rem;
 		background: #fff;
 		.m-menu-btn {
@@ -252,7 +252,7 @@
 		.hamburger-inner,
 		.hamburger-inner::before, //252 62 26
 		.hamburger-inner::after {
-			width: 40px;
+			width: 32px;
 			height: 4px;
 			background-color: rgb(252, 62, 26);
 			border-radius: 4px;
@@ -297,7 +297,7 @@
 	}
 	//menu
 	.menuMap {
-		position: absolute;
+		position: fixed;
 		left: 0;
 		top: -100%;
 		z-index: 5;
@@ -319,7 +319,15 @@
 			margin: 0 auto;
 			border-bottom: 1px solid #ececec;
 			font-size: 0.34rem;
-			line-height: 1.04rem;
-		}
+            line-height: 1.04rem;
+            img{
+                vertical-align: baseline;
+                margin-right: .12rem;
+                width: .25rem;
+                height: .25rem;
+
+            }
+        }
+        
 	}
 }

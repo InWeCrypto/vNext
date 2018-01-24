@@ -135,3 +135,25 @@
 		}
 	}
 }
+.mobile {
+	.newsNav {
+		position: relative;
+        display: flex;
+        justify-content: space-between;
+		width: 7.5rem;
+		height: 0.9rem;
+		background: #f6f6f6;
+		&.fixed {
+			position: fixed;
+			top: 0;
+			left: 0;
+			z-index: 10;
+		}
+		.item {
+			font-size: 0.28rem;
+			line-height: 0.4rem;
+			height: 0.4rem;
+            margin: 0 0.3rem;
+		}
+	}
+}

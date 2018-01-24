@@ -3,10 +3,10 @@ import { I18n, Trans } from "react-i18next";
 import { setLocalItem } from "../../utils/util";
 import "./index.less";
 
-import logofooter from "../../assets/images/@InWeCrypto 2017@2x.png"
+import logofooter from "../../assets/images/footer_logo.png"
 import enicon from "../../assets/images/enicon.png"
 import cnicon from "../../assets/images/cnicon.png"
-import loginImg from "../../assets/images/Login sign up@2x.png";
+import loginImg from "../../assets/images/footer_login.png";
 class Footer extends PureComponent {
 	setLanguageType(type) {
 		return type === this.props.lng ? "language-type cur" : "language-type";
