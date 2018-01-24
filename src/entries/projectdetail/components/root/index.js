@@ -69,6 +69,8 @@ export default class Root extends PureComponent {
 					ico_type: res.data.unit
 				});
 			});
+		//获取项目动态
+		this.props.getProjectDynamic();
 	}
 	setShowItem(type) {
 		let set = {
@@ -95,8 +97,11 @@ export default class Root extends PureComponent {
 			forgetUser,
 			projectDetail,
 			coinTimePrice,
+			projectDynamic,
+			projectDynamicList,
 			setProjectRemind,
-			getProjectCollect
+			getProjectCollect,
+			getProjectDynamicList
 		} = this.props;
 		return (
 			<I18n>
@@ -138,6 +143,11 @@ export default class Root extends PureComponent {
 									projectDetail={projectDetail}
 									setProjectRemind={setProjectRemind}
 									getProjectCollect={getProjectCollect}
+									projectDynamic={projectDynamic}
+									projectDynamicList={projectDynamicList}
+									getProjectDynamicList={
+										getProjectDynamicList
+									}
 								/>
 							)}
 							{intro && (

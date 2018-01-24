@@ -5,11 +5,18 @@ import * as globalActions from "../../../globalactions";
 
 export default connect(
 	({
-		projectDetail: { projectDetail, coinTimePrice },
+		projectDetail: {
+			projectDetail,
+			coinTimePrice,
+			projectDynamic,
+			projectDynamicList
+		},
 		globData: { lng, userInfo }
 	}) => ({
 		projectDetail,
 		coinTimePrice,
+		projectDynamic,
+		projectDynamicList,
 		userInfo,
 		lng
 	}),

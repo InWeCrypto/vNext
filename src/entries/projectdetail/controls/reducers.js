@@ -3,7 +3,9 @@ import {
 	PROJECTDETAIL,
 	COINTIMEPRICE,
 	PROJECTREMIND,
-	PROJECTCOLLECT
+	PROJECTCOLLECT,
+	PROJECTDYNAMIC,
+	PROJECTDYNAMICLIST
 } from "./actions";
 
 export const projectDetail = handleActions(
@@ -21,6 +23,18 @@ export const projectDetail = handleActions(
 export const coinTimePrice = handleActions(
 	{
 		[COINTIMEPRICE]: (state, { payload }) => payload
+	},
+	[]
+);
+export const projectDynamic = handleActions(
+	{
+		[PROJECTDYNAMIC]: (state, { payload }) => payload
+	},
+	[]
+);
+export const projectDynamicList = handleActions(
+	{
+		[PROJECTDYNAMICLIST]: (state, { payload }) => payload
 	},
 	[]
 );

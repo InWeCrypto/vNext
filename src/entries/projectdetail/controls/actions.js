@@ -6,6 +6,9 @@ export const PROJECTDETAIL = `${PRE_FIX}PROJECTDETAIL`;
 export const COINTIMEPRICE = `${PRE_FIX}COINTIMEPRICE`;
 export const PROJECTREMIND = `${PRE_FIX}PROJECTREMIND`;
 export const PROJECTCOLLECT = `${PRE_FIX}PROJECTCOLLECT`;
+export const PROJECTDYNAMIC = `${PRE_FIX}PROJECTDYNAMIC`;
+export const PROJECTDYNAMICLIST = `${PRE_FIX}PROJECTDYNAMICLIST`;
+export const PROJECTSCORE = `${PRE_FIX}PROJECTSCORE`;
 
 export const getProjectDetail = createAction(PROJECTDETAIL, params => {
 	return http
@@ -13,7 +16,6 @@ export const getProjectDetail = createAction(PROJECTDETAIL, params => {
 			url: "category/" + params.c_id
 		})
 		.then(res => {
-			console.log(res);
 			return res;
 		});
 });
@@ -57,6 +59,39 @@ export const getProjectCollect = createAction(PROJECTCOLLECT, params => {
 					msg: res.msg
 				};
 			}
+			return res;
+		});
+});
+export const getProjectDynamic = createAction(PROJECTDYNAMIC, params => {
+	return http
+		.get({
+			url: "article/tags",
+			params: params
+		})
+		.then(res => {
+			return res;
+		});
+});
+export const getProjectDynamicList = createAction(
+	PROJECTDYNAMICLIST,
+	params => {
+		return http
+			.get({
+				url: "article",
+				params: params
+			})
+			.then(res => {
+				return res;
+			});
+	}
+);
+export const getProjectScore = createAction(PROJECTSCORE, params => {
+	return http
+		.get({
+			url: "article",
+			params: params
+		})
+		.then(res => {
 			return res;
 		});
 });

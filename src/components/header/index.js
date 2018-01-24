@@ -46,7 +46,6 @@ class Header extends PureComponent {
 		});
 	}
 	componentDidMount() {
-		console.log(this.props);
 		document.addEventListener("click", this.changeMember, false);
 	}
 	componentWillUnmount() {
@@ -122,9 +121,7 @@ class Header extends PureComponent {
 		this.setState({ menuShow: !menuShow });
 	}
 	// 点击搜索
-	searchBtnClick(e){
-        
-    }
+	searchBtnClick(e) {}
 
 	render() {
 		const {
@@ -147,10 +144,23 @@ class Header extends PureComponent {
 			menuShow,
 			menuMap
 		} = this.state;
-		return <div>
+		return (
+			<div>
 				{IsTouchDevice && !nofixed && <div className="m-header-hold" />}
-				{IsTouchDevice && <div className={nofixed ? "m-header-box" : "m-header-box fixed"}>
-						<div className={menuShow ? "m-menu-btn hamburger hamburger--elastic is-active" : "m-menu-btn hamburger hamburger--elastic"} onClick={this.showMenu}>
+				{IsTouchDevice && (
+					<div
+						className={
+							nofixed ? "m-header-box" : "m-header-box fixed"
+						}
+					>
+						<div
+							className={
+								menuShow
+									? "m-menu-btn hamburger hamburger--elastic is-active"
+									: "m-menu-btn hamburger hamburger--elastic"
+							}
+							onClick={this.showMenu}
+						>
 							<div className="hamburger-box">
 								<div className="hamburger-inner" />
 							</div>
@@ -159,22 +169,35 @@ class Header extends PureComponent {
 							<img src={titleCat} alt="" />
 							<span>InWeCrypto</span>
 						</div>
-					</div>}
-				{IsTouchDevice && <div className={menuShow ? "menuMap menuMapShow" : "menuMap"}>
+					</div>
+				)}
+				{IsTouchDevice && (
+					<div
+						className={menuShow ? "menuMap menuMapShow" : "menuMap"}
+					>
 						<div className="menuHold" />
 						{menuMap.map((val, idx) => {
 							if (idx == menuMap.length - 1) {
-								return <div key={idx} className="menuCell" onClick={this.searchBtnClick.bind(this)}>
+								return (
+									<div
+										key={idx}
+										className="menuCell"
+										onClick={this.searchBtnClick.bind(this)}
+									>
 										<img src={searchicon} alt="" />
 										{val}
-									</div>;
+									</div>
+								);
 							} else {
-								return <div key={idx} className="menuCell">
+								return (
+									<div key={idx} className="menuCell">
 										{val}
-									</div>;
+									</div>
+								);
 							}
 						})}
-					</div>}
+					</div>
+				)}
 
 				<div id="headerBox" className="header-box container ui center">
 					<div className="heder-left ui f1 center jstart">
@@ -186,23 +209,50 @@ class Header extends PureComponent {
 						</div>
 					</div>
 					<div className="heder-middle f1">InWeCrypto</div>
-					{!userInfo && <div className="heder-right f1 ui jend">
-							<span onClick={this.Login.bind(this)} className="rightbtn">
+					{!userInfo && (
+						<div className="heder-right f1 ui jend">
+							<span
+								onClick={this.Login.bind(this)}
+								className="rightbtn"
+							>
 								Login
 							</span>
-							<span onClick={this.openRegisterByHeader.bind(this)} className="rightbtn">
+							<span
+								onClick={this.openRegisterByHeader.bind(this)}
+								className="rightbtn"
+							>
 								Sign Up
 							</span>
-						</div>}
-					{userInfo && userInfo.token && <div className="heder-right">
-								<div className="member" onClick={e => {
+						</div>
+					)}
+					{userInfo &&
+						userInfo.token && (
+							<div className="heder-right">
+								<div
+									className="member"
+									onClick={e => {
 										this.toggleMember(e);
-									}}>
+									}}
+								>
 									<i className="member-info" />
-									<img className="img" src={userInfo.img ? userInfo.img : defaultHeader} />
+									<img
+										className="img"
+										src={
+											userInfo.img
+												? userInfo.img
+												: defaultHeader
+										}
+									/>
 								</div>
-								{showMember && <div className="member-more">
-										<Link to={{ pathname: "/member", search: "?type=message" }} className="member-item">
+								{showMember && (
+									<div className="member-more">
+										<Link
+											to={{
+												pathname: "/member",
+												search: "?type=message"
+											}}
+											className="member-item"
+										>
 											<span className="icon-box">
 												<i className="icon-message" />
 												<i className="circle" />
@@ -211,7 +261,13 @@ class Header extends PureComponent {
 												未读消息
 											</span>
 										</Link>
-										<Link to={{ pathname: "/member", search: "?type=collection" }} className="member-item">
+										<Link
+											to={{
+												pathname: "/member",
+												search: "?type=collection"
+											}}
+											className="member-item"
+										>
 											<span className="icon-box">
 												<i className="icon-personal" />
 											</span>
@@ -223,20 +279,50 @@ class Header extends PureComponent {
 											<span className="icon-box">
 												<i className="icon-out" />
 											</span>
-											<span onClick={e => {
+											<span
+												onClick={e => {
 													this.loginOut(e);
-												}} className="member-itemtext">
+												}}
+												className="member-itemtext"
+											>
 												退出
 											</span>
 										</div>
-									</div>}
-							</div>}
+									</div>
+								)}
+							</div>
+						)}
 
-					{showLogin && <SignIn loginIn={loginIn} closeSign={this.closeSignIn.bind(this)} openRegister={this.openRegisterByLogin.bind(this)} openForget={this.openRegisterByForget.bind(this)} openFast={this.openFastSign.bind(this)} lng={lng} />}
-					{fastSign && <FastSign close={this.closeFastSign.bind(this)} lng={lng} />}
-					{showRegister && <Register forgetUser={forgetUser} isForget={isForget} hasBack={registerHasBack} close={this.closeRegister.bind(this)} sendEmail={sendEmail} registerUser={registerUser} lng={lng} />}
+					{showLogin && (
+						<SignIn
+							loginIn={loginIn}
+							closeSign={this.closeSignIn.bind(this)}
+							openRegister={this.openRegisterByLogin.bind(this)}
+							openForget={this.openRegisterByForget.bind(this)}
+							openFast={this.openFastSign.bind(this)}
+							lng={lng}
+						/>
+					)}
+					{fastSign && (
+						<FastSign
+							close={this.closeFastSign.bind(this)}
+							lng={lng}
+						/>
+					)}
+					{showRegister && (
+						<Register
+							forgetUser={forgetUser}
+							isForget={isForget}
+							hasBack={registerHasBack}
+							close={this.closeRegister.bind(this)}
+							sendEmail={sendEmail}
+							registerUser={registerUser}
+							lng={lng}
+						/>
+					)}
 				</div>
-			</div>;
+			</div>
+		);
 	}
 }
 export default Header;
