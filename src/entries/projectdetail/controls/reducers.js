@@ -5,7 +5,9 @@ import {
 	PROJECTREMIND,
 	PROJECTCOLLECT,
 	PROJECTDYNAMIC,
-	PROJECTDYNAMICLIST
+	PROJECTDYNAMICLIST,
+	PROJECTSCORE,
+	PROJECTDOT
 } from "./actions";
 
 export const projectDetail = handleActions(
@@ -15,6 +17,9 @@ export const projectDetail = handleActions(
 			return { ...state, category_user: payload };
 		},
 		[PROJECTCOLLECT]: (state, { payload }) => {
+			return { ...state, category_user: payload };
+		},
+		[PROJECTSCORE]: (state, { payload }) => {
 			return { ...state, category_user: payload };
 		}
 	},
@@ -35,6 +40,12 @@ export const projectDynamic = handleActions(
 export const projectDynamicList = handleActions(
 	{
 		[PROJECTDYNAMICLIST]: (state, { payload }) => payload
+	},
+	[]
+);
+export const projectDot = handleActions(
+	{
+		[PROJECTDOT]: (state, { payload }) => payload
 	},
 	[]
 );

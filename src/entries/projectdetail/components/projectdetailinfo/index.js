@@ -13,8 +13,19 @@ class ProjectDetailInfo extends PureComponent {
 	componentWillMount() {}
 	componentWillReceiveProps() {}
 	componentDidMount() {
+		this.initPage();
+	}
+	initPage() {
 		let id = this.props.projectDynamic.data[0].id;
 		this.projectDynamicList(id, 1);
+		this.cancelProjectDot();
+	}
+	cancelProjectDot() {
+		// 取消项目红点
+		console.log(this);
+		this.props.unProjectDot({
+			c_id: this.props.projectDetail.id
+		});
 	}
 	projectDynamicList(id, page) {
 		//获取项目动态
@@ -40,7 +51,8 @@ class ProjectDetailInfo extends PureComponent {
 			setProjectRemind,
 			getProjectCollect,
 			projectDynamic,
-			projectDynamicList
+			projectDynamicList,
+			unProjectDot
 		} = this.props;
 		return (
 			<I18n>

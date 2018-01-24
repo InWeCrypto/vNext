@@ -9,7 +9,8 @@ export default connect(
 			projectDetail,
 			coinTimePrice,
 			projectDynamic,
-			projectDynamicList
+			projectDynamicList,
+			projectDot
 		},
 		globData: { lng, userInfo }
 	}) => ({
@@ -17,6 +18,7 @@ export default connect(
 		coinTimePrice,
 		projectDynamic,
 		projectDynamicList,
+		projectDot,
 		userInfo,
 		lng
 	}),

@@ -1,5 +1,7 @@
 import React, { PureComponent } from "react";
 import { I18n, Trans } from "react-i18next";
+import { NavLink, Link } from "react-router-dom";
+
 import { getMainMinHeight } from "../../../../utils/util";
 import Header from "../../../../components/header";
 import Footer from "../../../../components/footer";
@@ -44,7 +46,6 @@ export default class Root extends PureComponent {
 	}
 	componentDidMount() {
 		document.title = "InWe-首页";
-		this.props.getNewsList();
 		let minH = getMainMinHeight();
 		let th = document.querySelector("#topText").clientHeight;
 		document.querySelector("#mainBox").style.minHeight = minH - th + "px";
@@ -54,8 +55,24 @@ export default class Root extends PureComponent {
 		});
 		document.getElementById("homeBoxArticleImg").style.maxHeight =
 			AcImgH + "px";
+		this.setArticleList(1);
+		this.setNewsList(1);
 	}
-	componentDidUpdate() {}
+	setArticleList(page) {
+		this.props.getArticleList({
+			type: "[2,3,4]",
+			is_scroll: true,
+			per_page: 1,
+			page: page
+		});
+	}
+	setNewsList(page) {
+		this.props.getNewsList({
+			type: "[1]",
+			per_page: 5,
+			page: page
+		});
+	}
 	render() {
 		const {
 			lng,
@@ -65,14 +82,26 @@ export default class Root extends PureComponent {
 			sendEmailCode,
 			loginIn,
 			setReduxUserInfo,
-			forgetUser
+			forgetUser,
+			articleList,
+			newsList
 		} = this.props;
 		const { month, monthArr, curDay } = this.state;
 		const curMonth = monthArr[month].slice(0, 3);
-		return <I18n>
-				{(t, { i18n }) => <div className="container m-container">
+		return (
+			<I18n>
+				{(t, { i18n }) => (
+					<div className="container m-container">
 						{/* <FixedMenu changeLng={changeLng} lng={lng} /> */}
-						<Header userInfo={userInfo} registerUser={registerUser} sendEmail={sendEmailCode} loginIn={loginIn} setReduxUserInfo={setReduxUserInfo} forgetUser={forgetUser} lng={lng} />
+						<Header
+							userInfo={userInfo}
+							registerUser={registerUser}
+							sendEmail={sendEmailCode}
+							loginIn={loginIn}
+							setReduxUserInfo={setReduxUserInfo}
+							forgetUser={forgetUser}
+							lng={lng}
+						/>
 						<div id="topText" className="top-text">
 							<TopText lng={lng} />
 						</div>
@@ -82,53 +111,99 @@ export default class Root extends PureComponent {
 									<LeftMenu lng={lng} />
 								</div>
 							</div>
-							<div id="homeBox" className="homeBox ui f1 m-home-mainBox">
+							<div
+								id="homeBox"
+								className="homeBox ui f1 m-home-mainBox"
+							>
 								<div className="homeBoxList ui homeBoxArticle">
 									<p className="homeBoxTitle">
-										对菩提创始人林吓洪的专访对菩提创始人林吓洪的专访
+										{articleList.data &&
+											articleList.data[0].title}
 									</p>
-									<div id="homeBoxArticleImg" className="homeBoxArticleImg">
-										<img src="https://b-ssl.duitang.com/uploads/item/201801/10/20180110212314_ytxcG.thumb.700_0.jpeg" alt="" />
+									<div
+										id="homeBoxArticleImg"
+										className="homeBoxArticleImg"
+									>
+										<img
+											src={
+												articleList.data &&
+												articleList.data[0].img
+											}
+											alt=""
+										/>
 									</div>
 									<p className="homeBoxArticleDesc">
-										纽约州议员提出四项区块链技术相关法案纽约州议员提出四项区块链技术相关法案纽约州议员提出四项区块链技术相关法…
+										{articleList.data &&
+											articleList.data[0].desc}
 									</p>
 									<div className="homeBoxArticleBtn">
-										<span className="more right ui center jcenter">
-											<b />
-										</span>
-										<span className="left ui center jcenter">
-											<b />
-										</span>
+										{articleList.next_page_url && (
+											<span
+												className="more right ui center jcenter"
+												onClick={() => {
+													this.setArticleList(
+														articleList.current_page +
+															1
+													);
+												}}
+											>
+												<b />
+											</span>
+										)}
+										{!articleList.next_page_url && (
+											<span className="right ui center jcenter">
+												<b />
+											</span>
+										)}
+										{articleList.prev_page_url && (
+											<span
+												className="more left ui center jcenter"
+												onClick={() => {
+													this.setArticleList(
+														articleList.current_page -
+															1
+													);
+												}}
+											>
+												<b />
+											</span>
+										)}
+										{!articleList.prev_page_url && (
+											<span className="left ui center jcenter">
+												<b />
+											</span>
+										)}
 									</div>
 								</div>
 								<div className="homeBoxList homeBoxNews">
 									<p className="homeBoxTitle">News</p>
 									<ul className="homeBoxNewsUl">
-										{[1, 2, 3, 4].map(
-											(item, index) => {
+										{newsList &&
+											newsList.data &&
+											newsList.data.length > 0 &&
+											newsList.data.map((item, index) => {
 												return (
 													<li key={index}>
-														<p>
-															纽约州议员提出四项区块链
-															技术相关法案
-														</p>
+														<p>{item.title}</p>
 													</li>
 												);
-											}
-										)}
+											})}
 									</ul>
 									<div className="homeBoxReadMore">
-										<span className="readMore">
-											Read more
-										</span>
-										<b className="readMoreImg" />
+										<Link
+											to={{
+												pathname: "/news"
+											}}
+										>
+											<span className="readMore">
+												Read more
+											</span>
+											<b className="readMoreImg" />
+										</Link>
 									</div>
 								</div>
 								<div className="homeBoxList homeBoxCandy">
-									<p className="homeBoxTitle">
-										Candy?
-									</p>
+									<p className="homeBoxTitle">Candy?</p>
 									<div className="homeBoxCandyTop">
 										<p className="homeCandyDate">
 											<b>{curDay}</b>/{curMonth}
@@ -140,7 +215,8 @@ export default class Root extends PureComponent {
 											+NEO Airdrop
 										</span>
 									</div>
-									{!IsTouchDevice && <div>
+									{!IsTouchDevice && (
+										<div>
 											<div className="homeInweWallet">
 												<img src={inweWallet} alt="" />
 											</div>
@@ -150,12 +226,11 @@ export default class Root extends PureComponent {
 												</span>
 												<b className="readMoreImg" />
 											</div>
-										</div>}
+										</div>
+									)}
 								</div>
 								<div className="homeBoxList homeBoxAnno">
-									<p className="homeBoxTitle">
-										交易所公告
-									</p>
+									<p className="homeBoxTitle">交易所公告</p>
 									<div className="homeBoxAnnoTop">
 										<p className="homeBoxAnnoTopP">
 											+火币：火币全球专业站12月27日14:00上线NEO…
@@ -170,7 +245,8 @@ export default class Root extends PureComponent {
 											<b className="readMoreImg" />
 										</div>
 									</div>
-									{!IsTouchDevice && <div className="homeBoxFllow">
+									{!IsTouchDevice && (
+										<div className="homeBoxFllow">
 											<p className="homeBoxTitle">
 												Follow…
 											</p>
@@ -188,25 +264,44 @@ export default class Root extends PureComponent {
 												</span>
 												<b className="readMoreImg" />
 											</div>
-										</div>}
+										</div>
+									)}
 								</div>
-								{IsTouchDevice && <div className="homeBoxList homeBoxWallet">
+								{IsTouchDevice && (
+									<div className="homeBoxList homeBoxWallet">
 										<div className="swiperBox">
-											<ul className="walletUl" style={{ width: [1, 2, 3, 4].length * 4.98 + "rem" }}>
-												{[1, 2, 3, 4].map(
-													val => {
-														return <li key={val} className="walletImg">
-																<img src={walletHold} alt="" />
-															</li>;
-													}
-												)}
+											<ul
+												className="walletUl"
+												style={{
+													width:
+														[1, 2, 3, 4].length *
+															4.98 +
+														"rem"
+												}}
+											>
+												{[1, 2, 3, 4].map(val => {
+													return (
+														<li
+															key={val}
+															className="walletImg"
+														>
+															<img
+																src={walletHold}
+																alt=""
+															/>
+														</li>
+													);
+												})}
 											</ul>
 										</div>
-									</div>}
+									</div>
+								)}
 							</div>
 						</div>
 						<Footer changeLng={changeLng} lng={lng} />
-					</div>}
-			</I18n>;
+					</div>
+				)}
+			</I18n>
+		);
 	}
 }
