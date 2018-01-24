@@ -19,6 +19,7 @@ export default class Root extends PureComponent {
 		const newDate = new Date();
 		this.state = {
 			AcImgH: "auto",
+			year: newDate.getFullYear(),
 			month: newDate.getMonth() + 1,
 			monthArr: [
 				"january",
@@ -57,6 +58,7 @@ export default class Root extends PureComponent {
 			AcImgH + "px";
 		this.setArticleList(1);
 		this.setNewsList(1);
+		this.getData(this.state.year, this.state.month, this.state.curDay);
 	}
 	setArticleList(page) {
 		this.props.getArticleList({
@@ -72,6 +74,13 @@ export default class Root extends PureComponent {
 			per_page: 5,
 			page: page
 		});
+	}
+	getData(year, month, day) {
+		let query = "?";
+		query += `year=${year}`;
+		query += `&month=${month}`;
+		query += `&day=${day}`;
+		this.props.getCandyList(query);
 	}
 	render() {
 		const {
