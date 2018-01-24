@@ -4,13 +4,43 @@ import { Link } from "react-router-dom";
 import GaiKuo from "../../../../components/gaikuo";
 import "./index.less";
 class ProjectDetailInfo extends PureComponent {
+	constructor(props) {
+		super(props);
+		this.state = {
+			curDynamic: 0
+		};
+	}
+	componentWillMount() {}
+	componentWillReceiveProps() {}
+	componentDidMount() {
+		let id = this.props.projectDynamic.data[0].id;
+		this.projectDynamicList(id, 1);
+	}
+	projectDynamicList(id, page) {
+		//获取项目动态
+		this.props
+			.getProjectDynamicList({
+				tag_id: id,
+				type: "[2,3]",
+				per_page: 4,
+				page: page || 1
+			})
+			.then(res => {
+				this.setState({
+					curDynamic: id
+				});
+			});
+	}
 	render() {
+		const { curDynamic } = this.state;
 		const {
 			lng,
 			changeLng,
 			projectDetail,
 			setProjectRemind,
-			getProjectCollect
+			getProjectCollect,
+			projectDynamic,
+			projectDynamicList
 		} = this.props;
 		return (
 			<I18n>
@@ -39,44 +69,91 @@ class ProjectDetailInfo extends PureComponent {
 							</div>
 							<div className="projectDetailCon1Box">
 								<ul className="ui">
-									<li>
-										<div className="imgBox">
-											<img
-												src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1516195691228&di=92e63d9f27a65d105a43eb5847a1ae6f&imgtype=0&src=http%3A%2F%2Fimg2.niutuku.com%2F1312%2F0827%2F0827-niutuku.com-13638.jpg"
-												alt=""
-											/>
-										</div>
-										<div className="infoBot">
-											<p className="infoBotTitle ellitext">
-												新韩银行推出跨境比特币服务
-											</p>
-											<div className="infoBotDate">
-												<span>2017-11-16 11:35:33</span>
-												<i>原创</i>
-											</div>
-										</div>
-									</li>
-									<li className="infoVideo">
-										<div className="imgBox">
-											<img
-												src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1516195691228&di=92e63d9f27a65d105a43eb5847a1ae6f&imgtype=0&src=http%3A%2F%2Fimg2.niutuku.com%2F1312%2F0827%2F0827-niutuku.com-13638.jpg"
-												alt=""
-											/>
-										</div>
-										<div className="infoBot">
-											<p className="infoBotTitle ellitext">
-												新韩银行推出跨境比特币服务
-											</p>
-											<div className="infoBotDate">
-												<span>2017-11-16 11:35:33</span>
-												<i>原创</i>
-											</div>
-										</div>
-									</li>
+									{projectDynamicList &&
+										projectDynamicList.data &&
+										projectDynamicList.data.length > 0 &&
+										projectDynamicList.data.map(
+											(item, index) => {
+												return (
+													<li
+														key={index}
+														className={
+															item.type == 3
+																? "infoVideo"
+																: ""
+														}
+													>
+														<Link
+															to={{
+																pathname:
+																	"/newsdetail",
+																search: `?art_id=${
+																	item.id
+																}`
+															}}
+														>
+															<div className="imgBox">
+																<img
+																	src={
+																		item.img
+																	}
+																	alt=""
+																/>
+															</div>
+															<div className="infoBot">
+																<p className="infoBotTitle ellitext">
+																	{item.title}
+																</p>
+																<div className="infoBotDate">
+																	<span>
+																		{
+																			item.created_at
+																		}
+																	</span>
+																	{item.is_sole && (
+																		<i>
+																			原创
+																		</i>
+																	)}
+																</div>
+															</div>
+														</Link>
+													</li>
+												);
+											}
+										)}
 								</ul>
 								<div className="pageTurn">
-									<span className="pageTurmLf" />
-									<span className="pageTurmRt more" />
+									{projectDynamicList.prev_page_url && (
+										<span
+											className="pageTurmLf more"
+											onClick={() => {
+												this.projectDynamicList(
+													curDynamic,
+													projectDynamicList.current_page -
+														1
+												);
+											}}
+										/>
+									)}
+									{!projectDynamicList.prev_page_url && (
+										<span className="pageTurmLf" />
+									)}
+									{projectDynamicList.next_page_url && (
+										<span
+											className="pageTurmRt more"
+											onClick={() => {
+												this.projectDynamicList(
+													curDynamic,
+													projectDynamicList.current_page +
+														1
+												);
+											}}
+										/>
+									)}
+									{!projectDynamicList.next_page_url && (
+										<span className="pageTurmRt" />
+									)}
 								</div>
 							</div>
 						</div>
@@ -86,12 +163,32 @@ class ProjectDetailInfo extends PureComponent {
 									项目动态
 								</div>
 								<ul className="projectDetailCon2Ul">
-									<li className="cur">
-										<span>技术追踪</span>
-									</li>
-									<li className="">
-										<span>路线图及完成情况</span>
-									</li>
+									{projectDynamic &&
+										projectDynamic.data &&
+										projectDynamic.data.length > 0 &&
+										projectDynamic.data.map(
+											(item, index) => {
+												return (
+													<li
+														key={index}
+														className={
+															curDynamic ==
+															item.id
+																? "cur"
+																: ""
+														}
+														onClick={() => {
+															this.projectDynamicList(
+																item.id,
+																1
+															);
+														}}
+													>
+														<span>{item.name}</span>
+													</li>
+												);
+											}
+										)}
 								</ul>
 								{/* <div className="pageTurn">
 									<span className="pageTurmLf" />

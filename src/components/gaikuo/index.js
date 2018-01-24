@@ -15,8 +15,8 @@ class GaiKuo extends PureComponent {
 			collect: false,
 			home: false,
 			share: false,
-			aboveVal: "",
-			belowVal: "",
+			aboveVal: "0",
+			belowVal: "0",
 			is_favorite: ""
 		};
 		this.styles = StyleSheet.create({
@@ -98,11 +98,15 @@ class GaiKuo extends PureComponent {
 			.setProjectRemind({
 				c_id: c_id,
 				is_market_follow: is_market_follow,
-				market_hige: this.state.aboveVal,
-				market_lost: this.state.belowVal
+				market_hige: is_market_follow ? this.state.aboveVal : 0,
+				market_lost: is_market_follow ? this.state.belowVal : 0
 			})
 			.then(res => {
 				if (res.code == 4000) {
+					this.setState({
+						aboveVal: res.data.market_hige,
+						belowVal: res.data.market_lost
+					});
 					this.closeRemind();
 				}
 			});

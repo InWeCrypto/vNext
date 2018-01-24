@@ -354,7 +354,10 @@ export default class Root extends PureComponent {
 											{this.state.isShowImg && (
 												<div className="newsDetailHeadImg">
 													<img
-														src={userInfo.img}
+														src={
+															userInfo &&
+															userInfo.img
+														}
 														alt=""
 													/>
 												</div>
@@ -406,6 +409,7 @@ export default class Root extends PureComponent {
 																<div className="newsDetailHeadImg">
 																	<img
 																		src={
+																			item.user &&
 																			item
 																				.user
 																				.img
@@ -415,11 +419,10 @@ export default class Root extends PureComponent {
 																</div>
 																<div className="newsDetailHeadInfo">
 																	<span className="newsDetailHeadName">
-																		{
+																		{item.user &&
 																			item
 																				.user
-																				.name
-																		}
+																				.name}
 																	</span>
 																	<span className="newsDetailHeadDate">
 																		{

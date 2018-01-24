@@ -45,7 +45,7 @@ export default class Root extends PureComponent {
 		});
 		this.props
 			.getProject({
-				type: q.type,
+				type: q.type || "1",
 				per_page: 8
 			})
 			.then(res => {
