@@ -26,7 +26,8 @@ export default class Root extends PureComponent {
 		this.getNewsVideoList(this.state.newsVideoCur);
 		let minH = getMainMinHeight();
 		this.setState({
-			minH: minH
+			minH: minH,
+			activeIndex: 0
 		});
 		document.querySelector("#mainBox").style.minHeight = minH + "px";
 	}
@@ -117,8 +118,13 @@ export default class Root extends PureComponent {
 			}
 		}
 	}
+	changeNav(idx) {
+		this.setState({
+			activeIndex: idx
+		});
+	}
 	render() {
-		const { minH, liW } = this.state;
+		const { minH, liW, activeIndex } = this.state;
 		const {
 			lng,
 			changeLng,
@@ -161,18 +167,45 @@ export default class Root extends PureComponent {
 												: "newsNav ui center "
 										}
 									>
-										<div className="item">24H News</div>
-										<div className="item">图文资讯</div>
-										<div className="item">视频咨询</div>
+										{[
+											"24H News",
+											"图文资讯",
+											"视频咨询"
+										].map((val, idx) => {
+											return (
+												<div
+													className={
+														activeIndex == idx
+															? "item active"
+															: "item"
+													}
+													key={idx}
+													onClick={this.changeNav.bind(
+														this,
+														idx
+													)}
+												>
+													{val}
+												</div>
+											);
+										})}
 									</div>
 								)}
-								<div className="newsBoxMod">
+								<div
+									className={
+										IsTouchDevice
+											? activeIndex == 0
+												? "newsBoxMod"
+												: "newsBoxMod m-hide"
+											: "newsBoxMod"
+									}
+								>
 									<div className="newsBoxModTop">
 										<p>
 											<span className="title">
 												24H News
 											</span>
-											<span className="nums">
+											<span className="nums m-hide">
 												{newsText.current_page}/{
 													newsText.last_page
 												}
@@ -183,8 +216,8 @@ export default class Root extends PureComponent {
 										<span
 											className={
 												newsText.current_page > 1
-													? "leftArrow more"
-													: "leftArrow"
+													? "leftArrow m-hide more"
+													: "leftArrow m-hide"
 											}
 											onClick={() => {
 												this.toggleNewsText(
@@ -200,7 +233,10 @@ export default class Root extends PureComponent {
 												newsText.data.map(
 													(item, index) => {
 														return (
-															<li key={index}>
+															<li
+																className="m-news-textNews"
+																key={index}
+															>
 																<Link
 																	to={{
 																		pathname:
@@ -216,11 +252,12 @@ export default class Root extends PureComponent {
 																		}
 																	</p>
 																	<div className="newsBoxModConDate">
-																		<p>
+																		<p className="">
 																			{
 																				item.updated_at
 																			}
 																		</p>
+
 																		<img
 																			src={
 																				item
@@ -252,7 +289,15 @@ export default class Root extends PureComponent {
 										/>
 									</div>
 								</div>
-								<div className="newsBoxMod ceefax">
+								<div
+									className={
+										IsTouchDevice
+											? activeIndex == 1
+												? "newsBoxMod ceefax"
+												: "newsBoxMod ceefax m-hide"
+											: "newsBoxMod ceefax"
+									}
+								>
 									<div className="newsBoxModTop">
 										<p>
 											<span className="title">
@@ -269,8 +314,8 @@ export default class Root extends PureComponent {
 										<span
 											className={
 												newsImg.current_page > 1
-													? "leftArrow more"
-													: "leftArrow"
+													? "leftArrow more m-hide"
+													: "leftArrow m-hide"
 											}
 											onClick={() => {
 												this.toggleNewsImg(
@@ -279,7 +324,7 @@ export default class Root extends PureComponent {
 												);
 											}}
 										/>
-										<ul className="ui ">
+										<ul className="ui imgNewsUl">
 											{newsImg &&
 												newsImg.data &&
 												newsImg.data.length > 0 &&
@@ -287,7 +332,10 @@ export default class Root extends PureComponent {
 													(item, index) => {
 														console.log(item);
 														return (
-															<li key={index}>
+															<li
+																className="m-news-imgNews"
+																key={index}
+															>
 																<Link
 																	to={{
 																		pathname:
@@ -309,6 +357,7 @@ export default class Root extends PureComponent {
 																			}
 																		</p>
 																		<img
+																			className="m-hide"
 																			src={
 																				item
 																					.category
@@ -347,7 +396,15 @@ export default class Root extends PureComponent {
 										/>
 									</div>
 								</div>
-								<div className="newsBoxMod ceefax">
+								<div
+									className={
+										IsTouchDevice
+											? activeIndex == 2
+												? "newsBoxMod ceefax"
+												: "newsBoxMod ceefax m-hide"
+											: "newsBoxMod ceefax"
+									}
+								>
 									<div className="newsBoxModTop">
 										<p>
 											<span className="title">
@@ -360,12 +417,12 @@ export default class Root extends PureComponent {
 											</span>
 										</p>
 									</div>
-									<div className="newsBoxModCon ui center">
+									<div className="newsBoxModCon ui center ">
 										<span
 											className={
 												newsVideo.current_page > 1
-													? "leftArrow more"
-													: "leftArrow"
+													? "leftArrow more m-hide"
+													: "leftArrow m-hide"
 											}
 											onClick={() => {
 												this.toggleNewsVideo(
@@ -381,7 +438,10 @@ export default class Root extends PureComponent {
 												newsVideo.data.map(
 													(item, index) => {
 														return (
-															<li key={index}>
+															<li
+																className="m-news-videoNews"
+																key={index}
+															>
 																<Link
 																	to={{
 																		pathname:
@@ -391,12 +451,12 @@ export default class Root extends PureComponent {
 																		}`
 																	}}
 																>
-																	<p className="desc">
+																	<p className="desc m-hide">
 																		{
 																			item.title
 																		}
 																	</p>
-																	<div className="newsBoxModConDate">
+																	<div className="newsBoxModConDate m-hide">
 																		<p>
 																			{
 																				item.updated_at
@@ -419,6 +479,13 @@ export default class Root extends PureComponent {
 																			alt=""
 																		/>
 																	</div>
+																	{IsTouchDevice && (
+																		<div className="modDateText">
+																			{
+																				item.updated_at
+																			}
+																		</div>
+																	)}
 																</Link>
 															</li>
 														);
