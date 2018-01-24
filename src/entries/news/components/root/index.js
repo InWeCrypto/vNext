@@ -144,14 +144,28 @@ export default class Root extends PureComponent {
 							setReduxUserInfo={setReduxUserInfo}
 							forgetUser={forgetUser}
 							lng={lng}
+							nofixed={true}
 						/>
 						<div id="mainBox" className="news ui">
-							<div className="left-menus ui center">
+							<div className="left-menus ui center m-hide">
 								<div className="left-menus-news">
 									<LeftMenu lng={lng} />
 								</div>
 							</div>
 							<div id="newsBox" className="newsBox ui f1">
+								{IsTouchDevice && (
+									<div
+										className={
+											this.navFixed
+												? "newsNav ui center fixed"
+												: "newsNav ui center "
+										}
+									>
+										<div className="item">24H News</div>
+										<div className="item">图文资讯</div>
+										<div className="item">视频咨询</div>
+									</div>
+								)}
 								<div className="newsBoxMod">
 									<div className="newsBoxModTop">
 										<p>

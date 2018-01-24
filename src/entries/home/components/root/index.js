@@ -140,7 +140,7 @@ export default class Root extends PureComponent {
 											+NEO Airdrop
 										</span>
 									</div>
-									{!IsTouchDevice && <block>
+									{!IsTouchDevice && <div>
 											<div className="homeInweWallet">
 												<img src={inweWallet} alt="" />
 											</div>
@@ -150,7 +150,7 @@ export default class Root extends PureComponent {
 												</span>
 												<b className="readMoreImg" />
 											</div>
-										</block>}
+										</div>}
 								</div>
 								<div className="homeBoxList homeBoxAnno">
 									<p className="homeBoxTitle">
