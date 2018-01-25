@@ -32,7 +32,6 @@ export const registerUser = createAction(USERINFO, params => {
 			params: params
 		})
 		.then(res => {
-			console.log(res);
 			if (res.code === 4000) {
 				setLocalItem("userInfo", JSON.stringify(res.data));
 			}

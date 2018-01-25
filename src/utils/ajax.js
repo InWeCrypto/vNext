@@ -1,6 +1,7 @@
 import "whatwg-fetch";
 import { requestUrl } from "../config/";
 import { getLocalItem } from "./util";
+import { setReduxUserInfo } from "../globalactions";
 const METHODS = ["get", "delete"];
 const BODY_METHODS = ["post", "put", "patch"];
 
@@ -27,6 +28,7 @@ function checkRight(response) {
 		if (window.location.href.indexOf("/member") != -1) {
 			window.location.href = "/";
 		}
+		store.dispatch(setReduxUserInfo(null));
 		return {
 			msg: response.msg,
 			data: null,
