@@ -13,6 +13,11 @@ class ProjectDetailGaiKuo extends PureComponent {
 			chartTypeIndex: 0
 		};
 	}
+	// componentWillUpdate(nextProps, nextState) {
+	// 	if (nextProps.projectKdata != this.props.projectKdata) {
+	// 		this.viewEcharts(this.props.projectKdata);
+	// 	}
+	// }
 	componentDidMount() {
 		const {
 			lng,
@@ -26,11 +31,12 @@ class ProjectDetailGaiKuo extends PureComponent {
 		let query = `${projectDetail.unit}/usdt/${
 			this.state.chartType[this.state.chartTypeIndex]
 		}`;
-		this.props.getKdata(query);
+		this.props.getKdata(query).then(() => {
+			this.viewEcharts(this.props.projectKdata);
+		});
 	}
 	setOptionData(data) {
 		let res = [];
-
 		data.map(item => {
 			let r = [];
 			r.push(this.setTimeString(item["time"]));
@@ -41,7 +47,6 @@ class ProjectDetailGaiKuo extends PureComponent {
 			r.push(item["volume"]);
 			res.push(r);
 		});
-
 		return res;
 	}
 	setTimeString(time) {
@@ -365,9 +370,6 @@ class ProjectDetailGaiKuo extends PureComponent {
 			getProjectCollect,
 			projectKdata
 		} = this.props;
-		if (projectKdata && projectKdata.length > 0) {
-			this.viewEcharts(projectKdata);
-		}
 		return (
 			<I18n>
 				{(t, { I18n }) => (
