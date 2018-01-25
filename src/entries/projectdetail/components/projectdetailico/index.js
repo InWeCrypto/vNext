@@ -37,7 +37,6 @@ class ProjectDetailIco extends PureComponent {
 	}
 	viewEcharts(data) {
 		let strcture = document.querySelector("#icoCharts");
-		console.log(strcture);
 		let myChart = echarts.init(strcture);
 		let strctureData = data;
 		let value = [];
@@ -290,6 +289,37 @@ class ProjectDetailIco extends PureComponent {
 											);
 										}
 									)}
+								{/* <p>+Im token</p> */}
+							</div>
+							<div className="projectDetailCon2Box">
+								<div className="projectDetailCon2Title">
+									Social
+								</div>
+								<ul className="shareList ui center">
+									{projectDetail &&
+										projectDetail.category_media &&
+										projectDetail.category_media.length >
+											0 &&
+										projectDetail.category_media.map(
+											(item, index) => {
+												return (
+													<li key={index}>
+														<Link
+															to={{
+																pathname:
+																	item.url
+															}}
+														>
+															<img
+																src={item.img}
+															/>
+														</Link>
+													</li>
+												);
+											}
+										)}
+								</ul>
+
 								{/* <p>+Im token</p> */}
 							</div>
 						</div>

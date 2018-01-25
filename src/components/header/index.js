@@ -276,6 +276,7 @@ class Header extends PureComponent {
 												}%`}
 											>
 												{item.symbol} ${item.price_usd}
+												&nbsp;
 												{(() => {
 													return item.percent_change_1h >=
 														0

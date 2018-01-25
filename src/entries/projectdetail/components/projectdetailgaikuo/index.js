@@ -450,8 +450,8 @@ class ProjectDetailGaiKuo extends PureComponent {
 									</tbody>
 								</table>
 								<div className="gaiKuoChart" id="gaiKuoChart">
-									<div className="charts-type">
-										<span>Zoom:</span>
+									<div className="charts-type ui center">
+										<span>Zoom</span>
 										{this.state.chartType &&
 											this.state.chartType.map(
 												(item, index) => {
@@ -471,7 +471,10 @@ class ProjectDetailGaiKuo extends PureComponent {
 																	: "charts-btn";
 															})()}
 														>
-															{item}
+															<span className="charts-text">
+																{item}
+															</span>
+															<span className="line" />
 														</span>
 													);
 												}
