@@ -10,6 +10,7 @@ export const PROJECTDYNAMIC = `${PRE_FIX}PROJECTDYNAMIC`;
 export const PROJECTDYNAMICLIST = `${PRE_FIX}PROJECTDYNAMICLIST`;
 export const PROJECTSCORE = `${PRE_FIX}PROJECTSCORE`;
 export const PROJECTDOT = `${PRE_FIX}PROJECTDOT`;
+export const PROJECTKCHARTS = `${PRE_FIX}PROJECTKCHARTS`;
 
 export const getProjectDetail = createAction(PROJECTDETAIL, params => {
 	return http
@@ -109,6 +110,16 @@ export const unProjectDot = createAction(PROJECTDOT, params => {
 			if (res.code !== 4000) {
 				Msg.prompt(res.msg);
 			}
+			return res;
+		});
+});
+export const getKdata = createAction(PROJECTKCHARTS, query => {
+	return http
+		.get({
+			url: `ico/currencies/${query}`
+		})
+		.then(res => {
+			console.log(res);
 			return res;
 		});
 });
