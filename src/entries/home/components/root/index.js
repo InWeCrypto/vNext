@@ -58,7 +58,8 @@ export default class Root extends PureComponent {
 			AcImgH + "px";
 		this.setArticleList(1);
 		this.setNewsList(1);
-		this.getData(this.state.year, this.state.month, this.state.curDay);
+		// this.getData(this.state.year, this.state.month, this.state.curDay);
+		this.getData(this.state.year, this.state.month, 24);
 	}
 	setArticleList(page) {
 		this.props.getArticleList({
@@ -80,6 +81,7 @@ export default class Root extends PureComponent {
 		query += `year=${year}`;
 		query += `&month=${month}`;
 		query += `&day=${day}`;
+		query += `&per_page=2`;
 		this.props.getCandyList(query);
 	}
 	render() {
@@ -93,7 +95,8 @@ export default class Root extends PureComponent {
 			setReduxUserInfo,
 			forgetUser,
 			articleList,
-			newsList
+			newsList,
+			candyList
 		} = this.props;
 		const { month, monthArr, curDay } = this.state;
 		const curMonth = monthArr[month].slice(0, 3);
@@ -217,6 +220,14 @@ export default class Root extends PureComponent {
 										<p className="homeCandyDate">
 											<b>{curDay}</b>/{curMonth}
 										</p>
+										{candyList.list &&
+											candyList.list.data &&
+											candyList.list.data.length > 0 &&
+											candyList.list.data.map(
+												(item, index) => {
+													return;
+												}
+											)}
 										<span className="homeCandySpan">
 											+NEO Airdrop
 										</span>
