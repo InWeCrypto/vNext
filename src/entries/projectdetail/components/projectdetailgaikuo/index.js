@@ -344,6 +344,10 @@ class ProjectDetailGaiKuo extends PureComponent {
 		this.setState({
 			chartTypeIndex: idx
 		});
+		let query = `${this.props.projectDetail.unit}/usdt/${
+			this.state.chartType[idx]
+		}`;
+		this.props.getKdata(query);
 	}
 
 	render() {
