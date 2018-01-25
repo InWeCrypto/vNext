@@ -81,9 +81,12 @@ class Footer extends PureComponent {
 									{/* <span className="item">
 										<i className="icon-wechat" />
 									</span> */}
-									<span className="item">
+									<a
+										href="mailto:support@inwecrypto.com"
+										className="item"
+									>
 										<i className="icon-mail" />
-									</span>
+									</a>
 								</div>
 								<div className="f1 m-hide" />
 								<div className="right">
