@@ -89,3 +89,51 @@
 		}
 	}
 }
+.mobile #annoBox {
+	padding: 0;
+	margin: 0;
+	width: 6.9rem;
+	margin: 0 auto;
+	.annoCon {
+		width: 6.9rem;
+		ul {
+			display: block;
+			padding: 0;
+
+			li {
+				height: 1.87rem;
+				width: 6.9rem;
+				border: 0;
+				padding: 0;
+				border-bottom: 1px solid #ececec;
+				overflow: hidden;
+				.liBox {
+					width: 100%;
+					padding: 0;
+					border: 0;
+					.annoBoxLiText {
+						margin-top: 0.3rem;
+						width: 100%;
+						height: 0.84rem;
+						font-size: 0.3rem;
+						line-height: 0.42rem;
+						overflow: hidden;
+						text-overflow: ellipsis;
+						display: -webkit-box;
+						-webkit-box-orient: vertical;
+						-webkit-line-clamp: 2;
+						flex-shrink: 0;
+					}
+					.annoBoxLiDate {
+						margin-top: 0.1rem;
+						width: 100%;
+						height: 0.33rem;
+						font-size: 0.24rem;
+						line-height: 0.33rem;
+						color: #c9c6c6;
+					}
+				}
+			}
+		}
+	}
+}

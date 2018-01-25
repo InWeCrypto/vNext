@@ -177,7 +177,7 @@ class Calendar extends PureComponent {
 		const iw = this.state.itemw;
 		const { year, month, monthArr, day, curDay } = this.state;
 		return (
-			<div className="calendar-box">
+			<div id="m-calendar" className="calendar-box">
 				<div className="calendar-top">
 					<div className="inline-box">
 						<div className="month-box">

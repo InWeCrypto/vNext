@@ -76,13 +76,16 @@ export default class Root extends PureComponent {
 							lng={lng}
 						/>
 						<div id="mainBox" className="trading ui">
-							<div className="left-menus ui center">
-								<div className="left-menus-trading">
-									<LeftMenu lng={lng} />
+							{!IsTouchDevice && (
+								<div className="left-menus ui center">
+									<div className="left-menus-trading">
+										<LeftMenu lng={lng} />
+									</div>
 								</div>
-							</div>
+							)}
+
 							<div id="tradingBox" className="tradingBox ui f1">
-								<div className="annoBoxArrow ui center">
+								<div className="annoBoxArrow ui center m-hide">
 									{trading.prev_page_url && (
 										<Link
 											to={{
@@ -100,7 +103,7 @@ export default class Root extends PureComponent {
 									)}
 								</div>
 
-								<ul className="">
+								<ul id="m-tradingUl" className="">
 									{trading &&
 										trading.data &&
 										trading.data.length > 0 &&
@@ -136,7 +139,7 @@ export default class Root extends PureComponent {
 											);
 										})}
 								</ul>
-								<div className="annoBoxArrow ui center">
+								<div className="annoBoxArrow ui center m-hide">
 									{trading.next_page_url && (
 										<Link
 											to={{
