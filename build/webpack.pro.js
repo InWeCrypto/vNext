@@ -13,7 +13,8 @@ var webpackProConfig = {
 	},
 	output: {
 		path: config.outputRoot,
-		filename: "assets/js/[name].[chunkhash:9].js"
+		filename: "assets/js/[name].[chunkhash:9].js",
+		publicPath: "/"
 	},
 	plugins: [
 		new webpack.optimize.UglifyJsPlugin({
