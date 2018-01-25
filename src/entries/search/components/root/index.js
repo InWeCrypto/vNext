@@ -33,10 +33,19 @@ export default class Root extends PureComponent {
 			liH: liH
 		});
 		document.querySelector("#mainBox").style.minHeight = minH + "px";
+		window.onkeydown = function(event) {
+			event = event || window.event;
+			if (event.keyCode == 13) {
+				if (this.state.inputBg) {
+					window.location.href = "/search?k=" + this.state.k;
+				}
+			}
+		}.bind(this);
 		this.initPage(this.props.location.search);
 	}
 	initPage(search) {
 		let q = getQuery(search);
+		q.k = window.decodeURI(q.k);
 		this.setState({
 			k: q.k || ""
 		});
@@ -45,7 +54,7 @@ export default class Root extends PureComponent {
 		});
 	}
 	render() {
-		const { minH, liH, page, inputBg } = this.state;
+		const { minH, liH, page, inputBg, k } = this.state;
 		const {
 			lng,
 			changeLng,
@@ -87,6 +96,12 @@ export default class Root extends PureComponent {
 								<input
 									type="text"
 									placeholder="Search you want to know"
+									value={k}
+									onChange={e => {
+										this.setState({
+											k: e.target.value
+										});
+									}}
 									onFocus={e => {
 										this.setState({
 											inputBg: true
@@ -117,17 +132,10 @@ export default class Root extends PureComponent {
 													)}
 													<div className="conRt f1">
 														<span className="conRtTitle">
-															-Nazi case:Two men
-															plead not guilty to
-															terror charhes
+															{item.title}
 														</span>
 														<p className="conRtDesc ellitext">
-															are also accused of
-															being members of the
-															banned neo-Nazi
-															group national.are
-															also accused of
-															being …
+															{item.desc}
 														</p>
 													</div>
 												</li>

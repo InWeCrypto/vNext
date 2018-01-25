@@ -40,8 +40,7 @@ export default class Root extends PureComponent {
 			curDay:
 				newDate.getDate() < 10
 					? "0" + newDate.getDate()
-					: newDate.getDate(),
-			showSearch: true
+					: newDate.getDate()
 		};
 	}
 	componentWillReceiveProps(nextProps) {
@@ -99,16 +98,7 @@ export default class Root extends PureComponent {
 			per_page: 3
 		});
 	}
-	closeSearch() {
-		this.setState({
-			showSearch: false
-		});
-	}
-	openSearch() {
-		this.setState({
-			showSearch: true
-		});
-	}
+
 	turnToCandy() {
 		if (IsTouchDevice) {
 			window.location.href = "/candybowl";
@@ -166,19 +156,13 @@ export default class Root extends PureComponent {
 							commonMarket={commonMarket}
 							getHeaderMarket={getHeaderMarket}
 						/>
-						{showSearch && (
-							<Search closeSearch={this.closeSearch.bind(this)} />
-						)}
 						<div id="topText" className="top-text">
 							<TopText lng={lng} />
 						</div>
 						<div id="mainBox" className="main home ui">
 							<div className="left-menus ui center m-hide">
 								<div className="left-menu-home">
-									<LeftMenu
-										openSearch={this.openSearch.bind(this)}
-										lng={lng}
-									/>
+									<LeftMenu lng={lng} />
 								</div>
 							</div>
 							<div
