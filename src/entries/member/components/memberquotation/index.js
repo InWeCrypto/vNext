@@ -51,29 +51,58 @@ class MemberQuotation extends PureComponent {
 											<div className="project-icon">
 												<img src={item.img} />
 											</div>
+											<div>
+												<div className="bigname">
+													{item.name}
+												</div>
+												<div className="name">
+													{item.long_name}
+												</div>
+											</div>
 											<div className="f1 price-box">
 												<div className="price-cont">
 													<div className="t1">
-														$50
-														<span className="up">
-															(+0.06)
+														${item.ico.price_usd}
+														<span
+															className={(() => {
+																return parseInt(
+																	item.ico
+																		.percent_change_24h,
+																	10
+																) -
+																	0 >=
+																	0
+																	? "up"
+																	: "down";
+															})()}
+														>
+															({
+																item.ico
+																	.percent_change_24h
+															})
 														</span>
 													</div>
 													<div className="t2">
-														≈0.5BTC
+														≈${item.ico.price_btc}BTC
 													</div>
 												</div>
 											</div>
 											<div className="other">
 												<div className="t1">Above</div>
 												<div className="t2">
-													$232.00
+													${
+														item.category_user
+															.market_hige
+													}
 												</div>
 											</div>
 											<div className="other">
 												<div className="t1">Below</div>
 												<div className="t2">
-													$232.00
+													${
+														item.category_user
+															.market_lost
+													}
 												</div>
 											</div>
 										</div>

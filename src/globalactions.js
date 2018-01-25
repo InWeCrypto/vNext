@@ -6,6 +6,7 @@ export const USERINFO = "USERINFO";
 export const EMAILCODE = "EMAILCODE";
 export const NICKNAME = "NICKNAME";
 export const USERHEADER = "USERHEADER";
+export const HEADERMARKET = "HEADERMARKET";
 export const changeLng = createAction(LNG, lng => {
 	return lng;
 });
@@ -113,6 +114,16 @@ export const uploadHeader = createAction(USERHEADER, img => {
 					data: img //res.data.img
 				};
 			}
+			return res;
+		});
+});
+export const getHeaderMarket = createAction(HEADERMARKET, () => {
+	return http
+		.get({
+			url: "category/home_market"
+		})
+		.then(res => {
+			console.log(res);
 			return res;
 		});
 });

@@ -5,13 +5,15 @@ import * as globalActions from "../../../globalactions";
 
 export default connect(
 	({
-		candybowl: { candyList, candyMonth },
-		globData: { lng, userInfo }
+		candybowl: { candyList, candyMonth, candyMustList },
+		globData: { lng, userInfo, commonMarket }
 	}) => ({
 		candyMonth,
 		candyList,
 		userInfo,
-		lng
+		lng,
+		candyMustList,
+		commonMarket
 	}),
 	{
 		...actions,

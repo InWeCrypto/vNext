@@ -107,7 +107,17 @@ export default class Root extends PureComponent {
 	openSearch() {
 		this.setState({
 			showSearch: true
-		});
+        });
+    }
+	turnToCandy() {
+		if (IsTouchDevice) {
+			window.location.href = "/candybowl";
+		}
+	}
+	turnToAnno() {
+		if (IsTouchDevice) {
+			window.location.href = "/announcment";
+		}
 	}
 	render() {
 		const {
@@ -122,9 +132,14 @@ export default class Root extends PureComponent {
 			articleList,
 			newsList,
 			candyList,
+<<<<<<< HEAD
 			userFavo,
 			exchangeNotice,
 			ads
+=======
+			commonMarket,
+			getHeaderMarket
+>>>>>>> ac14d0d7dd3f3b7c8d24125f9383fab16f63e500
 		} = this.props;
 		const { month, monthArr, curDay, AcImgH, showSearch } = this.state;
 		const curMonth = monthArr[month].slice(0, 3);
@@ -151,6 +166,8 @@ export default class Root extends PureComponent {
 							setReduxUserInfo={setReduxUserInfo}
 							forgetUser={forgetUser}
 							lng={lng}
+							commonMarket={commonMarket}
+							getHeaderMarket={getHeaderMarket}
 						/>
 						{showSearch && (
 							<Search closeSearch={this.closeSearch.bind(this)} />
@@ -285,7 +302,10 @@ export default class Root extends PureComponent {
 										</Link>
 									</div>
 								</div>
-								<div className="homeBoxList homeBoxCandy">
+								<div
+									className="homeBoxList homeBoxCandy"
+									onClick={this.turnToCandy.bind(this)}
+								>
 									<p className="homeBoxTitle">Candy?</p>
 									<div className="homeBoxCandyTop">
 										<p className="homeCandyDate">
@@ -372,6 +392,7 @@ export default class Root extends PureComponent {
 								<div className="homeBoxList homeBoxAnno">
 									<p className="homeBoxTitle">交易所公告</p>
 									<div className="homeBoxAnnoTop">
+<<<<<<< HEAD
 										{exchangeNotice &&
 											exchangeNotice.data &&
 											exchangeNotice.data.length > 0 &&
@@ -429,6 +450,22 @@ export default class Root extends PureComponent {
 												</span>
 												<b className="readMoreImg" />
 											</Link>
+=======
+										<p className="homeBoxAnnoTopP">
+											+火币：火币全球专业站12月27日14:00上线NEO…
+										</p>
+										<p className="homeBoxAnnoTopP">
+											+火币：火币全球专业站12月27日14:00上线NEO…
+										</p>
+										<div
+											className="homeBoxReadMore"
+											onClick={this.turnToAnno.bind(this)}
+										>
+											<span className="readMore">
+												Read more
+											</span>
+											<b className="readMoreImg" />
+>>>>>>> ac14d0d7dd3f3b7c8d24125f9383fab16f63e500
 										</div>
 									</div>
 									{!IsTouchDevice && (

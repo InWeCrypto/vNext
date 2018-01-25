@@ -169,7 +169,7 @@ class ProjectDetailInfo extends PureComponent {
 								</div>
 							</div>
 						</div>
-						<div className="projectDetailCon2">
+						<div className="projectDetailCon2 m-hide">
 							<div className="projectDetailCon2Box">
 								<div className="projectDetailCon2Title">
 									项目动态

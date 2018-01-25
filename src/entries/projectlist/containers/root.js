@@ -6,7 +6,7 @@ import * as globalActions from "../../../globalactions";
 export default connect(
 	({
 		projectlist: { project, project2, project3, project4, projectCollect },
-		globData: { lng, userInfo }
+		globData: { lng, userInfo, commonMarket }
 	}) => ({
 		project,
 		project2,
@@ -14,7 +14,8 @@ export default connect(
 		project4,
 		projectCollect,
 		userInfo,
-		lng
+		lng,
+		commonMarket
 	}),
 	{
 		...actions,

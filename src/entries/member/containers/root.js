@@ -14,14 +14,15 @@ export default withRouter(
 				uoloadKey,
 				memberNewsList
 			},
-			globData: { lng, userInfo }
+			globData: { lng, userInfo, commonMarket }
 		}) => ({
 			uoloadKey,
 			memberNewsList,
 			collectionList,
 			quotationList,
 			userInfo,
-			lng
+			lng,
+			commonMarket
 		}),
 		{
 			...actions,

@@ -16,7 +16,7 @@ export default withRouter(
 				exchangeNotice,
 				userFavo
 			},
-			globData: { lng, userInfo }
+			globData: { lng, userInfo, commonMarket }
 		}) => ({
 			articleList,
 			newsList,
@@ -25,7 +25,8 @@ export default withRouter(
 			exchangeNotice,
 			userFavo,
 			userInfo,
-			lng
+			lng,
+			commonMarket
 		}),
 		{
 			...actions,

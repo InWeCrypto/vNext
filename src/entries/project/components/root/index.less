@@ -8,7 +8,10 @@
 	.leftTwoMenus {
 		width: 3rem;
 		background-color: rgba(201, 198, 198, 0.06);
-
+		padding-top: 0.62rem;
+		position: relative;
+		top: -0.62rem;
+		height: 100%;
 		.leftTwoMenu {
 			width: 100%;
 			.leftTwoMenuItem {
@@ -202,13 +205,19 @@
 		position: relative;
 		width: 100%;
 		height: 0.9rem;
-		background: #f6f6f6;
 		.leftTwoMenu {
+			&.fixed {
+				position: fixed;
+				top: 0;
+				left: 0;
+				z-index: 1;
+			}
 			display: flex;
 			align-items: center;
 			justify-content: space-around;
 			width: 100%;
 			height: 0.9rem;
+			background: #f6f6f6;
 			.leftTwoMenuItem {
 				margin: 0 0.3rem;
 				text-align: center;
@@ -292,6 +301,8 @@
 					margin-top: 0.09rem;
 					width: 6.9rem;
 					height: 3.74rem;
+					background: url("../../../../assets/images/holdimg.png")
+						no-repeat center center / cover;
 					img {
 						display: block;
 						width: 100%;

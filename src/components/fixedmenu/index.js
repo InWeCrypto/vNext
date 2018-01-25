@@ -130,7 +130,17 @@ class FixedMenu extends PureComponent {
 						<div className="bottom-box">
 							{isShow && (
 								<div className="fixed-bottom">
-									<div className="left">1</div>
+									<div className="left">
+										<a
+											target="_blank"
+											href="https://t.me/inwecrypto"
+										>
+											<i className="fixed-tele" />
+										</a>
+										<a href="mailto:support@inwecrypto.com">
+											<i className="fixed-mail" />
+										</a>
+									</div>
 									<div className="language">
 										<span
 											className={(() =>

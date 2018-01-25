@@ -1,4 +1,5 @@
 import React, { PureComponent } from "react";
+import { I18n, Trans } from "react-i18next";
 import { Link } from "react-router-dom";
 
 import "./index.less";
@@ -13,6 +14,8 @@ import homeMenu from "../../assets/images/home_menu_ico@2x.png";
 import searchicon from "../../assets/images/search_ico@2x.png";
 import titleCat from "../../assets/images/touxiang_ico@2x.png";
 import { browserHistory } from "react-router-dom";
+import { addClass, removeClass } from "../../utils/util";
+
 class Header extends PureComponent {
 	constructor(props) {
 		super();
@@ -25,16 +28,7 @@ class Header extends PureComponent {
 			fastSign: false,
 			isForget: false,
 			//cdy
-			menuShow: false,
-			menuMap: [
-				"InWe",
-				"Project",
-				"News",
-				"Candybowl",
-				"Trading view",
-				"Announcment",
-				"Search you want to know"
-			]
+			menuShow: false
 		};
 
 		this.changeMember = this.changeMember.bind(this);
@@ -46,19 +40,63 @@ class Header extends PureComponent {
 		});
 	}
 	componentDidMount() {
-		console.log(this.props);
+<<<<<<< HEAD
+		if (this.props.nofixed) {
+			window.addEventListener("scroll", this.handleScroll.bind(this));
+		}
+=======
+>>>>>>> 322163d8df09874c11d55880a39b80cc03c00bc3
 		document.addEventListener("click", this.changeMember, false);
 		this.setState(function(prevState, props) {
 			return {
-				headerNoFixed: props.nofixed
+				headerNoFixed: props.nofixed,
+				marketIndex: 0
 			};
 		});
+		this.props.getHeaderMarket().then(res => {
+			this.marketInterval();
+		});
 	}
+	marketInterval() {
+		var box = document.querySelector("#headerMarketList");
+		var bh = box.offsetHeight;
+		var ih = box.getElementsByClassName("headernews-item")[0].offsetHeight;
+		box.style.top = -this.state.marketIndex * ih + "px";
+		var timer = null;
+		timer = setTimeout(() => {
+			let state = this.state.marketIndex + 1;
+			if (state >= bh / ih) {
+				state = 0;
+				this.props.getHeaderMarket();
+			}
+			this.setState({
+				marketIndex: state
+			});
+			this.marketInterval();
+		}, 2000);
+	}
+
 	componentWillUnmount() {
+		if (this.props.nofixed) {
+			window.removeEventListener("scroll", this.handleScroll.bind(this));
+		}
 		//重写组件的setState方法，直接返回空
 		this.setState = (state, callback) => {
 			return;
 		};
+	}
+	handleScroll(e) {
+		let navDom = document.getElementById("m-nav");
+		let navDomChild = document.getElementById("m-nav-c");
+		if (navDom && navDomChild) {
+			let navBundingTop = navDom.getBoundingClientRect().top;
+			if (navBundingTop <= 0) {
+				addClass(navDomChild, "fixed");
+			} else {
+				removeClass(navDomChild, "fixed");
+			}
+		}
+		console.log("浏览器滚动事件");
 	}
 	toggleMember(e) {
 		e.nativeEvent.stopImmediatePropagation();
@@ -154,7 +192,8 @@ class Header extends PureComponent {
 			loginIn,
 			userInfo,
 			forgetUser,
-			nofixed
+			nofixed,
+			commonMarket
 		} = this.props;
 		const {
 			showMember,
@@ -165,10 +204,24 @@ class Header extends PureComponent {
 			fastSign,
 			isForget,
 			menuShow,
-			menuMap,
 			headerNoFixed
 		} = this.state;
 		return (
+<<<<<<< HEAD
+			<I18n>
+				{(t, { I18n }) => (
+					<div>
+						{IsTouchDevice &&
+							!headerNoFixed && <div className="m-header-hold" />}
+						{IsTouchDevice && (
+							<div
+								id="headerBox"
+								className={
+									headerNoFixed
+										? "m-header-box"
+										: "m-header-box fixed"
+								}
+=======
 			<div>
 				{IsTouchDevice &&
 					!headerNoFixed && <div className="m-header-hold" />}
@@ -227,128 +280,274 @@ class Header extends PureComponent {
 				)}
 
 				<div id="headerBox" className="header-box container ui center">
-					<div className="heder-left ui f1 center jstart">
+					<div className="heder-left ui center jstart">
 						<img className="img" src={headerNews} />
 						<div className="headernews-box f1">
-							<span className="headernews-item">
-								BTC $15366 +9.9%
-							</span>
+							<div
+								className="headermarkets-list"
+								id="headerMarketList"
+							>
+								{commonMarket &&
+									commonMarket.length > 0 &&
+									commonMarket.map((item, index) => {
+										return (
+											<span
+												key={index}
+												className="headernews-item"
+												title={`${item.symbol} $${
+													item.price_usd
+												} ${(() => {
+													return item.percent_change_1h >=
+														0
+														? "+"
+														: "";
+												})()}${
+													item.percent_change_1h
+												}%`}
+											>
+												{item.symbol} ${item.price_usd}
+												&nbsp;
+												{(() => {
+													return item.percent_change_1h >=
+														0
+														? "+"
+														: "";
+												})()}
+												{item.percent_change_1h}%
+											</span>
+										);
+									})}
+							</div>
 						</div>
 					</div>
 					<div className="heder-middle f1">InWeCrypto</div>
 					{!userInfo && (
-						<div className="heder-right f1 ui jend">
+						<div className="heder-right ui jend">
 							<span
 								onClick={this.Login.bind(this)}
 								className="rightbtn"
+>>>>>>> 322163d8df09874c11d55880a39b80cc03c00bc3
 							>
-								Login
-							</span>
-							<span
-								onClick={this.openRegisterByHeader.bind(this)}
-								className="rightbtn"
-							>
-								Sign Up
-							</span>
-						</div>
-					)}
-					{userInfo &&
-						userInfo.token && (
-							<div className="heder-right">
 								<div
-									className="member"
-									onClick={e => {
-										this.toggleMember(e);
-									}}
+									className={
+										menuShow
+											? "m-menu-btn hamburger hamburger--elastic is-active"
+											: "m-menu-btn hamburger hamburger--elastic"
+									}
+									onClick={this.showMenu}
 								>
-									<i className="member-info" />
-									<img
-										className="img"
-										src={
-											userInfo.img
-												? userInfo.img
-												: defaultHeader
-										}
-									/>
-								</div>
-								{showMember && (
-									<div className="member-more">
-										<Link
-											to={{
-												pathname: "/member",
-												search: "?type=message"
-											}}
-											className="member-item"
-										>
-											<span className="icon-box">
-												<i className="icon-message" />
-												<i className="circle" />
-											</span>
-											<span className="member-itemtext">
-												未读消息
-											</span>
-										</Link>
-										<Link
-											to={{
-												pathname: "/member",
-												search: "?type=collection"
-											}}
-											className="member-item"
-										>
-											<span className="icon-box">
-												<i className="icon-personal" />
-											</span>
-											<span className="member-itemtext">
-												个人中心
-											</span>
-										</Link>
-										<div className="member-item">
-											<span className="icon-box">
-												<i className="icon-out" />
-											</span>
-											<span
-												onClick={e => {
-													this.loginOut(e);
-												}}
-												className="member-itemtext"
-											>
-												退出
-											</span>
-										</div>
+									<div className="hamburger-box">
+										<div className="hamburger-inner" />
 									</div>
-								)}
+								</div>
+								<div className="m-header-title">
+									<img src={titleCat} alt="" />
+									<span>InWeCrypto</span>
+								</div>
+								<div className="m-searchBtn">
+									{/* <Link
+                                        to={{
+                                            pathname: "/search"
+                                        }}
+                                    > */}
+									<img src={searchicon} alt="" />
+									{/* </Link> */}
+								</div>
+							</div>
+						)}
+						{IsTouchDevice && (
+							<div
+								className={
+									menuShow ? "menuMap menuMapShow" : "menuMap"
+								}
+							>
+								<div className="menuHold" />
+								<Link
+									to={{
+										pathname: "/"
+									}}
+									className="menuCell"
+								>
+									{t("navMenu.home", lng)}
+								</Link>
+								<Link
+									to={{
+										pathname: "/project"
+									}}
+									className="menuCell"
+								>
+									{t("navMenu.project", lng)}
+								</Link>
+								<Link
+									to={{
+										pathname: "/news"
+									}}
+									className="menuCell"
+								>
+									{t("navMenu.news", lng)}
+								</Link>
+								<Link
+									to={{
+										pathname: "/candybowl"
+									}}
+									className="menuCell"
+								>
+									{t("navMenu.candybowl", lng)}
+								</Link>
+								<Link
+									to={{
+										pathname: "/trading"
+									}}
+									className="menuCell"
+								>
+									{t("navMenu.trading", lng)}
+								</Link>
+								<Link
+									to={{
+										pathname: "/announcment"
+									}}
+									className="menuCell"
+								>
+									{t("navMenu.announcment", lng)}
+								</Link>
 							</div>
 						)}
 
-					{showLogin && (
-						<SignIn
-							loginIn={loginIn}
-							closeSign={this.closeSignIn.bind(this)}
-							openRegister={this.openRegisterByLogin.bind(this)}
-							openForget={this.openRegisterByForget.bind(this)}
-							openFast={this.openFastSign.bind(this)}
-							lng={lng}
-						/>
-					)}
-					{fastSign && (
-						<FastSign
-							close={this.closeFastSign.bind(this)}
-							lng={lng}
-						/>
-					)}
-					{showRegister && (
-						<Register
-							forgetUser={forgetUser}
-							isForget={isForget}
-							hasBack={registerHasBack}
-							close={this.closeRegister.bind(this)}
-							sendEmail={sendEmail}
-							registerUser={registerUser}
-							lng={lng}
-						/>
-					)}
-				</div>
-			</div>
+						<div
+							id="headerBox"
+							className="header-box container ui center"
+						>
+							<div className="heder-left ui f1 center jstart">
+								<img className="img" src={headerNews} />
+								<div className="headernews-box f1">
+									<span className="headernews-item">
+										BTC $15366 +9.9%
+									</span>
+								</div>
+							</div>
+							<div className="heder-middle f1">InWeCrypto</div>
+							{!userInfo && (
+								<div className="heder-right f1 ui jend">
+									<span
+										onClick={this.Login.bind(this)}
+										className="rightbtn"
+									>
+										Login
+									</span>
+									<span
+										onClick={this.openRegisterByHeader.bind(
+											this
+										)}
+										className="rightbtn"
+									>
+										Sign Up
+									</span>
+								</div>
+							)}
+							{userInfo &&
+								userInfo.token && (
+									<div className="heder-right">
+										<div
+											className="member"
+											onClick={e => {
+												this.toggleMember(e);
+											}}
+										>
+											<i className="member-info" />
+											<img
+												className="img"
+												src={
+													userInfo.img
+														? userInfo.img
+														: defaultHeader
+												}
+											/>
+										</div>
+										{showMember && (
+											<div className="member-more">
+												<Link
+													to={{
+														pathname: "/member",
+														search: "?type=message"
+													}}
+													className="member-item"
+												>
+													<span className="icon-box">
+														<i className="icon-message" />
+														<i className="circle" />
+													</span>
+													<span className="member-itemtext">
+														未读消息
+													</span>
+												</Link>
+												<Link
+													to={{
+														pathname: "/member",
+														search:
+															"?type=collection"
+													}}
+													className="member-item"
+												>
+													<span className="icon-box">
+														<i className="icon-personal" />
+													</span>
+													<span className="member-itemtext">
+														个人中心
+													</span>
+												</Link>
+												<div className="member-item">
+													<span className="icon-box">
+														<i className="icon-out" />
+													</span>
+													<span
+														onClick={e => {
+															this.loginOut(e);
+														}}
+														className="member-itemtext"
+													>
+														退出
+													</span>
+												</div>
+											</div>
+										)}
+									</div>
+								)}
+
+							{showLogin && (
+								<SignIn
+									loginIn={loginIn}
+									closeSign={this.closeSignIn.bind(this)}
+									openRegister={this.openRegisterByLogin.bind(
+										this
+									)}
+									openForget={this.openRegisterByForget.bind(
+										this
+									)}
+									openFast={this.openFastSign.bind(this)}
+									lng={lng}
+								/>
+							)}
+							{fastSign && (
+								<FastSign
+									close={this.closeFastSign.bind(this)}
+									lng={lng}
+								/>
+							)}
+							{showRegister && (
+								<Register
+									forgetUser={forgetUser}
+									isForget={isForget}
+									hasBack={registerHasBack}
+									close={this.closeRegister.bind(this)}
+									sendEmail={sendEmail}
+									registerUser={registerUser}
+									lng={lng}
+								/>
+							)}
+						</div>
+					</div>
+				)}
+			</I18n>
 		);
 	}
 }

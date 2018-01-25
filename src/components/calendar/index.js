@@ -64,11 +64,11 @@ class Calendar extends PureComponent {
 
 		let lastDay = new Date(`${y}/${m}/${currT}`);
 		let we2 = lastDay.getDay();
-		if (we2 != 6) {
-			for (let i = 1; i < 7 - we2; i++) {
-				res.next.push(i);
-			}
+		//if (we2 != 6) {
+		for (let i = 1; i <= 42 - (res.prev.length + res.curr.length); i++) {
+			res.next.push(i);
 		}
+		//}
 		this.setState({
 			day: { ...res }
 		});
@@ -120,11 +120,7 @@ class Calendar extends PureComponent {
 				return "day-item click-item has-data";
 			}
 		}
-		// console.log(hasData);
-		//console.log(idx);
 		if (hasData.indexOf(idx) != -1) {
-			console.log(222);
-
 			return "day-item has-data";
 		}
 		return "day-item";
@@ -177,7 +173,7 @@ class Calendar extends PureComponent {
 		const iw = this.state.itemw;
 		const { year, month, monthArr, day, curDay } = this.state;
 		return (
-			<div className="calendar-box">
+			<div id="m-calendar" className="calendar-box">
 				<div className="calendar-top">
 					<div className="inline-box">
 						<div className="month-box">

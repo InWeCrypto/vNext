@@ -103,13 +103,19 @@ export default class Root extends PureComponent {
 			getProjectCollect,
 			getProjectDynamicList,
 			getProjectScore,
-			unProjectDot
+			unProjectDot,
+			projectKdata,
+			getKdata,
+			commonMarket,
+			getHeaderMarket
 		} = this.props;
 		return (
 			<I18n>
 				{(t, { i18n }) => (
 					<div className="container">
-						<FixedMenu changeLng={changeLng} lng={lng} />
+						{!IsTouchDevice && (
+							<FixedMenu changeLng={changeLng} lng={lng} />
+						)}
 						<Header
 							userInfo={userInfo}
 							registerUser={registerUser}
@@ -118,8 +124,59 @@ export default class Root extends PureComponent {
 							setReduxUserInfo={setReduxUserInfo}
 							forgetUser={forgetUser}
 							lng={lng}
+							commonMarket={commonMarket}
+							getHeaderMarket={getHeaderMarket}
+							nofixed={true}
 						/>
 						<div id="mainBox" className="projectDetail ui">
+							{IsTouchDevice && (
+								<div id="m-nav" className="navContainer">
+									<ul
+										id="m-nav-c"
+										className="projectDetailCon3Ul"
+									>
+										<li className={home ? "cur" : ""}>
+											<Link
+												to={{
+													pathname: "projectdetail",
+													search:
+														"?c_id=" +
+														projectDetail.id +
+														"&type=home"
+												}}
+											>
+												<span>项目概况</span>
+											</Link>
+										</li>
+										<li className={info ? "cur" : ""}>
+											<Link
+												to={{
+													pathname: "projectdetail",
+													search:
+														"?c_id=" +
+														projectDetail.id +
+														"&type=info"
+												}}
+											>
+												<span>项目动态</span>
+											</Link>
+										</li>
+										<li className={intro ? "cur" : ""}>
+											<Link
+												to={{
+													pathname: "projectdetail",
+													search:
+														"?c_id=" +
+														projectDetail.id +
+														"&type=intro"
+												}}
+											>
+												<span>项目介绍</span>
+											</Link>
+										</li>
+									</ul>
+								</div>
+							)}
 							{home &&
 								ico && (
 									<ProjectDetailIco
@@ -137,6 +194,8 @@ export default class Root extends PureComponent {
 										coinTimePrice={coinTimePrice}
 										setProjectRemind={setProjectRemind}
 										getProjectCollect={getProjectCollect}
+										projectKdata={projectKdata}
+										getKdata={getKdata}
 									/>
 								)}
 							{info && (
@@ -162,7 +221,7 @@ export default class Root extends PureComponent {
 								/>
 							)}
 							<div className="projectDetailCon3">
-								<ul className="projectDetailCon3Ul">
+								<ul className="projectDetailCon3Ul m-hide">
 									<li className={home ? "cur" : ""}>
 										<Link
 											to={{
@@ -210,6 +269,7 @@ export default class Root extends PureComponent {
 								/>
 							</div>
 						</div>
+						<Footer changeLng={changeLng} lng={lng} />
 					</div>
 				)}
 			</I18n>

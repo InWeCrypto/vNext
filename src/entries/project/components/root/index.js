@@ -100,7 +100,9 @@ export default class Root extends PureComponent {
 			userInfo,
 			setReduxUserInfo,
 			forgetUser,
-			project
+			project,
+			commonMarket,
+			getHeaderMarket
 		} = this.props;
 		return (
 			<I18n>
@@ -115,13 +117,15 @@ export default class Root extends PureComponent {
 							forgetUser={forgetUser}
 							lng={lng}
 							nofixed={true}
+							commonMarket={commonMarket}
+							getHeaderMarket={getHeaderMarket}
 						/>
 						<div id="mainBox" className="project ui">
 							<div className="left-menus ui center m-hide">
 								<LeftMenu lng={lng} />
 							</div>
-							<div className="leftTwoMenus ui center">
-								<div className="leftTwoMenu">
+							<div id="m-nav" className="leftTwoMenus ui center">
+								<div id="m-nav-c" className="leftTwoMenu">
 									<Link
 										to={{
 											pathname: "/project",

@@ -34,6 +34,9 @@ export default class Root extends PureComponent {
 		let annoBoxLiH = 103;
 		let nums = Math.floor((annoBoxH - 150) / annoBoxLiH) || 4;
 		// 默认条数4
+		if (IsTouchDevice) {
+			nums = 10;
+		}
 		this.props.getProject({
 			type: 1,
 			per_page: nums
@@ -85,7 +88,9 @@ export default class Root extends PureComponent {
 			project,
 			project2,
 			project3,
-			project4
+			project4,
+			commonMarket,
+			getHeaderMarket
 		} = this.props;
 		return (
 			<I18n>
@@ -102,8 +107,14 @@ export default class Root extends PureComponent {
 							setReduxUserInfo={setReduxUserInfo}
 							forgetUser={forgetUser}
 							lng={lng}
+<<<<<<< HEAD
+							nofixed={true}
+=======
+							commonMarket={commonMarket}
+							getHeaderMarket={getHeaderMarket}
+>>>>>>> 322163d8df09874c11d55880a39b80cc03c00bc3
 						/>
-						<div id="mainBox" className="projectList ui">
+						<div id="mainBox" className="projectList ui ">
 							<div className="projectListReturn ui center m-hide">
 								<Link
 									to={{
@@ -152,12 +163,15 @@ export default class Root extends PureComponent {
 							)}
 							<div className="projectListCon ui">
 								{[1, 2, 3, 4].map((item, index) => {
+									if (activeInde != index) {
+										return;
+									}
 									return (
 										<div
 											key={index}
 											className="projectListConChild"
 										>
-											<div className="projectListConChildTitle">
+											<div className="projectListConChildTitle m-hide">
 												<span className="ellitext">
 													{(() => {
 														switch (index) {
@@ -229,6 +243,13 @@ export default class Root extends PureComponent {
 																				>
 																					<span className="ellitext">
 																						{item.name.toLocaleUpperCase()}
+																						{IsTouchDevice && (
+																							<span className="industryText">
+																								{
+																									item.industry
+																								}
+																							</span>
+																						)}
 																					</span>
 																					<b className="ellitext">
 																						({
@@ -243,8 +264,8 @@ export default class Root extends PureComponent {
 																					item
 																						.category_user
 																						.is_favorite
-																						? "projectListLiTopRight collect"
-																						: "projectListLiTopRight nocollect"
+																						? "projectListLiTopRight collect m-hide"
+																						: "projectListLiTopRight nocollect m-hide"
 																				}
 																				onClick={e => {
 																					let enable =
@@ -263,17 +284,28 @@ export default class Root extends PureComponent {
 																			/>
 																		</div>
 																		<div className="projectListLiCenter">
-																			<div className="left">
+																			<div className="left m-hide">
 																				{
 																					item.industry
 																				}
 																			</div>
-																			<div className="right">
+																			<div className="right m-hide">
 																				$90.00<span
 																				>
 																					(-12.00%)
 																				</span>
 																			</div>
+																			{IsTouchDevice && (
+																				<div
+																				>
+																					<div className="money">
+																						$90.00
+																					</div>
+																					<div className="precents">
+																						(-12.00%)
+																					</div>
+																				</div>
+																			)}
 																		</div>
 																	</Link>
 																</li>
@@ -319,6 +351,13 @@ export default class Root extends PureComponent {
 																				>
 																					<span className="ellitext">
 																						{item.name.toLocaleUpperCase()}
+																						{IsTouchDevice && (
+																							<span className="industryText">
+																								{
+																									item.industry
+																								}
+																							</span>
+																						)}
 																					</span>
 																					<b className="ellitext">
 																						({
@@ -333,8 +372,8 @@ export default class Root extends PureComponent {
 																					item
 																						.category_user
 																						.is_favorite
-																						? "projectListLiTopRight collect"
-																						: "projectListLiTopRight nocollect"
+																						? "projectListLiTopRight collect  m-hide"
+																						: "projectListLiTopRight nocollect  m-hide"
 																				}
 																				onClick={e => {
 																					let enable =
@@ -353,11 +392,22 @@ export default class Root extends PureComponent {
 																			/>
 																		</div>
 																		<div className="projectListLiCenter">
-																			<div className="left">
+																			<div className="left m-hide">
 																				{
 																					item.industry
 																				}
 																			</div>
+																			{IsTouchDevice && (
+																				<div
+																				>
+																					<div className="money">
+																						$90.00
+																					</div>
+																					<div className="precents">
+																						(-12.00%)
+																					</div>
+																				</div>
+																			)}
 																		</div>
 																	</Link>
 																</li>
@@ -403,6 +453,13 @@ export default class Root extends PureComponent {
 																				>
 																					<span className="ellitext">
 																						{item.name.toLocaleUpperCase()}
+																						{IsTouchDevice && (
+																							<span className="industryText">
+																								{
+																									item.industry
+																								}
+																							</span>
+																						)}
 																					</span>
 																					<b className="ellitext">
 																						({
@@ -417,8 +474,8 @@ export default class Root extends PureComponent {
 																					item
 																						.category_user
 																						.is_favorite
-																						? "projectListLiTopRight collect"
-																						: "projectListLiTopRight nocollect"
+																						? "projectListLiTopRight collect m-hide"
+																						: "projectListLiTopRight nocollect m-hide"
 																				}
 																				onClick={e => {
 																					let enable =
@@ -437,11 +494,22 @@ export default class Root extends PureComponent {
 																			/>
 																		</div>
 																		<div className="projectListLiCenter">
-																			<div className="left">
+																			<div className="left m-hide">
 																				{
 																					item.industry
 																				}
 																			</div>
+																			{IsTouchDevice && (
+																				<div
+																				>
+																					<div className="money">
+																						$90.00
+																					</div>
+																					<div className="precents">
+																						(-12.00%)
+																					</div>
+																				</div>
+																			)}
 																		</div>
 																	</Link>
 																</li>
@@ -533,7 +601,7 @@ export default class Root extends PureComponent {
 														}
 													)}
 											</ul>
-											<div className="projectListConChildMore">
+											<div className="projectListConChildMore m-hide">
 												<Link
 													to={{
 														pathname:

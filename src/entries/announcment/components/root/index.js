@@ -79,7 +79,9 @@ export default class Root extends PureComponent {
 			userInfo,
 			setReduxUserInfo,
 			forgetUser,
-			announcment
+			announcment,
+			commonMarket,
+			getHeaderMarket
 		} = this.props;
 		return (
 			<I18n>
@@ -93,15 +95,20 @@ export default class Root extends PureComponent {
 							setReduxUserInfo={setReduxUserInfo}
 							forgetUser={forgetUser}
 							lng={lng}
+							commonMarket={commonMarket}
+							getHeaderMarket={getHeaderMarket}
 						/>
 						<div id="mainBox" className="anno ui">
-							<div className="left-menus ui center">
-								<div className="left-menus-anno">
-									<LeftMenu lng={lng} />
+							{!IsTouchDevice && (
+								<div className="left-menus ui center">
+									<div className="left-menus-anno">
+										<LeftMenu lng={lng} />
+									</div>
 								</div>
-							</div>
+							)}
+
 							<div id="annoBox" className="annoBox ui f1">
-								<div className="annoBoxArrow ui center">
+								<div className="annoBoxArrow ui center m-hide">
 									{announcment.prev_page_url && (
 										<Link
 											to={{
@@ -213,7 +220,7 @@ export default class Root extends PureComponent {
 										})}
 									</ul> */}
 								</div>
-								<div className="annoBoxArrow ui center">
+								<div className="annoBoxArrow ui center m-hide">
 									{announcment.next_page_url && (
 										<Link
 											to={{
