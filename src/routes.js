@@ -1,5 +1,6 @@
 import React from "react";
 import { Route, Switch, withRouter } from "react-router-dom";
+
 import Home from "./entries/home";
 import Project from "./entries/project";
 import ProjectList from "./entries/projectlist";
@@ -11,6 +12,7 @@ import Trading from "./entries/trading";
 import Announcment from "./entries/announcment";
 import Member from "./entries/member";
 import CandyBowl from "./entries/candybowl";
+import Search from "./entries/search";
 
 export default () => {
 	return (
@@ -26,6 +28,7 @@ export default () => {
 			<Route path="/announcment" component={Announcment} />
 			<Route path="/member" component={Member} />
 			<Route path="/candybowl" component={CandyBowl} />
+			<Route path="/search" component={Search} />
 		</Switch>
 	);
 };

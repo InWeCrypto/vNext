@@ -165,34 +165,33 @@ export default class Root extends PureComponent {
 							<div id="newsBox" className="newsBox ui f1">
 								{IsTouchDevice && (
 									<div
-										className={
-											this.navFixed
-												? "newsNav ui center fixed"
-												: "newsNav ui center "
-										}
+										id="m-nav"
+										className="newsNav ui center "
 									>
-										{[
-											"24H News",
-											"图文资讯",
-											"视频咨询"
-										].map((val, idx) => {
-											return (
-												<div
-													className={
-														activeIndex == idx
-															? "item active"
-															: "item"
-													}
-													key={idx}
-													onClick={this.changeNav.bind(
-														this,
-														idx
-													)}
-												>
-													{val}
-												</div>
-											);
-										})}
+										<div id="m-nav-c" className="newsNav-c">
+											{[
+												"24H News",
+												"图文资讯",
+												"视频咨询"
+											].map((val, idx) => {
+												return (
+													<div
+														className={
+															activeIndex == idx
+																? "item active"
+																: "item"
+														}
+														key={idx}
+														onClick={this.changeNav.bind(
+															this,
+															idx
+														)}
+													>
+														{val}
+													</div>
+												);
+											})}
+										</div>
 									</div>
 								)}
 								<div

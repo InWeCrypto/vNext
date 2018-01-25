@@ -1,3 +1,9 @@
+@import "~slick-carousel/slick/slick.css";
+@import "~slick-carousel/slick/slick-theme.css";
+* {
+	min-height: 0;
+	min-width: 0;
+}
 .top-text {
 	text-align: center;
 }
@@ -131,8 +137,8 @@
 					p {
 						line-height: 0.22rem;
 						color: rgba(51, 51, 51, 1);
-                        font-size: 0.16rem;
-                        overflow: hidden;
+						font-size: 0.16rem;
+						overflow: hidden;
 						display: -webkit-box;
 						-webkit-box-orient: vertical;
 						-webkit-line-clamp: 2;
@@ -142,12 +148,19 @@
 		}
 		&.homeBoxCandy {
 			width: 2.48rem;
+			padding: 0.3rem 0rem;
+			.homeBoxTitle {
+				padding: 0 0.3rem;
+			}
 			.homeBoxCandyTop {
 				width: 100%;
 				margin: 0.3rem auto 0rem;
+				padding: 0 0.3rem 0.2rem;
+				overflow: hidden;
+				border-bottom: 1px solid #ececec;
+				box-sizing: border-box;
 				padding-bottom: 0.2rem;
-                overflow: hidden;
-                border-bottom: 1px solid #ececec;
+				overflow: hidden;
 				p.homeCandyDate {
 					width: 100%;
 					height: 0.42rem;
@@ -172,6 +185,39 @@
 			.homeInweWallet {
 				width: 100%;
 				padding-top: 0.3rem;
+				.walletLf,
+				.walletRt {
+					width: 0.3rem;
+					-webkit-flex-shrink: 0;
+					-ms-flex-negative: 0;
+					flex-shrink: 0;
+					span {
+						display: block;
+						width: 0.11rem;
+						height: 0.16rem;
+						background: url("../../../../assets/images/news_left.png")
+							no-repeat center;
+						background-size: 100%;
+						&.more {
+							background: url("../../../../assets/images/news_left_s.png")
+								no-repeat center;
+							background-size: 100%;
+						}
+					}
+				}
+				.walletRt span {
+					background: url("../../../../assets/images/news_right.png")
+						no-repeat center;
+					background-size: 100%;
+					&.more {
+						background: url("../../../../assets/images/news_right_s.png")
+							no-repeat center;
+						background-size: 100%;
+					}
+				}
+				.homeInweWalletUl {
+					width: 100%;
+				}
 				img {
 					width: 100%;
 				}
@@ -194,8 +240,8 @@
 					display: -webkit-box;
 					-webkit-box-orient: vertical;
 					-webkit-line-clamp: 2;
-                    margin-bottom: 0.2rem;
-                    overflow: hidden;
+					margin-bottom: 0.2rem;
+					overflow: hidden;
 					:last-child {
 						margin-bottom: 0;
 					}
@@ -210,6 +256,7 @@
 					li {
 						width: 100%;
 						height: 0.22rem;
+						margin-bottom: 0.2rem;
 						img {
 							width: 0.16rem;
 							height: 0.16rem;

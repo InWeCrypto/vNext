@@ -179,7 +179,7 @@
 		position: fixed;
 		left: 0;
 		top: 0;
-		z-index: 10;
+		z-index: 1010;
 	}
 	.m-header-box {
 		position: relative;
@@ -308,7 +308,7 @@
 		position: fixed;
 		left: 0;
 		top: -100%;
-		z-index: 5;
+		z-index: 1005;
 		width: 7.5rem;
 		height: 100%;
 		margin: 0 auto;
@@ -322,6 +322,7 @@
 			height: 1.38rem;
 		}
 		.menuCell {
+			display: block;
 			width: 5.56rem;
 			height: 0.94rem;
 			margin: 0 auto;
@@ -334,6 +335,19 @@
 				width: 0.25rem;
 				height: 0.25rem;
 			}
+		}
+	}
+	.m-searchBtn {
+		position: absolute;
+		right: 0.3rem;
+		top: 0.28rem;
+		z-index: 1;
+		width: 0.4rem;
+		height: 0.4rem;
+		img {
+			display: block;
+			width: 0.4rem;
+			height: 0.4rem;
 		}
 	}
 }

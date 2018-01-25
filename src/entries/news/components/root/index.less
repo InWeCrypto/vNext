@@ -128,6 +128,8 @@
 				width: 100%;
 				height: 130px;
 				overflow: hidden;
+				background: url("../../../../assets/images/holdimg.png")
+					no-repeat center center / cover;
 				img {
 					width: 100%;
 				}
@@ -139,27 +141,34 @@
 	margin: 0;
 	.newsNav {
 		position: relative;
-		display: flex;
-		justify-content: space-between;
+		display: block;
 		width: 7.5rem;
 		height: 0.9rem;
-		background: #f6f6f6;
-		&.fixed {
-			position: fixed;
-			top: 0;
-			left: 0;
-			z-index: 10;
-		}
-		.item {
-			font-size: 0.28rem;
-			line-height: 0.4rem;
-			height: 0.4rem;
-			margin: 0 0.3rem;
-			&.active {
-				color: #0a9234;
+		.newsNav-c {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			width: 7.5rem;
+			height: 0.9rem;
+			background: #f6f6f6;
+			&.fixed {
+				position: fixed;
+				top: 0;
+				left: 0;
+				z-index: 10;
+			}
+			.item {
+				font-size: 0.28rem;
+				line-height: 0.4rem;
+				height: 0.4rem;
+				margin: 0 0.3rem;
+				&.active {
+					color: #0a9234;
+				}
 			}
 		}
 	}
+
 	.newsBoxMod {
 		margin: 0;
 		padding: 0;
@@ -202,6 +211,8 @@
 					.newsBoxModConShow {
 						width: 100%;
 						height: 3.98rem;
+						background: url("../../../../assets/images/holdimg.png")
+							no-repeat center center / cover;
 						img {
 							display: block;
 							width: 100%;
@@ -293,6 +304,8 @@
 						top: 0;
 						width: 2.26rem;
 						height: 1.5rem;
+						background: url("../../../../assets/images/holdimg.png")
+							no-repeat center center / cover;
 						img {
 							display: block;
 							width: 100%;

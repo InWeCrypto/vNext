@@ -33,8 +33,8 @@ export default class Root extends PureComponent {
 			minH: minH,
 			liW: liW
 		});
-		//if (!IsTouchDevice)
-		document.querySelector("#mainBox").style.height = minH + "px";
+		if (!IsTouchDevice)
+			document.querySelector("#mainBox").style.height = minH + "px";
 		document.querySelector("#projectUlRef").style.width = liW * 4 + "px";
 		this.initPage(this.props.location.search);
 	}
@@ -124,8 +124,8 @@ export default class Root extends PureComponent {
 							<div className="left-menus ui center m-hide">
 								<LeftMenu lng={lng} />
 							</div>
-							<div className="leftTwoMenus ui center">
-								<div className="leftTwoMenu">
+							<div id="m-nav" className="leftTwoMenus ui center">
+								<div id="m-nav-c" className="leftTwoMenu">
 									<Link
 										to={{
 											pathname: "/project",

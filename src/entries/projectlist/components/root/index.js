@@ -34,6 +34,9 @@ export default class Root extends PureComponent {
 		let annoBoxLiH = 103;
 		let nums = Math.floor((annoBoxH - 150) / annoBoxLiH) || 4;
 		// 默认条数4
+		if (IsTouchDevice) {
+			nums = 10;
+		}
 		this.props.getProject({
 			type: 1,
 			per_page: nums
@@ -104,6 +107,7 @@ export default class Root extends PureComponent {
 							setReduxUserInfo={setReduxUserInfo}
 							forgetUser={forgetUser}
 							lng={lng}
+							nofixed={true}
 							commonMarket={commonMarket}
 							getHeaderMarket={getHeaderMarket}
 						/>
@@ -594,7 +598,7 @@ export default class Root extends PureComponent {
 														}
 													)}
 											</ul>
-											<div className="projectListConChildMore">
+											<div className="projectListConChildMore m-hide">
 												<Link
 													to={{
 														pathname:
