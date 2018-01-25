@@ -3,9 +3,9 @@ import { I18n, Trans } from "react-i18next";
 import { setLocalItem } from "../../utils/util";
 import "./index.less";
 
-import logofooter from "../../assets/images/footer_logo.png"
-import enicon from "../../assets/images/enicon.png"
-import cnicon from "../../assets/images/cnicon.png"
+import logofooter from "../../assets/images/footer_logo.png";
+import enicon from "../../assets/images/enicon.png";
+import cnicon from "../../assets/images/cnicon.png";
 import loginImg from "../../assets/images/footer_login.png";
 class Footer extends PureComponent {
 	setLanguageType(type) {
@@ -18,9 +18,12 @@ class Footer extends PureComponent {
 	}
 	render() {
 		console.log(this.props.lng);
-		return <I18n>
-				{(t, { I18n }) => <div id="footerBox" className="footer-box">
-						{IsTouchDevice ? <div className="m-footer-container">
+		return (
+			<I18n>
+				{(t, { I18n }) => (
+					<div id="footerBox" className="footer-box">
+						{IsTouchDevice ? (
+							<div className="m-footer-container">
 								<div className="top">
 									<div className="iconContainer">
 										<span className="item">
@@ -39,15 +42,23 @@ class Footer extends PureComponent {
 										<img src={logofooter} alt="" />
 									</div>
 									<div className="line" />
-									<div className={(() => this.setLanguageType("en"))()} onClick={() => {
+									<div
+										className={(() =>
+											this.setLanguageType("en"))()}
+										onClick={() => {
 											this.changeLanguage("en");
-										}}>
+										}}
+									>
 										<img src={enicon} alt="" />
 									</div>
 									<div className="line" />
-									<div className={(() => this.setLanguageType("zh"))()} onClick={() => {
+									<div
+										className={(() =>
+											this.setLanguageType("zh"))()}
+										onClick={() => {
 											this.changeLanguage("zh");
-										}}>
+										}}
+									>
 										<img src={cnicon} alt="" />
 									</div>
 									<div className="line" />
@@ -55,37 +66,52 @@ class Footer extends PureComponent {
 										<img src={loginImg} alt="" />
 									</div>
 								</div>
-							</div> : <div className="container ui center ">
+							</div>
+						) : (
+							<div className="container ui center ">
 								<div className="left">
-									<span className="sp">
-										@InWeCrypto 2017
-									</span>
-									<span className="item">
+									<span className="sp">@InWeCrypto 2017</span>
+									<a
+										target="_blank"
+										href="https://t.me/inwecrypto"
+										className="item"
+									>
 										<i className="icon-tele" />
-									</span>
-									<span className="item">
+									</a>
+									{/* <span className="item">
 										<i className="icon-wechat" />
-									</span>
+									</span> */}
 									<span className="item">
 										<i className="icon-mail" />
 									</span>
 								</div>
 								<div className="f1 m-hide" />
 								<div className="right">
-									<div className={(() => this.setLanguageType("en"))()} onClick={() => {
+									<div
+										className={(() =>
+											this.setLanguageType("en"))()}
+										onClick={() => {
 											this.changeLanguage("en");
-										}}>
+										}}
+									>
 										EN
 									</div>
-									<div className={(() => this.setLanguageType("zh"))()} onClick={() => {
+									<div
+										className={(() =>
+											this.setLanguageType("zh"))()}
+										onClick={() => {
 											this.changeLanguage("zh");
-										}}>
+										}}
+									>
 										ZH
 									</div>
 								</div>
-							</div>}
-					</div>}
-			</I18n>;
+							</div>
+						)}
+					</div>
+				)}
+			</I18n>
+		);
 	}
 }
 export default Footer;

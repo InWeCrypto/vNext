@@ -291,7 +291,7 @@ class Header extends PureComponent {
 					</div>
 					<div className="heder-middle f1">InWeCrypto</div>
 					{!userInfo && (
-						<div className="heder-right f1 ui jend">
+						<div className="heder-right ui jend">
 							<span
 								onClick={this.Login.bind(this)}
 								className="rightbtn"
