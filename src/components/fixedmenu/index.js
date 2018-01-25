@@ -58,7 +58,7 @@ class FixedMenu extends PureComponent {
 		return (
 			<I18n>
 				{(t, { I18n }) => (
-					<div>
+					<div className="fixedBox">
 						{showSearch && (
 							<Search closeSearch={this.closeSearch.bind(this)} />
 						)}

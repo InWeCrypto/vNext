@@ -13,6 +13,7 @@ import Announcment from "./entries/announcment";
 import Member from "./entries/member";
 import CandyBowl from "./entries/candybowl";
 import Search from "./entries/search";
+import Wallent from "./entries/wallent";
 
 export default () => {
 	return (
@@ -29,6 +30,7 @@ export default () => {
 			<Route path="/member" component={Member} />
 			<Route path="/candybowl" component={CandyBowl} />
 			<Route path="/search" component={Search} />
+			<Route path="/wallent" component={Wallent} />
 		</Switch>
 	);
 };
