@@ -96,7 +96,9 @@ export default class Root extends PureComponent {
 			forgetUser,
 			articleList,
 			newsList,
-			candyList
+			candyList,
+			commonMarket,
+			getHeaderMarket
 		} = this.props;
 		const { month, monthArr, curDay } = this.state;
 		const curMonth = monthArr[month].slice(0, 3);
@@ -113,6 +115,8 @@ export default class Root extends PureComponent {
 							setReduxUserInfo={setReduxUserInfo}
 							forgetUser={forgetUser}
 							lng={lng}
+							commonMarket={commonMarket}
+							getHeaderMarket={getHeaderMarket}
 						/>
 						<div id="topText" className="top-text">
 							<TopText lng={lng} />

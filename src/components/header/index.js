@@ -46,14 +46,36 @@ class Header extends PureComponent {
 		});
 	}
 	componentDidMount() {
-		console.log(this.props);
 		document.addEventListener("click", this.changeMember, false);
 		this.setState(function(prevState, props) {
 			return {
-				headerNoFixed: props.nofixed
+				headerNoFixed: props.nofixed,
+				marketIndex: 0
 			};
 		});
+		this.props.getHeaderMarket().then(res => {
+			this.marketInterval();
+		});
 	}
+	marketInterval() {
+		var box = document.querySelector("#headerMarketList");
+		var bh = box.offsetHeight;
+		var ih = box.getElementsByClassName("headernews-item")[0].offsetHeight;
+		box.style.top = -this.state.marketIndex * ih + "px";
+		var timer = null;
+		timer = setTimeout(() => {
+			let state = this.state.marketIndex + 1;
+			if (state >= bh / ih) {
+				state = 0;
+				this.props.getHeaderMarket();
+			}
+			this.setState({
+				marketIndex: state
+			});
+			this.marketInterval();
+		}, 2000);
+	}
+
 	componentWillUnmount() {
 		//重写组件的setState方法，直接返回空
 		this.setState = (state, callback) => {
@@ -154,7 +176,8 @@ class Header extends PureComponent {
 			loginIn,
 			userInfo,
 			forgetUser,
-			nofixed
+			nofixed,
+			commonMarket
 		} = this.props;
 		const {
 			showMember,
@@ -227,12 +250,43 @@ class Header extends PureComponent {
 				)}
 
 				<div id="headerBox" className="header-box container ui center">
-					<div className="heder-left ui f1 center jstart">
+					<div className="heder-left ui center jstart">
 						<img className="img" src={headerNews} />
 						<div className="headernews-box f1">
-							<span className="headernews-item">
-								BTC $15366 +9.9%
-							</span>
+							<div
+								className="headermarkets-list"
+								id="headerMarketList"
+							>
+								{commonMarket &&
+									commonMarket.length > 0 &&
+									commonMarket.map((item, index) => {
+										return (
+											<span
+												key={index}
+												className="headernews-item"
+												title={`${item.symbol} $${
+													item.price_usd
+												} ${(() => {
+													return item.percent_change_1h >=
+														0
+														? "+"
+														: "";
+												})()}${
+													item.percent_change_1h
+												}%`}
+											>
+												{item.symbol} ${item.price_usd}
+												{(() => {
+													return item.percent_change_1h >=
+														0
+														? "+"
+														: "";
+												})()}
+												{item.percent_change_1h}%
+											</span>
+										);
+									})}
+							</div>
 						</div>
 					</div>
 					<div className="heder-middle f1">InWeCrypto</div>

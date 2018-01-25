@@ -103,7 +103,9 @@ class Root extends PureComponent {
 			setReduxUserInfo,
 			forgetUser,
 			candyList,
-			candyMonth
+			candyMonth,
+			commonMarket,
+			getHeaderMarket
 		} = this.props;
 		const { isToday, day, emonth } = this.state;
 
@@ -119,6 +121,8 @@ class Root extends PureComponent {
 							setReduxUserInfo={setReduxUserInfo}
 							forgetUser={forgetUser}
 							lng={lng}
+							commonMarket={commonMarket}
+							getHeaderMarket={getHeaderMarket}
 						/>
 						<div className="main-box ui container" id="mainBox">
 							<div className="candy-left">

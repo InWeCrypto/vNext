@@ -6,13 +6,14 @@ import * as globalActions from "../../../globalactions";
 export default connect(
 	({
 		news: { newsText, newsImg, newsVideo },
-		globData: { lng, userInfo }
+		globData: { lng, userInfo, commonMarket }
 	}) => ({
 		newsText,
 		newsImg,
 		newsVideo,
 		userInfo,
-		lng
+		lng,
+		commonMarket
 	}),
 	{
 		...actions,

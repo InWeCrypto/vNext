@@ -4,7 +4,8 @@ import {
 	EMAILCODE,
 	USERINFO,
 	NICKNAME,
-	USERHEADER
+	USERHEADER,
+	HEADERMARKET
 } from "./globalactions";
 export const lng = handleActions(
 	{
@@ -31,6 +32,12 @@ export const userInfo = handleActions(
 export const emailCode = handleActions(
 	{
 		[EMAILCODE]: (state, { payload }) => payload
+	},
+	null
+);
+export const commonMarket = handleActions(
+	{
+		[HEADERMARKET]: (state, { payload }) => payload
 	},
 	null
 );

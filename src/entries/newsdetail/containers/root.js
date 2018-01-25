@@ -13,14 +13,15 @@ export default connect(
 			newsDetailComment,
 			newsDetailCommentL
 		},
-		globData: { lng, userInfo }
+		globData: { lng, userInfo, commonMarket }
 	}) => ({
 		newsDetail,
 		newsDetailCollect,
 		newsDetailComment,
 		newsDetailCommentL,
 		userInfo,
-		lng
+		lng,
+		commonMarket
 	}),
 	{
 		...actions,
