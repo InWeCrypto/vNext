@@ -3,11 +3,8 @@ import { I18n, Trans } from "react-i18next";
 import { setLocalItem, chargeFooterFixed } from "../../utils/util";
 import "./index.less";
 
-<<<<<<< HEAD
 import TurnApp from "../turnapp";
 
-=======
->>>>>>> 322163d8df09874c11d55880a39b80cc03c00bc3
 import logofooter from "../../assets/images/footer_logo.png";
 import enicon from "../../assets/images/enicon.png";
 import cnicon from "../../assets/images/cnicon.png";
@@ -46,7 +43,6 @@ class Footer extends PureComponent {
 		window.location = "mailto:support@inwecrypto.com";
 	}
 	render() {
-<<<<<<< HEAD
 		const { footerFixed } = this.state;
 		return (
 			<I18n>
@@ -57,13 +53,6 @@ class Footer extends PureComponent {
 							footerFixed ? "footer-box fixed" : "footer-box"
 						}
 					>
-=======
-		console.log(this.props.lng);
-		return (
-			<I18n>
-				{(t, { I18n }) => (
-					<div id="footerBox" className="footer-box">
->>>>>>> 322163d8df09874c11d55880a39b80cc03c00bc3
 						{IsTouchDevice ? (
 							<div className="m-footer-container">
 								<div className="top">
@@ -111,24 +100,16 @@ class Footer extends PureComponent {
 										<img src={loginImg} alt="" />
 									</div>
 								</div>
-<<<<<<< HEAD
-								<TurnApp />
-=======
->>>>>>> 322163d8df09874c11d55880a39b80cc03c00bc3
 							</div>
 						) : (
 							<div className="container ui center ">
 								<div className="left">
 									<span className="sp">@InWeCrypto 2017</span>
-<<<<<<< HEAD
-									<span className="item">
-=======
 									<a
 										target="_blank"
 										href="https://t.me/inwecrypto"
 										className="item"
 									>
->>>>>>> 322163d8df09874c11d55880a39b80cc03c00bc3
 										<i className="icon-tele" />
 									</a>
 									{/* <span className="item">
