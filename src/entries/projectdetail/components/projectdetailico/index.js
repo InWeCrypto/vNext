@@ -1,6 +1,7 @@
 import React, { PureComponent } from "react";
 import { I18n, Trans } from "react-i18next";
 import { Link } from "react-router-dom";
+import echarts from "echarts";
 import GaiKuo from "../../../../components/gaikuo";
 import "./index.less";
 class ProjectDetailIco extends PureComponent {
@@ -22,6 +23,68 @@ class ProjectDetailIco extends PureComponent {
 				"december"
 			]
 		};
+	}
+	componentDidMount() {
+		if (
+			this.props.projectDetail &&
+			this.props.projectDetail.category_structure
+		) {
+			const chartBox = document.querySelector("#icoCharts");
+			const w = chartBox.offsetWidth;
+			chartBox.style.height = w + "px";
+			this.viewEcharts(this.props.projectDetail.category_structure);
+		}
+	}
+	viewEcharts(data) {
+		let strcture = document.querySelector("#icoCharts");
+		let myChart = echarts.init(strcture);
+		let strctureData = data;
+		let value = [];
+		let theColor = [];
+		strctureData.map(item => {
+			value.push({
+				value: item.percentage,
+				color_name: item.color_name,
+				desc: item.desc
+			});
+			theColor.push(item.color_value);
+		});
+		let option = {
+			tooltip: {
+				trigger: "item",
+				formatter: (value, a) => {
+					return (
+						value.data.color_name +
+						"<br />占比：" +
+						value.data.value +
+						"%<br/>描述：" +
+						value.data.desc
+					);
+				}
+			},
+			series: [
+				{
+					type: "pie",
+					radius: "85%",
+					center: ["50%", "50%"],
+					data: value,
+					color: theColor,
+					labelLine: {
+						normal: {
+							show: false
+						}
+					},
+					itemStyle: {
+						emphasis: {
+							shadowBlur: 10,
+							shadowOffsetX: 0,
+							shadowColor: "#fff"
+						}
+					}
+				}
+			]
+		};
+		myChart.setOption(option);
 	}
 	getEndDay(start, end) {
 		let now = new Date();
@@ -55,6 +118,7 @@ class ProjectDetailIco extends PureComponent {
 			setProjectRemind,
 			getProjectCollect
 		} = this.props;
+
 		return (
 			<I18n>
 				{(t, { I18n }) => (
@@ -159,6 +223,10 @@ class ProjectDetailIco extends PureComponent {
 												}
 											)}
 									</ul>
+									<div
+										className="icon-charts"
+										id="icoCharts"
+									/>
 								</div>
 							</div>
 						</div>
@@ -221,6 +289,37 @@ class ProjectDetailIco extends PureComponent {
 											);
 										}
 									)}
+								{/* <p>+Im token</p> */}
+							</div>
+							<div className="projectDetailCon2Box">
+								<div className="projectDetailCon2Title">
+									Social
+								</div>
+								<ul className="shareList ui center">
+									{projectDetail &&
+										projectDetail.category_media &&
+										projectDetail.category_media.length >
+											0 &&
+										projectDetail.category_media.map(
+											(item, index) => {
+												return (
+													<li key={index}>
+														<Link
+															to={{
+																pathname:
+																	item.url
+															}}
+														>
+															<img
+																src={item.img}
+															/>
+														</Link>
+													</li>
+												);
+											}
+										)}
+								</ul>
+
 								{/* <p>+Im token</p> */}
 							</div>
 						</div>

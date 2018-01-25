@@ -40,16 +40,42 @@ class Header extends PureComponent {
 		});
 	}
 	componentDidMount() {
+<<<<<<< HEAD
 		if (this.props.nofixed) {
 			window.addEventListener("scroll", this.handleScroll.bind(this));
 		}
+=======
+>>>>>>> 322163d8df09874c11d55880a39b80cc03c00bc3
 		document.addEventListener("click", this.changeMember, false);
 		this.setState(function(prevState, props) {
 			return {
-				headerNoFixed: props.nofixed
+				headerNoFixed: props.nofixed,
+				marketIndex: 0
 			};
 		});
+		this.props.getHeaderMarket().then(res => {
+			this.marketInterval();
+		});
 	}
+	marketInterval() {
+		var box = document.querySelector("#headerMarketList");
+		var bh = box.offsetHeight;
+		var ih = box.getElementsByClassName("headernews-item")[0].offsetHeight;
+		box.style.top = -this.state.marketIndex * ih + "px";
+		var timer = null;
+		timer = setTimeout(() => {
+			let state = this.state.marketIndex + 1;
+			if (state >= bh / ih) {
+				state = 0;
+				this.props.getHeaderMarket();
+			}
+			this.setState({
+				marketIndex: state
+			});
+			this.marketInterval();
+		}, 2000);
+	}
+
 	componentWillUnmount() {
 		if (this.props.nofixed) {
 			window.removeEventListener("scroll", this.handleScroll.bind(this));
@@ -166,7 +192,8 @@ class Header extends PureComponent {
 			loginIn,
 			userInfo,
 			forgetUser,
-			nofixed
+			nofixed,
+			commonMarket
 		} = this.props;
 		const {
 			showMember,
@@ -180,6 +207,7 @@ class Header extends PureComponent {
 			headerNoFixed
 		} = this.state;
 		return (
+<<<<<<< HEAD
 			<I18n>
 				{(t, { I18n }) => (
 					<div>
@@ -193,6 +221,112 @@ class Header extends PureComponent {
 										? "m-header-box"
 										: "m-header-box fixed"
 								}
+=======
+			<div>
+				{IsTouchDevice &&
+					!headerNoFixed && <div className="m-header-hold" />}
+				{IsTouchDevice && (
+					<div
+						className={
+							headerNoFixed
+								? "m-header-box"
+								: "m-header-box fixed"
+						}
+					>
+						<div
+							className={
+								menuShow
+									? "m-menu-btn hamburger hamburger--elastic is-active"
+									: "m-menu-btn hamburger hamburger--elastic"
+							}
+							onClick={this.showMenu}
+						>
+							<div className="hamburger-box">
+								<div className="hamburger-inner" />
+							</div>
+						</div>
+						<div className="m-header-title">
+							<img src={titleCat} alt="" />
+							<span>InWeCrypto</span>
+						</div>
+					</div>
+				)}
+				{IsTouchDevice && (
+					<div
+						className={menuShow ? "menuMap menuMapShow" : "menuMap"}
+					>
+						<div className="menuHold" />
+						{menuMap.map((val, idx) => {
+							if (idx == menuMap.length - 1) {
+								return (
+									<div
+										key={idx}
+										className="menuCell"
+										onClick={this.searchBtnClick.bind(this)}
+									>
+										<img src={searchicon} alt="" />
+										{val}
+									</div>
+								);
+							} else {
+								return (
+									<div key={idx} className="menuCell">
+										{val}
+									</div>
+								);
+							}
+						})}
+					</div>
+				)}
+
+				<div id="headerBox" className="header-box container ui center">
+					<div className="heder-left ui center jstart">
+						<img className="img" src={headerNews} />
+						<div className="headernews-box f1">
+							<div
+								className="headermarkets-list"
+								id="headerMarketList"
+							>
+								{commonMarket &&
+									commonMarket.length > 0 &&
+									commonMarket.map((item, index) => {
+										return (
+											<span
+												key={index}
+												className="headernews-item"
+												title={`${item.symbol} $${
+													item.price_usd
+												} ${(() => {
+													return item.percent_change_1h >=
+														0
+														? "+"
+														: "";
+												})()}${
+													item.percent_change_1h
+												}%`}
+											>
+												{item.symbol} ${item.price_usd}
+												&nbsp;
+												{(() => {
+													return item.percent_change_1h >=
+														0
+														? "+"
+														: "";
+												})()}
+												{item.percent_change_1h}%
+											</span>
+										);
+									})}
+							</div>
+						</div>
+					</div>
+					<div className="heder-middle f1">InWeCrypto</div>
+					{!userInfo && (
+						<div className="heder-right ui jend">
+							<span
+								onClick={this.Login.bind(this)}
+								className="rightbtn"
+>>>>>>> 322163d8df09874c11d55880a39b80cc03c00bc3
 							>
 								<div
 									className={

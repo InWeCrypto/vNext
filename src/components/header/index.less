@@ -1,17 +1,17 @@
 @import "../../assets/less/basestyle.less";
 .header-box {
-	padding-top: 0.36rem;
+	padding-top: 0.2rem;
 	.heder-middle {
 		text-align: center;
 		font-size: 0.3rem;
 		line-height: 0.48rem;
 		font-weight: 600;
 		font-family: "impact";
+		color: #333;
 	}
 	.heder-right {
 		position: relative;
 		text-align: right;
-		align-self: flex-start;
 	}
 	.member {
 		width: 0.38rem;
@@ -49,7 +49,7 @@
 		.member-item {
 			box-sizing: border-box;
 			cursor: pointer;
-			padding: 0.05rem 0 0.05rem 0.2rem;
+			padding: 0.05rem 0 0.05rem 0;
 			display: block;
 			color: #000;
 			text-align: center;
@@ -64,14 +64,15 @@
 				margin-right: 0.1rem;
 				position: relative;
 				.circle {
-					width: 0.06rem;
-					height: 0.06rem;
+					width: 0.04rem;
+					height: 0.04rem;
 					border-radius: 50%;
 					display: block;
 					background: #ff0d0d;
 					position: absolute;
 					right: 0;
 					top: 0.02rem;
+					border: 0.01rem solid #fff;
 				}
 			}
 		}
@@ -83,11 +84,16 @@
 			height: 0.15rem;
 			margin-right: 0.1rem;
 		}
+		.headermarkets-list {
+			position: relative;
+			top: 0;
+			transition: top 0.3s linear;
+		}
 		.headernews-box {
 			height: 0.2rem;
-			width: 1rem;
 			position: relative;
 			top: 0.01rem;
+			overflow: hidden;
 			.headernews-item {
 				display: block;
 				height: 0.2rem;
@@ -100,7 +106,7 @@
 		}
 	}
 	.rightbtn {
-		margin: 0 0.05rem;
+		margin: 0 0.1rem;
 		cursor: pointer;
 		font-weight: 600;
 	}

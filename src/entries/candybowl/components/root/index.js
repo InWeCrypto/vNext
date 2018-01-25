@@ -51,6 +51,7 @@ class Root extends PureComponent {
 			year2: d.getFullYear(),
 			month2: d.getMonth() + 1
 		});
+		this.props.getCandyMust();
 	}
 	dayClick(res) {
 		this.setState({
@@ -103,7 +104,10 @@ class Root extends PureComponent {
 			setReduxUserInfo,
 			forgetUser,
 			candyList,
-			candyMonth
+			candyMonth,
+			commonMarket,
+			getHeaderMarket,
+			candyMustList
 		} = this.props;
 		const { isToday, day, emonth } = this.state;
 
@@ -119,6 +123,8 @@ class Root extends PureComponent {
 							setReduxUserInfo={setReduxUserInfo}
 							forgetUser={forgetUser}
 							lng={lng}
+							commonMarket={commonMarket}
+							getHeaderMarket={getHeaderMarket}
 						/>
 						<div className="main-box ui container" id="mainBox">
 							{!IsTouchDevice && (
@@ -139,7 +145,20 @@ class Root extends PureComponent {
 										dayClick={this.dayClick.bind(this)}
 									/>
 									<div className="must-read">
-										<span>必读：是大神大所</span>
+										{candyMustList &&
+											candyMustList.length > 0 && (
+												<a
+													target="_blank"
+													href={candyMustList[0].url}
+												>
+													<span>
+														{candyMustList[0].name}:{
+															candyMustList[0]
+																.desc
+														}
+													</span>
+												</a>
+											)}
 									</div>
 								</div>
 								<div className="f1 m-todayBox">
@@ -208,7 +227,15 @@ class Root extends PureComponent {
 											{(!candyList ||
 												!candyList.data ||
 												candyList.data.length <= 0) && (
-												<div>{t("nodata", lng)}</div>
+												<div
+													style={{
+														padding: "16px 0",
+														borderBottom:
+															"1px solid #f0f0f0"
+													}}
+												>
+													{t("nodata", lng)}
+												</div>
 											)}
 										</div>
 									</div>

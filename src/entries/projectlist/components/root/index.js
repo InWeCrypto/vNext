@@ -88,7 +88,9 @@ export default class Root extends PureComponent {
 			project,
 			project2,
 			project3,
-			project4
+			project4,
+			commonMarket,
+			getHeaderMarket
 		} = this.props;
 		return (
 			<I18n>
@@ -105,7 +107,12 @@ export default class Root extends PureComponent {
 							setReduxUserInfo={setReduxUserInfo}
 							forgetUser={forgetUser}
 							lng={lng}
+<<<<<<< HEAD
 							nofixed={true}
+=======
+							commonMarket={commonMarket}
+							getHeaderMarket={getHeaderMarket}
+>>>>>>> 322163d8df09874c11d55880a39b80cc03c00bc3
 						/>
 						<div id="mainBox" className="projectList ui ">
 							<div className="projectListReturn ui center m-hide">

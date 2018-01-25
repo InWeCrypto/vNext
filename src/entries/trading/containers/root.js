@@ -6,10 +6,11 @@ import * as globalActions from "../../../globalactions";
 //    categoryList
 //}),
 export default connect(
-	({ trading: { trading }, globData: { lng, userInfo } }) => ({
+	({ trading: { trading }, globData: { lng, userInfo, commonMarket } }) => ({
 		trading,
 		userInfo,
-		lng
+		lng,
+		commonMarket
 	}),
 	{
 		...actions,

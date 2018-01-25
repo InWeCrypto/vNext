@@ -1,7 +1,7 @@
 import React, { PureComponent } from "react";
 import { I18n, Trans } from "react-i18next";
 import { StyleSheet, css } from "aphrodite";
-import { puffIn } from "react-magic";
+import { puffIn, spaceInDown } from "react-magic";
 import { setLocalItem } from "../../utils/util";
 import "./index.less";
 class SignIn extends PureComponent {
@@ -14,8 +14,8 @@ class SignIn extends PureComponent {
 		};
 		this.styles = StyleSheet.create({
 			magic: {
-				animationName: puffIn,
-				animationDuration: ".3s"
+				animationName: spaceInDown,
+				animationDuration: "1s"
 			}
 		});
 	}
@@ -150,14 +150,14 @@ class SignIn extends PureComponent {
 													)}
 												</a>
 											</div>
-											<div className="fast-sign">
+											{/* <div className="fast-sign">
 												<span onClick={openFast}>
 													{t(
 														"signBox.signIn.fast",
 														lng
 													)}
 												</span>
-											</div>
+											</div> */}
 											<div className="go-register">
 												<span
 													className="register-text"

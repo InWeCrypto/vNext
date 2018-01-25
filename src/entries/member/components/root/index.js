@@ -96,7 +96,9 @@ export default class Root extends PureComponent {
 			uploadHeader,
 			setProjectColletion,
 			memberNewsList,
-			getMemeberNewsList
+			getMemeberNewsList,
+			commonMarket,
+			getHeaderMarket
 		} = this.props;
 		const {
 			set,
@@ -122,6 +124,8 @@ export default class Root extends PureComponent {
 							setReduxUserInfo={setReduxUserInfo}
 							forgetUser={forgetUser}
 							lng={lng}
+							commonMarket={commonMarket}
+							getHeaderMarket={getHeaderMarket}
 						/>
 						{/* <FixedMenu lng={lng} changeLng={changeLng} /> */}
 						<div className="member-main">

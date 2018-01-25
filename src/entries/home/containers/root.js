@@ -9,13 +9,14 @@ export default withRouter(
 	connect(
 		({
 			home: { articleList, newsList, candyList },
-			globData: { lng, userInfo }
+			globData: { lng, userInfo, commonMarket }
 		}) => ({
 			articleList,
 			newsList,
 			candyList,
 			userInfo,
-			lng
+			lng,
+			commonMarket
 		}),
 		{
 			...actions,

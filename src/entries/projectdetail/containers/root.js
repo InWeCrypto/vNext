@@ -13,7 +13,7 @@ export default connect(
 			projectDot,
 			projectKdata
 		},
-		globData: { lng, userInfo }
+		globData: { lng, userInfo, commonMarket }
 	}) => ({
 		projectDetail,
 		coinTimePrice,
@@ -22,7 +22,8 @@ export default connect(
 		projectDot,
 		projectKdata,
 		userInfo,
-		lng
+		lng,
+		commonMarket
 	}),
 	{
 		...actions,

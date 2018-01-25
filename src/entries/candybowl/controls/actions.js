@@ -5,6 +5,7 @@ const PRE_FIX = "CANDYBOWL_";
 export const CANDYLIST = `${PRE_FIX}CANDAYLIST`;
 export const CANDYMONTH = `${PRE_FIX}CANDYMONTH`;
 export const CANDYWARN = `${PRE_FIX}CANDYWARN`;
+export const CANDYMUST = `${PRE_FIX}CANDYMUST`;
 
 export const getCandyList = createAction(CANDYLIST, query => {
 	return http.get({
@@ -63,6 +64,16 @@ export const changeCandyWarn = createAction(CANDYWARN, params => {
 					};
 				}
 			}
+			return res;
+		});
+});
+export const getCandyMust = createAction(CANDYMUST, () => {
+	return http
+		.get({
+			url: "candy_bow?is_scroll"
+		})
+		.then(res => {
+			console.log(res);
 			return res;
 		});
 });

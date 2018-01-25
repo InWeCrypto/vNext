@@ -194,18 +194,36 @@
 	}
 	.charts-type {
 		box-sizing: border-box;
-		padding: 0.1rem 0;
+		padding: 0.2rem 0 0 0;
 		margin-bottom: 0.05rem;
+		vertical-align: middle;
 		.charts-btn {
-			padding: 0.05rem 0.05rem;
 			margin: 0 0.05rem;
+			display: inline-block;
+			text-align: center;
+			padding: 0.04rem 0.05rem;
+			line-height: 10px;
 			cursor: pointer;
-			border-bottom: 0.02rem solid transparent;
 			box-sizing: border-box;
+			.charts-text {
+				display: block;
+			}
+			.line {
+				height: 2px;
+				width: 10px;
+				display: inline-block;
+			}
 		}
 		.charts-btn.cur {
 			color: #0a9234;
-			border-bottom: 0.02rem solid #0a9234;
+			.line {
+				background: #0a9234;
+			}
+		}
+	}
+	.charts-box {
+		img {
+			width: 100%;
 		}
 	}
 }

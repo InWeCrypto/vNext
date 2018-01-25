@@ -136,7 +136,9 @@ export default class Root extends PureComponent {
 			forgetUser,
 			newsText,
 			newsImg,
-			newsVideo
+			newsVideo,
+			commonMarket,
+			getHeaderMarket
 		} = this.props;
 		return (
 			<I18n>
@@ -151,6 +153,8 @@ export default class Root extends PureComponent {
 							forgetUser={forgetUser}
 							lng={lng}
 							nofixed={true}
+							commonMarket={commonMarket}
+							getHeaderMarket={getHeaderMarket}
 						/>
 						<div id="mainBox" className="news ui">
 							<div className="left-menus ui center m-hide">

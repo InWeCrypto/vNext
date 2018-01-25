@@ -105,7 +105,9 @@ export default class Root extends PureComponent {
 			getProjectScore,
 			unProjectDot,
 			projectKdata,
-			getKdata
+			getKdata,
+			commonMarket,
+			getHeaderMarket
 		} = this.props;
 		return (
 			<I18n>
@@ -122,6 +124,8 @@ export default class Root extends PureComponent {
 							setReduxUserInfo={setReduxUserInfo}
 							forgetUser={forgetUser}
 							lng={lng}
+							commonMarket={commonMarket}
+							getHeaderMarket={getHeaderMarket}
 							nofixed={true}
 						/>
 						<div id="mainBox" className="projectDetail ui">
