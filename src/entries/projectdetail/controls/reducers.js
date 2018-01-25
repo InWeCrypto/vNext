@@ -7,7 +7,8 @@ import {
 	PROJECTDYNAMIC,
 	PROJECTDYNAMICLIST,
 	PROJECTSCORE,
-	PROJECTDOT
+	PROJECTDOT,
+	PROJECTKCHARTS
 } from "./actions";
 
 export const projectDetail = handleActions(
@@ -48,4 +49,10 @@ export const projectDot = handleActions(
 		[PROJECTDOT]: (state, { payload }) => payload
 	},
 	[]
+);
+export const projectKdata = handleActions(
+	{
+		[PROJECTKCHARTS]: (state, { payload }) => payload
+	},
+	null
 );

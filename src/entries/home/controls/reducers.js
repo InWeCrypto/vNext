@@ -1,5 +1,5 @@
 import { handleActions } from "redux-actions";
-import { ARTICLELIST, NEWSLIST } from "./actions";
+import { ARTICLELIST, NEWSLIST, CANDYLIST } from "./actions";
 
 export const articleList = handleActions(
 	{
@@ -10,6 +10,12 @@ export const articleList = handleActions(
 export const newsList = handleActions(
 	{
 		[NEWSLIST]: (state, { payload }) => payload
+	},
+	[]
+);
+export const candyList = handleActions(
+	{
+		[CANDYLIST]: (state, { payload }) => payload
 	},
 	[]
 );

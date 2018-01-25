@@ -103,7 +103,9 @@ export default class Root extends PureComponent {
 			getProjectCollect,
 			getProjectDynamicList,
 			getProjectScore,
-			unProjectDot
+			unProjectDot,
+			projectKdata,
+			getKdata
 		} = this.props;
 		return (
 			<I18n>
@@ -183,6 +185,8 @@ export default class Root extends PureComponent {
 										coinTimePrice={coinTimePrice}
 										setProjectRemind={setProjectRemind}
 										getProjectCollect={getProjectCollect}
+										projectKdata={projectKdata}
+										getKdata={getKdata}
 									/>
 								)}
 							{info && (

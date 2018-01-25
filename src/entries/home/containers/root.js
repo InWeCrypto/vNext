@@ -7,9 +7,13 @@ import * as actions from "../controls/actions";
 import * as globalActions from "../../../globalactions";
 export default withRouter(
 	connect(
-		({ home: { articleList, newsList }, globData: { lng, userInfo } }) => ({
+		({
+			home: { articleList, newsList, candyList },
+			globData: { lng, userInfo }
+		}) => ({
 			articleList,
 			newsList,
+			candyList,
 			userInfo,
 			lng
 		}),
