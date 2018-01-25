@@ -125,6 +125,9 @@ class GaiKuo extends PureComponent {
 			QcodeUrl: window.location.href
 		});
 	}
+	openTele() {
+		window.open("https://t.me/test");
+	}
 	render() {
 		const { lng, projectDetail } = this.props;
 		const {
@@ -211,7 +214,10 @@ class GaiKuo extends PureComponent {
 										className="wx"
 									/>
 									{/* <li className="pyq" /> */}
-									<li className="tele" />
+									<li
+										onClick={this.openTele.bind(this)}
+										className="tele"
+									/>
 									<li
 										onClick={this.showThisPageTocode.bind(
 											this
