@@ -8,12 +8,22 @@ import * as globalActions from "../../../globalactions";
 export default withRouter(
 	connect(
 		({
-			home: { articleList, newsList, candyList },
+			home: {
+				articleList,
+				newsList,
+				candyList,
+				ads,
+				exchangeNotice,
+				userFavo
+			},
 			globData: { lng, userInfo, commonMarket }
 		}) => ({
 			articleList,
 			newsList,
 			candyList,
+			ads,
+			exchangeNotice,
+			userFavo,
 			userInfo,
 			lng,
 			commonMarket

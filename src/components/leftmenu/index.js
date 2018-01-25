@@ -9,6 +9,9 @@ class LeftMenuBox extends PureComponent {
 			<I18n>
 				{(t, { I18n }) => (
 					<div className="left-menu">
+						<div className="search">
+							<b className="searchBtn" />
+						</div>
 						<NavLink
 							exact
 							to={{
