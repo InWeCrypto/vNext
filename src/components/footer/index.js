@@ -100,6 +100,7 @@ class Footer extends PureComponent {
 										<img src={loginImg} alt="" />
 									</div>
 								</div>
+								<TurnApp />
 							</div>
 						) : (
 							<div className="container ui center ">

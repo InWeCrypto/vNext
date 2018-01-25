@@ -40,12 +40,9 @@ class Header extends PureComponent {
 		});
 	}
 	componentDidMount() {
-<<<<<<< HEAD
 		if (this.props.nofixed) {
 			window.addEventListener("scroll", this.handleScroll.bind(this));
 		}
-=======
->>>>>>> 322163d8df09874c11d55880a39b80cc03c00bc3
 		document.addEventListener("click", this.changeMember, false);
 		this.setState(function(prevState, props) {
 			return {
@@ -59,21 +56,24 @@ class Header extends PureComponent {
 	}
 	marketInterval() {
 		var box = document.querySelector("#headerMarketList");
-		var bh = box.offsetHeight;
-		var ih = box.getElementsByClassName("headernews-item")[0].offsetHeight;
-		box.style.top = -this.state.marketIndex * ih + "px";
-		var timer = null;
-		timer = setTimeout(() => {
-			let state = this.state.marketIndex + 1;
-			if (state >= bh / ih) {
-				state = 0;
-				this.props.getHeaderMarket();
-			}
-			this.setState({
-				marketIndex: state
-			});
-			this.marketInterval();
-		}, 2000);
+		if (box) {
+			var bh = box.offsetHeight;
+			var ih = box.getElementsByClassName("headernews-item")[0]
+				.offsetHeight;
+			box.style.top = -this.state.marketIndex * ih + "px";
+			var timer = null;
+			timer = setTimeout(() => {
+				let state = this.state.marketIndex + 1;
+				if (state >= bh / ih) {
+					state = 0;
+					this.props.getHeaderMarket();
+				}
+				this.setState({
+					marketIndex: state
+				});
+				this.marketInterval();
+			}, 2000);
+		}
 	}
 
 	componentWillUnmount() {
