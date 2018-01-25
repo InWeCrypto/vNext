@@ -490,11 +490,11 @@ class ProjectDetailGaiKuo extends PureComponent {
 								<div className="projectDetailCon2Title">
 									Rank
 								</div>
-								<p>
+								<p className="hot">
 									+关注热度：第{projectDetail.category_score &&
 										projectDetail.category_score.sort}名
 								</p>
-								<p>
+								<p className="scord">
 									+用户评分：{projectDetail.category_score &&
 										projectDetail.category_score.value}
 								</p>

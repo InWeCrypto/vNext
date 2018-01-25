@@ -33,8 +33,8 @@ export default class Root extends PureComponent {
 			minH: minH,
 			liW: liW
 		});
-		if (!IsTouchDevice)
-			document.querySelector("#mainBox").style.height = minH + "px";
+		//if (!IsTouchDevice)
+		document.querySelector("#mainBox").style.height = minH + "px";
 		document.querySelector("#projectUlRef").style.width = liW * 4 + "px";
 		this.initPage(this.props.location.search);
 	}
