@@ -3,6 +3,7 @@ import { I18n, Trans } from "react-i18next";
 import { Link } from "react-router-dom";
 import GaiKuo from "../../../../components/gaikuo";
 import echarts from "echarts";
+import echartEmpty from "../../../../assets/images/echart_empty.png";
 import "./index.less";
 class ProjectDetailGaiKuo extends PureComponent {
 	constructor() {
@@ -53,7 +54,11 @@ class ProjectDetailGaiKuo extends PureComponent {
 		return `${year}/${month}/${day} ${hours}:${min}`;
 	}
 	viewEcharts(data) {
-		if (!data) {
+		if (!data || data.length <= 0 || data[0].length <= 0) {
+			let img = document.createElement("img");
+			img.src = echartEmpty;
+			document.querySelector("#chartsBox").innerHTML = "";
+			document.querySelector("#chartsBox").append(img);
 			return;
 		}
 		let chart = document.querySelector("#chartsBox");
@@ -172,13 +177,13 @@ class ProjectDetailGaiKuo extends PureComponent {
 			},
 			grid: [
 				{
-					left: "5%",
+					left: "8%",
 					right: "0",
 					height: "75%",
 					top: "2%"
 				},
 				{
-					left: "5%",
+					left: "8%",
 					right: "0",
 					top: "85%",
 					height: "12%"
@@ -450,7 +455,7 @@ class ProjectDetailGaiKuo extends PureComponent {
 									</tbody>
 								</table>
 								<div className="gaiKuoChart" id="gaiKuoChart">
-									<div className="charts-type ui center">
+									<div className="charts-type ui start">
 										<span>Zoom</span>
 										{this.state.chartType &&
 											this.state.chartType.map(
