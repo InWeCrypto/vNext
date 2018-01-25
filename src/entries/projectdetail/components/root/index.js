@@ -126,47 +126,52 @@ export default class Root extends PureComponent {
 						/>
 						<div id="mainBox" className="projectDetail ui">
 							{IsTouchDevice && (
-								<ul className="projectDetailCon3Ul">
-									<li className={home ? "cur" : ""}>
-										<Link
-											to={{
-												pathname: "projectdetail",
-												search:
-													"?c_id=" +
-													projectDetail.id +
-													"&type=home"
-											}}
-										>
-											<span>项目概况</span>
-										</Link>
-									</li>
-									<li className={info ? "cur" : ""}>
-										<Link
-											to={{
-												pathname: "projectdetail",
-												search:
-													"?c_id=" +
-													projectDetail.id +
-													"&type=info"
-											}}
-										>
-											<span>项目动态</span>
-										</Link>
-									</li>
-									<li className={intro ? "cur" : ""}>
-										<Link
-											to={{
-												pathname: "projectdetail",
-												search:
-													"?c_id=" +
-													projectDetail.id +
-													"&type=intro"
-											}}
-										>
-											<span>项目介绍</span>
-										</Link>
-									</li>
-								</ul>
+								<div id="m-nav" className="navContainer">
+									<ul
+										id="m-nav-c"
+										className="projectDetailCon3Ul"
+									>
+										<li className={home ? "cur" : ""}>
+											<Link
+												to={{
+													pathname: "projectdetail",
+													search:
+														"?c_id=" +
+														projectDetail.id +
+														"&type=home"
+												}}
+											>
+												<span>项目概况</span>
+											</Link>
+										</li>
+										<li className={info ? "cur" : ""}>
+											<Link
+												to={{
+													pathname: "projectdetail",
+													search:
+														"?c_id=" +
+														projectDetail.id +
+														"&type=info"
+												}}
+											>
+												<span>项目动态</span>
+											</Link>
+										</li>
+										<li className={intro ? "cur" : ""}>
+											<Link
+												to={{
+													pathname: "projectdetail",
+													search:
+														"?c_id=" +
+														projectDetail.id +
+														"&type=intro"
+												}}
+											>
+												<span>项目介绍</span>
+											</Link>
+										</li>
+									</ul>
+								</div>
 							)}
 							{home &&
 								ico && (

@@ -1,13 +1,33 @@
 import React, { PureComponent } from "react";
 import { I18n, Trans } from "react-i18next";
-import { setLocalItem } from "../../utils/util";
+import { setLocalItem, chargeFooterFixed } from "../../utils/util";
 import "./index.less";
 
-import logofooter from "../../assets/images/footer_logo.png"
-import enicon from "../../assets/images/enicon.png"
-import cnicon from "../../assets/images/cnicon.png"
+import TurnApp from "../turnapp";
+
+import logofooter from "../../assets/images/footer_logo.png";
+import enicon from "../../assets/images/enicon.png";
+import cnicon from "../../assets/images/cnicon.png";
 import loginImg from "../../assets/images/footer_login.png";
 class Footer extends PureComponent {
+	constructor(props) {
+		super(props);
+		this.state = {
+			footerFixed: false
+		};
+	}
+	componentDidMount() {
+		if (IsTouchDevice) {
+			chargeFooterFixed();
+			console.log(0);
+		}
+	}
+	componentDidUpdate() {
+		if (IsTouchDevice) {
+			chargeFooterFixed();
+		}
+	}
+
 	setLanguageType(type) {
 		return type === this.props.lng ? "language-type cur" : "language-type";
 	}
@@ -16,20 +36,37 @@ class Footer extends PureComponent {
 		window.i18n.changeLanguage(type);
 		setLocalItem("language", type);
 	}
+	toHomeInwe() {
+		window.location.href = "https://t.me/inwecrypto";
+	}
+	toMail() {
+		window.location = "mailto:support@inwecrypto.com";
+	}
 	render() {
-		console.log(this.props.lng);
-		return <I18n>
-				{(t, { I18n }) => <div id="footerBox" className="footer-box">
-						{IsTouchDevice ? <div className="m-footer-container">
+		const { footerFixed } = this.state;
+		return (
+			<I18n>
+				{(t, { I18n }) => (
+					<div
+						id="footerBox"
+						className={
+							footerFixed ? "footer-box fixed" : "footer-box"
+						}
+					>
+						{IsTouchDevice ? (
+							<div className="m-footer-container">
 								<div className="top">
 									<div className="iconContainer">
-										<span className="item">
+										<span
+											className="item"
+											onClick={this.toHomeInwe.bind(this)}
+										>
 											<i className="icon-tele" />
 										</span>
-										<span className="item">
-											<i className="icon-wechat" />
-										</span>
-										<span className="item">
+										<span
+											className="item"
+											onClick={this.toMail.bind(this)}
+										>
 											<i className="icon-mail" />
 										</span>
 									</div>
@@ -39,15 +76,23 @@ class Footer extends PureComponent {
 										<img src={logofooter} alt="" />
 									</div>
 									<div className="line" />
-									<div className={(() => this.setLanguageType("en"))()} onClick={() => {
+									<div
+										className={(() =>
+											this.setLanguageType("en"))()}
+										onClick={() => {
 											this.changeLanguage("en");
-										}}>
+										}}
+									>
 										<img src={enicon} alt="" />
 									</div>
 									<div className="line" />
-									<div className={(() => this.setLanguageType("zh"))()} onClick={() => {
+									<div
+										className={(() =>
+											this.setLanguageType("zh"))()}
+										onClick={() => {
 											this.changeLanguage("zh");
-										}}>
+										}}
+									>
 										<img src={cnicon} alt="" />
 									</div>
 									<div className="line" />
@@ -55,11 +100,12 @@ class Footer extends PureComponent {
 										<img src={loginImg} alt="" />
 									</div>
 								</div>
-							</div> : <div className="container ui center ">
+								<TurnApp />
+							</div>
+						) : (
+							<div className="container ui center ">
 								<div className="left">
-									<span className="sp">
-										@InWeCrypto 2017
-									</span>
+									<span className="sp">@InWeCrypto 2017</span>
 									<span className="item">
 										<i className="icon-tele" />
 									</span>
@@ -72,20 +118,31 @@ class Footer extends PureComponent {
 								</div>
 								<div className="f1 m-hide" />
 								<div className="right">
-									<div className={(() => this.setLanguageType("en"))()} onClick={() => {
+									<div
+										className={(() =>
+											this.setLanguageType("en"))()}
+										onClick={() => {
 											this.changeLanguage("en");
-										}}>
+										}}
+									>
 										EN
 									</div>
-									<div className={(() => this.setLanguageType("zh"))()} onClick={() => {
+									<div
+										className={(() =>
+											this.setLanguageType("zh"))()}
+										onClick={() => {
 											this.changeLanguage("zh");
-										}}>
+										}}
+									>
 										ZH
 									</div>
 								</div>
-							</div>}
-					</div>}
-			</I18n>;
+							</div>
+						)}
+					</div>
+				)}
+			</I18n>
+		);
 	}
 }
 export default Footer;

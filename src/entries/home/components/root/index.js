@@ -84,6 +84,16 @@ export default class Root extends PureComponent {
 		query += `&per_page=2`;
 		this.props.getCandyList(query);
 	}
+	turnToCandy() {
+		if (IsTouchDevice) {
+			window.location.href = "/candybowl";
+		}
+	}
+	turnToAnno() {
+		if (IsTouchDevice) {
+			window.location.href = "/announcment";
+		}
+	}
 	render() {
 		const {
 			lng,
@@ -214,7 +224,10 @@ export default class Root extends PureComponent {
 										</Link>
 									</div>
 								</div>
-								<div className="homeBoxList homeBoxCandy">
+								<div
+									className="homeBoxList homeBoxCandy"
+									onClick={this.turnToCandy.bind(this)}
+								>
 									<p className="homeBoxTitle">Candy?</p>
 									<div className="homeBoxCandyTop">
 										<p className="homeCandyDate">
@@ -259,7 +272,10 @@ export default class Root extends PureComponent {
 										<p className="homeBoxAnnoTopP">
 											+火币：火币全球专业站12月27日14:00上线NEO…
 										</p>
-										<div className="homeBoxReadMore">
+										<div
+											className="homeBoxReadMore"
+											onClick={this.turnToAnno.bind(this)}
+										>
 											<span className="readMore">
 												Read more
 											</span>

@@ -96,3 +96,25 @@ export const hasClass = (ele, cls) => {
 	if (cls.replace(/\s/g, "").length == 0) return false; //当cls没有参数时，返回false
 	return new RegExp(" " + cls + " ").test(" " + ele.className + " ");
 };
+export const removeClass = (ele, cls) => {
+	if (hasClass(ele, cls)) {
+		var reg = new RegExp("(\\s|^)" + cls + "(\\s|$)");
+		ele.className = ele.className.replace(reg, " ");
+	}
+};
+export const chargeFooterFixed = () => {
+	let headerDom = document.getElementById("headerBox");
+	let headerHei = headerDom.offsetHeight;
+	let footerDom = document.getElementById("footerBox");
+	let footerHei = footerDom.offsetHeight;
+	let rootDom = document.getElementById("root");
+	let rootHei = rootDom.offsetHeight;
+	let screenHei = document.documentElement.clientHeight;
+	//if (rootHei < screenHei) {
+
+	document.getElementById("mainBox").style.minHeight =
+		screenHei - footerHei - headerHei + "px";
+	// } else {
+	// 	return false;
+	// }
+};
