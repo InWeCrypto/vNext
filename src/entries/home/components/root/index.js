@@ -58,8 +58,8 @@ export default class Root extends PureComponent {
 			AcImgH + "px";
 		this.setArticleList(1);
 		this.setNewsList(1);
-		// this.getData(this.state.year, this.state.month, this.state.curDay);
-		this.getData(this.state.year, this.state.month, 24);
+		this.getData(this.state.year, this.state.month, this.state.curDay);
+		// this.getData(this.state.year, this.state.month, 24);
 	}
 	setArticleList(page) {
 		this.props.getArticleList({
@@ -225,15 +225,16 @@ export default class Root extends PureComponent {
 											candyList.list.data.length > 0 &&
 											candyList.list.data.map(
 												(item, index) => {
-													return;
+													return (
+														<span
+															key={index}
+															className="homeCandySpan"
+														>
+															+{item.name}
+														</span>
+													);
 												}
 											)}
-										<span className="homeCandySpan">
-											+NEO Airdrop
-										</span>
-										<span className="homeCandySpan">
-											+NEO Airdrop
-										</span>
 									</div>
 									{!IsTouchDevice && (
 										<div>
