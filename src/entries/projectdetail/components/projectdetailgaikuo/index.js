@@ -128,6 +128,7 @@ class ProjectDetailGaiKuo extends PureComponent {
 										(item, index) => {
 											return (
 												<Link
+													key={index}
 													to={{
 														pathname: item.url
 													}}
@@ -149,6 +150,7 @@ class ProjectDetailGaiKuo extends PureComponent {
 										(item, index) => {
 											return (
 												<Link
+													key={index}
 													to={{
 														pathname: item.url
 													}}
