@@ -126,7 +126,7 @@ class GaiKuo extends PureComponent {
 		});
 	}
 	openTele() {
-		window.open("https://t.me/test");
+		window.open("https://t.me/inwecrypto");
 	}
 	render() {
 		const { lng, projectDetail } = this.props;
