@@ -310,7 +310,7 @@ class Header extends PureComponent {
 							id="headerBox"
 							className="header-box container ui center"
 						>
-							<div className="heder-left ui f1 center jstart">
+							<div className="heder-left ui center jstart">
 								<img className="img" src={headerNews} />
 								<div className="headernews-box f1">
 									<div
