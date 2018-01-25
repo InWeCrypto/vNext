@@ -84,6 +84,7 @@ export default class Root extends PureComponent {
 		query += `&per_page=2`;
 		this.props.getCandyList(query);
 	}
+
 	render() {
 		const {
 			lng,
