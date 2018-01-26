@@ -363,12 +363,14 @@ export default class Root extends PureComponent {
 										/>
 									</div>
 									<p className="newsReadNums">
-										{newsDetail.click_rate}人已读
+										{newsDetail.click_rate}
+										{t("newsDetail.read", lng)}
 									</p>
 								</div>
 								<div className="newsDetailComment">
 									<div className="newsDetailCommentNums">
-										<b>{newsDetail.comment_count}</b>条评论
+										<b>{newsDetail.comment_count}</b>
+										{t("newsDetail.comment", lng)}
 									</div>
 									<div className="newsDetailCommmentBox">
 										<div className="newsDetailCommentBoxCenter ui center">
@@ -387,7 +389,10 @@ export default class Root extends PureComponent {
 											<textarea
 												name=""
 												id="textareaId"
-												placeholder="说点什么..."
+												placeholder={t(
+													"newsDetail.talk",
+													lng
+												)}
 												onFocus={() => {
 													this.inFocus();
 												}}
@@ -406,7 +411,7 @@ export default class Root extends PureComponent {
 													this.textSubmit();
 												}}
 											>
-												提交
+												{t("newsDetail.sub", lng)}
 											</span>
 											<span
 												className="cancel"
@@ -414,7 +419,7 @@ export default class Root extends PureComponent {
 													this.textEmpty();
 												}}
 											>
-												取消
+												{t("newsDetail.cancel", lng)}
 											</span>
 										</div>
 									</div>

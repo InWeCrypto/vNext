@@ -206,7 +206,7 @@ export default class Root extends PureComponent {
 									<div className="newsBoxModTop">
 										<p>
 											<span className="title">
-												24H News
+												{t("news.news", lng)}
 											</span>
 											<span className="nums m-hide">
 												{newsText.current_page}/{
@@ -361,6 +361,7 @@ export default class Root extends PureComponent {
 																		<img
 																			className="m-hide"
 																			src={
+																				item.category &&
 																				item
 																					.category
 																					.img

@@ -15,8 +15,16 @@ export default {
 		otherend: "个项目等你发现"
 	},
 	news: {
+		news: "24H News",
 		ceefax: "图文资讯",
 		videoTitle: "视频资讯"
+	},
+	newsDetail: {
+		read: "人已读",
+		comment: "条评论",
+		talk: "说点什么...",
+		cancel: "取消",
+		sub: "提交"
 	},
 	navMenu: {
 		home: "首页",
