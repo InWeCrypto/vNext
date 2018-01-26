@@ -416,7 +416,7 @@ class ProjectDetailGaiKuo extends PureComponent {
 									<b />
 								</div>
 								<p className="volume">
-									Volume (24h)：${coinTimePrice &&
+									{t("projectDetail.volume", lng)}：${coinTimePrice &&
 										coinTimePrice["24h_volume_usd"]}{" "}
 									USD
 								</p>
@@ -424,11 +424,33 @@ class ProjectDetailGaiKuo extends PureComponent {
 								<table>
 									<thead>
 										<tr>
-											<th>市值排名</th>
-											<th>市值</th>
-											<th>流通量</th>
-											<th>总量</th>
-											<th>ICO Price</th>
+											<th>
+												{t("projectDetail.rank", lng)}
+											</th>
+											<th>
+												{t(
+													"projectDetail.market_cap_usd",
+													lng
+												)}
+											</th>
+											<th>
+												{t(
+													"projectDetail.available_supply",
+													lng
+												)}
+											</th>
+											<th>
+												{t(
+													"projectDetail.total_supply",
+													lng
+												)}
+											</th>
+											<th>
+												{t(
+													"projectDetail.price_usd",
+													lng
+												)}
+											</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -498,20 +520,22 @@ class ProjectDetailGaiKuo extends PureComponent {
 						<div className="projectDetailCon2">
 							<div className="projectDetailCon2Box">
 								<div className="projectDetailCon2Title">
-									Rank
+									{t("projectDetail.rank_title", lng)}
 								</div>
 								<p className="hot">
-									+关注热度：第{projectDetail.category_score &&
-										projectDetail.category_score.sort}名
+									+{t("projectDetail.sort", lng)}
+									{projectDetail.category_score &&
+										projectDetail.category_score.sort}
+									{t("projectDetail.sort_s", lng)}
 								</p>
 								<p className="scord">
-									+用户评分：{projectDetail.category_score &&
+									+{t("projectDetail.user_score", lng)}：{projectDetail.category_score &&
 										projectDetail.category_score.value}
 								</p>
 							</div>
 							<div className="projectDetailCon2Box">
 								<div className="projectDetailCon2Title">
-									Explore
+									{t("projectDetail.explore_title", lng)}
 								</div>
 								{projectDetail &&
 									projectDetail.category_explorer &&
@@ -534,7 +558,7 @@ class ProjectDetailGaiKuo extends PureComponent {
 							</div>
 							<div className="projectDetailCon2Box">
 								<div className="projectDetailCon2Title">
-									Wallet
+									{t("projectDetail.wallet_title", lng)}
 								</div>
 								{projectDetail &&
 									projectDetail.category_wallet &&
@@ -556,7 +580,7 @@ class ProjectDetailGaiKuo extends PureComponent {
 							</div>
 							<div className="projectDetailCon2Box">
 								<div className="projectDetailCon2Title">
-									Token Holders
+									{t("projectDetail.token_title", lng)}
 								</div>
 								<a
 									href={projectDetail.token_holder}
@@ -567,7 +591,7 @@ class ProjectDetailGaiKuo extends PureComponent {
 							</div>
 							<div className="projectDetailCon2Box">
 								<div className="projectDetailCon2Title">
-									Social
+									{t("projectDetail.social_title", lng)}
 								</div>
 								<ul className="shareList ui center">
 									{projectDetail &&
