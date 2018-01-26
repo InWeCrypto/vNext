@@ -27,12 +27,12 @@ class Header extends PureComponent {
 			registerHasBack: false,
 			fastSign: false,
 			isForget: false,
-			//cdy
 			menuShow: false
 		};
-
+		this.marketIndex = 0;
 		this.changeMember = this.changeMember.bind(this);
 		this.showMenu = this.showMenu.bind(this);
+		this.timer = null;
 	}
 	changeMember() {
 		this.setState({
@@ -46,31 +46,30 @@ class Header extends PureComponent {
 		document.addEventListener("click", this.changeMember, false);
 		this.setState(function(prevState, props) {
 			return {
-				headerNoFixed: props.nofixed,
-				marketIndex: 0
+				headerNoFixed: props.nofixed
 			};
 		});
 		this.props.getHeaderMarket().then(res => {
 			this.marketInterval();
 		});
 	}
+
 	marketInterval() {
 		var box = document.querySelector("#headerMarketList");
 		if (box) {
 			var bh = box.offsetHeight;
 			var ih = box.getElementsByClassName("headernews-item")[0]
 				.offsetHeight;
-			box.style.top = -this.state.marketIndex * ih + "px";
-			var timer = null;
-			timer = setTimeout(() => {
-				let state = this.state.marketIndex + 1;
-				if (state >= bh / ih) {
-					state = 0;
-					this.props.getHeaderMarket();
-				}
-				this.setState({
-					marketIndex: state
-				});
+			box.style.top = -this.marketIndex * 18 + "px";
+
+			let state = this.marketIndex + 1;
+			if (state >= bh / ih) {
+				state = 0;
+				this.props.getHeaderMarket();
+			}
+			this.marketIndex = state;
+			clearTimeout(this.timer);
+			this.timer = setTimeout(() => {
 				this.marketInterval();
 			}, 2000);
 		}
@@ -81,6 +80,8 @@ class Header extends PureComponent {
 			window.removeEventListener("scroll", this.handleScroll.bind(this));
 		}
 		//重写组件的setState方法，直接返回空
+		this.marketIndex = 0;
+		clearTimeout(this.timer);
 		this.setState = (state, callback) => {
 			return;
 		};
