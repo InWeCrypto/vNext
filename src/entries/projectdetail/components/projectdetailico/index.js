@@ -194,7 +194,7 @@ class ProjectDetailIco extends PureComponent {
 								</div>
 								<div className="projectDetailCon1BoxRight">
 									<div className="projectDetailCon1BoxRightTit">
-										ICO 结构
+										{t("projectDetail.ico_structure", lng)}
 									</div>
 									<ul>
 										{projectDetail &&
@@ -234,20 +234,22 @@ class ProjectDetailIco extends PureComponent {
 						<div className="projectDetailCon2">
 							<div className="projectDetailCon2Box">
 								<div className="projectDetailCon2Title">
-									Rank
+									{t("projectDetail.rank_title", lng)}
 								</div>
 								<p>
-									+关注热度：第{projectDetail.category_score &&
-										projectDetail.category_score.sort}名
+									+{t("projectDetail.sort", lng)}
+									{projectDetail.category_score &&
+										projectDetail.category_score.sort}
+									{t("projectDetail.sort_s", lng)}
 								</p>
 								<p>
-									+用户评分：{projectDetail.category_score &&
+									+{t("projectDetail.user_score", lng)}：{projectDetail.category_score &&
 										projectDetail.category_score.value}
 								</p>
 							</div>
 							<div className="projectDetailCon2Box">
 								<div className="projectDetailCon2Title">
-									Explore
+									{t("projectDetail.explore_title", lng)}
 								</div>
 								{projectDetail &&
 									projectDetail.category_explorer &&
@@ -271,7 +273,7 @@ class ProjectDetailIco extends PureComponent {
 							</div>
 							<div className="projectDetailCon2Box">
 								<div className="projectDetailCon2Title">
-									Wallet
+									{t("projectDetail.wallet_title", lng)}
 								</div>
 								{projectDetail &&
 									projectDetail.category_wallet &&
@@ -294,7 +296,7 @@ class ProjectDetailIco extends PureComponent {
 							</div>
 							<div className="projectDetailCon2Box">
 								<div className="projectDetailCon2Title">
-									Social
+									{t("projectDetail.social_title", lng)}
 								</div>
 								<ul className="shareList ui center">
 									{projectDetail &&

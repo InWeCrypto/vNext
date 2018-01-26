@@ -4,6 +4,10 @@ import {
 	PROJECT2,
 	PROJECT3,
 	PROJECT4,
+	PROJECTM,
+	PROJECTM2,
+	PROJECTM3,
+	PROJECTM4,
 	PROJECTCOLLECT
 } from "./actions";
 
@@ -21,6 +25,16 @@ export const project = handleActions(
 			});
 
 			return { ...state, data: data };
+		},
+		[PROJECTM]: (state, { payload }) => {
+			//
+			if (payload.data.length >= 10) {
+				window.NavFristAjaxDone = true;
+			}
+			return {
+				...payload,
+				data: [...state.data, ...payload.data]
+			};
 		}
 	},
 	[]
@@ -39,6 +53,16 @@ export const project2 = handleActions(
 			});
 
 			return { ...state, data: data };
+		},
+		[PROJECTM2]: (state, { payload }) => {
+			//
+			if (payload.data.length >= 10) {
+				window.NavSecondAjaxDone = true;
+			}
+			return {
+				...payload,
+				data: [...state.data, ...payload.data]
+			};
 		}
 	},
 	[]
@@ -57,6 +81,16 @@ export const project3 = handleActions(
 			});
 
 			return { ...state, data: data };
+		},
+		[PROJECTM3]: (state, { payload }) => {
+			//
+			if (payload.data.length >= 10) {
+				window.NavThirdAjaxDone = true;
+			}
+			return {
+				...payload,
+				data: [...state.data, ...payload.data]
+			};
 		}
 	},
 	[]
@@ -75,6 +109,16 @@ export const project4 = handleActions(
 			});
 
 			return { ...state, data: data };
+		},
+		[PROJECTM4]: (state, { payload }) => {
+			//
+			if (payload.data.length >= 10) {
+				window.NavForthAjaxDone = true;
+			}
+			return {
+				...payload,
+				data: [...state.data, ...payload.data]
+			};
 		}
 	},
 	[]

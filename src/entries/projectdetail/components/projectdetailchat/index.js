@@ -93,10 +93,13 @@ class ProjectDetailIco extends PureComponent {
 							</li>
 						</ul>
 						<div className="sendChat">
-							<input type="text" placeholder="你的观点…" />
+							<input
+								type="text"
+								placeholder={t("projectDetail.chat", lng)}
+							/>
 						</div>
 						<div className="score ui center jcenter">
-							<span>项目评分：</span>
+							<span>{t("projectDetail.score", lng)}：</span>
 							<p className="starList ui">
 								{[1, 2, 3, 4, 5].map((item, index) => {
 									return (

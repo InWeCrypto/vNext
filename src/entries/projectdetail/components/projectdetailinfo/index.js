@@ -17,9 +17,14 @@ class ProjectDetailInfo extends PureComponent {
 		this.initPage();
 	}
 	componentDidUpdate() {
-		let liDomList = document
-			.getElementById("projectDetailNavUl")
-			.getElementsByTagName("li");
+		let ulDomList = document.getElementById("projectDetailNavUl");
+		if (!ulDomList) {
+			this.setState({
+				ulWidth: 600
+			});
+			return;
+		}
+		let liDomList = ulDomList.getElementsByTagName("li");
 		console.log(liDomList);
 		let ulWidth = 0;
 		for (let i = 0; i < liDomList.length; i++) {
@@ -95,7 +100,7 @@ class ProjectDetailInfo extends PureComponent {
 								</div>
 							</div>
 							{IsTouchDevice && (
-								<div className="projectDetailNav m-hide">
+								<div className="projectDetailNav">
 									<ul
 										className="projectDetailNavUl"
 										id="projectDetailNavUl"
@@ -225,7 +230,7 @@ class ProjectDetailInfo extends PureComponent {
 						<div className="projectDetailCon2 m-hide">
 							<div className="projectDetailCon2Box">
 								<div className="projectDetailCon2Title">
-									项目动态
+									{t("projectDetail.project_dyna", lng)}
 								</div>
 								<ul className="projectDetailCon2Ul">
 									{projectDynamic &&

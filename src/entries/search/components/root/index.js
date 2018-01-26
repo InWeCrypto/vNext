@@ -72,7 +72,10 @@ export default class Root extends PureComponent {
 			<I18n>
 				{(t, { i18n }) => (
 					<div className="container">
-						<FixedMenu changeLng={changeLng} lng={lng} />
+						{!IsTouchDevice && (
+							<FixedMenu changeLng={changeLng} lng={lng} />
+						)}
+
 						<Header
 							userInfo={userInfo}
 							registerUser={registerUser}
@@ -114,46 +117,104 @@ export default class Root extends PureComponent {
 									}}
 								/>
 							</div>
+
 							<div className="searchResult">
-								<ul className="searchResultUl">
-									{search &&
-										search.data &&
-										search.data.length > 0 &&
-										search.data.map((item, index) => {
-											return (
-												<li key={index} className="ui">
-													<Link
-														to={{
-															pathname:
-																"/newsdetail",
-															search:
-																"?art_id=" +
-																item.id
-														}}
+								{IsTouchDevice && !k ? (
+									<div className="letSearch">
+										<p className="title">
+											Everyone in the search
+										</p>
+										<p className="linkList ui center">
+											<Link to="/search?k=Neo">Neo</Link>
+											<Link to="/search?k=Btc">Btc</Link>
+											<Link to="/search?k=Ltd">Ltd</Link>
+										</p>
+									</div>
+								) : (
+									<ul className="searchResultUl">
+										{search &&
+											search.data &&
+											search.data.length > 0 &&
+											search.data.map((item, index) => {
+												return (
+													<li
+														key={index}
+														className={
+															IsTouchDevice &&
+															item.img
+																? "ui m-withImg"
+																: "ui"
+														}
 													>
-														{item.img && (
-															<div className="imgLf">
-																<img
-																	src={
-																		item.img
-																	}
-																	alt=""
-																/>
+														<Link
+															className="ui m-block"
+															to={{
+																pathname:
+																	"/newsdetail",
+																search:
+																	"?art_id=" +
+																	item.id
+															}}
+														>
+															{item.img && (
+																<div className="imgLf">
+																	<img
+																		src={
+																			item.img
+																		}
+																		alt=""
+																	/>
+																</div>
+															)}
+															<div className="conRt f1">
+																{IsTouchDevice ? (
+																	<p className="text">
+																		{
+																			item.title
+																		}
+																		{":"}
+																		{
+																			item.desc
+																		}
+																	</p>
+																) : (
+																	<div>
+																		<span className="conRtTitle">
+																			{
+																				item.title
+																			}
+																		</span>
+																		<p className="conRtDesc ellitext">
+																			{
+																				item.desc
+																			}
+																		</p>
+																	</div>
+																)}
 															</div>
-														)}
-														<div className="conRt f1">
-															<span className="conRtTitle">
-																{item.title}
-															</span>
-															<p className="conRtDesc ellitext">
-																{item.desc}
-															</p>
-														</div>
-													</Link>
-												</li>
-											);
-										})}
-								</ul>
+															{IsTouchDevice && (
+																<div className="conDate">
+																	<span className="date">
+																		{
+																			item.created_at
+																		}
+																	</span>
+																	{item.img && (
+																		<span className="original">
+																			{t(
+																				"icon.original",
+																				lng
+																			)}
+																		</span>
+																	)}
+																</div>
+															)}
+														</Link>
+													</li>
+												);
+											})}
+									</ul>
+								)}
 							</div>
 						</div>
 						<Footer changeLng={changeLng} lng={lng} />
