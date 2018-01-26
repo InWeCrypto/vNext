@@ -133,7 +133,7 @@ export default class Root extends PureComponent {
 		const { month, monthArr, curDay, AcImgH, showSearch } = this.state;
 		const curMonth = monthArr[month].slice(0, 3);
 		const settings = {
-			dots: true,
+			// dots: true,
 			infinite: true,
 			speed: 500,
 			slidesToShow: 1,
