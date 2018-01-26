@@ -460,29 +460,16 @@ export default class Root extends PureComponent {
 											</Link>
 										</div>
 									</div>
-<<<<<<< HEAD
-									{!IsTouchDevice && (
-										<div className="homeBoxFllow">
-											<p className="homeBoxTitle">
-												{t("home.follow", lng)}…
-											</p>
-											<ul className="homeBoxFllowUl">
-												{userFavo &&
-													userFavo.data &&
-													userFavo.data.length > 0 &&
-													userFavo.data.map(
-=======
 									{!IsTouchDevice &&
 										userFavo &&
 										userFavo.data &&
 										userFavo.data.length > 0 && (
 											<div className="homeBoxFllow">
 												<p className="homeBoxTitle">
-													Follow…
+													{t("home.follow", lng)}…
 												</p>
 												<ul className="homeBoxFllowUl">
 													{userFavo.data.map(
->>>>>>> dddf438c58c6320bf59b17207aa2d6402336e817
 														(item, index) => {
 															return (
 																<li
