@@ -41,7 +41,8 @@ export default class Root extends PureComponent {
 				newDate.getDate() < 10
 					? "0" + newDate.getDate()
 					: newDate.getDate(),
-			sliderIndex: 0
+			sliderIndex: 0,
+			sliderIndex1: 0
 		};
 	}
 	componentWillReceiveProps(nextProps) {
@@ -166,10 +167,15 @@ export default class Root extends PureComponent {
 			speed: 500,
 			slidesToShow: 1,
 			slidesToScroll: 1,
-			autoplay: true,
+			// autoplay: true,
 			arrows: false,
 			accessibility: true,
-			adaptiveHeight: true
+			adaptiveHeight: true,
+			afterChange: function(index) {
+				this.setState({
+					sliderIndex1: index
+				});
+			}.bind(this)
 		};
 		return (
 			<I18n>
@@ -311,7 +317,17 @@ export default class Root extends PureComponent {
 											newsList.data.map((item, index) => {
 												return (
 													<li key={index}>
-														<p>{item.title}</p>
+														<Link
+															to={{
+																pathname:
+																	"/newsdetail",
+																search:
+																	"?art_id=" +
+																	item.id
+															}}
+														>
+															<p>{item.title}</p>
+														</Link>
 													</li>
 												);
 											})}
