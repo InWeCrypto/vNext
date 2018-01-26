@@ -122,22 +122,34 @@ export default class Root extends PureComponent {
 										search.data.map((item, index) => {
 											return (
 												<li key={index} className="ui">
-													{item.img && (
-														<div className="imgLf">
-															<img
-																src={item.img}
-																alt=""
-															/>
+													<Link
+														to={{
+															pathname:
+																"/newsdetail",
+															search:
+																"?art_id=" +
+																item.id
+														}}
+													>
+														{item.img && (
+															<div className="imgLf">
+																<img
+																	src={
+																		item.img
+																	}
+																	alt=""
+																/>
+															</div>
+														)}
+														<div className="conRt f1">
+															<span className="conRtTitle">
+																{item.title}
+															</span>
+															<p className="conRtDesc ellitext">
+																{item.desc}
+															</p>
 														</div>
-													)}
-													<div className="conRt f1">
-														<span className="conRtTitle">
-															{item.title}
-														</span>
-														<p className="conRtDesc ellitext">
-															{item.desc}
-														</p>
-													</div>
+													</Link>
 												</li>
 											);
 										})}

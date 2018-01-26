@@ -333,7 +333,6 @@ export default class Root extends PureComponent {
 												newsImg.data.length > 0 &&
 												newsImg.data.map(
 													(item, index) => {
-														console.log(item);
 														return (
 															<li
 																className="m-news-imgNews"
