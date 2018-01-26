@@ -93,10 +93,12 @@ export default class Root extends PureComponent {
 		this.props.getExchangeNotice({
 			per_page: 2
 		});
-		this.props.getUserFavo({
-			user_favorite: true,
-			per_page: 3
-		});
+		if (this.props.userInfo) {
+			this.props.getUserFavo({
+				user_favorite: true,
+				per_page: 3
+			});
+		}
 	}
 
 	turnToCandy() {
@@ -448,16 +450,16 @@ export default class Root extends PureComponent {
 											</Link>
 										</div>
 									</div>
-									{!IsTouchDevice && (
-										<div className="homeBoxFllow">
-											<p className="homeBoxTitle">
-												Follow…
-											</p>
-											<ul className="homeBoxFllowUl">
-												{userFavo &&
-													userFavo.data &&
-													userFavo.data.length > 0 &&
-													userFavo.data.map(
+									{!IsTouchDevice &&
+										userFavo &&
+										userFavo.data &&
+										userFavo.data.length > 0 && (
+											<div className="homeBoxFllow">
+												<p className="homeBoxTitle">
+													Follow…
+												</p>
+												<ul className="homeBoxFllowUl">
+													{userFavo.data.map(
 														(item, index) => {
 															return (
 																<li
@@ -479,23 +481,23 @@ export default class Root extends PureComponent {
 															);
 														}
 													)}
-											</ul>
-											<div className="homeBoxReadMore">
-												<Link
-													to={{
-														pathname: "/member",
-														search:
-															"?type=collection"
-													}}
-												>
-													<span className="readMore">
-														Read more
-													</span>
-													<b className="readMoreImg" />
-												</Link>
+												</ul>
+												<div className="homeBoxReadMore">
+													<Link
+														to={{
+															pathname: "/member",
+															search:
+																"?type=collection"
+														}}
+													>
+														<span className="readMore">
+															Read more
+														</span>
+														<b className="readMoreImg" />
+													</Link>
+												</div>
 											</div>
-										</div>
-									)}
+										)}
 								</div>
 								{IsTouchDevice && (
 									<div className="homeBoxList homeBoxWallet">
