@@ -40,6 +40,7 @@ class Header extends PureComponent {
 		});
 	}
 	componentDidMount() {
+		window.headerBox = this;
 		if (this.props.nofixed) {
 			window.addEventListener("scroll", this.handleScroll.bind(this));
 		}
