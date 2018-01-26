@@ -19,7 +19,6 @@ class Footer extends PureComponent {
 	componentDidMount() {
 		if (IsTouchDevice) {
 			chargeFooterFixed();
-			console.log(0);
 		}
 	}
 	componentDidUpdate() {

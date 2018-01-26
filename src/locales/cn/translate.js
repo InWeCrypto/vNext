@@ -1,5 +1,8 @@
 export default {
 	home: {},
+	icon: {
+		original: "原创"
+	},
 	project: {
 		trading: "交易",
 		active: "活动",

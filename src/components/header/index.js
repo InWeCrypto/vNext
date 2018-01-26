@@ -90,13 +90,13 @@ class Header extends PureComponent {
 		let navDomChild = document.getElementById("m-nav-c");
 		if (navDom && navDomChild) {
 			let navBundingTop = navDom.getBoundingClientRect().top;
+
 			if (navBundingTop <= 0) {
 				addClass(navDomChild, "fixed");
 			} else {
 				removeClass(navDomChild, "fixed");
 			}
 		}
-		console.log("浏览器滚动事件");
 	}
 	toggleMember(e) {
 		e.nativeEvent.stopImmediatePropagation();
@@ -182,7 +182,9 @@ class Header extends PureComponent {
 		});
 	}
 	// 点击搜索
-	searchBtnClick(e) {}
+	toSearch(e) {
+		window.location.href = "/search?k=";
+	}
 
 	render() {
 		const {
@@ -237,12 +239,15 @@ class Header extends PureComponent {
 									<img src={titleCat} alt="" />
 									<span>InWeCrypto</span>
 								</div>
-								<div className="m-searchBtn">
+								<div
+									className="m-searchBtn"
+									onClick={this.toSearch.bind(this)}
+								>
 									{/* <Link
-                                        to={{
-                                            pathname: "/search"
-                                        }}
-                                    > */}
+										to={{
+											pathname: ""
+										}}
+									> */}
 									<img src={searchicon} alt="" />
 									{/* </Link> */}
 								</div>

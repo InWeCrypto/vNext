@@ -18,7 +18,7 @@
 		width: 100%;
 		.projectListConChild {
 			flex-grow: 1;
-			padding: 0 0.3rem;
+			padding: 0;
 			border-right: 1px solid #ececec;
 			box-sizing: border-box;
 			.projectListConChildTitle {
@@ -161,13 +161,24 @@
 		width: 100%;
 		height: 0.9rem;
 		background: #f6f6f6;
-		justify-content: space-around;
-		p {
-			margin: 0 0.3rem;
-			font-size: 0.28rem;
-			line-height: 0.32rem;
-			&.active {
-				color: #0a9234;
+		.projectListNav-c {
+			width: 7.5rem;
+			height: 0.9rem;
+			background: #f6f6f6;
+			justify-content: space-around;
+			&.fixed {
+				position: fixed;
+				top: 0;
+				left: 0;
+				z-index: 10;
+			}
+			p {
+				margin: 0 0.3rem;
+				font-size: 0.28rem;
+				line-height: 0.32rem;
+				&.active {
+					color: #0a9234;
+				}
 			}
 		}
 	}
