@@ -60,6 +60,9 @@ export default {
 		trading: "交易观点",
 		announcment: "公告"
 	},
+	search: {
+		placeholder: "Search you want to know"
+	},
 	signBox: {
 		signIn: {
 			email: "邮箱",
