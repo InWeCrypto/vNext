@@ -40,7 +40,8 @@ export default class Root extends PureComponent {
 			curDay:
 				newDate.getDate() < 10
 					? "0" + newDate.getDate()
-					: newDate.getDate()
+					: newDate.getDate(),
+			sliderIndex: 0
 		};
 	}
 	componentWillReceiveProps(nextProps) {
@@ -134,11 +135,34 @@ export default class Root extends PureComponent {
 			commonMarket,
 			getHeaderMarket
 		} = this.props;
-		const { month, monthArr, curDay, AcImgH, showSearch } = this.state;
+		const {
+			month,
+			monthArr,
+			curDay,
+			AcImgH,
+			showSearch,
+			sliderIndex
+		} = this.state;
 		const curMonth = monthArr[month].slice(0, 3);
 		const settings = {
 			// dots: true,
-			infinite: true,
+			infinite: false,
+			speed: 500,
+			slidesToShow: 1,
+			slidesToScroll: 1,
+			// autoplay: true,
+			arrows: false,
+			accessibility: true,
+			adaptiveHeight: true,
+			afterChange: function(index) {
+				this.setState({
+					sliderIndex: index
+				});
+			}.bind(this)
+		};
+		const settings1 = {
+			// dots: true,
+			infinite: false,
 			speed: 500,
 			slidesToShow: 1,
 			slidesToScroll: 1,
@@ -207,13 +231,14 @@ export default class Root extends PureComponent {
 																		id="homeBoxArticleImg"
 																		className="homeBoxArticleImg"
 																		style={{
-																			maxHeight: AcImgH
+																			height: AcImgH
 																		}}
 																	>
 																		<img
 																			src={
 																				item.img
 																			}
+																			height="100%"
 																			alt=""
 																		/>
 																	</div>
@@ -230,42 +255,49 @@ export default class Root extends PureComponent {
 											)}
 									</div>
 									<div className="homeBoxArticleBtn">
-										{/* {articleList.next_page_url && ( */}
-										<span
-											className="more right ui center jcenter"
-											onClick={() => {
-												// this.setArticleList(
-												// 	articleList.current_page + 1
-												// );
-												this.slider.slickNext();
-											}}
-										>
-											<b />
-										</span>
-										{/* )} */}
-										{/* {!articleList.next_page_url && (
-											<span className="right ui center jcenter">
+										{articleList.data &&
+											articleList.data.length - 1 !==
+												sliderIndex && (
+												<span
+													className="more right ui center jcenter"
+													onClick={() => {
+														// this.setArticleList(
+														// 	articleList.current_page + 1
+														// );
+														console.log(
+															this.slider
+														);
+														this.slider.slickNext();
+													}}
+												>
+													<b />
+												</span>
+											)}
+										{articleList.data &&
+											sliderIndex >=
+												articleList.data.length - 1 && (
+												<span className="right ui center jcenter">
+													<b />
+												</span>
+											)}
+										{sliderIndex !== 0 && (
+											<span
+												className="more left ui center jcenter"
+												onClick={() => {
+													// this.setArticleList(
+													// 	articleList.current_page - 1
+													// );
+													this.slider.slickPrev();
+												}}
+											>
 												<b />
 											</span>
-										)} */}
-										{/* {articleList.prev_page_url && ( */}
-										<span
-											className="more left ui center jcenter"
-											onClick={() => {
-												// this.setArticleList(
-												// 	articleList.current_page - 1
-												// );
-												this.slider.slickPrev();
-											}}
-										>
-											<b />
-										</span>
-										{/* )} */}
-										{/* {!articleList.prev_page_url && (
+										)}
+										{sliderIndex == 0 && (
 											<span className="left ui center jcenter">
 												<b />
 											</span>
-										)} */}
+										)}
 									</div>
 								</div>
 								<div className="homeBoxList homeBoxNews">
@@ -350,7 +382,7 @@ export default class Root extends PureComponent {
 																ref={c =>
 																	(this.slider1 = c)
 																}
-																{...settings}
+																{...settings1}
 															>
 																{ads.data.map(
 																	(
