@@ -206,7 +206,7 @@ export default class Root extends PureComponent {
 									<div className="newsBoxModTop">
 										<p>
 											<span className="title">
-												24H News
+												{t("news.news", lng)}
 											</span>
 											<span className="nums m-hide">
 												{newsText.current_page}/{
@@ -333,7 +333,6 @@ export default class Root extends PureComponent {
 												newsImg.data.length > 0 &&
 												newsImg.data.map(
 													(item, index) => {
-														console.log(item);
 														return (
 															<li
 																className="m-news-imgNews"
@@ -362,6 +361,7 @@ export default class Root extends PureComponent {
 																		<img
 																			className="m-hide"
 																			src={
+																				item.category &&
 																				item
 																					.category
 																					.img
@@ -467,6 +467,7 @@ export default class Root extends PureComponent {
 																		</p>
 																		<img
 																			src={
+																				item.category &&
 																				item
 																					.category
 																					.img

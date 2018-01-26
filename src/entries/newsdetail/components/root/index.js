@@ -11,6 +11,17 @@ import "./index.less";
 import { platform } from "os";
 
 export default class Root extends PureComponent {
+	constructor(props) {
+		super(props);
+		this.state = {
+			minH: "auto",
+			isShowImg: true,
+			newsType: "video", // video img
+			isJump: "", // yes no
+			art_id: "",
+			enable: false
+		};
+	}
 	componentWillReceiveProps(nextProps) {
 		if (nextProps.location.search != this.props.location.search) {
 			this.initPage(nextProps.location.search);
@@ -39,18 +50,6 @@ export default class Root extends PureComponent {
 	}
 	componentDidUpdate() {
 		this.textChange();
-		this.creatVideo();
-	}
-	constructor(props) {
-		super(props);
-		this.state = {
-			minH: "auto",
-			isShowImg: true,
-			newsType: "video", // video img
-			isJump: "", // yes no
-			art_id: "",
-			enable: false
-		};
 	}
 	getNewsDetailContent(art_id) {
 		this.props
@@ -60,6 +59,7 @@ export default class Root extends PureComponent {
 			.then(res => {
 				if (res.code === 4000) {
 					let enableBool = false;
+					let isJumpBoll = false;
 					if (
 						res.data.article_user &&
 						res.data.article_user.user_id
@@ -68,15 +68,25 @@ export default class Root extends PureComponent {
 					} else {
 						enableBool = false;
 					}
+					if (res.data.url) {
+						isJumpBoll = true; // 外部链接
+					} else {
+						isJumpBoll = false;
+					}
 					this.setState({
 						art_id: res.data.id,
 						newsType: res.data.type,
-						enable: enableBool
+						enable: enableBool,
+						isJump: isJumpBoll
 					});
 				}
+				return res;
 			})
 			.then(res => {
 				this.getNewsComment();
+				if (res.data.type == 3) {
+					this.videoPlay(res.data.url, res.data.video, res.data.img);
+				}
 			});
 	}
 	getNewsCollect(art_id) {
@@ -100,7 +110,7 @@ export default class Root extends PureComponent {
 			})
 			.then(res => {
 				if (res.code === 4000) {
-					console.log(res);
+					// console.log(res);
 				}
 			});
 	}
@@ -142,24 +152,17 @@ export default class Root extends PureComponent {
 				}
 			});
 	}
-	videoPlay() {
-		this.setState({
-			newsType: ""
-		});
-		if (this.state.isJump == "yes") {
+	videoPlay(url, video, img) {
+		if (url) {
 			// 跳转
-			window.open("www.baidu.com");
+			window.open(url);
 		} else {
 			// 不跳转
-			this.setState(
-				{
-					isJump: "no"
-				},
-				this.creatVideo()
-			);
+			this.creatVideo(video, img);
 		}
 	}
-	creatVideo() {
+	creatVideo(video, img) {
+		console.log(video);
 		let script = document.createElement("script");
 		script.src = "//g.alicdn.com/de/prismplayer/2.5.0/aliplayer-min.js";
 		script.type = "text/javascript";
@@ -169,25 +172,22 @@ export default class Root extends PureComponent {
 		link.rel = "stylesheet";
 		document.getElementsByTagName("head")[0].appendChild(link);
 		document.getElementsByTagName("head")[0].appendChild(script);
-		// window.onload = function() {
-		if (this.state.isJump == "no") {
+		script.onload = function() {
 			var player = new Aliplayer(
 				{
 					id: "J_prismPlayer",
 					width: "100%",
 					autoplay: false,
-					cover:
-						"https://b-ssl.duitang.com/uploads/item/201801/10/20180110212314_ytxcG.thumb.700_0.jpeg",
+					cover: img,
 					//支持播放地址播放,此播放优先级最高
-					source: "http://abc.tanshikeji.com/video1.mp4"
+					source: video
 				},
 				function(player) {
 					console.log("播放器创建好了。");
-					console.log(player.play());
+					// console.log(player.play());
 				}
 			);
-		}
-		// };
+		};
 	}
 	render() {
 		const { minH, enable } = this.state;
@@ -324,44 +324,53 @@ export default class Root extends PureComponent {
 								</div>
 								<div className="newsDetailBox">
 									{/* 视频 */}
-									{this.state.isJump == "no" && (
+									{!this.state.isJump && (
 										<div
 											className="prism-player"
 											id="J_prismPlayer"
 										/>
 									)}
-									{this.state.newsType == 3 && (
-										<div className="videoType">
-											<img
-												src="https://b-ssl.duitang.com/uploads/item/201801/10/20180110212314_ytxcG.thumb.700_0.jpeg"
-												alt=""
-											/>
-											<b
-												id="videoPlay"
-												onClick={() => {
-													this.videoPlay();
-												}}
-											/>
-										</div>
-									)}
+									{this.state.newsType == 3 &&
+										this.state.isJump && (
+											<div className="videoType">
+												<img
+													src={newsDetail.img}
+													alt=""
+												/>
+												<b
+													id="videoPlay"
+													onClick={() => {
+														this.videoPlay(
+															newsDetail.url,
+															newsDetail.video
+														);
+													}}
+												/>
+											</div>
+										)}
 
 									<div className="newsDetailContent">
-										{newsDetail.content}
-
-										{this.state.newsType == 2 && (
+										{/* {this.state.newsType == 2 && (
 											<img
 												src="http://img4.imgtn.bdimg.com/it/u=4004954884,1272926999&fm=214&gp=0.jpg"
 												alt=""
 											/>
-										)}
+										)} */}
+										<div
+											dangerouslySetInnerHTML={{
+												__html: newsDetail.content
+											}}
+										/>
 									</div>
 									<p className="newsReadNums">
-										{newsDetail.click_rate}人已读
+										{newsDetail.click_rate}
+										{t("newsDetail.read", lng)}
 									</p>
 								</div>
 								<div className="newsDetailComment">
 									<div className="newsDetailCommentNums">
-										<b>{newsDetail.comment_count}</b>条评论
+										<b>{newsDetail.comment_count}</b>
+										{t("newsDetail.comment", lng)}
 									</div>
 									<div className="newsDetailCommmentBox">
 										<div className="newsDetailCommentBoxCenter ui center">
@@ -380,7 +389,10 @@ export default class Root extends PureComponent {
 											<textarea
 												name=""
 												id="textareaId"
-												placeholder="说点什么..."
+												placeholder={t(
+													"newsDetail.talk",
+													lng
+												)}
 												onFocus={() => {
 													this.inFocus();
 												}}
@@ -399,7 +411,7 @@ export default class Root extends PureComponent {
 													this.textSubmit();
 												}}
 											>
-												提交
+												{t("newsDetail.sub", lng)}
 											</span>
 											<span
 												className="cancel"
@@ -407,7 +419,7 @@ export default class Root extends PureComponent {
 													this.textEmpty();
 												}}
 											>
-												取消
+												{t("newsDetail.cancel", lng)}
 											</span>
 										</div>
 									</div>

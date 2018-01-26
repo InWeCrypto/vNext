@@ -131,7 +131,8 @@ class Footer extends PureComponent {
 											this.changeLanguage("en");
 										}}
 									>
-										EN
+										<div>EN</div>
+										<span className="line" />
 									</div>
 									<div
 										className={(() =>
@@ -140,7 +141,8 @@ class Footer extends PureComponent {
 											this.changeLanguage("zh");
 										}}
 									>
-										ZH
+										<div>ZH</div>
+										<span className="line" />
 									</div>
 								</div>
 							</div>

@@ -146,55 +146,70 @@ export default class Root extends PureComponent {
 																: "ui"
 														}
 													>
-														{item.img && (
-															<div className="imgLf">
-																<img
-																	src={
-																		item.img
-																	}
-																	alt=""
-																/>
-															</div>
-														)}
-														<div className="conRt f1">
-															{IsTouchDevice ? (
-																<p className="text">
-																	{item.title}
-																	{":"}
-																	{item.desc}
-																</p>
-															) : (
-																<div>
-																	<span className="conRtTitle">
+														<Link
+															className="ui m-block"
+															to={{
+																pathname:
+																	"/newsdetail",
+																search:
+																	"?art_id=" +
+																	item.id
+															}}
+														>
+															{item.img && (
+																<div className="imgLf">
+																	<img
+																		src={
+																			item.img
+																		}
+																		alt=""
+																	/>
+																</div>
+															)}
+															<div className="conRt f1">
+																{IsTouchDevice ? (
+																	<p className="text">
 																		{
 																			item.title
 																		}
-																	</span>
-																	<p className="conRtDesc ellitext">
+																		{":"}
 																		{
 																			item.desc
 																		}
 																	</p>
-																</div>
-															)}
-														</div>
-														{IsTouchDevice && (
-															<div className="conDate">
-																<span className="date">
-																	{
-																		item.created_at
-																	}
-																</span>
-																{item.img && (
-																	<span className="original">
-																		{t(
-																			"icon.original",
-																			lng
-																		)}
-																	</span>
+																) : (
+																	<div>
+																		<span className="conRtTitle">
+																			{
+																				item.title
+																			}
+																		</span>
+																		<p className="conRtDesc ellitext">
+																			{
+																				item.desc
+																			}
+																		</p>
+																	</div>
 																)}
 															</div>
-														)}
+															{IsTouchDevice && (
+																<div className="conDate">
+																	<span className="date">
+																		{
+																			item.created_at
+																		}
+																	</span>
+																	{item.img && (
+																		<span className="original">
+																			{t(
+																				"icon.original",
+																				lng
+																			)}
+																		</span>
+																	)}
+																</div>
+															)}
+														</Link>
 													</li>
 												);
 											})}

@@ -12,12 +12,12 @@ export const getQuery = query => {
 };
 export const getMainMinHeight = () => {
 	let header = parseInt(
-		document.querySelector("#headerBox").offsetHeight,
+		document.getElementById("headerBox").offsetHeight,
 		10
 	);
 	let footer =
-		document.querySelector("#footerBox") &&
-		parseInt(document.querySelector("#footerBox").offsetHeight, 10);
+		document.getElementById("footerBox") &&
+		parseInt(document.getElementById("footerBox").offsetHeight, 10);
 	let wh = parseInt(window.innerHeight, 10);
 	return wh - header - footer;
 };

@@ -49,13 +49,17 @@ export default class Root extends PureComponent {
 	}
 	componentDidMount() {
 		document.title = "InWe-首页";
-		let minH = getMainMinHeight();
-		let th = document.querySelector("#topText").clientHeight;
-		document.querySelector("#mainBox").style.minHeight = minH - th + "px";
-		let AcImgH = minH - th - 320;
-		this.setState({
-			AcImgH: AcImgH
-		});
+		setTimeout(() => {
+			let minH = getMainMinHeight();
+			let th = document.querySelector("#topText").clientHeight;
+			document.querySelector("#mainBox").style.minHeight =
+				minH - th + "px";
+			let AcImgH = minH - th - 320;
+			this.setState({
+				AcImgH: AcImgH
+			});
+		}, 0);
+
 		// document.getElementById("homeBoxArticleImg").style.maxHeight =
 		// 	AcImgH + "px";
 		this.setArticleList();
@@ -93,10 +97,12 @@ export default class Root extends PureComponent {
 		this.props.getExchangeNotice({
 			per_page: 2
 		});
-		this.props.getUserFavo({
-			user_favorite: true,
-			per_page: 3
-		});
+		if (this.props.userInfo) {
+			this.props.getUserFavo({
+				user_favorite: true,
+				per_page: 3
+			});
+		}
 	}
 
 	turnToCandy() {
@@ -131,7 +137,7 @@ export default class Root extends PureComponent {
 		const { month, monthArr, curDay, AcImgH, showSearch } = this.state;
 		const curMonth = monthArr[month].slice(0, 3);
 		const settings = {
-			dots: true,
+			// dots: true,
 			infinite: true,
 			speed: 500,
 			slidesToShow: 1,
@@ -263,7 +269,9 @@ export default class Root extends PureComponent {
 									</div>
 								</div>
 								<div className="homeBoxList homeBoxNews">
-									<p className="homeBoxTitle">News</p>
+									<p className="homeBoxTitle">
+										{t("home.news", lng)}
+									</p>
 									<ul className="homeBoxNewsUl">
 										{newsList &&
 											newsList.data &&
@@ -293,7 +301,9 @@ export default class Root extends PureComponent {
 									className="homeBoxList homeBoxCandy"
 									onClick={this.turnToCandy.bind(this)}
 								>
-									<p className="homeBoxTitle">Candy?</p>
+									<p className="homeBoxTitle">
+										{t("home.candy", lng)}?
+									</p>
 									<div className="homeBoxCandyTop">
 										<p className="homeCandyDate">
 											<b>{curDay}</b>/{curMonth}
@@ -387,7 +397,9 @@ export default class Root extends PureComponent {
 									)}
 								</div>
 								<div className="homeBoxList homeBoxAnno">
-									<p className="homeBoxTitle">交易所公告</p>
+									<p className="homeBoxTitle">
+										{t("home.anno", lng)}
+									</p>
 									<div className="homeBoxAnnoTop">
 										{exchangeNotice &&
 											exchangeNotice.data &&
@@ -448,16 +460,16 @@ export default class Root extends PureComponent {
 											</Link>
 										</div>
 									</div>
-									{!IsTouchDevice && (
-										<div className="homeBoxFllow">
-											<p className="homeBoxTitle">
-												Follow…
-											</p>
-											<ul className="homeBoxFllowUl">
-												{userFavo &&
-													userFavo.data &&
-													userFavo.data.length > 0 &&
-													userFavo.data.map(
+									{!IsTouchDevice &&
+										userFavo &&
+										userFavo.data &&
+										userFavo.data.length > 0 && (
+											<div className="homeBoxFllow">
+												<p className="homeBoxTitle">
+													{t("home.follow", lng)}…
+												</p>
+												<ul className="homeBoxFllowUl">
+													{userFavo.data.map(
 														(item, index) => {
 															return (
 																<li
@@ -479,23 +491,23 @@ export default class Root extends PureComponent {
 															);
 														}
 													)}
-											</ul>
-											<div className="homeBoxReadMore">
-												<Link
-													to={{
-														pathname: "/member",
-														search:
-															"?type=collection"
-													}}
-												>
-													<span className="readMore">
-														Read more
-													</span>
-													<b className="readMoreImg" />
-												</Link>
+												</ul>
+												<div className="homeBoxReadMore">
+													<Link
+														to={{
+															pathname: "/member",
+															search:
+																"?type=collection"
+														}}
+													>
+														<span className="readMore">
+															Read more
+														</span>
+														<b className="readMoreImg" />
+													</Link>
+												</div>
 											</div>
-										</div>
-									)}
+										)}
 								</div>
 								{IsTouchDevice && (
 									<div className="homeBoxList homeBoxWallet">
