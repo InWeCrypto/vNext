@@ -263,7 +263,9 @@ export default class Root extends PureComponent {
 									</div>
 								</div>
 								<div className="homeBoxList homeBoxNews">
-									<p className="homeBoxTitle">News</p>
+									<p className="homeBoxTitle">
+										{t("home.news", lng)}
+									</p>
 									<ul className="homeBoxNewsUl">
 										{newsList &&
 											newsList.data &&
@@ -293,7 +295,9 @@ export default class Root extends PureComponent {
 									className="homeBoxList homeBoxCandy"
 									onClick={this.turnToCandy.bind(this)}
 								>
-									<p className="homeBoxTitle">Candy?</p>
+									<p className="homeBoxTitle">
+										{t("home.candy", lng)}?
+									</p>
 									<div className="homeBoxCandyTop">
 										<p className="homeCandyDate">
 											<b>{curDay}</b>/{curMonth}
@@ -387,7 +391,9 @@ export default class Root extends PureComponent {
 									)}
 								</div>
 								<div className="homeBoxList homeBoxAnno">
-									<p className="homeBoxTitle">交易所公告</p>
+									<p className="homeBoxTitle">
+										{t("home.anno", lng)}
+									</p>
 									<div className="homeBoxAnnoTop">
 										{exchangeNotice &&
 											exchangeNotice.data &&
@@ -451,7 +457,7 @@ export default class Root extends PureComponent {
 									{!IsTouchDevice && (
 										<div className="homeBoxFllow">
 											<p className="homeBoxTitle">
-												Follow…
+												{t("home.follow", lng)}…
 											</p>
 											<ul className="homeBoxFllowUl">
 												{userFavo &&

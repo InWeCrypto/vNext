@@ -1,5 +1,10 @@
 export default {
-	home: {},
+	home: {
+		news: "News",
+		candy: "Candy",
+		anno: "交易所公告",
+		follow: "Follow"
+	},
 	project: {
 		trading: "交易",
 		active: "活动",
