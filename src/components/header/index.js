@@ -388,7 +388,7 @@ class Header extends PureComponent {
 												this.toggleMember(e);
 											}}
 										>
-											<i className="member-info" />
+											{/* <i className="member-info" /> */}
 											<img
 												className="img"
 												src={
@@ -427,7 +427,10 @@ class Header extends PureComponent {
 														<i className="icon-personal" />
 													</span>
 													<span className="member-itemtext">
-														个人中心
+														{t(
+															"header.member",
+															lng
+														)}
 													</span>
 												</Link>
 												<div className="member-item">
@@ -440,7 +443,7 @@ class Header extends PureComponent {
 														}}
 														className="member-itemtext"
 													>
-														退出
+														{t("header.quit", lng)}
 													</span>
 												</div>
 											</div>
