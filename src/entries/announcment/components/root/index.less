@@ -9,6 +9,7 @@
 	// overflow-y: auto;
 	justify-content: space-between;
 	padding-top: 0.6rem;
+	flex-flow: column;
 	.annoBoxArrow {
 		width: 0.09rem;
 		flex-shrink: 0;
@@ -40,6 +41,9 @@
 	.annoCon {
 		width: 100%;
 		margin: 0 0.28rem;
+		.left {
+			border-right: 1px solid #ececec;
+		}
 		ul {
 			width: 100%;
 			padding: 0 0.4rem;
@@ -52,11 +56,9 @@
 				border-left: 0;
 			}
 			li {
-				width: 50%;
-				padding: 0.27rem 0.4rem 0.12rem 0;
-
+				padding: 0.27rem 0.4rem 0.12rem 0.4rem;
+				width: 100%;
 				box-sizing: border-box;
-				border-right: 1px solid #ececec;
 				&:nth-child(2n) {
 					padding-right: 0;
 					padding-left: 0.4rem;
@@ -82,8 +84,14 @@
 						margin-top: 0.1rem;
 					}
 				}
+				p {
+					margin-bottom: 0;
+				}
 			}
 		}
+	}
+	.pagation-box {
+		text-align: right;
 	}
 }
 .mobile #annoBox {
