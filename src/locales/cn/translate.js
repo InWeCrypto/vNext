@@ -14,6 +14,28 @@ export default {
 		other: "大约还有",
 		otherend: "个项目等你发现"
 	},
+	projectDetail: {
+		chat: "你的观点...",
+		score: "项目评分",
+		volume: "Volume (24h)",
+		rank: "市值排名",
+		market_cap_usd: "市值",
+		available_supply: "流通量",
+		total_supply: "总量",
+		price_usd: "ICO Price",
+		sort: "关注热度：第",
+		sort_s: "名",
+		user_score: "用户评分",
+		rank_title: "Rank",
+		explore_title: "Explore",
+		wallet_title: "Wallet",
+		token_title: "Token Holders",
+		social_title: "Social",
+		ico_structure: "ICO 结构",
+		project_summary: "项目概况",
+		project_dyna: "项目动态",
+		project_intro: "项目介绍"
+	},
 	news: {
 		news: "24H News",
 		ceefax: "图文资讯",

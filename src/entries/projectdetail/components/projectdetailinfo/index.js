@@ -225,7 +225,7 @@ class ProjectDetailInfo extends PureComponent {
 						<div className="projectDetailCon2 m-hide">
 							<div className="projectDetailCon2Box">
 								<div className="projectDetailCon2Title">
-									项目动态
+									{t("projectDetail.project_dyna", lng)}
 								</div>
 								<ul className="projectDetailCon2Ul">
 									{projectDynamic &&
