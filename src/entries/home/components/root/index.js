@@ -49,13 +49,17 @@ export default class Root extends PureComponent {
 	}
 	componentDidMount() {
 		document.title = "InWe-首页";
-		let minH = getMainMinHeight();
-		let th = document.querySelector("#topText").clientHeight;
-		document.querySelector("#mainBox").style.minHeight = minH - th + "px";
-		let AcImgH = minH - th - 320;
-		this.setState({
-			AcImgH: AcImgH
-		});
+		setTimeout(() => {
+			let minH = getMainMinHeight();
+			let th = document.querySelector("#topText").clientHeight;
+			document.querySelector("#mainBox").style.minHeight =
+				minH - th + "px";
+			let AcImgH = minH - th - 320;
+			this.setState({
+				AcImgH: AcImgH
+			});
+		}, 0);
+
 		// document.getElementById("homeBoxArticleImg").style.maxHeight =
 		// 	AcImgH + "px";
 		this.setArticleList();
@@ -93,10 +97,12 @@ export default class Root extends PureComponent {
 		this.props.getExchangeNotice({
 			per_page: 2
 		});
-		this.props.getUserFavo({
-			user_favorite: true,
-			per_page: 3
-		});
+		if (this.props.userInfo) {
+			this.props.getUserFavo({
+				user_favorite: true,
+				per_page: 3
+			});
+		}
 	}
 
 	turnToCandy() {
@@ -454,6 +460,7 @@ export default class Root extends PureComponent {
 											</Link>
 										</div>
 									</div>
+<<<<<<< HEAD
 									{!IsTouchDevice && (
 										<div className="homeBoxFllow">
 											<p className="homeBoxTitle">
@@ -464,6 +471,18 @@ export default class Root extends PureComponent {
 													userFavo.data &&
 													userFavo.data.length > 0 &&
 													userFavo.data.map(
+=======
+									{!IsTouchDevice &&
+										userFavo &&
+										userFavo.data &&
+										userFavo.data.length > 0 && (
+											<div className="homeBoxFllow">
+												<p className="homeBoxTitle">
+													Follow…
+												</p>
+												<ul className="homeBoxFllowUl">
+													{userFavo.data.map(
+>>>>>>> dddf438c58c6320bf59b17207aa2d6402336e817
 														(item, index) => {
 															return (
 																<li
@@ -485,23 +504,23 @@ export default class Root extends PureComponent {
 															);
 														}
 													)}
-											</ul>
-											<div className="homeBoxReadMore">
-												<Link
-													to={{
-														pathname: "/member",
-														search:
-															"?type=collection"
-													}}
-												>
-													<span className="readMore">
-														Read more
-													</span>
-													<b className="readMoreImg" />
-												</Link>
+												</ul>
+												<div className="homeBoxReadMore">
+													<Link
+														to={{
+															pathname: "/member",
+															search:
+																"?type=collection"
+														}}
+													>
+														<span className="readMore">
+															Read more
+														</span>
+														<b className="readMoreImg" />
+													</Link>
+												</div>
 											</div>
-										</div>
-									)}
+										)}
 								</div>
 								{IsTouchDevice && (
 									<div className="homeBoxList homeBoxWallet">
