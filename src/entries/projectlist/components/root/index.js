@@ -12,11 +12,31 @@ export default class Root extends PureComponent {
 	constructor(props) {
 		super(props);
 		this.state = {
-			minH: "auto"
+			minH: "auto",
+			navFristPage: 2,
+			navSecondPage: 2,
+			navThirdPage: 2,
+			navForthPage: 2,
+			mounted: false
 		};
 	}
 	componentWillReceiveProps(nextProps) {}
 	componentDidMount() {
+		window.addEventListener("scroll", this.handleScroll.bind(this));
+		console.log(this.state.navFristPage);
+		window.NavFristAjaxDone = true;
+		window.NavSecondAjaxDone = true;
+		window.NavThirdAjaxDone = true;
+		window.NavForthAjaxDone = true;
+
+		this.setState({
+			minH: "auto",
+			navFristPage: 2,
+			navSecondPage: 2,
+			navThirdPage: 2,
+			navForthPage: 2,
+			mounted: true
+		});
 		setTimeout(() => {
 			document.title = "InWe-项目列表";
 			let minH = getMainMinHeight();
@@ -28,7 +48,94 @@ export default class Root extends PureComponent {
 			this.initPage();
 		}, 0);
 	}
+	componentWillUnmount() {
+		window.removeEventListener("scroll", this.handleScroll.bind(this));
+	}
 	componentDidUpdate() {}
+	handleScroll() {
+		if (!IsTouchDevice) return;
+		let footerDom = document.getElementById("footerBox");
+		let winHei = document.documentElement.clientHeight;
+		if (!footerDom) return;
+		let footerToTopHei = footerDom.getBoundingClientRect().bottom - 10;
+		let pathName = location.pathname;
+		let UlDom = document.getElementsByClassName("projectListConChildUl")[0];
+		if (!UlDom) return;
+		let liDom = UlDom.getElementsByTagName("li");
+		if (liDom.length < 10) return;
+		if (
+			footerToTopHei <= winHei &&
+			pathName == "/projectlist" &&
+			this.state.mounted
+		) {
+			let curIndex = this.state.activeInde;
+			switch (curIndex) {
+				case 0:
+					if (window.NavFristAjaxDone) {
+						window.NavFristAjaxDone = false;
+						var page = this.state.navFristPage;
+						this.props.getProjectM({
+							type: 1,
+							per_page: 10,
+							page: page
+						});
+						var pageAdd = page + 1;
+						this.setState({
+							navFristPage: pageAdd
+						});
+					}
+					break;
+				case 1:
+					if (window.NavSecondAjaxDone) {
+						window.NavSecondAjaxDone = false;
+						var page = this.state.navSecondPage;
+						console.log(page);
+						this.props.getProjectM({
+							type: 2,
+							per_page: 10,
+							page: page
+						});
+						var pageAdd = page + 1;
+						this.setState({
+							navSecondPage: pageAdd
+						});
+					}
+					break;
+				case 2:
+					if (window.NavThridAjaxDone) {
+						window.NavThridAjaxDone = false;
+						var page = this.state.navThirdPage;
+						console.log(page);
+						this.props.getProjectM({
+							type: 3,
+							per_page: 10,
+							page: page
+						});
+						var pageAdd = page + 1;
+						this.setState({
+							navThirdPage: pageAdd
+						});
+					}
+					break;
+				case 3:
+					if (window.NavForthAjaxDone) {
+						window.NavForthAjaxDone = false;
+						var page = this.state.navForthPage;
+						console.log(page);
+						this.props.getProjectM({
+							type: 4,
+							per_page: 10,
+							page: page
+						});
+						var pageAdd = page + 1;
+						this.setState({
+							navForthPage: pageAdd
+						});
+					}
+					break;
+			}
+		}
+	}
 	initPage() {
 		let annoBoxH = document.getElementById("mainBox").clientHeight;
 		let annoBoxLiH = 103;
@@ -123,39 +230,59 @@ export default class Root extends PureComponent {
 								</Link>
 							</div>
 							{IsTouchDevice && (
-								<div className="projectListNav ui center">
-									<p
-										className={
-											activeInde == 0 ? "active" : ""
-										}
-										onClick={this.changeNav.bind(this, 0)}
+								<div
+									id="m-nav"
+									className="projectListNav ui center"
+								>
+									<div
+										id="m-nav-c"
+										className="projectListNav-c ui center"
 									>
-										{t("project.trading", lng)}
-									</p>
-									<p
-										className={
-											activeInde == 1 ? "active" : ""
-										}
-										onClick={this.changeNav.bind(this, 1)}
-									>
-										{t("project.active", lng)}
-									</p>
-									<p
-										className={
-											activeInde == 2 ? "active" : ""
-										}
-										onClick={this.changeNav.bind(this, 2)}
-									>
-										{t("project.upcoming", lng)}
-									</p>
-									<p
-										className={
-											activeInde == 3 ? "active" : ""
-										}
-										onClick={this.changeNav.bind(this, 3)}
-									>
-										{t("project.ended", lng)}
-									</p>
+										<p
+											className={
+												activeInde == 0 ? "active" : ""
+											}
+											onClick={this.changeNav.bind(
+												this,
+												0
+											)}
+										>
+											{t("project.trading", lng)}
+										</p>
+										<p
+											className={
+												activeInde == 1 ? "active" : ""
+											}
+											onClick={this.changeNav.bind(
+												this,
+												1
+											)}
+										>
+											{t("project.active", lng)}
+										</p>
+										<p
+											className={
+												activeInde == 2 ? "active" : ""
+											}
+											onClick={this.changeNav.bind(
+												this,
+												2
+											)}
+										>
+											{t("project.upcoming", lng)}
+										</p>
+										<p
+											className={
+												activeInde == 3 ? "active" : ""
+											}
+											onClick={this.changeNav.bind(
+												this,
+												3
+											)}
+										>
+											{t("project.ended", lng)}
+										</p>
+									</div>
 								</div>
 							)}
 							<div className="projectListCon ui">
@@ -394,17 +521,6 @@ export default class Root extends PureComponent {
 																					item.industry
 																				}
 																			</div>
-																			{IsTouchDevice && (
-																				<div
-																				>
-																					<div className="money">
-																						$90.00
-																					</div>
-																					<div className="precents">
-																						(-12.00%)
-																					</div>
-																				</div>
-																			)}
 																		</div>
 																	</Link>
 																</li>
@@ -496,17 +612,6 @@ export default class Root extends PureComponent {
 																					item.industry
 																				}
 																			</div>
-																			{IsTouchDevice && (
-																				<div
-																				>
-																					<div className="money">
-																						$90.00
-																					</div>
-																					<div className="precents">
-																						(-12.00%)
-																					</div>
-																				</div>
-																			)}
 																		</div>
 																	</Link>
 																</li>

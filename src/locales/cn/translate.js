@@ -5,6 +5,9 @@ export default {
 		anno: "交易所公告",
 		follow: "Follow"
 	},
+	icon: {
+		original: "原创"
+	},
 	project: {
 		trading: "交易",
 		active: "活动",
