@@ -484,6 +484,7 @@ export default class Root extends PureComponent {
 								{!newsDetail.article_next && <span />}
 							</div>
 						</div>
+						<Footer lng={lng} changeLng={changeLng} />
 					</div>
 				)}
 			</I18n>

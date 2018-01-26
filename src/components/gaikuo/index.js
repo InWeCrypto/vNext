@@ -145,193 +145,215 @@ class GaiKuo extends PureComponent {
 		return (
 			<I18n>
 				{(t, { I18n }) => (
-					<div className="gaikuo">
-						<div className="gaikuoBox">
-							<ul className="gaikuoUl ui">
-								<li
-									className={
-										projectDetail.category_user &&
-										projectDetail.category_user
-											.is_market_follow
-											? "gaikuoRemind cur"
-											: "gaikuoRemind"
-									}
-									onClick={e => {
-										this.toggleList("remind", e);
-									}}
-								>
-									{/* 收藏 官网 分享 */}
-									<b className="" />
-									<span>提醒</span>
-								</li>
-								<li
-									className={
-										projectDetail.category_user &&
-										projectDetail.category_user.is_favorite
-											? "gaikuoCollect cur"
-											: "gaikuoCollect"
-									}
-									onClick={e => {
-										this.toggleList("collect", e);
-									}}
-								>
-									<b className="" />
-									<span>收藏</span>
-								</li>
-								<li
-									className={
-										home ? "gaikuoHome cur" : "gaikuoHome"
-									}
-									onClick={e => {
-										this.toggleList("home", e);
-									}}
-								>
-									<a href={projectDetail.website}>
-										<b className="" />
-										<span>官网</span>
-									</a>
-								</li>
-								<li
-									className={
-										share
-											? "gaikuoShare cur"
-											: "gaikuoShare"
-									}
-									onClick={e => {
-										this.toggleList("share", e);
-									}}
-								>
-									<b className="" />
-									<span>分享</span>
-								</li>
-							</ul>
-							{showShareList && (
-								<ul className="shareList ui center">
-									<li
-										onClick={this.showThisPageTocode.bind(
-											this
-										)}
-										className="wx"
-									/>
-									{/* <li className="pyq" /> */}
-									<li
-										onClick={this.openTele.bind(this)}
-										className="tele"
-									/>
-									<li
-										onClick={this.showThisPageTocode.bind(
-											this
-										)}
-										className="qq"
-									/>
-								</ul>
-							)}
-						</div>
-						{remindBox && (
-							<div className="remindBox">
-								<div className="remind-content">
-									<div className="remind-bg" />
-									<div className={css(this.styles.magic)}>
-										<div className="remind-inbox">
-											<div className="remind-in">
-												<i
-													className="icon-close"
-													onClick={() => {
-														this.closeRemind();
-													}}
-												/>
-												<div className="remind-in-content">
-													<div className="remind-in-title">
-														行情提醒
-													</div>
-													<div className="remind-in-item">
-														<div className="item-name">
-															<img
-																src={
-																	projectDetail.img
-																}
-																alt=""
-															/>
-															<span>
-																{
-																	projectDetail.name
-																}
-															</span>
-														</div>
-														<div className="item-input">
-															<div className="remindAbove">
-																<span>
-																	Above
-																</span>
-																<div className="remindInput">
-																	<b>$</b>
-																	<input
-																		type="text"
-																		value={
-																			aboveVal
+					<div>
+						{IsTouchDevice ? (
+							<div className="m-shareIcon">
+								<div className="m-start" />
+								<div className="m-share" />
+							</div>
+						) : (
+							<div className="gaikuo">
+								<div className="gaikuoBox">
+									<ul className="gaikuoUl ui">
+										<li
+											className={
+												projectDetail.category_user &&
+												projectDetail.category_user
+													.is_market_follow
+													? "gaikuoRemind cur"
+													: "gaikuoRemind"
+											}
+											onClick={e => {
+												this.toggleList("remind", e);
+											}}
+										>
+											{/* 收藏 官网 分享 */}
+											<b className="" />
+											<span>提醒</span>
+										</li>
+										<li
+											className={
+												projectDetail.category_user &&
+												projectDetail.category_user
+													.is_favorite
+													? "gaikuoCollect cur"
+													: "gaikuoCollect"
+											}
+											onClick={e => {
+												this.toggleList("collect", e);
+											}}
+										>
+											<b className="" />
+											<span>收藏</span>
+										</li>
+										<li
+											className={
+												home
+													? "gaikuoHome cur"
+													: "gaikuoHome"
+											}
+											onClick={e => {
+												this.toggleList("home", e);
+											}}
+										>
+											<a href={projectDetail.website}>
+												<b className="" />
+												<span>官网</span>
+											</a>
+										</li>
+										<li
+											className={
+												share
+													? "gaikuoShare cur"
+													: "gaikuoShare"
+											}
+											onClick={e => {
+												this.toggleList("share", e);
+											}}
+										>
+											<b className="" />
+											<span>分享</span>
+										</li>
+									</ul>
+									{showShareList && (
+										<ul className="shareList ui center">
+											<li
+												onClick={this.showThisPageTocode.bind(
+													this
+												)}
+												className="wx"
+											/>
+											{/* <li className="pyq" /> */}
+											<li
+												onClick={this.openTele.bind(
+													this
+												)}
+												className="tele"
+											/>
+											<li
+												onClick={this.showThisPageTocode.bind(
+													this
+												)}
+												className="qq"
+											/>
+										</ul>
+									)}
+								</div>
+								{remindBox && (
+									<div className="remindBox">
+										<div className="remind-content">
+											<div className="remind-bg" />
+											<div
+												className={css(
+													this.styles.magic
+												)}
+											>
+												<div className="remind-inbox">
+													<div className="remind-in">
+														<i
+															className="icon-close"
+															onClick={() => {
+																this.closeRemind();
+															}}
+														/>
+														<div className="remind-in-content">
+															<div className="remind-in-title">
+																行情提醒
+															</div>
+															<div className="remind-in-item">
+																<div className="item-name">
+																	<img
+																		src={
+																			projectDetail.img
 																		}
-																		onChange={e => {
-																			this.changeVal(
-																				e,
-																				"aboveVal"
-																			);
-																		}}
+																		alt=""
 																	/>
+																	<span>
+																		{
+																			projectDetail.name
+																		}
+																	</span>
+																</div>
+																<div className="item-input">
+																	<div className="remindAbove">
+																		<span>
+																			Above
+																		</span>
+																		<div className="remindInput">
+																			<b>
+																				$
+																			</b>
+																			<input
+																				type="text"
+																				value={
+																					aboveVal
+																				}
+																				onChange={e => {
+																					this.changeVal(
+																						e,
+																						"aboveVal"
+																					);
+																				}}
+																			/>
+																		</div>
+																	</div>
+																	<div className="remindBelow">
+																		<span>
+																			Below
+																		</span>
+																		<div className="remindInput">
+																			<b>
+																				$
+																			</b>
+																			<input
+																				type="text"
+																				value={
+																					belowVal
+																				}
+																				onChange={e => {
+																					this.changeVal(
+																						e,
+																						"belowVal"
+																					);
+																				}}
+																			/>
+																		</div>
+																	</div>
 																</div>
 															</div>
-															<div className="remindBelow">
-																<span>
-																	Below
+															<div className="remind-in-btn">
+																<span
+																	className="remindCancel"
+																	onClick={() => {
+																		this.remindUpdate(
+																			"cancel",
+																			projectDetail.id,
+																			false
+																		);
+																	}}
+																>
+																	取消提醒
 																</span>
-																<div className="remindInput">
-																	<b>$</b>
-																	<input
-																		type="text"
-																		value={
-																			belowVal
-																		}
-																		onChange={e => {
-																			this.changeVal(
-																				e,
-																				"belowVal"
-																			);
-																		}}
-																	/>
-																</div>
+																<span
+																	className="remindConfirm"
+																	onClick={() => {
+																		this.remindUpdate(
+																			"confirm",
+																			projectDetail.id,
+																			true
+																		);
+																	}}
+																>
+																	确定
+																</span>
 															</div>
 														</div>
-													</div>
-													<div className="remind-in-btn">
-														<span
-															className="remindCancel"
-															onClick={() => {
-																this.remindUpdate(
-																	"cancel",
-																	projectDetail.id,
-																	false
-																);
-															}}
-														>
-															取消提醒
-														</span>
-														<span
-															className="remindConfirm"
-															onClick={() => {
-																this.remindUpdate(
-																	"confirm",
-																	projectDetail.id,
-																	true
-																);
-															}}
-														>
-															确定
-														</span>
 													</div>
 												</div>
 											</div>
 										</div>
 									</div>
-								</div>
+								)}
 							</div>
 						)}
 						{isShowQcode && (
