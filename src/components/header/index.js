@@ -400,7 +400,7 @@ class Header extends PureComponent {
 										</div>
 										{showMember && (
 											<div className="member-more">
-												<Link
+												{/* <Link
 													to={{
 														pathname: "/member",
 														search: "?type=message"
@@ -414,7 +414,7 @@ class Header extends PureComponent {
 													<span className="member-itemtext">
 														未读消息
 													</span>
-												</Link>
+												</Link> */}
 												<Link
 													to={{
 														pathname: "/member",
