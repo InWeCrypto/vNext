@@ -137,7 +137,8 @@ class ProjectDetailIco extends PureComponent {
 									<div className="projectDetailCenter2">
 										<span>{projectDetail.type_name}</span>
 										<p>
-											Token Sale<i>
+											Token Sale{" "}
+											<i>
 												{(() => {
 													return this.getEndDay(
 														projectDetail.category_desc &&
@@ -180,7 +181,7 @@ class ProjectDetailIco extends PureComponent {
 													.replace(/-/, ".")}
 										</p>
 									</div>
-									<div className="ul">
+									<div className="ul ">
 										<p
 											dangerouslySetInnerHTML={{
 												__html:

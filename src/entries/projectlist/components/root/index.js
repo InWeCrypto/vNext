@@ -160,8 +160,8 @@ export default class Root extends PureComponent {
 							)}
 							<div className="projectListCon ui">
 								{[1, 2, 3, 4].map((item, index) => {
-									if (activeInde != index) {
-										return;
+									if (IsTouchDevice && activeInde != index) {
+										return null;
 									}
 									return (
 										<div
