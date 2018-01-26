@@ -33,7 +33,7 @@ export default class Root extends PureComponent {
 		}
 	}
 	componentDidMount() {
-		document.title = "InWe-ICO";
+		document.title = "InWe-" + i18n.t("navMenu.project", this.props.lng);
 		let minH = getMainMinHeight();
 		this.setState({
 			minH: minH

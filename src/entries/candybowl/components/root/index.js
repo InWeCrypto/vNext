@@ -35,7 +35,7 @@ class Root extends PureComponent {
 		}
 	}
 	componentDidMount() {
-		document.title = "InWe-CandyBowl";
+		document.title = "InWe-" + i18n.t("navMenu.candybowl", this.props.lng);
 		let minH = getMainMinHeight();
 		document.querySelector("#mainBox").style.minHeight = minH + "px";
 		window.onresize = () => {

@@ -24,7 +24,7 @@ export default class Root extends PureComponent {
 		}
 	}
 	componentDidMount() {
-		document.title = "InWe-Trading";
+		document.title = "InWe-" + i18n.t("navMenu.project", this.props.lng);
 		let minH = getMainMinHeight();
 		let liW =
 			(document.querySelector("#projectContentRef").clientWidth - 187) /

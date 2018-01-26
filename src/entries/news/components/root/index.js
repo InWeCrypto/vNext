@@ -21,7 +21,7 @@ export default class Root extends PureComponent {
 	}
 	componentWillReceiveProps(nextProps) {}
 	componentDidMount() {
-		document.title = "InWe-Trading";
+		document.title = "InWe-" + i18n.t("navMenu.news", this.props.lng);
 		this.getNewsTextList(this.state.newsTextCur);
 		this.getNewsImgList(this.state.newsImgCur);
 		this.getNewsVideoList(this.state.newsVideoCur);
