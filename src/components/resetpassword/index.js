@@ -28,6 +28,14 @@ class ResetPassword extends PureComponent {
 		});
 	}
 	resetPass() {
+		if (
+			this.state.passwordOld.length <= 0 ||
+			this.state.password1.length <= 0 ||
+			this.state.password.length <= 0
+		) {
+			Msg.prompt(i18n.t("error.emailEmpty", this.props.lng));
+			return;
+		}
 		if (this.state.password1 != this.state.password2) {
 			Msg.prompt(i18n.t("error.passLength", this.props.lng));
 			return;
