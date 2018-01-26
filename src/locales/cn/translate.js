@@ -5,6 +5,10 @@ export default {
 		anno: "交易所公告",
 		follow: "Follow"
 	},
+	header: {
+		member: "个人中心",
+		quit: "退出"
+	},
 	icon: {
 		original: "原创"
 	},
@@ -59,6 +63,9 @@ export default {
 		candybowl: "空投",
 		trading: "交易观点",
 		announcment: "公告"
+	},
+	search: {
+		placeholder: "Search you want to know"
 	},
 	signBox: {
 		signIn: {

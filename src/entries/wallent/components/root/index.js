@@ -9,6 +9,8 @@ import FixedMenu from "../../../../components/fixedmenu";
 import "./index.less";
 
 import wallent_phone from "../../../../assets/images/wallet_iPhone.png";
+import app_store from "../../../../assets/images/app_store.png";
+import google_play from "../../../../assets/images/google_play.png";
 
 export default class Root extends PureComponent {
 	constructor(props) {
@@ -93,8 +95,12 @@ export default class Root extends PureComponent {
 									assets.
 								</p>
 								<div className="wallentDown">
-									<span className="downLf">App Store</span>
-									<span className="downRt">Google Play</span>
+									<div className="downLf">
+										<img src={app_store} alt="" />
+									</div>
+									<div className="downRt">
+										<img src={google_play} alt="" />
+									</div>
 								</div>
 							</div>
 							<div className="wallentRt">

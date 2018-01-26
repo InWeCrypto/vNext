@@ -98,7 +98,7 @@ export default class Root extends PureComponent {
 								<b />
 								<input
 									type="text"
-									placeholder="Search you want to know"
+									placeholder={t("search.placeholder", lng)}
 									value={k}
 									onChange={e => {
 										this.setState({

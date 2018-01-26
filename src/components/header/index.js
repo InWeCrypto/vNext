@@ -40,6 +40,7 @@ class Header extends PureComponent {
 		});
 	}
 	componentDidMount() {
+		window.headerBox = this;
 		if (this.props.nofixed) {
 			window.addEventListener("scroll", this.handleScroll.bind(this));
 		}
@@ -388,7 +389,7 @@ class Header extends PureComponent {
 												this.toggleMember(e);
 											}}
 										>
-											<i className="member-info" />
+											{/* <i className="member-info" /> */}
 											<img
 												className="img"
 												src={
@@ -400,7 +401,7 @@ class Header extends PureComponent {
 										</div>
 										{showMember && (
 											<div className="member-more">
-												<Link
+												{/* <Link
 													to={{
 														pathname: "/member",
 														search: "?type=message"
@@ -414,7 +415,7 @@ class Header extends PureComponent {
 													<span className="member-itemtext">
 														未读消息
 													</span>
-												</Link>
+												</Link> */}
 												<Link
 													to={{
 														pathname: "/member",
@@ -427,7 +428,10 @@ class Header extends PureComponent {
 														<i className="icon-personal" />
 													</span>
 													<span className="member-itemtext">
-														个人中心
+														{t(
+															"header.member",
+															lng
+														)}
 													</span>
 												</Link>
 												<div className="member-item">
@@ -440,7 +444,7 @@ class Header extends PureComponent {
 														}}
 														className="member-itemtext"
 													>
-														退出
+														{t("header.quit", lng)}
 													</span>
 												</div>
 											</div>

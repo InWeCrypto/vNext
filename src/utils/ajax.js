@@ -23,12 +23,15 @@ function checkRight(response) {
 	if (response.code === 4000) {
 		return response;
 	} else if (response.code === 4001) {
-		Msg.prompt(response.msg);
+		//Msg.prompt(response.msg);
 		localStorage.removeItem("userInfo");
 		if (window.location.href.indexOf("/member") != -1) {
 			window.location.href = "/";
 		}
 		store.dispatch(setReduxUserInfo(null));
+		window.headerBox.setState({
+			showLogin: true
+		});
 		return {
 			msg: response.msg,
 			data: null,
