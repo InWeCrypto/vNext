@@ -13,11 +13,11 @@ class ProjectDetailGaiKuo extends PureComponent {
 			chartTypeIndex: 0
 		};
 	}
-	// componentWillUpdate(nextProps, nextState) {
-	// 	if (nextProps.projectKdata != this.props.projectKdata) {
-	// 		this.viewEcharts(this.props.projectKdata);
-	// 	}
-	// }
+	componentWillReceiveProps(nextProps, nextState) {
+		if (nextProps.projectKdata != this.props.projectKdata) {
+			//this.viewEcharts(this.props.projectKdata);
+		}
+	}
 	componentDidMount() {
 		const {
 			lng,
@@ -32,7 +32,7 @@ class ProjectDetailGaiKuo extends PureComponent {
 			this.state.chartType[this.state.chartTypeIndex]
 		}`;
 		this.props.getKdata(query).then(() => {
-			this.viewEcharts(this.props.projectKdata);
+			//this.viewEcharts(this.props.projectKdata);
 		});
 	}
 	setOptionData(data) {
@@ -370,6 +370,9 @@ class ProjectDetailGaiKuo extends PureComponent {
 			getProjectCollect,
 			projectKdata
 		} = this.props;
+		if (projectKdata && projectKdata.length > 0) {
+			this.viewEcharts(projectKdata);
+		}
 		return (
 			<I18n>
 				{(t, { I18n }) => (
