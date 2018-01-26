@@ -270,9 +270,6 @@ export default class Root extends PureComponent {
 														// this.setArticleList(
 														// 	articleList.current_page + 1
 														// );
-														console.log(
-															this.slider
-														);
 														this.slider.slickNext();
 													}}
 												>
@@ -374,17 +371,24 @@ export default class Root extends PureComponent {
 									</div>
 									{!IsTouchDevice && (
 										<div className="homeInweWallet ui">
-											<div className="walletLf ui center jcenter">
-												<span
-													className="more"
-													onClick={() => {
-														// this.setArticleList(
-														// 	articleList.current_page + 1
-														// );
-														this.slider1.slickPrev();
-													}}
-												/>
-											</div>
+											{ads.data &&
+												ads.data.length > 1 && (
+													<div className="walletLf ui center jcenter">
+														<span
+															className="more"
+															onClick={() => {
+																this.slider1.slickPrev();
+															}}
+														/>
+													</div>
+												)}
+											{ads.data &&
+												ads.data.length > 1 &&
+												sliderIndex1 == 0 && (
+													<div className="walletLf ui center jcenter">
+														<span className="" />
+													</div>
+												)}
 											<div className="homeInweWalletUl f1 ui center">
 												<div
 													style={{
@@ -424,23 +428,27 @@ export default class Root extends PureComponent {
 														)}
 												</div>
 											</div>
-											<div className="walletRt ui center jcenter">
-												<span
-													className="more"
-													onClick={() => {
-														// this.setArticleList(
-														// 	articleList.current_page + 1
-														// );
-														this.slider1.slickNext();
-													}}
-												/>
-											</div>
-											{/* <div className="homeBoxReadMore">
-												<span className="readMore">
-													Read more
-												</span>
-												<b className="readMoreImg" />
-											</div> */}
+											{ads.data &&
+												ads.data.length > 1 &&
+												articleList.data.length - 1 !==
+													sliderIndex && (
+													<div className="walletRt ui center jcenter">
+														<span
+															className="more"
+															onClick={() => {
+																this.slider1.slickNext();
+															}}
+														/>
+													</div>
+												)}
+											{ads.data &&
+												ads.data.length > 1 &&
+												articleList.data.length <=
+													sliderIndex && (
+													<div className="walletRt ui center jcenter">
+														<span className="" />
+													</div>
+												)}
 										</div>
 									)}
 								</div>
