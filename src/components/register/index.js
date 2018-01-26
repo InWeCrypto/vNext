@@ -65,6 +65,26 @@ class Register extends PureComponent {
 	}
 	registerClick() {
 		const { code, email, password, password1 } = this.state;
+		if (email.length <= 0) {
+			Msg.prompt(i18n.t("error.emailEmpty", this.props.lng));
+			return;
+		}
+		if (code.length <= 0) {
+			Msg.prompt(i18n.t("error.codeEmpty", this.props.lng));
+			return;
+		}
+		if (password.length <= 0) {
+			Msg.prompt(i18n.t("error.passwordEmpty", this.props.lng));
+			return;
+		}
+		if (password1.length <= 0) {
+			Msg.prompt(i18n.t("error.rpasswordEmpty", this.props.lng));
+			return;
+		}
+		if (password1 != password) {
+			Msg.prompt(i18n.t("error.passError", this.props.lng));
+			return;
+		}
 		if (!this.props.isForget) {
 			this.props
 				.registerUser({
