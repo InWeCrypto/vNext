@@ -467,6 +467,7 @@ export default class Root extends PureComponent {
 																		</p>
 																		<img
 																			src={
+																				item.category &&
 																				item
 																					.category
 																					.img
