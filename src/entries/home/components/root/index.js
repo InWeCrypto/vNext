@@ -49,13 +49,17 @@ export default class Root extends PureComponent {
 	}
 	componentDidMount() {
 		document.title = "InWe-首页";
-		let minH = getMainMinHeight();
-		let th = document.querySelector("#topText").clientHeight;
-		document.querySelector("#mainBox").style.minHeight = minH - th + "px";
-		let AcImgH = minH - th - 320;
-		this.setState({
-			AcImgH: AcImgH
-		});
+		setTimeout(() => {
+			let minH = getMainMinHeight();
+			let th = document.querySelector("#topText").clientHeight;
+			document.querySelector("#mainBox").style.minHeight =
+				minH - th + "px";
+			let AcImgH = minH - th - 320;
+			this.setState({
+				AcImgH: AcImgH
+			});
+		}, 0);
+
 		// document.getElementById("homeBoxArticleImg").style.maxHeight =
 		// 	AcImgH + "px";
 		this.setArticleList();
