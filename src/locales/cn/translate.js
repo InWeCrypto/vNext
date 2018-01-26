@@ -37,7 +37,8 @@ export default {
 		ico_structure: "ICO 结构",
 		project_summary: "项目概况",
 		project_dyna: "项目动态",
-		project_intro: "项目介绍"
+		project_intro: "项目介绍",
+		project_overview: "项目概述"
 	},
 	news: {
 		news: "24H News",

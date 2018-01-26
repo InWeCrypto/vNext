@@ -13,17 +13,13 @@ export default class Root extends PureComponent {
 		super(props);
 		this.state = {
 			minH: "auto",
-			navFristPage: 2,
-			navSecondPage: 2,
-			navThirdPage: 2,
-			navForthPage: 2,
+
 			mounted: false
 		};
 	}
 	componentWillReceiveProps(nextProps) {}
 	componentDidMount() {
 		window.addEventListener("scroll", this.handleScroll.bind(this));
-		console.log(this.state.navFristPage);
 		window.NavFristAjaxDone = true;
 		window.NavSecondAjaxDone = true;
 		window.NavThirdAjaxDone = true;
@@ -31,10 +27,6 @@ export default class Root extends PureComponent {
 
 		this.setState({
 			minH: "auto",
-			navFristPage: 2,
-			navSecondPage: 2,
-			navThirdPage: 2,
-			navForthPage: 2,
 			mounted: true
 		});
 		setTimeout(() => {
@@ -63,6 +55,7 @@ export default class Root extends PureComponent {
 		if (!UlDom) return;
 		let liDom = UlDom.getElementsByTagName("li");
 		if (liDom.length < 10) return;
+		let pageIndex = parseInt(liDom.length / 10) + 1;
 		if (
 			footerToTopHei <= winHei &&
 			pathName == "/projectlist" &&
@@ -73,63 +66,40 @@ export default class Root extends PureComponent {
 				case 0:
 					if (window.NavFristAjaxDone) {
 						window.NavFristAjaxDone = false;
-						var page = this.state.navFristPage;
 						this.props.getProjectM({
 							type: 1,
 							per_page: 10,
-							page: page
-						});
-						var pageAdd = page + 1;
-						this.setState({
-							navFristPage: pageAdd
+							page: pageIndex
 						});
 					}
 					break;
 				case 1:
 					if (window.NavSecondAjaxDone) {
 						window.NavSecondAjaxDone = false;
-						var page = this.state.navSecondPage;
-						console.log(page);
 						this.props.getProjectM({
 							type: 2,
 							per_page: 10,
-							page: page
-						});
-						var pageAdd = page + 1;
-						this.setState({
-							navSecondPage: pageAdd
+							page: pageIndex
 						});
 					}
 					break;
 				case 2:
 					if (window.NavThridAjaxDone) {
 						window.NavThridAjaxDone = false;
-						var page = this.state.navThirdPage;
-						console.log(page);
 						this.props.getProjectM({
 							type: 3,
 							per_page: 10,
-							page: page
-						});
-						var pageAdd = page + 1;
-						this.setState({
-							navThirdPage: pageAdd
+							page: pageIndex
 						});
 					}
 					break;
 				case 3:
 					if (window.NavForthAjaxDone) {
 						window.NavForthAjaxDone = false;
-						var page = this.state.navForthPage;
-						console.log(page);
 						this.props.getProjectM({
 							type: 4,
 							per_page: 10,
-							page: page
-						});
-						var pageAdd = page + 1;
-						this.setState({
-							navForthPage: pageAdd
+							page: pageIndex
 						});
 					}
 					break;

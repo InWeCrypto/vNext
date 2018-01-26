@@ -145,7 +145,12 @@ export default class Root extends PureComponent {
 														"&type=home"
 												}}
 											>
-												<span>项目概况</span>
+												<span>
+													{t(
+														"projectDetail.project_summary",
+														lng
+													)}
+												</span>
 											</Link>
 										</li>
 										<li className={info ? "cur" : ""}>
@@ -158,7 +163,12 @@ export default class Root extends PureComponent {
 														"&type=info"
 												}}
 											>
-												<span>项目动态</span>
+												<span>
+													{t(
+														"projectDetail.project_dyna",
+														lng
+													)}
+												</span>
 											</Link>
 										</li>
 										<li className={intro ? "cur" : ""}>
@@ -171,7 +181,12 @@ export default class Root extends PureComponent {
 														"&type=intro"
 												}}
 											>
-												<span>项目介绍</span>
+												<span>
+													{t(
+														"projectDetail.project_intro",
+														lng
+													)}
+												</span>
 											</Link>
 										</li>
 									</ul>
@@ -232,7 +247,12 @@ export default class Root extends PureComponent {
 													"&type=home"
 											}}
 										>
-											<span>项目概况</span>
+											<span>
+												{t(
+													"projectDetail.project_summary",
+													lng
+												)}
+											</span>
 										</Link>
 									</li>
 									<li className={info ? "cur" : ""}>
@@ -245,7 +265,12 @@ export default class Root extends PureComponent {
 													"&type=info"
 											}}
 										>
-											<span>项目动态</span>
+											<span>
+												{t(
+													"projectDetail.project_dyna",
+													lng
+												)}
+											</span>
 										</Link>
 									</li>
 									<li className={intro ? "cur" : ""}>
@@ -258,7 +283,12 @@ export default class Root extends PureComponent {
 													"&type=intro"
 											}}
 										>
-											<span>项目介绍</span>
+											<span>
+												{t(
+													"projectDetail.project_intro",
+													lng
+												)}
+											</span>
 										</Link>
 									</li>
 								</ul>
