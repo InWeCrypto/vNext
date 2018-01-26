@@ -3,9 +3,52 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <script>
+        (function (win) {
+            win.IsTouchDevice = null;
+
+            function IsTouchDeviceFoo() {
+                if (self != top) {
+                    return true;
+                }
+                if (null !== IsTouchDevice)
+                    return IsTouchDevice;
+                if (document.documentElement.ontouchstart)
+                    IsTouchDevice = true;
+                else {
+                    var deviceAgent = navigator.userAgent.toLowerCase();
+                    IsTouchDevice = (
+                        deviceAgent.match(/(iphone|ipod|ipad)/) ||
+                        deviceAgent.match(/(android)/) ||
+                        deviceAgent.match(/(iemobile)/) ||
+                        deviceAgent.match(/iphone/i) ||
+                        deviceAgent.match(/ipad/i) ||
+                        deviceAgent.match(/ipod/i) ||
+                        deviceAgent.match(/blackberry/i) ||
+                        deviceAgent.match(/bada/i)
+                    );
+                    //IsTouchDevice will become array we need to convert it to boolean.
+                    if (IsTouchDevice !== null)
+                        IsTouchDevice = true;
+                    else
+                        IsTouchDevice = false;
+                }
+                return IsTouchDevice;
+            };
+
+            if (!IsTouchDeviceFoo()) {
+                //设置pc根字体大小
+                dw = 90;
+                document.getElementsByTagName("html")[0].style.fontSize = dw + "px";
+            } else {
+                let metaStr =
+                    '<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0,user-scalable=0">'
+                document.write(metaStr);
+            }
+        })(window);
+    </script>
 </head>
 
 <body>
@@ -23,6 +66,7 @@
             <div class="glob-message-warn">ssss</div>
         </div>
     </div> -->
-<script type="text/javascript" src="assets/js/vendor.401631417.js"></script><script type="text/javascript" src="assets/js/app.3dd9fd1fe.js"></script><script type="text/javascript" src="assets/js/pace.84a6b8c00.js"></script><script type="text/javascript" src="assets/js/message.1dd6a049e.js"></script></body>
+
+<script type="text/javascript" src="/assets/js/vendor.0f08d5c22.js"></script><script type="text/javascript" src="/assets/js/message.4829899c2.js"></script><script type="text/javascript" src="/assets/js/pace.457bfef32.js"></script><script type="text/javascript" src="/assets/js/app.e4c30a427.js"></script></body>
 
 </html>

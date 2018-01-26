@@ -131,14 +131,15 @@ export default class Root extends PureComponent {
 		const { month, monthArr, curDay, AcImgH, showSearch } = this.state;
 		const curMonth = monthArr[month].slice(0, 3);
 		const settings = {
-			// dots: true,
-			// infinite: true,
-			// speed: 500,
+			dots: true,
+			infinite: true,
+			speed: 500,
 			slidesToShow: 1,
 			slidesToScroll: 1,
-			// autoplay: true,
+			autoplay: true,
 			arrows: false,
-			accessibility: true
+			accessibility: true,
+			adaptiveHeight: true
 		};
 		return (
 			<I18n>
@@ -173,49 +174,54 @@ export default class Root extends PureComponent {
 									<div
 										className="articleSlider"
 										style={{
-											maxHeight: AcImgH + 110,
+											// maxHeight: AcImgH,
 											overflow: "hidden"
 										}}
 									>
-										<Slider
-											ref={c => (this.slider = c)}
-											{...settings}
-										>
-											{articleList &&
-												articleList.data &&
-												articleList.data.length > 0 &&
-												articleList.data.map(
-													(item, index) => {
-														return (
-															<div
-																key={index}
-																className="articleSlide"
-															>
-																<p className="homeBoxTitle">
-																	{item.title}
-																</p>
+										{articleList &&
+											articleList.data &&
+											articleList.data.length > 0 && (
+												<Slider
+													ref={c => (this.slider = c)}
+													{...settings}
+												>
+													{articleList.data.map(
+														(item, index) => {
+															return (
 																<div
-																	id="homeBoxArticleImg"
-																	className="homeBoxArticleImg"
-																	style={{
-																		maxHeight: AcImgH
-																	}}
+																	key={index}
+																	className="articleSlide"
 																>
-																	<img
-																		src={
-																			item.img
+																	<p className="homeBoxTitle">
+																		{
+																			item.title
 																		}
-																		alt=""
-																	/>
+																	</p>
+																	<div
+																		id="homeBoxArticleImg"
+																		className="homeBoxArticleImg"
+																		style={{
+																			maxHeight: AcImgH
+																		}}
+																	>
+																		<img
+																			src={
+																				item.img
+																			}
+																			alt=""
+																		/>
+																	</div>
+																	<p className="homeBoxArticleDesc">
+																		{
+																			item.desc
+																		}
+																	</p>
 																</div>
-																<p className="homeBoxArticleDesc">
-																	{item.desc}
-																</p>
-															</div>
-														);
-													}
-												)}
-										</Slider>
+															);
+														}
+													)}
+												</Slider>
+											)}
 									</div>
 									<div className="homeBoxArticleBtn">
 										{/* {articleList.next_page_url && ( */}
@@ -321,34 +327,44 @@ export default class Root extends PureComponent {
 													}}
 												/>
 											</div>
-											<div className="homeInweWalletUl ui center">
-												<Slider
-													ref={c =>
-														(this.slider1 = c)
-													}
-													{...settings}
+											<div className="homeInweWalletUl f1 ui center">
+												<div
+													style={{
+														height: "100%",
+														width: "100%"
+													}}
 												>
 													{ads.data &&
-														ads.data.length > 0 &&
-														ads.data.map(
-															(item, index) => {
-																return (
-																	<div
-																		key={
-																			index
-																		}
-																	>
-																		<img
-																			src={
-																				item.img
-																			}
-																			alt=""
-																		/>
-																	</div>
-																);
-															}
+														ads.data.length > 0 && (
+															<Slider
+																ref={c =>
+																	(this.slider1 = c)
+																}
+																{...settings}
+															>
+																{ads.data.map(
+																	(
+																		item,
+																		index
+																	) => {
+																		return (
+																			<div
+																				key={
+																					index
+																				}
+																			>
+																				<img
+																					src={
+																						item.img
+																					}
+																				/>
+																			</div>
+																		);
+																	}
+																)}
+															</Slider>
 														)}
-												</Slider>
+												</div>
 											</div>
 											<div className="walletRt ui center jcenter">
 												<span

@@ -7,13 +7,27 @@ class ProjectDetailInfo extends PureComponent {
 	constructor(props) {
 		super(props);
 		this.state = {
-			curDynamic: 0
+			curDynamic: 0,
+			ulWidth: 0
 		};
 	}
 	componentWillMount() {}
 	componentWillReceiveProps() {}
 	componentDidMount() {
 		this.initPage();
+	}
+	componentDidUpdate() {
+		let liDomList = document
+			.getElementById("projectDetailNavUl")
+			.getElementsByTagName("li");
+		console.log(liDomList);
+		let ulWidth = 0;
+		for (let i = 0; i < liDomList.length; i++) {
+			ulWidth = ulWidth + liDomList[i].clientWidth + 12;
+		}
+		this.setState({
+			ulWidth
+		});
 	}
 	initPage() {
 		let id = this.props.projectDynamic.data[0].id;
@@ -43,7 +57,7 @@ class ProjectDetailInfo extends PureComponent {
 			});
 	}
 	render() {
-		const { curDynamic } = this.state;
+		const { curDynamic, ulWidth } = this.state;
 		const {
 			lng,
 			changeLng,
@@ -54,6 +68,7 @@ class ProjectDetailInfo extends PureComponent {
 			projectDynamicList,
 			unProjectDot
 		} = this.props;
+
 		return (
 			<I18n>
 				{(t, { I18n }) => (
@@ -79,6 +94,44 @@ class ProjectDetailInfo extends PureComponent {
 									/>
 								</div>
 							</div>
+							{IsTouchDevice && (
+								<div className="projectDetailNav m-hide">
+									<ul
+										className="projectDetailNavUl"
+										id="projectDetailNavUl"
+										style={{ width: ulWidth }}
+									>
+										{projectDynamic &&
+											projectDynamic.data &&
+											projectDynamic.data.length > 0 &&
+											projectDynamic.data.map(
+												(item, index) => {
+													return (
+														<li
+															key={index}
+															className={
+																curDynamic ==
+																item.id
+																	? "cur"
+																	: ""
+															}
+															onClick={() => {
+																this.projectDynamicList(
+																	item.id,
+																	1
+																);
+															}}
+														>
+															<span>
+																{item.name}
+															</span>
+														</li>
+													);
+												}
+											)}
+									</ul>
+								</div>
+							)}
 							<div className="projectDetailCon1Box">
 								<ul className="ui">
 									{projectDynamicList &&

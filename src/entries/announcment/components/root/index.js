@@ -1,6 +1,7 @@
 import React, { PureComponent } from "react";
 import { I18n, Trans } from "react-i18next";
 import { NavLink, Link } from "react-router-dom";
+import { Pagination } from "antd";
 
 import { getMainMinHeight, getQuery } from "../../../../utils/util";
 import Header from "../../../../components/header";
@@ -9,6 +10,17 @@ import LeftMenu from "../../../../components/leftmenu";
 import "./index.less";
 
 export default class Root extends PureComponent {
+	constructor(props) {
+		super(props);
+		this.state = {
+			minH: "auto",
+			liH: "auto",
+			lfMore: "leftArrow",
+			rtMore: "rightArrow more",
+			page: 1,
+			nums: 8
+		};
+	}
 	componentWillReceiveProps(nextProps) {
 		if (nextProps.location.search != this.props.location.search) {
 			this.initPage(nextProps.location.search);
@@ -27,20 +39,12 @@ export default class Root extends PureComponent {
 			this.initPage(this.props.location.search);
 		}, 0);
 	}
-	constructor(props) {
-		super(props);
-		this.state = {
-			minH: "auto",
-			liH: "auto",
-			lfMore: "leftArrow",
-			rtMore: "rightArrow more",
-			page: 1,
-			nums: 8
-		};
-	}
+
 	initPage(location) {
 		let p = getQuery(location);
-		let annoBoxH = document.getElementById("annoCon").clientHeight;
+		let annoBoxH =
+			document.getElementById("annoCon").clientHeight -
+			document.getElementById("pagationBox").clientHeight;
 		let annoBoxLiH = 103;
 		let nums = Math.floor(annoBoxH / annoBoxLiH) * 2;
 
@@ -49,10 +53,18 @@ export default class Root extends PureComponent {
 				page: p.page
 			});
 		}
-
+		this.setState({
+			nums: nums
+		});
 		this.props.getAnnouncment({
 			page: p.page || 1,
 			per_page: nums
+		});
+	}
+	changePagination(page) {
+		this.props.getAnnouncment({
+			page: page,
+			per_page: this.state.nums
 		});
 	}
 	annoMove(val) {
@@ -108,7 +120,7 @@ export default class Root extends PureComponent {
 							)}
 
 							<div id="annoBox" className="annoBox ui f1">
-								<div className="annoBoxArrow ui center m-hide">
+								{/* <div className="annoBoxArrow ui center m-hide">
 									{announcment.prev_page_url && (
 										<Link
 											to={{
@@ -137,74 +149,150 @@ export default class Root extends PureComponent {
 											}
 										/>
 									)}
-								</div>
-								<div id="annoCon" className="annoCon ">
-									<ul className="ui">
-										{announcment &&
-											announcment.data &&
-											announcment.data.length > 0 &&
-											announcment.data.map(
-												(item, index) => {
-													return (
-														<li
-															key={index}
-															className=""
-														>
-															{item.source_url && (
-																<Link
-																	to={{
-																		pathname:
-																			item.source_url
-																	}}
-																	target="_blank"
-																>
-																	<div className="liBox">
-																		<p className="annoBoxLiText ellitext">
-																			+{
-																				item.source_name
-																			}：{
-																				item.content
-																			}
-																		</p>
-																		<p className="annoBoxLiDate">
-																			{
-																				item.updated_at
-																			}
-																		</p>
-																	</div>
-																</Link>
-															)}
-															{!item.source_url && (
-																<Link
-																	to={{
-																		pathname:
-																			"newsdetail",
-																		search:
-																			"?art_id=" +
-																			item.id
-																	}}
-																>
-																	<div className="liBox">
-																		<p className="annoBoxLiText ellitext">
-																			+{
-																				item.source_name
-																			}：{
-																				item.content
-																			}
-																		</p>
-																		<p className="annoBoxLiDate">
-																			{
-																				item.updated_at
-																			}
-																		</p>
-																	</div>
-																</Link>
-															)}
-														</li>
-													);
-												}
-											)}
-									</ul>
+								</div> */}
+								<div id="annoCon" className="annoCon ui f1">
+									<div className="f1 left">
+										<ul>
+											{announcment &&
+												announcment.data &&
+												announcment.data.length > 0 &&
+												announcment.data.map(
+													(item, index) => {
+														if (index % 2 == 0) {
+															return null;
+														}
+														return (
+															<li
+																key={index}
+																className=""
+															>
+																{item.source_url && (
+																	<Link
+																		to={{
+																			pathname:
+																				item.source_url
+																		}}
+																		target="_blank"
+																	>
+																		<div className="liBox">
+																			<p className="annoBoxLiText ellitext">
+																				+{
+																					item.source_name
+																				}：{
+																					item.content
+																				}
+																			</p>
+																			<p className="annoBoxLiDate">
+																				{
+																					item.updated_at
+																				}
+																			</p>
+																		</div>
+																	</Link>
+																)}
+																{!item.source_url && (
+																	<Link
+																		to={{
+																			pathname:
+																				"newsdetail",
+																			search:
+																				"?art_id=" +
+																				item.id
+																		}}
+																	>
+																		<div className="liBox">
+																			<p className="annoBoxLiText ellitext">
+																				+{
+																					item.source_name
+																				}：{
+																					item.content
+																				}
+																			</p>
+																			<p className="annoBoxLiDate">
+																				{
+																					item.updated_at
+																				}
+																			</p>
+																		</div>
+																	</Link>
+																)}
+															</li>
+														);
+													}
+												)}
+										</ul>
+									</div>
+									<div className="f1">
+										<ul className="ui">
+											{announcment &&
+												announcment.data &&
+												announcment.data.length > 0 &&
+												announcment.data.map(
+													(item, index) => {
+														if (index % 2 == 1) {
+															return null;
+														}
+														return (
+															<li
+																key={index}
+																className=""
+															>
+																{item.source_url && (
+																	<Link
+																		to={{
+																			pathname:
+																				item.source_url
+																		}}
+																		target="_blank"
+																	>
+																		<div className="liBox">
+																			<p className="annoBoxLiText ellitext">
+																				+{
+																					item.source_name
+																				}：{
+																					item.content
+																				}
+																			</p>
+																			<p className="annoBoxLiDate">
+																				{
+																					item.updated_at
+																				}
+																			</p>
+																		</div>
+																	</Link>
+																)}
+																{!item.source_url && (
+																	<Link
+																		to={{
+																			pathname:
+																				"newsdetail",
+																			search:
+																				"?art_id=" +
+																				item.id
+																		}}
+																	>
+																		<div className="liBox">
+																			<p className="annoBoxLiText ellitext">
+																				+{
+																					item.source_name
+																				}：{
+																					item.content
+																				}
+																			</p>
+																			<p className="annoBoxLiDate">
+																				{
+																					item.updated_at
+																				}
+																			</p>
+																		</div>
+																	</Link>
+																)}
+															</li>
+														);
+													}
+												)}
+										</ul>
+									</div>
 									{/* <ul className="ui">
 										{[1, 2].map((item, index) => {
 											return (
@@ -220,7 +308,8 @@ export default class Root extends PureComponent {
 										})}
 									</ul> */}
 								</div>
-								<div className="annoBoxArrow ui center m-hide">
+
+								{/* <div className="annoBoxArrow ui center m-hide">
 									{announcment.next_page_url && (
 										<Link
 											to={{
@@ -247,6 +336,22 @@ export default class Root extends PureComponent {
 													? "rightArrow more"
 													: "rightArrow"
 											}
+										/>
+									)}
+                                </div> */}
+								<div className="pagation-box" id="pagationBox">
+									{announcment && (
+										<Pagination
+											defaultPageSize={
+												this.state.per_page
+											}
+											defaultCurrent={
+												announcment.current_page
+											}
+											total={announcment.total}
+											onChange={this.changePagination.bind(
+												this
+											)}
 										/>
 									)}
 								</div>

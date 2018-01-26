@@ -228,6 +228,7 @@ class Root extends PureComponent {
 												!candyList.data ||
 												candyList.data.length <= 0) && (
 												<div
+													className="noBorder"
 													style={{
 														padding: "16px 0",
 														borderBottom:
