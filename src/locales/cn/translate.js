@@ -5,6 +5,10 @@ export default {
 		anno: "交易所公告",
 		follow: "Follow"
 	},
+	header: {
+		member: "个人中心",
+		quit: "退出"
+	},
 	icon: {
 		original: "原创"
 	},
