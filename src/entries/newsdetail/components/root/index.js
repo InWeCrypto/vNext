@@ -100,7 +100,7 @@ export default class Root extends PureComponent {
 			})
 			.then(res => {
 				if (res.code === 4000) {
-					console.log(res);
+					// console.log(res);
 				}
 			});
 	}

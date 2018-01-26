@@ -1,4 +1,6 @@
 import React, { PureComponent } from "react";
+import http from "../../utils/ajax";
+import { NavLink, Link } from "react-router-dom";
 import { I18n, Trans } from "react-i18next";
 import { StyleSheet, css } from "aphrodite";
 import { puffIn } from "react-magic";
@@ -9,7 +11,8 @@ class searchIn extends PureComponent {
 		super();
 		this.state = {
 			inputBg: false,
-			inputVal: ""
+			inputVal: "",
+			recom: ""
 		};
 		this.styles = StyleSheet.create({
 			magic: {
@@ -27,10 +30,25 @@ class searchIn extends PureComponent {
 				}
 			}
 		}.bind(this);
+
+		this.searchRecom();
+	}
+	searchRecom() {
+		http
+			.get({
+				url: "article/tags"
+			})
+			.then(res => {
+				if (res.code === 4000) {
+					this.setState({
+						recom: res.data
+					});
+				}
+			});
 	}
 	render() {
 		const { lng, closeSearch } = this.props;
-		const { inputBg, inputVal } = this.state;
+		const { inputBg, inputVal, recom } = this.state;
 		return (
 			<I18n>
 				{(t, { I18n }) => (
@@ -83,15 +101,31 @@ class searchIn extends PureComponent {
 											</div>
 
 											<ul className="searchReconUl">
-												<li>
-													<span>Neo</span>
-												</li>
-												<li>
-													<span>Neo</span>
-												</li>
-												<li>
-													<span>Neo</span>
-												</li>
+												{recom &&
+													recom.data &&
+													recom.data.map(
+														(item, index) => {
+															return (
+																<li key={index}>
+																	<Link
+																		to={{
+																			pathname:
+																				"/search",
+																			search:
+																				"?k=" +
+																				item.name
+																		}}
+																	>
+																		<span>
+																			{
+																				item.name
+																			}
+																		</span>
+																	</Link>
+																</li>
+															);
+														}
+													)}
 											</ul>
 										</div>
 									</div>

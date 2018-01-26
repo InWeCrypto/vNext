@@ -123,7 +123,6 @@ export const getHeaderMarket = createAction(HEADERMARKET, () => {
 			url: "category/home_market"
 		})
 		.then(res => {
-			console.log(res);
 			return res;
 		});
 });
