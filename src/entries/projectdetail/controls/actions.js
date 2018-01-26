@@ -13,22 +13,14 @@ export const PROJECTDOT = `${PRE_FIX}PROJECTDOT`;
 export const PROJECTKCHARTS = `${PRE_FIX}PROJECTKCHARTS`;
 
 export const getProjectDetail = createAction(PROJECTDETAIL, params => {
-	return http
-		.get({
-			url: "category/" + params.c_id
-		})
-		.then(res => {
-			return res;
-		});
+	return http.get({
+		url: "category/" + params.c_id
+	});
 });
 export const getCoinTimePrice = createAction(COINTIMEPRICE, params => {
-	return http
-		.get({
-			url: `ico/rank/${params.ico_type}`
-		})
-		.then(res => {
-			return res;
-		});
+	return http.get({
+		url: `ico/rank/${params.ico_type}`
+	});
 });
 export const setProjectRemind = createAction(PROJECTREMIND, params => {
 	return http
@@ -65,61 +57,34 @@ export const getProjectCollect = createAction(PROJECTCOLLECT, params => {
 		});
 });
 export const getProjectDynamic = createAction(PROJECTDYNAMIC, params => {
-	return http
-		.get({
-			url: "article/tags",
-			params: params
-		})
-		.then(res => {
-			return res;
-		});
+	return http.get({
+		url: "article/tags",
+		params: params
+	});
 });
 export const getProjectDynamicList = createAction(
 	PROJECTDYNAMICLIST,
 	params => {
-		return http
-			.get({
-				url: "article",
-				params: params
-			})
-			.then(res => {
-				return res;
-			});
+		return http.get({
+			url: "article",
+			params: params
+		});
 	}
 );
 export const getProjectScore = createAction(PROJECTSCORE, params => {
-	return http
-		.put({
-			url: `category/${params.c_id}/score`,
-			params: params
-		})
-		.then(res => {
-			if (res.code !== 4000) {
-				Msg.prompt(res.msg);
-			}
-			return res;
-		});
+	return http.put({
+		url: `category/${params.c_id}/score`,
+		params: params
+	});
 });
 export const unProjectDot = createAction(PROJECTDOT, params => {
-	return http
-		.put({
-			url: `category/${params.c_id}/undot`,
-			params: params
-		})
-		.then(res => {
-			if (res.code !== 4000) {
-				Msg.prompt(res.msg);
-			}
-			return res;
-		});
+	return http.put({
+		url: `category/${params.c_id}/undot`,
+		params: params
+	});
 });
 export const getKdata = createAction(PROJECTKCHARTS, query => {
-	return http
-		.get({
-			url: `ico/currencies/${query}`
-		})
-		.then(res => {
-			console.log(res);
-			return res;
-		});
+	return http.get({
+		url: `ico/currencies/${query}`
+	});
 });
