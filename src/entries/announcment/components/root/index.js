@@ -339,7 +339,10 @@ export default class Root extends PureComponent {
 										/>
 									)}
                                 </div> */}
-								<div className="pagation-box" id="pagationBox">
+								<div
+									className="pagation-box m-hide"
+									id="pagationBox"
+								>
 									{announcment && (
 										<Pagination
 											defaultPageSize={

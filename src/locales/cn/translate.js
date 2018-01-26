@@ -132,7 +132,9 @@ export default {
 		rpasswordEmpty: "重复密码不能为空",
 		emailSend: "邮件发送失败，请重试",
 		resetPass: "密码修改失败，请重试",
-		passLength: "密码长度不一致"
+		passLength: "密码长度不一致",
+		passError: "两次输入密码不同",
+		codeEmpty: "验证码不能为空"
 	},
 	success: {
 		login: "登录成功",

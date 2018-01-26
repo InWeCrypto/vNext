@@ -294,6 +294,8 @@
 				border-top: 1px solid #ececec;
 				overflow: hidden;
 				.homeBoxTitle {
+					max-height: 5rem;
+
 					width: 6.9rem;
 					margin: 0 auto;
 					padding-top: 0.4rem;
@@ -314,7 +316,11 @@
 				&.homeBoxArticle {
 					padding-top: 0.14rem;
 					border: 0;
+					.articleSlider {
+						height: 7.42rem;
+					}
 					.homeBoxTitle {
+						max-height: 5rem;
 						padding-bottom: 0.24rem;
 					}
 					.homeBoxArticleImg {
@@ -371,8 +377,13 @@
 					}
 				}
 				&.homeBoxCandy {
+					.homeBoxTitle {
+						padding-left: 0;
+					}
 					.homeBoxCandyTop {
+						border-bottom: 0;
 						margin-top: 0.15rem;
+						padding: 0;
 						padding-bottom: 0.1rem;
 						.homeCandyDate {
 							padding-bottom: 0.2rem;
@@ -390,6 +401,7 @@
 					}
 				}
 				&.homeBoxAnno {
+					border-bottom: 1px solid #ececec;
 					.homeBoxAnnoTop {
 						padding: 0;
 						margin: 0;
@@ -408,6 +420,7 @@
 					}
 				}
 				&.homeBoxWallet {
+					border-top: 0;
 					width: 7.5rem;
 					height: 3.92rem;
 					overflow: hidden;
