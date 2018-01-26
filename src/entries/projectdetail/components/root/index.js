@@ -192,49 +192,55 @@ export default class Root extends PureComponent {
 									</ul>
 								</div>
 							)}
-							{home &&
-								ico && (
-									<ProjectDetailIco
+							<div className="mainCon ui">
+								{home &&
+									ico && (
+										<ProjectDetailIco
+											lng={lng}
+											projectDetail={projectDetail}
+											setProjectRemind={setProjectRemind}
+											getProjectCollect={
+												getProjectCollect
+											}
+										/>
+									)}
+								{home &&
+									gaikuo && (
+										<ProjectDetailGaiKuo
+											lng={lng}
+											projectDetail={projectDetail}
+											coinTimePrice={coinTimePrice}
+											setProjectRemind={setProjectRemind}
+											getProjectCollect={
+												getProjectCollect
+											}
+											projectKdata={projectKdata}
+											getKdata={getKdata}
+										/>
+									)}
+								{info && (
+									<ProjectDetailInfo
+										lng={lng}
+										projectDetail={projectDetail}
+										setProjectRemind={setProjectRemind}
+										getProjectCollect={getProjectCollect}
+										projectDynamic={projectDynamic}
+										projectDynamicList={projectDynamicList}
+										getProjectDynamicList={
+											getProjectDynamicList
+										}
+										unProjectDot={unProjectDot}
+									/>
+								)}
+								{intro && (
+									<ProjectDetailIntro
 										lng={lng}
 										projectDetail={projectDetail}
 										setProjectRemind={setProjectRemind}
 										getProjectCollect={getProjectCollect}
 									/>
 								)}
-							{home &&
-								gaikuo && (
-									<ProjectDetailGaiKuo
-										lng={lng}
-										projectDetail={projectDetail}
-										coinTimePrice={coinTimePrice}
-										setProjectRemind={setProjectRemind}
-										getProjectCollect={getProjectCollect}
-										projectKdata={projectKdata}
-										getKdata={getKdata}
-									/>
-								)}
-							{info && (
-								<ProjectDetailInfo
-									lng={lng}
-									projectDetail={projectDetail}
-									setProjectRemind={setProjectRemind}
-									getProjectCollect={getProjectCollect}
-									projectDynamic={projectDynamic}
-									projectDynamicList={projectDynamicList}
-									getProjectDynamicList={
-										getProjectDynamicList
-									}
-									unProjectDot={unProjectDot}
-								/>
-							)}
-							{intro && (
-								<ProjectDetailIntro
-									lng={lng}
-									projectDetail={projectDetail}
-									setProjectRemind={setProjectRemind}
-									getProjectCollect={getProjectCollect}
-								/>
-							)}
+							</div>
 							<div className="projectDetailCon3">
 								<ul className="projectDetailCon3Ul m-hide">
 									<li className={home ? "cur" : ""}>
@@ -299,7 +305,7 @@ export default class Root extends PureComponent {
 								/>
 							</div>
 						</div>
-						<Footer changeLng={changeLng} lng={lng} />
+						{/* <Footer changeLng={changeLng} lng={lng} /> */}
 					</div>
 				)}
 			</I18n>
