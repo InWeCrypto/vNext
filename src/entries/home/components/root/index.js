@@ -228,31 +228,41 @@ export default class Root extends PureComponent {
 																	key={index}
 																	className="articleSlide"
 																>
-																	<p className="homeBoxTitle">
-																		{
-																			item.title
-																		}
-																	</p>
-																	<div
-																		id="homeBoxArticleImg"
-																		className="homeBoxArticleImg"
-																		style={{
-																			height: AcImgH
+																	<Link
+																		to={{
+																			pathname:
+																				"/newsdetail",
+																			search:
+																				"?art_id=" +
+																				item.id
 																		}}
 																	>
-																		<img
-																			src={
-																				item.img
+																		<p className="homeBoxTitle">
+																			{
+																				item.title
 																			}
-																			height="100%"
-																			alt=""
-																		/>
-																	</div>
-																	<p className="homeBoxArticleDesc">
-																		{
-																			item.desc
-																		}
-																	</p>
+																		</p>
+																		<div
+																			id="homeBoxArticleImg"
+																			className="homeBoxArticleImg"
+																			style={{
+																				height: AcImgH
+																			}}
+																		>
+																			<img
+																				src={
+																					item.img
+																				}
+																				height="100%"
+																				alt=""
+																			/>
+																		</div>
+																		<p className="homeBoxArticleDesc">
+																			{
+																				item.desc
+																			}
+																		</p>
+																	</Link>
 																</div>
 															);
 														}
