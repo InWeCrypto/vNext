@@ -2,7 +2,7 @@ import React, { PureComponent } from "react";
 import { I18n, Trans } from "react-i18next";
 import { StyleSheet, css } from "aphrodite";
 import { puffIn } from "react-magic";
-
+import QcodeBox from "../qcode";
 import "./index.less";
 
 class GaiKuo extends PureComponent {
@@ -17,7 +17,9 @@ class GaiKuo extends PureComponent {
 			share: false,
 			aboveVal: "0",
 			belowVal: "0",
-			is_favorite: ""
+			is_favorite: "",
+			isShowQcode: false,
+			QcodeUrl: ""
 		};
 		this.styles = StyleSheet.create({
 			magic: {
@@ -111,6 +113,21 @@ class GaiKuo extends PureComponent {
 				}
 			});
 	}
+	showThisPageTocode() {
+		this.setState({
+			isShowQcode: true,
+			QcodeUrl: window.location.href
+		});
+	}
+	closeQcode() {
+		this.setState({
+			isShowQcode: false,
+			QcodeUrl: window.location.href
+		});
+	}
+	openTele() {
+		window.open("https://t.me/inwecrypto");
+	}
 	render() {
 		const { lng, projectDetail } = this.props;
 		const {
@@ -121,7 +138,9 @@ class GaiKuo extends PureComponent {
 			share,
 			remindBox,
 			aboveVal,
-			belowVal
+			belowVal,
+			isShowQcode,
+			QcodeUrl
 		} = this.state;
 		return (
 			<I18n>
@@ -198,10 +217,25 @@ class GaiKuo extends PureComponent {
 									</ul>
 									{showShareList && (
 										<ul className="shareList ui center">
-											<li className="wx" />
-											<li className="pyq" />
-											<li className="tele" />
-											<li className="qq" />
+											<li
+												onClick={this.showThisPageTocode.bind(
+													this
+												)}
+												className="wx"
+											/>
+											{/* <li className="pyq" /> */}
+											<li
+												onClick={this.openTele.bind(
+													this
+												)}
+												className="tele"
+											/>
+											<li
+												onClick={this.showThisPageTocode.bind(
+													this
+												)}
+												className="qq"
+											/>
 										</ul>
 									)}
 								</div>
@@ -321,6 +355,12 @@ class GaiKuo extends PureComponent {
 									</div>
 								)}
 							</div>
+						)}
+						{isShowQcode && (
+							<QcodeBox
+								close={this.closeQcode.bind(this)}
+								url={QcodeUrl}
+							/>
 						)}
 					</div>
 				)}

@@ -1,128 +1,149 @@
-.fixed-menu {
-	position: fixed;
-	left: 0;
-	top: 0;
-	height: 100%;
-	z-index: 2;
-	background: #09764b;
-	box-sizing: border-box;
-	display: flex;
-	flex-flow: column;
-	overflow: hidden;
-	.fixed-content {
-		flex: 1;
+.fixedBox {
+	.search {
+		width: 100%;
+		height: 20px;
+		margin-bottom: 0.2rem;
+		padding: 0rem 0 0rem 0.9rem;
 		box-sizing: border-box;
-		display: flex;
-		.menu {
-			transition: all 0.3s linear;
-			width: 3rem;
-			padding: 1.5rem 0 0 0;
-			overflow: hidden;
-			box-sizing: border-box;
-			.nav-item {
-				display: block;
-				color: #005031;
-				box-sizing: border-box;
-				width: 2rem;
-				font-size: 0.16rem;
-				padding: 0.15rem 0 0.15rem 0.9rem;
-				font-weight: 200;
-				.nav-text {
-					padding: 0.12rem 0;
-					border-bottom: 0.02rem solid transparent;
-				}
-			}
-
-			.nav-item:hover,
-			.nav-item.cur {
-				color: #fff;
-				font-weight: 400;
-				.nav-text {
-					border-bottom: 0.02rem solid #fff;
-				}
-			}
-		}
-		.ctrlbtn {
-			box-sizing: border-box;
-			padding: 0 0.15rem;
-			.fixedbtn {
-				width: 0.3rem;
-				height: 0.3rem;
-				cursor: pointer;
-			}
+		b.searchBtn {
+			display: block;
+			width: 20px;
+			height: 20px;
+			background: url("../../assets/images/search.png") no-repeat 0 0;
+			background-size: 100%;
+			cursor: pointer;
 		}
 	}
-	.fixed-bottom {
-		display: flex;
+	.fixed-menu {
+		position: fixed;
+		left: 0;
+		top: 0;
+		height: 100%;
+		z-index: 2;
+		background: #09764b;
 		box-sizing: border-box;
-		align-items: center;
-		padding: 0.1rem 0;
-		.left {
+		display: flex;
+		flex-flow: column;
+		overflow: hidden;
+		.fixed-content {
 			flex: 1;
 			box-sizing: border-box;
-			padding-left: 0.09rem;
-		}
-		.language {
-			padding: 0 0.3rem;
-			.language-btn {
-				padding: 0.05rem 0;
-				text-align: center;
-				display: inline-block;
-				position: relative;
-				margin-left: 0.2rem;
-				cursor: pointer;
+			display: flex;
+			.menu {
+				transition: all 0.3s linear;
+				width: 3rem;
+				padding: 1.5rem 0 0 0;
+				overflow: hidden;
+				box-sizing: border-box;
+				.nav-item {
+					display: block;
+					color: #005031;
+					box-sizing: border-box;
+					width: 2rem;
+					font-size: 0.16rem;
+					padding: 0.15rem 0 0.15rem 0.9rem;
+					font-weight: 200;
+					.nav-text {
+						padding: 0.12rem 0;
+						border-bottom: 0.02rem solid transparent;
+					}
+				}
+
+				.nav-item:hover,
+				.nav-item.cur {
+					color: #fff;
+					font-weight: 400;
+					.nav-text {
+						border-bottom: 0.02rem solid #fff;
+					}
+				}
 			}
-			.language-btn.cur {
-				color: #fff;
-			}
-			.language-btn.cur:before {
-				content: "";
-				position: absolute;
-				left: 0.03rem;
-				bottom: 0;
-				width: 0.13rem;
-				height: 0.02rem;
-				background: #fff;
+			.ctrlbtn {
+				box-sizing: border-box;
+				padding: 0 0.15rem;
+				.fixedbtn {
+					width: 0.3rem;
+					height: 0.3rem;
+					cursor: pointer;
+				}
 			}
 		}
-	}
-	.bottom-box {
-		height: 0.5rem;
-	}
-	.icon-more {
-		display: inline-block;
-		width: 0.3rem;
-		height: 0.3rem;
-		background: url("../../assets/images/fixedbtn.png") left top no-repeat;
-		background-size: 100% 100%;
-		cursor: pointer;
-	}
-	.fixed-tele {
-		display: inline-block;
-		width: 0.19rem;
-		height: 0.19rem;
-		background: url("../../assets/images/fixed_tele.png") left top no-repeat;
-		background-size: 100% 100%;
-		cursor: pointer;
-	}
-	.fixed-mail {
-		display: inline-block;
-		width: 0.19rem;
-		height: 0.19rem;
-		background: url("../../assets/images/fixed_mail.png") left top no-repeat;
-		background-size: 100% 100%;
-		cursor: pointer;
-	}
-}
-.fixed-menu.hide {
-	background: #fff;
-	.fixed-content {
-		.menu {
-			width: 0;
+		.fixed-bottom {
+			display: flex;
+			box-sizing: border-box;
+			align-items: center;
+			padding: 0.1rem 0;
+			.left {
+				flex: 1;
+				box-sizing: border-box;
+				padding-left: 0.09rem;
+			}
+			.language {
+				padding: 0 0.3rem;
+				.language-btn {
+					padding: 0.05rem 0;
+					text-align: center;
+					display: inline-block;
+					position: relative;
+					margin-left: 0.2rem;
+					cursor: pointer;
+				}
+				.language-btn.cur {
+					color: #fff;
+				}
+				.language-btn.cur:before {
+					content: "";
+					position: absolute;
+					left: 0.03rem;
+					bottom: 0;
+					width: 0.13rem;
+					height: 0.02rem;
+					background: #fff;
+				}
+			}
+		}
+		.bottom-box {
+			height: 0.5rem;
+		}
+		.icon-more {
+			display: inline-block;
+			width: 0.3rem;
+			height: 0.3rem;
+			background: url("../../assets/images/fixedbtn.png") left top
+				no-repeat;
+			background-size: 100% 100%;
+			cursor: pointer;
+		}
+		.fixed-tele {
+			display: inline-block;
+			width: 0.19rem;
+			height: 0.19rem;
+			background: url("../../assets/images/fixed_tele.png") left top
+				no-repeat;
+			background-size: 100% 100%;
+			cursor: pointer;
+		}
+		.fixed-mail {
+			display: inline-block;
+			width: 0.19rem;
+			height: 0.19rem;
+			background: url("../../assets/images/fixed_mail.png") left top
+				no-repeat;
+			background-size: 100% 100%;
+			cursor: pointer;
 		}
 	}
-	.icon-more {
-		background: url("../../assets/images/fixedbtn.png") left top no-repeat;
-		background-size: 100% 100%;
+	.fixed-menu.hide {
+		background: #fff;
+		.fixed-content {
+			.menu {
+				width: 0;
+			}
+		}
+		.icon-more {
+			background: url("../../assets/images/fixedbtn.png") left top
+				no-repeat;
+			background-size: 100% 100%;
+		}
 	}
 }

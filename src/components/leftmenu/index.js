@@ -1,16 +1,41 @@
 import React, { PureComponent } from "react";
 import { I18n, Trans } from "react-i18next";
 import { NavLink, IndexLink } from "react-router-dom";
+import Search from "../../components/search";
 import "./index.less";
 class LeftMenuBox extends PureComponent {
+	constructor(props) {
+		super(props);
+		const newDate = new Date();
+		this.state = { showSearch: false };
+	}
+	closeSearch() {
+		this.setState({
+			showSearch: false
+		});
+	}
+	openSearch() {
+		this.setState({
+			showSearch: true
+		});
+	}
 	render() {
 		const { lng } = this.props;
+		const { showSearch } = this.state;
 		return (
 			<I18n>
 				{(t, { I18n }) => (
 					<div className="left-menu">
+						{showSearch && (
+							<Search closeSearch={this.closeSearch.bind(this)} />
+						)}
 						<div className="search">
-							<b className="searchBtn" />
+							<b
+								className="searchBtn"
+								onClick={() => {
+									this.openSearch();
+								}}
+							/>
 						</div>
 						<NavLink
 							exact

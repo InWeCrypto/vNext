@@ -208,7 +208,7 @@ class Header extends PureComponent {
 		} = this.state;
 		return (
 			<I18n>
-				{(t, { I18n }) => ( 
+				{(t, { I18n }) => (
 					<div>
 						{IsTouchDevice &&
 							!headerNoFixed && <div className="m-header-hold" />}
@@ -310,12 +310,48 @@ class Header extends PureComponent {
 							id="headerBox"
 							className="header-box container ui center"
 						>
-							<div className="heder-left ui f1 center jstart">
+							<div className="heder-left ui center jstart">
 								<img className="img" src={headerNews} />
 								<div className="headernews-box f1">
-									<span className="headernews-item">
-										BTC $15366 +9.9%
-									</span>
+									<div
+										className="headermarkets-list"
+										id="headerMarketList"
+									>
+										{commonMarket &&
+											commonMarket.length > 0 &&
+											commonMarket.map((item, index) => {
+												return (
+													<span
+														key={index}
+														className="headernews-item"
+														title={`${
+															item.symbol
+														} $${
+															item.price_usd
+														} ${(() => {
+															return item.percent_change_1h >=
+																0
+																? "+"
+																: "";
+														})()}${
+															item.percent_change_1h
+														}%`}
+													>
+														{item.symbol} ${
+															item.price_usd
+														}
+														&nbsp;
+														{(() => {
+															return item.percent_change_1h >=
+																0
+																? "+"
+																: "";
+														})()}
+														{item.percent_change_1h}%
+													</span>
+												);
+											})}
+									</div>
 								</div>
 							</div>
 							<div className="heder-middle f1">InWeCrypto</div>

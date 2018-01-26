@@ -8,14 +8,14 @@ import Footer from "../../../../components/footer";
 import FixedMenu from "../../../../components/fixedmenu";
 import "./index.less";
 
+import wallent_phone from "../../../../assets/images/wallet_iPhone.png";
+
 export default class Root extends PureComponent {
 	constructor(props) {
 		super(props);
 		this.state = {
 			minH: "auto",
-			liH: "auto",
-			inputBg: false,
-			k: ""
+			liH: "auto"
 		};
 	}
 	componentWillReceiveProps(nextProps) {
@@ -33,14 +33,7 @@ export default class Root extends PureComponent {
 			liH: liH
 		});
 		document.querySelector("#mainBox").style.minHeight = minH + "px";
-		window.onkeydown = function(event) {
-			event = event || window.event;
-			if (event.keyCode == 13) {
-				if (this.state.inputBg) {
-					window.location.href = "/search?k=" + this.state.k;
-				}
-			}
-		}.bind(this);
+
 		this.initPage(this.props.location.search);
 	}
 	initPage(search) {
@@ -49,12 +42,9 @@ export default class Root extends PureComponent {
 		this.setState({
 			k: q.k || ""
 		});
-		this.props.getSearch({
-			k: q.k
-		});
 	}
 	render() {
-		const { minH, liH, page, inputBg, k } = this.state;
+		const { minH, liH } = this.state;
 		const {
 			lng,
 			changeLng,
@@ -64,7 +54,6 @@ export default class Root extends PureComponent {
 			userInfo,
 			setReduxUserInfo,
 			forgetUser,
-			search,
 			commonMarket,
 			getHeaderMarket
 		} = this.props;
@@ -84,64 +73,32 @@ export default class Root extends PureComponent {
 							commonMarket={commonMarket}
 							getHeaderMarket={getHeaderMarket}
 						/>
-						<div id="mainBox" className="searchBox">
-							<div
-								className={
-									inputBg
-										? "searchInput ui center jcenter focus"
-										: "searchInput ui center jcenter"
-								}
-							>
-								<b />
-								<input
-									type="text"
-									placeholder="Search you want to know"
-									value={k}
-									onChange={e => {
-										this.setState({
-											k: e.target.value
-										});
-									}}
-									onFocus={e => {
-										this.setState({
-											inputBg: true
-										});
-									}}
-									onBlur={() => {
-										this.setState({
-											inputBg: false
-										});
-									}}
-								/>
+						<div
+							id="mainBox"
+							className="wallentBox ui center jcenter"
+						>
+							<div className="wallentLf f1">
+								<span className="wallentLfTitle ellitext">
+									InWeCrypto Wallet
+								</span>
+								<p className="wallentLfCont">
+									InWeCrypto is a multi-asset wallet that
+									supports BTC, ETH, NEO, as well as all ERC20
+									tokens and NEP5 tokens. It boasts
+									multi-asset management, which is
+									intelligent,efficient and easy to process.
+									It also integrates information of InWeCrypto
+									website and has the advantage of media
+									information and secure storage of digital
+									assets.
+								</p>
+								<div className="wallentDown">
+									<span className="downLf">App Store</span>
+									<span className="downRt">Google Play</span>
+								</div>
 							</div>
-							<div className="searchResult">
-								<ul className="searchResultUl">
-									{search &&
-										search.data &&
-										search.data.length > 0 &&
-										search.data.map((item, index) => {
-											return (
-												<li key={index} className="ui">
-													{item.img && (
-														<div className="imgLf">
-															<img
-																src={item.img}
-																alt=""
-															/>
-														</div>
-													)}
-													<div className="conRt f1">
-														<span className="conRtTitle">
-															{item.title}
-														</span>
-														<p className="conRtDesc ellitext">
-															{item.desc}
-														</p>
-													</div>
-												</li>
-											);
-										})}
-								</ul>
+							<div className="wallentRt">
+								<img src={wallent_phone} alt="" />
 							</div>
 						</div>
 						<Footer changeLng={changeLng} lng={lng} />

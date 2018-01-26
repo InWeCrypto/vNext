@@ -23,7 +23,7 @@ class searchIn extends PureComponent {
 			event = event || window.event;
 			if (event.keyCode == 13) {
 				if (this.state.inputBg) {
-					console.log("enter 时间触发");
+					window.location.href = "/search?k=" + this.state.inputVal;
 				}
 			}
 		}.bind(this);
@@ -58,7 +58,12 @@ class searchIn extends PureComponent {
 												<input
 													type="text"
 													placeholder="Search you want to know"
-													value={inputVal}
+													onChange={e => {
+														this.setState({
+															inputVal:
+																e.target.value
+														});
+													}}
 													onFocus={e => {
 														this.setState({
 															inputBg: true

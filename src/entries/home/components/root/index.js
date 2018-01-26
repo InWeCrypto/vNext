@@ -40,8 +40,7 @@ export default class Root extends PureComponent {
 			curDay:
 				newDate.getDate() < 10
 					? "0" + newDate.getDate()
-					: newDate.getDate(),
-			showSearch: true
+					: newDate.getDate()
 		};
 	}
 	componentWillReceiveProps(nextProps) {
@@ -99,16 +98,7 @@ export default class Root extends PureComponent {
 			per_page: 3
 		});
 	}
-	closeSearch() {
-		this.setState({
-			showSearch: false
-		});
-	}
-	openSearch() {
-		this.setState({
-			showSearch: true
-		});
-	}
+
 	turnToCandy() {
 		if (IsTouchDevice) {
 			window.location.href = "/candybowl";
@@ -141,14 +131,15 @@ export default class Root extends PureComponent {
 		const { month, monthArr, curDay, AcImgH, showSearch } = this.state;
 		const curMonth = monthArr[month].slice(0, 3);
 		const settings = {
-			// dots: true,
-			// infinite: true,
-			// speed: 500,
+			dots: true,
+			infinite: true,
+			speed: 500,
 			slidesToShow: 1,
 			slidesToScroll: 1,
-			// autoplay: true,
+			autoplay: true,
 			arrows: false,
-			accessibility: true
+			accessibility: true,
+			adaptiveHeight: true
 		};
 		return (
 			<I18n>
@@ -166,19 +157,13 @@ export default class Root extends PureComponent {
 							commonMarket={commonMarket}
 							getHeaderMarket={getHeaderMarket}
 						/>
-						{showSearch && (
-							<Search closeSearch={this.closeSearch.bind(this)} />
-						)}
 						<div id="topText" className="top-text">
 							<TopText lng={lng} />
 						</div>
 						<div id="mainBox" className="main home ui">
 							<div className="left-menus ui center m-hide">
 								<div className="left-menu-home">
-									<LeftMenu
-										openSearch={this.openSearch.bind(this)}
-										lng={lng}
-									/>
+									<LeftMenu lng={lng} />
 								</div>
 							</div>
 							<div
@@ -189,49 +174,54 @@ export default class Root extends PureComponent {
 									<div
 										className="articleSlider"
 										style={{
-											maxHeight: AcImgH + 110,
+											// maxHeight: AcImgH,
 											overflow: "hidden"
 										}}
 									>
-										<Slider
-											ref={c => (this.slider = c)}
-											{...settings}
-										>
-											{articleList &&
-												articleList.data &&
-												articleList.data.length > 0 &&
-												articleList.data.map(
-													(item, index) => {
-														return (
-															<div
-																key={index}
-																className="articleSlide"
-															>
-																<p className="homeBoxTitle">
-																	{item.title}
-																</p>
+										{articleList &&
+											articleList.data &&
+											articleList.data.length > 0 && (
+												<Slider
+													ref={c => (this.slider = c)}
+													{...settings}
+												>
+													{articleList.data.map(
+														(item, index) => {
+															return (
 																<div
-																	id="homeBoxArticleImg"
-																	className="homeBoxArticleImg"
-																	style={{
-																		maxHeight: AcImgH
-																	}}
+																	key={index}
+																	className="articleSlide"
 																>
-																	<img
-																		src={
-																			item.img
+																	<p className="homeBoxTitle">
+																		{
+																			item.title
 																		}
-																		alt=""
-																	/>
+																	</p>
+																	<div
+																		id="homeBoxArticleImg"
+																		className="homeBoxArticleImg"
+																		style={{
+																			maxHeight: AcImgH
+																		}}
+																	>
+																		<img
+																			src={
+																				item.img
+																			}
+																			alt=""
+																		/>
+																	</div>
+																	<p className="homeBoxArticleDesc">
+																		{
+																			item.desc
+																		}
+																	</p>
 																</div>
-																<p className="homeBoxArticleDesc">
-																	{item.desc}
-																</p>
-															</div>
-														);
-													}
-												)}
-										</Slider>
+															);
+														}
+													)}
+												</Slider>
+											)}
 									</div>
 									<div className="homeBoxArticleBtn">
 										{/* {articleList.next_page_url && ( */}
@@ -337,34 +327,44 @@ export default class Root extends PureComponent {
 													}}
 												/>
 											</div>
-											<div className="homeInweWalletUl ui center">
-												<Slider
-													ref={c =>
-														(this.slider1 = c)
-													}
-													{...settings}
+											<div className="homeInweWalletUl f1 ui center">
+												<div
+													style={{
+														height: "100%",
+														width: "100%"
+													}}
 												>
 													{ads.data &&
-														ads.data.length > 0 &&
-														ads.data.map(
-															(item, index) => {
-																return (
-																	<div
-																		key={
-																			index
-																		}
-																	>
-																		<img
-																			src={
-																				item.img
-																			}
-																			alt=""
-																		/>
-																	</div>
-																);
-															}
+														ads.data.length > 0 && (
+															<Slider
+																ref={c =>
+																	(this.slider1 = c)
+																}
+																{...settings}
+															>
+																{ads.data.map(
+																	(
+																		item,
+																		index
+																	) => {
+																		return (
+																			<div
+																				key={
+																					index
+																				}
+																			>
+																				<img
+																					src={
+																						item.img
+																					}
+																				/>
+																			</div>
+																		);
+																	}
+																)}
+															</Slider>
 														)}
-												</Slider>
+												</div>
 											</div>
 											<div className="walletRt ui center jcenter">
 												<span
