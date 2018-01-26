@@ -39,7 +39,7 @@ class ProjectDetailIntro extends PureComponent {
 							</div>
 							<div className="projectDetailCon1Box">
 								<div className="projectDetailCon1BoxTitle">
-									项目概述
+									{t("projectDetail.project_overview", lng)}
 								</div>
 								<div className="introContent">
 									{projectDetail.category_presentation &&
