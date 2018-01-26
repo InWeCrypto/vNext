@@ -1,52 +1,65 @@
 @import "../../assets/less/basestyle.less";
-.left-menu {
+.left-menus-news {
 	width: 2rem;
-	.search {
-		width: 100%;
-		height: 20px;
-		margin-bottom: 0.2rem;
-		b.searchBtn {
-			display: block;
-			width: 20px;
+	.left-menu {
+		width: 2rem;
+		position: fixed;
+		// left: 0;
+		top: 0;
+		height: 100%;
+		z-index: 2;
+		box-sizing: border-box;
+		display: flex;
+		flex-flow: column;
+		overflow: hidden;
+		justify-content: center;
+		.search {
+			width: 100%;
 			height: 20px;
-			background: url("../../assets/images/search.png") no-repeat 0 0;
-			background-size: 100%;
+			margin-bottom: 0.2rem;
+			b.searchBtn {
+				display: block;
+				width: 20px;
+				height: 20px;
+				background: url("../../assets/images/search.png") no-repeat 0 0;
+				background-size: 100%;
+				cursor: pointer;
+			}
+		}
+		.left-menu-item {
+			padding: 0.1rem 0;
+			display: block;
 			cursor: pointer;
+			.line {
+				width: 0.12rem;
+				height: 3px;
+				display: inline-block;
+				vertical-align: middle;
+				margin-right: 0.05rem;
+				background: #333333;
+				transition: margin-left 0.2s linear;
+			}
+			.text {
+				color: #e7e7e7;
+				font-size: 0.12rem;
+				vertical-align: middle;
+				font-weight: 200;
+				font-family: "Microsoft YaHei", "impact";
+				letter-spacing: 1px;
+			}
 		}
-	}
-	.left-menu-item {
-		padding: 0.1rem 0;
-		display: block;
-		cursor: pointer;
-		.line {
-			width: 0.12rem;
-			height: 3px;
-			display: inline-block;
-			vertical-align: middle;
-			margin-right: 0.05rem;
-			background: #333333;
-			transition: margin-left 0.2s linear;
-		}
-		.text {
-			color: #e7e7e7;
-			font-size: 0.12rem;
-			vertical-align: middle;
-			font-weight: 200;
-			font-family: "Microsoft YaHei", "impact";
-			letter-spacing: 1px;
-		}
-	}
-	.left-menu-item.cur,
-	.left-menu-item:hover {
-		.line {
-			width: 0.3rem;
-			background: @orange;
-			margin-left: 0.16rem;
-		}
-		.text {
-			font-size: 0.16rem;
-			color: #333;
-			font-weight: 400;
+		.left-menu-item.cur,
+		.left-menu-item:hover {
+			.line {
+				width: 0.3rem;
+				background: @orange;
+				margin-left: 0.16rem;
+			}
+			.text {
+				font-size: 0.16rem;
+				color: #333;
+				font-weight: 400;
+			}
 		}
 	}
 }

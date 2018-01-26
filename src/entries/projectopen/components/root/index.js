@@ -111,29 +111,31 @@ export default class Root extends PureComponent {
 							getHeaderMarket={getHeaderMarket}
 						/>
 						<div id="mainBox" className="projectOpen ui">
-							<div
-								className={
-									project.prev_page_url
-										? "projectOpenLeft ui center show"
-										: "projectOpenLeft ui center"
-								}
-							>
-								{project.prev_page_url && (
-									<Link
-										to={{
-											pathname: "/projectopen",
-											search:
-												"?type=" +
-												type +
-												"&&page=" +
-												(project.current_page - 1)
-										}}
-									>
-										<span />
-									</Link>
-								)}
-								{!project.prev_page_url && <span />}
-							</div>
+							{project.last_page !== 1 && (
+								<div
+									className={
+										project.prev_page_url
+											? "projectOpenLeft ui center show"
+											: "projectOpenLeft ui center"
+									}
+								>
+									{project.prev_page_url && (
+										<Link
+											to={{
+												pathname: "/projectopen",
+												search:
+													"?type=" +
+													type +
+													"&&page=" +
+													(project.current_page - 1)
+											}}
+										>
+											<span />
+										</Link>
+									)}
+									{!project.prev_page_url && <span />}
+								</div>
+							)}
 							<div className="projectOpenCon ui">
 								<div className="projectOpenConChild">
 									<div className="projectOpenConChildTitle">
@@ -252,29 +254,31 @@ export default class Root extends PureComponent {
 									</ul>
 								</div>
 							</div>
-							<div
-								className={
-									project.next_page_url
-										? "projectOpenRight show ui center"
-										: "projectOpenRight ui center"
-								}
-							>
-								{project.next_page_url && (
-									<Link
-										to={{
-											ppathname: "/projectopen",
-											search:
-												"?type=" +
-												type +
-												"&&page=" +
-												(project.current_page + 1)
-										}}
-									>
-										<span />
-									</Link>
-								)}
-								{!project.next_page_url && <span />}
-							</div>
+							{project.last_page !== 1 && (
+								<div
+									className={
+										project.next_page_url
+											? "projectOpenRight show ui center"
+											: "projectOpenRight ui center"
+									}
+								>
+									{project.next_page_url && (
+										<Link
+											to={{
+												ppathname: "/projectopen",
+												search:
+													"?type=" +
+													type +
+													"&&page=" +
+													(project.current_page + 1)
+											}}
+										>
+											<span />
+										</Link>
+									)}
+									{!project.next_page_url && <span />}
+								</div>
+							)}
 						</div>
 					</div>
 				)}

@@ -41,7 +41,8 @@ export default class Root extends PureComponent {
 				newDate.getDate() < 10
 					? "0" + newDate.getDate()
 					: newDate.getDate(),
-			sliderIndex: 0
+			sliderIndex: 0,
+			sliderIndex1: 0
 		};
 	}
 	componentWillReceiveProps(nextProps) {
@@ -166,10 +167,15 @@ export default class Root extends PureComponent {
 			speed: 500,
 			slidesToShow: 1,
 			slidesToScroll: 1,
-			autoplay: true,
+			// autoplay: true,
 			arrows: false,
 			accessibility: true,
-			adaptiveHeight: true
+			adaptiveHeight: true,
+			afterChange: function(index) {
+				this.setState({
+					sliderIndex1: index
+				});
+			}.bind(this)
 		};
 		return (
 			<I18n>
@@ -222,31 +228,41 @@ export default class Root extends PureComponent {
 																	key={index}
 																	className="articleSlide"
 																>
-																	<p className="homeBoxTitle">
-																		{
-																			item.title
-																		}
-																	</p>
-																	<div
-																		id="homeBoxArticleImg"
-																		className="homeBoxArticleImg"
-																		style={{
-																			height: AcImgH
+																	<Link
+																		to={{
+																			pathname:
+																				"/newsdetail",
+																			search:
+																				"?art_id=" +
+																				item.id
 																		}}
 																	>
-																		<img
-																			src={
-																				item.img
+																		<p className="homeBoxTitle">
+																			{
+																				item.title
 																			}
-																			height="100%"
-																			alt=""
-																		/>
-																	</div>
-																	<p className="homeBoxArticleDesc">
-																		{
-																			item.desc
-																		}
-																	</p>
+																		</p>
+																		<div
+																			id="homeBoxArticleImg"
+																			className="homeBoxArticleImg"
+																			style={{
+																				height: AcImgH
+																			}}
+																		>
+																			<img
+																				src={
+																					item.img
+																				}
+																				height="100%"
+																				alt=""
+																			/>
+																		</div>
+																		<p className="homeBoxArticleDesc">
+																			{
+																				item.desc
+																			}
+																		</p>
+																	</Link>
 																</div>
 															);
 														}
@@ -264,9 +280,6 @@ export default class Root extends PureComponent {
 														// this.setArticleList(
 														// 	articleList.current_page + 1
 														// );
-														console.log(
-															this.slider
-														);
 														this.slider.slickNext();
 													}}
 												>
@@ -311,7 +324,17 @@ export default class Root extends PureComponent {
 											newsList.data.map((item, index) => {
 												return (
 													<li key={index}>
-														<p>{item.title}</p>
+														<Link
+															to={{
+																pathname:
+																	"/newsdetail",
+																search:
+																	"?art_id=" +
+																	item.id
+															}}
+														>
+															<p>{item.title}</p>
+														</Link>
 													</li>
 												);
 											})}
@@ -358,17 +381,24 @@ export default class Root extends PureComponent {
 									</div>
 									{!IsTouchDevice && (
 										<div className="homeInweWallet ui">
-											<div className="walletLf ui center jcenter">
-												<span
-													className="more"
-													onClick={() => {
-														// this.setArticleList(
-														// 	articleList.current_page + 1
-														// );
-														this.slider1.slickPrev();
-													}}
-												/>
-											</div>
+											{ads.data &&
+												ads.data.length > 1 && (
+													<div className="walletLf ui center jcenter">
+														<span
+															className="more"
+															onClick={() => {
+																this.slider1.slickPrev();
+															}}
+														/>
+													</div>
+												)}
+											{ads.data &&
+												ads.data.length > 1 &&
+												sliderIndex1 == 0 && (
+													<div className="walletLf ui center jcenter">
+														<span className="" />
+													</div>
+												)}
 											<div className="homeInweWalletUl f1 ui center">
 												<div
 													style={{
@@ -408,23 +438,27 @@ export default class Root extends PureComponent {
 														)}
 												</div>
 											</div>
-											<div className="walletRt ui center jcenter">
-												<span
-													className="more"
-													onClick={() => {
-														// this.setArticleList(
-														// 	articleList.current_page + 1
-														// );
-														this.slider1.slickNext();
-													}}
-												/>
-											</div>
-											{/* <div className="homeBoxReadMore">
-												<span className="readMore">
-													Read more
-												</span>
-												<b className="readMoreImg" />
-											</div> */}
+											{ads.data &&
+												ads.data.length > 1 &&
+												articleList.data.length - 1 !==
+													sliderIndex && (
+													<div className="walletRt ui center jcenter">
+														<span
+															className="more"
+															onClick={() => {
+																this.slider1.slickNext();
+															}}
+														/>
+													</div>
+												)}
+											{ads.data &&
+												ads.data.length > 1 &&
+												articleList.data.length <=
+													sliderIndex && (
+													<div className="walletRt ui center jcenter">
+														<span className="" />
+													</div>
+												)}
 										</div>
 									)}
 								</div>

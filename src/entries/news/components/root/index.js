@@ -66,7 +66,7 @@ export default class Root extends PureComponent {
 		this.props
 			.getNewsVideo({
 				type: 3,
-				per_page: 5,
+				per_page: 4,
 				page: page
 			})
 			.then(res => {
@@ -158,11 +158,9 @@ export default class Root extends PureComponent {
 							getHeaderMarket={getHeaderMarket}
 						/>
 						<div id="mainBox" className="news ui">
-							<div className="left-menus ui center m-hide">
-								<div className="left-menus-news">
-									<LeftMenu lng={lng} />
-								</div>
-							</div>
+							{/* <div className="left-menus ui center m-hide"> */}
+							<LeftMenu lng={lng} />
+							{/* </div> */}
 							<div id="newsBox" className="newsBox ui f1">
 								{IsTouchDevice && (
 									<div
