@@ -307,7 +307,7 @@ export default class Root extends PureComponent {
 											<span className="title">
 												{t("news.ceefax", lng)}
 											</span>
-											<span className="nums">
+											<span className="nums m-hide">
 												{newsImg.current_page}/{
 													newsImg.last_page
 												}
@@ -414,7 +414,7 @@ export default class Root extends PureComponent {
 											<span className="title">
 												{t("news.videoTitle", lng)}
 											</span>
-											<span className="nums">
+											<span className="nums m-hide">
 												{newsVideo.current_page}/{
 													newsVideo.last_page
 												}
