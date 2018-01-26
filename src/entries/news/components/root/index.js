@@ -6,6 +6,7 @@ import { getMainMinHeight, getQuery } from "../../../../utils/util";
 import Header from "../../../../components/header";
 import Footer from "../../../../components/footer";
 import LeftMenu from "../../../../components/leftmenu";
+import videoIcon from "../../../../assets/images/zixun_play.png";
 import "./index.less";
 
 export default class Root extends PureComponent {
@@ -454,11 +455,12 @@ export default class Root extends PureComponent {
 																		}`
 																	}}
 																>
-																	<p className="desc m-hide">
+																	<p className="desc">
 																		{
 																			item.title
 																		}
 																	</p>
+
 																	<div className="newsBoxModConDate m-hide">
 																		<p>
 																			{
@@ -476,7 +478,16 @@ export default class Root extends PureComponent {
 																		/>
 																	</div>
 																	<div className="newsBoxModConShow">
+																		{IsTouchDevice && (
+																			<img
+																				className="videoIcon"
+																				src={
+																					videoIcon
+																				}
+																			/>
+																		)}
 																		<img
+																			className="cover"
 																			src={
 																				item.img
 																			}
