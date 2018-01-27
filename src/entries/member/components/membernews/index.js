@@ -70,7 +70,7 @@ class MemberNews extends PureComponent {
 												}}
 											>
 												<a
-													href={item.utl}
+													href={item.url}
 													target="_blank"
 													className="membernews-item"
 												>
