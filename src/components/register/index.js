@@ -20,7 +20,7 @@ class Register extends PureComponent {
 		this.styles = StyleSheet.create({
 			magic: {
 				animationName: spaceInDown,
-				animationDuration: "1s"
+				animationDuration: ".3s"
 			}
 		});
 		this.inputChange = this.inputChange.bind(this);

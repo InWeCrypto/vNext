@@ -8,6 +8,20 @@ const BODY_METHODS = ["post", "put", "patch"];
 function checkStatus(response) {
 	if (response.status >= 200 && response.status < 300) {
 		return response;
+	} else if (response.status == 405) {
+		// localStorage.removeItem("userInfo");
+		// if (window.location.href.indexOf("/member") != -1) {
+		// 	window.location.href = "/";
+		// }
+		// store.dispatch(setReduxUserInfo(null));
+		// window.headerBox.setState({
+		// 	showLogin: true
+		// });
+		// return {
+		// 	msg: response.msg,
+		// 	data: null,
+		// 	code: response.code
+		// };
 	} else {
 		var error = new Error(response.statusText);
 		error.response = response;
