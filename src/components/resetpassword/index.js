@@ -31,7 +31,7 @@ class ResetPassword extends PureComponent {
 		if (
 			this.state.passwordOld.length <= 0 ||
 			this.state.password1.length <= 0 ||
-			this.state.password.length <= 0
+			this.state.password2.length <= 0
 		) {
 			Msg.prompt(i18n.t("error.emailEmpty", this.props.lng));
 			return;
