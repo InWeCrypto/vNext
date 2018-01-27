@@ -141,6 +141,19 @@ class MemberNews extends PureComponent {
 										);
 									}
 								})}
+
+							{(!newsList ||
+								!newsList.data ||
+								newsList.data.length <= 0) && (
+								<div
+									style={{
+										textAlign: "center",
+										padding: "1rem 0"
+									}}
+								>
+									{t("nodata", lng)}
+								</div>
+							)}
 						</div>
 
 						<div className="pagination-box" id="PagationBox">
