@@ -2,7 +2,6 @@ import React, { PureComponent } from "react";
 import { I18n, Trans } from "react-i18next";
 import { NavLink, Link } from "react-router-dom";
 import QcodeBox from "../../../../components/qcode";
-
 import {
 	getMainMinHeight,
 	getQuery,
@@ -312,10 +311,13 @@ export default class Root extends PureComponent {
 								<div className="newsDetailConTitle">
 									<span>{newsDetail.title}</span>
 								</div>
-								<div className="newsMeta">
-									<div className="newsDetailConMeta">
+								<div className="newsMeta ui">
+									<div className="newsDetailConMeta f1">
 										<span className="metaDate">
-											{newsDetail.updated_at}
+											{newsDetail.updated_at &&
+												getLocalTime(
+													newsDetail.updated_at
+												)}
 										</span>
 										{newsDetail.is_sole &&
 											(IsTouchDevice ? (
