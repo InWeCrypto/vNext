@@ -62,7 +62,9 @@ export default {
 		news: "新闻",
 		candybowl: "空投",
 		trading: "交易观点",
-		announcment: "公告"
+		announcment: "公告",
+		search: "搜索",
+		wallent: "钱包"
 	},
 	search: {
 		placeholder: "Search you want to know"

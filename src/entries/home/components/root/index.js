@@ -50,7 +50,7 @@ export default class Root extends PureComponent {
 		}
 	}
 	componentDidMount() {
-		document.title = "InWe-首页";
+		document.title = "InWe-" + i18n.t("navMenu.home", this.props.lng);
 		setTimeout(() => {
 			let minH = getMainMinHeight();
 			let th = document.querySelector("#topText").clientHeight;

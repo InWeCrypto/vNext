@@ -28,7 +28,8 @@ export default class Root extends PureComponent {
 	}
 	componentDidMount() {
 		setTimeout(() => {
-			document.title = "InWe-announcment";
+			document.title =
+				"InWe-" + i18n.t("navMenu.announcment", this.props.lng);
 			let minH = getMainMinHeight();
 			let liH = minH / 2;
 			this.setState({

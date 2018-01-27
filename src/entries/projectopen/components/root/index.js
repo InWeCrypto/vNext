@@ -27,7 +27,8 @@ export default class Root extends PureComponent {
 	}
 	componentDidMount() {
 		setTimeout(() => {
-			document.title = "InWe-项目列表";
+			document.title =
+				"InWe-" + i18n.t("navMenu.project", this.props.lng);
 			let minH = getMainMinHeight();
 			let U = (uiW = document.getElementById("projectOpenConChildUl")
 				.clientWidth);

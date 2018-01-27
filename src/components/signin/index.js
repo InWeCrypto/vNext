@@ -46,6 +46,7 @@ class SignIn extends PureComponent {
 				if (res.code === 4000) {
 					Msg.prompt(i18n.t("success.login", this.props.lng));
 					this.props.closeSign();
+					window.location.reload();
 				}
 			});
 	}

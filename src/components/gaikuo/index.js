@@ -30,6 +30,15 @@ class GaiKuo extends PureComponent {
 	}
 	componentDidMount() {
 		this.initPage();
+		document.addEventListener(
+			"click",
+			() => {
+				this.setState({
+					showShareList: false
+				});
+			},
+			false
+		);
 	}
 	initPage() {
 		if (
@@ -52,7 +61,7 @@ class GaiKuo extends PureComponent {
 		});
 	}
 	toggleShareList(e) {
-		e.stopPropagation();
+		e.nativeEvent.stopImmediatePropagation();
 		this.setState({
 			showShareList: !this.state.showShareList
 		});
