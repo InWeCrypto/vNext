@@ -382,6 +382,7 @@ export default class Root extends PureComponent {
 													(item, index) => {
 														return (
 															<Link
+																key={index}
 																to={{
 																	pathname:
 																		"/candybowl"
