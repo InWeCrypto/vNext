@@ -1,6 +1,7 @@
 import React, { PureComponent } from "react";
 import { I18n, Trans } from "react-i18next";
 import { NavLink, Link } from "react-router-dom";
+import QcodeBox from "../../../../components/qcode";
 
 import {
 	getMainMinHeight,
@@ -23,7 +24,10 @@ export default class Root extends PureComponent {
 			newsType: "video", // video img
 			isJump: "", // yes no
 			art_id: "",
-			enable: false
+			enable: false,
+			showShareList: false,
+			isShowQcode: false,
+			QcodeUrl: ""
 		};
 	}
 	componentWillReceiveProps(nextProps) {
@@ -42,6 +46,15 @@ export default class Root extends PureComponent {
 		});
 		document.querySelector("#mainBox").style.minHeight = minH + "px";
 		this.initPage(this.props.location.search);
+		document.addEventListener(
+			"click",
+			() => {
+				this.setState({
+					showShareList: false
+				});
+			},
+			false
+		);
 	}
 	initPage(location) {
 		let p = getQuery(location);
@@ -171,6 +184,13 @@ export default class Root extends PureComponent {
 			this.creatVideo(video, img);
 		}
 	}
+	toggleShareList(e) {
+		e.stopPropagation();
+		e.nativeEvent.stopImmediatePropagation();
+		this.setState({
+			showShareList: !this.state.showShareList
+		});
+	}
 	creatVideo(video, img) {
 		console.log(video);
 		let script = document.createElement("script");
@@ -199,8 +219,38 @@ export default class Root extends PureComponent {
 			);
 		};
 	}
+	showThisPageTocode() {
+		this.setState({
+			isShowQcode: true,
+			QcodeUrl: window.location.href
+		});
+	}
+	closeQcode() {
+		this.setState({
+			isShowQcode: false,
+			QcodeUrl: window.location.href
+		});
+	}
+	openTele() {
+		window.open("https://t.me/inwecrypto");
+	}
+	showApp() {
+		let trunapp = window.CtrunappAdvHide;
+		if (trunapp && IsTouchDevice) {
+			trunapp.setState({
+				advHide: false
+			});
+		}
+	}
 	render() {
-		const { minH, enable } = this.state;
+		const {
+			minH,
+			enable,
+			showShareList,
+			share,
+			QcodeUrl,
+			isShowQcode
+		} = this.state;
 		const {
 			lng,
 			changeLng,
@@ -313,10 +363,19 @@ export default class Root extends PureComponent {
 											)}
 									</div>
 									<div className="newDetailConShare">
-										<span>
-											<b className="wxShare" />
+										<span className="rt">
+											<b
+												className={
+													showShareList
+														? "wxShare cur"
+														: "wxShare"
+												}
+												onClick={e => {
+													this.toggleShareList(e);
+												}}
+											/>
 										</span>
-										<span>
+										<span className="rt">
 											<b
 												className={
 													enable
@@ -330,6 +389,29 @@ export default class Root extends PureComponent {
 												}}
 											/>
 										</span>
+										{showShareList && (
+											<ul className="shareList ui center">
+												<li
+													onClick={this.showThisPageTocode.bind(
+														this
+													)}
+													className="wx"
+												/>
+												{/* <li className="pyq" /> */}
+												<li
+													onClick={this.openTele.bind(
+														this
+													)}
+													className="tele"
+												/>
+												<li
+													onClick={this.showThisPageTocode.bind(
+														this
+													)}
+													className="qq"
+												/>
+											</ul>
+										)}
 									</div>
 								</div>
 								<div className="newsDetailBox">
@@ -507,6 +589,12 @@ export default class Root extends PureComponent {
 							</div>
 						</div>
 						{/* <Footer lng={lng} changeLng={changeLng} /> */}
+						{isShowQcode && (
+							<QcodeBox
+								close={this.closeQcode.bind(this)}
+								url={QcodeUrl}
+							/>
+						)}
 					</div>
 				)}
 			</I18n>

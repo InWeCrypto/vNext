@@ -223,7 +223,7 @@ class GaiKuo extends PureComponent {
 										</li>
 										<li
 											className={
-												share
+												showShareList
 													? "gaikuoShare cur"
 													: "gaikuoShare"
 											}
