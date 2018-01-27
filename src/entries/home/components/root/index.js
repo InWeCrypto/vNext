@@ -355,8 +355,8 @@ export default class Root extends PureComponent {
 												pathname: "/news"
 											}}
 										>
-											<span className="readMore">
-												Read more
+											<span className="readMore readMoreUnderLine">
+												read more
 											</span>
 											<b className="readMoreImg" />
 										</Link>
@@ -382,6 +382,7 @@ export default class Root extends PureComponent {
 													(item, index) => {
 														return (
 															<Link
+																key={index}
 																to={{
 																	pathname:
 																		"/candybowl"
@@ -489,62 +490,71 @@ export default class Root extends PureComponent {
 										</div>
 									)}
 								</div>
-								<div className="homeBoxList homeBoxAnno">
-									<div className="homeBoxAnnoAll">
-										<p className="homeBoxTitle">
-											{t("home.anno", lng)}
-										</p>
-										<div className="homeBoxAnnoTop">
-											{exchangeNotice &&
-												exchangeNotice.data &&
-												exchangeNotice.data.length >
-													0 &&
-												exchangeNotice.data.map(
-													(item, index) => {
-														return (
-															<p
-																key={index}
-																className="homeBoxAnnoTopP"
-															>
-																{item.source_url && (
-																	<Link
-																		to={{
-																			pathname:
-																				item.source_url
-																		}}
-																		target="_blank"
-																	>
-																		+{
-																			item.source_name
-																		}：{
-																			item.content
-																		}
-																	</Link>
-																)}
-																{!item.source_url && (
-																	<Link
-																		to={{
-																			pathname:
-																				"newsdetail",
-																			search:
-																				"?art_id=" +
-																				item.id
-																		}}
-																	>
-																		+{
-																			item.source_name
-																		}：{
-																			item.content
-																		}
-																	</Link>
-																)}
-															</p>
-														);
-													}
-												)}
+								<div className="homeBoxList homeBoxAnno homeBoxAnnoAll">
+									<p className="homeBoxTitle">
+										{t("home.anno", lng)}
+									</p>
+									<div className="homeBoxAnnoTop">
+										{exchangeNotice &&
+											exchangeNotice.data &&
+											exchangeNotice.data.length > 0 &&
+											exchangeNotice.data.map(
+												(item, index) => {
+													return (
+														<p
+															key={index}
+															className="homeBoxAnnoTopP"
+														>
+															{item.source_url && (
+																<Link
+																	to={{
+																		pathname:
+																			item.source_url
+																	}}
+																	target="_blank"
+																>
+																	+{
+																		item.source_name
+																	}：{
+																		item.content
+																	}
+																</Link>
+															)}
+															{!item.source_url && (
+																<Link
+																	to={{
+																		pathname:
+																			"newsdetail",
+																		search:
+																			"?art_id=" +
+																			item.id
+																	}}
+																>
+																	+{
+																		item.source_name
+																	}：{
+																		item.content
+																	}
+																</Link>
+															)}
+														</p>
+													);
+												}
+											)}
+										<div className="homeBoxReadMore">
+											<Link
+												to={{
+													pathname: "/announcment"
+												}}
+											>
+												<span className="readMore readMoreUnderLine">
+													read more
+												</span>
+												<b className="readMoreImg" />
+											</Link>
 										</div>
 									</div>
-									<div className="homeBoxReadMore">
+									{/* <div className="homeBoxReadMore">
 										<Link
 											to={{
 												pathname: "/announcment"
@@ -555,7 +565,7 @@ export default class Root extends PureComponent {
 											</span>
 											<b className="readMoreImg" />
 										</Link>
-									</div>
+									</div> */}
 									{!IsTouchDevice &&
 										userFavo &&
 										userFavo.data &&
@@ -600,8 +610,8 @@ export default class Root extends PureComponent {
 																"?type=collection"
 														}}
 													>
-														<span className="readMore">
-															Read more
+														<span className="readMore readMoreUnderLine">
+															read more
 														</span>
 														<b className="readMoreImg" />
 													</Link>

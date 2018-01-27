@@ -14,7 +14,8 @@ export default class Root extends PureComponent {
 		this.state = {
 			minH: "auto",
 			liH: "auto",
-			page: 1
+			page: 1,
+			mounted: false
 		};
 	}
 	componentWillReceiveProps(nextProps) {
@@ -23,25 +24,66 @@ export default class Root extends PureComponent {
 		}
 	}
 	componentDidMount() {
+		window.addEventListener("scroll", this.handleScroll.bind(this));
+		window.TradingAjaxDone = true;
+
 		document.title = "InWe-" + i18n.t("navMenu.trading", this.props.lng);
 
 		let minH = getMainMinHeight();
 		let liH = minH / 2;
 		this.setState({
 			minH: minH,
-			liH: liH
+			liH: liH,
+			mounted: true
 		});
 		document.querySelector("#mainBox").style.minHeight = minH + "px";
 		this.initPage(this.props.location.search);
+	}
+	componentWillUnmount() {
+		window.removeEventListener("scroll", this.handleScroll.bind(this));
+	}
+	handleScroll() {
+		if (!IsTouchDevice) return;
+		let footerDom = document.getElementById("footerBox");
+		let winHei = document.documentElement.clientHeight;
+		if (!footerDom) return;
+		let footerToTopHei = footerDom.getBoundingClientRect().bottom - 10;
+		let pathName = location.pathname;
+		if (
+			footerToTopHei <= winHei &&
+			pathName == "/trading" &&
+			this.state.mounted
+		) {
+			var UlDom = document.getElementsByClassName("tradingListUl")[0];
+			if (!UlDom) return;
+			var liDom = UlDom.getElementsByTagName("li");
+			//手机默认请求10条
+			if (liDom.length < 10) return;
+			var pageIndex = parseInt(liDom.length / 10) + 1;
+
+			if (window.TradingAjaxDone) {
+				window.TradingAjaxDone = false;
+				this.props.getNewsTextM({
+					type: 1,
+					per_page: 10,
+					page: pageIndex
+				});
+			}
+		}
 	}
 	initPage(search) {
 		let q = getQuery(search);
 		this.setState({
 			page: q.page || "1"
 		});
+		if (IsTouchDevice) {
+			var pageSize = 10;
+		} else {
+			var pageSize = 6;
+		}
 		this.props
 			.getTrading({
-				per_page: 6,
+				per_page: pageSize,
 				page: q.page || 1,
 				type: 4
 			})
@@ -107,7 +149,7 @@ export default class Root extends PureComponent {
 									)}
 								</div>
 
-								<ul id="m-tradingUl" className="">
+								<ul id="m-tradingUl" className="tradingListUl">
 									{trading &&
 										trading.data &&
 										trading.data.length > 0 &&
@@ -118,27 +160,37 @@ export default class Root extends PureComponent {
 													key={index}
 													style={{ maxHeight: liH }}
 												>
-													<div className="tradingBoxImg">
-														<img
-															src={item.img}
-															alt=""
-														/>
-													</div>
-													<div className="tradingBoxCon">
-														<p className="tradingBoxTitle ellitext">
-															{item.title}
-														</p>
-														<p className="desc">
-															{item.desc}
-														</p>
-														<div className="tradingBoxModConDate">
-															<p>
-																{
-																	item.created_at
-																}
-															</p>
+													<Link
+														to={{
+															pathname:
+																"/newsdetail",
+															search: `?art_id=${
+																item.id
+															}`
+														}}
+													>
+														<div className="tradingBoxImg">
+															<img
+																src={item.img}
+																alt=""
+															/>
 														</div>
-													</div>
+														<div className="tradingBoxCon">
+															<p className="tradingBoxTitle ellitext">
+																{item.title}
+															</p>
+															<p className="desc">
+																{item.desc}
+															</p>
+															<div className="tradingBoxModConDate">
+																<p>
+																	{
+																		item.created_at
+																	}
+																</p>
+															</div>
+														</div>
+													</Link>
 												</li>
 											);
 										})}
@@ -175,7 +227,11 @@ export default class Root extends PureComponent {
 								</div>
 							</div>
 						</div>
-						<Footer changeLng={changeLng} lng={lng} />
+						{IsTouchDevice ? (
+							<div id="footerBox" />
+						) : (
+							<Footer changeLng={changeLng} lng={lng} />
+						)}
 					</div>
 				)}
 			</I18n>

@@ -178,3 +178,23 @@
 	}
 }
 @green: #0a9234;
+
+.readMoreUnderLine {
+	position: relative;
+}
+
+.readMoreUnderLine:after {
+	display: block;
+	content: "";
+	position: absolute;
+	left: 0;
+	bottom: -0.04rem;
+	max-width: 0.7rem;
+	width: 0;
+	height: 1px;
+	background: #ececec;
+	transition: all 0.3s ease-in-out;
+}
+.readMoreUnderLine:hover:after {
+	width: 100%;
+}

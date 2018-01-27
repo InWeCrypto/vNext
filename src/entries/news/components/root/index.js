@@ -617,8 +617,11 @@ export default class Root extends PureComponent {
 								</div>
 							</div>
 						</div>
-						<div id="footerBox" />
-						<Footer changeLng={changeLng} lng={lng} />
+						{IsTouchDevice ? (
+							<div id="footerBox" />
+						) : (
+							<Footer changeLng={changeLng} lng={lng} />
+						)}
 					</div>
 				)}
 			</I18n>

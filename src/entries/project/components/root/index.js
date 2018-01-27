@@ -2,7 +2,11 @@ import React, { PureComponent } from "react";
 import { I18n, Trans } from "react-i18next";
 import { NavLink, Link } from "react-router-dom";
 
-import { getMainMinHeight, getQuery } from "../../../../utils/util";
+import {
+	getMainMinHeight,
+	getQuery,
+	queryString
+} from "../../../../utils/util";
 import Header from "../../../../components/header";
 import Footer from "../../../../components/footer";
 import LeftMenu from "../../../../components/leftmenu";
@@ -15,7 +19,8 @@ export default class Root extends PureComponent {
 			minH: "auto",
 			showArrow: "right",
 			liW: "auto",
-			leftTwoMenuCur: ""
+			leftTwoMenuCur: "",
+			curType: 1
 		};
 	}
 	componentWillReceiveProps(nextProps) {
@@ -24,6 +29,7 @@ export default class Root extends PureComponent {
 		}
 	}
 	componentDidMount() {
+		let type = queryString("type");
 		document.title = "InWe-" + i18n.t("navMenu.project", this.props.lng);
 		let minH = getMainMinHeight();
 		let liW =
@@ -31,7 +37,8 @@ export default class Root extends PureComponent {
 			2;
 		this.setState({
 			minH: minH,
-			liW: liW
+			liW: liW,
+			curType: type
 		});
 		if (!IsTouchDevice)
 			document.querySelector("#mainBox").style.height = minH + "px";
@@ -139,6 +146,11 @@ export default class Root extends PureComponent {
 										<span className="text">
 											{t("project.trading", lng)}
 										</span>
+										<span className="moveBox m-hide">
+											<p className="textBox">
+												{t("project.trading", lng)}
+											</p>
+										</span>
 									</Link>
 									<Link
 										to={{
@@ -152,6 +164,11 @@ export default class Root extends PureComponent {
 									>
 										<span className="text">
 											{t("project.active", lng)}
+										</span>
+										<span className="moveBox m-hide">
+											<p className="textBox">
+												{t("project.active", lng)}
+											</p>
 										</span>
 									</Link>
 									<Link
@@ -167,6 +184,11 @@ export default class Root extends PureComponent {
 										<span className="text">
 											{t("project.upcoming", lng)}
 										</span>
+										<span className="moveBox m-hide">
+											<p className="textBox">
+												{t("project.upcoming", lng)}
+											</p>
+										</span>
 									</Link>
 									<Link
 										to={{
@@ -180,6 +202,11 @@ export default class Root extends PureComponent {
 									>
 										<span className="text">
 											{t("project.ended", lng)}
+										</span>
+										<span className="moveBox m-hide">
+											<p className="textBox">
+												{t("project.ended", lng)}
+											</p>
 										</span>
 									</Link>
 								</div>
@@ -426,7 +453,9 @@ export default class Root extends PureComponent {
 									</ul>
 									<Link
 										to={{
-											pathname: "/projectlist"
+											pathname: "/projectlist",
+											search:
+												"?type=" + this.state.curType
 										}}
 										className="viewAllProject ui center"
 									>
