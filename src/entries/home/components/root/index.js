@@ -142,7 +142,8 @@ export default class Root extends PureComponent {
 			curDay,
 			AcImgH,
 			showSearch,
-			sliderIndex
+			sliderIndex,
+			sliderIndex1
 		} = this.state;
 		const curMonth = monthArr[month].slice(0, 3);
 		const settings = {
@@ -287,7 +288,7 @@ export default class Root extends PureComponent {
 												</span>
 											)}
 										{articleList.data &&
-											sliderIndex >=
+											sliderIndex ==
 												articleList.data.length - 1 && (
 												<span className="right ui center jcenter">
 													<b />
@@ -382,7 +383,8 @@ export default class Root extends PureComponent {
 									{!IsTouchDevice && (
 										<div className="homeInweWallet ui">
 											{ads.data &&
-												ads.data.length > 1 && (
+												ads.data.length > 1 &&
+												sliderIndex1 !== 0 && (
 													<div className="walletLf ui center jcenter">
 														<span
 															className="more"
@@ -440,8 +442,8 @@ export default class Root extends PureComponent {
 											</div>
 											{ads.data &&
 												ads.data.length > 1 &&
-												articleList.data.length - 1 !==
-													sliderIndex && (
+												ads.data.length - 1 !==
+													sliderIndex1 && (
 													<div className="walletRt ui center jcenter">
 														<span
 															className="more"
@@ -453,8 +455,8 @@ export default class Root extends PureComponent {
 												)}
 											{ads.data &&
 												ads.data.length > 1 &&
-												articleList.data.length <=
-													sliderIndex && (
+												ads.data.length - 1 ==
+													sliderIndex1 && (
 													<div className="walletRt ui center jcenter">
 														<span className="" />
 													</div>
