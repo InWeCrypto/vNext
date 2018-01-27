@@ -176,12 +176,12 @@ export default class Root extends PureComponent {
 			// 上一页
 			if (this.state.newsTextCur > 1) {
 				let page = this.state.newsTextCur - 1;
-				this.getNewTextList(page);
+				this.getNewsTextList(page);
 			}
 		} else if (val == "next") {
 			if (this.state.newsTextCur < allPage) {
 				let page = this.state.newsTextCur + 1;
-				this.getNewTextList(page);
+				this.getNewsTextList(page);
 			}
 		}
 	}

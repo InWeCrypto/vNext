@@ -3,7 +3,7 @@
 	display: flex;
 	.projectOpenLeft,
 	.projectOpenRight {
-		width: 0.16rem;
+		width: 0.32rem;
 		// margin-right: 0.16rem;
 		flex-shrink: 0;
 		span {
@@ -20,11 +20,14 @@
 			no-repeat center;
 		background-size: 100%;
 	}
-	.projectOpenRight span {
-		// margin-left: 0.16rem;
-		background: url("../../../../assets/images/project_right.png") no-repeat
-			center;
-		background-size: 100%;
+	.projectOpenRight {
+		justify-content: flex-end;
+		span {
+			// margin-left: 0.16rem;
+			background: url("../../../../assets/images/project_right.png")
+				no-repeat center;
+			background-size: 100%;
+		}
 	}
 	.projectOpenRight.show span {
 		background: url("../../../../assets/images/project_right_s.png")
