@@ -308,7 +308,7 @@ export default class Root extends PureComponent {
 								{!newsDetail.article_prev && <span />}
 							</div>
 
-							<div className="newsDetailCon">
+							<div className="newsDetailCon f1">
 								<div className="newsDetailConTitle">
 									<span>{newsDetail.title}</span>
 								</div>
