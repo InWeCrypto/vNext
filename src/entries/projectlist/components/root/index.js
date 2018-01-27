@@ -2,7 +2,7 @@ import React, { PureComponent } from "react";
 import { I18n, Trans } from "react-i18next";
 import { NavLink, Link } from "react-router-dom";
 
-import { getMainMinHeight } from "../../../../utils/util";
+import { getMainMinHeight, queryString } from "../../../../utils/util";
 import Header from "../../../../components/header";
 import Footer from "../../../../components/footer";
 import FixedMenu from "../../../../components/fixedmenu";
@@ -19,6 +19,10 @@ export default class Root extends PureComponent {
 	}
 	componentWillReceiveProps(nextProps) {}
 	componentDidMount() {
+		let type = queryString("type");
+		if (!type) {
+			type = 1;
+		}
 		window.addEventListener("scroll", this.handleScroll.bind(this));
 		window.NavFristAjaxDone = true;
 		window.NavSecondAjaxDone = true;
@@ -35,7 +39,7 @@ export default class Root extends PureComponent {
 			let minH = getMainMinHeight();
 			this.setState({
 				minH: minH,
-				activeInde: 0
+				activeInde: type
 			});
 			document.querySelector("#mainBox").style.minHeight = minH + "px";
 			this.initPage();
@@ -62,9 +66,10 @@ export default class Root extends PureComponent {
 			pathName == "/projectlist" &&
 			this.state.mounted
 		) {
-			let curIndex = this.state.activeInde;
+			let curIndex = parseInt(this.state.activeInde);
+			if (isNaN(curIndex)) return;
 			switch (curIndex) {
-				case 0:
+				case 1:
 					if (window.NavFristAjaxDone) {
 						window.NavFristAjaxDone = false;
 						this.props.getProjectM({
@@ -74,7 +79,7 @@ export default class Root extends PureComponent {
 						});
 					}
 					break;
-				case 1:
+				case 2:
 					if (window.NavSecondAjaxDone) {
 						window.NavSecondAjaxDone = false;
 						this.props.getProjectM2({
@@ -84,7 +89,7 @@ export default class Root extends PureComponent {
 						});
 					}
 					break;
-				case 2:
+				case 3:
 					if (window.NavThridAjaxDone) {
 						window.NavThridAjaxDone = false;
 						this.props.getProjectM3({
@@ -94,7 +99,7 @@ export default class Root extends PureComponent {
 						});
 					}
 					break;
-				case 3:
+				case 4:
 					if (window.NavForthAjaxDone) {
 						window.NavForthAjaxDone = false;
 						this.props.getProjectM4({
@@ -146,11 +151,6 @@ export default class Root extends PureComponent {
 					// });
 				}
 			});
-	}
-	changeNav(index) {
-		this.setState({
-			activeInde: index
-		});
 	}
 	render() {
 		const { minH, activeInde } = this.state;
@@ -211,54 +211,69 @@ export default class Root extends PureComponent {
 									>
 										<p
 											className={
-												activeInde == 0 ? "active" : ""
-											}
-											onClick={this.changeNav.bind(
-												this,
-												0
-											)}
-										>
-											{t("project.trading", lng)}
-										</p>
-										<p
-											className={
 												activeInde == 1 ? "active" : ""
 											}
-											onClick={this.changeNav.bind(
-												this,
-												1
-											)}
 										>
-											{t("project.active", lng)}
+											<Link
+												to={{
+													pathname: "/projectlist",
+													search: "type=1"
+												}}
+											>
+												{t("project.trading", lng)}
+											</Link>
 										</p>
 										<p
 											className={
 												activeInde == 2 ? "active" : ""
 											}
-											onClick={this.changeNav.bind(
-												this,
-												2
-											)}
 										>
-											{t("project.upcoming", lng)}
+											<Link
+												to={{
+													pathname: "/projectlist",
+													search: "type=2"
+												}}
+											>
+												{t("project.active", lng)}
+											</Link>
 										</p>
 										<p
 											className={
 												activeInde == 3 ? "active" : ""
 											}
-											onClick={this.changeNav.bind(
-												this,
-												3
-											)}
 										>
-											{t("project.ended", lng)}
+											<Link
+												to={{
+													pathname: "/projectlist",
+													search: "type=3"
+												}}
+											>
+												{t("project.upcoming", lng)}
+											</Link>
+										</p>
+										<p
+											className={
+												activeInde == 4 ? "active" : ""
+											}
+										>
+											<Link
+												to={{
+													pathname: "/projectlist",
+													search: "type=4"
+												}}
+											>
+												{t("project.ended", lng)}
+											</Link>
 										</p>
 									</div>
 								</div>
 							)}
 							<div className="projectListCon ui">
 								{[1, 2, 3, 4].map((item, index) => {
-									if (IsTouchDevice && activeInde != index) {
+									if (
+										IsTouchDevice &&
+										activeInde != index + 1
+									) {
 										return null;
 									}
 									return (

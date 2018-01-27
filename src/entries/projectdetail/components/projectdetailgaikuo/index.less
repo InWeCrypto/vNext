@@ -231,6 +231,7 @@
 .mobile .projectDetailGaiKuo {
 	display: block;
 	.projectDetailCon1 {
+		padding: 0;
 		width: 7.5rem;
 		.projectDetailConTop {
 			position: relative;
@@ -306,13 +307,29 @@
 				font-size: 0.18rem;
 				color: #acacac;
 			}
-			table {
-				margin-top: 0.27rem;
-				th {
-					padding: 0;
-					font-size: 0.2rem;
-					height: 0.48rem;
-					line-height: 0.48rem;
+			.proDetTable {
+				width: 6.9rem;
+				margin: 0 auto;
+				margin-top: 0.26rem;
+				ul {
+					border-top: 1px solid #ececec;
+					width: 50%;
+					li {
+						box-sizing: border-box;
+						height: 0.48rem;
+						line-height: 0.48rem;
+						text-align: right;
+						overflow: hidden;
+						text-overflow: ellipsis;
+						font-size: 0.14rem;
+						border-bottom: 1px solid #ececec;
+					}
+					&.proNameUl {
+						li {
+							font-size: 0.2rem;
+							//border-right: 1px solid #ececec;
+						}
+					}
 				}
 			}
 		}

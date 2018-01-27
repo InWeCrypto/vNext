@@ -7,6 +7,7 @@ import Header from "../../../../components/header";
 import Footer from "../../../../components/footer";
 import FixedMenu from "../../../../components/fixedmenu";
 import GaiKuo from "../../../../components/gaikuo";
+import TurnApp from "../../../../components/turnapp";
 import ProjectDetailIco from "../projectdetailico";
 import ProjectDetailInfo from "../projectdetailinfo";
 import ProjectDetailIntro from "../projectdetailintro";
@@ -306,7 +307,10 @@ export default class Root extends PureComponent {
 							</div>
 						</div>
 						{IsTouchDevice ? (
-							<div id="footerBox" />
+							<div>
+								<TurnApp />
+								<div id="footerBox" />
+							</div>
 						) : (
 							<Footer changeLng={changeLng} lng={lng} />
 						)}
