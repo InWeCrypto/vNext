@@ -297,7 +297,7 @@ class ProjectDetailGaiKuo extends PureComponent {
 								"Open: " + param.data[0] + "<br/>",
 								"Close: " + param.data[1] + "<br/>",
 								"Lowest: " + param.data[2] + "<br/>",
-								"Highest: " + param.data[3] + "<br/>"
+								"Highest: " + param.data[3]
 							].join("");
 						}
 					}
