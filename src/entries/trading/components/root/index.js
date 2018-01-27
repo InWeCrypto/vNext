@@ -160,27 +160,37 @@ export default class Root extends PureComponent {
 													key={index}
 													style={{ maxHeight: liH }}
 												>
-													<div className="tradingBoxImg">
-														<img
-															src={item.img}
-															alt=""
-														/>
-													</div>
-													<div className="tradingBoxCon">
-														<p className="tradingBoxTitle ellitext">
-															{item.title}
-														</p>
-														<p className="desc">
-															{item.desc}
-														</p>
-														<div className="tradingBoxModConDate">
-															<p>
-																{
-																	item.created_at
-																}
-															</p>
+													<Link
+														to={{
+															pathname:
+																"/newsdetail",
+															search: `?art_id=${
+																item.id
+															}`
+														}}
+													>
+														<div className="tradingBoxImg">
+															<img
+																src={item.img}
+																alt=""
+															/>
 														</div>
-													</div>
+														<div className="tradingBoxCon">
+															<p className="tradingBoxTitle ellitext">
+																{item.title}
+															</p>
+															<p className="desc">
+																{item.desc}
+															</p>
+															<div className="tradingBoxModConDate">
+																<p>
+																	{
+																		item.created_at
+																	}
+																</p>
+															</div>
+														</div>
+													</Link>
 												</li>
 											);
 										})}

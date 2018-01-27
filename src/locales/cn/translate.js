@@ -14,8 +14,8 @@ export default {
 	},
 	project: {
 		trading: "交易",
-		active: "活动",
-		upcoming: "即将到来",
+		active: "正在进行中",
+		upcoming: "即将开始",
 		ended: "结束",
 		more: "查看更多",
 		other: "大约还有",
@@ -28,7 +28,7 @@ export default {
 		rank: "市值排名",
 		market_cap_usd: "市值",
 		available_supply: "流通量",
-		total_supply: "总量",
+		total_supply: "总供给量",
 		price_usd: "ICO Price",
 		sort: "关注热度：第",
 		sort_s: "名",
@@ -60,9 +60,9 @@ export default {
 		home: "首页",
 		project: "项目",
 		news: "新闻",
-		candybowl: "空投",
+		candybowl: "糖果盒",
 		trading: "交易观点",
-		announcment: "公告",
+		announcment: "交易所公告",
 		search: "搜索",
 		wallent: "钱包"
 	},
@@ -72,7 +72,7 @@ export default {
 	signBox: {
 		signIn: {
 			email: "邮箱",
-			user: "账户",
+			user: "账户名",
 			password: "密码",
 			forget: "忘记密码",
 			signIn: "登录",
@@ -136,7 +136,8 @@ export default {
 		resetPass: "密码修改失败，请重试",
 		passLength: "密码长度不一致",
 		passError: "两次输入密码不同",
-		codeEmpty: "验证码不能为空"
+		codeEmpty: "验证码不能为空",
+		followError: "上限值不能小于下限值"
 	},
 	success: {
 		login: "登录成功",

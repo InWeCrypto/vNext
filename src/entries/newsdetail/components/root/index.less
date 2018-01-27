@@ -54,10 +54,11 @@
 		}
 		.newsMeta {
 			width: 100%;
-			overflow: hidden;
+			// overflow: hidden;
 			.newsDetailConMeta {
 				float: left;
 				height: 0.2rem;
+				padding-top: 1px;
 				.metaDate {
 					font-size: 0.12rem;
 					color: rgba(201, 198, 198, 1);
@@ -83,8 +84,11 @@
 			}
 			.newDetailConShare {
 				float: right;
-				span {
-					display: inline-block;
+				width: 0.86rem;
+				position: relative;
+				span.rt {
+					// display: inline-block;
+					float: right;
 					width: 0.18rem;
 					height: 0.18rem;
 					margin-left: 0.08rem;
@@ -94,20 +98,65 @@
 						width: 0.18rem;
 						height: 0.18rem;
 						&.wxShare {
-							background: url("../../../../assets/images/footer_wechat.png")
-								no-repeat center;
-							background-size: 0.17rem 0.15rem;
+							background: url("../../../../assets/images/zixun1_share.png")
+								right center no-repeat;
+							background-size: 100%;
+							&:hover,
+							&.cur {
+								background: url("../../../../assets/images/zixun1_share_s.png")
+									right center no-repeat;
+								background-size: 100% 100%;
+							}
 						}
 						&.collect {
 							background: url("../../../../assets/images/project_collect.png")
 								no-repeat center;
 							background-size: 0.18rem;
+							&:hover,
 							&.active {
 								background: url("../../../../assets/images/project_collect_s.png")
 									no-repeat center;
 								background-size: 0.17rem;
 							}
 						}
+					}
+				}
+				.shareList {
+					position: absolute;
+					width: 100%;
+					height: 0.26rem;
+					background: rgba(51, 51, 51, 1);
+					border-radius: 0.04rem;
+					margin-top: 0.05rem;
+					top: 0.2rem;
+					justify-content: space-around;
+					li.wx {
+						width: 0.16rem;
+						height: 0.14rem;
+						background: url("../../../../assets/images/zixun1_wechat.png")
+							no-repeat 0 0;
+						background-size: 100%;
+					}
+					li.pyq {
+						width: 0.14rem;
+						height: 0.14rem;
+						background: url("../../../../assets/images/zixun1_pengyouquan.png")
+							no-repeat 0 0;
+						background-size: 100%;
+					}
+					li.tele {
+						width: 0.14rem;
+						height: 0.14rem;
+						background: url("../../../../assets/images/zixun1_telegram.png")
+							no-repeat 0 0;
+						background-size: 100%;
+					}
+					li.qq {
+						width: 0.12rem;
+						height: 0.14rem;
+						background: url("../../../../assets/images/zixun1_qq.png")
+							no-repeat 0 0;
+						background-size: 100%;
 					}
 				}
 			}

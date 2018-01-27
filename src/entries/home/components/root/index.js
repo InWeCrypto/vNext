@@ -156,6 +156,7 @@ export default class Root extends PureComponent {
 			arrows: false,
 			accessibility: true,
 			adaptiveHeight: true,
+			fade: true,
 			afterChange: function(index) {
 				this.setState({
 					sliderIndex: index
@@ -315,31 +316,39 @@ export default class Root extends PureComponent {
 									</div>
 								</div>
 								<div className="homeBoxList homeBoxNews">
-									<p className="homeBoxTitle">
-										{t("home.news", lng)}
-									</p>
-									<ul className="homeBoxNewsUl">
-										{newsList &&
-											newsList.data &&
-											newsList.data.length > 0 &&
-											newsList.data.map((item, index) => {
-												return (
-													<li key={index}>
-														<Link
-															to={{
-																pathname:
-																	"/newsdetail",
-																search:
-																	"?art_id=" +
-																	item.id
-															}}
-														>
-															<p>{item.title}</p>
-														</Link>
-													</li>
-												);
-											})}
-									</ul>
+									<div className="homeBoxNewsAll">
+										<p className="homeBoxTitle">
+											{t("home.news", lng)}
+										</p>
+										<ul className="homeBoxNewsUl">
+											{newsList &&
+												newsList.data &&
+												newsList.data.length > 0 &&
+												newsList.data.map(
+													(item, index) => {
+														return (
+															<li key={index}>
+																<Link
+																	to={{
+																		pathname:
+																			"/newsdetail",
+																		search:
+																			"?art_id=" +
+																			item.id
+																	}}
+																>
+																	<p>
+																		{
+																			item.title
+																		}
+																	</p>
+																</Link>
+															</li>
+														);
+													}
+												)}
+										</ul>
+									</div>
 									<div className="homeBoxReadMore">
 										<Link
 											to={{
@@ -357,28 +366,39 @@ export default class Root extends PureComponent {
 									className="homeBoxList homeBoxCandy"
 									onClick={this.turnToCandy.bind(this)}
 								>
-									<p className="homeBoxTitle">
-										{t("home.candy", lng)}?
-									</p>
 									<div className="homeBoxCandyTop">
-										<p className="homeCandyDate">
-											<b>{curDay}</b>/{curMonth}
+										<p className="homeBoxTitle">
+											{t("home.candy", lng)}?
 										</p>
-										{candyList.list &&
-											candyList.list.data &&
-											candyList.list.data.length > 0 &&
-											candyList.list.data.map(
-												(item, index) => {
-													return (
-														<span
-															key={index}
-															className="homeCandySpan"
-														>
-															+{item.name}
-														</span>
-													);
-												}
-											)}
+										<div className="homeBoxCandyTopAll">
+											<p className="homeCandyDate">
+												<b>{curDay}</b>/{curMonth}
+											</p>
+											{candyList.list &&
+												candyList.list.data &&
+												candyList.list.data.length >
+													0 &&
+												candyList.list.data.map(
+													(item, index) => {
+														return (
+															<Link
+																key={index}
+																to={{
+																	pathname:
+																		"/candybowl"
+																}}
+															>
+																<span
+																	key={index}
+																	className="homeCandySpan"
+																>
+																	+{item.name}
+																</span>
+															</Link>
+														);
+													}
+												)}
+										</div>
 									</div>
 									{!IsTouchDevice && (
 										<div
@@ -470,7 +490,7 @@ export default class Root extends PureComponent {
 										</div>
 									)}
 								</div>
-								<div className="homeBoxList homeBoxAnno">
+								<div className="homeBoxList homeBoxAnno homeBoxAnnoAll">
 									<p className="homeBoxTitle">
 										{t("home.anno", lng)}
 									</p>
@@ -534,38 +554,54 @@ export default class Root extends PureComponent {
 											</Link>
 										</div>
 									</div>
+									{/* <div className="homeBoxReadMore">
+										<Link
+											to={{
+												pathname: "/announcment"
+											}}
+										>
+											<span className="readMore">
+												Read more
+											</span>
+											<b className="readMoreImg" />
+										</Link>
+									</div> */}
 									{!IsTouchDevice &&
 										userFavo &&
 										userFavo.data &&
 										userFavo.data.length > 0 && (
 											<div className="homeBoxFllow">
-												<p className="homeBoxTitle">
-													{t("home.follow", lng)}…
-												</p>
-												<ul className="homeBoxFllowUl">
-													{userFavo.data.map(
-														(item, index) => {
-															return (
-																<li
-																	key={index}
-																	className="ui center jcenter"
-																>
-																	<img
-																		src={
-																			item.img
+												<div className="homeBoxFllowAll">
+													<p className="homeBoxTitle">
+														{t("home.follow", lng)}…
+													</p>
+													<ul className="homeBoxFllowUl">
+														{userFavo.data.map(
+															(item, index) => {
+																return (
+																	<li
+																		key={
+																			index
 																		}
-																		alt=""
-																	/>
-																	<span className="f1 ellitext">
-																		{
-																			item.name
-																		}
-																	</span>
-																</li>
-															);
-														}
-													)}
-												</ul>
+																		className="ui center jcenter"
+																	>
+																		<img
+																			src={
+																				item.img
+																			}
+																			alt=""
+																		/>
+																		<span className="f1 ellitext">
+																			{
+																				item.name
+																			}
+																		</span>
+																	</li>
+																);
+															}
+														)}
+													</ul>
+												</div>
 												<div className="homeBoxReadMore">
 													<Link
 														to={{

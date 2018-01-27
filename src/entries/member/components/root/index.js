@@ -98,7 +98,8 @@ export default class Root extends PureComponent {
 			memberNewsList,
 			getMemeberNewsList,
 			commonMarket,
-			getHeaderMarket
+			getHeaderMarket,
+			setProjectFollow
 		} = this.props;
 		const {
 			set,
@@ -170,6 +171,7 @@ export default class Root extends PureComponent {
 										<MemberQuotation
 											quotationList={quotationList}
 											getQuotationList={getQuotationList}
+											setProjectFollow={setProjectFollow}
 											lng={lng}
 										/>
 									)}

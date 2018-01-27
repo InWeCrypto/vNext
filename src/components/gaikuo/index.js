@@ -1,7 +1,7 @@
 import React, { PureComponent } from "react";
 import { I18n, Trans } from "react-i18next";
 import { StyleSheet, css } from "aphrodite";
-import { puffIn } from "react-magic";
+import { puffIn, spaceInDown } from "react-magic";
 import QcodeBox from "../qcode";
 import "./index.less";
 
@@ -23,7 +23,7 @@ class GaiKuo extends PureComponent {
 		};
 		this.styles = StyleSheet.create({
 			magic: {
-				animationName: puffIn,
+				animationName: spaceInDown,
 				animationDuration: ".3s"
 			}
 		});
@@ -223,7 +223,7 @@ class GaiKuo extends PureComponent {
 										</li>
 										<li
 											className={
-												share
+												showShareList
 													? "gaikuoShare cur"
 													: "gaikuoShare"
 											}

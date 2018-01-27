@@ -38,7 +38,9 @@ class ProjectCollection extends PureComponent {
 	changePagination(page, size) {
 		this.getData(page);
 	}
-	setFavorite(item) {
+	setFavorite(item, e) {
+		e.stopPropagation();
+		e.nativeEvent.stopImmediatePropagation();
 		this.props.setProjectColletion(
 			item.id,
 			item.category_user.is_favorite ? false : true
@@ -51,6 +53,9 @@ class ProjectCollection extends PureComponent {
 		} else {
 			window.location.href = "/newsdetail?id=" + artical.id;
 		}
+	}
+	openProject(item) {
+		window.location.href = "/projectdetail?c_id=" + item.id;
 	}
 	render() {
 		const { userInfo, collectionList, lng } = this.props;
@@ -73,12 +78,15 @@ class ProjectCollection extends PureComponent {
 										<div
 											key={index}
 											className="project-group ui center"
+											onClick={this.openProject.bind(
+												this,
+												item
+											)}
 										>
 											<div
-												onClick={this.setFavorite.bind(
-													this,
-													item
-												)}
+												onClick={e => {
+													this.setFavorite(item, e);
+												}}
 											>
 												{(!item.category_user ||
 													!item.category_user
@@ -144,10 +152,12 @@ class ProjectCollection extends PureComponent {
 											<div className="f1 project-news">
 												{item.last_article && (
 													<span
-														onClick={this.projectNews.bind(
-															this,
-															item.last_article
-														)}
+														onClick={e => {
+															this.projectNews.bind(
+																item.last_article,
+																e
+															);
+														}}
 														className="project-news-target"
 													>
 														{
@@ -155,6 +165,9 @@ class ProjectCollection extends PureComponent {
 																.title
 														}
 													</span>
+												)}
+												{!item.last_article && (
+													<span>----</span>
 												)}
 											</div>
 										</div>

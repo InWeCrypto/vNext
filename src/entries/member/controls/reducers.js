@@ -4,7 +4,8 @@ import {
 	QUOTATION,
 	UPLOADKEY,
 	SETPROJECTCOLLETION,
-	NEWSLIST
+	NEWSLIST,
+	PROJECTFOLLOW
 } from "./actions";
 
 export const collectionList = handleActions(
@@ -24,7 +25,17 @@ export const collectionList = handleActions(
 );
 export const quotationList = handleActions(
 	{
-		[QUOTATION]: (state, { payload }) => payload
+		[QUOTATION]: (state, { payload }) => payload,
+		[PROJECTFOLLOW]: (state, { payload }) => {
+			let d = state.data.map((item, index) => {
+				if (item.id === payload.category_id) {
+					item.category_user = payload;
+				}
+				return item;
+			});
+
+			return { ...state, data: d };
+		}
 	},
 	null
 );
