@@ -111,7 +111,6 @@ export default class Root extends PureComponent {
 			emailAddress,
 			resetP
 		} = this.state;
-		console.log(uploadKey);
 		return (
 			<I18n>
 				{(t, { I18n }) => (
