@@ -161,9 +161,8 @@
 			.homeBoxCandyTop {
 				width: 100%;
 				margin: 0.3rem auto 0rem;
-				padding: 0 0.3rem 0.2rem;
+				padding: 0 0.3rem 0rem;
 				overflow: hidden;
-				border-bottom: 1px solid #ececec;
 				box-sizing: border-box;
 				padding-bottom: 0.2rem;
 				overflow: hidden;
@@ -172,6 +171,8 @@
 					height: 0.42rem;
 					font-size: 0.12rem;
 					color: #262626;
+					padding-bottom: 0.2rem;
+					border-bottom: 1px solid #ececec;
 					b {
 						font-size: 0.3rem;
 						color: #ff2800;
@@ -193,6 +194,7 @@
 				padding-top: 0.3rem;
 				.walletLf,
 				.walletRt {
+					visibility: hidden;
 					width: 0.3rem;
 					-webkit-flex-shrink: 0;
 					-ms-flex-negative: 0;
@@ -227,6 +229,10 @@
 				}
 				img {
 					width: 100%;
+				}
+				&:hover .walletLf,
+				&:hover .walletRt {
+					visibility: visible;
 				}
 			}
 		}
