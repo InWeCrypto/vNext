@@ -10,18 +10,23 @@
 		position: absolute;
 		z-index: 10;
 		font-size: 200px;
+		color: none;
+		background: none;
+		cursor: pointer;
 		div:nth-child(2) {
 			width: 100% !important;
 			height: 100% !important;
 			position: relative;
 			background: none;
 			color: none;
+			cursor: pointer;
 			// z-index: -1;
 		}
 	}
 	.webuploader-pick {
 		width: 100%;
 		height: 100%;
+		cursor: pointer;
 	}
 	.member-title {
 		padding: 0.7rem 0 0.1rem 0;
@@ -45,6 +50,28 @@
 					position: relative;
 					z-index: 12;
 					pointer-events: none;
+				}
+			}
+			.member-img-box:hover .camer {
+				display: flex;
+			}
+			.camer {
+				display: none;
+				position: absolute;
+				background: rgba(0, 0, 0, 0.5);
+				top: 0;
+				left: 0;
+
+				align-items: center;
+				justify-content: center;
+				width: 100%;
+				height: 100%;
+				pointer-events: none;
+				z-index: 12;
+				cursor: pointer;
+				img {
+					width: 50%;
+					height: auto;
 				}
 			}
 		}
