@@ -15,6 +15,7 @@ class Register extends PureComponent {
 			code: "",
 			password: "",
 			password1: "",
+			btnType: 1,
 			hasBack: props.hasBack ? this.props.hasBac : false
 		};
 		this.styles = StyleSheet.create({
@@ -50,10 +51,25 @@ class Register extends PureComponent {
 		}, 1000);
 	}
 	inputChange(type, e) {
-		let val = e.target.value;
+		const { code, email, password, password1 } = this.state;
+		let set = {};
+		if (
+			code.length == 4 &&
+			email.length >= 5 &&
+			password.length >= 5 &&
+			password1.length >= 5
+		) {
+			set.btnType = 2;
+		} else {
+			set.btnType = 1;
+		}
+		set[type] = e.target.value;
 		this.setState({
-			[type]: val
+			...set
 		});
+	}
+	componentWillMount() {
+		this.setState({ btnType: 1 });
 	}
 	sendCode() {
 		if (this.state.email.length <= 0) {
@@ -85,6 +101,7 @@ class Register extends PureComponent {
 			Msg.prompt(i18n.t("error.passError", this.props.lng));
 			return;
 		}
+		this.setState({ btnType: 3 });
 		if (!this.props.isForget) {
 			this.props
 				.registerUser({
@@ -98,6 +115,8 @@ class Register extends PureComponent {
 					if (res.code === 4000) {
 						Msg.prompt(i18n.t("success.login", this.props.lng));
 						this.props.close();
+					} else {
+						this.setState({ btnType: 2 });
 					}
 				});
 		} else {
@@ -112,6 +131,8 @@ class Register extends PureComponent {
 					if (res.code === 4000) {
 						Msg.prompt(i18n.t("success.resetPass", this.props.lng));
 						this.props.close();
+					} else {
+						this.setState({ btnType: 2 });
 					}
 				});
 		}
@@ -126,7 +147,8 @@ class Register extends PureComponent {
 			email,
 			code,
 			password,
-			password1
+			password1,
+			btnType
 		} = this.state;
 		return (
 			<I18n>
@@ -309,7 +331,13 @@ class Register extends PureComponent {
 											</div>
 											<div className="register-btn">
 												<div
-													className="btn"
+													className={(() => {
+														if (btnType === 1) {
+															return "btn disable";
+														} else {
+															return "btn";
+														}
+													})()}
 													onClick={this.registerClick.bind(
 														this
 													)}
@@ -320,6 +348,9 @@ class Register extends PureComponent {
 																"signBox.register.resetPass",
 																lng
 															)}
+															{btnType === 3 && (
+																<span>...</span>
+															)}
 														</span>
 													)}
 													{!isForget && (
@@ -327,6 +358,9 @@ class Register extends PureComponent {
 															{t(
 																"signBox.register.register",
 																lng
+															)}
+															{btnType === 3 && (
+																<span>...</span>
 															)}
 														</span>
 													)}
