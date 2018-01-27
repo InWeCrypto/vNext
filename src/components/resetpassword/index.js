@@ -12,13 +12,25 @@ class ResetPassword extends PureComponent {
 			isShowPass1: false,
 			password2: "",
 			isShowPass2: false,
-			isShowError: false
+			isShowError: false,
+			btnType: 1
 		};
 	}
 	inpputChange(type, e) {
-		var val = e.target.value;
+		let set = {};
+		const { passwordOld, password1, password2 } = this.state;
+		if (
+			passwordOld.length >= 5 &&
+			password1.length >= 5 &&
+			password2.length >= 5
+		) {
+			set.btnType = 2;
+		} else {
+			set.btnType = 1;
+		}
+		set[type] = e.target.value;
 		this.setState({
-			[type]: val
+			...set
 		});
 	}
 	changePassShow(type) {
@@ -26,6 +38,9 @@ class ResetPassword extends PureComponent {
 		this.setState({
 			[type]: s
 		});
+	}
+	componentWillMount() {
+		this.setState({ btnType: 1 });
 	}
 	resetPass() {
 		if (
@@ -40,6 +55,9 @@ class ResetPassword extends PureComponent {
 			Msg.prompt(i18n.t("error.passLength", this.props.lng));
 			return;
 		}
+		this.setState({
+			btnType: 3
+		});
 		this.props
 			.resetPass({
 				password_old: this.state.passwordOld,
@@ -51,6 +69,10 @@ class ResetPassword extends PureComponent {
 					this.props.close();
 					localStorage.removeItem("userInfo");
 					window.location.href = "/";
+				} else {
+					this.setState({
+						btnType: 2
+					});
 				}
 			});
 	}
@@ -61,7 +83,8 @@ class ResetPassword extends PureComponent {
 			isPasswordOld,
 			isShowPass1,
 			isShowPass2,
-			isShowError
+			isShowError,
+			btnType
 		} = this.state;
 		return (
 			<I18n>
@@ -177,16 +200,27 @@ class ResetPassword extends PureComponent {
 								</div>
 								<div className="resetp-btn">
 									<div>
-										<span
-											onClick={this.resetPass.bind(this)}
-											className="btn"
-										>
-											{t("resetPassword.btn", lng)}
-										</span>
+										{btnType === 1 && (
+											<span className="btn disable">
+												{t("resetPassword.btn", lng)}
+											</span>
+										)}
+										{btnType === 2 && (
+											<span
+												onClick={this.resetPass.bind(
+													this
+												)}
+												className="btn"
+											>
+												{t("resetPassword.btn", lng)}
+											</span>
+										)}
+										{btnType === 3 && (
+											<span className="btn">
+												{t("resetPassword.btn", lng)}...
+											</span>
+										)}
 									</div>
-									{isShowError && (
-										<div className="resetp-error">22</div>
-									)}
 								</div>
 							</div>
 						</div>

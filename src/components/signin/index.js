@@ -10,7 +10,8 @@ class SignIn extends PureComponent {
 		this.state = {
 			showPassword: false,
 			email: "",
-			password: ""
+			password: "",
+			btnType: 1
 		};
 		this.styles = StyleSheet.create({
 			magic: {
@@ -28,12 +29,22 @@ class SignIn extends PureComponent {
 			showPassword: type
 		});
 	}
+	componentWillMount() {
+		this.setState({ btnType: 1 });
+	}
 	setIconClass() {
 		return this.state.showPassword ? "icon-see show-text" : "icon-see";
 	}
 	inputChange(type, e) {
+		let set = {};
+		if (this.state.email.length >= 5 && this.state.password.length >= 5) {
+			set.btnType = 2;
+		} else {
+			set.btnType = 1;
+		}
+		set[type] = e.target.value;
 		this.setState({
-			[type]: e.target.value
+			...set
 		});
 	}
 	loginIn() {
@@ -45,6 +56,9 @@ class SignIn extends PureComponent {
 			Msg.prompt(i18n.t("error.passwordEmpty", this.props.lng));
 			return;
 		}
+		this.setState({
+			btnType: 3
+		});
 		this.props
 			.loginIn({
 				email: this.state.email,
@@ -56,6 +70,10 @@ class SignIn extends PureComponent {
 
 					this.props.closeSign();
 					window.location.reload();
+				} else {
+					this.setState({
+						btnType: 2
+					});
 				}
 			});
 	}
@@ -69,6 +87,7 @@ class SignIn extends PureComponent {
 			openFast,
 			isForget
 		} = this.props;
+		const { btnType } = this.state;
 		return (
 			<I18n>
 				{(t, { I18n }) => (
@@ -151,18 +170,45 @@ class SignIn extends PureComponent {
 												</span>
 											</div>
 											<div className="btn-box">
-												<a
-													href="javascript:void(0)"
-													className="signbtn"
-													onClick={this.loginIn.bind(
-														this
-													)}
-												>
-													{t(
-														"signBox.signIn.signIn",
-														lng
-													)}
-												</a>
+												{btnType === 1 && (
+													<a
+														href="javascript:void(0)"
+														className="signbtn disable"
+													>
+														{t(
+															"signBox.signIn.signIn",
+															lng
+														)}
+													</a>
+												)}
+												{btnType === 2 && (
+													<a
+														href="javascript:void(0)"
+														className="signbtn"
+														onClick={this.loginIn.bind(
+															this
+														)}
+													>
+														{t(
+															"signBox.signIn.signIn",
+															lng
+														)}
+													</a>
+												)}
+												{btnType === 3 && (
+													<a
+														href="javascript:void(0)"
+														className="signbtn loading"
+														onClick={this.loginIn.bind(
+															this
+														)}
+													>
+														{t(
+															"signBox.signIn.signIn",
+															lng
+														)}...
+													</a>
+												)}
 											</div>
 											{/* <div className="fast-sign">
 												<span onClick={openFast}>
