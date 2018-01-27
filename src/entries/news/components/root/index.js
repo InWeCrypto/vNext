@@ -16,11 +16,17 @@ export default class Root extends PureComponent {
 			minH: "auto",
 			newsTextCur: 1,
 			newsImgCur: 1,
-			newsVideoCur: 1
+			newsVideoCur: 1,
+			mounted: false
 		};
 	}
 	componentWillReceiveProps(nextProps) {}
 	componentDidMount() {
+		window.addEventListener("scroll", this.handleScroll.bind(this));
+		window.NewNavTextAjaxDone = true;
+		window.NewNavImgAjaxDone = true;
+		window.NewNavVideoAjaxDone = true;
+
 		document.title = "InWe-" + i18n.t("navMenu.news", this.props.lng);
 		this.getNewsTextList(this.state.newsTextCur);
 		this.getNewsImgList(this.state.newsImgCur);
@@ -28,15 +34,95 @@ export default class Root extends PureComponent {
 		let minH = getMainMinHeight();
 		this.setState({
 			minH: minH,
-			activeIndex: 0
+			activeIndex: 0,
+			mounted: true
 		});
 		document.querySelector("#mainBox").style.minHeight = minH + "px";
 	}
+	componentWillUnmount() {
+		window.removeEventListener("scroll", this.handleScroll.bind(this));
+	}
+	handleScroll() {
+		if (!IsTouchDevice) return;
+		let footerDom = document.getElementById("footerBox");
+		let winHei = document.documentElement.clientHeight;
+		if (!footerDom) return;
+		let footerToTopHei = footerDom.getBoundingClientRect().bottom - 10;
+		let pathName = location.pathname;
+		if (
+			footerToTopHei <= winHei &&
+			pathName == "/news" &&
+			this.state.mounted
+		) {
+			let curIndex = this.state.activeIndex;
+			switch (curIndex) {
+				case 0:
+					var UlDom = document.getElementsByClassName(
+						"textNewsUl"
+					)[0];
+					if (!UlDom) return;
+					var liDom = UlDom.getElementsByTagName("li");
+					//手机默认请求10条
+					if (liDom.length < 10) return;
+					var pageIndex = parseInt(liDom.length / 10) + 1;
+
+					if (window.NewNavTextAjaxDone) {
+						window.NewNavTextAjaxDone = false;
+						this.props.getNewsTextM({
+							type: 1,
+							per_page: 10,
+							page: pageIndex
+						});
+					}
+					break;
+				case 1:
+					var UlDom = document.getElementsByClassName("imgNewsUl")[0];
+					if (!UlDom) return;
+					var liDom = UlDom.getElementsByTagName("li");
+					//手机默认请求10条
+					if (liDom.length < 10) return;
+					var pageIndex = parseInt(liDom.length / 10) + 1;
+
+					if (window.NewNavImgAjaxDone) {
+						window.NewNavImgAjaxDone = false;
+						this.props.getNewsImgM({
+							type: 2,
+							per_page: 10,
+							page: pageIndex
+						});
+					}
+					break;
+				case 2:
+					var UlDom = document.getElementsByClassName(
+						"videoNewsUl"
+					)[0];
+					if (!UlDom) return;
+					var liDom = UlDom.getElementsByTagName("li");
+					//手机默认请求10条
+					if (liDom.length < 10) return;
+					var pageIndex = parseInt(liDom.length / 10) + 1;
+
+					if (window.NewNavVideoAjaxDone) {
+						window.NewNavVideoAjaxDone = false;
+						this.props.getNewsVideoM({
+							type: 3,
+							per_page: 10,
+							page: pageIndex
+						});
+					}
+					break;
+			}
+		}
+	}
 	getNewsTextList(page) {
+		let per_page = 5;
+		if (IsTouchDevice) {
+			per_page = 10;
+		}
 		this.props
 			.getNewsText({
 				type: 1,
-				per_page: 5,
+				per_page: per_page,
 				page: page
 			})
 			.then(res => {
@@ -48,10 +134,14 @@ export default class Root extends PureComponent {
 			});
 	}
 	getNewsImgList(page) {
+		let per_page = 4;
+		if (IsTouchDevice) {
+			per_page = 10;
+		}
 		this.props
 			.getNewsImg({
 				type: 2,
-				per_page: 4,
+				per_page: per_page,
 				page: page
 			})
 			.then(res => {
@@ -63,10 +153,14 @@ export default class Root extends PureComponent {
 			});
 	}
 	getNewsVideoList(page) {
+		let per_page = 4;
+		if (IsTouchDevice) {
+			per_page = 10;
+		}
 		this.props
 			.getNewsVideo({
 				type: 3,
-				per_page: 4,
+				per_page: per_page,
 				page: page
 			})
 			.then(res => {
@@ -228,7 +322,7 @@ export default class Root extends PureComponent {
 												);
 											}}
 										/>
-										<ul className="ui ">
+										<ul className="ui textNewsUl">
 											{newsText &&
 												newsText.data &&
 												newsText.data.length > 0 &&
@@ -433,7 +527,7 @@ export default class Root extends PureComponent {
 												);
 											}}
 										/>
-										<ul className="ui ">
+										<ul className="ui videoNewsUl">
 											{newsVideo &&
 												newsVideo.data &&
 												newsVideo.data.length > 0 &&
@@ -523,7 +617,8 @@ export default class Root extends PureComponent {
 								</div>
 							</div>
 						</div>
-						<Footer changeLng={changeLng} lng={lng} />
+						<div id="footerBox" />
+						{/* <Footer changeLng={changeLng} lng={lng} /> */}
 					</div>
 				)}
 			</I18n>

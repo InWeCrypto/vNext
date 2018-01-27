@@ -25,7 +25,7 @@ class LeftMenuBox extends PureComponent {
 		return (
 			<I18n>
 				{(t, { I18n }) => (
-					<div className="left-menus-news">
+					<div className="left-menus-news m-hide">
 						{showSearch && (
 							<Search closeSearch={this.closeSearch.bind(this)} />
 						)}

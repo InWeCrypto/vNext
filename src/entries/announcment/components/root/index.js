@@ -18,7 +18,8 @@ export default class Root extends PureComponent {
 			lfMore: "leftArrow",
 			rtMore: "rightArrow more",
 			page: 1,
-			nums: 8
+			nums: 8,
+			mounted: false
 		};
 	}
 	componentWillReceiveProps(nextProps) {
@@ -27,6 +28,9 @@ export default class Root extends PureComponent {
 		}
 	}
 	componentDidMount() {
+		window.addEventListener("scroll", this.handleScroll.bind(this));
+		window.AnnouncmentAjaxDone = true;
+
 		setTimeout(() => {
 			document.title =
 				"InWe-" + i18n.t("navMenu.announcment", this.props.lng);
@@ -34,13 +38,47 @@ export default class Root extends PureComponent {
 			let liH = minH / 2;
 			this.setState({
 				minH: minH,
-				liH: liH
+				liH: liH,
+				mounted: true
 			});
 			document.querySelector("#mainBox").style.minHeight = minH + "px";
 			this.initPage(this.props.location.search);
 		}, 0);
 	}
+	componentWillUnmount() {
+		window.removeEventListener("scroll", this.handleScroll.bind(this));
+	}
+	handleScroll() {
+		if (!IsTouchDevice) return;
+		let footerDom = document.getElementById("footerBox");
+		let winHei = document.documentElement.clientHeight;
+		if (!footerDom) return;
+		let footerToTopHei = footerDom.getBoundingClientRect().bottom - 10;
+		let pathName = location.pathname;
 
+		if (
+			footerToTopHei <= winHei &&
+			pathName == "/announcment" &&
+			this.state.mounted
+		) {
+			let curIndex = this.state.activeIndex;
+
+			var UlDom = document.getElementsByClassName("annoucmentListUl")[0];
+			if (!UlDom) return;
+			var liDom = UlDom.getElementsByTagName("li");
+			//手机默认请求10条
+			if (liDom.length < 10) return;
+			var pageIndex = parseInt(liDom.length / 10) + 1;
+
+			if (window.AnnouncmentAjaxDone) {
+				window.AnnouncmentAjaxDone = false;
+				this.props.getAnnouncmentM({
+					per_page: 10,
+					page: pageIndex
+				});
+			}
+		}
+	}
 	initPage(location) {
 		let p = getQuery(location);
 		let annoBoxH =
@@ -224,7 +262,7 @@ export default class Root extends PureComponent {
 										</ul>
 									</div>
 									<div className="f1">
-										<ul className="ui">
+										<ul className="ui annoucmentListUl">
 											{announcment &&
 												announcment.data &&
 												announcment.data.length > 0 &&
@@ -361,7 +399,8 @@ export default class Root extends PureComponent {
 								</div>
 							</div>
 						</div>
-						<Footer changeLng={changeLng} lng={lng} />
+						<div id="footerBox" />
+						{/* <Footer changeLng={changeLng} lng={lng} /> */}
 					</div>
 				)}
 			</I18n>
