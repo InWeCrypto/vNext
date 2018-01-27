@@ -423,64 +423,124 @@ class ProjectDetailGaiKuo extends PureComponent {
 										coinTimePrice["24h_volume_usd"]}{" "}
 									USD
 								</p>
-
-								<table>
-									<thead>
-										<tr>
-											<th>
+								{IsTouchDevice ? (
+									<div className="proDetTable ui center">
+										<ul className="proNameUl f1">
+											<li>
 												{t("projectDetail.rank", lng)}
-											</th>
-											<th>
+											</li>
+											<li>
 												{t(
 													"projectDetail.market_cap_usd",
 													lng
 												)}
-											</th>
-											<th>
+											</li>
+											<li>
 												{t(
 													"projectDetail.available_supply",
 													lng
 												)}
-											</th>
-											<th>
+											</li>
+											<li>
 												{t(
 													"projectDetail.total_supply",
 													lng
 												)}
-											</th>
-											<th>
+											</li>
+											<li>
 												{t(
 													"projectDetail.price_usd",
 													lng
 												)}
-											</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>
+											</li>
+										</ul>
+										<ul className="proValUl f1">
+											<li>
 												{coinTimePrice &&
 													coinTimePrice.rank}
-											</td>
-											<td>
+											</li>
+											<li>
 												${coinTimePrice &&
 													coinTimePrice.market_cap_usd}
-											</td>
-											<td>
+											</li>
+											<li>
+												{" "}
 												{coinTimePrice &&
 													coinTimePrice.available_supply}
-											</td>
-											<td>
+											</li>
+											<li>
 												{coinTimePrice &&
 													coinTimePrice.total_supply}
-											</td>
-											<td>
+											</li>
+											<li>
 												${coinTimePrice &&
 													coinTimePrice.price_usd}
-											</td>
-										</tr>
-									</tbody>
-								</table>
+											</li>
+										</ul>
+									</div>
+								) : (
+									<table>
+										<thead>
+											<tr>
+												<th>
+													{t(
+														"projectDetail.rank",
+														lng
+													)}
+												</th>
+												<th>
+													{t(
+														"projectDetail.market_cap_usd",
+														lng
+													)}
+												</th>
+												<th>
+													{t(
+														"projectDetail.available_supply",
+														lng
+													)}
+												</th>
+												<th>
+													{t(
+														"projectDetail.total_supply",
+														lng
+													)}
+												</th>
+												<th>
+													{t(
+														"projectDetail.price_usd",
+														lng
+													)}
+												</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>
+													{coinTimePrice &&
+														coinTimePrice.rank}
+												</td>
+												<td>
+													${coinTimePrice &&
+														coinTimePrice.market_cap_usd}
+												</td>
+												<td>
+													{coinTimePrice &&
+														coinTimePrice.available_supply}
+												</td>
+												<td>
+													{coinTimePrice &&
+														coinTimePrice.total_supply}
+												</td>
+												<td>
+													${coinTimePrice &&
+														coinTimePrice.price_usd}
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								)}
+
 								<div className="gaiKuoChart" id="gaiKuoChart">
 									<div className="charts-type ui start">
 										<span>Zoom</span>

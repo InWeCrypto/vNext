@@ -10,6 +10,7 @@ import {
 import Header from "../../../../components/header";
 import Footer from "../../../../components/footer";
 import FixedMenu from "../../../../components/fixedmenu";
+import TurnApp from "../../../../components/turnapp";
 import origlePic from "../../../../assets/images/yuanchuang_pic.png";
 import "./index.less";
 import { platform } from "os";
@@ -35,6 +36,7 @@ export default class Root extends PureComponent {
 		}
 	}
 	componentDidMount() {
+		document.body.scrollTop = document.documentElement.scrollTop = 0;
 		document.title = "InWe-" + i18n.t("navMenu.news", this.props.lng);
 		let minH = getMainMinHeight();
 		let leftArrow = document.getElementById("newsDetailLeft").offsetLeft;
@@ -106,6 +108,13 @@ export default class Root extends PureComponent {
 			});
 	}
 	getNewsCollect(art_id) {
+		let trunapp = window.CtrunappAdvHide;
+		if (trunapp && IsTouchDevice) {
+			trunapp.setState({
+				advHide: false
+			});
+			return;
+		}
 		this.props
 			.getNewsDetailCollect({
 				art_id: art_id,
@@ -186,6 +195,14 @@ export default class Root extends PureComponent {
 	toggleShareList(e) {
 		e.stopPropagation();
 		e.nativeEvent.stopImmediatePropagation();
+		let trunapp = window.CtrunappAdvHide;
+		if (trunapp && IsTouchDevice) {
+			trunapp.setState({
+				advHide: false
+			});
+			return;
+		}
+
 		this.setState({
 			showShareList: !this.state.showShareList
 		});
@@ -597,6 +614,7 @@ export default class Root extends PureComponent {
 								url={QcodeUrl}
 							/>
 						)}
+						{IsTouchDevice && <TurnApp />}
 					</div>
 				)}
 			</I18n>

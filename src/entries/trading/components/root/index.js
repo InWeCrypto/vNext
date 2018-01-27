@@ -57,14 +57,15 @@ export default class Root extends PureComponent {
 			var UlDom = document.getElementsByClassName("tradingListUl")[0];
 			if (!UlDom) return;
 			var liDom = UlDom.getElementsByTagName("li");
+			console.log(liDom.length);
 			//手机默认请求10条
 			if (liDom.length < 10) return;
 			var pageIndex = parseInt(liDom.length / 10) + 1;
 
 			if (window.TradingAjaxDone) {
 				window.TradingAjaxDone = false;
-				this.props.getNewsTextM({
-					type: 1,
+				this.props.getTradingM({
+					type: 4,
 					per_page: 10,
 					page: pageIndex
 				});
