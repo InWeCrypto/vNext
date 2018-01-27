@@ -37,6 +37,14 @@ class SignIn extends PureComponent {
 		});
 	}
 	loginIn() {
+		if (this.state.email.length <= 0) {
+			Msg.prompt(i18n.t("error.emailEmpty", this.props.lng));
+			return;
+		}
+		if (this.state.password.length <= 0) {
+			Msg.prompt(i18n.t("error.passwordEmpty", this.props.lng));
+			return;
+		}
 		this.props
 			.loginIn({
 				email: this.state.email,
@@ -117,6 +125,10 @@ class SignIn extends PureComponent {
 																e
 															);
 														}}
+														placeholder={t(
+															"signBox.signIn.password",
+															lng
+														)}
 														className="input"
 														type={(() =>
 															this.setPassType())()}
