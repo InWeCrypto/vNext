@@ -34,7 +34,7 @@ export default class Root extends PureComponent {
 		setTimeout(() => {
 			document.title =
 				"InWe-" + i18n.t("navMenu.announcment", this.props.lng);
-			let minH = getMainMinHeight();
+			let minH = getMainMinHeight() - 51;
 			let liH = minH / 2;
 			this.setState({
 				minH: minH,
@@ -400,7 +400,7 @@ export default class Root extends PureComponent {
 							</div>
 						</div>
 						<div id="footerBox" />
-						{/* <Footer changeLng={changeLng} lng={lng} /> */}
+						<Footer changeLng={changeLng} lng={lng} />
 					</div>
 				)}
 			</I18n>

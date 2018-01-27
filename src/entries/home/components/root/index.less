@@ -174,41 +174,45 @@
 			width: 2.48rem;
 			padding: 0.3rem 0rem;
 			flex-shrink: 0;
-			.homeBoxTitle {
-				padding: 0 0.3rem;
-				&:hover {
-					color: #ff571f;
-				}
-			}
 			.homeBoxCandyTop {
 				width: 100%;
-				margin: 0.3rem auto 0rem;
+				// margin: 0.3rem auto 0rem;
 				padding: 0 0.3rem 0rem;
 				overflow: hidden;
 				box-sizing: border-box;
 				// padding-bottom: 0.2rem;
 				overflow: hidden;
-				p.homeCandyDate {
-					width: 100%;
-					height: 0.42rem;
-					font-size: 0.12rem;
-					color: #262626;
-					padding-bottom: 0.2rem;
-					border-bottom: 1px solid #ececec;
-					b {
-						font-size: 0.3rem;
-						color: #ff2800;
-						line-height: 0.42rem;
+				&:hover {
+					.homeBoxTitle {
+						color: #ff571f;
 					}
 				}
-				span.homeCandySpan {
-					display: block;
-					width: 100%;
-					height: 0.22rem;
-					font-size: 0.16rem;
-					color: rgba(51, 51, 51, 1);
-					line-height: 0.22rem;
-					margin-top: 0.2rem;
+				.homeBoxCandyTopAll {
+					border-bottom: 1px solid #ececec;
+					padding-bottom: 0.2rem;
+					p.homeCandyDate {
+						width: 100%;
+						height: 0.42rem;
+						font-size: 0.12rem;
+						color: #262626;
+						b {
+							font-size: 0.3rem;
+							color: #ff2800;
+							line-height: 0.42rem;
+						}
+					}
+					span.homeCandySpan {
+						display: block;
+						width: 100%;
+						height: 0.22rem;
+						font-size: 0.16rem;
+						color: rgba(51, 51, 51, 1);
+						line-height: 0.22rem;
+						margin-top: 0.2rem;
+						&:hover {
+							color: #0a9234;
+						}
+					}
 				}
 			}
 			.homeInweWallet {
@@ -299,17 +303,27 @@
 				width: 100%;
 				padding-top: 0.1rem;
 				border-top: 1px solid #ececec;
-				.homeBoxFllowUl {
-					margin: 0.3rem auto 0.2rem;
-					overflow: hidden;
-					li {
-						width: 100%;
-						height: 0.22rem;
-						margin-bottom: 0.2rem;
-						img {
-							width: 0.16rem;
-							height: 0.16rem;
-							margin-right: 0.12rem;
+				.homeBoxFllowAll {
+					&:hover {
+						.homeBoxTitle {
+							color: #ff571f;
+						}
+					}
+					.homeBoxFllowUl {
+						margin: 0.3rem auto 0.2rem;
+						overflow: hidden;
+						li {
+							width: 100%;
+							height: 0.22rem;
+							margin-bottom: 0.2rem;
+							img {
+								width: 0.16rem;
+								height: 0.16rem;
+								margin-right: 0.12rem;
+							}
+							&:hover {
+								color: #0a9234;
+							}
 						}
 					}
 				}

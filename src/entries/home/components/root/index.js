@@ -365,28 +365,38 @@ export default class Root extends PureComponent {
 									className="homeBoxList homeBoxCandy"
 									onClick={this.turnToCandy.bind(this)}
 								>
-									<p className="homeBoxTitle">
-										{t("home.candy", lng)}?
-									</p>
 									<div className="homeBoxCandyTop">
-										<p className="homeCandyDate">
-											<b>{curDay}</b>/{curMonth}
+										<p className="homeBoxTitle">
+											{t("home.candy", lng)}?
 										</p>
-										{candyList.list &&
-											candyList.list.data &&
-											candyList.list.data.length > 0 &&
-											candyList.list.data.map(
-												(item, index) => {
-													return (
-														<span
-															key={index}
-															className="homeCandySpan"
-														>
-															+{item.name}
-														</span>
-													);
-												}
-											)}
+										<div className="homeBoxCandyTopAll">
+											<p className="homeCandyDate">
+												<b>{curDay}</b>/{curMonth}
+											</p>
+											{candyList.list &&
+												candyList.list.data &&
+												candyList.list.data.length >
+													0 &&
+												candyList.list.data.map(
+													(item, index) => {
+														return (
+															<Link
+																to={{
+																	pathname:
+																		"/candybowl"
+																}}
+															>
+																<span
+																	key={index}
+																	className="homeCandySpan"
+																>
+																	+{item.name}
+																</span>
+															</Link>
+														);
+													}
+												)}
+										</div>
 									</div>
 									{!IsTouchDevice && (
 										<div
@@ -550,33 +560,37 @@ export default class Root extends PureComponent {
 										userFavo.data &&
 										userFavo.data.length > 0 && (
 											<div className="homeBoxFllow">
-												<p className="homeBoxTitle">
-													{t("home.follow", lng)}…
-												</p>
-												<ul className="homeBoxFllowUl">
-													{userFavo.data.map(
-														(item, index) => {
-															return (
-																<li
-																	key={index}
-																	className="ui center jcenter"
-																>
-																	<img
-																		src={
-																			item.img
+												<div className="homeBoxFllowAll">
+													<p className="homeBoxTitle">
+														{t("home.follow", lng)}…
+													</p>
+													<ul className="homeBoxFllowUl">
+														{userFavo.data.map(
+															(item, index) => {
+																return (
+																	<li
+																		key={
+																			index
 																		}
-																		alt=""
-																	/>
-																	<span className="f1 ellitext">
-																		{
-																			item.name
-																		}
-																	</span>
-																</li>
-															);
-														}
-													)}
-												</ul>
+																		className="ui center jcenter"
+																	>
+																		<img
+																			src={
+																				item.img
+																			}
+																			alt=""
+																		/>
+																		<span className="f1 ellitext">
+																			{
+																				item.name
+																			}
+																		</span>
+																	</li>
+																);
+															}
+														)}
+													</ul>
+												</div>
 												<div className="homeBoxReadMore">
 													<Link
 														to={{
