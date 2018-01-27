@@ -77,7 +77,7 @@ export default class Root extends PureComponent {
 				case 1:
 					if (window.NavSecondAjaxDone) {
 						window.NavSecondAjaxDone = false;
-						this.props.getProjectM({
+						this.props.getProjectM2({
 							type: 2,
 							per_page: 15,
 							page: pageIndex
@@ -87,7 +87,7 @@ export default class Root extends PureComponent {
 				case 2:
 					if (window.NavThridAjaxDone) {
 						window.NavThridAjaxDone = false;
-						this.props.getProjectM({
+						this.props.getProjectM3({
 							type: 3,
 							per_page: 15,
 							page: pageIndex
@@ -97,7 +97,7 @@ export default class Root extends PureComponent {
 				case 3:
 					if (window.NavForthAjaxDone) {
 						window.NavForthAjaxDone = false;
-						this.props.getProjectM({
+						this.props.getProjectM4({
 							type: 4,
 							per_page: 15,
 							page: pageIndex

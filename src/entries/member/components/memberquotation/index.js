@@ -62,12 +62,14 @@ class MemberQuotation extends PureComponent {
 											<div className="f1 price-box">
 												<div className="price-cont">
 													<div className="t1">
-														${item.ico.price_usd}
+														${item.ico &&
+															item.ico.price_usd}
 														<span
 															className={(() => {
 																return parseInt(
-																	item.ico
-																		.percent_change_24h,
+																	item.ico &&
+																		item.ico
+																			.percent_change_24h,
 																	10
 																) -
 																	0 >=
@@ -76,33 +78,32 @@ class MemberQuotation extends PureComponent {
 																	: "down";
 															})()}
 														>
-															({
+															({item.ico &&
 																item.ico
-																	.percent_change_24h
-															})
+																	.percent_change_24h})
 														</span>
 													</div>
 													<div className="t2">
-														≈${item.ico.price_btc}BTC
+														≈${item.ico &&
+															item.ico
+																.price_btc}BTC
 													</div>
 												</div>
 											</div>
 											<div className="other">
 												<div className="t1">Above</div>
 												<div className="t2">
-													${
+													${item.category_user &&
 														item.category_user
-															.market_hige
-													}
+															.market_hige}
 												</div>
 											</div>
 											<div className="other">
 												<div className="t1">Below</div>
 												<div className="t2">
-													${
+													${item.category_user &&
 														item.category_user
-															.market_lost
-													}
+															.market_lost}
 												</div>
 											</div>
 										</div>
