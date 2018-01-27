@@ -80,7 +80,10 @@ class Register extends PureComponent {
 		this.props.sendEmail(this.state.email);
 	}
 	registerClick() {
-		const { code, email, password, password1 } = this.state;
+		const { code, email, password, password1, btnType } = this.state;
+		if (btnType != 2) {
+			return;
+		}
 		if (email.length <= 0) {
 			Msg.prompt(i18n.t("error.emailEmpty", this.props.lng));
 			return;
