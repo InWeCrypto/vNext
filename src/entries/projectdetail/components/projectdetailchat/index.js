@@ -1,5 +1,6 @@
 import React, { PureComponent } from "react";
 import { I18n, Trans } from "react-i18next";
+import { getLocalItem } from "../../../../utils/util";
 import { Link } from "react-router-dom";
 import "./index.less";
 class ProjectDetailIco extends PureComponent {
@@ -33,6 +34,13 @@ class ProjectDetailIco extends PureComponent {
 		}
 	}
 	checkStar(index) {
+		let user = getLocalItem("userInfo");
+		if (!user || !user.data) {
+			window.headerBox.setState({
+				showLogin: true
+			});
+			return;
+		}
 		if (this.state.isModify) {
 			this.props
 				.getProjectScore({

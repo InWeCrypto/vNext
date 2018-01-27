@@ -23,7 +23,7 @@ export default class Root extends PureComponent {
 		}
 	}
 	componentDidMount() {
-		document.title = "InWe-Trading";
+		document.title = "InWe-" + i18n.t("navMenu.trading", this.props.lng);
 
 		let minH = getMainMinHeight();
 		let liH = minH / 2;
@@ -142,6 +142,19 @@ export default class Root extends PureComponent {
 												</li>
 											);
 										})}
+
+									{(!trading ||
+										!trading.data ||
+										trading.data.length <= 0) && (
+										<div
+											style={{
+												textAlign: "center",
+												padding: "2rem 0"
+											}}
+										>
+											{t("nodata", lng)}
+										</div>
+									)}
 								</ul>
 								<div className="annoBoxArrow ui center m-hide">
 									{trading.next_page_url && (

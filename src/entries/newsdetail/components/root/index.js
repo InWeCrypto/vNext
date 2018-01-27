@@ -28,7 +28,7 @@ export default class Root extends PureComponent {
 		}
 	}
 	componentDidMount() {
-		document.title = "InWe-News";
+		document.title = "InWe-" + i18n.t("navMenu.news", this.props.lng);
 		let minH = getMainMinHeight();
 		let leftArrow = document.getElementById("newsDetailLeft").offsetLeft;
 		document.getElementById("newsDetailRight").style.right =

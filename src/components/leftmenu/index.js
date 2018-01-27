@@ -25,92 +25,94 @@ class LeftMenuBox extends PureComponent {
 		return (
 			<I18n>
 				{(t, { I18n }) => (
-					<div className="left-menu">
+					<div className="left-menus-news">
 						{showSearch && (
 							<Search closeSearch={this.closeSearch.bind(this)} />
 						)}
-						<div className="search">
-							<b
-								className="searchBtn"
-								onClick={() => {
-									this.openSearch();
+						<div className="left-menu">
+							<div className="search">
+								<b
+									className="searchBtn"
+									onClick={() => {
+										this.openSearch();
+									}}
+								/>
+							</div>
+							<NavLink
+								exact
+								to={{
+									pathname: "/"
 								}}
-							/>
+								className="left-menu-item"
+								activeClassName="cur"
+							>
+								<span className="line" />
+								<span className="text">
+									{t("navMenu.home", lng)}
+								</span>
+							</NavLink>
+							<NavLink
+								to={{
+									pathname: "/project",
+									search: "?type="
+								}}
+								className="left-menu-item"
+								activeClassName="cur"
+							>
+								<span className="line" />
+								<span className="text">
+									{t("navMenu.project", lng)}
+								</span>
+							</NavLink>
+							<NavLink
+								to={{
+									pathname: "/news"
+								}}
+								className="left-menu-item"
+								activeClassName="cur"
+							>
+								<span className="line" />
+								<span className="text">
+									{t("navMenu.news", lng)}
+								</span>
+							</NavLink>
+							<NavLink
+								to={{
+									pathname: "/candybowl"
+								}}
+								className="left-menu-item"
+								activeClassName="cur"
+							>
+								<span className="line" />
+								<span className="text">
+									{t("navMenu.candybowl", lng)}
+								</span>
+							</NavLink>
+							<NavLink
+								to={{
+									pathname: "/trading"
+								}}
+								className="left-menu-item"
+								activeClassName="cur"
+							>
+								<span className="line" />
+								<span className="text">
+									{t("navMenu.trading", lng)}
+								</span>
+							</NavLink>
+							<NavLink
+								to={{
+									pathname: "/announcment"
+								}}
+								className="left-menu-item"
+								activeClassName="cur"
+							>
+								<span className="line" />
+								<span className="text">
+									{t("navMenu.announcment", lng)}
+								</span>
+							</NavLink>
 						</div>
-						<NavLink
-							exact
-							to={{
-								pathname: "/"
-							}}
-							className="left-menu-item"
-							activeClassName="cur"
-						>
-							<span className="line" />
-							<span className="text">
-								{t("navMenu.home", lng)}
-							</span>
-						</NavLink>
-						<NavLink
-							to={{
-								pathname: "/project",
-								search: "?type="
-							}}
-							className="left-menu-item"
-							activeClassName="cur"
-						>
-							<span className="line" />
-							<span className="text">
-								{t("navMenu.project", lng)}
-							</span>
-						</NavLink>
-						<NavLink
-							to={{
-								pathname: "/news"
-							}}
-							className="left-menu-item"
-							activeClassName="cur"
-						>
-							<span className="line" />
-							<span className="text">
-								{t("navMenu.news", lng)}
-							</span>
-						</NavLink>
-						<NavLink
-							to={{
-								pathname: "/candybowl"
-							}}
-							className="left-menu-item"
-							activeClassName="cur"
-						>
-							<span className="line" />
-							<span className="text">
-								{t("navMenu.candybowl", lng)}
-							</span>
-						</NavLink>
-						<NavLink
-							to={{
-								pathname: "/trading"
-							}}
-							className="left-menu-item"
-							activeClassName="cur"
-						>
-							<span className="line" />
-							<span className="text">
-								{t("navMenu.trading", lng)}
-							</span>
-						</NavLink>
-						<NavLink
-							to={{
-								pathname: "/announcment"
-							}}
-							className="left-menu-item"
-							activeClassName="cur"
-						>
-							<span className="line" />
-							<span className="text">
-								{t("navMenu.announcment", lng)}
-							</span>
-						</NavLink>
 					</div>
 				)}
 			</I18n>

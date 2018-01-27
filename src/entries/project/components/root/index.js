@@ -24,7 +24,7 @@ export default class Root extends PureComponent {
 		}
 	}
 	componentDidMount() {
-		document.title = "InWe-Trading";
+		document.title = "InWe-" + i18n.t("navMenu.project", this.props.lng);
 		let minH = getMainMinHeight();
 		let liW =
 			(document.querySelector("#projectContentRef").clientWidth - 187) /
@@ -291,14 +291,24 @@ export default class Root extends PureComponent {
 											);
 										})}
 								</ul>
-								<Link
-									to={{
-										pathname: "/projectlist"
-									}}
-									className="viewAllProject ui center"
-								>
-									<span>{t("project.more", lng)}</span>
-								</Link>
+								<div className="viewAllProject ui center">
+									<Link
+										to={{
+											pathname: "/projectlist"
+										}}
+									>
+										{lng == "en" && (
+											<span className="en">
+												{t("project.more", lng)}
+											</span>
+										)}
+										{lng == "zh" && (
+											<span className="zh">
+												{t("project.more", lng)}
+											</span>
+										)}
+									</Link>
+								</div>
 								{showArrow == "left" && (
 									<span
 										className="projectSpanLeft"

@@ -69,7 +69,6 @@ class Header extends PureComponent {
 				this.props.getHeaderMarket();
 			}
 			this.marketIndex = state;
-			clearTimeout(this.timer);
 			this.timer = setTimeout(() => {
 				this.marketInterval();
 			}, 2000);

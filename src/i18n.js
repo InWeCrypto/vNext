@@ -25,7 +25,6 @@ i18n
 			interpolation: {
 				escapeValue: false // not needed for react!!
 			},
-			// react i18next special options (optional)
 			react: {
 				wait: true
 			}
@@ -37,4 +36,8 @@ i18n
 			console.log("i18n successfully initialized");
 		}
 	);
+//监听语言变化，重载页面
+i18n.on("languageChanged", () => {
+	window.location.reload();
+});
 export default i18n;

@@ -38,7 +38,7 @@ export default class Root extends PureComponent {
 		if (!this.props.userInfo) {
 			window.location.href = "/";
 		}
-		document.title = "InWe-个人中心";
+		document.title = "InWe-" + i18n.t("header.member", this.props.lng);
 		let minH = getMainMinHeight();
 		document.querySelector("#mainBox").style.minHeight = minH + "px";
 		this.initPage(this.props.location.search);
