@@ -15,6 +15,7 @@
 		.leftTwoMenu {
 			width: 100%;
 			.leftTwoMenuItem {
+				position: relative;
 				display: block;
 				height: 0.37rem;
 				margin: 0.3rem auto;
@@ -22,16 +23,55 @@
 				margin-left: 10%;
 				cursor: pointer;
 				.text {
+					display: block;
+					width: 100%;
+					height: 100%;
 					color: #333333;
 					font-size: 0.26rem;
-					vertical-align: middle;
 					font-size: 200;
 				}
+				.moveBox {
+					position: absolute;
+					left: 0;
+					top: 0;
+					display: block;
+					width: 100%;
+					height: 100%;
+					transform: translateX(-100%);
+					transition: all 0.8s linear;
+					overflow: hidden;
+					.textBox {
+						transform: translateX(100%);
+						width: 100%;
+						height: 100%;
+						color: #009326;
+						font-size: 0.26rem;
+						font-size: 200;
+						transition: all 0.8s linear;
+					}
+				}
 			}
-			.leftTwoMenuItem.cur,
 			.leftTwoMenuItem:hover {
+				.moveBox {
+					transform: translateX(0);
+					.textBox {
+						transform: translateX(0);
+					}
+				}
+			}
+			.leftTwoMenuItem.cur {
 				.text {
 					color: #009326;
+				}
+				color: #009326;
+				.textBox {
+					color: #009326;
+				}
+				.moveBox {
+					transform: translateX(0);
+					.textBox {
+						transform: translateX(0);
+					}
 				}
 			}
 		}
@@ -175,6 +215,12 @@
 				text-align: center;
 				transform: rotateZ(90deg);
 			}
+			&:hover {
+				span.zh,
+				span.en {
+					color: #017225;
+				}
+			}
 			span.zh {
 				display: block;
 				width: 0.22rem;
@@ -199,6 +245,8 @@
 			background: url("../../../../assets/images/project_left_s.png")
 				no-repeat center;
 			background-size: 100%;
+			opacity: 0;
+			transition: all 0.3s ease-in-out;
 		}
 		.projectSpanRight {
 			left: auto;
@@ -206,6 +254,12 @@
 			background: url("../../../../assets/images/project_right_s.png")
 				no-repeat center;
 			background-size: 100%;
+		}
+	}
+	.projectContent:hover {
+		.projectSpanLeft,
+		.projectSpanRight {
+			opacity: 1;
 		}
 	}
 }
@@ -237,6 +291,9 @@
 				margin: 0;
 				text-align: center;
 				width: auto;
+				.text {
+					margin: 0;
+				}
 			}
 			span.text {
 				margin: 0 0.3rem;

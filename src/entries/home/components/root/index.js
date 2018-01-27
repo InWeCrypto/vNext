@@ -346,8 +346,8 @@ export default class Root extends PureComponent {
 												pathname: "/news"
 											}}
 										>
-											<span className="readMore">
-												Read more
+											<span className="readMore readMoreUnderLine">
+												read more
 											</span>
 											<b className="readMoreImg" />
 										</Link>
@@ -527,8 +527,8 @@ export default class Root extends PureComponent {
 													pathname: "/announcment"
 												}}
 											>
-												<span className="readMore">
-													Read more
+												<span className="readMore readMoreUnderLine">
+													read more
 												</span>
 												<b className="readMoreImg" />
 											</Link>
@@ -574,8 +574,8 @@ export default class Root extends PureComponent {
 																"?type=collection"
 														}}
 													>
-														<span className="readMore">
-															Read more
+														<span className="readMore readMoreUnderLine">
+															read more
 														</span>
 														<b className="readMoreImg" />
 													</Link>

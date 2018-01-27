@@ -44,17 +44,36 @@
 					padding: 0.15rem 0 0.15rem 0.9rem;
 					font-weight: 200;
 					.nav-text {
+						position: relative;
 						padding: 0.12rem 0;
-						border-bottom: 0.02rem solid transparent;
+					}
+					.nav-text:after {
+						position: absolute;
+						left: 0;
+						bottom: 0;
+						display: block;
+						content: "";
+						width: 0;
+						height: 2px;
+						background: #fff;
+						transition: all 0.3s ease-in-out;
 					}
 				}
 
-				.nav-item:hover,
+				.nav-item:hover {
+					.nav-text {
+						color: #fff;
+						font-weight: 400;
+					}
+					.nav-text:after {
+						width: 100%;
+					}
+				}
 				.nav-item.cur {
 					color: #fff;
 					font-weight: 400;
-					.nav-text {
-						border-bottom: 0.02rem solid #fff;
+					.nav-text:after {
+						width: 100%;
 					}
 				}
 			}

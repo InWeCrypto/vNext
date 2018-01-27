@@ -95,6 +95,9 @@ export default class Root extends PureComponent {
 		this.setState({
 			nums: nums
 		});
+		if (IsTouchDevice) {
+			nums = 10;
+		}
 		this.props.getAnnouncment({
 			page: p.page || 1,
 			per_page: nums
@@ -399,8 +402,11 @@ export default class Root extends PureComponent {
 								</div>
 							</div>
 						</div>
-						<div id="footerBox" />
-						{/* <Footer changeLng={changeLng} lng={lng} /> */}
+						{IsTouchDevice ? (
+							<div id="footerBox" />
+						) : (
+							<Footer changeLng={changeLng} lng={lng} />
+						)}
 					</div>
 				)}
 			</I18n>

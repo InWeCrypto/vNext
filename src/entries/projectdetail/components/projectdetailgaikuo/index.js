@@ -589,7 +589,9 @@ class ProjectDetailGaiKuo extends PureComponent {
 									href={projectDetail.token_holder}
 									target="_blank"
 								>
-									<p className="viewMore">view more</p>
+									<p className="viewMore readMoreUnderLine">
+										view more
+									</p>
 								</a>
 							</div>
 							<div className="projectDetailCon2Box">
