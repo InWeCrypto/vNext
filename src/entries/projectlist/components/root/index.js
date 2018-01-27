@@ -55,8 +55,8 @@ export default class Root extends PureComponent {
 		let UlDom = document.getElementsByClassName("projectListConChildUl")[0];
 		if (!UlDom) return;
 		let liDom = UlDom.getElementsByTagName("li");
-		if (liDom.length < 10) return;
-		let pageIndex = parseInt(liDom.length / 10) + 1;
+		if (liDom.length < 15) return;
+		let pageIndex = parseInt(liDom.length / 15) + 1;
 		if (
 			footerToTopHei <= winHei &&
 			pathName == "/projectlist" &&
@@ -69,7 +69,7 @@ export default class Root extends PureComponent {
 						window.NavFristAjaxDone = false;
 						this.props.getProjectM({
 							type: 1,
-							per_page: 10,
+							per_page: 15,
 							page: pageIndex
 						});
 					}
@@ -79,7 +79,7 @@ export default class Root extends PureComponent {
 						window.NavSecondAjaxDone = false;
 						this.props.getProjectM({
 							type: 2,
-							per_page: 10,
+							per_page: 15,
 							page: pageIndex
 						});
 					}
@@ -89,7 +89,7 @@ export default class Root extends PureComponent {
 						window.NavThridAjaxDone = false;
 						this.props.getProjectM({
 							type: 3,
-							per_page: 10,
+							per_page: 15,
 							page: pageIndex
 						});
 					}
@@ -99,7 +99,7 @@ export default class Root extends PureComponent {
 						window.NavForthAjaxDone = false;
 						this.props.getProjectM({
 							type: 4,
-							per_page: 10,
+							per_page: 15,
 							page: pageIndex
 						});
 					}
@@ -113,7 +113,7 @@ export default class Root extends PureComponent {
 		let nums = Math.floor((annoBoxH - 150) / annoBoxLiH) || 4;
 		// 默认条数4
 		if (IsTouchDevice) {
-			nums = 10;
+			nums = 15;
 		}
 		this.props.getProject({
 			type: 1,
@@ -714,6 +714,7 @@ export default class Root extends PureComponent {
 								})}
 							</div>
 						</div>
+						<div id="footerBox" />
 						{/* <Footer changeLng={changeLng} lng={lng} /> */}
 					</div>
 				)}

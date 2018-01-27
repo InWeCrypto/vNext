@@ -70,6 +70,14 @@ class ProjectDetailIco extends PureComponent {
 			}
 		}
 	}
+	showApp() {
+		let trunapp = window.CtrunappAdvHide;
+		if (trunapp && IsTouchDevice) {
+			trunapp.setState({
+				advHide: false
+			});
+		}
+	}
 	render() {
 		const { lng, changeLng, projectDetail, getProjectScore } = this.props;
 		const { score, realScore } = this.state;
@@ -102,13 +110,17 @@ class ProjectDetailIco extends PureComponent {
 						</ul>
 						<div className="sendChat">
 							<input
+								onFocus={this.showApp.bind(this)}
 								type="text"
 								placeholder={t("projectDetail.chat", lng)}
 							/>
 						</div>
 						<div className="score ui center jcenter">
 							<span>{t("projectDetail.score", lng)}：</span>
-							<p className="starList ui">
+							<p
+								className="starList ui"
+								onClick={this.showApp.bind(this)}
+							>
 								{[1, 2, 3, 4, 5].map((item, index) => {
 									return (
 										<b

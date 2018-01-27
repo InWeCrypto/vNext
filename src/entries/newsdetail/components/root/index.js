@@ -118,6 +118,12 @@ export default class Root extends PureComponent {
 		this.setState({
 			isShowImg: false
 		});
+		let trunapp = window.CtrunappAdvHide;
+		if (trunapp && IsTouchDevice) {
+			trunapp.setState({
+				advHide: false
+			});
+		}
 	}
 	outFocus() {
 		this.setState({

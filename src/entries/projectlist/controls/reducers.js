@@ -28,7 +28,7 @@ export const project = handleActions(
 		},
 		[PROJECTM]: (state, { payload }) => {
 			//
-			if (payload.data.length >= 10) {
+			if (payload.data.length >= 15) {
 				window.NavFristAjaxDone = true;
 			}
 			return {
@@ -56,7 +56,7 @@ export const project2 = handleActions(
 		},
 		[PROJECTM2]: (state, { payload }) => {
 			//
-			if (payload.data.length >= 10) {
+			if (payload.data.length >= 15) {
 				window.NavSecondAjaxDone = true;
 			}
 			return {
@@ -84,7 +84,7 @@ export const project3 = handleActions(
 		},
 		[PROJECTM3]: (state, { payload }) => {
 			//
-			if (payload.data.length >= 10) {
+			if (payload.data.length >= 15) {
 				window.NavThirdAjaxDone = true;
 			}
 			return {
@@ -112,7 +112,7 @@ export const project4 = handleActions(
 		},
 		[PROJECTM4]: (state, { payload }) => {
 			//
-			if (payload.data.length >= 10) {
+			if (payload.data.length >= 15) {
 				window.NavForthAjaxDone = true;
 			}
 			return {
