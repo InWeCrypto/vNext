@@ -315,31 +315,39 @@ export default class Root extends PureComponent {
 									</div>
 								</div>
 								<div className="homeBoxList homeBoxNews">
-									<p className="homeBoxTitle">
-										{t("home.news", lng)}
-									</p>
-									<ul className="homeBoxNewsUl">
-										{newsList &&
-											newsList.data &&
-											newsList.data.length > 0 &&
-											newsList.data.map((item, index) => {
-												return (
-													<li key={index}>
-														<Link
-															to={{
-																pathname:
-																	"/newsdetail",
-																search:
-																	"?art_id=" +
-																	item.id
-															}}
-														>
-															<p>{item.title}</p>
-														</Link>
-													</li>
-												);
-											})}
-									</ul>
+									<div className="homeBoxNewsAll">
+										<p className="homeBoxTitle">
+											{t("home.news", lng)}
+										</p>
+										<ul className="homeBoxNewsUl">
+											{newsList &&
+												newsList.data &&
+												newsList.data.length > 0 &&
+												newsList.data.map(
+													(item, index) => {
+														return (
+															<li key={index}>
+																<Link
+																	to={{
+																		pathname:
+																			"/newsdetail",
+																		search:
+																			"?art_id=" +
+																			item.id
+																	}}
+																>
+																	<p>
+																		{
+																			item.title
+																		}
+																	</p>
+																</Link>
+															</li>
+														);
+													}
+												)}
+										</ul>
+									</div>
 									<div className="homeBoxReadMore">
 										<Link
 											to={{
@@ -471,68 +479,71 @@ export default class Root extends PureComponent {
 									)}
 								</div>
 								<div className="homeBoxList homeBoxAnno">
-									<p className="homeBoxTitle">
-										{t("home.anno", lng)}
-									</p>
-									<div className="homeBoxAnnoTop">
-										{exchangeNotice &&
-											exchangeNotice.data &&
-											exchangeNotice.data.length > 0 &&
-											exchangeNotice.data.map(
-												(item, index) => {
-													return (
-														<p
-															key={index}
-															className="homeBoxAnnoTopP"
-														>
-															{item.source_url && (
-																<Link
-																	to={{
-																		pathname:
-																			item.source_url
-																	}}
-																	target="_blank"
-																>
-																	+{
-																		item.source_name
-																	}：{
-																		item.content
-																	}
-																</Link>
-															)}
-															{!item.source_url && (
-																<Link
-																	to={{
-																		pathname:
-																			"newsdetail",
-																		search:
-																			"?art_id=" +
-																			item.id
-																	}}
-																>
-																	+{
-																		item.source_name
-																	}：{
-																		item.content
-																	}
-																</Link>
-															)}
-														</p>
-													);
-												}
-											)}
-										<div className="homeBoxReadMore">
-											<Link
-												to={{
-													pathname: "/announcment"
-												}}
-											>
-												<span className="readMore">
-													Read more
-												</span>
-												<b className="readMoreImg" />
-											</Link>
+									<div className="homeBoxAnnoAll">
+										<p className="homeBoxTitle">
+											{t("home.anno", lng)}
+										</p>
+										<div className="homeBoxAnnoTop">
+											{exchangeNotice &&
+												exchangeNotice.data &&
+												exchangeNotice.data.length >
+													0 &&
+												exchangeNotice.data.map(
+													(item, index) => {
+														return (
+															<p
+																key={index}
+																className="homeBoxAnnoTopP"
+															>
+																{item.source_url && (
+																	<Link
+																		to={{
+																			pathname:
+																				item.source_url
+																		}}
+																		target="_blank"
+																	>
+																		+{
+																			item.source_name
+																		}：{
+																			item.content
+																		}
+																	</Link>
+																)}
+																{!item.source_url && (
+																	<Link
+																		to={{
+																			pathname:
+																				"newsdetail",
+																			search:
+																				"?art_id=" +
+																				item.id
+																		}}
+																	>
+																		+{
+																			item.source_name
+																		}：{
+																			item.content
+																		}
+																	</Link>
+																)}
+															</p>
+														);
+													}
+												)}
 										</div>
+									</div>
+									<div className="homeBoxReadMore">
+										<Link
+											to={{
+												pathname: "/announcment"
+											}}
+										>
+											<span className="readMore">
+												Read more
+											</span>
+											<b className="readMoreImg" />
+										</Link>
 									</div>
 									{!IsTouchDevice &&
 										userFavo &&
