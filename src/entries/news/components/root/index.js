@@ -618,7 +618,7 @@ export default class Root extends PureComponent {
 							</div>
 						</div>
 						<div id="footerBox" />
-						{/* <Footer changeLng={changeLng} lng={lng} /> */}
+						<Footer changeLng={changeLng} lng={lng} />
 					</div>
 				)}
 			</I18n>

@@ -24,11 +24,7 @@ class GaiKuo extends PureComponent {
 		this.styles = StyleSheet.create({
 			magic: {
 				animationName: spaceInDown,
-<<<<<<< HEAD
-				animationDuration: "1s"
-=======
 				animationDuration: ".3s"
->>>>>>> ade557b460b0a6ca383aed18d8b0b079f8b9e820
 			}
 		});
 	}
