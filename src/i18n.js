@@ -25,7 +25,6 @@ i18n
 			interpolation: {
 				escapeValue: false // not needed for react!!
 			},
-			// react i18next special options (optional)
 			react: {
 				wait: true
 			}
