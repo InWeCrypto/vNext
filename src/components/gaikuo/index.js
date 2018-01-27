@@ -128,6 +128,14 @@ class GaiKuo extends PureComponent {
 	openTele() {
 		window.open("https://t.me/inwecrypto");
 	}
+	showApp() {
+		let trunapp = window.CtrunappAdvHide;
+		if (trunapp && IsTouchDevice) {
+			trunapp.setState({
+				advHide: false
+			});
+		}
+	}
 	render() {
 		const { lng, projectDetail } = this.props;
 		const {
@@ -147,7 +155,10 @@ class GaiKuo extends PureComponent {
 				{(t, { I18n }) => (
 					<div>
 						{IsTouchDevice ? (
-							<div className="m-shareIcon">
+							<div
+								className="m-shareIcon"
+								onClick={this.showApp.bind(this)}
+							>
 								<div className="m-start" />
 								<div className="m-share" />
 							</div>

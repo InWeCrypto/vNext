@@ -10,7 +10,9 @@ class TurnApp extends PureComponent {
 			advHide: false
 		};
 	}
-
+	componentDidMount() {
+		window.CtrunappAdvHide = this;
+	}
 	componentWillMount() {
 		let downloadHide = this.getCookie("downloadHide");
 		if (downloadHide) {
@@ -21,7 +23,7 @@ class TurnApp extends PureComponent {
 	}
 	setCookie(cname, cvalue, exdays) {
 		var d = new Date();
-		d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
+		d.setTime(d.getTime() + exdays * 60 * 60 * 1000);
 		var expires = "expires=" + d.toGMTString();
 		document.cookie = cname + "=" + cvalue + "; " + expires;
 	}

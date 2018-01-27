@@ -41,6 +41,14 @@ class Footer extends PureComponent {
 	toMail() {
 		window.location = "mailto:support@inwecrypto.com";
 	}
+	showApp() {
+		let trunapp = window.CtrunappAdvHide;
+		if (trunapp && IsTouchDevice) {
+			trunapp.setState({
+				advHide: false
+			});
+		}
+	}
 	render() {
 		const { footerFixed } = this.state;
 		return (
@@ -95,7 +103,10 @@ class Footer extends PureComponent {
 										<img src={cnicon} alt="" />
 									</div>
 									<div className="line" />
-									<div className="loginIn">
+									<div
+										className="loginIn"
+										onClick={this.showApp.bind(this)}
+									>
 										<img src={loginImg} alt="" />
 									</div>
 								</div>
