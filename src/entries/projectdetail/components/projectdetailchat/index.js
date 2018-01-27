@@ -44,8 +44,8 @@ class ProjectDetailIco extends PureComponent {
 		if (this.state.isModify) {
 			this.props
 				.getProjectScore({
-					c_id: 7,
-					score: "4"
+					c_id: this.props.projectDetail.id,
+					score: this.state.score
 				})
 				.then(res => {
 					this.setState({

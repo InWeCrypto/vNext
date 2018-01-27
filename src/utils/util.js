@@ -118,3 +118,16 @@ export const chargeFooterFixed = () => {
 	// 	return false;
 	// }
 };
+export const getLocalTime = time => {
+	let time1 = time.replace(" ", "Z") + "Z";
+	const def = new Date().getTimezoneOffset();
+	let localTime = new Date(time1).getTime(); //+ def * 60 * 1000;
+	let d = new Date(localTime);
+	let year = d.getFullYear();
+	let month = d.getMonth() + 1;
+	let day = d.getDate();
+	let hours = d.getHours();
+	let min = d.getMinutes();
+	let s = d.getSeconds();
+	return `${year}-${month}-${day} ${hours}:${min}:${s}`;
+};

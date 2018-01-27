@@ -2,7 +2,11 @@ import React, { PureComponent } from "react";
 import { I18n, Trans } from "react-i18next";
 import { NavLink, Link } from "react-router-dom";
 
-import { getMainMinHeight, getQuery } from "../../../../utils/util";
+import {
+	getMainMinHeight,
+	getQuery,
+	getLocalTime
+} from "../../../../utils/util";
 import Header from "../../../../components/header";
 import Footer from "../../../../components/footer";
 import FixedMenu from "../../../../components/fixedmenu";
@@ -458,9 +462,9 @@ export default class Root extends PureComponent {
 																				.name}
 																	</span>
 																	<span className="newsDetailHeadDate">
-																		{
+																		{getLocalTime(
 																			item.created_at
-																		}
+																		)}
 																	</span>
 																</div>
 															</div>
