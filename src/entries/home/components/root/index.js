@@ -156,6 +156,7 @@ export default class Root extends PureComponent {
 			arrows: false,
 			accessibility: true,
 			adaptiveHeight: true,
+			fade: true,
 			afterChange: function(index) {
 				this.setState({
 					sliderIndex: index

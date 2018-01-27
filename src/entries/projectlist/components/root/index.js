@@ -685,28 +685,74 @@ export default class Root extends PureComponent {
 															"&&page=1"
 													}}
 												>
-													<span className="ellitext">
-														{t(
-															"project.other",
-															lng
+													{index == 0 &&
+														project.total -
+															project.to !=
+															0 && (
+															<span className="ellitext">
+																{t(
+																	"project.other",
+																	lng
+																)}
+																{project.total -
+																	project.to}
+																{t(
+																	"project.otherend",
+																	lng
+																)}
+															</span>
 														)}
-														{index == 0 &&
-															project.total -
-																project.to}
-														{index == 1 &&
-															project2.total -
-																project2.to}
-														{index == 2 &&
-															project3.total -
-																project3.to}
-														{index == 3 &&
-															project4.total -
-																project4.to}
-														{t(
-															"project.otherend",
-															lng
+													{index == 1 &&
+														project2.total -
+															project2.to !=
+															0 && (
+															<span className="ellitext">
+																{t(
+																	"project.other",
+																	lng
+																)}
+																{project2.total -
+																	project2.to}
+																{t(
+																	"project.otherend",
+																	lng
+																)}
+															</span>
 														)}
-													</span>
+													{index == 2 &&
+														project3.total -
+															project3.to !=
+															0 && (
+															<span className="ellitext">
+																{t(
+																	"project.other",
+																	lng
+																)}
+																{project3.total -
+																	project3.to}
+																{t(
+																	"project.otherend",
+																	lng
+																)}
+															</span>
+														)}
+													{index == 3 &&
+														project4.total -
+															project4.to !=
+															0 && (
+															<span className="ellitext">
+																{t(
+																	"project.other",
+																	lng
+																)}
+																{project4.total -
+																	project4.to}
+																{t(
+																	"project.otherend",
+																	lng
+																)}
+															</span>
+														)}
 												</Link>
 											</div>
 										</div>
