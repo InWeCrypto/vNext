@@ -55,17 +55,12 @@ export default class Root extends PureComponent {
 		if (!footerDom) return;
 		let footerToTopHei = footerDom.getBoundingClientRect().bottom - 10;
 		let pathName = location.pathname;
-
 		if (
 			footerToTopHei <= winHei &&
 			pathName == "/announcment" &&
 			this.state.mounted
 		) {
-			let curIndex = this.state.activeIndex;
-
-			var UlDom = document.getElementsByClassName("annoucmentListUl")[0];
-			if (!UlDom) return;
-			var liDom = UlDom.getElementsByTagName("li");
+			var liDom = document.getElementsByClassName("annoucmentListLi");
 			//手机默认请求10条
 			if (liDom.length < 10) return;
 			var pageIndex = parseInt(liDom.length / 10) + 1;
@@ -95,6 +90,9 @@ export default class Root extends PureComponent {
 		this.setState({
 			nums: nums
 		});
+		if (IsTouchDevice) {
+			nums = 10;
+		}
 		this.props.getAnnouncment({
 			page: p.page || 1,
 			per_page: nums
@@ -203,7 +201,7 @@ export default class Root extends PureComponent {
 														return (
 															<li
 																key={index}
-																className=""
+																className="annoucmentListLi"
 															>
 																{item.source_url && (
 																	<Link
@@ -274,7 +272,7 @@ export default class Root extends PureComponent {
 														return (
 															<li
 																key={index}
-																className=""
+																className="annoucmentListLi"
 															>
 																{item.source_url && (
 																	<Link
@@ -399,8 +397,11 @@ export default class Root extends PureComponent {
 								</div>
 							</div>
 						</div>
-						<div id="footerBox" />
-						<Footer changeLng={changeLng} lng={lng} />
+						{IsTouchDevice ? (
+							<div id="footerBox" />
+						) : (
+							<Footer changeLng={changeLng} lng={lng} />
+						)}
 					</div>
 				)}
 			</I18n>

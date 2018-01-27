@@ -131,3 +131,20 @@ export const getLocalTime = time => {
 	let s = d.getSeconds();
 	return `${year}-${month}-${day} ${hours}:${min}:${s}`;
 };
+export const queryString = (name, notDecoded) => {
+	name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+
+	var regex = new RegExp("[\\?&]" + name + "=([^&#]*)");
+	var results = regex.exec(location.search);
+	var encoded = null;
+
+	if (results === null) {
+		return "";
+	} else {
+		encoded = results[1].replace(/\+/g, " ");
+		if (notDecoded) {
+			return encoded;
+		}
+		return decodeURIComponent(encoded);
+	}
+};

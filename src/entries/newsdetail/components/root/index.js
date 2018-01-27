@@ -2,7 +2,6 @@ import React, { PureComponent } from "react";
 import { I18n, Trans } from "react-i18next";
 import { NavLink, Link } from "react-router-dom";
 import QcodeBox from "../../../../components/qcode";
-
 import {
 	getMainMinHeight,
 	getQuery,
@@ -11,6 +10,7 @@ import {
 import Header from "../../../../components/header";
 import Footer from "../../../../components/footer";
 import FixedMenu from "../../../../components/fixedmenu";
+import TurnApp from "../../../../components/turnapp";
 import origlePic from "../../../../assets/images/yuanchuang_pic.png";
 import "./index.less";
 import { platform } from "os";
@@ -36,6 +36,7 @@ export default class Root extends PureComponent {
 		}
 	}
 	componentDidMount() {
+		document.body.scrollTop = document.documentElement.scrollTop = 0;
 		document.title = "InWe-" + i18n.t("navMenu.news", this.props.lng);
 		let minH = getMainMinHeight();
 		let leftArrow = document.getElementById("newsDetailLeft").offsetLeft;
@@ -107,6 +108,13 @@ export default class Root extends PureComponent {
 			});
 	}
 	getNewsCollect(art_id) {
+		let trunapp = window.CtrunappAdvHide;
+		if (trunapp && IsTouchDevice) {
+			trunapp.setState({
+				advHide: false
+			});
+			return;
+		}
 		this.props
 			.getNewsDetailCollect({
 				art_id: art_id,
@@ -187,6 +195,14 @@ export default class Root extends PureComponent {
 	toggleShareList(e) {
 		e.stopPropagation();
 		e.nativeEvent.stopImmediatePropagation();
+		let trunapp = window.CtrunappAdvHide;
+		if (trunapp && IsTouchDevice) {
+			trunapp.setState({
+				advHide: false
+			});
+			return;
+		}
+
 		this.setState({
 			showShareList: !this.state.showShareList
 		});
@@ -308,14 +324,17 @@ export default class Root extends PureComponent {
 								{!newsDetail.article_prev && <span />}
 							</div>
 
-							<div className="newsDetailCon">
+							<div className="newsDetailCon f1">
 								<div className="newsDetailConTitle">
 									<span>{newsDetail.title}</span>
 								</div>
-								<div className="newsMeta">
-									<div className="newsDetailConMeta">
+								<div className="newsMeta ui">
+									<div className="newsDetailConMeta f1">
 										<span className="metaDate">
-											{newsDetail.updated_at}
+											{newsDetail.updated_at &&
+												getLocalTime(
+													newsDetail.updated_at
+												)}
 										</span>
 										{newsDetail.is_sole &&
 											(IsTouchDevice ? (
@@ -595,6 +614,7 @@ export default class Root extends PureComponent {
 								url={QcodeUrl}
 							/>
 						)}
+						{IsTouchDevice && <TurnApp />}
 					</div>
 				)}
 			</I18n>

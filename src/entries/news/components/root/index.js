@@ -2,7 +2,11 @@ import React, { PureComponent } from "react";
 import { I18n, Trans } from "react-i18next";
 import { NavLink, Link } from "react-router-dom";
 
-import { getMainMinHeight, getQuery } from "../../../../utils/util";
+import {
+	getMainMinHeight,
+	getQuery,
+	queryString
+} from "../../../../utils/util";
 import Header from "../../../../components/header";
 import Footer from "../../../../components/footer";
 import LeftMenu from "../../../../components/leftmenu";
@@ -22,6 +26,11 @@ export default class Root extends PureComponent {
 	}
 	componentWillReceiveProps(nextProps) {}
 	componentDidMount() {
+		let type = queryString("type");
+		if (!type) {
+			type = 0;
+		}
+
 		window.addEventListener("scroll", this.handleScroll.bind(this));
 		window.NewNavTextAjaxDone = true;
 		window.NewNavImgAjaxDone = true;
@@ -35,7 +44,8 @@ export default class Root extends PureComponent {
 		this.setState({
 			minH: minH,
 			activeIndex: 0,
-			mounted: true
+			mounted: true,
+			activeIndex: type
 		});
 		document.querySelector("#mainBox").style.minHeight = minH + "px";
 	}
@@ -54,7 +64,9 @@ export default class Root extends PureComponent {
 			pathName == "/news" &&
 			this.state.mounted
 		) {
-			let curIndex = this.state.activeIndex;
+			let curIndex = parseInt(this.state.activeIndex);
+			if (isNaN(curIndex)) return;
+
 			switch (curIndex) {
 				case 0:
 					var UlDom = document.getElementsByClassName(
@@ -213,11 +225,7 @@ export default class Root extends PureComponent {
 			}
 		}
 	}
-	changeNav(idx) {
-		this.setState({
-			activeIndex: idx
-		});
-	}
+
 	render() {
 		const { minH, liW, activeIndex } = this.state;
 		const {
@@ -263,9 +271,9 @@ export default class Root extends PureComponent {
 									>
 										<div id="m-nav-c" className="newsNav-c">
 											{[
-												"24H News",
-												"图文资讯",
-												"视频咨询"
+												"news",
+												"ceefax",
+												"videoTitle"
 											].map((val, idx) => {
 												return (
 													<div
@@ -275,12 +283,21 @@ export default class Root extends PureComponent {
 																: "item"
 														}
 														key={idx}
-														onClick={this.changeNav.bind(
-															this,
-															idx
-														)}
 													>
-														{val}
+														<Link
+															to={{
+																pathname:
+																	"news",
+																search:
+																	"?type=" +
+																	idx
+															}}
+														>
+															{t(
+																"news." + val,
+																lng
+															)}
+														</Link>
 													</div>
 												);
 											})}
@@ -373,8 +390,8 @@ export default class Root extends PureComponent {
 											className={
 												newsText.current_page <
 												newsText.last_page
-													? "rightArrow more"
-													: "rightArrow"
+													? "rightArrow more m-hide"
+													: "rightArrow m-hide"
 											}
 											onClick={() => {
 												this.toggleNewsText(
@@ -617,8 +634,11 @@ export default class Root extends PureComponent {
 								</div>
 							</div>
 						</div>
-						<div id="footerBox" />
-						<Footer changeLng={changeLng} lng={lng} />
+						{IsTouchDevice ? (
+							<div id="footerBox" />
+						) : (
+							<Footer changeLng={changeLng} lng={lng} />
+						)}
 					</div>
 				)}
 			</I18n>

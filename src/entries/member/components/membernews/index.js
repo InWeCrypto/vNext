@@ -70,7 +70,7 @@ class MemberNews extends PureComponent {
 												}}
 											>
 												<a
-													href={item.utl}
+													href={item.url}
 													target="_blank"
 													className="membernews-item"
 												>
@@ -141,6 +141,19 @@ class MemberNews extends PureComponent {
 										);
 									}
 								})}
+
+							{(!newsList ||
+								!newsList.data ||
+								newsList.data.length <= 0) && (
+								<div
+									style={{
+										textAlign: "center",
+										padding: "1rem 0"
+									}}
+								>
+									{t("nodata", lng)}
+								</div>
+							)}
 						</div>
 
 						<div className="pagination-box" id="PagationBox">
