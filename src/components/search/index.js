@@ -3,7 +3,7 @@ import http from "../../utils/ajax";
 import { NavLink, Link } from "react-router-dom";
 import { I18n, Trans } from "react-i18next";
 import { StyleSheet, css } from "aphrodite";
-import { puffIn } from "react-magic";
+import { puffIn, spaceInDown } from "react-magic";
 import { setLocalItem } from "../../utils/util";
 import "./index.less";
 class searchIn extends PureComponent {
@@ -16,8 +16,8 @@ class searchIn extends PureComponent {
 		};
 		this.styles = StyleSheet.create({
 			magic: {
-				animationName: puffIn,
-				animationDuration: ".3s"
+				animationName: spaceInDown,
+				animationDuration: "1s"
 			}
 		});
 	}
@@ -36,7 +36,7 @@ class searchIn extends PureComponent {
 	searchRecom() {
 		http
 			.get({
-				url: "article/tags"
+				url: "search/keywords"
 			})
 			.then(res => {
 				if (res.code === 4000) {
@@ -102,30 +102,28 @@ class searchIn extends PureComponent {
 
 											<ul className="searchReconUl">
 												{recom &&
-													recom.data &&
-													recom.data.map(
-														(item, index) => {
-															return (
-																<li key={index}>
-																	<Link
-																		to={{
-																			pathname:
-																				"/search",
-																			search:
-																				"?k=" +
-																				item.name
-																		}}
-																	>
-																		<span>
-																			{
-																				item.name
-																			}
-																		</span>
-																	</Link>
-																</li>
-															);
-														}
-													)}
+													recom.length > 0 &&
+													recom.map((item, index) => {
+														return (
+															<li key={index}>
+																<Link
+																	to={{
+																		pathname:
+																			"/search",
+																		search:
+																			"?k=" +
+																			item.name
+																	}}
+																>
+																	<span>
+																		{
+																			item.name
+																		}
+																	</span>
+																</Link>
+															</li>
+														);
+													})}
 											</ul>
 										</div>
 									</div>
