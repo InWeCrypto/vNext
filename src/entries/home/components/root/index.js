@@ -381,7 +381,13 @@ export default class Root extends PureComponent {
 											)}
 									</div>
 									{!IsTouchDevice && (
-										<div className="homeInweWallet ui">
+										<div
+											className={
+												ads.data && ads.data.length == 1
+													? "homeInweWallet one ui"
+													: "homeInweWallet ui"
+											}
+										>
 											{ads.data &&
 												ads.data.length > 1 &&
 												sliderIndex1 !== 0 && (
