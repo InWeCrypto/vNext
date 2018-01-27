@@ -77,8 +77,8 @@ class ProjectDetailInfo extends PureComponent {
 		return (
 			<I18n>
 				{(t, { I18n }) => (
-					<div className="projectDetailInfo ui">
-						<div className="projectDetailCon1">
+					<div className="projectDetailInfo ui f1">
+						<div className="projectDetailCon1 f1">
 							<div className="projectDetailConTop ui">
 								<div className="projectDetailConTopLeft">
 									<div className="projectDetailCenter1">

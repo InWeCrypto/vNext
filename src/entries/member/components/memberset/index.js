@@ -4,7 +4,7 @@ import { I18n, Trans } from "react-i18next";
 import { getLocalItem, setLocalItem } from "../../../../utils/util";
 import "./index.less";
 import defaultHeader from "../../../../assets/images/member_img.png";
-
+import shape from "../../../../assets/images/shape.png";
 class MemberSet extends PureComponent {
 	constructor(props) {
 		super(props);
@@ -120,6 +120,9 @@ class MemberSet extends PureComponent {
 												: defaultHeader
 										}
 									/>
+									<div className="camer">
+										<img src={shape} />
+									</div>
 									<div id="ban_uploader" />
 								</div>
 							</div>
