@@ -14,8 +14,8 @@ export default {
 	},
 	project: {
 		trading: "交易",
-		active: "活动",
-		upcoming: "即将到来",
+		active: "正在进行中",
+		upcoming: "即将开始",
 		ended: "结束",
 		more: "查看更多",
 		other: "大约还有",
@@ -136,7 +136,8 @@ export default {
 		resetPass: "密码修改失败，请重试",
 		passLength: "密码长度不一致",
 		passError: "两次输入密码不同",
-		codeEmpty: "验证码不能为空"
+		codeEmpty: "验证码不能为空",
+		followError: "上限值不能小于下限值"
 	},
 	success: {
 		login: "登录成功",

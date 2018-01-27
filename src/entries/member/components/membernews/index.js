@@ -110,7 +110,9 @@ class MemberNews extends PureComponent {
 												<Link
 													to={{
 														pathname: "/newsdetail",
-														search: `?id=${item.id}`
+														search: `?art_id=${
+															item.id
+														}`
 													}}
 													className="membernews-item"
 												>
