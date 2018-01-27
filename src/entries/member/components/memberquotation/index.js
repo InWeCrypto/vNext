@@ -48,22 +48,12 @@ class MemberQuotation extends PureComponent {
 			[type]: e.target.value
 		});
 	}
-	changeFollow(item) {
+	changeFollow(item, e) {
+		e.nativeEvent.stopImmediatePropagation();
 		this.setState({
 			isShowMind: true,
 			mindItem: item
 		});
-		// if (item.category_user && item.category_user.is_market_follow) {
-		// 	this.props.setProjectFollow(item.id, {
-		// 		is_market_follow: !item.category_user.is_market_follow
-		// 	});
-		// } else {
-		// 	// this.props.setProjectFollow(item.id, {
-		// 	// 	is_market_follow: true,
-		// 	// 	market_hige: "1",
-		// 	// 	market_lost: "1"
-		// 	// });
-		// }
 	}
 	cannelRemind() {
 		let item = this.state.mindItem;
@@ -91,6 +81,9 @@ class MemberQuotation extends PureComponent {
 				}
 			});
 	}
+	openProject(item) {
+		window.location.href = "/projectdetail?c_id=" + item.id;
+	}
 	closeRemind() {
 		this.setState({
 			isShowMind: false
@@ -112,12 +105,15 @@ class MemberQuotation extends PureComponent {
 										<div
 											key={index}
 											className="quotation-group ui center"
+											onClick={this.openProject.bind(
+												this,
+												item
+											)}
 										>
 											<div
-												onClick={this.changeFollow.bind(
-													this,
-													item
-												)}
+												onClick={e => {
+													this.changeFollow(item, e);
+												}}
 											>
 												{item.category_user &&
 													item.category_user
