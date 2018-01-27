@@ -228,7 +228,12 @@ export default class Root extends PureComponent {
 															return (
 																<div
 																	key={index}
-																	className="articleSlide"
+																	className={
+																		sliderIndex ==
+																		index
+																			? "articleSlide cur"
+																			: "articleSlide"
+																	}
 																>
 																	<Link
 																		to={{
@@ -575,6 +580,11 @@ export default class Root extends PureComponent {
 																			index
 																		}
 																		className="ui center jcenter"
+																		onClick={() => {
+																			window.location.href = `/projectdetail?c_id=${
+																				item.id
+																			}`;
+																		}}
 																	>
 																		<img
 																			src={
