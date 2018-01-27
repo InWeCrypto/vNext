@@ -49,10 +49,22 @@ class MemberQuotation extends PureComponent {
 		});
 	}
 	changeFollow(item, e) {
+		e.stopPropagation();
 		e.nativeEvent.stopImmediatePropagation();
+		console.log(item);
 		this.setState({
 			isShowMind: true,
-			mindItem: item
+			mindItem: item,
+			aboveVal: item.category_user
+				? item.category_user.market_hige
+					? item.category_user.market_hige
+					: 0
+				: 0,
+			belowVal: item.category_user
+				? item.category_user.market_lost
+					? item.category_user.market_lost
+					: 0
+				: 0
 		});
 	}
 	cannelRemind() {
@@ -69,6 +81,10 @@ class MemberQuotation extends PureComponent {
 	}
 	remindUpdate() {
 		let item = this.state.mindItem;
+		if (this.state.belowVal > this.state.aboveVal) {
+			Msg.prompt(i18n.t("error.followError", this.props.lng));
+			return;
+		}
 		this.props
 			.setProjectFollow(item.id, {
 				is_market_follow: true,

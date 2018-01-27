@@ -39,6 +39,7 @@ class ProjectCollection extends PureComponent {
 		this.getData(page);
 	}
 	setFavorite(item, e) {
+		e.stopPropagation();
 		e.nativeEvent.stopImmediatePropagation();
 		this.props.setProjectColletion(
 			item.id,
