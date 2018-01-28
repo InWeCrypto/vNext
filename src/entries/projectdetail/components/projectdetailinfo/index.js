@@ -56,6 +56,7 @@ class ProjectDetailInfo extends PureComponent {
 		//获取项目动态
 		this.props
 			.getProjectDynamicList({
+				c_id: this.props.projectDetail.id,
 				tag_id: id,
 				type: "[2,3]",
 				per_page: 4,

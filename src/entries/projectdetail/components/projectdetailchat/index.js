@@ -85,55 +85,58 @@ class ProjectDetailIco extends PureComponent {
 		return (
 			<I18n>
 				{(t, { I18n }) => (
-					<div className="projectDetailChat">
-						<ul className="chatUl">
+					<div className="projectDetailChat m-hide">
+						<div className="coverBox">
 							<div className="cover ">
 								<div>coming soon</div>
 							</div>
-							<li>
-								<p>
-									<span>assafsasson:</span>
-									people are stupid for sellingtheir srn or so
-									cheap now :)
-								</p>
-							</li>
-							<li>
-								<p>
-									<span>assafsasson:</span>
-									people are stupid for sellingtheir srn or so
-									cheap now :)
-								</p>
-							</li>
-							<li>
-								<p>
-									<span>assafsasson:</span>
-									people are stupid for sellingtheir srn or so
-									cheap now :)
-								</p>
-							</li>
-						</ul>
-						<div
-							onClick={this.showApp.bind(this)}
-							className="sendChat "
-						>
-							<input
-								className={
-									inputBg ? "focus noEvent" : "noEvent"
-								}
-								onFocus={() => {
-									this.setState({
-										inputBg: true
-									});
-								}}
-								onBlur={() => {
-									this.setState({
-										inputBg: false
-									});
-								}}
-								type="text"
-								placeholder={t("projectDetail.chat", lng)}
-							/>
+							<ul className="chatUl ">
+								<li>
+									<p>
+										<span>assafsasson:</span>
+										people are stupid for sellingtheir srn
+										or so cheap now :)
+									</p>
+								</li>
+								<li>
+									<p>
+										<span>assafsasson:</span>
+										people are stupid for sellingtheir srn
+										or so cheap now :)
+									</p>
+								</li>
+								<li>
+									<p>
+										<span>assafsasson:</span>
+										people are stupid for sellingtheir srn
+										or so cheap now :)
+									</p>
+								</li>
+							</ul>
+							<div
+								onClick={this.showApp.bind(this)}
+								className="sendChat "
+							>
+								<input
+									className={
+										inputBg ? "focus noEvent" : "noEvent"
+									}
+									onFocus={() => {
+										this.setState({
+											inputBg: true
+										});
+									}}
+									onBlur={() => {
+										this.setState({
+											inputBg: false
+										});
+									}}
+									type="text"
+									placeholder={t("projectDetail.chat", lng)}
+								/>
+							</div>
 						</div>
+
 						<div
 							className="score ui center jcenter "
 							onClick={this.showApp.bind(this)}
