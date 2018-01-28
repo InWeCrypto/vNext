@@ -3,6 +3,8 @@ import { I18n, Trans } from "react-i18next";
 import { Link } from "react-router-dom";
 import GaiKuo from "../../../../components/gaikuo";
 import echarts from "echarts";
+import Slider from "react-slick";
+
 import echartEmpty from "../../../../assets/images/echart_empty.png";
 import "./index.less";
 class ProjectDetailGaiKuo extends PureComponent {
@@ -11,7 +13,8 @@ class ProjectDetailGaiKuo extends PureComponent {
 		this.state = {
 			chartType: ["1m", "5m", "30m", "1h", "1w"],
 			chartTypeIndex: 0,
-			mounted: false
+			mounted: false,
+			newsCur: 0
 		};
 	}
 	componentWillReceiveProps(nextProps, nextState) {
@@ -38,6 +41,8 @@ class ProjectDetailGaiKuo extends PureComponent {
 		this.setState({
 			mounted: true
 		});
+
+		this.props.getMarkets(this.props.projectDetail.unit);
 	}
 	setOptionData(data) {
 		let res = [];
@@ -369,6 +374,20 @@ class ProjectDetailGaiKuo extends PureComponent {
 	}
 
 	render() {
+		const settings = {
+			infinite: false,
+			arrows: false,
+			speed: 500,
+			touchMove: false,
+			slidesToShow: 3,
+			slidesToScroll: 3,
+			afterChange: function(index) {
+				this.setState({
+					newsCur: index
+				});
+			}.bind(this)
+		};
+		const { newsCur } = this.state;
 		const {
 			lng,
 			changeLng,
@@ -376,7 +395,8 @@ class ProjectDetailGaiKuo extends PureComponent {
 			coinTimePrice,
 			setProjectRemind,
 			getProjectCollect,
-			projectKdata
+			projectKdata,
+			markets
 		} = this.props;
 		this.viewEcharts(projectKdata);
 		return (
@@ -583,6 +603,79 @@ class ProjectDetailGaiKuo extends PureComponent {
 										className="charts-box"
 										id="chartsBox"
 									/>
+								</div>
+								<div className="gaikuoMarket ui center">
+									<div
+										className={
+											newsCur > 0
+												? "marketLf more"
+												: "marketLf"
+										}
+									>
+										<span
+											onClick={() => {
+												this.slider.slickPrev();
+											}}
+										/>
+									</div>
+									<div className="marketList ui">
+										{markets &&
+											markets.length > 0 && (
+												<Slider
+													ref={c => (this.slider = c)}
+													{...settings}
+												>
+													{markets.map(
+														(item, index) => {
+															return (
+																<div
+																	key={index}
+																	className="marketListLi"
+																>
+																	<span className="ellitext">
+																		+{
+																			item.source
+																		}{" "}
+																		({
+																			item.pair
+																		})
+																	</span>
+																	<p className="ellitext">
+																		{
+																			item.pairce
+																		}
+																	</p>
+																	<p className="ellitext">
+																		Volume{
+																			item.volum_24
+																		}
+																	</p>
+																</div>
+															);
+														}
+													)}
+												</Slider>
+											)}
+									</div>
+									<div
+										className={
+											newsCur + 3 <
+											(markets && markets.length)
+												? "marketRt more"
+												: "marketRt"
+										}
+									>
+										<span
+											onClick={() => {
+												if (
+													newsCur + 3 <
+													(markets && markets.length)
+												) {
+													this.slider.slickNext();
+												}
+											}}
+										/>
+									</div>
 								</div>
 							</div>
 						</div>
