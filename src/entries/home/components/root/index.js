@@ -529,11 +529,12 @@ export default class Root extends PureComponent {
 									)}
 								</div>
 								<div className="homeBoxList homeBoxAnno homeBoxAnnoAll">
-									<p className="homeBoxTitle">
-										{t("home.anno", lng)}
-									</p>
 									<div className="homeBoxAnnoTop">
-										{exchangeNotice &&
+										<p className="homeBoxTitle">
+											{t("home.anno", lng)}
+										</p>
+                                        <div className="homeBoxAnnoList">
+                                        {exchangeNotice &&
 											exchangeNotice.data &&
 											exchangeNotice.data.length > 0 &&
 											exchangeNotice.data.map(
@@ -579,20 +580,9 @@ export default class Root extends PureComponent {
 													);
 												}
 											)}
-										<div className="homeBoxReadMore">
-											<Link
-												to={{
-													pathname: "/announcment"
-												}}
-											>
-												<span className="readMore readMoreUnderLine">
-													read more
-												</span>
-												<b className="readMoreImg" />
-											</Link>
-										</div>
+                                        </div>
 									</div>
-									{/* <div className="homeBoxReadMore">
+									<div className="homeBoxReadMore">
 										<Link
 											to={{
 												pathname: "/announcment"
@@ -603,7 +593,7 @@ export default class Root extends PureComponent {
 											</span>
 											<b className="readMoreImg" />
 										</Link>
-									</div> */}
+									</div>
 									{!IsTouchDevice &&
 										userFavo &&
 										userFavo.data &&
