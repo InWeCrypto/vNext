@@ -179,7 +179,7 @@ class FixedMenu extends PureComponent {
 												<i className="fixed-mail" />
 											</a>
 										</div>
-										<div className="language">
+										{/* <div className="language">
 											<span
 												className={(() =>
 													this.setLanguageType(
@@ -202,7 +202,7 @@ class FixedMenu extends PureComponent {
 											>
 												ZH
 											</span>
-										</div>
+										</div> */}
 									</div>
 								)}
 							</div>
