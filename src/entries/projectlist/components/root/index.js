@@ -476,7 +476,7 @@ export default class Root extends PureComponent {
 																						({item.ico &&
 																							item
 																								.ico
-																								.percent_change_24h})
+																								.percent_change_24h}%)
 																					</div>
 																				</div>
 																			)}
@@ -727,8 +727,8 @@ export default class Root extends PureComponent {
 																					item
 																						.category_user
 																						.is_favorite
-																						? "projectListLiTopRight collect"
-																						: "projectListLiTopRight nocollect"
+																						? "projectListLiTopRight collect m-hide"
+																						: "projectListLiTopRight nocollect m-hide"
 																				}
 																				onClick={e => {
 																					let enable =

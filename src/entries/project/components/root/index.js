@@ -301,15 +301,20 @@ export default class Root extends PureComponent {
 															</p>
 														</div>
 														<div className="projectLiImg">
-															<img
-																src={
-																	item.last_article &&
-																	item
-																		.last_article
-																		.img
-																}
-																alt=""
-															/>
+															{item.last_article &&
+																item
+																	.last_article
+																	.img && (
+																	<img
+																		src={
+																			item.last_article &&
+																			item
+																				.last_article
+																				.img
+																		}
+																		alt=""
+																	/>
+																)}
 														</div>
 														<div className="projectLiDate">
 															{item.last_article &&
@@ -438,15 +443,20 @@ export default class Root extends PureComponent {
 																</p>
 															</div>
 															<div className="projectLiImg">
-																<img
-																	src={
-																		item.last_article &&
-																		item
-																			.last_article
-																			.img
-																	}
-																	alt=""
-																/>
+																{item.last_article &&
+																	item
+																		.last_article
+																		.img && (
+																		<img
+																			src={
+																				item.last_article &&
+																				item
+																					.last_article
+																					.img
+																			}
+																			alt=""
+																		/>
+																	)}
 															</div>
 															<div className="projectLiDate">
 																{item.last_article &&

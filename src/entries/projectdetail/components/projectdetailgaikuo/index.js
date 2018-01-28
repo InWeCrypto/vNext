@@ -692,7 +692,10 @@ class ProjectDetailGaiKuo extends PureComponent {
 								</p>
 								<p className="scord">
 									+{t("projectDetail.user_score", lng)}：{projectDetail.category_score &&
-										projectDetail.category_score.value}
+										projectDetail.category_score.value &&
+										projectDetail.category_score.value.toFixed(
+											1
+										)}
 								</p>
 							</div>
 							<div className="projectDetailCon2Box">

@@ -107,7 +107,7 @@ export default class Root extends PureComponent {
 								<img src={wallent_phone} alt="" />
 							</div>
 						</div>
-						<Footer changeLng={changeLng} lng={lng} />
+						{/* <Footer changeLng={changeLng} lng={lng} /> */}
 					</div>
 				)}
 			</I18n>

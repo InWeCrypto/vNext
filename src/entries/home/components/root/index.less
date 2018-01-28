@@ -39,6 +39,9 @@
 			-webkit-box-orient: vertical;
 			-webkit-line-clamp: 2;
 			flex-shrink: 0;
+			&:hover {
+				color: #ff571f;
+			}
 		}
 
 		.homeBoxReadMore {
@@ -47,7 +50,7 @@
 			height: 0.14rem;
 			.readMore {
 				float: right;
-				line-height: 0.14rem;
+				line-height: 0.24rem;
 				color: #dedede;
 				font-size: 0.12rem;
 			}
@@ -380,13 +383,17 @@
 				}
 				.homeBoxReadMore {
 					padding-top: 0.22rem;
+					padding-bottom: 0;
 					margin-bottom: 0.42rem;
+					.readMore {
+						font-size: 0.2rem;
+					}
 				}
 				&.homeBoxArticle {
 					padding-top: 0.14rem;
 					border: 0;
 					.articleSlider {
-						height: 7rem !important;
+						height: 6.7rem !important;
 					}
 					.homeBoxTitle {
 						max-height: 5rem;

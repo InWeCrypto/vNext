@@ -149,7 +149,7 @@ export default class Root extends PureComponent {
 			sliderIndex,
 			sliderIndex1
 		} = this.state;
-		const curMonth = monthArr[month].slice(0, 3);
+		const curMonth = monthArr[month - 1].slice(0, 3);
 		if (IsTouchDevice) {
 			var settings = {
 				// dots: true,
@@ -479,7 +479,14 @@ export default class Root extends PureComponent {
 																		index
 																	) => {
 																		return (
-																			<div
+																			<a
+																				href={
+																					item.url
+																				}
+																				style={{
+																					display:
+																						"block"
+																				}}
 																				key={
 																					index
 																				}
@@ -489,7 +496,7 @@ export default class Root extends PureComponent {
 																						item.img
 																					}
 																				/>
-																			</div>
+																			</a>
 																		);
 																	}
 																)}

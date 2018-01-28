@@ -80,7 +80,7 @@ class Footer extends PureComponent {
 								</div>
 								<div className="bottom ui center jcenter">
 									<div className="logoInFooter">
-										<img src={logofooter} alt="" />
+										@InWeCrypto
 									</div>
 									<div className="line" />
 									<div
@@ -90,7 +90,7 @@ class Footer extends PureComponent {
 											this.changeLanguage("en");
 										}}
 									>
-										<img src={enicon} alt="" />
+										EN
 									</div>
 									<div className="line" />
 									<div
@@ -100,14 +100,14 @@ class Footer extends PureComponent {
 											this.changeLanguage("zh");
 										}}
 									>
-										<img src={cnicon} alt="" />
+										CN
 									</div>
 									<div className="line" />
 									<div
 										className="loginIn"
 										onClick={this.showApp.bind(this)}
 									>
-										<img src={loginImg} alt="" />
+										Login sign up
 									</div>
 								</div>
 								<TurnApp />
