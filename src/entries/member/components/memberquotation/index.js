@@ -81,7 +81,7 @@ class MemberQuotation extends PureComponent {
 	remindUpdate() {
 		let item = this.state.mindItem;
 		if (
-			parseFloat(this.state.belowVal, 10) >
+			parseFloat(this.state.belowVal, 10) >=
 			parseFloat(this.state.aboveVal, 10)
 		) {
 			Msg.prompt(i18n.t("error.followError", this.props.lng));

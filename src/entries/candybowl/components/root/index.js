@@ -222,10 +222,10 @@ class Root extends PureComponent {
 																className="data-item"
 															>
 																<div className="title">
-																	222
+																	{item.title}
 																</div>
 																<div className="content">
-																	2323
+																	{item.desc}
 																</div>
 															</a>
 														);
