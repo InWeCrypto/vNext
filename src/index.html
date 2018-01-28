@@ -17,52 +17,49 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
     <title>InWe</title>
     <script>
-        //alert(11)
-        window.onerror = function (e) {
-            document.write(e)
-        }
-            ; (function (win) {
-                win.IsTouchDevice = null;
 
-                function IsTouchDeviceFoo() {
-                    if (self != top) {
-                        return true;
-                    }
-                    if (null !== IsTouchDevice)
-                        return IsTouchDevice;
-                    if (document.documentElement.ontouchstart)
-                        IsTouchDevice = true;
-                    else {
-                        var deviceAgent = navigator.userAgent.toLowerCase();
-                        IsTouchDevice = (
-                            deviceAgent.match(/(iphone|ipod|ipad)/) ||
-                            deviceAgent.match(/(android)/) ||
-                            deviceAgent.match(/(iemobile)/) ||
-                            deviceAgent.match(/iphone/i) ||
-                            deviceAgent.match(/ipad/i) ||
-                            deviceAgent.match(/ipod/i) ||
-                            deviceAgent.match(/blackberry/i) ||
-                            deviceAgent.match(/bada/i)
-                        );
-                        //IsTouchDevice will become array we need to convert it to boolean.
-                        if (IsTouchDevice !== null)
-                            IsTouchDevice = true;
-                        else
-                            IsTouchDevice = false;
-                    }
-                    return IsTouchDevice;
-                };
+        ; (function (win) {
+            win.IsTouchDevice = null;
 
-                if (!IsTouchDeviceFoo()) {
-                    //设置pc根字体大小
-                    dw = 90;
-                    document.getElementsByTagName("html")[0].style.fontSize = dw + "px";
-                } else {
-                    let metaStr =
-                        '<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0,user-scalable=0">'
-                    document.write(metaStr);
+            function IsTouchDeviceFoo() {
+                if (self != top) {
+                    return true;
                 }
-            })(window);
+                if (null !== IsTouchDevice)
+                    return IsTouchDevice;
+                if (document.documentElement.ontouchstart)
+                    IsTouchDevice = true;
+                else {
+                    var deviceAgent = navigator.userAgent.toLowerCase();
+                    IsTouchDevice = (
+                        deviceAgent.match(/(iphone|ipod|ipad)/) ||
+                        deviceAgent.match(/(android)/) ||
+                        deviceAgent.match(/(iemobile)/) ||
+                        deviceAgent.match(/iphone/i) ||
+                        deviceAgent.match(/ipad/i) ||
+                        deviceAgent.match(/ipod/i) ||
+                        deviceAgent.match(/blackberry/i) ||
+                        deviceAgent.match(/bada/i)
+                    );
+                    //IsTouchDevice will become array we need to convert it to boolean.
+                    if (IsTouchDevice !== null)
+                        IsTouchDevice = true;
+                    else
+                        IsTouchDevice = false;
+                }
+                return IsTouchDevice;
+            };
+
+            if (!IsTouchDeviceFoo()) {
+                //设置pc根字体大小
+                dw = 90;
+                document.getElementsByTagName("html")[0].style.fontSize = dw + "px";
+            } else {
+                let metaStr =
+                    '<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0,user-scalable=0">'
+                document.write(metaStr);
+            }
+        })(window);
     </script>
 </head>
 
@@ -81,11 +78,7 @@
             <div class="glob-message-warn">ssss</div>
         </div>
     </div> -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/es5-shim/4.5.7/es5-shim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/es5-shim/4.5.7/es5-sham.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/json3/3.3.2/json3.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/es6-shim/0.34.2/es6-shim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/es6-shim/0.34.2/es6-sham.min.js"></script>
+
 </body>
 
 </html>
