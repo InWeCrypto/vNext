@@ -49,70 +49,72 @@ class MemberNews extends PureComponent {
 			<I18n>
 				{(t, { I18n }) => (
 					<div className="member-news" id="memberNewBox">
-						<div
-							className="membernews-list"
-							id="memberNewsList"
-							style={{
-								width: this.state.w * this.state.widthN + "px"
-							}}
-						>
-							{newsList &&
-								newsList.data &&
-								newsList.data.length > 0 &&
-								newsList.data.map((item, index) => {
-									return (
-										<div
-											key={index}
-											className="membernews-group"
-											style={{
-												height: this.state.h + "px",
-												width: this.state.w + "px"
-											}}
-										>
-											<Link
-												to={{
-													pathname: "/newsdetail",
-													search: `?art_id=${item.id}`
+						{newsList &&
+							newsList.data &&
+							newsList.data.length > 0 && (
+								<div
+									className="membernews-list"
+									id="memberNewsList"
+									style={{
+										width:
+											this.state.w * this.state.widthN +
+											"px"
+									}}
+								>
+									{newsList.data.map((item, index) => {
+										return (
+											<div
+												key={index}
+												className="membernews-group"
+												style={{
+													height: this.state.h + "px",
+													width: this.state.w + "px"
 												}}
-												className="membernews-item"
 											>
-												<div className="img">
-													<img src={item.img} />
-												</div>
-												<div className="text-box">
-													<div className="title">
-														{item.title}
+												<Link
+													to={{
+														pathname: "/newsdetail",
+														search: `?art_id=${
+															item.id
+														}`
+													}}
+													className="membernews-item"
+												>
+													<div className="img">
+														<img src={item.img} />
 													</div>
-													<div className="info ui center">
-														<div className="f1 time">
-															{getLocalTime(
-																item.created_at
-															)}
+													<div className="text-box">
+														<div className="title">
+															{item.title}
 														</div>
-														{item.is_sole && (
-															<div className="tag">
-																{t(
-																	"icon.original",
-																	lng
+														<div className="info ui center">
+															<div className="f1 time">
+																{getLocalTime(
+																	item.created_at
 																)}
 															</div>
-														)}
+															{item.is_sole && (
+																<div className="tag">
+																	{t(
+																		"icon.original",
+																		lng
+																	)}
+																</div>
+															)}
+														</div>
 													</div>
-												</div>
-											</Link>
-										</div>
-									);
-								})}
-
-							{(!newsList ||
-								!newsList.data ||
-								newsList.data.length <= 0) && (
-								<div className="nodata-box">
-									{t("nodata", lng)}
+												</Link>
+											</div>
+										);
+									})}
 								</div>
 							)}
-						</div>
 
+						{(!newsList ||
+							!newsList.data ||
+							newsList.data.length <= 0) && (
+							<div className="nodata-box">{t("nodata", lng)}</div>
+						)}
 						<div className="pagination-box" id="PagationBox">
 							{newsList && (
 								<Pagination
