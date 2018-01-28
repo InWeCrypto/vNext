@@ -7,6 +7,8 @@ import ProjectList from "./entries/projectlist";
 import ProjectOpen from "./entries/projectopen";
 import ProjectDetail from "./entries/projectdetail";
 import News from "./entries/news";
+import NewsText from "./entries/newslisttext";
+import NewsImg from "./entries/newslistimg";
 import NewsDetail from "./entries/newsdetail";
 import Trading from "./entries/trading";
 import Announcment from "./entries/announcment";
@@ -24,6 +26,8 @@ export default () => {
 			<Route path="/projectopen" component={ProjectOpen} />
 			<Route path="/projectdetail" component={ProjectDetail} />
 			<Route path="/news" component={News} />
+			<Route path="/newslisttext" component={NewsText} />
+			<Route path="/newslistimg" component={NewsImg} />
 			<Route path="/newsdetail" component={NewsDetail} />
 			<Route path="/trading" component={Trading} />
 			<Route path="/announcment" component={Announcment} />
