@@ -59,87 +59,43 @@ class MemberNews extends PureComponent {
 								newsList.data &&
 								newsList.data.length > 0 &&
 								newsList.data.map((item, index) => {
-									if (item.url && item.url.length > 0) {
-										return (
-											<div
-												key={index}
-												className="membernews-group"
-												style={{
-													height: this.state.h + "px",
-													width: this.state.w + "px"
+									return (
+										<div
+											key={index}
+											className="membernews-group"
+											style={{
+												height: this.state.h + "px",
+												width: this.state.w + "px"
+											}}
+										>
+											<Link
+												to={{
+													pathname: "/newsdetail",
+													search: `?art_id=${item.id}`
 												}}
+												className="membernews-item"
 											>
-												<a
-													href={item.url}
-													target="_blank"
-													className="membernews-item"
-												>
-													<div className="img">
-														<img src={item.img} />
+												<div className="img">
+													<img src={item.img} />
+												</div>
+												<div className="text-box">
+													<div className="title">
+														{item.title}
 													</div>
-													<div className="text-box">
-														<div className="title">
-															{item.title}
+													<div className="info ui center">
+														<div className="f1 time">
+															{item.created_at}
 														</div>
-														<div className="info ui center">
-															<div className="f1 time">
-																{
-																	item.created_at
-																}
+														{item.is_sole && (
+															<div className="tag">
+																原创
 															</div>
-															{item.is_sole && (
-																<div className="tag">
-																	原创
-																</div>
-															)}
-														</div>
+														)}
 													</div>
-												</a>
-											</div>
-										);
-									} else {
-										return (
-											<div
-												key={index}
-												className="membernews-group"
-												style={{
-													height: this.state.h + "px",
-													width: this.state.w + "px"
-												}}
-											>
-												<Link
-													to={{
-														pathname: "/newsdetail",
-														search: `?art_id=${
-															item.id
-														}`
-													}}
-													className="membernews-item"
-												>
-													<div className="img">
-														<img src={item.img} />
-													</div>
-													<div className="text-box">
-														<div className="title">
-															{item.title}
-														</div>
-														<div className="info ui center">
-															<div className="f1 time">
-																{
-																	item.created_at
-																}
-															</div>
-															{item.is_sole && (
-																<div className="tag">
-																	原创
-																</div>
-															)}
-														</div>
-													</div>
-												</Link>
-											</div>
-										);
-									}
+												</div>
+											</Link>
+										</div>
+									);
 								})}
 
 							{(!newsList ||
