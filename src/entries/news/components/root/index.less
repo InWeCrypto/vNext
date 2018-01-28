@@ -102,6 +102,10 @@ a {
 						-webkit-box-orient: vertical;
 						-webkit-line-clamp: 2;
 						font-size: 0.16rem;
+						transition: all 0.3s ease-in-out;
+						&:hover {
+							color: #ff571f;
+						}
 					}
 					.newsBoxModConDate {
 						width: 100%;
@@ -136,7 +140,23 @@ a {
 				background: url("../../../../assets/images/holdimg.png")
 					no-repeat center center / cover;
 				img {
+					display: block;
+					height: 100%;
 					width: 100%;
+					object-fit: cover;
+					transition: all 0.3s ease-in-out;
+				}
+
+				&:hover {
+					img {
+						transform: scale(1.1);
+					}
+				}
+			}
+			p.desc {
+				transition: all 0.3s ease-in-out;
+				&:hover {
+					color: #ff571f !important;
 				}
 			}
 		}
@@ -243,6 +263,7 @@ a {
 						height: 3.98rem;
 						background: url("../../../../assets/images/holdimg.png")
 							no-repeat center center / cover;
+
 						img.cover {
 							display: block;
 							width: 100%;
@@ -327,6 +348,10 @@ a {
 						-webkit-box-orient: vertical;
 						-webkit-line-clamp: 2;
 						flex-shrink: 0;
+						transition: all 0.3s ease-in-out;
+						&:hover {
+							color: #ff571f;
+						}
 					}
 					.newsBoxModConDate {
 						position: absolute;

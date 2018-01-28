@@ -2,7 +2,11 @@ import React, { PureComponent } from "react";
 import { I18n, Trans } from "react-i18next";
 import { NavLink, Link } from "react-router-dom";
 
-import { getMainMinHeight, getQuery } from "../../../../utils/util";
+import {
+	getMainMinHeight,
+	getQuery,
+	getLocalTime
+} from "../../../../utils/util";
 import Header from "../../../../components/header";
 import Footer from "../../../../components/footer";
 import LeftMenu from "../../../../components/leftmenu";
@@ -185,9 +189,9 @@ export default class Root extends PureComponent {
 															</p>
 															<div className="tradingBoxModConDate">
 																<p>
-																	{
+																	{getLocalTime(
 																		item.created_at
-																	}
+																	)}
 																</p>
 															</div>
 														</div>

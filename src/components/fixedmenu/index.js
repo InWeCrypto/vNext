@@ -143,11 +143,14 @@ class FixedMenu extends PureComponent {
 
 								<div className="ctrlbtn ui center">
 									<span
+										className="ui menuBtnCtrl"
 										onClick={e => {
 											this.toggleType(e);
 										}}
 									>
-										<i className="icon-more" />
+										<i className="icon-line" />
+										<i className="icon-line" />
+										<i className="icon-line" />
 									</span>
 								</div>
 							</div>

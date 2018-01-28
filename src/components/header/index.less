@@ -23,6 +23,10 @@
 		position: relative;
 		background: #e3e3e3;
 		z-index: 2;
+		transition: all 0.5s ease-in-out;
+		&.memberBig {
+			transform: scale(1.2) translateX(-0.05rem);
+		}
 		cursor: pointer;
 		.member-info {
 			width: 0.08rem;
@@ -42,7 +46,9 @@
 	}
 	.member-more {
 		position: absolute;
-		width: 1.38rem;
+		width: 1.68rem;
+		height: 0.7rem;
+		overflow: hidden;
 		background: #f6f6f6;
 		top: -0.15rem;
 		z-index: 1;
@@ -52,6 +58,13 @@
 		border-radius: 0.04rem;
 		padding-top: 0.05rem;
 		padding-bottom: 0.05rem;
+		transition: all 0.5s ease-in-out;
+		opacity: 0;
+		transform: translateX(-0.2rem);
+		&.showMember {
+			opacity: 1;
+			transform: translateX(0);
+		}
 		.member-item {
 			box-sizing: border-box;
 			cursor: pointer;
@@ -119,6 +132,10 @@
 		margin: 0 0.1rem;
 		cursor: pointer;
 		font-weight: 600;
+		transition: all 0.3s ease-in-out;
+		&:hover {
+			color: #0a9234;
+		}
 	}
 	.icon-message {
 		background: url("../../assets/images/header_message.png") left top
