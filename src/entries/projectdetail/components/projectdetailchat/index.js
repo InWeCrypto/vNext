@@ -109,11 +109,15 @@ class ProjectDetailIco extends PureComponent {
 								</p>
 							</li>
 						</ul>
-						<div className="sendChat">
+						<div
+							onClick={this.showApp.bind(this)}
+							className="sendChat "
+						>
 							<input
-								className={inputBg ? "focus" : ""}
+								className={
+									inputBg ? "focus noEvent" : "noEvent"
+								}
 								onFocus={() => {
-									this.showApp.bind(this);
 									this.setState({
 										inputBg: true
 									});
@@ -127,12 +131,12 @@ class ProjectDetailIco extends PureComponent {
 								placeholder={t("projectDetail.chat", lng)}
 							/>
 						</div>
-						<div className="score ui center jcenter">
+						<div
+							className="score ui center jcenter "
+							onClick={this.showApp.bind(this)}
+						>
 							<span>{t("projectDetail.score", lng)}：</span>
-							<p
-								className="starList ui"
-								onClick={this.showApp.bind(this)}
-							>
+							<p className="starList ui noEvent">
 								{[1, 2, 3, 4, 5].map((item, index) => {
 									return (
 										<b

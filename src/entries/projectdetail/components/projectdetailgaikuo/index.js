@@ -10,7 +10,8 @@ class ProjectDetailGaiKuo extends PureComponent {
 		super();
 		this.state = {
 			chartType: ["1m", "5m", "30m", "1h", "1w"],
-			chartTypeIndex: 0
+			chartTypeIndex: 0,
+			mounted: false
 		};
 	}
 	componentWillReceiveProps(nextProps, nextState) {
@@ -33,6 +34,9 @@ class ProjectDetailGaiKuo extends PureComponent {
 		}`;
 		this.props.getKdata(query).then(() => {
 			//this.viewEcharts(this.props.projectKdata);
+		});
+		this.setState({
+			mounted: true
 		});
 	}
 	setOptionData(data) {
@@ -370,7 +374,7 @@ class ProjectDetailGaiKuo extends PureComponent {
 			getProjectCollect,
 			projectKdata
 		} = this.props;
-		if (projectKdata && projectKdata.length > 0) {
+		if (projectKdata && projectKdata.length > 0 && this.state.mounted) {
 			this.viewEcharts(projectKdata);
 		}
 		return (

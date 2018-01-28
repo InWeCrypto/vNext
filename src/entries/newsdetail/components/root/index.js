@@ -344,7 +344,7 @@ export default class Root extends PureComponent {
 												/>
 											) : (
 												<span className="metaCategory">
-													原创
+													{t("icon.original", lng)}
 												</span>
 											))}
 										{newsDetail &&
