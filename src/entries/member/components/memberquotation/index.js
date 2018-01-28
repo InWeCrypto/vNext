@@ -208,7 +208,9 @@ class MemberQuotation extends PureComponent {
 							{(!quotationList ||
 								!quotationList.data ||
 								quotationList.data.length <= 0) && (
-								<div>{t("nodata", lng)}</div>
+								<div className="nodata-box">
+									{t("nodata", lng)}
+								</div>
 							)}
 						</div>
 
