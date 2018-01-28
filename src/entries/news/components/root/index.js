@@ -26,6 +26,7 @@ export default class Root extends PureComponent {
 	}
 	componentWillReceiveProps(nextProps) {}
 	componentDidMount() {
+		document.body.scrollTop = document.documentElement.scrollTop = 0;
 		let type = queryString("type");
 		if (!type) {
 			type = 0;
@@ -497,8 +498,8 @@ export default class Root extends PureComponent {
 											className={
 												newsImg.current_page <
 												newsImg.last_page
-													? "rightArrow more"
-													: "rightArrow"
+													? "rightArrow more m-hide"
+													: "rightArrow m-hide"
 											}
 											onClick={() => {
 												this.toggleNewsImg(
@@ -620,8 +621,8 @@ export default class Root extends PureComponent {
 											className={
 												newsVideo.current_page <
 												newsVideo.last_page
-													? "rightArrow more"
-													: "rightArrow"
+													? "rightArrow more m-hide"
+													: "rightArrow m-hide"
 											}
 											onClick={() => {
 												this.toggleNewsVideo(

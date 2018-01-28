@@ -29,6 +29,7 @@ export default class Root extends PureComponent {
 		}
 	}
 	componentDidMount() {
+		document.body.scrollTop = document.documentElement.scrollTop = 0;
 		let type = queryString("type");
 		document.title = "InWe-" + i18n.t("navMenu.project", this.props.lng);
 		let minH = getMainMinHeight();
