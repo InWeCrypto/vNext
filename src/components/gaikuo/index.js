@@ -193,10 +193,11 @@ class GaiKuo extends PureComponent {
 											onClick={e => {
 												this.toggleList("remind", e);
 											}}
+											title={t("gaikuo.notice", lng)}
 										>
 											{/* 收藏 官网 分享 */}
 											<b className="" />
-											<span>提醒</span>
+											{/* <span>提醒</span> */}
 										</li>
 										<li
 											className={
@@ -209,9 +210,10 @@ class GaiKuo extends PureComponent {
 											onClick={e => {
 												this.toggleList("collect", e);
 											}}
+											title={t("gaikuo.collection", lng)}
 										>
 											<b className="" />
-											<span>收藏</span>
+											{/* <span>收藏</span> */}
 										</li>
 										<li
 											className={
@@ -222,10 +224,11 @@ class GaiKuo extends PureComponent {
 											onClick={e => {
 												this.toggleList("home", e);
 											}}
+											title={t("gaikuo.website", lng)}
 										>
 											<a href={projectDetail.website}>
 												<b className="" />
-												<span>官网</span>
+												{/* <span>官网</span> */}
 											</a>
 										</li>
 										<li
@@ -237,9 +240,10 @@ class GaiKuo extends PureComponent {
 											onClick={e => {
 												this.toggleList("share", e);
 											}}
+											title={t("gaikuo.share", lng)}
 										>
 											<b className="" />
-											<span>分享</span>
+											{/* <span>分享</span> */}
 										</li>
 									</ul>
 									{showShareList && (

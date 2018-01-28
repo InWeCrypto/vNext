@@ -145,6 +145,12 @@ export default {
 		emailSend: "邮件发送成功",
 		resetPass: "密码修改成功"
 	},
+	gaikuo: {
+		notice: "提醒",
+		collection: "收藏",
+		website: "官网",
+		share: "分享"
+	},
 	sure: "确定",
 	cannel: "取消",
 	nodata: "暂无数据",
