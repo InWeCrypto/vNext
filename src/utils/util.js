@@ -126,7 +126,6 @@ export const getLocalTime = time => {
 		time1 = time.replace(/\-/gi, "/");
 	}
 	const def = new Date().getTimezoneOffset();
-	console.log(def);
 	let localTime = new Date(time1).getTime() - def * 60 * 1000;
 	let d = new Date(localTime);
 	let year = d.getFullYear();
