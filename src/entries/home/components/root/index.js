@@ -134,6 +134,11 @@ export default class Root extends PureComponent {
 			window.location.href = "/announcment";
 		}
 	}
+	getAdsWidth(ads) {
+		if (ads && ads.data && ads.data.length) {
+			return ads.data.length * 4.98 + "rem";
+		}
+	}
 	render() {
 		const {
 			lng,
@@ -153,6 +158,7 @@ export default class Root extends PureComponent {
 			commonMarket,
 			getHeaderMarket
 		} = this.props;
+		console.log(ads);
 		const {
 			month,
 			monthArr,
@@ -291,7 +297,7 @@ export default class Root extends PureComponent {
 																	}
 																>
 																	<Link
-																		class="sliderBlockA"
+																		className="sliderBlockA"
 																		to={{
 																			pathname:
 																				"/newsdetail",
@@ -665,25 +671,43 @@ export default class Root extends PureComponent {
 											<ul
 												className="walletUl"
 												style={{
-													width:
-														[1, 2, 3, 4].length *
-															4.98 +
-														"rem"
+													width: this.getAdsWidth.bind(
+														this,
+														ads
+													)
 												}}
 											>
-												{[1, 2, 3, 4].map(val => {
-													return (
-														<li
-															key={val}
-															className="walletImg"
-														>
-															<img
-																src={walletHold}
-																alt=""
-															/>
-														</li>
-													);
-												})}
+												{ads.data &&
+													ads.data.length > 0 &&
+													ads.data.map((val, idx) => {
+														return (
+															<li
+																style={
+																	ads.data
+																		.length ==
+																		1 && {
+																		margin:
+																			"0 auto",
+																		float:
+																			"none"
+																	}
+																}
+																key={val}
+																className="walletImg"
+																onClick={() => {
+																	window.location.href =
+																		val.url;
+																}}
+															>
+																<img
+																	src={
+																		val.img
+																	}
+																	alt=""
+																/>
+															</li>
+														);
+													})}
 											</ul>
 										</div>
 									</div>
