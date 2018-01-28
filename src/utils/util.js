@@ -134,7 +134,11 @@ export const getLocalTime = time => {
 	let hours = d.getHours();
 	let min = d.getMinutes();
 	let s = d.getSeconds();
-	return `${year}-${month}-${day} ${hours}:${min}:${s}`;
+	return `${year}-${month < 10 ? "0" + month : month}-${
+		day < 10 ? "0" + day : day
+	} ${hours < 10 ? "0" + hours : hours}:${min < 10 ? "0" + min : min}:${
+		s < 10 ? "0" + s : s
+	}`;
 };
 export const queryString = (name, notDecoded) => {
 	name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");

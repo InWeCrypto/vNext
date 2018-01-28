@@ -533,54 +533,55 @@ export default class Root extends PureComponent {
 										<p className="homeBoxTitle">
 											{t("home.anno", lng)}
 										</p>
-                                        <div className="homeBoxAnnoList">
-                                        {exchangeNotice &&
-											exchangeNotice.data &&
-											exchangeNotice.data.length > 0 &&
-											exchangeNotice.data.map(
-												(item, index) => {
-													return (
-														<p
-															key={index}
-															className="homeBoxAnnoTopP"
-														>
-															{item.source_url && (
-																<Link
-																	to={{
-																		pathname:
-																			item.source_url
-																	}}
-																	target="_blank"
-																>
-																	+{
-																		item.source_name
-																	}：{
-																		item.content
-																	}
-																</Link>
-															)}
-															{!item.source_url && (
-																<Link
-																	to={{
-																		pathname:
-																			"newsdetail",
-																		search:
-																			"?art_id=" +
-																			item.id
-																	}}
-																>
-																	+{
-																		item.source_name
-																	}：{
-																		item.content
-																	}
-																</Link>
-															)}
-														</p>
-													);
-												}
-											)}
-                                        </div>
+										<div className="homeBoxAnnoList">
+											{exchangeNotice &&
+												exchangeNotice.data &&
+												exchangeNotice.data.length >
+													0 &&
+												exchangeNotice.data.map(
+													(item, index) => {
+														return (
+															<p
+																key={index}
+																className="homeBoxAnnoTopP"
+															>
+																{item.source_url && (
+																	<Link
+																		to={{
+																			pathname:
+																				item.source_url
+																		}}
+																		target="_blank"
+																	>
+																		+{
+																			item.source_name
+																		}：{
+																			item.content
+																		}
+																	</Link>
+																)}
+																{!item.source_url && (
+																	<Link
+																		to={{
+																			pathname:
+																				"newsdetail",
+																			search:
+																				"?art_id=" +
+																				item.id
+																		}}
+																	>
+																		+{
+																			item.source_name
+																		}：{
+																			item.content
+																		}
+																	</Link>
+																)}
+															</p>
+														);
+													}
+												)}
+										</div>
 									</div>
 									<div className="homeBoxReadMore">
 										<Link
@@ -588,7 +589,7 @@ export default class Root extends PureComponent {
 												pathname: "/announcment"
 											}}
 										>
-											<span className="readMore">
+											<span className="readMore readMoreUnderLine">
 												Read more
 											</span>
 											<b className="readMoreImg" />

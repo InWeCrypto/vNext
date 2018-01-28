@@ -39,9 +39,29 @@ export default class Root extends PureComponent {
 		document.body.scrollTop = document.documentElement.scrollTop = 0;
 		document.title = "InWe-" + i18n.t("navMenu.news", this.props.lng);
 		let minH = getMainMinHeight();
-		let leftArrow = document.getElementById("newsDetailLeft").offsetLeft;
-		document.getElementById("newsDetailRight").style.right =
-			leftArrow + "px";
+		// let leftArrow = document.getElementById("newsDetailLeft").offsetLeft;
+		// document.getElementById("newsDetailRight").style.right =
+		// 	leftArrow + "px";
+		let contW =
+			document.getElementById("newsDetailConBox").offsetWidth -
+			parseFloat(
+				getComputedStyle(document.getElementById("newsDetailConBox"))[
+					"padding-left"
+				],
+				10
+			) -
+			parseFloat(
+				getComputedStyle(document.getElementById("newsDetailConBox"))[
+					"padding-right"
+				],
+				10
+			);
+
+		document.getElementById("newsDetailLeft").style.marginLeft =
+			"-" + (contW / 2 + 16) + "px";
+		document.getElementById("newsDetailRight").style.marginLeft =
+			contW / 2 + 48 + "px";
+
 		this.setState({
 			minH: minH
 		});
@@ -326,7 +346,10 @@ export default class Root extends PureComponent {
 								{!newsDetail.article_prev && <span />}
 							</div>
 
-							<div className="newsDetailCon f1">
+							<div
+								className="newsDetailCon f1"
+								id="newsDetailConBox"
+							>
 								<div className="newsDetailConTitle">
 									<span>{newsDetail.title}</span>
 								</div>
@@ -474,12 +497,14 @@ export default class Root extends PureComponent {
 									</div>
 									<p className="newsReadNums">
 										{newsDetail.click_rate}
+										{"  "}
 										{t("newsDetail.read", lng)}
 									</p>
 								</div>
 								<div className="newsDetailComment">
 									<div className="newsDetailCommentNums">
 										<b>{newsDetail.comment_count}</b>
+										{"  "}
 										{t("newsDetail.comment", lng)}
 									</div>
 									<div
