@@ -56,9 +56,13 @@ export default class Root extends PureComponent {
 			let th = document.querySelector("#topText").clientHeight;
 			document.querySelector("#mainBox").style.minHeight =
 				minH - th + "px";
-			let AcImgH = minH - th - 320;
+			let AcSliderW = document.getElementById("articleSlider")
+				.clientWidth;
+			let AcImgH = AcSliderW * 168 / 294;
+			let AcSliderH = AcSliderW * 348 / 294;
 			this.setState({
-				AcImgH: AcImgH
+				AcImgH: AcImgH,
+				AcSliderH: AcSliderH
 			});
 		}, 0);
 
@@ -141,6 +145,7 @@ export default class Root extends PureComponent {
 			monthArr,
 			curDay,
 			AcImgH,
+			AcSliderH,
 			showSearch,
 			sliderIndex,
 			sliderIndex1
@@ -230,9 +235,11 @@ export default class Root extends PureComponent {
 							>
 								<div className="homeBoxList homeBoxArticle">
 									<div
+										id="articleSlider"
 										className="articleSlider"
 										style={{
 											// maxHeight: AcImgH,
+											height: AcSliderH,
 											overflow: "hidden"
 										}}
 									>

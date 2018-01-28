@@ -221,7 +221,7 @@ export default class Root extends PureComponent {
 																			</p>
 																			<p className="annoBoxLiDate">
 																				{
-																					item.updated_at
+																					item.created_at
 																				}
 																			</p>
 																		</div>
@@ -247,7 +247,7 @@ export default class Root extends PureComponent {
 																			</p>
 																			<p className="annoBoxLiDate">
 																				{
-																					item.updated_at
+																					item.created_at
 																				}
 																			</p>
 																		</div>
@@ -292,7 +292,7 @@ export default class Root extends PureComponent {
 																			</p>
 																			<p className="annoBoxLiDate">
 																				{
-																					item.updated_at
+																					item.created_at
 																				}
 																			</p>
 																		</div>
@@ -318,7 +318,7 @@ export default class Root extends PureComponent {
 																			</p>
 																			<p className="annoBoxLiDate">
 																				{
-																					item.updated_at
+																					item.created_at
 																				}
 																			</p>
 																		</div>
