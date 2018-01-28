@@ -9,7 +9,8 @@ import {
 } from "../../../../utils/util";
 import Header from "../../../../components/header";
 import Footer from "../../../../components/footer";
-import LeftMenu from "../../../../components/leftmenu";
+import FixedMenu from "../../../../components/fixedmenu";
+
 import "./index.less";
 
 export default class Root extends PureComponent {
@@ -19,7 +20,8 @@ export default class Root extends PureComponent {
 			minH: "auto",
 			liH: "auto",
 			page: 1,
-			mounted: false
+			type: 2,
+			newsList: []
 		};
 	}
 	componentWillReceiveProps(nextProps) {
@@ -28,76 +30,49 @@ export default class Root extends PureComponent {
 		}
 	}
 	componentDidMount() {
-		window.addEventListener("scroll", this.handleScroll.bind(this));
-		window.TradingAjaxDone = true;
-
 		document.title = "InWe-" + i18n.t("navMenu.trading", this.props.lng);
 
 		let minH = getMainMinHeight();
 		let liH = minH / 2;
 		this.setState({
 			minH: minH,
-			liH: liH,
-			mounted: true
+			liH: liH
 		});
 		document.querySelector("#mainBox").style.minHeight = minH + "px";
 		this.initPage(this.props.location.search);
 	}
-	componentWillUnmount() {
-		window.removeEventListener("scroll", this.handleScroll.bind(this));
-	}
-	handleScroll() {
-		if (!IsTouchDevice) return;
-		let footerDom = document.getElementById("footerBox");
-		let winHei = document.documentElement.clientHeight;
-		if (!footerDom) return;
-		let footerToTopHei = footerDom.getBoundingClientRect().bottom - 10;
-		let pathName = location.pathname;
-		if (
-			footerToTopHei <= winHei &&
-			pathName == "/trading" &&
-			this.state.mounted
-		) {
-			var UlDom = document.getElementsByClassName("tradingListUl")[0];
-			if (!UlDom) return;
-			var liDom = UlDom.getElementsByTagName("li");
-			console.log(liDom.length);
-			//手机默认请求10条
-			if (liDom.length < 10) return;
-			var pageIndex = parseInt(liDom.length / 10) + 1;
-
-			if (window.TradingAjaxDone) {
-				window.TradingAjaxDone = false;
-				this.props.getTradingM({
-					type: 4,
-					per_page: 10,
-					page: pageIndex
-				});
-			}
-		}
-	}
 	initPage(search) {
 		let q = getQuery(search);
 		this.setState({
-			page: q.page || "1"
+			page: q.page || "1",
+			type: q.type || "2"
 		});
-		if (IsTouchDevice) {
-			var pageSize = 10;
+		if (q.type && q.type == "3") {
+			this.props
+				.getNewsVideo({
+					per_page: 8,
+					page: q.page || 1,
+					type: q.type || this.state.type
+				})
+				.then(res => {
+					console.log(res);
+				});
 		} else {
-			var pageSize = 6;
+			this.props
+				.getNewsImg({
+					per_page: 8,
+					page: q.page || 1,
+					type: q.type || this.state.type
+				})
+				.then(res => {
+					this.setState({
+						newsList: res.data
+					});
+				});
 		}
-		this.props
-			.getTrading({
-				per_page: pageSize,
-				page: q.page || 1,
-				type: 4
-			})
-			.then(res => {
-				console.log(res);
-			});
 	}
 	render() {
-		const { minH, liH, page } = this.state;
+		const { minH, liH, page, newsList } = this.state;
 		const {
 			lng,
 			changeLng,
@@ -107,7 +82,6 @@ export default class Root extends PureComponent {
 			userInfo,
 			setReduxUserInfo,
 			forgetUser,
-			trading,
 			commonMarket,
 			getHeaderMarket
 		} = this.props;
@@ -115,6 +89,9 @@ export default class Root extends PureComponent {
 			<I18n>
 				{(t, { i18n }) => (
 					<div className="container">
+						{!IsTouchDevice && (
+							<FixedMenu changeLng={changeLng} lng={lng} />
+						)}
 						<Header
 							userInfo={userInfo}
 							registerUser={registerUser}
@@ -127,38 +104,12 @@ export default class Root extends PureComponent {
 							getHeaderMarket={getHeaderMarket}
 						/>
 						<div id="mainBox" className="trading ui">
-							{!IsTouchDevice && (
-								<div className="left-menus ui center">
-									<div className="left-menus-trading">
-										<LeftMenu lng={lng} />
-									</div>
-								</div>
-							)}
-
 							<div id="tradingBox" className="tradingBox ui f1">
-								<div className="annoBoxArrow ui center m-hide">
-									{trading.prev_page_url && (
-										<Link
-											to={{
-												pathname: "/trading",
-												search:
-													"?page=" +
-													(trading.current_page - 1)
-											}}
-										>
-											<span className="leftArrow more" />
-										</Link>
-									)}
-									{!trading.prev_page_url && (
-										<span className="leftArrow" />
-									)}
-								</div>
-
-								<ul id="m-tradingUl" className="tradingListUl">
-									{trading &&
-										trading.data &&
-										trading.data.length > 0 &&
-										trading.data.map((item, index) => {
+								<ul className="tradingListUl">
+									{newsList &&
+										newsList.data &&
+										newsList.data.length > 0 &&
+										newsList.data.map((item, index) => {
 											return (
 												<li
 													className="ui"
@@ -200,9 +151,9 @@ export default class Root extends PureComponent {
 											);
 										})}
 
-									{(!trading ||
-										!trading.data ||
-										trading.data.length <= 0) && (
+									{(!newsList ||
+										!newsList.data ||
+										newsList.data.length <= 0) && (
 										<div
 											style={{
 												textAlign: "center",
@@ -213,30 +164,8 @@ export default class Root extends PureComponent {
 										</div>
 									)}
 								</ul>
-								<div className="annoBoxArrow ui center m-hide">
-									{trading.next_page_url && (
-										<Link
-											to={{
-												pathname: "/trading",
-												search:
-													"?page=" +
-													(trading.current_page + 1)
-											}}
-										>
-											<span className="rightArrow more" />
-										</Link>
-									)}
-									{!trading.next_page_url && (
-										<span className="rightArrow" />
-									)}
-								</div>
 							</div>
 						</div>
-						{IsTouchDevice ? (
-							<div id="footerBox" />
-						) : (
-							<Footer changeLng={changeLng} lng={lng} />
-						)}
 					</div>
 				)}
 			</I18n>

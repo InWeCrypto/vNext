@@ -6,7 +6,8 @@ import Slider from "react-slick";
 import {
 	getMainMinHeight,
 	getQuery,
-	queryString
+	queryString,
+	getLocalTime
 } from "../../../../utils/util";
 import Header from "../../../../components/header";
 import Footer from "../../../../components/footer";
@@ -373,7 +374,7 @@ export default class Root extends PureComponent {
 											</span>
 											<Link
 												to={{
-													pathname: ""
+													pathname: "/newslisttext"
 												}}
 											>
 												<span className="nums readMoreUnderLine m-hide">
@@ -836,9 +837,9 @@ export default class Root extends PureComponent {
 																		</div>
 																		{IsTouchDevice && (
 																			<div className="modDateText">
-																				{
-																					item.updated_at
-																				}
+																				{getLocalTime(
+																					item.created_at
+																				)}
 																			</div>
 																		)}
 																	</Link>
