@@ -784,6 +784,7 @@ class ProjectDetailGaiKuo extends PureComponent {
 																	item.url
 															}}
 															target="_blank"
+															title={item.name}
 														>
 															<img
 																src={item.img}

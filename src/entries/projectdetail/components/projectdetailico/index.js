@@ -315,6 +315,7 @@ class ProjectDetailIco extends PureComponent {
 																pathname:
 																	item.url
 															}}
+															title={item.name}
 														>
 															<img
 																src={item.img}
