@@ -414,19 +414,32 @@ export default class Root extends PureComponent {
 																					item.industry
 																				}
 																			</div>
-																			<div className="right m-hide">
-																				${item.ico &&
-																					item
-																						.ico
-																						.price_usd}
-																				<span
-																				>
-																					({item.ico &&
+																			{item.ico && (
+																				<div
+																					className={
 																						item
 																							.ico
-																							.percent_change_24h})
-																				</span>
-																			</div>
+																							.percent_change_24h <
+																						0
+																							? "right m-hide down"
+																							: "right m-hide"
+																					}
+																				>
+																					${
+																						item
+																							.ico
+																							.price_usd
+																					}
+																					<span
+																					>
+																						({
+																							item
+																								.ico
+																								.percent_change_24h
+																						}%)
+																					</span>
+																				</div>
+																			)}
 																			{IsTouchDevice && (
 																				<div
 																					className={

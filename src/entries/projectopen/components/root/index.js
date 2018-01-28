@@ -239,14 +239,33 @@ export default class Root extends PureComponent {
 																		item.industry
 																	}
 																</div>
-																{type == 1 && (
-																	<div className="right">
-																		$90.00<span
+																{type == 1 &&
+																	item.ico && (
+																		<div
+																			className={
+																				item
+																					.ico
+																					.percent_change_24h <
+																				0
+																					? "right m-hide down"
+																					: "right m-hide"
+																			}
 																		>
-																			(-12.00%)
-																		</span>
-																	</div>
-																)}
+																			${
+																				item
+																					.ico
+																					.price_usd
+																			}
+																			<span
+																			>
+																				({
+																					item
+																						.ico
+																						.percent_change_24h
+																				}%)
+																			</span>
+																		</div>
+																	)}
 															</div>
 														</Link>
 													</li>

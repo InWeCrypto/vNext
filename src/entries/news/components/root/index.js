@@ -241,7 +241,6 @@ export default class Root extends PureComponent {
 			slidesToShow: 4,
 			slidesToScroll: 4,
 			afterChange: function(index) {
-				console.log(this);
 				this.setState({
 					newsTextCur: index
 				});
@@ -255,7 +254,6 @@ export default class Root extends PureComponent {
 			slidesToShow: 4,
 			slidesToScroll: 4,
 			afterChange: function(index) {
-				console.log(this);
 				this.setState({
 					newsImgCur: index
 				});

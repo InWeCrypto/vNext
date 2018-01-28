@@ -11,7 +11,8 @@ export default connect(
 			projectDynamic,
 			projectDynamicList,
 			projectDot,
-			projectKdata
+			projectKdata,
+			markets
 		},
 		globData: { lng, userInfo, commonMarket }
 	}) => ({
@@ -21,6 +22,7 @@ export default connect(
 		projectDynamicList,
 		projectDot,
 		projectKdata,
+		markets,
 		userInfo,
 		lng,
 		commonMarket

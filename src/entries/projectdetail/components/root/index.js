@@ -107,6 +107,8 @@ export default class Root extends PureComponent {
 			unProjectDot,
 			projectKdata,
 			getKdata,
+			getMarkets,
+			markets,
 			commonMarket,
 			getHeaderMarket
 		} = this.props;
@@ -142,8 +144,9 @@ export default class Root extends PureComponent {
 													pathname: "projectdetail",
 													search:
 														"?c_id=" +
+															projectDetail &&
 														projectDetail.id +
-														"&type=home"
+															"&type=home"
 												}}
 											>
 												<span>
@@ -160,8 +163,9 @@ export default class Root extends PureComponent {
 													pathname: "projectdetail",
 													search:
 														"?c_id=" +
+															projectDetail &&
 														projectDetail.id +
-														"&type=info"
+															"&type=info"
 												}}
 											>
 												<span>
@@ -178,8 +182,9 @@ export default class Root extends PureComponent {
 													pathname: "projectdetail",
 													search:
 														"?c_id=" +
+															projectDetail &&
 														projectDetail.id +
-														"&type=intro"
+															"&type=intro"
 												}}
 											>
 												<span>
@@ -217,6 +222,8 @@ export default class Root extends PureComponent {
 											}
 											projectKdata={projectKdata}
 											getKdata={getKdata}
+											getMarkets={getMarkets}
+											markets={markets}
 										/>
 									)}
 								{info && (
@@ -249,9 +256,9 @@ export default class Root extends PureComponent {
 											to={{
 												pathname: "projectdetail",
 												search:
-													"?c_id=" +
+													"?c_id=" + projectDetail &&
 													projectDetail.id +
-													"&type=home"
+														"&type=home"
 											}}
 										>
 											<span>
@@ -267,9 +274,9 @@ export default class Root extends PureComponent {
 											to={{
 												pathname: "projectdetail",
 												search:
-													"?c_id=" +
+													"?c_id=" + projectDetail &&
 													projectDetail.id +
-													"&type=info"
+														"&type=info"
 											}}
 										>
 											<span>
@@ -285,9 +292,9 @@ export default class Root extends PureComponent {
 											to={{
 												pathname: "projectdetail",
 												search:
-													"?c_id=" +
+													"?c_id=" + projectDetail &&
 													projectDetail.id +
-													"&type=intro"
+														"&type=intro"
 											}}
 										>
 											<span>

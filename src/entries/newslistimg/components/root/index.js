@@ -85,7 +85,7 @@ export default class Root extends PureComponent {
 		}
 	}
 	render() {
-		const { minH, liH, page, newsList } = this.state;
+		const { minH, liH, page, newsList, type } = this.state;
 		const {
 			lng,
 			changeLng,
@@ -119,7 +119,11 @@ export default class Root extends PureComponent {
 						<div id="mainBox" className="trading ui">
 							<div id="tradingBox" className="tradingBox ui f1">
 								<div className="annoTitle">
-									<span>{t("news.news", lng)}</span>
+									{type == 2 ? (
+										<span>{t("news.ceefax", lng)}</span>
+									) : (
+										<span>{t("news.videoTitle", lng)}</span>
+									)}
 								</div>
 								<ul className="tradingListUl f1">
 									{newsList &&

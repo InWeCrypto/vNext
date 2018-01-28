@@ -11,6 +11,7 @@ export const PROJECTDYNAMICLIST = `${PRE_FIX}PROJECTDYNAMICLIST`;
 export const PROJECTSCORE = `${PRE_FIX}PROJECTSCORE`;
 export const PROJECTDOT = `${PRE_FIX}PROJECTDOT`;
 export const PROJECTKCHARTS = `${PRE_FIX}PROJECTKCHARTS`;
+export const MARKETS = `${PRE_FIX}MARKETS`;
 
 export const getProjectDetail = createAction(PROJECTDETAIL, params => {
 	return http.get({
@@ -86,5 +87,10 @@ export const unProjectDot = createAction(PROJECTDOT, params => {
 export const getKdata = createAction(PROJECTKCHARTS, query => {
 	return http.get({
 		url: `ico/currencies/${query}`
+	});
+});
+export const getMarkets = createAction(MARKETS, query => {
+	return http.get({
+		url: `ico/markets/${query}/all`
 	});
 });
