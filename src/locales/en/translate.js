@@ -87,7 +87,7 @@ export default {
 			email: "Email Address",
 			send: "Send",
 			code: "Verification Code",
-			password: "Set Your Password",
+			password: "Password",
 			repeatPassword: "Repeat",
 			register: "Sign up",
 			resetPass: "Reset Password"
