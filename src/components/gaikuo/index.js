@@ -105,22 +105,26 @@ class GaiKuo extends PureComponent {
 		}
 	}
 	remindUpdate(type, c_id, is_market_follow) {
-		this.props
-			.setProjectRemind({
-				c_id: c_id,
-				is_market_follow: is_market_follow,
-				market_hige: is_market_follow ? this.state.aboveVal : 0,
-				market_lost: is_market_follow ? this.state.belowVal : 0
-			})
-			.then(res => {
-				if (res.code == 4000) {
-					this.setState({
-						aboveVal: res.data.market_hige,
-						belowVal: res.data.market_lost
-					});
-					this.closeRemind();
-				}
-			});
+		if (
+			parseFloat(this.state.aboveVal, 10) <
+			parseFloat(this.state.belowVal, 10)
+		)
+			this.props
+				.setProjectRemind({
+					c_id: c_id,
+					is_market_follow: is_market_follow,
+					market_hige: is_market_follow ? this.state.aboveVal : 0,
+					market_lost: is_market_follow ? this.state.belowVal : 0
+				})
+				.then(res => {
+					if (res.code == 4000) {
+						this.setState({
+							aboveVal: res.data.market_hige,
+							belowVal: res.data.market_lost
+						});
+						this.closeRemind();
+					}
+				});
 	}
 	showThisPageTocode() {
 		this.setState({
