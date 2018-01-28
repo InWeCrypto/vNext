@@ -360,7 +360,15 @@ class Header extends PureComponent {
 									</div>
 								</div>
 							</div>
-							<div className="heder-middle f1">InWeCrypto</div>
+							<div className="heder-middle f1">
+								<Link
+									to={{
+										pathname: "/"
+									}}
+								>
+									InWeCrypto
+								</Link>
+							</div>
 							{!userInfo && (
 								<div className="heder-right f1 ui jend">
 									<span

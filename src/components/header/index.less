@@ -9,6 +9,9 @@
 		font-weight: 600;
 		font-family: "impact";
 		color: #333;
+		a {
+			color: #333 !important;
+		}
 	}
 	.heder-right {
 		position: absolute;
@@ -204,8 +207,9 @@
 	}
 	.m-header-box.fixed {
 		position: fixed;
-		left: 0;
+		left: 50%;
 		top: 0;
+		transform: translateX(-50%);
 		z-index: 1010;
 	}
 	.m-header-box {

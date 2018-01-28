@@ -82,6 +82,13 @@ class Root extends PureComponent {
 		});
 	}
 	changeWarn() {
+		let trunapp = window.CtrunappAdvHide;
+		if (trunapp && IsTouchDevice) {
+			trunapp.setState({
+				advHide: false
+			});
+			return;
+		}
 		let params = {};
 		params.enable = this.props.candyList.candy_bow_user ? false : true;
 		params.bow_date = `${this.state.year}-${this.state.month}-${
@@ -215,10 +222,10 @@ class Root extends PureComponent {
 																className="data-item"
 															>
 																<div className="title">
-																	222
+																	{item.title}
 																</div>
 																<div className="content">
-																	2323
+																	{item.desc}
 																</div>
 															</a>
 														);

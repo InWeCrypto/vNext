@@ -1,5 +1,6 @@
 import React, { PureComponent } from "react";
 import closeImg from "../../assets/images/close_white.png";
+import logoApp from "../../assets/images/logoapp.png";
 
 import "./index.less";
 
@@ -50,7 +51,7 @@ class TurnApp extends PureComponent {
 		return (
 			<div className="turnapp-box">
 				<div className="turnapp-logo">
-					{/* <img src={closeImg} alt="" /> */}
+					<img src={logoApp} alt="" />
 				</div>
 				<div className="turnapp-text">
 					<span className="text1">InWeCrpyto</span>

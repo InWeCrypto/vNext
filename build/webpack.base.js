@@ -31,7 +31,8 @@ var webpackConfig = {
 		alias: {}
 	},
 	devServer: {
-		historyApiFallback: true
+		historyApiFallback: true,
+		host: "0.0.0.0"
 	},
 	module: {
 		strictExportPresence: true,
@@ -109,7 +110,8 @@ var webpackConfig = {
 	},
 	plugins: [
 		new HtmlWebpackPlugin({
-			template: rootPath + "/index.html"
+			template: rootPath + "/index.html",
+			favicon: rootPath + "/assets/images/favicon.ico"
 		})
 	]
 };
