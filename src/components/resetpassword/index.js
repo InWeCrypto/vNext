@@ -18,16 +18,8 @@ class ResetPassword extends PureComponent {
 	}
 	inpputChange(type, e) {
 		let set = {};
-		const { passwordOld, password1, password2 } = this.state;
-		if (
-			passwordOld.length >= 5 &&
-			password1.length >= 5 &&
-			password2.length >= 5
-		) {
-			set.btnType = 2;
-		} else {
-			set.btnType = 1;
-		}
+		//const { passwordOld, password1, password2 } = this.state;
+
 		set[type] = e.target.value;
 		this.setState({
 			...set
@@ -41,6 +33,27 @@ class ResetPassword extends PureComponent {
 	}
 	componentWillMount() {
 		this.setState({ btnType: 1 });
+	}
+	componentWillUpdate(nextProps, nextState) {
+		if (
+			nextState.passwordOld != this.state.passwordOld ||
+			nextState.password1 != this.state.password1 ||
+			nextState.password2 != this.state.password2
+		) {
+			if (
+				nextState.passwordOld.length >= 6 &&
+				nextState.password1.length >= 6 &&
+				nextState.password2.length >= 6
+			) {
+				this.setState({
+					btnType: 2
+				});
+			} else {
+				this.setState({
+					btnType: 1
+				});
+			}
+		}
 	}
 	resetPass() {
 		if (
