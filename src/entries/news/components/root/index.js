@@ -128,7 +128,7 @@ export default class Root extends PureComponent {
 		}
 	}
 	getNewsTextList(page) {
-		let per_page = 5;
+		let per_page = 4;
 		if (IsTouchDevice) {
 			per_page = 10;
 		}
@@ -368,7 +368,7 @@ export default class Root extends PureComponent {
 																	<div className="newsBoxModConDate">
 																		<p className="">
 																			{
-																				item.updated_at
+																				item.created_at
 																			}
 																		</p>
 
@@ -466,7 +466,7 @@ export default class Root extends PureComponent {
 																	<div className="newsBoxModConDate">
 																		<p>
 																			{
-																				item.updated_at
+																				item.created_at
 																			}
 																		</p>
 																		<img
@@ -574,7 +574,7 @@ export default class Root extends PureComponent {
 																	<div className="newsBoxModConDate m-hide">
 																		<p>
 																			{
-																				item.updated_at
+																				item.created_at
 																			}
 																		</p>
 																		{item.category &&
