@@ -1,5 +1,6 @@
 import React, { PureComponent } from "react";
 import { I18n, Trans } from "react-i18next";
+import { getLocalTime } from "../../../../utils/util";
 import { Link } from "react-router-dom";
 import GaiKuo from "../../../../components/gaikuo";
 import "./index.less";
@@ -176,13 +177,15 @@ class ProjectDetailInfo extends PureComponent {
 																</p>
 																<div className="infoBotDate">
 																	<span>
-																		{
+																		{getLocalTime(
 																			item.created_at
-																		}
+																		)}
 																	</span>
 																	{item.is_sole && (
 																		<i>
-																			原创
+																			{t(
+																				"icon.original"
+																			)}
 																		</i>
 																	)}
 																</div>
