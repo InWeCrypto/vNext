@@ -19,7 +19,8 @@ export default class Root extends PureComponent {
 			minH: "auto",
 			liH: "auto",
 			inputBg: false,
-			k: ""
+			k: "",
+			isEnter: false
 		};
 	}
 	componentWillReceiveProps(nextProps) {
@@ -41,7 +42,12 @@ export default class Root extends PureComponent {
 			event = event || window.event;
 			if (event.keyCode == 13) {
 				if (this.state.inputBg) {
-					window.location.href = "/search?k=" + this.state.k;
+					if (IsTouchDevice) {
+						window.location.href =
+							"/search?k=" + this.state.isEnter;
+					} else {
+						window.location.href = "/search?k=" + this.state.k;
+					}
 				}
 			}
 		}.bind(this);
@@ -58,7 +64,7 @@ export default class Root extends PureComponent {
 		});
 	}
 	render() {
-		const { minH, liH, page, inputBg, k } = this.state;
+		const { minH, liH, page, inputBg, k, isEnter } = this.state;
 		const {
 			lng,
 			changeLng,
@@ -105,9 +111,15 @@ export default class Root extends PureComponent {
 									placeholder={t("search.placeholder", lng)}
 									value={k}
 									onChange={e => {
-										this.setState({
-											k: e.target.value
-										});
+										if (IsTouchDevice) {
+											this.setState({
+												isEnter: e.target.value
+											});
+										} else {
+											this.setState({
+												k: e.target.value
+											});
+										}
 									}}
 									onFocus={e => {
 										this.setState({
