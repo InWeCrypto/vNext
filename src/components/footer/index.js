@@ -80,7 +80,7 @@ class Footer extends PureComponent {
 								</div>
 								<div className="bottom ui center jcenter">
 									<div className="logoInFooter">
-										@InWeCrypto
+										@InWeCrypto 2017
 									</div>
 									<div className="line" />
 									<div
