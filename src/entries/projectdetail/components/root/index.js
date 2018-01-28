@@ -144,9 +144,9 @@ export default class Root extends PureComponent {
 													pathname: "projectdetail",
 													search:
 														"?c_id=" +
-															projectDetail &&
-														projectDetail.id +
-															"&type=home"
+														(projectDetail &&
+															projectDetail.id) +
+														"&type=home"
 												}}
 											>
 												<span>
@@ -163,9 +163,9 @@ export default class Root extends PureComponent {
 													pathname: "projectdetail",
 													search:
 														"?c_id=" +
-															projectDetail &&
-														projectDetail.id +
-															"&type=info"
+														(projectDetail &&
+															projectDetail.id) +
+														"&type=info"
 												}}
 											>
 												<span>
@@ -182,9 +182,9 @@ export default class Root extends PureComponent {
 													pathname: "projectdetail",
 													search:
 														"?c_id=" +
-															projectDetail &&
-														projectDetail.id +
-															"&type=intro"
+														(projectDetail &&
+															projectDetail.id) +
+														"&type=intro"
 												}}
 											>
 												<span>
