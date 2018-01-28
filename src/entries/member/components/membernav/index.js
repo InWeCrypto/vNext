@@ -48,7 +48,7 @@ class MemberNav extends PureComponent {
 						>
 							{t("member.memberNav.set", lng)}
 						</Link>
-						<Link
+						{/* <Link
 							to={{
 								pathname: "/member",
 								search: "?type=message"
@@ -56,7 +56,7 @@ class MemberNav extends PureComponent {
 							className={(() => this.setCur("message"))()}
 						>
 							{t("member.memberNav.message", lng)}
-						</Link>
+						</Link> */}
 					</div>
 				)}
 			</I18n>

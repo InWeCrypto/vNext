@@ -112,7 +112,8 @@ export default {
 	emailCode: {
 		title: "Reset Password",
 		t1: "Choose an Email address",
-		t2: "If you reset the sign-in password, the password for you app account will also be changed. ",
+		t2:
+			"If you reset the sign-in password, the password for you app account will also be changed. ",
 		t3: "Click",
 		t4: "Send verifying code",
 		btn: "Confirm",
@@ -136,7 +137,8 @@ export default {
 		resetPass: "Password reset failed, please try again",
 		passLength: "The entered passwords are inconsistent ",
 		passError: "The entered passwords are inconsistent ",
-		codeEmpty: "Verification code cannot be empty"
+		codeEmpty: "Verification code cannot be empty",
+		followError: "you know the math"
 	},
 	success: {
 		login: "Log in successfully",
