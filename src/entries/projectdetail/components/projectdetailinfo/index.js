@@ -3,7 +3,10 @@ import { I18n, Trans } from "react-i18next";
 import { getLocalTime } from "../../../../utils/util";
 import { Link } from "react-router-dom";
 import GaiKuo from "../../../../components/gaikuo";
+import noListImg from "../../../../assets/images/zhanweitu_pic.png";
+
 import "./index.less";
+
 class ProjectDetailInfo extends PureComponent {
 	constructor(props) {
 		super(props);
@@ -196,7 +199,14 @@ class ProjectDetailInfo extends PureComponent {
 											}
 										)}
 								</ul>
-								<div className="pageTurn">
+								{!projectDynamicList ||
+									!projectDynamicList.data ||
+									(projectDynamicList.data.length == 0 && (
+										<div className="noList">
+											<img src={noListImg} alt="" />
+										</div>
+									))}
+								<div className="pageTurn m-hide">
 									{projectDynamicList.prev_page_url && (
 										<span
 											className="pageTurmLf more"
