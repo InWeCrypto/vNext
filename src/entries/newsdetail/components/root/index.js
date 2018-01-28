@@ -333,9 +333,9 @@ export default class Root extends PureComponent {
 								<div className="newsMeta ui">
 									<div className="newsDetailConMeta f1">
 										<span className="metaDate">
-											{newsDetail.updated_at &&
+											{newsDetail.created_at &&
 												getLocalTime(
-													newsDetail.updated_at
+													newsDetail.created_at
 												)}
 										</span>
 										{newsDetail.is_sole &&

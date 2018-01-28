@@ -929,9 +929,9 @@ export default class Root extends PureComponent {
 																				</div>
 																				{IsTouchDevice && (
 																					<div className="modDateText">
-																						{
-																							item.updated_at
-																						}
+																						{getLocalTime(
+																							item.created_at
+																						)}
 																					</div>
 																				)}
 																			</Link>
