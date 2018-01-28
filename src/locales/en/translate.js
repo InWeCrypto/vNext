@@ -138,7 +138,7 @@ export default {
 		passLength: "The entered passwords are inconsistent ",
 		passError: "The entered passwords are inconsistent ",
 		codeEmpty: "Verification code cannot be empty",
-		followError: "上限值不能小于等于下限值"
+		followError: "you know the math"
 	},
 	success: {
 		login: "Log in successfully",
