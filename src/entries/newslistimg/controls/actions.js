@@ -1,20 +1,27 @@
 import { createAction } from "redux-actions";
 import http from "../../../utils/ajax";
 
-const PRE_FIX = "TRADING_";
-export const TRADING = `${PRE_FIX}TRADING`;
-export const TRADINGM = `${PRE_FIX}TRADINGM`;
+const PRE_FIX = "NEWSIMG_";
+export const NEWSIMGL = `${PRE_FIX}NEWSIMGL`;
+export const NEWSVIDEOL = `${PRE_FIX}NEWSVIDEOL`;
 
-export const getTrading = createAction(TRADING, params => {
-	return http.get({
-		url: "article",
-		params: params
-	});
+export const getNewsImg = createAction(NEWSIMGL, params => {
+	return http
+		.get({
+			url: "article",
+			params: params
+		})
+		.then(res => {
+			return res;
+		});
 });
-
-export const getTradingM = createAction(TRADINGM, params => {
-	return http.get({
-		url: "article",
-		params: params
-	});
+export const getNewsVideo = createAction(NEWSVIDEOL, params => {
+	return http
+		.get({
+			url: "article",
+			params: params
+		})
+		.then(res => {
+			return res;
+		});
 });

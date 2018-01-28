@@ -4,7 +4,7 @@ import * as globalReducer from "../../globalreducer";
 import React, { PureComponent } from "react";
 import Bundle from "../../bundle";
 injectReducer("lng", reducers);
-injectReducer("trading", reducers);
+injectReducer("newslistimg", reducers);
 const Root = props => {
 	return (
 		<Bundle load={() => import("./containers/root")}>

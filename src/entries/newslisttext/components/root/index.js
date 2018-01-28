@@ -52,7 +52,7 @@ export default class Root extends PureComponent {
 		let nums = Math.floor(annoBoxH / annoBoxLiH) * 2;
 		if (p.page) {
 			this.setState({
-				page: p.page
+				page: p.page || 1
 			});
 		}
 		this.setState({
@@ -128,6 +128,9 @@ export default class Root extends PureComponent {
 						/>
 						<div id="mainBox" className="anno ui">
 							<div id="annoBox" className="annoBox ui f1">
+								<div className="annoTitle">
+									<span>{t("news.news", lng)}</span>
+								</div>
 								<div id="annoCon" className="annoCon ui f1">
 									<div className="f1 left">
 										<ul>
@@ -248,7 +251,6 @@ export default class Root extends PureComponent {
 										</ul>
 									</div>
 								</div>
-
 								<div
 									className="pagation-box m-hide"
 									id="pagationBox"

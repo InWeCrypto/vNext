@@ -7,11 +7,11 @@ class ResetPassword extends PureComponent {
 		super();
 		this.state = {
 			passwordOld: "",
-			isPasswordOld: false,
+
 			password1: "",
-			isShowPass1: false,
+
 			password2: "",
-			isShowPass2: false,
+			seePass: false,
 			isShowError: false,
 			btnType: 1
 		};
@@ -25,10 +25,10 @@ class ResetPassword extends PureComponent {
 			...set
 		});
 	}
-	changePassShow(type) {
-		let s = !this.state[type];
+	changePassShow() {
+		let s = !this.state.seePass;
 		this.setState({
-			[type]: s
+			seePass: s
 		});
 	}
 	componentWillMount() {
@@ -91,14 +91,7 @@ class ResetPassword extends PureComponent {
 	}
 	render() {
 		const { lng } = this.props;
-		const {
-			passwordOld,
-			isPasswordOld,
-			isShowPass1,
-			isShowPass2,
-			isShowError,
-			btnType
-		} = this.state;
+		const { passwordOld, seePass, isShowError, btnType } = this.state;
 		return (
 			<I18n>
 				{(t, { I18n }) => (
@@ -122,7 +115,7 @@ class ResetPassword extends PureComponent {
 											<div className="f1">
 												<input
 													type={(() =>
-														isPasswordOld
+														seePass
 															? "text"
 															: "password")()}
 													onChange={e => {
@@ -135,13 +128,11 @@ class ResetPassword extends PureComponent {
 											</div>
 											<i
 												className={(() =>
-													isPasswordOld
+													seePass
 														? "icon-see show-text"
 														: "icon-see")()}
 												onClick={() => {
-													this.changePassShow(
-														"isPasswordOld"
-													);
+													this.changePassShow();
 												}}
 											/>
 										</div>
@@ -154,7 +145,7 @@ class ResetPassword extends PureComponent {
 											<div className="f1">
 												<input
 													type={(() =>
-														isShowPass1
+														seePass
 															? "text"
 															: "password")()}
 													onChange={e => {
@@ -165,7 +156,7 @@ class ResetPassword extends PureComponent {
 													}}
 												/>
 											</div>
-											<i
+											{/* <i
 												className={(() =>
 													isShowPass1
 														? "icon-see show-text"
@@ -175,7 +166,7 @@ class ResetPassword extends PureComponent {
 														"isShowPass1"
 													);
 												}}
-											/>
+											/> */}
 										</div>
 									</div>
 									<div className="resetp-item center ui">
@@ -186,7 +177,7 @@ class ResetPassword extends PureComponent {
 											<div className="f1">
 												<input
 													type={(() =>
-														isShowPass2
+														seePass
 															? "text"
 															: "password")()}
 													onChange={e => {
@@ -197,7 +188,7 @@ class ResetPassword extends PureComponent {
 													}}
 												/>
 											</div>
-											<i
+											{/* <i
 												onClick={() => {
 													this.changePassShow(
 														"isShowPass2"
@@ -207,7 +198,7 @@ class ResetPassword extends PureComponent {
 													isShowPass2
 														? "icon-see show-text"
 														: "icon-see")()}
-											/>
+											/> */}
 										</div>
 									</div>
 								</div>

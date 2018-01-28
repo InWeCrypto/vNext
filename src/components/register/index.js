@@ -7,8 +7,8 @@ class Register extends PureComponent {
 	constructor(props) {
 		super(props);
 		this.state = {
-			surePass: false,
-			repeatPass: false,
+			seePass: false,
+			//repeatPass: false,
 			isSending: false,
 			time: 60,
 			email: "",
@@ -27,9 +27,9 @@ class Register extends PureComponent {
 		this.inputChange = this.inputChange.bind(this);
 	}
 	togglePass(type) {
-		let state = !this.state[type];
+		let state = !this.state.seePass;
 		this.setState({
-			[type]: state
+			seePass: state
 		});
 	}
 	sendEmail() {
@@ -157,8 +157,7 @@ class Register extends PureComponent {
 	render() {
 		const { lng, close, hasBack, isForget } = this.props;
 		const {
-			surePass,
-			repeatPass,
+			seePass,
 			isSending,
 			time,
 			email,
@@ -292,18 +291,17 @@ class Register extends PureComponent {
 															lng
 														)}
 														type={(() =>
-															surePass
+															seePass
 																? "text"
 																: "password")()}
 													/>
 												</div>
 												<i
 													onClick={this.togglePass.bind(
-														this,
-														"surePass"
+														this
 													)}
 													className={(() =>
-														surePass
+														seePass
 															? "icon-see show-text"
 															: "icon-see")()}
 												/>
@@ -330,12 +328,12 @@ class Register extends PureComponent {
 															lng
 														)}
 														type={(() =>
-															repeatPass
+															seePass
 																? "text"
 																: "password")()}
 													/>
 												</div>
-												<i
+												{/* <i
 													onClick={this.togglePass.bind(
 														this,
 														"repeatPass"
@@ -344,7 +342,7 @@ class Register extends PureComponent {
 														repeatPass
 															? "icon-see show-text"
 															: "icon-see")()}
-												/>
+												/> */}
 											</div>
 											<div className="register-btn">
 												<div
