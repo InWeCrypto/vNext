@@ -146,23 +146,43 @@ export default class Root extends PureComponent {
 			sliderIndex1
 		} = this.state;
 		const curMonth = monthArr[month].slice(0, 3);
-		const settings = {
-			// dots: true,
-			infinite: false,
-			speed: 500,
-			slidesToShow: 1,
-			slidesToScroll: 1,
-			// autoplay: true,
-			arrows: false,
-			accessibility: true,
-			adaptiveHeight: true,
-			fade: true,
-			afterChange: function(index) {
-				this.setState({
-					sliderIndex: index
-				});
-			}.bind(this)
-		};
+		if (IsTouchDevice) {
+			var settings = {
+				// dots: true,
+				infinite: false,
+				speed: 500,
+				slidesToShow: 1,
+				slidesToScroll: 1,
+				// autoplay: true,
+				arrows: false,
+				accessibility: true,
+				adaptiveHeight: true,
+				afterChange: function(index) {
+					this.setState({
+						sliderIndex: index
+					});
+				}.bind(this)
+			};
+		} else {
+			var settings = {
+				// dots: true,
+				infinite: false,
+				speed: 500,
+				slidesToShow: 1,
+				slidesToScroll: 1,
+				// autoplay: true,
+				arrows: false,
+				accessibility: true,
+				adaptiveHeight: true,
+				fade: true,
+				afterChange: function(index) {
+					this.setState({
+						sliderIndex: index
+					});
+				}.bind(this)
+			};
+		}
+
 		const settings1 = {
 			// dots: true,
 			infinite: false,
