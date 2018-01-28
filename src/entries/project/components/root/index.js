@@ -249,7 +249,9 @@ export default class Root extends PureComponent {
 																/>
 																<p>
 																	<span>
-																		{item.name.toLocaleUpperCase()}
+																		{
+																			item.unit
+																		}
 																	</span>
 																	<b>
 																		({
@@ -380,7 +382,9 @@ export default class Root extends PureComponent {
 																	/>
 																	<p>
 																		<span>
-																			{item.name.toLocaleUpperCase()}
+																			{
+																				item.unit
+																			}
 																		</span>
 																		<b>
 																			({

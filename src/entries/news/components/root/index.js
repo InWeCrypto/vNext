@@ -576,15 +576,20 @@ export default class Root extends PureComponent {
 																				item.updated_at
 																			}
 																		</p>
-																		<img
-																			src={
-																				item.category &&
-																				item
-																					.category
-																					.img
-																			}
-																			alt=""
-																		/>
+																		{item.category &&
+																			item
+																				.category
+																				.img && (
+																				<img
+																					src={
+																						item.category &&
+																						item
+																							.category
+																							.img
+																					}
+																					alt=""
+																				/>
+																			)}
 																	</div>
 																	<div className="newsBoxModConShow">
 																		{IsTouchDevice && (
