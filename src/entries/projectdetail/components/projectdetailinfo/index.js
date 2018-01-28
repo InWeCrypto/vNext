@@ -207,7 +207,7 @@ class ProjectDetailInfo extends PureComponent {
 													}
 												)}
 											</ul>
-											<div className="pageTurn">
+											<div className="pageTurn m-hide">
 												{projectDynamicList.prev_page_url && (
 													<span
 														className="pageTurmLf more"
