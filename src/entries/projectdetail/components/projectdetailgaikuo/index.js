@@ -69,6 +69,7 @@ class ProjectDetailGaiKuo extends PureComponent {
 	}
 	viewEcharts(data) {
 		let chart = document.querySelector("#chartsBox");
+
 		if (!chart) {
 			return;
 		}
@@ -76,7 +77,7 @@ class ProjectDetailGaiKuo extends PureComponent {
 			let img = document.createElement("img");
 			img.src = echartEmpty;
 			chart.innerHTML = "";
-			chart.append(img);
+			chart.appendChild(img);
 			return;
 		}
 
