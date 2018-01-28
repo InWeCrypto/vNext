@@ -16,6 +16,7 @@ entries.pace = [
 	rootPath + "/assets/js/pace.js"
 ];
 entries.vendor = [
+	"babel-polyfill",
 	rootPath + "/assets/less/common.less",
 	"react",
 	"react-router-dom",

@@ -361,17 +361,11 @@ export default class Root extends PureComponent {
 													newsDetail.created_at
 												)}
 										</span>
-										{newsDetail.is_sole &&
-											(IsTouchDevice ? (
-												<img
-													className="origlePic"
-													src={origlePic}
-												/>
-											) : (
-												<span className="metaCategory">
-													{t("icon.original", lng)}
-												</span>
-											))}
+										{newsDetail.is_sole && (
+											<span className="metaCategory">
+												{t("icon.original", lng)}
+											</span>
+										)}
 										{newsDetail &&
 											newsDetail.article_category_cc &&
 											newsDetail.article_category_cc
