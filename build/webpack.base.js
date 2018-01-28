@@ -31,7 +31,8 @@ var webpackConfig = {
 		alias: {}
 	},
 	devServer: {
-		historyApiFallback: true
+		historyApiFallback: true,
+		host: "0.0.0.0"
 	},
 	module: {
 		strictExportPresence: true,

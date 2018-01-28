@@ -82,6 +82,13 @@ class Root extends PureComponent {
 		});
 	}
 	changeWarn() {
+		let trunapp = window.CtrunappAdvHide;
+		if (trunapp && IsTouchDevice) {
+			trunapp.setState({
+				advHide: false
+			});
+			return;
+		}
 		let params = {};
 		params.enable = this.props.candyList.candy_bow_user ? false : true;
 		params.bow_date = `${this.state.year}-${this.state.month}-${
