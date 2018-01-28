@@ -86,7 +86,7 @@ class ProjectDetailIco extends PureComponent {
 			<I18n>
 				{(t, { I18n }) => (
 					<div className="projectDetailChat">
-						<ul className="chatUl">
+						<ul className="chatUl m-hide">
 							<div className="cover ">
 								<div>coming soon</div>
 							</div>
