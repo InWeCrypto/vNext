@@ -139,16 +139,18 @@ export default class Root extends PureComponent {
 				}
 			});
 	}
-	inFocus() {
-		this.setState({
-			isShowImg: false
-		});
+	showApp() {
 		let trunapp = window.CtrunappAdvHide;
 		if (trunapp && IsTouchDevice) {
 			trunapp.setState({
 				advHide: false
 			});
 		}
+	}
+	inFocus() {
+		this.setState({
+			isShowImg: false
+		});
 	}
 	outFocus() {
 		this.setState({
@@ -381,8 +383,11 @@ export default class Root extends PureComponent {
 												}
 											)}
 									</div>
-									<div className="newDetailConShare">
-										<span className="rt">
+									<div
+										className="newDetailConShare"
+										onClick={this.showApp.bind(this)}
+									>
+										<span className="rt noEvent">
 											<b
 												className={
 													showShareList
@@ -394,7 +399,7 @@ export default class Root extends PureComponent {
 												}}
 											/>
 										</span>
-										<span className="rt">
+										<span className="rt noEvent">
 											<b
 												className={
 													enable
@@ -483,8 +488,11 @@ export default class Root extends PureComponent {
 										<b>{newsDetail.comment_count}</b>
 										{t("newsDetail.comment", lng)}
 									</div>
-									<div className="newsDetailCommmentBox">
-										<div className="newsDetailCommentBoxCenter ui center">
+									<div
+										className="newsDetailCommmentBox"
+										onClick={this.showApp.bind(this)}
+									>
+										<div className="newsDetailCommentBoxCenter ui center noEvent">
 											{this.state.isShowImg &&
 												!IsTouchDevice && (
 													<div className="newsDetailHeadImg">

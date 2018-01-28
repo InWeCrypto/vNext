@@ -20,7 +20,7 @@ export default class Root extends PureComponent {
 			liH: "auto",
 			inputBg: false,
 			k: "",
-			isEnter: false
+			isEnter: ""
 		};
 	}
 	componentWillReceiveProps(nextProps) {
@@ -42,12 +42,7 @@ export default class Root extends PureComponent {
 			event = event || window.event;
 			if (event.keyCode == 13) {
 				if (this.state.inputBg) {
-					if (IsTouchDevice) {
-						window.location.href =
-							"/search?k=" + this.state.isEnter;
-					} else {
-						window.location.href = "/search?k=" + this.state.k;
-					}
+					window.location.href = "/search?k=" + this.state.k;
 				}
 			}
 		}.bind(this);
@@ -57,7 +52,8 @@ export default class Root extends PureComponent {
 		let q = getQuery(search);
 		q.k = window.decodeURI(q.k);
 		this.setState({
-			k: q.k || ""
+			k: q.k || "",
+			isEnter: q.k || ""
 		});
 		this.props.getSearch({
 			k: q.k
@@ -111,15 +107,9 @@ export default class Root extends PureComponent {
 									placeholder={t("search.placeholder", lng)}
 									value={k}
 									onChange={e => {
-										if (IsTouchDevice) {
-											this.setState({
-												isEnter: e.target.value
-											});
-										} else {
-											this.setState({
-												k: e.target.value
-											});
-										}
+										this.setState({
+											k: e.target.value
+										});
 									}}
 									onFocus={e => {
 										this.setState({
@@ -135,7 +125,7 @@ export default class Root extends PureComponent {
 							</div>
 
 							<div className="searchResult">
-								{IsTouchDevice && !k ? (
+								{IsTouchDevice && !isEnter ? (
 									<div className="letSearch">
 										<p className="title">
 											Everyone in the search
