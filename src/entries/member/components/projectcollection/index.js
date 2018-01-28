@@ -191,7 +191,9 @@ class ProjectCollection extends PureComponent {
 							{(!collectionList ||
 								!collectionList.data ||
 								collectionList.data.length <= 0) && (
-								<div>{t("nodata", lng)}</div>
+								<div className="nodata-box">
+									{t("nodata", lng)}
+								</div>
 							)}
 						</div>
 

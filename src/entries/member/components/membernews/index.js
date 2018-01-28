@@ -107,12 +107,7 @@ class MemberNews extends PureComponent {
 							{(!newsList ||
 								!newsList.data ||
 								newsList.data.length <= 0) && (
-								<div
-									style={{
-										textAlign: "center",
-										padding: "1rem 0"
-									}}
-								>
+								<div className="nodata-box">
 									{t("nodata", lng)}
 								</div>
 							)}
