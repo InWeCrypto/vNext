@@ -144,95 +144,111 @@ class ProjectDetailInfo extends PureComponent {
 								</div>
 							)}
 							<div className="projectDetailCon1Box">
-								<ul className="ui">
-									{projectDynamicList &&
-										projectDynamicList.data &&
-										projectDynamicList.data.length > 0 &&
-										projectDynamicList.data.map(
-											(item, index) => {
-												return (
-													<li
-														key={index}
-														className={
-															item.type == 3
-																? "infoVideo"
-																: ""
-														}
-													>
-														<Link
-															to={{
-																pathname:
-																	"/newsdetail",
-																search: `?art_id=${
-																	item.id
-																}`
-															}}
-														>
-															<div className="imgBox">
-																<img
-																	src={
-																		item.img
-																	}
-																	alt=""
-																/>
-															</div>
-															<div className="infoBot">
-																<p className="infoBotTitle ellitext">
-																	{item.title}
-																</p>
-																<div className="infoBotDate">
-																	<span>
-																		{getLocalTime(
-																			item.created_at
-																		)}
-																	</span>
-																	{item.is_sole && (
-																		<i>
-																			{t(
-																				"icon.original"
+								{projectDynamicList &&
+									projectDynamicList.data &&
+									projectDynamicList.data.length > 0 && (
+										<div>
+											<ul className="ui">
+												{projectDynamicList.data.map(
+													(item, index) => {
+														return (
+															<li
+																key={index}
+																className={
+																	item.type ==
+																	3
+																		? "infoVideo"
+																		: ""
+																}
+															>
+																<Link
+																	to={{
+																		pathname:
+																			"/newsdetail",
+																		search: `?art_id=${
+																			item.id
+																		}`
+																	}}
+																>
+																	<div className="imgBox">
+																		<img
+																			src={
+																				item.img
+																			}
+																			alt=""
+																		/>
+																	</div>
+																	<div className="infoBot">
+																		<p className="infoBotTitle ellitext">
+																			{
+																				item.title
+																			}
+																		</p>
+																		<div className="infoBotDate">
+																			<span
+																			>
+																				{getLocalTime(
+																					item.created_at
+																				)}
+																			</span>
+																			{item.is_sole && (
+																				<i
+																				>
+																					{t(
+																						"icon.original"
+																					)}
+																				</i>
 																			)}
-																		</i>
-																	)}
-																</div>
-															</div>
-														</Link>
-													</li>
-												);
-											}
-										)}
-								</ul>
-								<div className="pageTurn">
-									{projectDynamicList.prev_page_url && (
-										<span
-											className="pageTurmLf more"
-											onClick={() => {
-												this.projectDynamicList(
-													curDynamic,
-													projectDynamicList.current_page -
-														1
-												);
-											}}
-										/>
+																		</div>
+																	</div>
+																</Link>
+															</li>
+														);
+													}
+												)}
+											</ul>
+											<div className="pageTurn">
+												{projectDynamicList.prev_page_url && (
+													<span
+														className="pageTurmLf more"
+														onClick={() => {
+															this.projectDynamicList(
+																curDynamic,
+																projectDynamicList.current_page -
+																	1
+															);
+														}}
+													/>
+												)}
+												{!projectDynamicList.prev_page_url && (
+													<span className="pageTurmLf" />
+												)}
+												{projectDynamicList.next_page_url && (
+													<span
+														className="pageTurmRt more"
+														onClick={() => {
+															this.projectDynamicList(
+																curDynamic,
+																projectDynamicList.current_page +
+																	1
+															);
+														}}
+													/>
+												)}
+												{!projectDynamicList.next_page_url && (
+													<span className="pageTurmRt" />
+												)}
+											</div>
+										</div>
 									)}
-									{!projectDynamicList.prev_page_url && (
-										<span className="pageTurmLf" />
-									)}
-									{projectDynamicList.next_page_url && (
-										<span
-											className="pageTurmRt more"
-											onClick={() => {
-												this.projectDynamicList(
-													curDynamic,
-													projectDynamicList.current_page +
-														1
-												);
-											}}
-										/>
-									)}
-									{!projectDynamicList.next_page_url && (
-										<span className="pageTurmRt" />
-									)}
-								</div>
+
+								{(!projectDynamicList ||
+									!projectDynamicList.data ||
+									projectDynamicList.data.length <= 0) && (
+									<div className="nodata-box">
+										{t("nodata", lng)}
+									</div>
+								)}
 							</div>
 						</div>
 						<div className="projectDetailCon2 m-hide">
