@@ -604,79 +604,86 @@ class ProjectDetailGaiKuo extends PureComponent {
 										id="chartsBox"
 									/>
 								</div>
-								<div className="gaikuoMarket ui center">
-									<div
-										className={
-											newsCur > 0
-												? "marketLf more"
-												: "marketLf"
-										}
-									>
-										<span
-											onClick={() => {
-												this.slider.slickPrev();
-											}}
-										/>
-									</div>
-									<div className="marketList ui">
-										{markets &&
-											markets.length > 0 && (
-												<Slider
-													ref={c => (this.slider = c)}
-													{...settings}
-												>
-													{markets.map(
-														(item, index) => {
-															return (
-																<div
-																	key={index}
-																	className="marketListLi"
-																>
-																	<span className="ellitext">
-																		+{
-																			item.source
-																		}{" "}
-																		({
-																			item.pair
-																		})
-																	</span>
-																	<p className="ellitext">
-																		{
-																			item.pairce
-																		}
-																	</p>
-																	<p className="ellitext">
-																		Volume{
-																			item.volum_24
-																		}
-																	</p>
-																</div>
-															);
+								{!IsTouchDevice && (
+									<div className="gaikuoMarket ui center">
+										<div
+											className={
+												newsCur > 0
+													? "marketLf more"
+													: "marketLf"
+											}
+										>
+											<span
+												onClick={() => {
+													this.slider.slickPrev();
+												}}
+											/>
+										</div>
+										<div className="marketList ui">
+											{markets &&
+												markets.length > 0 && (
+													<Slider
+														ref={c =>
+															(this.slider = c)
 														}
-													)}
-												</Slider>
-											)}
+														{...settings}
+													>
+														{markets.map(
+															(item, index) => {
+																return (
+																	<div
+																		key={
+																			index
+																		}
+																		className="marketListLi"
+																	>
+																		<span className="ellitext">
+																			+{
+																				item.source
+																			}{" "}
+																			({
+																				item.pair
+																			})
+																		</span>
+																		<p className="ellitext">
+																			{
+																				item.pairce
+																			}
+																		</p>
+																		<p className="ellitext">
+																			Volume{
+																				item.volum_24
+																			}
+																		</p>
+																	</div>
+																);
+															}
+														)}
+													</Slider>
+												)}
+										</div>
+										<div
+											className={
+												newsCur + 3 <
+												(markets && markets.length)
+													? "marketRt more"
+													: "marketRt"
+											}
+										>
+											<span
+												onClick={() => {
+													if (
+														newsCur + 3 <
+														(markets &&
+															markets.length)
+													) {
+														this.slider.slickNext();
+													}
+												}}
+											/>
+										</div>
 									</div>
-									<div
-										className={
-											newsCur + 3 <
-											(markets && markets.length)
-												? "marketRt more"
-												: "marketRt"
-										}
-									>
-										<span
-											onClick={() => {
-												if (
-													newsCur + 3 <
-													(markets && markets.length)
-												) {
-													this.slider.slickNext();
-												}
-											}}
-										/>
-									</div>
-								</div>
+								)}
 							</div>
 						</div>
 						<div className="projectDetailCon2">
