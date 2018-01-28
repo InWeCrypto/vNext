@@ -24,7 +24,9 @@ const history = createHistory();
 const store = storeFun(history);
 window.history = history;
 window.i18n = i18n;
-
+window.onerror = function(err) {
+	document.write(err);
+};
 let userinfo = getLocalItem("userInfo");
 window.store = store;
 store.dispatch(changeLng(window.i18n.language));

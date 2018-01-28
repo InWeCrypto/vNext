@@ -52,7 +52,7 @@ function request(method, url, params = {}, header = {}) {
 	const headers = {
 		"Content-Type": "application/json",
 		lang: languageItem.data,
-
+		Accept: "*/*",
 		//"Cache-Control": "no-cache",
 		...header
 	};
