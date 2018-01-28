@@ -147,7 +147,8 @@ class ProjectCollection extends PureComponent {
 												{!item.ico && (
 													<div
 														style={{
-															textAlign: "center"
+															textAlign: "left",
+															paddingLeft: ".1rem"
 														}}
 													>
 														----
