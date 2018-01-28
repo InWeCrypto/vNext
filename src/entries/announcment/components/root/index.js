@@ -23,7 +23,9 @@ export default class Root extends PureComponent {
 			rtMore: "rightArrow more",
 			page: 1,
 			nums: 8,
-			mounted: false
+			mounted: false,
+			showDetail: false,
+			showItem: null
 		};
 	}
 	componentWillReceiveProps(nextProps) {
@@ -121,8 +123,20 @@ export default class Root extends PureComponent {
 			console.log(nums);
 		}
 	}
+	showDetailClick(item) {
+		this.setState({
+			showDetail: true,
+			showItem: item
+		});
+	}
+	closeDetailClick() {
+		this.setState({
+			showDetail: false,
+			showItem: null
+		});
+	}
 	render() {
-		const { minH, liH, rtMore, lfMore } = this.state;
+		const { minH, liH, rtMore, lfMore, showDetail, showItem } = this.state;
 		const {
 			lng,
 			changeLng,
@@ -206,57 +220,35 @@ export default class Root extends PureComponent {
 															<li
 																key={index}
 																className="annoucmentListLi"
+																onClick={this.showDetailClick.bind(
+																	this,
+																	item
+																)}
 															>
-																{item.source_url && (
-																	<Link
-																		to={{
-																			pathname:
-																				item.source_url
-																		}}
-																		target="_blank"
-																	>
-																		<div className="liBox">
-																			<p className="annoBoxLiText ellitext">
-																				+{
-																					item.source_name
-																				}：{
-																					item.content
-																				}
-																			</p>
-																			<p className="annoBoxLiDate">
-																				{getLocalTime(
-																					item.created_at
-																				)}
-																			</p>
-																		</div>
-																	</Link>
-																)}
-																{!item.source_url && (
-																	<Link
-																		to={{
-																			pathname:
-																				"newsdetail",
-																			search:
-																				"?art_id=" +
-																				item.id
-																		}}
-																	>
-																		<div className="liBox">
-																			<p className="annoBoxLiText ellitext">
-																				+{
-																					item.source_name
-																				}：{
-																					item.content
-																				}
-																			</p>
-																			<p className="annoBoxLiDate">
-																				{getLocalTime(
-																					item.created_at
-																				)}
-																			</p>
-																		</div>
-																	</Link>
-																)}
+																{/* <Link
+																	to={{
+																		pathname:
+																			"newsdetail",
+																		search:
+																			"?art_id=" +
+																			item.id
+																	}}
+																> */}
+																<div className="liBox">
+																	<p className="annoBoxLiText ellitext">
+																		+{
+																			item.source_name
+																		}：{
+																			item.desc
+																		}
+																	</p>
+																	<p className="annoBoxLiDate">
+																		{getLocalTime(
+																			item.created_at
+																		)}
+																	</p>
+																</div>
+																{/* </Link> */}
 															</li>
 														);
 													}
@@ -277,57 +269,35 @@ export default class Root extends PureComponent {
 															<li
 																key={index}
 																className="annoucmentListLi"
+																onClick={this.showDetailClick.bind(
+																	this,
+																	item
+																)}
 															>
-																{item.source_url && (
-																	<Link
-																		to={{
-																			pathname:
-																				item.source_url
-																		}}
-																		target="_blank"
-																	>
-																		<div className="liBox">
-																			<p className="annoBoxLiText ellitext">
-																				+{
-																					item.source_name
-																				}：{
-																					item.content
-																				}
-																			</p>
-																			<p className="annoBoxLiDate">
-																				{getLocalTime(
-																					item.created_at
-																				)}
-																			</p>
-																		</div>
-																	</Link>
-																)}
-																{!item.source_url && (
-																	<Link
-																		to={{
-																			pathname:
-																				"newsdetail",
-																			search:
-																				"?art_id=" +
-																				item.id
-																		}}
-																	>
-																		<div className="liBox">
-																			<p className="annoBoxLiText ellitext">
-																				+{
-																					item.source_name
-																				}：{
-																					item.content
-																				}
-																			</p>
-																			<p className="annoBoxLiDate">
-																				{getLocalTime(
-																					item.created_at
-																				)}
-																			</p>
-																		</div>
-																	</Link>
-																)}
+																{/* <Link
+																	to={{
+																		pathname:
+																			"newsdetail",
+																		search:
+																			"?art_id=" +
+																			item.id
+																	}}
+																> */}
+																<div className="liBox">
+																	<p className="annoBoxLiText ellitext">
+																		+{
+																			item.source_name
+																		}：{
+																			item.desc
+																		}
+																	</p>
+																	<p className="annoBoxLiDate">
+																		{getLocalTime(
+																			item.created_at
+																		)}
+																	</p>
+																</div>
+																{/* </Link> */}
 															</li>
 														);
 													}
@@ -400,6 +370,34 @@ export default class Root extends PureComponent {
 									)}
 								</div>
 							</div>
+							{showDetail && (
+								<div className="acc-detail">
+									<div className="acc-content">
+										<div className="acc-container">
+											<i
+												className="icon-close"
+												onClick={this.closeDetailClick.bind(
+													this
+												)}
+											/>
+											<div className="acc-title">
+												{showItem.source_name}
+											</div>
+											<div className="acc-time">
+												{getLocalTime(
+													showItem.created_at
+												)}
+											</div>
+											<div
+												className="acc-text"
+												dangerouslySetInnerHTML={{
+													__html: showItem.content
+												}}
+											/>
+										</div>
+									</div>
+								</div>
+							)}
 						</div>
 						{IsTouchDevice ? (
 							<div id="footerBox" />
