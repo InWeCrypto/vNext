@@ -479,11 +479,10 @@ export default class Root extends PureComponent {
 																		index
 																	) => {
 																		return (
-																			<Link
-																				to={{
-																					pathname:
-																						"/wallent"
-																				}}
+																			<a
+																				href={
+																					item.url
+																				}
 																				style={{
 																					display:
 																						"block"
@@ -497,7 +496,7 @@ export default class Root extends PureComponent {
 																						item.img
 																					}
 																				/>
-																			</Link>
+																			</a>
 																		);
 																	}
 																)}
