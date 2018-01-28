@@ -2,7 +2,7 @@ import React, { PureComponent } from "react";
 import { I18n, Trans } from "react-i18next";
 import { NavLink, Link } from "react-router-dom";
 import { Pagination } from "antd";
-
+import AnnoBox from "../../../../components/annobox";
 import {
 	getMainMinHeight,
 	getQuery,
@@ -371,32 +371,11 @@ export default class Root extends PureComponent {
 								</div>
 							</div>
 							{showDetail && (
-								<div className="acc-detail">
-									<div className="acc-content">
-										<div className="acc-container">
-											<i
-												className="icon-close"
-												onClick={this.closeDetailClick.bind(
-													this
-												)}
-											/>
-											<div className="acc-title">
-												{showItem.source_name}
-											</div>
-											<div className="acc-time">
-												{getLocalTime(
-													showItem.created_at
-												)}
-											</div>
-											<div
-												className="acc-text"
-												dangerouslySetInnerHTML={{
-													__html: showItem.content
-												}}
-											/>
-										</div>
-									</div>
-								</div>
+								<AnnoBox
+									close={this.closeDetailClick.bind(this)}
+									item={showItem}
+									lng={lng}
+								/>
 							)}
 						</div>
 						{IsTouchDevice ? (

@@ -9,6 +9,7 @@ import Footer from "../../../../components/footer";
 import LeftMenu from "../../../../components/leftmenu";
 import FixedMenu from "../../../../components/fixedmenu";
 import Search from "../../../../components/search";
+import AnnoBox from "../../../../components/annobox";
 import TopText from "../toptext/";
 
 import inweWallet from "../../../../assets/images/inwe_wallet.png";
@@ -36,6 +37,8 @@ export default class Root extends PureComponent {
 				"november",
 				"december"
 			],
+			showAnno: false,
+			annoItem: null,
 			curDay:
 				newDate.getDate() < 10
 					? "0" + newDate.getDate()
@@ -109,7 +112,18 @@ export default class Root extends PureComponent {
 			});
 		}
 	}
-
+	openAnnobox(item) {
+		this.setState({
+			showAnno: true,
+			annoItem: item
+		});
+	}
+	closeAnnobox() {
+		this.setState({
+			showAnno: false,
+			annoItem: null
+		});
+	}
 	turnToCandy() {
 		if (IsTouchDevice) {
 			window.location.href = "/candybowl";
@@ -147,7 +161,9 @@ export default class Root extends PureComponent {
 			AcSliderH,
 			showSearch,
 			sliderIndex,
-			sliderIndex1
+			sliderIndex1,
+			showAnno,
+			annoItem
 		} = this.state;
 		const curMonth = monthArr[month - 1].slice(0, 3);
 		if (IsTouchDevice) {
@@ -544,39 +560,15 @@ export default class Root extends PureComponent {
 															<p
 																key={index}
 																className="homeBoxAnnoTopP"
+																onClick={this.openAnnobox.bind(
+																	this,
+																	item
+																)}
 															>
-																{item.source_url && (
-																	<Link
-																		to={{
-																			pathname:
-																				item.source_url
-																		}}
-																		target="_blank"
-																	>
-																		+{
-																			item.source_name
-																		}：{
-																			item.content
-																		}
-																	</Link>
-																)}
-																{!item.source_url && (
-																	<Link
-																		to={{
-																			pathname:
-																				"newsdetail",
-																			search:
-																				"?art_id=" +
-																				item.id
-																		}}
-																	>
-																		+{
-																			item.source_name
-																		}：{
-																			item.content
-																		}
-																	</Link>
-																)}
+																+{
+																	item.source_name
+																}：
+																{item.desc}
 															</p>
 														);
 													}
@@ -684,6 +676,13 @@ export default class Root extends PureComponent {
 								)}
 							</div>
 						</div>
+						{showAnno && (
+							<AnnoBox
+								item={annoItem}
+								close={this.closeAnnobox.bind(this)}
+							/>
+						)}
+
 						<Footer changeLng={changeLng} lng={lng} />
 					</div>
 				)}
