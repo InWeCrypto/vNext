@@ -36,7 +36,12 @@ export default class Root extends PureComponent {
 		document.title = "InWe-" + i18n.t("navMenu.trading", this.props.lng);
 
 		let minH = getMainMinHeight();
-		let liH = (minH - 37) / 2;
+		let pt = parseFloat(
+			getComputedStyle(document.getElementById("tradingBox"))[
+				"padding-top"
+			]
+		);
+		let liH = (minH - 37 - pt) / 2;
 		this.setState({
 			minH: minH,
 			liH: liH,

@@ -7,6 +7,8 @@
 .tradingBox {
 	// margin-right: 1rem;
 	// overflow-y: auto;
+	box-sizing: border-box;
+	padding-right: 0.4rem 0.1rem;
 	justify-content: space-between;
 	flex-flow: column;
 	.Pagination-box {
@@ -67,6 +69,7 @@
 				background: url("../../../../assets/images/holdimg.png")
 					no-repeat center center / cover;
 				img {
+					height: 100%;
 					width: 100%;
 					transition: all 0.3s ease-in-out;
 					&:hover {
@@ -135,6 +138,12 @@
 				}
 			}
 		}
+	}
+}
+.pc {
+	.tradingBox {
+		padding: 0.96rem 0.1rem 0 0.1rem;
+		box-sizing: border-box;
 	}
 }
 .mobile .trading {
