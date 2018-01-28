@@ -19,6 +19,7 @@ export default class Root extends PureComponent {
 	}
 	componentWillReceiveProps(nextProps) {}
 	componentDidMount() {
+		document.body.scrollTop = document.documentElement.scrollTop = 0;
 		let type = queryString("type");
 		if (!type) {
 			type = 1;
