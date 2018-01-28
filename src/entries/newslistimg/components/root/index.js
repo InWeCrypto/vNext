@@ -1,6 +1,7 @@
 import React, { PureComponent } from "react";
 import { I18n, Trans } from "react-i18next";
 import { NavLink, Link } from "react-router-dom";
+import { Pagination } from "antd";
 
 import {
 	getMainMinHeight,
@@ -21,7 +22,8 @@ export default class Root extends PureComponent {
 			liH: "auto",
 			page: 1,
 			type: 2,
-			newsList: []
+			newsList: [],
+			nums: 8
 		};
 	}
 	componentWillReceiveProps(nextProps) {
@@ -41,27 +43,38 @@ export default class Root extends PureComponent {
 		document.querySelector("#mainBox").style.minHeight = minH + "px";
 		this.initPage(this.props.location.search);
 	}
+	changePagination(page) {
+		this.getNewsList({
+			type: this.state.type,
+			page: page
+		});
+	}
 	initPage(search) {
 		let q = getQuery(search);
 		this.setState({
 			page: q.page || "1",
 			type: q.type || "2"
 		});
+		this.getNewsList(q);
+	}
+	getNewsList(q) {
 		if (q.type && q.type == "3") {
 			this.props
 				.getNewsVideo({
-					per_page: 8,
-					page: q.page || 1,
+					per_page: this.state.nums,
+					page: q.page || this.state.page,
 					type: q.type || this.state.type
 				})
 				.then(res => {
-					console.log(res);
+					this.setState({
+						newsList: res.data
+					});
 				});
 		} else {
 			this.props
 				.getNewsImg({
-					per_page: 8,
-					page: q.page || 1,
+					per_page: this.state.nums,
+					page: q.page || this.state.page,
 					type: q.type || this.state.type
 				})
 				.then(res => {
@@ -105,7 +118,10 @@ export default class Root extends PureComponent {
 						/>
 						<div id="mainBox" className="trading ui">
 							<div id="tradingBox" className="tradingBox ui f1">
-								<ul className="tradingListUl">
+								<div className="annoTitle">
+									<span>{t("news.news", lng)}</span>
+								</div>
+								<ul className="tradingListUl f1">
 									{newsList &&
 										newsList.data &&
 										newsList.data.length > 0 &&
@@ -125,26 +141,34 @@ export default class Root extends PureComponent {
 															}`
 														}}
 													>
-														<div className="tradingBoxImg">
+														<p className="desc">
+															{item.title}
+														</p>
+														<div className="newsBoxModConDate">
+															<p>
+																{
+																	item.created_at
+																}
+															</p>
+															{item.category &&
+																item.category
+																	.img && (
+																	<img
+																		className="m-hide"
+																		src={
+																			item
+																				.category
+																				.img
+																		}
+																		alt=""
+																	/>
+																)}
+														</div>
+														<div className="newsBoxModConShow">
 															<img
 																src={item.img}
 																alt=""
 															/>
-														</div>
-														<div className="tradingBoxCon">
-															<p className="tradingBoxTitle ellitext">
-																{item.title}
-															</p>
-															<p className="desc">
-																{item.desc}
-															</p>
-															<div className="tradingBoxModConDate">
-																<p>
-																	{getLocalTime(
-																		item.created_at
-																	)}
-																</p>
-															</div>
 														</div>
 													</Link>
 												</li>
@@ -164,6 +188,23 @@ export default class Root extends PureComponent {
 										</div>
 									)}
 								</ul>
+								<div
+									className="pagation-box m-hide"
+									id="pagationBox"
+								>
+									{newsList && (
+										<Pagination
+											defaultPageSize={this.state.nums}
+											defaultCurrent={
+												newsList.current_page
+											}
+											total={newsList.total}
+											onChange={this.changePagination.bind(
+												this
+											)}
+										/>
+									)}
+								</div>
 							</div>
 						</div>
 					</div>

@@ -3,7 +3,10 @@ import { I18n, Trans } from "react-i18next";
 import { getLocalTime } from "../../../../utils/util";
 import { Link } from "react-router-dom";
 import GaiKuo from "../../../../components/gaikuo";
+import noListImg from "../../../../assets/images/zhanweitu_pic.png";
+
 import "./index.less";
+
 class ProjectDetailInfo extends PureComponent {
 	constructor(props) {
 		super(props);
@@ -240,6 +243,54 @@ class ProjectDetailInfo extends PureComponent {
 												)}
 											</div>
 										</div>
+																		</i>
+																	)}
+																</div>
+															</div>
+														</Link>
+													</li>
+												);
+											}
+										)}
+								</ul>
+								{!projectDynamicList ||
+									!projectDynamicList.data ||
+									(projectDynamicList.data.length == 0 &&
+										IsTouchDevice && (
+											<div className="noList">
+												<img src={noListImg} alt="" />
+											</div>
+										))}
+								<div className="pageTurn m-hide">
+									{projectDynamicList.prev_page_url && (
+										<span
+											className="pageTurmLf more"
+											onClick={() => {
+												this.projectDynamicList(
+													curDynamic,
+													projectDynamicList.current_page -
+														1
+												);
+											}}
+										/>
+									)}
+									{!projectDynamicList.prev_page_url && (
+										<span className="pageTurmLf" />
+									)}
+									{projectDynamicList.next_page_url && (
+										<span
+											className="pageTurmRt more"
+											onClick={() => {
+												this.projectDynamicList(
+													curDynamic,
+													projectDynamicList.current_page +
+														1
+												);
+											}}
+										/>
+									)}
+									{!projectDynamicList.next_page_url && (
+										<span className="pageTurmRt" />
 									)}
 
 								{(!projectDynamicList ||

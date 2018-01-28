@@ -551,7 +551,8 @@ export default class Root extends PureComponent {
 											</span>
 											<Link
 												to={{
-													pathname: ""
+													pathname: "/newslistimg",
+													search: "?type=2"
 												}}
 											>
 												<span className="nums readMoreUnderLine m-hide">
@@ -746,7 +747,8 @@ export default class Root extends PureComponent {
 											</span>
 											<Link
 												to={{
-													pathname: ""
+													pathname: "/newslistimg",
+													search: "?type=3"
 												}}
 											>
 												<span className="nums readMoreUnderLine m-hide">
