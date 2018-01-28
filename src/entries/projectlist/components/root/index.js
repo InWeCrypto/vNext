@@ -353,7 +353,9 @@ export default class Root extends PureComponent {
 																				<p
 																				>
 																					<span className="ellitext">
-																						{item.name.toLocaleUpperCase()}
+																						{
+																							item.unit
+																						}
 																						{IsTouchDevice && (
 																							<span className="industryText">
 																								{
@@ -461,7 +463,9 @@ export default class Root extends PureComponent {
 																				<p
 																				>
 																					<span className="ellitext">
-																						{item.name.toLocaleUpperCase()}
+																						{
+																							item.unit
+																						}
 																						{IsTouchDevice && (
 																							<span className="industryText">
 																								{
@@ -552,7 +556,9 @@ export default class Root extends PureComponent {
 																				<p
 																				>
 																					<span className="ellitext">
-																						{item.name.toLocaleUpperCase()}
+																						{
+																							item.unit
+																						}
 																						{IsTouchDevice && (
 																							<span className="industryText">
 																								{
@@ -643,7 +649,9 @@ export default class Root extends PureComponent {
 																				<p
 																				>
 																					<span className="ellitext">
-																						{item.name.toLocaleUpperCase()}
+																						{
+																							item.unit
+																						}
 																					</span>
 																					<b className="ellitext">
 																						({

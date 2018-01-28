@@ -164,7 +164,7 @@ export default class Root extends PureComponent {
 														key={index}
 														style={{
 															width: liW,
-															height: liH,
+															// height: liH,
 															marginRight: liMR
 														}}
 													>
@@ -198,7 +198,7 @@ export default class Root extends PureComponent {
 																	<p>
 																		<span className="ellitext">
 																			{
-																				item.name
+																				item.unit
 																			}
 																		</span>
 																		<b className="ellitext">
