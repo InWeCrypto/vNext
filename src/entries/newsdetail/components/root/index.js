@@ -103,7 +103,7 @@ export default class Root extends PureComponent {
 			.then(res => {
 				this.getNewsComment();
 				if (res.data.type == 3) {
-					this.videoPlay(res.data.url, res.data.video, res.data.img);
+					//this.videoPlay(res.data.url, res.data.video, res.data.img);
 				}
 			});
 	}
@@ -333,9 +333,9 @@ export default class Root extends PureComponent {
 								<div className="newsMeta ui">
 									<div className="newsDetailConMeta f1">
 										<span className="metaDate">
-											{newsDetail.updated_at &&
+											{newsDetail.created_at &&
 												getLocalTime(
-													newsDetail.updated_at
+													newsDetail.created_at
 												)}
 										</span>
 										{newsDetail.is_sole &&

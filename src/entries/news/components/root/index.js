@@ -426,9 +426,9 @@ export default class Root extends PureComponent {
 																		</p>
 																		<div className="newsBoxModConDate">
 																			<p className="">
-																				{
+																				{getLocalTime(
 																					item.created_at
-																				}
+																				)}
 																			</p>
 
 																			<img
@@ -487,9 +487,9 @@ export default class Root extends PureComponent {
 																				</p>
 																				<div className="newsBoxModConDate">
 																					<p className="">
-																						{
+																						{getLocalTime(
 																							item.created_at
-																						}
+																						)}
 																					</p>
 
 																					<img
@@ -615,9 +615,9 @@ export default class Root extends PureComponent {
 																				<div className="newsBoxModConDate">
 																					<p
 																					>
-																						{
+																						{getLocalTime(
 																							item.created_at
-																						}
+																						)}
 																					</p>
 																					<img
 																						className="m-hide"
@@ -675,9 +675,9 @@ export default class Root extends PureComponent {
 																		</p>
 																		<div className="newsBoxModConDate">
 																			<p>
-																				{
+																				{getLocalTime(
 																					item.created_at
-																				}
+																				)}
 																			</p>
 																			<img
 																				className="m-hide"
@@ -799,9 +799,9 @@ export default class Root extends PureComponent {
 
 																		<div className="newsBoxModConDate m-hide">
 																			<p>
-																				{
+																				{getLocalTime(
 																					item.created_at
-																				}
+																				)}
 																			</p>
 																			{item.category &&
 																				item
@@ -891,9 +891,9 @@ export default class Root extends PureComponent {
 																				<div className="newsBoxModConDate m-hide">
 																					<p
 																					>
-																						{
+																						{getLocalTime(
 																							item.created_at
-																						}
+																						)}
 																					</p>
 																					{item.category &&
 																						item
@@ -929,9 +929,9 @@ export default class Root extends PureComponent {
 																				</div>
 																				{IsTouchDevice && (
 																					<div className="modDateText">
-																						{
-																							item.updated_at
-																						}
+																						{getLocalTime(
+																							item.created_at
+																						)}
 																					</div>
 																				)}
 																			</Link>
