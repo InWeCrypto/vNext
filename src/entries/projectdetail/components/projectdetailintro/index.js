@@ -41,11 +41,26 @@ class ProjectDetailIntro extends PureComponent {
 								<div className="projectDetailCon1BoxTitle">
 									{t("projectDetail.project_overview", lng)}
 								</div>
-								<div className="introContent">
-									{projectDetail.category_presentation &&
-										projectDetail.category_presentation
-											.content}
-								</div>
+								{projectDetail.category_presentation &&
+									projectDetail.category_presentation.content
+										.length > 0 && (
+										<div
+											className="introContent"
+											dangerouslySetInnerHTML={{
+												__html:
+													projectDetail
+														.category_presentation
+														.content
+											}}
+										/>
+									)}
+								{(!projectDetail.category_presentation ||
+									projectDetail.category_presentation.content
+										.length <= 0) && (
+									<div className="nodata-box">
+										{t("nodata", lng)}
+									</div>
+								)}
 							</div>
 						</div>
 					</div>
