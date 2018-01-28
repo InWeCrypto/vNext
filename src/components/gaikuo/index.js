@@ -106,7 +106,7 @@ class GaiKuo extends PureComponent {
 	}
 	remindUpdate(type, c_id, is_market_follow) {
 		if (
-			parseFloat(this.state.aboveVal, 10) <
+			parseFloat(this.state.aboveVal, 10) <=
 			parseFloat(this.state.belowVal, 10)
 		) {
 			Msg.prompt(i18n.t("error.followError", this.props.lng));

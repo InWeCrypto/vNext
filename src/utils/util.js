@@ -1,3 +1,5 @@
+import Alert from "antd";
+
 export const getQuery = query => {
 	let res = {};
 	if (!query || query.length === 0) {
@@ -119,9 +121,12 @@ export const chargeFooterFixed = () => {
 	// }
 };
 export const getLocalTime = time => {
-	let time1 = time.replace(" ", "Z") + "Z";
+	let time1 = time;
+	if (time1.indexOf("-") != -1) {
+		time1 = time.replace(/\-/gi, "/");
+	}
 	const def = new Date().getTimezoneOffset();
-	let localTime = new Date(time1).getTime(); //+ def * 60 * 1000;
+	let localTime = new Date(time1).getTime() + def * 60 * 1000;
 	let d = new Date(localTime);
 	let year = d.getFullYear();
 	let month = d.getMonth() + 1;
