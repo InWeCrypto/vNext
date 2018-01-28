@@ -146,6 +146,12 @@ export default {
 		emailSend: "The email is sent successfully. ",
 		resetPass: "Your password has been revised successfully. "
 	},
+	gaikuo: {
+		notice: "Notice",
+		collection: "Collection",
+		website: "Website",
+		share: "Share"
+	},
 	sure: "Confirm",
 	cannel: "Cancel",
 	nodata: "No data available ",
