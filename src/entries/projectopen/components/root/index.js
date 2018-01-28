@@ -164,7 +164,7 @@ export default class Root extends PureComponent {
 														key={index}
 														style={{
 															width: liW,
-															height: liH,
+															// height: liH,
 															marginRight: liMR
 														}}
 													>
