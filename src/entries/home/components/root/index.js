@@ -165,7 +165,20 @@ export default class Root extends PureComponent {
 			showAnno,
 			annoItem
 		} = this.state;
-		const curMonth = monthArr[month - 1].slice(0, 3);
+		let curMonth = monthArr[month - 1].slice(0, 3);
+		function ucfirst(str) {
+			var str = str.toLowerCase();
+			var strarr = str.split(" ");
+			var result = "";
+			for (var i in strarr) {
+				result +=
+					strarr[i].substring(0, 1).toUpperCase() +
+					strarr[i].substring(1) +
+					" ";
+			}
+			return result;
+		}
+		curMonth = ucfirst(curMonth);
 		if (IsTouchDevice) {
 			var settings = {
 				// dots: true,
