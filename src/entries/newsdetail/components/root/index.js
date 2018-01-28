@@ -103,7 +103,7 @@ export default class Root extends PureComponent {
 			.then(res => {
 				this.getNewsComment();
 				if (res.data.type == 3) {
-					this.videoPlay(res.data.url, res.data.video, res.data.img);
+					//this.videoPlay(res.data.url, res.data.video, res.data.img);
 				}
 			});
 	}
