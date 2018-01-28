@@ -206,11 +206,12 @@ class ProjectDetailInfo extends PureComponent {
 								</ul>
 								{!projectDynamicList ||
 									!projectDynamicList.data ||
-									(projectDynamicList.data.length == 0 && (
-										<div className="noList">
-											<img src={noListImg} alt="" />
-										</div>
-									))}
+									(projectDynamicList.data.length == 0 &&
+										IsTouchDevice && (
+											<div className="noList">
+												<img src={noListImg} alt="" />
+											</div>
+										))}
 								<div className="pageTurn m-hide">
 									{projectDynamicList.prev_page_url && (
 										<span
