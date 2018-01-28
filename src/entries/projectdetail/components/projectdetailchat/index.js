@@ -10,7 +10,8 @@ class ProjectDetailIco extends PureComponent {
 			id: this.props.projectDetail.id,
 			score: 0,
 			realScore: 0,
-			isModify: true
+			isModify: true,
+			inputBg: false
 		};
 	}
 	componentDidMount() {
@@ -80,7 +81,7 @@ class ProjectDetailIco extends PureComponent {
 	}
 	render() {
 		const { lng, changeLng, projectDetail, getProjectScore } = this.props;
-		const { score, realScore } = this.state;
+		const { score, realScore, inputBg } = this.state;
 		return (
 			<I18n>
 				{(t, { I18n }) => (
@@ -110,7 +111,18 @@ class ProjectDetailIco extends PureComponent {
 						</ul>
 						<div className="sendChat">
 							<input
-								onFocus={this.showApp.bind(this)}
+								className={inputBg ? "focus" : ""}
+								onFocus={() => {
+									this.showApp.bind(this);
+									this.setState({
+										inputBg: true
+									});
+								}}
+								onBlur={() => {
+									this.setState({
+										inputBg: false
+									});
+								}}
 								type="text"
 								placeholder={t("projectDetail.chat", lng)}
 							/>

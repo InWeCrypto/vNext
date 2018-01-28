@@ -645,14 +645,16 @@ class ProjectDetailGaiKuo extends PureComponent {
 								<div className="projectDetailCon2Title">
 									{t("projectDetail.token_title", lng)}
 								</div>
-								<a
-									href={projectDetail.token_holder}
-									target="_blank"
-								>
-									<p className="viewMore readMoreUnderLine">
-										view more
-									</p>
-								</a>
+								{projectDetail.token_holder && (
+									<a
+										href={projectDetail.token_holder}
+										target="_blank"
+									>
+										<p className="viewMore readMoreUnderLine">
+											view more
+										</p>
+									</a>
+								)}
 							</div>
 							<div className="projectDetailCon2Box">
 								<div className="projectDetailCon2Title">

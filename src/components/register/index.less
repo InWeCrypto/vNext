@@ -56,9 +56,12 @@
 				border: none;
 				border-radius: 0.04rem;
 				font-size: 0.12rem;
-				line-height: 0.2rem;
+				// line-height: 0.2rem;
 				cursor: pointer;
 				outline: none;
+				&:hover {
+					background: #ff7c50;
+				}
 			}
 			.btn2 {
 				outline: none;
@@ -85,6 +88,12 @@
 				border-radius: 0.04rem;
 				cursor: pointer;
 				font-size: 0.16rem;
+				&.disable {
+					background: #9b9b9b;
+				}
+				&.disable:hover {
+					background: #9b9b9b;
+				}
 			}
 			.btn:hover {
 				background: #017225;

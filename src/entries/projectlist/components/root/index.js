@@ -191,7 +191,7 @@ export default class Root extends PureComponent {
 							getHeaderMarket={getHeaderMarket}
 						/>
 						<div id="mainBox" className="projectList ui ">
-							<div className="projectListReturn ui center m-hide">
+							{/* <div className="projectListReturn ui center m-hide">
 								<Link
 									to={{
 										pathname: "/project",
@@ -200,7 +200,7 @@ export default class Root extends PureComponent {
 								>
 									<span />
 								</Link>
-							</div>
+							</div> */}
 							{IsTouchDevice && (
 								<div
 									id="m-nav"

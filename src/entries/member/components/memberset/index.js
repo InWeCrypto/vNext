@@ -115,7 +115,7 @@ class MemberSet extends PureComponent {
 								<div className="member-img-box">
 									<img
 										src={
-											userInfo.img
+											userInfo && userInfo.img
 												? userInfo.img
 												: defaultHeader
 										}

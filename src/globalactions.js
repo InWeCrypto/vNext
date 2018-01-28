@@ -79,10 +79,15 @@ export const resetPassword = createAction(USERINFO, params => {
 				Msg.prompt(
 					i18n.t("success.resetPass", getLocalItem("language").data)
 				);
+				return res;
 			} else {
 				Msg.prompt(res.msg);
+				return {
+					code: res.code,
+					data: JSON.parse(getLocalItem("userInfo").data),
+					msg: res.msg
+				};
 			}
-			return res;
 		});
 });
 export const resetNickName = createAction(NICKNAME, params => {

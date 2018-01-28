@@ -5,7 +5,8 @@ import {
 	USERINFO,
 	NICKNAME,
 	USERHEADER,
-	HEADERMARKET
+	HEADERMARKET,
+	RESETPASSWORD
 } from "./globalactions";
 export const lng = handleActions(
 	{
