@@ -256,9 +256,10 @@ export default class Root extends PureComponent {
 											to={{
 												pathname: "projectdetail",
 												search:
-													"?c_id=" + projectDetail &&
-													projectDetail.id +
-														"&type=home"
+													"?c_id=" +
+													(projectDetail &&
+														projectDetail.id) +
+													"&type=home"
 											}}
 										>
 											<span>
@@ -274,9 +275,10 @@ export default class Root extends PureComponent {
 											to={{
 												pathname: "projectdetail",
 												search:
-													"?c_id=" + projectDetail &&
-													projectDetail.id +
-														"&type=info"
+													"?c_id=" +
+													(projectDetail &&
+														projectDetail.id) +
+													"&type=info"
 											}}
 										>
 											<span>
@@ -292,9 +294,10 @@ export default class Root extends PureComponent {
 											to={{
 												pathname: "projectdetail",
 												search:
-													"?c_id=" + projectDetail &&
-													projectDetail.id +
-														"&type=intro"
+													"?c_id=" +
+													(projectDetail &&
+														projectDetail.id) +
+													"&type=intro"
 											}}
 										>
 											<span>
