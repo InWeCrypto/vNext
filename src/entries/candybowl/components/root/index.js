@@ -152,7 +152,7 @@ class Root extends PureComponent {
 										dayClick={this.dayClick.bind(this)}
 									/>
 									<div className="must-read">
-										{candyMustList &&
+										{/* {candyMustList &&
 											candyMustList.length > 0 && (
 												<a
 													target="_blank"
@@ -165,7 +165,7 @@ class Root extends PureComponent {
 														}
 													</span>
 												</a>
-											)}
+											)} */}
 									</div>
 								</div>
 								<div className="f1 m-todayBox">
