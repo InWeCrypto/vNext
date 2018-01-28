@@ -1,6 +1,7 @@
 import React, { PureComponent } from "react";
 import { I18n, Trans } from "react-i18next";
 import { NavLink, Link } from "react-router-dom";
+import { Pagination } from "antd";
 
 import {
 	getMainMinHeight,
@@ -19,7 +20,8 @@ export default class Root extends PureComponent {
 			minH: "auto",
 			liH: "auto",
 			page: 1,
-			mounted: false
+			mounted: false,
+			per_page: 10
 		};
 	}
 	componentWillReceiveProps(nextProps) {
@@ -96,6 +98,7 @@ export default class Root extends PureComponent {
 				console.log(res);
 			});
 	}
+	changePagination(page) {}
 	render() {
 		const { minH, liH, page } = this.state;
 		const {
@@ -136,7 +139,7 @@ export default class Root extends PureComponent {
 							)}
 
 							<div id="tradingBox" className="tradingBox ui f1">
-								<div className="annoBoxArrow ui center m-hide">
+								{/* <div className="annoBoxArrow ui center m-hide">
 									{trading.prev_page_url && (
 										<Link
 											to={{
@@ -152,16 +155,19 @@ export default class Root extends PureComponent {
 									{!trading.prev_page_url && (
 										<span className="leftArrow" />
 									)}
-								</div>
+								</div> */}
 
-								<ul id="m-tradingUl" className="tradingListUl">
+								<ul
+									id="m-tradingUl"
+									className="tradingListUl ul"
+								>
 									{trading &&
 										trading.data &&
 										trading.data.length > 0 &&
 										trading.data.map((item, index) => {
 											return (
 												<li
-													className="ui"
+													className="ui li"
 													key={index}
 													style={{ maxHeight: liH }}
 												>
@@ -199,21 +205,35 @@ export default class Root extends PureComponent {
 												</li>
 											);
 										})}
-
-									{(!trading ||
-										!trading.data ||
-										trading.data.length <= 0) && (
-										<div
-											style={{
-												textAlign: "center",
-												padding: "2rem 0"
-											}}
-										>
-											{t("nodata", lng)}
-										</div>
-									)}
 								</ul>
-								<div className="annoBoxArrow ui center m-hide">
+								{(!trading ||
+									!trading.data ||
+									trading.data.length <= 0) && (
+									<div className="nodata-box">
+										{t("nodata", lng)}
+									</div>
+								)}
+								<div className="Pagination-box">
+									{trading &&
+										trading.data && (
+											<Pagination
+												defaultPageSize={
+													this.state.per_page
+												}
+												defaultCurrent={
+													trading.data.current_page
+												}
+												total={
+													500
+													// trading.data.total
+												}
+												onChange={this.changePagination.bind(
+													this
+												)}
+											/>
+										)}
+								</div>
+								{/* <div className="annoBoxArrow ui center m-hide">
 									{trading.next_page_url && (
 										<Link
 											to={{
@@ -229,7 +249,7 @@ export default class Root extends PureComponent {
 									{!trading.next_page_url && (
 										<span className="rightArrow" />
 									)}
-								</div>
+								</div> */}
 							</div>
 						</div>
 						{IsTouchDevice ? (

@@ -5,10 +5,20 @@
 	}
 }
 .tradingBox {
-	margin-right: 1rem;
+	// margin-right: 1rem;
 	// overflow-y: auto;
 	justify-content: space-between;
-
+	flex-flow: column;
+	.Pagination-box {
+		text-align: right;
+		.ant-pagination {
+			display: inline-block;
+			width: auto;
+			li {
+				width: auto;
+			}
+		}
+	}
 	.annoBoxArrow {
 		width: 0.09rem;
 		flex-shrink: 0;
@@ -36,12 +46,12 @@
 			}
 		}
 	}
-	ul {
+	.ul {
 		width: 100%;
 		margin: 0 0.5rem;
 		// flex-wrap: wrap;
 		// justify-content: space-between;
-		li {
+		.li {
 			float: left;
 			width: 30%;
 			box-sizing: border-box;
