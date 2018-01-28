@@ -5,7 +5,8 @@ import { NavLink, Link } from "react-router-dom";
 import {
 	getMainMinHeight,
 	getQuery,
-	queryString
+	queryString,
+	getLocalTime
 } from "../../../../utils/util";
 import Header from "../../../../components/header";
 import Footer from "../../../../components/footer";
@@ -312,9 +313,11 @@ export default class Root extends PureComponent {
 														</div>
 														<div className="projectLiDate">
 															{item.last_article &&
-																item
-																	.last_article
-																	.created_at}
+																getLocalTime(
+																	item
+																		.last_article
+																		.created_at
+																)}
 														</div>
 													</Link>
 												</li>
@@ -447,9 +450,11 @@ export default class Root extends PureComponent {
 															</div>
 															<div className="projectLiDate">
 																{item.last_article &&
-																	item
-																		.last_article
-																		.created_at}
+																	getLocalTime(
+																		item
+																			.last_article
+																			.created_at
+																	)}
 															</div>
 														</Link>
 													</li>

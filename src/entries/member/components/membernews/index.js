@@ -1,6 +1,7 @@
 import React, { PureComponent } from "react";
 import { I18n, Trans } from "react-i18next";
 import { Link } from "react-router-dom";
+import { getLocalTime } from "../../../../utils/util";
 import { Pagination } from "antd";
 import "./index.less";
 class MemberNews extends PureComponent {
@@ -84,11 +85,16 @@ class MemberNews extends PureComponent {
 													</div>
 													<div className="info ui center">
 														<div className="f1 time">
-															{item.created_at}
+															{getLocalTime(
+																item.created_at
+															)}
 														</div>
 														{item.is_sole && (
 															<div className="tag">
-																原创
+																{t(
+																	"icon.original",
+																	lng
+																)}
 															</div>
 														)}
 													</div>
