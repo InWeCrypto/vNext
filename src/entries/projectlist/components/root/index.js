@@ -759,6 +759,74 @@ export default class Root extends PureComponent {
 														}
 													)}
 											</ul>
+											{index == 0 &&
+												!(
+													project &&
+													project.data &&
+													project.data.length > 0
+												) &&
+												IsTouchDevice && (
+													<div
+														className={
+															IsTouchDevice
+																? "nodata-box Center"
+																: "nodata-box"
+														}
+													>
+														{t("nodata", lng)}
+													</div>
+												)}
+											{index == 1 &&
+												!(
+													project2 &&
+													project2.data &&
+													project2.data.length > 0
+												) &&
+												IsTouchDevice && (
+													<div
+														className={
+															IsTouchDevice
+																? "nodata-box Center"
+																: "nodata-box"
+														}
+													>
+														{t("nodata", lng)}
+													</div>
+												)}
+											{index == 2 &&
+												!(
+													project3 &&
+													project3.data &&
+													project3.data.length > 0
+												) &&
+												IsTouchDevice && (
+													<div
+														className={
+															IsTouchDevice
+																? "nodata-box Center"
+																: "nodata-box"
+														}
+													>
+														{t("nodata", lng)}
+													</div>
+												)}
+											{index == 3 &&
+												!(
+													project4 &&
+													project4.data &&
+													project4.data.length > 0
+												) &&
+												IsTouchDevice && (
+													<div
+														className={
+															IsTouchDevice
+																? "nodata-box Center"
+																: "nodata-box"
+														}
+													>
+														{t("nodata", lng)}
+													</div>
+												)}
 											<div className="projectListConChildMore m-hide">
 												<Link
 													to={{

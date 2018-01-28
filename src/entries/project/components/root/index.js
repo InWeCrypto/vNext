@@ -513,16 +513,34 @@ export default class Root extends PureComponent {
 												);
 											})}
 									</ul>
-									<Link
-										to={{
-											pathname: "/projectlist",
-											search:
-												"?type=" + this.state.curType
-										}}
-										className="viewAllProject ui center"
-									>
-										<span>{t("project.more", lng)}</span>
-									</Link>
+									{project &&
+									project.data &&
+									project.data.length > 0 ? (
+										<Link
+											to={{
+												pathname: "/projectlist",
+												search:
+													"?type=" +
+													this.state.curType
+											}}
+											className="viewAllProject ui center"
+										>
+											<span>
+												{t("project.more", lng)}
+											</span>
+										</Link>
+									) : (
+										<div
+											className={
+												IsTouchDevice
+													? "nodata-box Center"
+													: "nodata-box"
+											}
+										>
+											{t("nodata", lng)}
+										</div>
+									)}
+
 									{showArrow == "left" && (
 										<span
 											className="projectSpanLeft"

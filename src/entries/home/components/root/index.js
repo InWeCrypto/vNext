@@ -291,6 +291,7 @@ export default class Root extends PureComponent {
 																	}
 																>
 																	<Link
+																		class="sliderBlockA"
 																		to={{
 																			pathname:
 																				"/newsdetail",
