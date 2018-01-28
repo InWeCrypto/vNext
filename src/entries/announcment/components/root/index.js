@@ -213,7 +213,7 @@ export default class Root extends PureComponent {
 												announcment.data.length > 0 &&
 												announcment.data.map(
 													(item, index) => {
-														if (index % 2 == 0) {
+														if (index % 2 == 1) {
 															return null;
 														}
 														return (
@@ -262,7 +262,7 @@ export default class Root extends PureComponent {
 												announcment.data.length > 0 &&
 												announcment.data.map(
 													(item, index) => {
-														if (index % 2 == 1) {
+														if (index % 2 == 0) {
 															return null;
 														}
 														return (
