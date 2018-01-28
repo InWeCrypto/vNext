@@ -38,11 +38,16 @@ class ProjectDetailInfo extends PureComponent {
 	initPage() {
 		let id = this.props.projectDynamic.data[0].id;
 		this.projectDynamicList(id, 1);
-		this.cancelProjectDot();
+		if (
+			this.props.userInfo &&
+			this.props.projectDetail.category_user &&
+			this.props.projectDetail.category_user.is_favorite_dot
+		) {
+			this.cancelProjectDot();
+		}
 	}
 	cancelProjectDot() {
 		// 取消项目红点
-		console.log(this);
 		this.props.unProjectDot({
 			c_id: this.props.projectDetail.id
 		});
