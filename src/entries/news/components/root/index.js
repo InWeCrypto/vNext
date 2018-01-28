@@ -376,7 +376,7 @@ export default class Root extends PureComponent {
 													pathname: ""
 												}}
 											>
-												<span className="nums m-hide">
+												<span className="nums readMoreUnderLine m-hide">
 													read more
 												</span>
 											</Link>
@@ -548,11 +548,15 @@ export default class Root extends PureComponent {
 											<span className="title">
 												{t("news.ceefax", lng)}
 											</span>
-											<span className="nums m-hide">
-												{newsImg.current_page}/{
-													newsImg.last_page
-												}
-											</span>
+											<Link
+												to={{
+													pathname: ""
+												}}
+											>
+												<span className="nums readMoreUnderLine m-hide">
+													read more
+												</span>
+											</Link>
 										</p>
 									</div>
 									<div className="newsBoxModCon ui center">
@@ -739,11 +743,15 @@ export default class Root extends PureComponent {
 											<span className="title">
 												{t("news.videoTitle", lng)}
 											</span>
-											<span className="nums m-hide">
-												{newsVideo.current_page}/{
-													newsVideo.last_page
-												}
-											</span>
+											<Link
+												to={{
+													pathname: ""
+												}}
+											>
+												<span className="nums readMoreUnderLine m-hide">
+													read more
+												</span>
+											</Link>
 										</p>
 									</div>
 									<div className="newsBoxModCon ui center ">
