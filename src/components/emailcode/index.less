@@ -1,0 +1,98 @@
+@import "../../assets/less/basestyle.less";
+.emailcode-box {
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 10;
+	.emailcode-bg {
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		background: rgba(0, 0, 0, 0.7);
+	}
+	.emailcode-content {
+		position: relative;
+		width: 100%;
+		height: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	.emailcode-container {
+		background: #fff;
+		border-radius: 0.04rem;
+		position: relative;
+		padding: 0 0.2rem;
+		width: 4.6rem;
+		box-sizing: border-box;
+		overflow: hidden;
+		.icon-close {
+			position: absolute;
+			right: 0.1rem;
+			top: 0.1rem;
+			cursor: pointer;
+		}
+		.emailcode-title {
+			padding: 0.3rem 0;
+			font-size: 0.2rem;
+			text-align: center;
+		}
+		.emailcode-send {
+		}
+		.orange {
+			color: @orange;
+		}
+		.text-under {
+			text-decoration: underline @orange;
+			cursor: pointer;
+		}
+		.emailcode-input {
+			padding: 0.1rem;
+			box-sizing: border-box;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			.code-item {
+				height: 0.5rem;
+				width: 0.44rem;
+				border-radius: 0.04rem;
+				background: #f7f7f7;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				margin: 0.1rem;
+				box-sizing: border-box;
+			}
+			.code-item.cur {
+				box-shadow: 0 0 10px @orange;
+			}
+		}
+		.emailcode-btn {
+			padding: 0.08rem 0 0.2rem 0;
+			text-align: center;
+			.emailsure {
+				border-radius: 0.04rem;
+				background: #008f2e;
+				display: inline-block;
+				width: 3.3rem;
+				padding: 0.08rem 0;
+				color: #fff;
+				cursor: pointer;
+			}
+		}
+		.emailcode-error {
+			padding-bottom: 0.2rem;
+			text-align: center;
+			font-size: 0.12rem;
+			color: @orange;
+		}
+		.emailcode-input-item {
+			position: fixed;
+			transform: translate3d(-10000px, 0, 0);
+		}
+	}
+}

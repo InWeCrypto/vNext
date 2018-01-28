@@ -1,0 +1,62 @@
+@import "../../../../assets/less/basestyle.less";
+.member-message {
+	padding: 0.3rem;
+	box-sizing: border-box;
+	height: 100%;
+	.member-group {
+		padding: 0.1rem 0;
+		border-bottom: 0.01rem solid #ececec;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		cursor: pointer;
+		.message-icon {
+			width: 0.34rem;
+			height: 0.34rem;
+			background: @orange;
+			border-radius: 50%;
+			position: relative;
+			margin-right: 0.2rem;
+			.icon-circle {
+				position: absolute;
+				right: 0.01rem;
+				top: 0.01rem;
+				z-index: 2;
+				display: block;
+			}
+		}
+		.message-text {
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+			min-width: 0;
+			width: 100%;
+			font-size: 0.16rem;
+		}
+		.time {
+			font-size: 0.12rem;
+			color: #acacac;
+			margin-left: 0.1rem;
+		}
+		.icon-message {
+			background: url("../../../../assets/images/message.png") left top
+				no-repeat;
+			width: 0.16rem;
+			height: 0.16rem;
+			background-size: 100% 100%;
+			display: inline-block;
+		}
+		.icon-circle {
+			width: 0.06rem;
+			height: 0.06rem;
+			display: block;
+			border-radius: 50%;
+			border: 0.01rem solid #fff;
+			background: #ff0d0d;
+		}
+	}
+	.pagation-box {
+		padding: 0.1rem 0.1rem 0.1rem 0;
+		text-align: right;
+	}
+}

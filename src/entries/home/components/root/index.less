@@ -1,0 +1,559 @@
+@import "~slick-carousel/slick/slick.css";
+@import "~slick-carousel/slick/slick-theme.css";
+* {
+	min-height: 0;
+	min-width: 0;
+}
+.top-text {
+	text-align: center;
+}
+.main {
+	display: flex;
+}
+.left-menus {
+	width: 2rem;
+	.left-menu-home {
+		margin-top: -1.04rem;
+	}
+}
+.homeBox {
+	padding: 0.1rem 0;
+	.homeBoxList {
+		padding: 0.3rem;
+		border-left: 0.01rem solid #ececec;
+		box-sizing: border-box;
+		flex-direction: column;
+		&:first-child {
+			border-left: 0;
+			padding-left: 0;
+		}
+		.homeBoxTitle {
+			display: block;
+			max-height: 0.84rem;
+			line-height: 0.42rem;
+			font-size: 0.3rem;
+			color: #333;
+			font-weight: 200;
+			overflow: hidden;
+			display: -webkit-box;
+			-webkit-box-orient: vertical;
+			-webkit-line-clamp: 2;
+			flex-shrink: 0;
+			&:hover {
+				color: #ff571f;
+			}
+		}
+
+		.homeBoxReadMore {
+			width: 100%;
+			margin-top: 0.2rem;
+			height: 0.14rem;
+			.readMore {
+				float: right;
+				line-height: 0.24rem;
+				color: #dedede;
+				font-size: 0.12rem;
+			}
+			.readMoreImg {
+				float: right;
+				width: 0.1rem;
+				height: 0.1rem;
+				// background: url("../../../../assets/images/home_readmore.png")
+				// 	no-repeat center;
+				background-size: 0.1rem;
+				margin: 0.02rem 0.05rem 0.02rem 0;
+			}
+		}
+		&.homeBoxArticle {
+			width: 3.24rem;
+			.homeBoxTitle {
+				height: 0.42rem;
+			}
+			.articleSlider {
+				height: 3.3rem;
+				.articleSlide {
+					&.cur {
+						z-index: 1;
+					}
+					&:hover {
+						.homeBoxTitle {
+							color: #ff571f;
+						}
+						.homeBoxArticleDesc {
+							color: #0a9234;
+						}
+					}
+				}
+			}
+			.homeBoxArticleImg {
+				width: 100%;
+				text-align: center;
+				margin: 0.3rem auto 0.2rem;
+				overflow: hidden;
+				text-align: center;
+				img {
+					// max-width: 100%;
+					margin: 0 auto;
+				}
+			}
+			.homeBoxArticleDesc {
+				display: block;
+				height: 0.44rem;
+				line-height: 0.22rem;
+				font-size: 0.16rem;
+				color: #262626;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				display: -webkit-box;
+				-webkit-box-orient: vertical;
+				-webkit-line-clamp: 2;
+				flex-shrink: 0;
+			}
+			.homeBoxArticleBtn {
+				width: 100%;
+				height: 16px;
+				margin-top: 0.4rem;
+				span {
+					float: right;
+					width: 16px;
+					height: 16px;
+					border-radius: 50%;
+					background-color: rgba(222, 222, 222, 1);
+					&.more {
+						background-color: rgba(255, 87, 31, 1);
+					}
+					&.left {
+						margin-right: 0.1rem;
+						b {
+							display: block;
+							width: 6px;
+							height: 8px;
+							background: url("../../../../assets/images/home_left.png")
+								no-repeat center;
+							background-size: 100%;
+						}
+					}
+					&.right b {
+						display: block;
+						width: 6px;
+						height: 8px;
+						background: url("../../../../assets/images/home_right.png")
+							no-repeat center;
+						background-size: 100%;
+					}
+				}
+			}
+		}
+		&.homeBoxNews {
+			width: 2.48rem;
+			.homeBoxNewsAll:hover {
+				.homeBoxTitle {
+					color: #ff571f;
+				}
+			}
+			.homeBoxNewsUl {
+				width: 100%;
+				margin: 0.3rem auto 0.2rem;
+				overflow: hidden;
+				li {
+					width: 100%;
+					max-height: 0.44rem;
+					overflow: hidden;
+					margin-top: 0.2rem;
+					&:first-child {
+						margin-top: 0rem;
+					}
+					a {
+						color: #333;
+						&:hover {
+							color: #0a9234;
+						}
+					}
+					p {
+						line-height: 0.22rem;
+						// color: rgba(51, 51, 51, 1);
+						font-size: 0.16rem;
+						overflow: hidden;
+						display: -webkit-box;
+						-webkit-box-orient: vertical;
+						-webkit-line-clamp: 2;
+						color: #333;
+						&:hover {
+							color: #0a9234;
+						}
+					}
+				}
+			}
+		}
+		&.homeBoxCandy {
+			width: 2.48rem;
+			padding: 0.3rem 0rem;
+			flex-shrink: 0;
+			.homeBoxCandyTop {
+				width: 100%;
+				// margin: 0.3rem auto 0rem;
+				padding: 0 0.3rem 0rem;
+				overflow: hidden;
+				box-sizing: border-box;
+				// padding-bottom: 0.2rem;
+				overflow: hidden;
+				&:hover {
+					.homeBoxTitle {
+						color: #ff571f;
+					}
+				}
+				.homeBoxCandyTopAll {
+					border-bottom: 1px solid #ececec;
+					padding-bottom: 0.2rem;
+					p.homeCandyDate {
+						width: 100%;
+						height: 0.42rem;
+						font-size: 0.12rem;
+						color: #262626;
+						b {
+							font-size: 0.3rem;
+							color: #ff2800;
+							line-height: 0.42rem;
+						}
+					}
+					span.homeCandySpan {
+						display: block;
+						width: 100%;
+						height: 0.22rem;
+						font-size: 0.16rem;
+						color: rgba(51, 51, 51, 1);
+						line-height: 0.22rem;
+						margin-top: 0.2rem;
+						&:hover {
+							color: #0a9234;
+						}
+					}
+				}
+			}
+			.homeInweWallet {
+				width: 100%;
+				padding-top: 0.3rem;
+				&.homeInweWallet.one {
+					box-sizing: border-box;
+					padding: 0.3rem 0.3rem 0;
+				}
+				.walletLf,
+				.walletRt {
+					visibility: hidden;
+					width: 0.3rem;
+					-webkit-flex-shrink: 0;
+					-ms-flex-negative: 0;
+					flex-shrink: 0;
+					span {
+						display: block;
+						width: 0.11rem;
+						height: 0.16rem;
+						background: url("../../../../assets/images/news_left.png")
+							no-repeat center;
+						background-size: 100%;
+						&.more {
+							background: url("../../../../assets/images/news_left_s.png")
+								no-repeat center;
+							background-size: 100%;
+						}
+					}
+				}
+				.walletRt span {
+					background: url("../../../../assets/images/news_right.png")
+						no-repeat center;
+					background-size: 100%;
+					&.more {
+						background: url("../../../../assets/images/news_right_s.png")
+							no-repeat center;
+						background-size: 100%;
+					}
+				}
+				.homeInweWalletUl {
+					width: 1.95rem;
+					height: 2.06rem;
+				}
+				img {
+					width: 100%;
+				}
+				&:hover .walletLf,
+				&:hover .walletRt {
+					visibility: visible;
+				}
+			}
+		}
+		&.homeBoxAnno {
+			width: 2.63rem;
+			margin-right: 0.6rem;
+			.homeBoxAnnoAll:hover {
+				.homeBoxTitle {
+					color: #ff571f;
+				}
+			}
+			.homeBoxReadMore {
+				padding-bottom: 0.2rem;
+			}
+			.homeBoxAnnoTop {
+				width: 100%;
+				&:hover .homeBoxTitle {
+					color: #ff571f;
+				}
+				.homeBoxAnnoList {
+					margin: 0.3rem auto 0rem;
+				}
+				.homeBoxAnnoTopP {
+					width: 100%;
+					max-height: 0.44rem;
+					line-height: 0.22rem;
+					font-size: 0.16rem;
+					color: #333;
+					display: -webkit-box;
+					-webkit-box-orient: vertical;
+					-webkit-line-clamp: 2;
+					margin-bottom: 0.2rem;
+					overflow: hidden;
+					:last-child {
+						margin-bottom: 0;
+					}
+					a {
+						color: #333;
+					}
+					&:hover {
+						color: #0a9234;
+					}
+				}
+			}
+			.homeBoxFllow {
+				width: 100%;
+				padding-top: 0.1rem;
+				border-top: 1px solid #ececec;
+				.homeBoxFllowAll {
+					&:hover {
+						.homeBoxTitle {
+							color: #ff571f;
+						}
+					}
+					.homeBoxFllowUl {
+						margin: 0.3rem auto 0.2rem;
+						overflow: hidden;
+						li {
+							width: 100%;
+							height: 0.22rem;
+							margin-bottom: 0.2rem;
+							cursor: pointer;
+							img {
+								width: 0.16rem;
+								height: 0.16rem;
+								margin-right: 0.12rem;
+							}
+							&:hover {
+								color: #0a9234;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+.mobile {
+	.m-container {
+		width: 100%;
+		max-width: 100%;
+		min-width: 100%;
+		.m-home-mainBox {
+			padding: 0;
+			flex-direction: column;
+
+			.homeBoxList {
+				box-sizing: border-box;
+				width: 6.9rem;
+				margin: 0 auto;
+				padding: 0;
+				border: 0;
+				border-top: 1px solid #ececec;
+				overflow: hidden;
+				.homeBoxTitle {
+					max-height: 5rem;
+
+					width: 6.9rem;
+					margin: 0 auto;
+					padding-top: 0.4rem;
+
+					font-size: 0.48rem;
+					line-height: 0.67rem;
+					font-weight: 200;
+					white-space: nowrap;
+					overflow: hidden;
+					text-overflow: ellipsis;
+					display: block;
+					-webkit-line-clamp: 1;
+				}
+				.homeBoxReadMore {
+					padding-top: 0.22rem;
+					padding-bottom: 0;
+					margin-bottom: 0.42rem;
+					.readMore {
+						font-size: 0.2rem;
+					}
+				}
+				&.homeBoxArticle {
+					padding-top: 0.14rem;
+					border: 0;
+					.articleSlider {
+						height: 6.7rem !important;
+						.sliderBlockA {
+							display: block;
+						}
+					}
+					.homeBoxTitle {
+						height: 0.67rem;
+						padding-bottom: 0;
+					}
+					.homeBoxArticleImg {
+						width: 6.9rem;
+						height: 4.28rem !important;
+						background: url("../../../../assets/images/holdimg.png")
+							no-repeat center center / cover;
+						margin: 0 auto;
+						margin-bottom: 0.24rem;
+						overflow: hidden;
+						img {
+							display: block;
+							width: 100%;
+							height: 100%;
+							object-fit: cover;
+						}
+					}
+					.homeBoxArticleDesc {
+						white-space: normal;
+						width: 6.9rem;
+						height: 0.8rem;
+						margin: 0 auto;
+						font-size: 0.28rem;
+						line-height: 0.4rem;
+						max-height: 0.78rem;
+						margin-bottom: 0.78rem;
+						overflow: hidden;
+					}
+					.homeBoxArticleBtn {
+						display: none;
+					}
+				}
+				&.homeBoxNews {
+					.homeBoxNewsUl {
+						width: 6.9rem;
+						margin: 0 auto;
+						margin-top: 0.3rem;
+						overflow: hidden;
+						li {
+							width: 6.9rem;
+							margin: 0;
+							margin-bottom: 0.3rem;
+							max-height: 0.78rem;
+
+							p {
+								font-size: 0.28rem;
+								line-height: 0.4rem;
+								overflow: hidden;
+								text-overflow: ellipsis;
+								display: -webkit-box;
+								-webkit-box-orient: vertical;
+								-webkit-line-clamp: 2;
+								flex-shrink: 0;
+							}
+						}
+					}
+				}
+				&.homeBoxCandy {
+					.homeBoxTitle {
+						padding-left: 0;
+					}
+					.homeBoxCandyTopAll {
+						border-bottom: 0;
+					}
+					.homeBoxCandyTop {
+						border-bottom: 0;
+						margin-top: 0.15rem;
+						padding: 0;
+						padding-bottom: 0.1rem;
+						.homeCandyDate {
+							padding-bottom: 0.2rem;
+							font-size: 0.2rem;
+							b {
+								font-size: 0.4rem;
+								line-height: 0.56rem;
+							}
+						}
+						.homeCandySpan {
+							height: 0.4rem;
+							margin-bottom: 0.3rem;
+							font-size: 0.28rem;
+							line-height: 0.4rem;
+						}
+					}
+				}
+				&.homeBoxAnno {
+					border-bottom: 1px solid #ececec;
+					.homeBoxAnnoTop {
+						padding: 0;
+						margin: 0;
+						border: 0;
+						.homeBoxAnnoList {
+							margin-top: 0.3rem;
+						}
+						.homeBoxAnnoTopP {
+							margin: 0;
+							margin-bottom: 0.3rem;
+							height: 0.48rem;
+							font-size: 0.28rem;
+							line-height: 0.4rem;
+							overflow: hidden;
+							text-overflow: ellipsis;
+							white-space: nowrap;
+						}
+					}
+				}
+				&.homeBoxWallet {
+					border-top: 0;
+					width: 7.5rem;
+					height: 3.92rem;
+					overflow: hidden;
+					margin: 0 auto;
+					.swiperBox {
+						margin: 0.4rem 0;
+						width: 100%;
+						overflow: scroll;
+						height: 2.82rem;
+						-webkit-overflow-scrolling: touch;
+						.walletUl {
+							padding: 0 0.19rem;
+							height: 2.82rem;
+							overflow: hidden;
+							.walletImg {
+								float: left;
+								margin: 0 0.19rem;
+								width: 4.6rem;
+								height: 100%;
+								background: url("../../../../assets/images/holdimg.png")
+									no-repeat center center / cover;
+								overflow: hidden;
+								img {
+									display: block;
+									height: 100%;
+									width: 100%;
+									object-fit: cover;
+								}
+							}
+						}
+					}
+
+					.swiperBox::-webkit-scrollbar {
+						height: 0;
+						width: 0;
+					}
+				}
+			}
+		}
+	}
+}

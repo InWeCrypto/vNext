@@ -1,0 +1,68 @@
+.member-news {
+	height: 100%;
+	display: flex;
+	flex-flow: column;
+	justify-content: center;
+	align-items: center;
+	.pagination-box {
+		text-align: right;
+		padding: 0.1rem 0.3rem 0.1rem 0;
+		box-sizing: border-box;
+		height: 0.55rem;
+		width: 100%;
+	}
+	.quotation-list {
+		box-sizing: border-box;
+		padding: 0.5rem 0.3rem 0 0.3rem;
+	}
+	.membernews-list {
+		display: flex;
+		flex-wrap: wrap;
+	}
+	.membernews-group {
+		width: 25%;
+		box-sizing: border-box;
+		padding: 0.1rem;
+	}
+	.membernews-item {
+		display: inline-block;
+		box-sizing: border-box;
+		border: 0.01rem solid #f2eeee;
+		display: flex;
+		flex-flow: column;
+		width: 100%;
+		height: 100%;
+		box-sizing: border-box;
+		.img {
+			width: 100%;
+			height: 60%;
+			flex: 1;
+			img {
+				width: 100%;
+				height: 100%;
+			}
+		}
+		.text-box {
+			padding: 0.05rem;
+			.title {
+				font-size: 0.16rem;
+				font-weight: 600;
+				height: 0.5rem;
+				overflow: hidden;
+				color: #000;
+			}
+			.time {
+				font-size: 0.12rem;
+				color: #c9c6c6;
+			}
+			.tag {
+				box-sizing: border-box;
+				padding: 0.01rem 0.05rem;
+				color: #a1c7b5;
+				border: 1px solid #a1c7b5;
+				border-radius: 0.05rem;
+				font-size: 0.12rem;
+			}
+		}
+	}
+}

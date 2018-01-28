@@ -1,0 +1,24 @@
+@import "../../../../assets/less/basestyle.less";
+.membernav-box {
+	border-left: 0.01rem solid #f0f0f0;
+	height: 100%;
+	box-sizing: border-box;
+	padding-left: 0.2rem;
+	.nav-item {
+		padding: 0.8rem 0 0.16rem 0;
+		width: 1.76rem;
+		border-bottom: 0.01rem solid #f0f0f0;
+		font-size: 0.16rem;
+		color: #333333;
+		cursor: pointer;
+		display: block;
+		text-decoration: none;
+		transition: all 0.3s ease-in-out;
+		&:hover {
+			color: #ff5e0d;
+		}
+	}
+	.nav-item.cur {
+		color: @orange;
+	}
+}

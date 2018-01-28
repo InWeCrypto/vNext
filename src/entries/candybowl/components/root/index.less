@@ -1,0 +1,169 @@
+@import "../../../../assets/less/basestyle.less";
+.main-box {
+	align-items: center;
+	.candy-left {
+		height: 100%;
+		margin-right: 1rem;
+	}
+	.candy-calendar {
+		max-width: 100%;
+
+		.must-read {
+			border-top: 0.01rem solid #ececec;
+			text-align: center;
+			color: #006f0b;
+			padding: 0.2rem 0;
+			font-size: 0.16rem;
+			span {
+				cursor: pointer;
+				color: #006f0b;
+				font-size: 0.18rem;
+			}
+			&:hover span {
+				text-decoration: underline #006f0b;
+			}
+		}
+	}
+	.data-box {
+		height: 100%;
+		box-sizing: border-box;
+		padding: 0 0.5rem;
+		border-right: 0.01rem solid #ececec;
+		border-left: 0.01rem solid #ececec;
+		display: flex;
+		flex-flow: column;
+	}
+	.calendar-data-title {
+		padding: 0.1rem 0;
+	}
+	.icon-cadenlar {
+		background: url("../../../../assets/images/calendar.png") left top
+			no-repeat;
+		display: inline-block;
+		width: 0.28rem;
+		height: 0.28rem;
+		background-size: 100% 100%;
+		margin-right: 0.1rem;
+	}
+	.txt1 {
+		font-size: 0.2rem;
+		font-weight: 600;
+	}
+	.txt2 {
+		font-size: 0.12rem;
+	}
+	.calendar-text {
+		font-size: 0.2rem;
+		color: @orange;
+		font-weight: 600;
+	}
+	.switch {
+		width: 29px;
+		height: 16px;
+		box-sizing: border-box;
+		border: 0.01rem solid #cfcfcf;
+		border-radius: 0.03rem;
+		padding: 0 1px;
+		line-height: 12px;
+		cursor: pointer;
+		.switch-item {
+			transition: all 0.3s linear;
+			width: 12px;
+			height: 12px;
+			background: #cfcfcf;
+			display: inline-block;
+			vertical-align: middle;
+			margin: 0;
+			position: relative;
+			border-radius: 0.03rem;
+			left: 0;
+		}
+	}
+	.switch.open {
+		.switch-item {
+			background: @orange;
+			left: 0.14rem;
+		}
+	}
+	.data-group {
+		flex-flow: 1;
+		overflow: auto;
+		margin-top: 0.3rem;
+		.data-item {
+			padding: 0.15rem 0;
+			border-bottom: 0.01rem solid #ececec;
+			cursor: pointer;
+			.title {
+				font-size: 0.16rem;
+				margin-bottom: 0.03rem;
+			}
+			.content {
+				font-size: 0.14rem;
+			}
+		}
+	}
+}
+.mobile #mainBox {
+	display: block;
+	.candyBox {
+		display: block;
+		width: 6.9rem;
+		margin: 0 auto;
+		.candy-calendar {
+			.must-read {
+				border: 0;
+				line-height: 0.28rem;
+				font-size: 0.2rem;
+				padding: 0;
+			}
+		}
+		.m-todayBox {
+			margin-top: 0.77rem;
+			.data-box {
+				border: 0;
+				padding: 0;
+				width: 6.9rem;
+				.calendar-data-title {
+					padding: 0;
+					height: 0.37rem;
+					i.icon-cadenlar {
+						width: 0.28rem;
+						height: 0.28rem;
+					}
+					.calendar-text {
+						height: 0.37rem;
+						font-size: 0.26rem;
+						line-height: 0.37rem;
+					}
+					.txt1,
+					.txt2 {
+						font-size: 0.26rem;
+						line-height: 0.37rem;
+					}
+				}
+				.switch {
+					width: 0.38rem;
+					height: 0.2rem;
+					line-height: 0;
+					span {
+						margin-top: 0.04rem;
+						width: 0.12rem;
+						height: 0.12rem;
+					}
+				}
+				.data-group {
+					margin-top: 0.3rem;
+					margin-bottom: 1.5rem;
+					padding-bottom: 0.3rem;
+					width: 6.9rem;
+					font-size: 0.3rem;
+					line-height: 0.42rem;
+					border-bottom: 1px solid #ececec;
+					.noBorder {
+						border: 0 !important;
+					}
+				}
+			}
+		}
+	}
+}

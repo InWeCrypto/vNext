@@ -1,0 +1,300 @@
+.projectList {
+	padding: 0 0.83rem 0 0.915rem;
+	display: flex;
+	.projectListReturn {
+		width: 0.2rem;
+		margin-right: 0.11.5rem;
+		flex-shrink: 0;
+		span {
+			display: block;
+			width: 0.2rem;
+			height: 0.27rem;
+			background: url("../../../../assets/images/project_back.png")
+				no-repeat center;
+			background-size: 100%;
+		}
+	}
+	.projectListCon {
+		width: 100%;
+		.projectListConChild {
+			flex-grow: 1;
+			padding: 0 0.3rem;
+			border-right: 1px solid #ececec;
+			box-sizing: border-box;
+			.projectListConChildTitle {
+				width: 100%;
+				span {
+					display: block;
+					height: 0.42rem;
+					line-height: 0.42rem;
+					font-size: 0.3rem;
+					font-weight: 200;
+					color: #333;
+					padding: 0.25rem 0.3rem 0.1rem 0rem;
+					border-bottom: 1px solid #ececec;
+					box-sizing: content-box;
+				}
+			}
+			.projectListConChildUl {
+				width: 100%;
+				li {
+					width: 100%;
+					height: 1.06rem;
+					padding: 0.2rem 0.1rem;
+					box-sizing: border-box;
+					&:hover {
+						background-color: #f6f6f6;
+						& .projectListLiTopRight.nocollect {
+							background: url("../../../../assets/images/project_collect_ss.png")
+								no-repeat center center;
+							background-size: 100%;
+						}
+					}
+					.projectListLiTop {
+						width: 100%;
+						height: 0.4rem;
+						justify-content: space-between;
+						.projectListLiTopLeft {
+							// width: 288px;
+							.projectListImg {
+								width: 0.26rem;
+								height: 0.26rem;
+								margin-right: 0.06rem;
+								flex-shrink: 0;
+								position: relative;
+								img {
+									width: 100%;
+								}
+								&.newMsg:before {
+									content: "";
+									display: block;
+									width: 6px;
+									height: 6px;
+									background: rgba(255, 13, 13, 1);
+									border-radius: 50%;
+									position: absolute;
+									top: -3px;
+									right: -3px;
+								}
+							}
+							p {
+								flex: 1;
+								margin: 0;
+								span {
+									display: block;
+									font-size: 0.16rem;
+									color: #333;
+									height: 0.16rem;
+									line-height: 0.16rem;
+									font-weight: 200;
+								}
+								b {
+									display: block;
+									color: #333;
+									font-size: 0.12rem;
+									height: 0.16rem;
+									line-height: 0.12rem;
+									// margin-top: 0.13rem;
+									margin-left: 0.03rem;
+									font-weight: 200;
+								}
+							}
+						}
+						.projectListLiTopRight {
+							width: 0.16rem;
+							height: 0.16rem;
+							background: url("../../../../assets/images/project_collect.png")
+								no-repeat center center;
+							background-size: 100%;
+							flex-shrink: 0;
+							&.collect {
+								background: url("../../../../assets/images/project_collect_s.png")
+									no-repeat center center;
+								background-size: 100%;
+							}
+						}
+					}
+					.projectListLiCenter {
+						height: 0.2rem;
+						line-height: 0.2rem;
+						font-size: 14px;
+						margin-top: 4px;
+						.left {
+							color: rgba(201, 198, 198, 1);
+						}
+						.right {
+							color: rgba(76, 75, 75, 1);
+							span {
+								color: #289408;
+							}
+							&.downs {
+								span {
+									color: #d0021b;
+								}
+							}
+						}
+					}
+				}
+			}
+			.projectListConChildMore {
+				width: 100%;
+				text-align: center;
+				span {
+					// width: 100%;
+					display: inline-block;
+					height: 0.2rem;
+					line-height: 0.2rem;
+					font-size: 0.14rem;
+					color: #333;
+					margin: 0.18rem auto 0.45rem;
+					text-align: center;
+					padding-right: 0.15rem;
+					background: url("../../../../assets/images/project_bottom.png")
+						no-repeat right center;
+					background-size: 0.1rem 0.07rem;
+					transition: all 0.3s ease-in-out;
+					&:hover {
+						color: #ff571f;
+					}
+				}
+			}
+			&:first-child {
+				padding-left: 0rem;
+			}
+		}
+	}
+}
+.mobile #mainBox.projectList {
+	padding: 0;
+	width: 100%;
+	flex-direction: column;
+	.projectListConChild {
+		padding: 0;
+	}
+	.projectListNav {
+		width: 100%;
+		height: 0.9rem;
+		background: #f6f6f6;
+		.projectListNav-c {
+			width: 7.5rem;
+			height: 0.9rem;
+			background: #f6f6f6;
+			justify-content: space-around;
+			&.fixed {
+				position: fixed;
+				top: 0;
+				left: 0;
+				z-index: 10;
+			}
+			p {
+				margin: 0 0.3rem;
+				font-size: 0.28rem;
+				line-height: 0.32rem;
+				&.active {
+					a {
+						color: #0a9234;
+					}
+				}
+			}
+		}
+	}
+	.projectListConChildUl {
+		width: 6.9rem;
+		padding: 0;
+		margin: 0 auto;
+		li {
+			position: relative;
+			margin: 0 auto;
+			padding: 0;
+			width: 6.9rem;
+			height: 1.25rem;
+			border-bottom: 1px solid #ececec;
+			.projectListLiTop {
+				position: absolute;
+				left: 0;
+				top: 0;
+				z-index: 1;
+				display: block;
+				height: 100%;
+				width: 100%;
+				.projectListLiTopLeft {
+					display: block;
+					.projectListImg {
+						position: absolute;
+						left: 0;
+						top: 0.45rem;
+						width: 0.4rem;
+						height: 0.4rem;
+						img {
+							display: block;
+							width: 100%;
+							height: 100%;
+							object-fit: contain;
+						}
+					}
+					p {
+						overflow: visible;
+						span.ellitext {
+							position: absolute;
+							top: 0.44rem;
+							left: 0.6rem;
+							height: 0.42rem;
+							font-size: 0.3rem;
+							line-height: 0.42rem;
+							vertical-align: middle;
+							.industryText {
+								display: inline;
+								padding-left: 0.22rem;
+								font-size: 0.2rem;
+								line-height: 0.28rem;
+								color: #9b9b9b;
+								vertical-align: middle;
+							}
+						}
+						b.ellitext {
+							display: none;
+							position: absolute;
+							top: 0.74rem;
+							left: 0.6rem;
+							height: 0.2rem;
+							font-size: 0.14rem;
+							line-height: 0.2rem;
+						}
+					}
+				}
+			}
+			.projectListLiCenter {
+				position: absolute;
+				left: 0;
+				top: 0;
+				width: 100%;
+				height: 100%;
+				margin: 0;
+				.money {
+					position: absolute;
+					right: 1.92rem;
+					top: 0.41rem;
+					display: inline-block;
+					height: 0.48rem;
+					line-height: 0.48rem;
+					font-size: 0.34rem;
+				}
+				.precents {
+					position: absolute;
+					top: 0.33rem;
+					right: 0;
+					width: 1.6rem;
+					height: 0.6rem;
+					text-align: center;
+					line-height: 0.6rem;
+					color: #fff;
+					background: #0a9234;
+					border-radius: 0.04rem;
+					&.colorRed {
+						background: #d0021b;
+					}
+				}
+			}
+		}
+	}
+}

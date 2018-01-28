@@ -1,0 +1,484 @@
+@import "~slick-carousel/slick/slick.css";
+@import "~slick-carousel/slick/slick-theme.css";
+* {
+	min-height: 0;
+	min-width: 0;
+}
+.projectDetailGaiKuo {
+	.projectDetailCon1 {
+		width: 6.36rem;
+		padding-right: 0.5rem;
+		border-right: 1px solid #ececec;
+		.projectDetailConTop {
+			width: 100%;
+			justify-content: space-around;
+			.projectDetailConTopLeft {
+				flex: 1;
+				.projectDetailCenter1 {
+					width: 100%;
+					overflow: hidden;
+					.projectDetailImg {
+						float: left;
+						width: 0.26rem;
+						height: 0.26rem;
+						overflow: hidden;
+						img {
+							width: 100%;
+						}
+					}
+					span {
+						float: left;
+						height: 0.26rem;
+						font-size: 0.2rem;
+						color: rgba(51, 51, 51, 1);
+						line-height: 0.26rem;
+						margin-left: 0.1rem;
+					}
+					p {
+						float: left;
+						height: 0.14rem;
+						font-size: 0.12rem;
+						color: rgba(51, 51, 51, 1);
+						line-height: 0.14rem;
+						margin-left: 0.1rem;
+						margin-top: 0.08rem;
+					}
+				}
+			}
+			.projectDetailConTopRight {
+				width: 1.1rem;
+				height: 0.16rem;
+				flex-shrink: 0;
+			}
+		}
+		.projectDetailCon1Box {
+			width: 100%;
+			.gaiKuoMoney {
+				width: 100%;
+				height: 0.22rem;
+				font-size: 0.16rem;
+				line-height: 0.22rem;
+				margin: 0.24rem auto 0.14rem;
+				span {
+					float: left;
+					font-size: 0.2rem;
+					color: rgba(51, 51, 51, 1);
+				}
+				i {
+					float: left;
+					margin-left: 0.05rem;
+					color: rgba(43, 116, 0, 1);
+				}
+				b {
+					float: left;
+					width: 0.09rem;
+					height: 0.13rem;
+					margin: 0.045rem 0.05rem;
+					background: url("../../../../assets/images/up.png")
+						no-repeat 0 0;
+					background-size: 100%;
+				}
+				&.downs {
+					i {
+						color: #d0021b;
+					}
+					b {
+						background: url("../../../../assets/images/down.png")
+							no-repeat 0 0;
+						background-size: 100%;
+					}
+				}
+			}
+			.volume {
+				width: 100%;
+				height: 0.2rem;
+				font-size: 0.14rem;
+				color: rgba(172, 172, 172, 1);
+				line-height: 0.2rem;
+			}
+			table {
+				width: 100%;
+				margin-top: 0.2rem;
+				thead tr {
+					border-top: 1px solid #ececec;
+					border-bottom: 1px solid #ececec;
+					th {
+						height: 0.2rem;
+						line-height: 0.2rem;
+						font-size: 0.14rem;
+						color: rgba(51, 51, 51, 1);
+						padding: 0.05rem 0;
+						text-align: center;
+					}
+				}
+				tbody tr {
+					border-bottom: 1px solid #ececec;
+					td {
+						height: 0.16rem;
+						line-height: 0.16rem;
+						font-size: 0.14rem;
+						color: rgba(51, 51, 51, 1);
+						padding: 0.12rem 0;
+						text-align: center;
+					}
+				}
+			}
+			.gaikuoMarket {
+				width: 90%;
+				margin: 0 auto;
+				height: 0.9rem;
+				margin-bottom: 0.2rem;
+				.marketLf,
+				.marketRt {
+					width: 12px;
+					-webkit-flex-shrink: 0;
+					-ms-flex-negative: 0;
+					flex-shrink: 0;
+					span {
+						display: block;
+						width: 12px;
+						height: 16px;
+						background: url("../../../../assets/images/news_left.png")
+							no-repeat center;
+						background-size: 100%;
+					}
+				}
+				.marketLf.more span {
+					background: url("../../../../assets/images/news_left_s.png")
+						no-repeat center;
+					background-size: 100%;
+				}
+				.marketRt {
+					span {
+						background: url("../../../../assets/images/news_right.png")
+							no-repeat center;
+						background-size: 100%;
+					}
+					&.more span {
+						background: url("../../../../assets/images/news_right_s.png")
+							no-repeat center;
+						background-size: 100%;
+					}
+				}
+				.marketList {
+					width: 100%;
+					margin: 0 0.2rem;
+					overflow: hidden;
+					justify-content: space-between;
+					.marketListLi {
+						box-sizing: border-box;
+						width: 33%;
+						height: 0.9rem;
+						padding: 0 0.1rem;
+						span {
+							display: block;
+							height: 0.22rem;
+							font-size: 0.16rem;
+							color: rgba(51, 51, 51, 1);
+							line-height: 0.22rem;
+							margin-top: 0.1rem;
+						}
+						p {
+							display: block;
+							height: 0.16rem;
+							font-size: 0.12rem;
+							color: rgba(201, 198, 198, 1);
+							line-height: 0.16rem;
+							margin-top: 0.1rem;
+						}
+					}
+				}
+			}
+		}
+	}
+	.projectDetailCon2 {
+		width: 2.3rem;
+		padding: 0 0.3rem;
+		box-sizing: border-box;
+		border-right: 1px solid #ececec;
+		flex-shrink: 0;
+		.projectDetailCon2Box {
+			overflow: hidden;
+			.projectDetailCon2Title {
+				width: 100%;
+				height: 0.28rem;
+				font-size: 0.2rem;
+				font-family: PingFangSC-Thin;
+				color: rgba(51, 51, 51, 1);
+				line-height: 0.28rem;
+				margin: 0.2rem auto 0.1rem;
+				padding-bottom: 0.2rem;
+				border-bottom: 1px solid #f0f0f0;
+			}
+			p {
+				display: block;
+				height: 0.22rem;
+				font-size: 0.16rem;
+				color: rgba(51, 51, 51, 1);
+				line-height: 0.22rem;
+				margin-bottom: 0.1rem;
+
+				&.viewMore {
+					height: 0.14rem;
+					font-size: 0.12rem;
+					color: rgba(222, 222, 222, 1);
+					line-height: 0.14rem;
+					// padding-left: 0.15rem;
+					// background: url("../../../../assets/images/home_readmore.png")
+					// 	no-repeat 0 center;
+					background-size: 0.1rem;
+				}
+			}
+			p:hover {
+				color: #0a9234;
+			}
+			ul.shareList {
+				width: 100%;
+				margin-top: 0.1rem;
+				justify-content: flex-start;
+				flex-wrap: wrap;
+				li {
+					width: 0.26rem;
+					height: 0.26rem;
+					padding: 0.06rem;
+					box-sizing: border-box;
+					a {
+						width: 100%;
+						display: flex;
+						align-items: center;
+						img {
+							width: 100%;
+						}
+					}
+					&.tele {
+						background: url("../../../../assets/images/footer_tele.png")
+							no-repeat 0 center;
+						background-size: 100%;
+					}
+					&.wx {
+						background: url("../../../../assets/images/footer_wechat.png")
+							no-repeat 0 center;
+						background-size: 100%;
+					}
+					&.mail {
+						background: url("../../../../assets/images/footer_mail.png")
+							no-repeat 0 center;
+						background-size: 100%;
+					}
+				}
+			}
+		}
+	}
+	.charts-type {
+		box-sizing: border-box;
+		padding: 0.2rem 0 0 0;
+		margin-bottom: 0.05rem;
+		vertical-align: middle;
+		// font-size: 0.2rem;
+		.charts-btn {
+			margin: 0 0.05rem;
+			display: inline-block;
+			text-align: center;
+			padding: 0.04rem 0.05rem;
+			line-height: 10px;
+			cursor: pointer;
+			box-sizing: border-box;
+			.charts-text {
+				display: block;
+			}
+			.line {
+				height: 2px;
+				width: 10px;
+				display: inline-block;
+			}
+		}
+		.charts-btn.cur {
+			color: #0a9234;
+			.line {
+				background: #0a9234;
+			}
+		}
+	}
+	.charts-box {
+		overflow: hidden;
+		img {
+			width: 100%;
+			height: 100%;
+		}
+	}
+}
+.mobile #mainBox .projectDetailGaiKuo {
+	display: block;
+	.projectDetailCon1 {
+		padding: 0;
+		width: 7.5rem;
+		.projectDetailConTop {
+			position: relative;
+			width: 6.9rem;
+			height: 0.52rem;
+			margin: 0 auto;
+			margin-top: 0.26rem;
+			.projectDetailConTopLeft {
+				.projectDetailImg {
+					display: inline-block;
+					width: 0.52rem;
+					height: 0.52rem;
+					vertical-align: middle;
+					img {
+						display: block;
+						width: 100%;
+						height: 100%;
+						object-fit: contain;
+					}
+				}
+				span {
+					display: inline-block;
+					height: 0.52rem;
+					margin-left: 0.2rem;
+					vertical-align: middle;
+					line-height: 0.52rem;
+					font-size: 0.3rem;
+				}
+				p {
+					display: inline-block;
+					height: 0.52rem;
+					margin: 0.02rem;
+					margin-left: 0.2rem;
+					vertical-align: middle;
+					font-size: 0.2rem;
+					line-height: 0.52rem;
+					color: #9b9b9b;
+				}
+			}
+			.projectDetailConTopRight {
+				width: 1.34rem;
+				height: 0.52rem;
+			}
+		}
+		.projectDetailCon1Box {
+			width: 6.9rem;
+			margin: 0 auto;
+			.gaiKuoMoney {
+				margin-top: 0.2rem;
+				width: 100%;
+				height: 0.28rem;
+
+				span {
+					font-size: 0.24rem;
+					line-height: 0.28rem;
+				}
+				i {
+					font-size: 0.2rem;
+					line-height: 0.28rem;
+					color: #0a9234;
+				}
+				b {
+					width: 0.11rem;
+					height: 0.16rem;
+				}
+			}
+			.volume {
+				margin: 0 auto;
+				margin-top: 0.06rem;
+				width: 6.9rem;
+				height: 0.25rem;
+				line-height: 0.25rem;
+				font-size: 0.18rem;
+				color: #acacac;
+			}
+			.proDetTable {
+				width: 6.9rem;
+				margin: 0 auto;
+				margin-top: 0.26rem;
+				margin-bottom: 0.2rem;
+				ul {
+					border-top: 1px solid #efefef;
+					border-bottom: 1px solid #efefef;
+					width: 50%;
+					li {
+						box-sizing: border-box;
+						height: 0.48rem;
+						line-height: 0.48rem;
+						text-align: right;
+						overflow: hidden;
+						text-overflow: ellipsis;
+						font-size: 0.2rem;
+					}
+					&.proNameUl {
+						li {
+							text-align: left;
+							font-size: 0.2rem;
+							//border-right: 1px solid #ececec;
+						}
+					}
+				}
+			}
+		}
+	}
+	.projectDetailCon2 {
+		width: 6.9rem;
+		margin: 0 auto;
+		padding: 0;
+		border: 0;
+		.projectDetailCon2Box {
+			border-bottom: 1px solid #ececec;
+			.projectDetailCon2Title {
+				padding: 0;
+				margin-top: 0.4rem;
+				font-size: 0.48rem;
+				line-height: 0.67rem;
+				height: 0.67rem;
+				font-weight: 200;
+				border: 0;
+			}
+			p {
+				margin-top: 0.3rem;
+				line-height: 0.4rem;
+				font-size: 0.28rem;
+				height: 0.4rem;
+			}
+			p:last-child {
+				margin-bottom: 0.4rem;
+			}
+			p:hover {
+				color: #333;
+			}
+			.viewMore {
+				width: 1.2rem;
+				float: right;
+				text-align: right;
+				font-size: 0.14rem;
+			}
+		}
+	}
+	.shareList {
+		height: 0.28rem;
+		margin: 0.4rem 0;
+		justify-content: flex-start;
+		li {
+			width: 0.28rem;
+			height: 0.28rem;
+			padding: 0;
+			margin-right: 0.35rem;
+			a {
+				display: block;
+				height: 100%;
+				img {
+					display: block;
+					width: 100%;
+					height: 100%;
+					object-fit: contain;
+				}
+			}
+		}
+	}
+	.charts-box {
+		//height: auto !important;
+		img {
+			display: block;
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+	}
+}

@@ -1,0 +1,287 @@
+.gaikuo {
+	.gaikuoBox {
+		width: 100%;
+		position: relative;
+		ul.gaikuoUl {
+			width: 0.94rem;
+			margin: 0 auto;
+			justify-content: space-between;
+			li {
+				width: 0.16rem;
+				height: 0.16rem;
+				b {
+					display: block;
+					width: 0.16rem;
+					height: 0.16rem;
+				}
+				span {
+					display: none;
+					width: 24px;
+					height: 0.14rem;
+					line-height: 0.14rem;
+					margin-top: 0.04rem;
+					font-size: 0.12rem;
+					color: rgba(201, 198, 198, 1);
+					margin-left: -0.04rem;
+				}
+				&:hover span {
+					display: block;
+				}
+				&.gaikuoRemind {
+					b {
+						background: url("../../assets/images/gaikuo_remind.png")
+							right center no-repeat;
+						background-size: 100% 100%;
+					}
+					&:hover,
+					&.cur {
+						b {
+							background: url("../../assets/images/gaikuo_remind_s.png")
+								right center no-repeat;
+							background-size: 100% 100%;
+						}
+					}
+				}
+				&.gaikuoCollect {
+					b {
+						background: url("../../assets/images/gaikuo_collect.png")
+							right center no-repeat;
+						background-size: 100% 100%;
+					}
+					&:hover,
+					&.cur {
+						b {
+							background: url("../../assets/images/gaikuo_collect_s.png")
+								right center no-repeat;
+							background-size: 100% 100%;
+						}
+					}
+				}
+				&.gaikuoHome {
+					b {
+						background: url("../../assets/images/gaikuo_zhuye.png")
+							right center no-repeat;
+						background-size: 100% 100%;
+					}
+					&:hover,
+					&.cur {
+						b {
+							background: url("../../assets/images/gaikuo_zhuye_s.png")
+								right center no-repeat;
+							background-size: 100% 100%;
+						}
+					}
+				}
+				&.gaikuoShare {
+					b {
+						background: url("../../assets/images/zixun1_share.png")
+							right center no-repeat;
+						background-size: 100% 100%;
+					}
+					&:hover,
+					&.cur {
+						b {
+							background: url("../../assets/images/zixun1_share_s.png")
+								right center no-repeat;
+							background-size: 100% 100%;
+						}
+					}
+				}
+			}
+		}
+		.shareList {
+			position: absolute;
+			width: 100%;
+			height: 0.36rem;
+			background: rgba(51, 51, 51, 1);
+			border-radius: 0.04rem;
+			margin-top: 0.05rem;
+			justify-content: space-around;
+			li.wx {
+				width: 0.16rem;
+				height: 0.14rem;
+				background: url("../../assets/images/zixun1_wechat.png")
+					no-repeat 0 0;
+				background-size: 100%;
+			}
+			li.pyq {
+				width: 0.14rem;
+				height: 0.14rem;
+				background: url("../../assets/images/zixun1_pengyouquan.png")
+					no-repeat 0 0;
+				background-size: 100%;
+			}
+			li.tele {
+				width: 0.14rem;
+				height: 0.14rem;
+				background: url("../../assets/images/zixun1_telegram.png")
+					no-repeat 0 0;
+				background-size: 100%;
+			}
+			li.qq {
+				width: 0.12rem;
+				height: 0.14rem;
+				background: url("../../assets/images/zixun1_qq.png") no-repeat 0
+					0;
+				background-size: 100%;
+			}
+		}
+	}
+	.remindBox {
+		position: fixed;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		z-index: 5;
+	}
+	.remind-bg {
+		position: absolute;
+		left: 0;
+		top: 0;
+		height: 100%;
+		width: 100%;
+		background: rgba(0, 0, 0, 0.66);
+	}
+	.remind-content {
+		width: 100%;
+		height: 100%;
+		position: relative;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+	.remind-in {
+		background: #fff;
+		width: 5.5rem;
+		border-radius: 0.04rem;
+		position: relative;
+		.icon-close {
+			position: absolute;
+			right: 0.2rem;
+			top: 0.2rem;
+		}
+		.remind-in-content {
+			text-align: center;
+			box-sizing: border-box;
+			padding: 0 0.7rem 0.39rem;
+		}
+		.remind-in-title {
+			font-size: 0.2rem;
+			font-family: "Microsoft YaHei", "impact";
+			// font-weight: 600;
+			color: #333;
+			padding: 0.3rem 0 0.25rem 0;
+		}
+		.remind-in-item {
+			font-size: 0.16rem;
+			position: relative;
+			padding-bottom: 0.68rem;
+			.item-name {
+				width: 100%;
+				height: 0.28rem;
+				line-height: 0.28rem;
+				display: flex;
+				align-items: center;
+				font-size: 0.2rem;
+				color: #333;
+				img {
+					width: 0.24rem;
+					height: 0.24rem;
+					margin-right: 0.08rem;
+				}
+			}
+			.item-input {
+				margin-top: 0.3rem;
+				display: flex;
+				border-bottom: 1px solid #ececec;
+				.remindAbove,
+				.remindBelow {
+					width: 50%;
+					padding-right: 0.16rem;
+					padding-bottom: 0.06rem;
+					span {
+						display: block;
+						width: 100%;
+						height: 0.18rem;
+						font-size: 0.16rem;
+						color: rgba(198, 189, 189, 1);
+						line-height: 0.22rem;
+						text-align: left;
+						margin-bottom: 0.1rem;
+					}
+					.remindInput {
+						width: 100%;
+						display: flex;
+						align-items: center;
+						font-size: 0.2rem;
+						line-height: 0.22rem;
+						b {
+							display: block;
+							color: rgba(51, 51, 51, 1);
+							height: 0.22rem;
+							font-weight: 400;
+						}
+						input {
+							width: 100%;
+							border: none;
+							outline: none;
+							box-shadow: none;
+							color: #ff2800;
+							height: 0.22rem;
+							margin-left: 0.03rem;
+						}
+					}
+				}
+				.remindAbove {
+					border-right: 1px solid #ececec;
+				}
+				.remindBelow {
+					padding-left: 0.16rem;
+				}
+			}
+		}
+		.remind-in-btn {
+			width: 100%;
+			height: 0.4rem;
+			background: #fff;
+			display: flex;
+			justify-content: space-around;
+			span {
+				display: block;
+				width: 1rem;
+				height: 0.4rem;
+				line-height: 0.4rem;
+				color: rgba(255, 255, 255, 1);
+				background: rgba(0, 143, 46, 1);
+				border-radius: 0.04rem;
+				cursor: pointer;
+			}
+			span.remindCancel {
+				background: #fff;
+				color: #acacac;
+			}
+		}
+	}
+}
+.mobile {
+	.m-shareIcon {
+		display: flex;
+		align-items: center;
+		height: 0.52rem;
+		margin: 0;
+		div {
+			width: 0.3rem;
+			height: 0.3rem;
+			margin-left: 0.2rem;
+			&.m-start {
+				background: url("../../assets/images/gaikuo_collect.png")
+					no-repeat center center / contain;
+			}
+			&.m-share {
+				background: url("../../assets/images/zixun1_share.png")
+					no-repeat center center / contain;
+			}
+		}
+	}
+}
