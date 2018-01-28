@@ -213,7 +213,7 @@ export default class Root extends PureComponent {
 										{t("nodata", lng)}
 									</div>
 								)}
-								<div className="Pagination-box">
+								<div className="Pagination-box m-hide">
 									{trading &&
 										trading.data && (
 											<Pagination
