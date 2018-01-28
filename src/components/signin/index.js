@@ -32,16 +32,28 @@ class SignIn extends PureComponent {
 	componentWillMount() {
 		this.setState({ btnType: 1 });
 	}
+	componentWillUpdate(nextProps, nextState) {
+		if (
+			nextState.email != this.state.email ||
+			nextState.password != this.state.password
+		) {
+			if (nextState.email.length >= 6 && nextState.password.length >= 6) {
+				this.setState({
+					btnType: 2
+				});
+			} else {
+				this.setState({
+					btnType: 1
+				});
+			}
+		}
+	}
 	setIconClass() {
 		return this.state.showPassword ? "icon-see show-text" : "icon-see";
 	}
 	inputChange(type, e) {
 		let set = {};
-		if (this.state.email.length >= 5 && this.state.password.length >= 5) {
-			set.btnType = 2;
-		} else {
-			set.btnType = 1;
-		}
+
 		set[type] = e.target.value;
 		this.setState({
 			...set

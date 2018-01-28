@@ -50,19 +50,33 @@ class Register extends PureComponent {
 			this.sendEmail.call(this);
 		}, 1000);
 	}
+	componentWillUpdate(nextProps, nextState) {
+		if (
+			nextState.code != this.state.code ||
+			nextState.email != this.state.email ||
+			nextState.password != this.state.password ||
+			nextState.password1 != this.state.password1
+		) {
+			if (
+				nextState.code.length == 6 &&
+				nextState.email.length >= 6 &&
+				nextState.password.length >= 6 &&
+				nextState.password1.length >= 6
+			) {
+				this.setState({
+					btnType: 2
+				});
+			} else {
+				this.setState({
+					btnType: 1
+				});
+			}
+		}
+	}
 	inputChange(type, e) {
 		const { code, email, password, password1 } = this.state;
 		let set = {};
-		if (
-			code.length == 4 &&
-			email.length >= 5 &&
-			password.length >= 5 &&
-			password1.length >= 5
-		) {
-			set.btnType = 2;
-		} else {
-			set.btnType = 1;
-		}
+
 		set[type] = e.target.value;
 		this.setState({
 			...set
