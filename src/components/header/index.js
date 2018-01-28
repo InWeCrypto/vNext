@@ -383,7 +383,11 @@ class Header extends PureComponent {
 								userInfo.token && (
 									<div className="heder-right">
 										<div
-											className="member"
+											className={
+												showMember
+													? "member memberBig"
+													: "member"
+											}
 											onClick={e => {
 												this.toggleMember(e);
 											}}
@@ -398,9 +402,15 @@ class Header extends PureComponent {
 												}
 											/>
 										</div>
-										{showMember && (
-											<div className="member-more">
-												{/* <Link
+
+										<div
+											className={
+												showMember
+													? "member-more showMember"
+													: "member-more"
+											}
+										>
+											{/* <Link
 													to={{
 														pathname: "/member",
 														search: "?type=message"
@@ -415,39 +425,34 @@ class Header extends PureComponent {
 														未读消息
 													</span>
 												</Link> */}
-												<Link
-													to={{
-														pathname: "/member",
-														search:
-															"?type=collection"
+											<Link
+												to={{
+													pathname: "/member",
+													search: "?type=collection"
+												}}
+												className="member-item"
+											>
+												<span className="icon-box">
+													<i className="icon-personal" />
+												</span>
+												<span className="member-itemtext">
+													{t("header.member", lng)}
+												</span>
+											</Link>
+											<div className="member-item">
+												<span className="icon-box">
+													<i className="icon-out" />
+												</span>
+												<span
+													onClick={e => {
+														this.loginOut(e);
 													}}
-													className="member-item"
+													className="member-itemtext"
 												>
-													<span className="icon-box">
-														<i className="icon-personal" />
-													</span>
-													<span className="member-itemtext">
-														{t(
-															"header.member",
-															lng
-														)}
-													</span>
-												</Link>
-												<div className="member-item">
-													<span className="icon-box">
-														<i className="icon-out" />
-													</span>
-													<span
-														onClick={e => {
-															this.loginOut(e);
-														}}
-														className="member-itemtext"
-													>
-														{t("header.quit", lng)}
-													</span>
-												</div>
+													{t("header.quit", lng)}
+												</span>
 											</div>
-										)}
+										</div>
 									</div>
 								)}
 
