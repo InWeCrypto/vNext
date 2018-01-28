@@ -1,6 +1,8 @@
 @import "../../../../assets/less/basestyle.less";
 .member-set {
 	text-align: center;
+	padding-right: 2rem;
+	box-sizing: border-box;
 	#ban_uploader {
 		display: inline-block;
 		width: 100%;
@@ -61,7 +63,6 @@
 				background: rgba(0, 0, 0, 0.5);
 				top: 0;
 				left: 0;
-
 				align-items: center;
 				justify-content: center;
 				width: 100%;
@@ -70,7 +71,7 @@
 				z-index: 12;
 				cursor: pointer;
 				img {
-					width: 50%;
+					width: 0.3rem;
 					height: auto;
 				}
 			}
@@ -90,8 +91,10 @@
 		.memberset-i {
 			width: 100%;
 			.key {
-				width: 0.7rem;
-				text-align: left;
+				width: 1.1rem;
+				/* text-align: left; */
+				text-align: right;
+				margin-right: 0.15rem;
 			}
 			.value {
 				text-align: left;
@@ -104,6 +107,7 @@
 				cursor: pointer;
 				margin-left: 0.1rem;
 				padding: 0.01rem 0.05rem;
+				font-size: 0.12rem;
 			}
 			.ctrlbtn.sure {
 				border-radius: 0.03rem;

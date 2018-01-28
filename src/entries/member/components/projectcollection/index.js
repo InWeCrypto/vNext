@@ -144,7 +144,15 @@ class ProjectCollection extends PureComponent {
 														</div>
 													</div>
 												)}
-												{!item.ico && <span>----</span>}
+												{!item.ico && (
+													<div
+														style={{
+															textAlign: "center"
+														}}
+													>
+														----
+													</div>
+												)}
 											</div>
 											<div className="project-type">
 												{item.type_name}
@@ -167,7 +175,13 @@ class ProjectCollection extends PureComponent {
 													</span>
 												)}
 												{!item.last_article && (
-													<span>----</span>
+													<div
+														style={{
+															textAlign: "center"
+														}}
+													>
+														----
+													</div>
 												)}
 											</div>
 										</div>

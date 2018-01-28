@@ -10,7 +10,8 @@ class ProjectDetailGaiKuo extends PureComponent {
 		super();
 		this.state = {
 			chartType: ["1m", "5m", "30m", "1h", "1w"],
-			chartTypeIndex: 0
+			chartTypeIndex: 0,
+			mounted: false
 		};
 	}
 	componentWillReceiveProps(nextProps, nextState) {
@@ -33,6 +34,9 @@ class ProjectDetailGaiKuo extends PureComponent {
 		}`;
 		this.props.getKdata(query).then(() => {
 			//this.viewEcharts(this.props.projectKdata);
+		});
+		this.setState({
+			mounted: true
 		});
 	}
 	setOptionData(data) {
@@ -59,14 +63,18 @@ class ProjectDetailGaiKuo extends PureComponent {
 		return `${year}/${month}/${day} ${hours}:${min}`;
 	}
 	viewEcharts(data) {
+		let chart = document.querySelector("#chartsBox");
+		if (!chart) {
+			return;
+		}
 		if (!data || data.length <= 0 || data[0].length <= 0) {
 			let img = document.createElement("img");
 			img.src = echartEmpty;
-			document.querySelector("#chartsBox").innerHTML = "";
-			document.querySelector("#chartsBox").append(img);
+			chart.innerHTML = "";
+			chart.append(img);
 			return;
 		}
-		let chart = document.querySelector("#chartsBox");
+
 		let myChart = echarts.init(chart);
 		var upColor = "#FF7E00";
 		var upBorderColor = "#FF7E00";
@@ -370,9 +378,7 @@ class ProjectDetailGaiKuo extends PureComponent {
 			getProjectCollect,
 			projectKdata
 		} = this.props;
-		if (projectKdata && projectKdata.length > 0) {
-			this.viewEcharts(projectKdata);
-		}
+		this.viewEcharts(projectKdata);
 		return (
 			<I18n>
 				{(t, { I18n }) => (

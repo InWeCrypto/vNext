@@ -153,6 +153,18 @@ export default class Root extends PureComponent {
 				}
 			});
 	}
+	chargeColor(val) {
+		let intVal = parseInt(val);
+		if (isNaN(intVal)) {
+			return false;
+		} else {
+			if (intVal <= 0) {
+				return false;
+			} else {
+				return true;
+			}
+		}
+	}
 	render() {
 		const { minH, activeInde } = this.state;
 		const {
@@ -403,19 +415,55 @@ export default class Root extends PureComponent {
 																				}
 																			</div>
 																			<div className="right m-hide">
-																				$90.00<span
+																				${item.ico &&
+																					item
+																						.ico
+																						.price_usd}
+																				<span
 																				>
-																					(-12.00%)
+																					({item.ico &&
+																						item
+																							.ico
+																							.percent_change_24h})
 																				</span>
 																			</div>
 																			{IsTouchDevice && (
 																				<div
+																					className={
+																						item.ico
+																							? ""
+																							: "m-hide"
+																					}
 																				>
-																					<div className="money">
-																						$90.00
+																					<div
+																						className={
+																							item.ico &&
+																							item
+																								.ico
+																								.price_usd
+																								? "money"
+																								: "money m-hide"
+																						}
+																					>
+																						${item.ico &&
+																							item
+																								.ico
+																								.price_usd}
 																					</div>
-																					<div className="precents">
-																						(-12.00%)
+																					<div
+																						className={
+																							this.chargeColor.bind(
+																								this,
+																								item.ico
+																							)
+																								? "precents colorRed"
+																								: "precents"
+																						}
+																					>
+																						({item.ico &&
+																							item
+																								.ico
+																								.percent_change_24h})
 																					</div>
 																				</div>
 																			)}

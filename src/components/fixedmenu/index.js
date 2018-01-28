@@ -15,6 +15,12 @@ class FixedMenu extends PureComponent {
 		};
 	}
 	componentDidMount() {
+		setTimeout(() => {
+			if (document.body.offsetWidth < 1280) {
+				document.getElementsByTagName("body")[0].style.paddingLeft =
+					"54px";
+			}
+		}, 0);
 		document.addEventListener(
 			"click",
 			() => {
@@ -24,6 +30,11 @@ class FixedMenu extends PureComponent {
 			},
 			false
 		);
+	}
+	componentWillUnmount() {
+		setTimeout(() => {
+			document.getElementsByTagName("body")[0].style.paddingLeft = "0";
+		}, 0);
 	}
 	setLanguageType(type) {
 		return type === this.props.lng ? "language-btn cur" : "language-btn";

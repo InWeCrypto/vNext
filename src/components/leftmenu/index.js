@@ -9,6 +9,7 @@ class LeftMenuBox extends PureComponent {
 		const newDate = new Date();
 		this.state = { showSearch: false };
 	}
+
 	closeSearch() {
 		this.setState({
 			showSearch: false

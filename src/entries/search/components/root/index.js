@@ -19,7 +19,8 @@ export default class Root extends PureComponent {
 			minH: "auto",
 			liH: "auto",
 			inputBg: false,
-			k: ""
+			k: "",
+			isEnter: ""
 		};
 	}
 	componentWillReceiveProps(nextProps) {
@@ -51,14 +52,15 @@ export default class Root extends PureComponent {
 		let q = getQuery(search);
 		q.k = window.decodeURI(q.k);
 		this.setState({
-			k: q.k || ""
+			k: q.k || "",
+			isEnter: q.k || ""
 		});
 		this.props.getSearch({
 			k: q.k
 		});
 	}
 	render() {
-		const { minH, liH, page, inputBg, k } = this.state;
+		const { minH, liH, page, inputBg, k, isEnter } = this.state;
 		const {
 			lng,
 			changeLng,
@@ -123,7 +125,7 @@ export default class Root extends PureComponent {
 							</div>
 
 							<div className="searchResult">
-								{IsTouchDevice && !k ? (
+								{IsTouchDevice && !isEnter ? (
 									<div className="letSearch">
 										<p className="title">
 											Everyone in the search

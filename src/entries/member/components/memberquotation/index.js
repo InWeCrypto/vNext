@@ -51,7 +51,6 @@ class MemberQuotation extends PureComponent {
 	changeFollow(item, e) {
 		e.stopPropagation();
 		e.nativeEvent.stopImmediatePropagation();
-		console.log(item);
 		this.setState({
 			isShowMind: true,
 			mindItem: item,
@@ -81,7 +80,10 @@ class MemberQuotation extends PureComponent {
 	}
 	remindUpdate() {
 		let item = this.state.mindItem;
-		if (this.state.belowVal > this.state.aboveVal) {
+		if (
+			parseFloat(this.state.belowVal, 10) >
+			parseFloat(this.state.aboveVal, 10)
+		) {
 			Msg.prompt(i18n.t("error.followError", this.props.lng));
 			return;
 		}
