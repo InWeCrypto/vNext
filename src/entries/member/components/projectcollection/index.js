@@ -175,15 +175,15 @@ class ProjectCollection extends PureComponent {
 														}
 													</span>
 												)}
-												{!item.last_article && (
+												{/* {!item.last_article && (
 													<div
 														style={{
 															textAlign: "center"
 														}}
 													>
-														----
+														-
 													</div>
-												)}
+												)} */}
 											</div>
 										</div>
 									);
