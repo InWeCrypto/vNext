@@ -1,10 +1,13 @@
 import "whatwg-fetch";
+import Promise from "promise-polyfill";
 import { requestUrl } from "../config/";
 import { getLocalItem } from "./util";
 import { setReduxUserInfo } from "../globalactions";
 const METHODS = ["get", "delete"];
 const BODY_METHODS = ["post", "put", "patch"];
-
+if (!Promise) {
+	window.Promise = Promise;
+}
 function checkStatus(response) {
 	if (response.status >= 200 && response.status < 300) {
 		return response;
