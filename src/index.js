@@ -16,6 +16,9 @@ remFun();
 if (IsTouchDevice) {
 	let body = document.getElementsByTagName("body")[0];
 	addClass(body, "mobile");
+} else {
+	let body = document.getElementsByTagName("body")[0];
+	addClass(body, "pc");
 }
 const history = createHistory();
 const store = storeFun(history);

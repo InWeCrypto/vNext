@@ -3,14 +3,13 @@ import { I18n, Trans } from "react-i18next";
 import { NavLink, Link } from "react-router-dom";
 import Slider from "react-slick";
 
-import { getMainMinHeight } from "../../../../utils/util";
+import { getMainMinHeight, getQuery } from "../../../../utils/util";
 import Header from "../../../../components/header";
 import Footer from "../../../../components/footer";
 import LeftMenu from "../../../../components/leftmenu";
 import FixedMenu from "../../../../components/fixedmenu";
 import Search from "../../../../components/search";
 import TopText from "../toptext/";
-import { getQuery } from "../../../../utils/util";
 
 import inweWallet from "../../../../assets/images/inwe_wallet.png";
 import walletHold from "../../../../assets/images/walletHold.png";

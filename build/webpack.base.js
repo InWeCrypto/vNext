@@ -110,8 +110,12 @@ var webpackConfig = {
 	},
 	plugins: [
 		new HtmlWebpackPlugin({
-			template: rootPath + "/index.html"
+			template: rootPath + "/index.html",
+			favicon: rootPath + "/assets/images/favicon.ico"
 		})
+		// new HtmlWebpackPlugin({
+
+		// })
 	]
 };
 

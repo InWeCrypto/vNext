@@ -1,6 +1,7 @@
 import React, { PureComponent } from "react";
 import { I18n, Trans } from "react-i18next";
 import { NavLink, Link } from "react-router-dom";
+import Slider from "react-slick";
 
 import {
 	getMainMinHeight,
@@ -18,9 +19,9 @@ export default class Root extends PureComponent {
 		super(props);
 		this.state = {
 			minH: "auto",
-			newsTextCur: 1,
-			newsImgCur: 1,
-			newsVideoCur: 1,
+			newsTextCur: 0,
+			newsImgCur: 0,
+			newsVideoCur: 0,
 			mounted: false
 		};
 	}
@@ -128,7 +129,7 @@ export default class Root extends PureComponent {
 		}
 	}
 	getNewsTextList(page) {
-		let per_page = 4;
+		let per_page = 8;
 		if (IsTouchDevice) {
 			per_page = 10;
 		}
@@ -140,6 +141,7 @@ export default class Root extends PureComponent {
 			})
 			.then(res => {
 				if (res.code === 4000) {
+					return;
 					this.setState({
 						newsTextCur: res.data.current_page
 					});
@@ -147,7 +149,7 @@ export default class Root extends PureComponent {
 			});
 	}
 	getNewsImgList(page) {
-		let per_page = 4;
+		let per_page = 8;
 		if (IsTouchDevice) {
 			per_page = 10;
 		}
@@ -159,6 +161,7 @@ export default class Root extends PureComponent {
 			})
 			.then(res => {
 				if (res.code === 4000) {
+					return;
 					this.setState({
 						newsImgCur: res.data.current_page
 					});
@@ -166,7 +169,7 @@ export default class Root extends PureComponent {
 			});
 	}
 	getNewsVideoList(page) {
-		let per_page = 4;
+		let per_page = 8;
 		if (IsTouchDevice) {
 			per_page = 10;
 		}
@@ -178,6 +181,7 @@ export default class Root extends PureComponent {
 			})
 			.then(res => {
 				if (res.code === 4000) {
+					return;
 					this.setState({
 						newsVideoCur: res.data.current_page
 					});
@@ -228,7 +232,55 @@ export default class Root extends PureComponent {
 	}
 
 	render() {
-		const { minH, liW, activeIndex } = this.state;
+		const settingsText = {
+			infinite: false,
+			arrows: false,
+			speed: 500,
+			touchMove: false,
+			slidesToShow: 4,
+			slidesToScroll: 4,
+			afterChange: function(index) {
+				console.log(this);
+				this.setState({
+					newsTextCur: index
+				});
+			}.bind(this)
+		};
+		const settingsImg = {
+			infinite: false,
+			arrows: false,
+			speed: 500,
+			touchMove: false,
+			slidesToShow: 4,
+			slidesToScroll: 4,
+			afterChange: function(index) {
+				console.log(this);
+				this.setState({
+					newsImgCur: index
+				});
+			}.bind(this)
+		};
+		const settingsVideo = {
+			infinite: false,
+			arrows: false,
+			speed: 500,
+			touchMove: false,
+			slidesToShow: 4,
+			slidesToScroll: 4,
+			afterChange: function(index) {
+				this.setState({
+					newsVideoCur: index
+				});
+			}.bind(this)
+		};
+		const {
+			minH,
+			liW,
+			activeIndex,
+			newsImgCur,
+			newsTextCur,
+			newsVideoCur
+		} = this.state;
 		const {
 			lng,
 			changeLng,
@@ -319,86 +371,165 @@ export default class Root extends PureComponent {
 											<span className="title">
 												{t("news.news", lng)}
 											</span>
-											<span className="nums m-hide">
-												{newsText.current_page}/{
-													newsText.last_page
-												}
-											</span>
+											<Link
+												to={{
+													pathname: ""
+												}}
+											>
+												<span className="nums m-hide">
+													read more
+												</span>
+											</Link>
 										</p>
 									</div>
 									<div className="newsBoxModCon ui center">
 										<span
 											className={
-												newsText.current_page > 1
+												newsTextCur > 0
 													? "leftArrow m-hide more"
 													: "leftArrow m-hide"
 											}
 											onClick={() => {
-												this.toggleNewsText(
-													"prev",
-													newsText.current_page
-												);
+												this.sliderText.slickPrev();
+												// this.toggleNewsText(
+												// 	"prev",
+												// 	newsText.current_page
+												// );
 											}}
 										/>
-										<ul className="ui textNewsUl">
-											{newsText &&
-												newsText.data &&
-												newsText.data.length > 0 &&
-												newsText.data.map(
-													(item, index) => {
-														return (
-															<li
-																className="m-news-textNews"
-																key={index}
-															>
-																<Link
-																	to={{
-																		pathname:
-																			"/newsdetail",
-																		search: `?art_id=${
-																			item.id
-																		}`
-																	}}
+										{IsTouchDevice && (
+											<ul className="ui textNewsUl">
+												{newsText &&
+													newsText.data &&
+													newsText.data.length > 0 &&
+													newsText.data.map(
+														(item, index) => {
+															return (
+																<li
+																	className="m-news-textNews"
+																	key={index}
 																>
-																	<p className="desc">
-																		{
-																			item.title
-																		}
-																	</p>
-																	<div className="newsBoxModConDate">
-																		<p className="">
+																	<Link
+																		to={{
+																			pathname:
+																				"/newsdetail",
+																			search: `?art_id=${
+																				item.id
+																			}`
+																		}}
+																	>
+																		<p className="desc">
 																			{
-																				item.created_at
+																				item.title
 																			}
 																		</p>
+																		<div className="newsBoxModConDate">
+																			<p className="">
+																				{
+																					item.created_at
+																				}
+																			</p>
 
-																		<img
-																			src={
-																				item
-																					.category
-																					.img
+																			<img
+																				src={
+																					item
+																						.category
+																						.img
+																				}
+																				alt=""
+																			/>
+																		</div>
+																	</Link>
+																</li>
+															);
+														}
+													)}
+											</ul>
+										)}
+										{!IsTouchDevice && (
+											<div className="ul ui textNewsUl">
+												{newsText &&
+													newsText.data &&
+													newsText.data.length >
+														0 && (
+														<Slider
+															ref={c =>
+																(this.sliderText = c)
+															}
+															{...settingsText}
+														>
+															{newsText.data.map(
+																(
+																	item,
+																	index
+																) => {
+																	return (
+																		<div
+																			className="li m-news-textNews"
+																			key={
+																				index
 																			}
-																			alt=""
-																		/>
-																	</div>
-																</Link>
-															</li>
-														);
-													}
-												)}
-										</ul>
+																		>
+																			<Link
+																				to={{
+																					pathname:
+																						"/newsdetail",
+																					search: `?art_id=${
+																						item.id
+																					}`
+																				}}
+																			>
+																				<p className="desc">
+																					{
+																						item.title
+																					}
+																				</p>
+																				<div className="newsBoxModConDate">
+																					<p className="">
+																						{
+																							item.created_at
+																						}
+																					</p>
+
+																					<img
+																						src={
+																							item
+																								.category
+																								.img
+																						}
+																						alt=""
+																					/>
+																				</div>
+																			</Link>
+																		</div>
+																	);
+																}
+															)}
+														</Slider>
+													)}
+											</div>
+										)}
 										<span
 											className={
-												newsText.current_page <
-												newsText.last_page
+												newsTextCur + 4 <
+												(newsText &&
+													newsText.data &&
+													newsText.data.length)
 													? "rightArrow more m-hide"
 													: "rightArrow m-hide"
 											}
 											onClick={() => {
-												this.toggleNewsText(
-													"next",
-													newsText.last_page
-												);
+												if (
+													newsText &&
+													newsText.data &&
+													newsText.data.length > 4
+												) {
+													this.sliderText.slickNext();
+												}
+												// this.toggleNewsText(
+												// 	"next",
+												// 	newsText.last_page
+												// );
 											}}
 										/>
 									</div>
@@ -427,85 +558,169 @@ export default class Root extends PureComponent {
 									<div className="newsBoxModCon ui center">
 										<span
 											className={
-												newsImg.current_page > 1
+												newsImgCur > 0
 													? "leftArrow more m-hide"
 													: "leftArrow m-hide"
 											}
 											onClick={() => {
-												this.toggleNewsImg(
-													"prev",
-													newsImg.current_page
-												);
+												this.sliderImg.slickPrev();
+												// this.toggleNewsImg(
+												// 	"prev",
+												// 	newsImg.current_page
+												// );
 											}}
 										/>
-										<ul className="ui imgNewsUl">
-											{newsImg &&
-												newsImg.data &&
-												newsImg.data.length > 0 &&
-												newsImg.data.map(
-													(item, index) => {
-														return (
-															<li
-																className="m-news-imgNews"
-																key={index}
-															>
-																<Link
-																	to={{
-																		pathname:
-																			"/newsdetail",
-																		search: `?art_id=${
-																			item.id
-																		}`
-																	}}
+										{!IsTouchDevice && (
+											<div className="ul ui imgNewsUl">
+												{newsImg &&
+													newsImg.data &&
+													newsImg.data.length > 0 && (
+														<Slider
+															ref={c =>
+																(this.sliderImg = c)
+															}
+															{...settingsImg}
+														>
+															{newsImg.data.map(
+																(
+																	item,
+																	index
+																) => {
+																	return (
+																		<div
+																			className="li m-news-imgNews"
+																			key={
+																				index
+																			}
+																		>
+																			<Link
+																				to={{
+																					pathname:
+																						"/newsdetail",
+																					search: `?art_id=${
+																						item.id
+																					}`
+																				}}
+																			>
+																				<p className="desc">
+																					{
+																						item.title
+																					}
+																				</p>
+																				<div className="newsBoxModConDate">
+																					<p
+																					>
+																						{
+																							item.created_at
+																						}
+																					</p>
+																					<img
+																						className="m-hide"
+																						src={
+																							item.category &&
+																							item
+																								.category
+																								.img
+																						}
+																						alt=""
+																					/>
+																				</div>
+																				<div className="newsBoxModConShow">
+																					<img
+																						src={
+																							item.img
+																						}
+																						alt=""
+																					/>
+																				</div>
+																			</Link>
+																		</div>
+																	);
+																}
+															)}
+														</Slider>
+													)}
+											</div>
+										)}
+										{IsTouchDevice && (
+											<ul className="ui imgNewsUl">
+												{newsImg &&
+													newsImg.data &&
+													newsImg.data.length > 0 &&
+													newsImg.data.map(
+														(item, index) => {
+															return (
+																<li
+																	className="m-news-imgNews"
+																	key={index}
 																>
-																	<p className="desc">
-																		{
-																			item.title
-																		}
-																	</p>
-																	<div className="newsBoxModConDate">
-																		<p>
+																	<Link
+																		to={{
+																			pathname:
+																				"/newsdetail",
+																			search: `?art_id=${
+																				item.id
+																			}`
+																		}}
+																	>
+																		<p className="desc">
 																			{
-																				item.created_at
+																				item.title
 																			}
 																		</p>
-																		<img
-																			className="m-hide"
-																			src={
-																				item.category &&
-																				item
-																					.category
-																					.img
-																			}
-																			alt=""
-																		/>
-																	</div>
-																	<div className="newsBoxModConShow">
-																		<img
-																			src={
-																				item.img
-																			}
-																			alt=""
-																		/>
-																	</div>
-																</Link>
-															</li>
-														);
-													}
-												)}
-										</ul>
+																		<div className="newsBoxModConDate">
+																			<p>
+																				{
+																					item.created_at
+																				}
+																			</p>
+																			<img
+																				className="m-hide"
+																				src={
+																					item.category &&
+																					item
+																						.category
+																						.img
+																				}
+																				alt=""
+																			/>
+																		</div>
+																		<div className="newsBoxModConShow">
+																			<img
+																				src={
+																					item.img
+																				}
+																				alt=""
+																			/>
+																		</div>
+																	</Link>
+																</li>
+															);
+														}
+													)}
+											</ul>
+										)}
 										<span
 											className={
-												newsImg.current_page <
-												newsImg.last_page
+												newsImgCur + 4 <
+												(newsImg &&
+													newsImg.data &&
+													newsImg.data.length)
 													? "rightArrow more m-hide"
 													: "rightArrow m-hide"
 											}
 											onClick={() => {
-												this.toggleNewsImg(
-													"next",
-													newsImg.last_page
-												);
+												if (
+													newsImg &&
+													newsImg.data &&
+													newsImg.data.length > 4
+												) {
+													this.sliderImg.slickNext();
+												}
+												// this.toggleNewsImg(
+												// 	"next",
+												// 	newsImg.last_page
+												// );
 											}}
 										/>
 									</div>
@@ -534,106 +749,212 @@ export default class Root extends PureComponent {
 									<div className="newsBoxModCon ui center ">
 										<span
 											className={
-												newsVideo.current_page > 1
+												newsVideoCur > 0
 													? "leftArrow more m-hide"
 													: "leftArrow m-hide"
 											}
 											onClick={() => {
-												this.toggleNewsVideo(
-													"prev",
-													newsVideo.current_page
-												);
+												this.sliderVideo.slickPrev();
+												// this.toggleNewsVideo(
+												// 	"prev",
+												// 	newsVideo.current_page
+												// );
 											}}
 										/>
-										<ul className="ui videoNewsUl">
-											{newsVideo &&
-												newsVideo.data &&
-												newsVideo.data.length > 0 &&
-												newsVideo.data.map(
-													(item, index) => {
-														return (
-															<li
-																className="m-news-videoNews"
-																key={index}
-															>
-																<Link
-																	to={{
-																		pathname:
-																			"/newsdetail",
-																		search: `?art_id=${
-																			item.id
-																		}`
-																	}}
+										{IsTouchDevice && (
+											<ul className="ui videoNewsUl">
+												{newsVideo &&
+													newsVideo.data &&
+													newsVideo.data.length > 0 &&
+													newsVideo.data.map(
+														(item, index) => {
+															return (
+																<li
+																	className="m-news-videoNews"
+																	key={index}
 																>
-																	<p className="desc">
-																		{
-																			item.title
-																		}
-																	</p>
-
-																	<div className="newsBoxModConDate m-hide">
-																		<p>
+																	<Link
+																		to={{
+																			pathname:
+																				"/newsdetail",
+																			search: `?art_id=${
+																				item.id
+																			}`
+																		}}
+																	>
+																		<p className="desc">
 																			{
-																				item.created_at
+																				item.title
 																			}
 																		</p>
-																		{item.category &&
-																			item
-																				.category
-																				.img && (
+
+																		<div className="newsBoxModConDate m-hide">
+																			<p>
+																				{
+																					item.created_at
+																				}
+																			</p>
+																			{item.category &&
+																				item
+																					.category
+																					.img && (
+																					<img
+																						src={
+																							item.category &&
+																							item
+																								.category
+																								.img
+																						}
+																						alt=""
+																					/>
+																				)}
+																		</div>
+																		<div className="newsBoxModConShow">
+																			{IsTouchDevice && (
 																				<img
+																					className="videoIcon"
 																					src={
-																						item.category &&
-																						item
-																							.category
-																							.img
+																						videoIcon
 																					}
-																					alt=""
 																				/>
 																			)}
-																	</div>
-																	<div className="newsBoxModConShow">
-																		{IsTouchDevice && (
 																			<img
-																				className="videoIcon"
+																				className="cover"
 																				src={
-																					videoIcon
+																					item.img
 																				}
+																				alt=""
 																			/>
-																		)}
-																		<img
-																			className="cover"
-																			src={
-																				item.img
-																			}
-																			alt=""
-																		/>
-																	</div>
-																	{IsTouchDevice && (
-																		<div className="modDateText">
-																			{
-																				item.updated_at
-																			}
 																		</div>
-																	)}
-																</Link>
-															</li>
-														);
-													}
-												)}
-										</ul>
+																		{IsTouchDevice && (
+																			<div className="modDateText">
+																				{
+																					item.updated_at
+																				}
+																			</div>
+																		)}
+																	</Link>
+																</li>
+															);
+														}
+													)}
+											</ul>
+										)}
+										{!IsTouchDevice && (
+											<div className="ul ui videoNewsUl">
+												{newsVideo &&
+													newsVideo.data &&
+													newsVideo.data.length >
+														0 && (
+														<Slider
+															ref={c =>
+																(this.sliderVideo = c)
+															}
+															{...settingsVideo}
+														>
+															{newsVideo.data.map(
+																(
+																	item,
+																	index
+																) => {
+																	return (
+																		<div
+																			className="li m-news-videoNews"
+																			key={
+																				index
+																			}
+																		>
+																			<Link
+																				to={{
+																					pathname:
+																						"/newsdetail",
+																					search: `?art_id=${
+																						item.id
+																					}`
+																				}}
+																			>
+																				<p className="desc">
+																					{
+																						item.title
+																					}
+																				</p>
+
+																				<div className="newsBoxModConDate m-hide">
+																					<p
+																					>
+																						{
+																							item.created_at
+																						}
+																					</p>
+																					{item.category &&
+																						item
+																							.category
+																							.img && (
+																							<img
+																								src={
+																									item.category &&
+																									item
+																										.category
+																										.img
+																								}
+																								alt=""
+																							/>
+																						)}
+																				</div>
+																				<div className="newsBoxModConShow">
+																					{IsTouchDevice && (
+																						<img
+																							className="videoIcon"
+																							src={
+																								videoIcon
+																							}
+																						/>
+																					)}
+																					<img
+																						className="cover"
+																						src={
+																							item.img
+																						}
+																						alt=""
+																					/>
+																				</div>
+																				{IsTouchDevice && (
+																					<div className="modDateText">
+																						{
+																							item.updated_at
+																						}
+																					</div>
+																				)}
+																			</Link>
+																		</div>
+																	);
+																}
+															)}
+														</Slider>
+													)}
+											</div>
+										)}
 										<span
 											className={
-												newsVideo.current_page <
-												newsVideo.last_page
+												newsVideoCur + 4 <
+												(newsVideo &&
+													newsVideo.data &&
+													newsVideo.data.length)
 													? "rightArrow more m-hide"
 													: "rightArrow m-hide"
 											}
 											onClick={() => {
-												this.toggleNewsVideo(
-													"next",
-													newsVideo.last_page
-												);
+												if (
+													newsVideo &&
+													newsVideo.data &&
+													newsVideo.data.length > 4
+												) {
+													this.sliderVideo.slickNext();
+												}
+												// this.toggleNewsVideo(
+												// 	"next",
+												// 	newsVideo.last_page
+												// );
 											}}
 										/>
 									</div>
