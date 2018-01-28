@@ -26,6 +26,7 @@ export default class Root extends PureComponent {
 	}
 	componentWillReceiveProps(nextProps) {}
 	componentDidMount() {
+		document.body.scrollTop = document.documentElement.scrollTop = 0;
 		let type = queryString("type");
 		if (!type) {
 			type = 0;
@@ -497,8 +498,8 @@ export default class Root extends PureComponent {
 											className={
 												newsImg.current_page <
 												newsImg.last_page
-													? "rightArrow more"
-													: "rightArrow"
+													? "rightArrow more m-hide"
+													: "rightArrow m-hide"
 											}
 											onClick={() => {
 												this.toggleNewsImg(
@@ -576,15 +577,20 @@ export default class Root extends PureComponent {
 																				item.updated_at
 																			}
 																		</p>
-																		<img
-																			src={
-																				item.category &&
-																				item
-																					.category
-																					.img
-																			}
-																			alt=""
-																		/>
+																		{item.category &&
+																			item
+																				.category
+																				.img && (
+																				<img
+																					src={
+																						item.category &&
+																						item
+																							.category
+																							.img
+																					}
+																					alt=""
+																				/>
+																			)}
 																	</div>
 																	<div className="newsBoxModConShow">
 																		{IsTouchDevice && (
@@ -620,8 +626,8 @@ export default class Root extends PureComponent {
 											className={
 												newsVideo.current_page <
 												newsVideo.last_page
-													? "rightArrow more"
-													: "rightArrow"
+													? "rightArrow more m-hide"
+													: "rightArrow m-hide"
 											}
 											onClick={() => {
 												this.toggleNewsVideo(

@@ -198,7 +198,7 @@ export default class Root extends PureComponent {
 																	<p>
 																		<span className="ellitext">
 																			{
-																				item.name
+																				item.unit
 																			}
 																		</span>
 																		<b className="ellitext">

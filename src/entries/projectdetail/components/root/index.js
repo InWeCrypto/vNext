@@ -306,13 +306,11 @@ export default class Root extends PureComponent {
 								/>
 							</div>
 						</div>
-						{IsTouchDevice ? (
+						{IsTouchDevice && (
 							<div>
 								<TurnApp />
 								<div id="footerBox" />
 							</div>
-						) : (
-							<Footer changeLng={changeLng} lng={lng} />
 						)}
 					</div>
 				)}

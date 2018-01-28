@@ -19,6 +19,7 @@ export default class Root extends PureComponent {
 	}
 	componentWillReceiveProps(nextProps) {}
 	componentDidMount() {
+		document.body.scrollTop = document.documentElement.scrollTop = 0;
 		let type = queryString("type");
 		if (!type) {
 			type = 1;
@@ -190,7 +191,7 @@ export default class Root extends PureComponent {
 							getHeaderMarket={getHeaderMarket}
 						/>
 						<div id="mainBox" className="projectList ui ">
-							<div className="projectListReturn ui center m-hide">
+							{/* <div className="projectListReturn ui center m-hide">
 								<Link
 									to={{
 										pathname: "/project",
@@ -199,7 +200,7 @@ export default class Root extends PureComponent {
 								>
 									<span />
 								</Link>
-							</div>
+							</div> */}
 							{IsTouchDevice && (
 								<div
 									id="m-nav"
@@ -352,7 +353,9 @@ export default class Root extends PureComponent {
 																				<p
 																				>
 																					<span className="ellitext">
-																						{item.name.toLocaleUpperCase()}
+																						{
+																							item.unit
+																						}
 																						{IsTouchDevice && (
 																							<span className="industryText">
 																								{
@@ -460,7 +463,9 @@ export default class Root extends PureComponent {
 																				<p
 																				>
 																					<span className="ellitext">
-																						{item.name.toLocaleUpperCase()}
+																						{
+																							item.unit
+																						}
 																						{IsTouchDevice && (
 																							<span className="industryText">
 																								{
@@ -551,7 +556,9 @@ export default class Root extends PureComponent {
 																				<p
 																				>
 																					<span className="ellitext">
-																						{item.name.toLocaleUpperCase()}
+																						{
+																							item.unit
+																						}
 																						{IsTouchDevice && (
 																							<span className="industryText">
 																								{
@@ -642,7 +649,9 @@ export default class Root extends PureComponent {
 																				<p
 																				>
 																					<span className="ellitext">
-																						{item.name.toLocaleUpperCase()}
+																						{
+																							item.unit
+																						}
 																					</span>
 																					<b className="ellitext">
 																						({
