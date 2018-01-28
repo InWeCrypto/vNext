@@ -2,7 +2,7 @@ import React, { PureComponent } from "react";
 import { I18n, Trans } from "react-i18next";
 import { NavLink, Link } from "react-router-dom";
 import { Pagination } from "antd";
-
+import AnnoBox from "../../../../components/annobox";
 import {
 	getMainMinHeight,
 	getQuery,
@@ -23,7 +23,9 @@ export default class Root extends PureComponent {
 			rtMore: "rightArrow more",
 			page: 1,
 			nums: 8,
-			mounted: false
+			mounted: false,
+			showDetail: false,
+			showItem: null
 		};
 	}
 	componentWillReceiveProps(nextProps) {
@@ -121,8 +123,20 @@ export default class Root extends PureComponent {
 			console.log(nums);
 		}
 	}
+	showDetailClick(item) {
+		this.setState({
+			showDetail: true,
+			showItem: item
+		});
+	}
+	closeDetailClick() {
+		this.setState({
+			showDetail: false,
+			showItem: null
+		});
+	}
 	render() {
-		const { minH, liH, rtMore, lfMore } = this.state;
+		const { minH, liH, rtMore, lfMore, showDetail, showItem } = this.state;
 		const {
 			lng,
 			changeLng,
@@ -206,8 +220,12 @@ export default class Root extends PureComponent {
 															<li
 																key={index}
 																className="annoucmentListLi"
+																onClick={this.showDetailClick.bind(
+																	this,
+																	item
+																)}
 															>
-																<Link
+																{/* <Link
 																	to={{
 																		pathname:
 																			"newsdetail",
@@ -215,22 +233,22 @@ export default class Root extends PureComponent {
 																			"?art_id=" +
 																			item.id
 																	}}
-																>
-																	<div className="liBox">
-																		<p className="annoBoxLiText ellitext">
-																			+{
-																				item.source_name
-																			}：{
-																				item.content
-																			}
-																		</p>
-																		<p className="annoBoxLiDate">
-																			{getLocalTime(
-																				item.created_at
-																			)}
-																		</p>
-																	</div>
-																</Link>
+																> */}
+																<div className="liBox">
+																	<p className="annoBoxLiText ellitext">
+																		+{
+																			item.source_name
+																		}：{
+																			item.desc
+																		}
+																	</p>
+																	<p className="annoBoxLiDate">
+																		{getLocalTime(
+																			item.created_at
+																		)}
+																	</p>
+																</div>
+																{/* </Link> */}
 															</li>
 														);
 													}
@@ -251,8 +269,12 @@ export default class Root extends PureComponent {
 															<li
 																key={index}
 																className="annoucmentListLi"
+																onClick={this.showDetailClick.bind(
+																	this,
+																	item
+																)}
 															>
-																<Link
+																{/* <Link
 																	to={{
 																		pathname:
 																			"newsdetail",
@@ -260,22 +282,22 @@ export default class Root extends PureComponent {
 																			"?art_id=" +
 																			item.id
 																	}}
-																>
-																	<div className="liBox">
-																		<p className="annoBoxLiText ellitext">
-																			+{
-																				item.source_name
-																			}：{
-																				item.content
-																			}
-																		</p>
-																		<p className="annoBoxLiDate">
-																			{getLocalTime(
-																				item.created_at
-																			)}
-																		</p>
-																	</div>
-																</Link>
+																> */}
+																<div className="liBox">
+																	<p className="annoBoxLiText ellitext">
+																		+{
+																			item.source_name
+																		}：{
+																			item.desc
+																		}
+																	</p>
+																	<p className="annoBoxLiDate">
+																		{getLocalTime(
+																			item.created_at
+																		)}
+																	</p>
+																</div>
+																{/* </Link> */}
 															</li>
 														);
 													}
@@ -348,6 +370,13 @@ export default class Root extends PureComponent {
 									)}
 								</div>
 							</div>
+							{showDetail && (
+								<AnnoBox
+									close={this.closeDetailClick.bind(this)}
+									item={showItem}
+									lng={lng}
+								/>
+							)}
 						</div>
 						{IsTouchDevice ? (
 							<div id="footerBox" />
