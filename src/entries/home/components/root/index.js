@@ -479,7 +479,14 @@ export default class Root extends PureComponent {
 																		index
 																	) => {
 																		return (
-																			<div
+																			<a
+																				href={
+																					item.url
+																				}
+																				style={{
+																					display:
+																						"block"
+																				}}
 																				key={
 																					index
 																				}
@@ -489,7 +496,7 @@ export default class Root extends PureComponent {
 																						item.img
 																					}
 																				/>
-																			</div>
+																			</a>
 																		);
 																	}
 																)}
