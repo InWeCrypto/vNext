@@ -16,7 +16,7 @@ class FixedMenu extends PureComponent {
 	}
 	componentDidMount() {
 		setTimeout(() => {
-			if (document.body.offsetWidth < 1300) {
+			if (document.body.offsetWidth < 1370) {
 				document.getElementsByTagName("body")[0].style.paddingLeft =
 					"54px";
 			}
