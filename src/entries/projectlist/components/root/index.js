@@ -463,7 +463,7 @@ export default class Root extends PureComponent {
 																						({item.ico &&
 																							item
 																								.ico
-																								.percent_change_24h})
+																								.percent_change_24h}%)
 																					</div>
 																				</div>
 																			)}
