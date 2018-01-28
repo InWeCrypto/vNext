@@ -503,12 +503,14 @@ export default class Root extends PureComponent {
 									</div>
 									<p className="newsReadNums">
 										{newsDetail.click_rate}
+										{"  "}
 										{t("newsDetail.read", lng)}
 									</p>
 								</div>
 								<div className="newsDetailComment">
 									<div className="newsDetailCommentNums">
 										<b>{newsDetail.comment_count}</b>
+										{"  "}
 										{t("newsDetail.comment", lng)}
 									</div>
 									<div
