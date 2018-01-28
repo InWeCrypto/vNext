@@ -207,56 +207,30 @@ export default class Root extends PureComponent {
 																key={index}
 																className="annoucmentListLi"
 															>
-																{item.source_url && (
-																	<Link
-																		to={{
-																			pathname:
-																				item.source_url
-																		}}
-																		target="_blank"
-																	>
-																		<div className="liBox">
-																			<p className="annoBoxLiText ellitext">
-																				+{
-																					item.source_name
-																				}：{
-																					item.content
-																				}
-																			</p>
-																			<p className="annoBoxLiDate">
-																				{getLocalTime(
-																					item.created_at
-																				)}
-																			</p>
-																		</div>
-																	</Link>
-																)}
-																{!item.source_url && (
-																	<Link
-																		to={{
-																			pathname:
-																				"newsdetail",
-																			search:
-																				"?art_id=" +
-																				item.id
-																		}}
-																	>
-																		<div className="liBox">
-																			<p className="annoBoxLiText ellitext">
-																				+{
-																					item.source_name
-																				}：{
-																					item.content
-																				}
-																			</p>
-																			<p className="annoBoxLiDate">
-																				{getLocalTime(
-																					item.created_at
-																				)}
-																			</p>
-																		</div>
-																	</Link>
-																)}
+																<Link
+																	to={{
+																		pathname:
+																			"newsdetail",
+																		search:
+																			"?art_id=" +
+																			item.id
+																	}}
+																>
+																	<div className="liBox">
+																		<p className="annoBoxLiText ellitext">
+																			+{
+																				item.source_name
+																			}：{
+																				item.content
+																			}
+																		</p>
+																		<p className="annoBoxLiDate">
+																			{getLocalTime(
+																				item.created_at
+																			)}
+																		</p>
+																	</div>
+																</Link>
 															</li>
 														);
 													}
@@ -278,56 +252,30 @@ export default class Root extends PureComponent {
 																key={index}
 																className="annoucmentListLi"
 															>
-																{item.source_url && (
-																	<Link
-																		to={{
-																			pathname:
-																				item.source_url
-																		}}
-																		target="_blank"
-																	>
-																		<div className="liBox">
-																			<p className="annoBoxLiText ellitext">
-																				+{
-																					item.source_name
-																				}：{
-																					item.content
-																				}
-																			</p>
-																			<p className="annoBoxLiDate">
-																				{getLocalTime(
-																					item.created_at
-																				)}
-																			</p>
-																		</div>
-																	</Link>
-																)}
-																{!item.source_url && (
-																	<Link
-																		to={{
-																			pathname:
-																				"newsdetail",
-																			search:
-																				"?art_id=" +
-																				item.id
-																		}}
-																	>
-																		<div className="liBox">
-																			<p className="annoBoxLiText ellitext">
-																				+{
-																					item.source_name
-																				}：{
-																					item.content
-																				}
-																			</p>
-																			<p className="annoBoxLiDate">
-																				{getLocalTime(
-																					item.created_at
-																				)}
-																			</p>
-																		</div>
-																	</Link>
-																)}
+																<Link
+																	to={{
+																		pathname:
+																			"newsdetail",
+																		search:
+																			"?art_id=" +
+																			item.id
+																	}}
+																>
+																	<div className="liBox">
+																		<p className="annoBoxLiText ellitext">
+																			+{
+																				item.source_name
+																			}：{
+																				item.content
+																			}
+																		</p>
+																		<p className="annoBoxLiDate">
+																			{getLocalTime(
+																				item.created_at
+																			)}
+																		</p>
+																	</div>
+																</Link>
 															</li>
 														);
 													}
