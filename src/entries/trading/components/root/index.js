@@ -21,7 +21,7 @@ export default class Root extends PureComponent {
 			liH: "auto",
 			page: 1,
 			mounted: false,
-			per_page: 10
+			per_page: 6
 		};
 	}
 	componentWillReceiveProps(nextProps) {
@@ -36,7 +36,7 @@ export default class Root extends PureComponent {
 		document.title = "InWe-" + i18n.t("navMenu.trading", this.props.lng);
 
 		let minH = getMainMinHeight();
-		let liH = minH / 2;
+		let liH = (minH - 37) / 2;
 		this.setState({
 			minH: minH,
 			liH: liH,
@@ -88,19 +88,21 @@ export default class Root extends PureComponent {
 		} else {
 			var pageSize = 6;
 		}
-		this.props
-			.getTrading({
-				per_page: pageSize,
-				page: q.page || 1,
-				type: 4
-			})
-			.then(res => {
-				console.log(res);
-			});
+		this.props.getTrading({
+			per_page: pageSize,
+			page: q.page || 1,
+			type: 4
+		});
 	}
-	changePagination(page) {}
+	changePagination(page) {
+		this.props.getTrading({
+			page: page,
+			per_page: this.state.per_page,
+			type: 4
+		});
+	}
 	render() {
-		const { minH, liH, page } = this.state;
+		const { minH, liH, page, per_page } = this.state;
 		const {
 			lng,
 			changeLng,
@@ -167,11 +169,16 @@ export default class Root extends PureComponent {
 										trading.data.map((item, index) => {
 											return (
 												<li
-													className="ui li"
+													className="li"
 													key={index}
-													style={{ maxHeight: liH }}
+													style={{ height: liH }}
 												>
 													<Link
+														className="ui"
+														style={{
+															height: "100%",
+															flexFlow: "column"
+														}}
 														to={{
 															pathname:
 																"/newsdetail",
@@ -180,7 +187,7 @@ export default class Root extends PureComponent {
 															}`
 														}}
 													>
-														<div className="tradingBoxImg">
+														<div className="tradingBoxImg f1">
 															<img
 																src={item.img}
 																alt=""
@@ -221,12 +228,9 @@ export default class Root extends PureComponent {
 													this.state.per_page
 												}
 												defaultCurrent={
-													trading.data.current_page
+													trading.current_page
 												}
-												total={
-													500
-													// trading.data.total
-												}
+												total={trading.total}
 												onChange={this.changePagination.bind(
 													this
 												)}
