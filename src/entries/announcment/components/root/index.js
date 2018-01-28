@@ -388,9 +388,12 @@ export default class Root extends PureComponent {
 													showItem.created_at
 												)}
 											</div>
-											<div className="acc-text">
-												{showItem.content}
-											</div>
+											<div
+												className="acc-text"
+												dangerouslySetInnerHTML={{
+													__html: showItem.content
+												}}
+											/>
 										</div>
 									</div>
 								</div>
