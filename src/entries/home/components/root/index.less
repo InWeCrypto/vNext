@@ -407,6 +407,7 @@
 						}
 					}
 					.homeBoxTitle {
+						box-sizing: content-box;
 						height: 0.67rem;
 						padding-bottom: 0;
 					}
@@ -533,16 +534,16 @@
 							.walletImg {
 								float: left;
 								margin: 0 0.19rem;
-								width: 4.6rem;
+								width: 2.92rem;
 								height: 100%;
-								background: url("../../../../assets/images/holdimg.png")
-									no-repeat center center / cover;
+								// background: url("../../../../assets/images/holdimg.png")
+								// 	no-repeat center center / cover;
 								overflow: hidden;
 								img {
 									display: block;
 									height: 100%;
 									width: 100%;
-									object-fit: cover;
+									object-fit: contain;
 								}
 							}
 						}
