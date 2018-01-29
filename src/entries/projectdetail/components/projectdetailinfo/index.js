@@ -37,7 +37,7 @@ class ProjectDetailInfo extends PureComponent {
 	}
 	initPage() {
 		let id = this.props.projectDynamic.data[0].id;
-		this.projectDynamicList(id, 1);
+		this.projectDynamicList("", 1);
 		if (
 			this.props.userInfo &&
 			this.props.projectDetail.category_user &&
@@ -258,6 +258,16 @@ class ProjectDetailInfo extends PureComponent {
 									{t("projectDetail.project_dyna", lng)}
 								</div>
 								<ul className="projectDetailCon2Ul">
+									<li
+										className={
+											curDynamic == "" ? "cur" : ""
+										}
+										onClick={() => {
+											this.projectDynamicList("", 1);
+										}}
+									>
+										<span>全部资讯</span>
+									</li>
 									{projectDynamic &&
 										projectDynamic.data &&
 										projectDynamic.data.length > 0 &&

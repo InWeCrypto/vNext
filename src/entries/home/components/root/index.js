@@ -170,11 +170,11 @@ export default class Root extends PureComponent {
 		} else {
 			var settings = {
 				// dots: true,
-				infinite: false,
+				infinite: true,
 				speed: 500,
 				slidesToShow: 1,
 				slidesToScroll: 1,
-				// autoplay: true,
+				autoplay: true,
 				arrows: false,
 				accessibility: true,
 				adaptiveHeight: true,
