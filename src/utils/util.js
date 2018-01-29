@@ -157,3 +157,14 @@ export const queryString = (name, notDecoded) => {
 		return decodeURIComponent(encoded);
 	}
 };
+
+export const addFixed2Body = () => {
+	let bodyDom = document.getElementsByTagName("body")[0];
+	// bodyDom.style.height = "100%";
+	// bodyDom.style.overflow = "hidden";
+};
+export const removeFixed2Body = () => {
+	let bodyDom = document.getElementsByTagName("body")[0];
+	// bodyDom.style.height = "100%";
+	// bodyDom.style.overflow = "hidden";
+};
