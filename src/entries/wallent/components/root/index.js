@@ -63,7 +63,9 @@ export default class Root extends PureComponent {
 			<I18n>
 				{(t, { i18n }) => (
 					<div className="container">
-						<FixedMenu changeLng={changeLng} lng={lng} />
+						{!IsTouchDevice && (
+							<FixedMenu changeLng={changeLng} lng={lng} />
+						)}
 						<Header
 							userInfo={userInfo}
 							registerUser={registerUser}
@@ -80,7 +82,7 @@ export default class Root extends PureComponent {
 							className="wallentBox ui center jcenter"
 						>
 							<div className="wallentLf f1">
-								<span className="wallentLfTitle ellitext">
+								<span className="wallentLfTitle ellitext ">
 									InWeCrypto Wallet
 								</span>
 								<p className="wallentLfCont">
@@ -103,7 +105,7 @@ export default class Root extends PureComponent {
 									</div>
 								</div>
 							</div>
-							<div className="wallentRt">
+							<div className="wallentRt m-hide">
 								<img src={wallent_phone} alt="" />
 							</div>
 						</div>
