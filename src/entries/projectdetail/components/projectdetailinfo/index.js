@@ -266,7 +266,9 @@ class ProjectDetailInfo extends PureComponent {
 											this.projectDynamicList("", 1);
 										}}
 									>
-										<span>全部资讯</span>
+										<span>
+											{t("projectDetail.all", lng)}
+										</span>
 									</li>
 									{projectDynamic &&
 										projectDynamic.data &&
