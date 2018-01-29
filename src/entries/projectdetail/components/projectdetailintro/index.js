@@ -38,9 +38,10 @@ class ProjectDetailIntro extends PureComponent {
 								</div>
 							</div>
 							<div className="projectDetailCon1Box">
-								<div className="projectDetailCon1BoxTitle">
+								{/* <div className="projectDetailCon1BoxTitle">
 									{t("projectDetail.project_overview", lng)}
-								</div>
+                                </div> */}
+								<div style={{ height: ".2rem" }} />
 								{projectDetail.category_presentation &&
 									projectDetail.category_presentation.content
 										.length > 0 && (

@@ -221,7 +221,13 @@ export default class Root extends PureComponent {
 								{(!trading ||
 									!trading.data ||
 									trading.data.length <= 0) && (
-									<div className="nodata-box">
+									<div
+										className={
+											IsTouchDevice
+												? "nodata-box Center"
+												: "nodata-box"
+										}
+									>
 										{t("nodata", lng)}
 									</div>
 								)}

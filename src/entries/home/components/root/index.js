@@ -9,6 +9,7 @@ import Footer from "../../../../components/footer";
 import LeftMenu from "../../../../components/leftmenu";
 import FixedMenu from "../../../../components/fixedmenu";
 import Search from "../../../../components/search";
+import AnnoBox from "../../../../components/annobox";
 import TopText from "../toptext/";
 
 import inweWallet from "../../../../assets/images/inwe_wallet.png";
@@ -36,6 +37,8 @@ export default class Root extends PureComponent {
 				"november",
 				"december"
 			],
+			showAnno: false,
+			annoItem: null,
 			curDay:
 				newDate.getDate() < 10
 					? "0" + newDate.getDate()
@@ -109,7 +112,18 @@ export default class Root extends PureComponent {
 			});
 		}
 	}
-
+	openAnnobox(item) {
+		this.setState({
+			showAnno: true,
+			annoItem: item
+		});
+	}
+	closeAnnobox() {
+		this.setState({
+			showAnno: false,
+			annoItem: null
+		});
+	}
 	turnToCandy() {
 		if (IsTouchDevice) {
 			window.location.href = "/candybowl";
@@ -118,6 +132,11 @@ export default class Root extends PureComponent {
 	turnToAnno() {
 		if (IsTouchDevice) {
 			window.location.href = "/announcment";
+		}
+	}
+	getAdsWidth(ads) {
+		if (ads && ads.data && ads.data.length) {
+			return ads.data.length * 4.98 + "rem";
 		}
 	}
 	render() {
@@ -139,6 +158,7 @@ export default class Root extends PureComponent {
 			commonMarket,
 			getHeaderMarket
 		} = this.props;
+		console.log(ads);
 		const {
 			month,
 			monthArr,
@@ -147,9 +167,24 @@ export default class Root extends PureComponent {
 			AcSliderH,
 			showSearch,
 			sliderIndex,
-			sliderIndex1
+			sliderIndex1,
+			showAnno,
+			annoItem
 		} = this.state;
-		const curMonth = monthArr[month - 1].slice(0, 3);
+		let curMonth = monthArr[month - 1].slice(0, 3);
+		function ucfirst(str) {
+			var str = str.toLowerCase();
+			var strarr = str.split(" ");
+			var result = "";
+			for (var i in strarr) {
+				result +=
+					strarr[i].substring(0, 1).toUpperCase() +
+					strarr[i].substring(1) +
+					" ";
+			}
+			return result;
+		}
+		curMonth = ucfirst(curMonth);
 		if (IsTouchDevice) {
 			var settings = {
 				// dots: true,
@@ -262,6 +297,7 @@ export default class Root extends PureComponent {
 																	}
 																>
 																	<Link
+																		className="sliderBlockA"
 																		to={{
 																			pathname:
 																				"/newsdetail",
@@ -544,39 +580,15 @@ export default class Root extends PureComponent {
 															<p
 																key={index}
 																className="homeBoxAnnoTopP"
+																onClick={this.openAnnobox.bind(
+																	this,
+																	item
+																)}
 															>
-																{item.source_url && (
-																	<Link
-																		to={{
-																			pathname:
-																				item.source_url
-																		}}
-																		target="_blank"
-																	>
-																		+{
-																			item.source_name
-																		}：{
-																			item.content
-																		}
-																	</Link>
-																)}
-																{!item.source_url && (
-																	<Link
-																		to={{
-																			pathname:
-																				"newsdetail",
-																			search:
-																				"?art_id=" +
-																				item.id
-																		}}
-																	>
-																		+{
-																			item.source_name
-																		}：{
-																			item.content
-																		}
-																	</Link>
-																)}
+																+{
+																	item.source_name
+																}：
+																{item.desc}
 															</p>
 														);
 													}
@@ -659,31 +671,56 @@ export default class Root extends PureComponent {
 											<ul
 												className="walletUl"
 												style={{
-													width:
-														[1, 2, 3, 4].length *
-															4.98 +
-														"rem"
+													width: this.getAdsWidth.bind(
+														this,
+														ads
+													)
 												}}
 											>
-												{[1, 2, 3, 4].map(val => {
-													return (
-														<li
-															key={val}
-															className="walletImg"
-														>
-															<img
-																src={walletHold}
-																alt=""
-															/>
-														</li>
-													);
-												})}
+												{ads.data &&
+													ads.data.length > 0 &&
+													ads.data.map((val, idx) => {
+														return (
+															<li
+																style={
+																	ads.data
+																		.length ==
+																		1 && {
+																		margin:
+																			"0 auto",
+																		float:
+																			"none"
+																	}
+																}
+																key={val}
+																className="walletImg"
+																onClick={() => {
+																	window.location.href =
+																		val.url;
+																}}
+															>
+																<img
+																	src={
+																		val.img
+																	}
+																	alt=""
+																/>
+															</li>
+														);
+													})}
 											</ul>
 										</div>
 									</div>
 								)}
 							</div>
 						</div>
+						{showAnno && (
+							<AnnoBox
+								item={annoItem}
+								close={this.closeAnnobox.bind(this)}
+							/>
+						)}
+
 						<Footer changeLng={changeLng} lng={lng} />
 					</div>
 				)}
