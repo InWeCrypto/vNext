@@ -56,11 +56,17 @@ export default class Root extends PureComponent {
 				],
 				10
 			);
-
-		document.getElementById("newsDetailLeft").style.marginLeft =
-			"-" + (contW / 2 + 16) + "px";
-		document.getElementById("newsDetailRight").style.marginLeft =
-			contW / 2 + 48 + "px";
+		if (document.body.offsetWidth > 1366) {
+			document.getElementById("newsDetailLeft").style.marginLeft =
+				"-" + (contW / 2 + 32) + "px";
+			document.getElementById("newsDetailRight").style.marginLeft =
+				contW / 2 + 26 + "px";
+		} else {
+			document.getElementById("newsDetailLeft").style.marginLeft =
+				"-" + (contW / 2 + 12) + "px";
+			document.getElementById("newsDetailRight").style.marginLeft =
+				contW / 2 + 58 + "px";
+		}
 
 		this.setState({
 			minH: minH
