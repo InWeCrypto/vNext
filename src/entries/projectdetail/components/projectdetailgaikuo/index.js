@@ -553,11 +553,17 @@ class ProjectDetailGaiKuo extends PureComponent {
 												</td>
 												<td>
 													{coinTimePrice &&
-														coinTimePrice.available_supply}
+                                                        coinTimePrice.available_supply}
+                                                        {" "}
+                                                        {coinTimePrice &&
+                                                        coinTimePrice.symbol}
 												</td>
 												<td>
 													{coinTimePrice &&
 														coinTimePrice.total_supply}
+                                                        {" "}
+                                                        {coinTimePrice &&
+                                                        coinTimePrice.symbol}
 												</td>
 												<td>
 													${coinTimePrice &&

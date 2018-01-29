@@ -22,7 +22,8 @@ class AnnoBox extends PureComponent {
 									onClick={this.closeClick.bind(this)}
 								/>
 								<div className="acc-title">
-									{item.source_name}
+									{item.source_name}:
+									{item.desc}
 								</div>
 								<div className="acc-time">
 									{getLocalTime(item.created_at)}
