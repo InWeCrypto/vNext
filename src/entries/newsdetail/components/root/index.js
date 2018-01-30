@@ -279,7 +279,7 @@ export default class Root extends PureComponent {
 	videoPlay(url, video, img) {
 		if (url) {
 			// 跳转
-			window.open(url);
+			window.open(url, "_blank");
 		} else {
 			// 不跳转
 			this.creatVideo(video, img);
