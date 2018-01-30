@@ -119,12 +119,14 @@ export default class Root extends PureComponent {
 									assets.
 								</p>
 								<div className="wallentDown">
-									{isAndroidOrIos() == "ios" && (
+									{(isAndroidOrIos() == "ios" ||
+										!IsTouchDevice) && (
 										<div className="downLf">
 											<img src={app_store} alt="" />
 										</div>
 									)}
-									{isAndroidOrIos() == "android" && (
+									{(isAndroidOrIos() == "android" ||
+										!IsTouchDevice) && (
 										<div
 											className="downRt"
 											onClick={this.downLoadAndroidApp.bind(
