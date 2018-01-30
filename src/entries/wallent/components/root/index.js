@@ -6,7 +6,8 @@ import {
 	getMainMinHeight,
 	getQuery,
 	getDownloadSit,
-	isAndroidOrIos
+	isAndroidOrIos,
+	openInstallApp
 } from "../../../../utils/util";
 import Header from "../../../../components/header";
 import Footer from "../../../../components/footer";
@@ -54,8 +55,8 @@ export default class Root extends PureComponent {
 	}
 	downLoadAndroidApp() {
 		if (IsTouchDevice) {
-			//console.log(getDownloadSit());
-			window.location.href = getDownloadSit();
+			openInstallApp();
+			//window.location.href = getDownloadSit();
 		} else {
 			this.setState({
 				showDownLoadPop: true
