@@ -55,9 +55,9 @@ class ProjectDetailIco extends PureComponent {
 				formatter: (value, a) => {
 					return (
 						value.data.color_name +
-						"<br />占比：" +
+						"<br />percent：" +
 						value.data.value +
-						"%<br/>描述：" +
+						"%<br/>description：" +
 						value.data.desc
 					);
 				}
