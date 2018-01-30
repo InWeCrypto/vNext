@@ -34,7 +34,7 @@ export default () => {
 			<Route path="/member" component={Member} />
 			<Route path="/candybowl" component={CandyBowl} />
 			<Route path="/search" component={Search} />
-			<Route path="/wallent" component={Wallent} />
+			<Route path="/app" component={Wallent} />
 		</Switch>
 	);
 };
