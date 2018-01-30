@@ -2,6 +2,8 @@ import React, { PureComponent } from "react";
 import closeImg from "../../assets/images/close_white.png";
 import logoApp from "../../assets/images/logoapp.png";
 
+import { isAndroidOrIos, getDownloadSit } from "../../utils/util.js";
+
 import "./index.less";
 
 class TurnApp extends PureComponent {
@@ -43,6 +45,13 @@ class TurnApp extends PureComponent {
 		});
 		this.setCookie("downloadHide", true, 1);
 	}
+
+	downloadApp() {
+		if (isAndroidOrIos() == "android") {
+			window.location.href = getDownloadSit();
+		} else if (isAndroidOrIos() == "ios") {
+		}
+	}
 	render() {
 		const { advHide } = this.state;
 		if (!IsTouchDevice || advHide) {
@@ -57,7 +66,16 @@ class TurnApp extends PureComponent {
 					<span className="text1">InWeCrpyto</span>
 					<span className="text2">in crypto we trust</span>
 				</div>
-				<div className="turnapp-btn">Download</div>
+				<div
+					className={
+						isAndroidOrIos() == "android"
+							? "turnapp-btn light"
+							: "turnapp-btn"
+					}
+					onClick={this.downloadApp.bind(this)}
+				>
+					Download
+				</div>
 				<div />
 				<div
 					className="turnapp-close"
