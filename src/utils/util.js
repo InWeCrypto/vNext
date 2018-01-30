@@ -157,3 +157,33 @@ export const queryString = (name, notDecoded) => {
 		return decodeURIComponent(encoded);
 	}
 };
+
+export const addFixed2Body = () => {
+	let bodyDom = document.getElementsByTagName("body")[0];
+	// bodyDom.style.height = "100%";
+	// bodyDom.style.overflow = "hidden";
+};
+export const removeFixed2Body = () => {
+	let bodyDom = document.getElementsByTagName("body")[0];
+	// bodyDom.style.height = "100%";
+	// bodyDom.style.overflow = "hidden";
+};
+
+export const isAndroidOrIos = () => {
+	var u = navigator.userAgent;
+	var isAndroid = u.indexOf("Android") > -1 || u.indexOf("Adr") > -1; //android终端
+	var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+	if (isAndroid) {
+		return "android";
+	} else if (isiOS) {
+		return "ios";
+	}
+};
+
+export const getDownloadSit = () => {
+	if (isAndroidOrIos() == "android") {
+		return "http://inwecrypto-china.oss-cn-shanghai.aliyuncs.com/inwecrypto.apk";
+	} else if (isAndroidOrIos() == "ios") {
+		return "";
+	}
+};
