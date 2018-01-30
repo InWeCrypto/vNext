@@ -187,3 +187,27 @@ export const getDownloadSit = () => {
 		return "";
 	}
 };
+
+export const openInstallApp = () => {
+	let config = {
+		scheme_IOS: "schemedemo://",
+		scheme_Adr: "schemedemo://",
+		timeout: 500
+	};
+
+	//创建iframe
+	var startTime = Date.now();
+	var ifr = document.createElement("iframe");
+	ifr.src =
+		isAndroidOrIos() == "ios" > 0 ? config.scheme_IOS : config.scheme_Adr;
+	ifr.style.display = "none";
+	document.body.appendChild(ifr);
+
+	var t = setTimeout(function() {
+		var endTime = Date.now();
+		if (!startTime || endTime - startTime < config.timeout + 200) {
+			window.location = getDownloadSit();
+		} else {
+		}
+	}, config.timeout);
+};

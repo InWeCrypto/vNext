@@ -317,17 +317,20 @@
 	flex-direction: column;
 	.leftTwoMenus {
 		position: relative;
-		width: 100%;
+		width: 7.5rem;
 		height: 0.9rem;
 		top: 0;
 		left: 0;
 		padding: 0;
+		margin: 0 auto;
 		.leftTwoMenu {
 			&.fixed {
+				width: 7.5rem;
 				position: fixed;
 				top: 0;
-				left: 0;
+				left: 50%;
 				z-index: 1;
+				transform: translateX(-50%);
 			}
 			display: flex;
 			align-items: center;

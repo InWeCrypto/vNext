@@ -240,17 +240,15 @@ class Header extends PureComponent {
 									<img src={titleCat} alt="" />
 									<span>InWeCrypto</span>
 								</div>
-								<div
-									className="m-searchBtn"
-									onClick={this.toSearch.bind(this)}
-								>
-									{/* <Link
+								<div className="m-searchBtn">
+									<Link
 										to={{
-											pathname: ""
+											pathname: "/search",
+											search: "k="
 										}}
-									> */}
-									<img src={searchicon} alt="" />
-									{/* </Link> */}
+									>
+										<img src={searchicon} alt="" />
+									</Link>
 								</div>
 							</div>
 						)}

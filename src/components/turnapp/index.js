@@ -2,7 +2,11 @@ import React, { PureComponent } from "react";
 import closeImg from "../../assets/images/close_white.png";
 import logoApp from "../../assets/images/logoapp.png";
 
-import { isAndroidOrIos, getDownloadSit } from "../../utils/util.js";
+import {
+	isAndroidOrIos,
+	getDownloadSit,
+	openInstallApp
+} from "../../utils/util.js";
 
 import "./index.less";
 
@@ -48,7 +52,8 @@ class TurnApp extends PureComponent {
 
 	downloadApp() {
 		if (isAndroidOrIos() == "android") {
-			window.location.href = getDownloadSit();
+			openInstallApp();
+			//window.location.href = getDownloadSit();
 		} else if (isAndroidOrIos() == "ios") {
 		}
 	}
