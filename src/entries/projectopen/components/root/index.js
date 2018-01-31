@@ -247,15 +247,20 @@ export default class Root extends PureComponent {
 																					.ico
 																					.percent_change_24h <
 																				0
-																					? "right m-hide down"
+																					? "right m-hide downs"
 																					: "right m-hide"
 																			}
 																		>
-																			${
-																				item
-																					.ico
-																					.price_usd
-																			}
+																			${item
+																				.ico
+																				.price_usd &&
+																				parseFloat(
+																					item
+																						.ico
+																						.price_usd
+																				).toFixed(
+																					2
+																				)}
 																			<span
 																			>
 																				({
