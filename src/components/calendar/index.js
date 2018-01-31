@@ -82,7 +82,7 @@ class Calendar extends PureComponent {
 				: 28;
 		let r;
 		if (num != 2) {
-			if (has31day.indexOf(num)) {
+			if (has31day.indexOf(num) != -1) {
 				r = 31;
 			} else {
 				r = 30;
