@@ -2,7 +2,13 @@ import React, { PureComponent } from "react";
 import { I18n, Trans } from "react-i18next";
 import { NavLink, Link } from "react-router-dom";
 
-import { getMainMinHeight, getQuery } from "../../../../utils/util";
+import {
+	getMainMinHeight,
+	getQuery,
+	getDownloadSit,
+	isAndroidOrIos,
+	openInstallApp
+} from "../../../../utils/util";
 import Header from "../../../../components/header";
 import Footer from "../../../../components/footer";
 import FixedMenu from "../../../../components/fixedmenu";
@@ -11,13 +17,15 @@ import "./index.less";
 import wallent_phone from "../../../../assets/images/wallet_iPhone.png";
 import app_store from "../../../../assets/images/app_store.png";
 import google_play from "../../../../assets/images/google_play.png";
+import androidqrcode from "../../../../assets/images/androidqrcode.png";
 
 export default class Root extends PureComponent {
 	constructor(props) {
 		super(props);
 		this.state = {
 			minH: "auto",
-			liH: "auto"
+			liH: "auto",
+			showDownLoadPop: false
 		};
 	}
 	componentWillReceiveProps(nextProps) {
@@ -45,8 +53,23 @@ export default class Root extends PureComponent {
 			k: q.k || ""
 		});
 	}
+	downLoadAndroidApp() {
+		if (IsTouchDevice) {
+			openInstallApp();
+			//window.location.href = getDownloadSit();
+		} else {
+			this.setState({
+				showDownLoadPop: true
+			});
+		}
+	}
+	closePopQrcode() {
+		this.setState({
+			showDownLoadPop: false
+		});
+	}
 	render() {
-		const { minH, liH } = this.state;
+		const { minH, liH, showDownLoadPop } = this.state;
 		const {
 			lng,
 			changeLng,
@@ -97,18 +120,45 @@ export default class Root extends PureComponent {
 									assets.
 								</p>
 								<div className="wallentDown">
-									<div className="downLf">
-										<img src={app_store} alt="" />
-									</div>
-									<div className="downRt">
-										<img src={google_play} alt="" />
-									</div>
+									{(isAndroidOrIos() == "ios" ||
+										!IsTouchDevice) && (
+										<div className="downLf">
+											<img src={app_store} alt="" />
+										</div>
+									)}
+									{(isAndroidOrIos() == "android" ||
+										!IsTouchDevice) && (
+										<div
+											className="downRt"
+											onClick={this.downLoadAndroidApp.bind(
+												this
+											)}
+										>
+											<img src={google_play} alt="" />
+										</div>
+									)}
 								</div>
 							</div>
 							<div className="wallentRt m-hide">
 								<img src={wallent_phone} alt="" />
 							</div>
 						</div>
+						{showDownLoadPop && (
+							<div className="downloadPopup">
+								<div className="centerBox Center">
+									<div className="title">InWeCrypto</div>
+									<div
+										className="closeBtn"
+										onClick={this.closePopQrcode.bind(this)}
+									/>
+
+									<div className="qrcodeMess Center">
+										<img src={androidqrcode} alt="" />
+									</div>
+								</div>
+							</div>
+						)}
+
 						{/* <Footer changeLng={changeLng} lng={lng} /> */}
 					</div>
 				)}

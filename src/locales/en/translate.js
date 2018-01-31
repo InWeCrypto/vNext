@@ -42,7 +42,8 @@ export default {
 		project_summary: "Overview",
 		project_dyna: "Follow-Up",
 		project_intro: "Introduction",
-		project_overview: "Overview"
+		project_overview: "Overview",
+		all: "ALL"
 	},
 	news: {
 		news: "24H News",

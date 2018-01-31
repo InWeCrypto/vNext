@@ -32,14 +32,14 @@
 				max-width: 49%;
 				width: 1.46rem;
 				height: 0.42rem;
-				// background: rgba(255, 87, 31, 1);
 				border-radius: 0.04rem;
 				line-height: 0.42rem;
 				text-align: center;
 				color: #fff;
 				overflow: hidden;
-				background: #ececec;
+
 				&.downLf {
+					background: #ececec;
 					img {
 						width: 1.1rem;
 						max-width: 100%;
@@ -47,6 +47,7 @@
 				}
 				&.downRt {
 					float: right;
+					background: rgba(255, 87, 31, 1);
 					img {
 						width: 1.21rem;
 						max-width: 100%;
@@ -60,6 +61,54 @@
 		img {
 			display: block;
 			width: 100%;
+		}
+	}
+}
+.downloadPopup {
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.59);
+	.centerBox {
+		width: 5.5rem;
+		height: 5.4rem;
+		border-radius: 4px;
+		background: #fff;
+		.title {
+			width: 100%;
+			text-align: center;
+			font-size: 0.24rem;
+			font-family: "Microsoft YaHei", "impact";
+			font-weight: 600;
+			color: #333;
+			padding: 0.2rem 0 0 0;
+		}
+		.closeBtn {
+			position: absolute;
+			right: 0.2rem;
+			top: 0.2rem;
+			background: url("../../../../assets/images/close1.png") no-repeat
+				center center / cover;
+			display: inline-block;
+			background-size: 100% 100%;
+			width: 0.17rem;
+			height: 0.17rem;
+			transition: all 0.3s ease-in-out;
+			&:hover {
+				opacity: 0.33;
+			}
+		}
+		.qrcodeMess {
+			width: 2.24rem;
+			height: 2.24rem;
+			img {
+				display: block;
+				width: 100%;
+				height: 100%;
+				object-fit: contain;
+			}
 		}
 	}
 }
@@ -90,6 +139,7 @@
 		display: flex;
 		justify-content: space-around;
 		align-items: center;
+		height: auto;
 		.downLf,
 		.downRt {
 			width: 2.22rem;

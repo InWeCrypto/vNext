@@ -42,7 +42,8 @@ export default {
 		project_summary: "项目概况",
 		project_dyna: "项目动态",
 		project_intro: "项目介绍",
-		project_overview: "项目概述"
+		project_overview: "项目概述",
+		all: "全部资讯"
 	},
 	news: {
 		news: "24H News",

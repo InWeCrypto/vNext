@@ -157,3 +157,57 @@ export const queryString = (name, notDecoded) => {
 		return decodeURIComponent(encoded);
 	}
 };
+
+export const addFixed2Body = () => {
+	let bodyDom = document.getElementsByTagName("body")[0];
+	// bodyDom.style.height = "100%";
+	// bodyDom.style.overflow = "hidden";
+};
+export const removeFixed2Body = () => {
+	let bodyDom = document.getElementsByTagName("body")[0];
+	// bodyDom.style.height = "100%";
+	// bodyDom.style.overflow = "hidden";
+};
+
+export const isAndroidOrIos = () => {
+	var u = navigator.userAgent;
+	var isAndroid = u.indexOf("Android") > -1 || u.indexOf("Adr") > -1; //android终端
+	var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+	if (isAndroid) {
+		return "android";
+	} else if (isiOS) {
+		return "ios";
+	}
+};
+
+export const getDownloadSit = () => {
+	if (isAndroidOrIos() == "android") {
+		return "http://inwecrypto-china.oss-cn-shanghai.aliyuncs.com/inwecrypto.apk";
+	} else if (isAndroidOrIos() == "ios") {
+		return "";
+	}
+};
+
+export const openInstallApp = () => {
+	let config = {
+		scheme_IOS: "schemedemo://",
+		scheme_Adr: "schemedemo://",
+		timeout: 500
+	};
+
+	//创建iframe
+	var startTime = Date.now();
+	var ifr = document.createElement("iframe");
+	ifr.src =
+		isAndroidOrIos() == "ios" > 0 ? config.scheme_IOS : config.scheme_Adr;
+	ifr.style.display = "none";
+	document.body.appendChild(ifr);
+
+	var t = setTimeout(function() {
+		var endTime = Date.now();
+		if (!startTime || endTime - startTime < config.timeout + 200) {
+			window.location = getDownloadSit();
+		} else {
+		}
+	}, config.timeout);
+};
