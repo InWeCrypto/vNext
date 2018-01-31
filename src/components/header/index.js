@@ -373,7 +373,7 @@ class Header extends PureComponent {
 										onClick={this.Login.bind(this)}
 										className="rightbtn"
 									>
-										Login
+										{t("signBox.signIn.signIn", lng)}
 									</span>
 									<span
 										onClick={this.openRegisterByHeader.bind(
@@ -381,7 +381,7 @@ class Header extends PureComponent {
 										)}
 										className="rightbtn"
 									>
-										Sign Up
+										{t("signBox.signIn.register", lng)}
 									</span>
 								</div>
 							)}
