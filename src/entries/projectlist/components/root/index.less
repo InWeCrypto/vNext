@@ -33,17 +33,24 @@
 					padding: 0.25rem 0.3rem 0.1rem 0rem;
 					border-bottom: 1px solid #ececec;
 					box-sizing: content-box;
+					cursor: pointer;
 				}
 			}
 			.projectListConChildUl {
 				width: 100%;
+				padding-top: 0.1rem;
 				li {
 					width: 100%;
 					height: 1.06rem;
 					padding: 0.2rem 0.1rem;
 					box-sizing: border-box;
+					border-radius: 0.04rem;
+					transition: all 0.5s ease-in-out;
+					box-shadow: 0 4px 30px rgba(0, 0, 0, 0);
+					transform: translate(0, 0);
 					&:hover {
-						background-color: #f6f6f6;
+						box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+						transform: translate(-1%, -1%);
 						& .projectListLiTopRight.nocollect {
 							background: url("../../../../assets/images/project_collect_ss.png")
 								no-repeat center center;
