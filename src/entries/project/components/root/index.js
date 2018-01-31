@@ -343,7 +343,8 @@ export default class Root extends PureComponent {
 												</ul>
 												{project &&
 													project.data &&
-													project.data.length > 8 && (
+													project.data.length >=
+														8 && (
 														<Link
 															to={{
 																pathname:
