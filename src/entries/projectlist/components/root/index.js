@@ -435,7 +435,6 @@ export default class Root extends PureComponent {
 																						).toFixed(
 																							2
 																						)}
-																					}
 																					<span
 																					>
 																						({
