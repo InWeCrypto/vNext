@@ -21,7 +21,8 @@ export default class Root extends PureComponent {
 			showArrow: "right",
 			liW: "auto",
 			leftTwoMenuCur: "",
-			curType: 1
+			curType: 1,
+			getAjaxDown: false
 		};
 	}
 	componentWillReceiveProps(nextProps) {
@@ -59,7 +60,8 @@ export default class Root extends PureComponent {
 			})
 			.then(res => {
 				this.setState({
-					showArrow: "left"
+					showArrow: "left",
+					getAjaxDown: true
 				});
 				this.listMove();
 			});
@@ -100,7 +102,13 @@ export default class Root extends PureComponent {
 			});
 	}
 	render() {
-		const { minH, showArrow, liW, leftTwoMenuCur } = this.state;
+		const {
+			minH,
+			showArrow,
+			liW,
+			leftTwoMenuCur,
+			getAjaxDown
+		} = this.state;
 		const {
 			lng,
 			changeLng,
@@ -365,11 +373,12 @@ export default class Root extends PureComponent {
 										)}
 									{(!project ||
 										!project.data ||
-										project.data.length <= 0) && (
-										<div className="nodata-box">
-											{t("nodata", lng)}
-										</div>
-									)}
+										project.data.length <= 0) &&
+										getAjaxDown && (
+											<div className="nodata-box">
+												{t("nodata", lng)}
+											</div>
+										)}
 								</div>
 
 								{/* <div className="viewAllProject ui center">

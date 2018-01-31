@@ -481,7 +481,12 @@ export default class Root extends PureComponent {
 																								: "precents"
 																						}
 																					>
-																						({item.ico &&
+																						({item
+																							.ico
+																							.percent_change_24h >=
+																							0 &&
+																							"+"}
+																						{item.ico &&
 																							item
 																								.ico
 																								.percent_change_24h}%)
