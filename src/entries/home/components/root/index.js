@@ -602,7 +602,7 @@ export default class Root extends PureComponent {
 											}}
 										>
 											<span className="readMore readMoreUnderLine">
-												Read more
+												read more
 											</span>
 											<b className="readMoreImg" />
 										</Link>

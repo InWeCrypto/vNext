@@ -553,17 +553,15 @@ class ProjectDetailGaiKuo extends PureComponent {
 												</td>
 												<td>
 													{coinTimePrice &&
-                                                        coinTimePrice.available_supply}
-                                                        {" "}
-                                                        {coinTimePrice &&
-                                                        coinTimePrice.symbol}
+														coinTimePrice.available_supply}{" "}
+													{coinTimePrice &&
+														coinTimePrice.symbol}
 												</td>
 												<td>
 													{coinTimePrice &&
-														coinTimePrice.total_supply}
-                                                        {" "}
-                                                        {coinTimePrice &&
-                                                        coinTimePrice.symbol}
+														coinTimePrice.total_supply}{" "}
+													{coinTimePrice &&
+														coinTimePrice.symbol}
 												</td>
 												<td>
 													${coinTimePrice &&
@@ -576,7 +574,9 @@ class ProjectDetailGaiKuo extends PureComponent {
 
 								<div className="gaiKuoChart" id="gaiKuoChart">
 									<div className="charts-type ui start">
-										<span>Zoom</span>
+										<span className="zoomLineHeight">
+											Zoom
+										</span>
 										{this.state.chartType &&
 											this.state.chartType.map(
 												(item, index) => {

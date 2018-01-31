@@ -54,12 +54,16 @@ class ProjectDetailInfo extends PureComponent {
 	}
 	projectDynamicList(id, page) {
 		//获取项目动态
+		let perpage = 4;
+		if (IsTouchDevice) {
+			perpage = 100;
+		}
 		this.props
 			.getProjectDynamicList({
 				cid: this.props.projectDetail.id,
 				tag_id: id,
 				type: "[2,3]",
-				per_page: 4,
+				per_page: perpage,
 				page: page || 1
 			})
 			.then(res => {
@@ -108,11 +112,36 @@ class ProjectDetailInfo extends PureComponent {
 							</div>
 							{IsTouchDevice && (
 								<div className="projectDetailNav">
+									{/* <div className="swiper-container projectDetailInfoNavSwiperContainer">
+										<div class="swiper-wrapper">
+											<div class="swiper-slide">
+												slider1
+											</div>
+											<div class="swiper-slide">
+												slider2
+											</div>
+											<div class="swiper-slide">
+												slider3
+											</div>
+										</div>
+									</div> */}
 									<ul
 										className="projectDetailNavUl"
 										id="projectDetailNavUl"
 										style={{ width: ulWidth }}
 									>
+										<li
+											className={
+												curDynamic == "" ? "cur" : ""
+											}
+											onClick={() => {
+												this.projectDynamicList("", 1);
+											}}
+										>
+											<span>
+												{t("projectDetail.all", lng)}
+											</span>
+										</li>
 										{projectDynamic &&
 											projectDynamic.data &&
 											projectDynamic.data.length > 0 &&

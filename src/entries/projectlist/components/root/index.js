@@ -158,10 +158,10 @@ export default class Root extends PureComponent {
 		if (isNaN(intVal)) {
 			return false;
 		} else {
-			if (intVal <= 0) {
-				return false;
-			} else {
+			if (val < 0) {
 				return true;
+			} else {
+				return false;
 			}
 		}
 	}
@@ -421,15 +421,20 @@ export default class Root extends PureComponent {
 																							.ico
 																							.percent_change_24h <
 																						0
-																							? "right m-hide down"
+																							? "right m-hide downs"
 																							: "right m-hide"
 																					}
 																				>
-																					${
-																						item
-																							.ico
-																							.price_usd
-																					}
+																					${item
+																						.ico
+																						.price_usd &&
+																						parseFloat(
+																							item
+																								.ico
+																								.price_usd
+																						).toFixed(
+																							2
+																						)}
 																					<span
 																					>
 																						({
@@ -461,19 +466,32 @@ export default class Root extends PureComponent {
 																						${item.ico &&
 																							item
 																								.ico
-																								.price_usd}
+																								.price_usd &&
+																							parseFloat(
+																								item
+																									.ico
+																									.price_usd
+																							).toFixed(
+																								2
+																							)}
 																					</div>
 																					<div
 																						className={
-																							this.chargeColor.bind(
-																								this,
-																								item.ico
+																							this.chargeColor(
+																								item
+																									.ico
+																									.percent_change_24h
 																							)
 																								? "precents colorRed"
 																								: "precents"
 																						}
 																					>
-																						({item.ico &&
+																						({item
+																							.ico
+																							.percent_change_24h >=
+																							0 &&
+																							"+"}
+																						{item.ico &&
 																							item
 																								.ico
 																								.percent_change_24h}%)
@@ -713,6 +731,13 @@ export default class Root extends PureComponent {
 																						{
 																							item.unit
 																						}
+																						{IsTouchDevice && (
+																							<span className="industryText">
+																								{
+																									item.industry
+																								}
+																							</span>
+																						)}
 																					</span>
 																					<b className="ellitext">
 																						({
@@ -747,7 +772,7 @@ export default class Root extends PureComponent {
 																			/>
 																		</div>
 																		<div className="projectListLiCenter">
-																			<div className="left">
+																			<div className="left m-hide">
 																				{
 																					item.industry
 																				}

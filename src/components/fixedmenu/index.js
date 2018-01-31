@@ -89,7 +89,6 @@ class FixedMenu extends PureComponent {
 											pathname: "/"
 										}}
 										className="nav-item"
-										activeClassName="cur"
 									>
 										<span className="nav-text">
 											{t("navMenu.home", lng)}

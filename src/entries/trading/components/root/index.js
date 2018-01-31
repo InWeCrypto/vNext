@@ -176,7 +176,7 @@ export default class Root extends PureComponent {
 												<li
 													className="li"
 													key={index}
-													style={{ height: liH }}
+													// style={{ height: liH }}
 												>
 													<Link
 														className="ui"

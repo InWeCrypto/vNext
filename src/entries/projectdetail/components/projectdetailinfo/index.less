@@ -54,7 +54,7 @@
 					width: 48%;
 					height: 2.6rem;
 					margin-top: 0.24rem;
-					border: 1px solid #cecece;
+					border: 1px solid #ececec;
 					.imgBox {
 						position: relative;
 						width: 100%;
@@ -135,7 +135,7 @@
 		}
 	}
 	.projectDetailCon2 {
-		width: 2.3rem;
+		width: 3rem;
 		padding: 0 0.3rem;
 		box-sizing: border-box;
 		border-right: 1px solid #ececec;
@@ -211,6 +211,10 @@
 		}
 	}
 }
+.pc .projectDetailInfo .projectDetailCon1 .projectDetailCon1Box ul li {
+	border-radius: 4px;
+	overflow: hidden;
+}
 .mobile .projectDetailInfo {
 	display: block;
 	width: 7.5rem;
@@ -278,6 +282,8 @@
 						z-index: 1;
 						width: 2.3rem;
 						height: 1.5rem;
+						background: url("../../../../assets/images/holdimg.png")
+							no-repeat center center / cover;
 						img {
 							display: block;
 							width: 100%;
@@ -350,14 +356,18 @@
 		}
 		.projectDetailNav {
 			width: 7.5rem;
-			height: 0.33rem;
+			height: 0.74rem;
 			margin: 0.2rem 0;
 			overflow: auto;
 			-webkit-overflow-scrolling: touch;
+			border-top: 1px solid #ececec;
+			border-bottom: 1px solid #ececec;
 			.projectDetailNavUl {
-				height: 0.33rem;
+				height: 0.74rem;
 				font-size: 0.24rem;
 				font-weight: 200;
+				line-height: 0.74rem;
+
 				li {
 					float: left;
 					margin: 0 5px;
