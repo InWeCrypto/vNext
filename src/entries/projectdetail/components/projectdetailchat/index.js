@@ -88,7 +88,7 @@ class ProjectDetailIco extends PureComponent {
 					<div className="projectDetailChat m-hide">
 						<div className="coverBox">
 							<div className="cover ">
-								<div>coming soon</div>
+								<div>Coming soon</div>
 							</div>
 							<ul className="chatUl ">
 								<li>

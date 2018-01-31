@@ -425,18 +425,16 @@ export default class Root extends PureComponent {
 																							: "right m-hide"
 																					}
 																				>
-																					${
-																						item
-																							.ico
-                                                                                            .price_usd&&
-                                                                                            parseFloat(
-                                                                                                item
-                                                                                                    .ico
-                                                                                                    .price_usd
-                                                                                            ).toFixed(
-                                                                                                2
-                                                                                            )
-																					}
+																					${item
+																						.ico
+																						.price_usd &&
+																						parseFloat(
+																							item
+																								.ico
+																								.price_usd
+																						).toFixed(
+																							2
+																						)}
 																					<span
 																					>
 																						({
@@ -733,6 +731,13 @@ export default class Root extends PureComponent {
 																						{
 																							item.unit
 																						}
+																						{IsTouchDevice && (
+																							<span className="industryText">
+																								{
+																									item.industry
+																								}
+																							</span>
+																						)}
 																					</span>
 																					<b className="ellitext">
 																						({
@@ -767,7 +772,7 @@ export default class Root extends PureComponent {
 																			/>
 																		</div>
 																		<div className="projectListLiCenter">
-																			<div className="left">
+																			<div className="left m-hide">
 																				{
 																					item.industry
 																				}

@@ -24,20 +24,20 @@ export default {
 	projectDetail: {
 		chat: "你的观点...",
 		score: "项目评分",
-		volume: "Volume (24h)",
+		volume: "交易量 (24h)",
 		rank: "市值排名",
 		market_cap_usd: "市值",
 		available_supply: "流通量",
 		total_supply: "总供给量",
-		price_usd: "ICO Price",
+		price_usd: "ICO 价格",
 		sort: "关注热度：第",
 		sort_s: "名",
 		user_score: "用户评分",
-		rank_title: "Rank",
-		explore_title: "Explore",
-		wallet_title: "Wallet",
-		token_title: "Token Holders",
-		social_title: "Social",
+		rank_title: "排名",
+		explore_title: "浏览器",
+		wallet_title: "钱包",
+		token_title: "代币持有者",
+		social_title: "社交媒体",
 		ico_structure: "ICO 结构",
 		project_summary: "项目概况",
 		project_dyna: "项目动态",
@@ -68,7 +68,7 @@ export default {
 		wallent: "钱包"
 	},
 	search: {
-		placeholder: "Search you want to know"
+		placeholder: "想了解什么"
 	},
 	signBox: {
 		signIn: {
