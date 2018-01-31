@@ -55,7 +55,7 @@ export default class Root extends PureComponent {
 		this.props
 			.getProject({
 				type: q.type || "1",
-				per_page: 8
+				per_page: 9
 			})
 			.then(res => {
 				this.setState({
