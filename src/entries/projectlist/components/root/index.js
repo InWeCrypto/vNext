@@ -435,7 +435,7 @@ export default class Root extends PureComponent {
                                                                                                     .price_usd
                                                                                             ).toFixed(
                                                                                                 2
-                                                                                            )}
+                                                                                            )
 																					}
 																					<span
 																					>
