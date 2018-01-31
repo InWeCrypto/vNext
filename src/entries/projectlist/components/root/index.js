@@ -158,10 +158,10 @@ export default class Root extends PureComponent {
 		if (isNaN(intVal)) {
 			return false;
 		} else {
-			if (intVal <= 0) {
-				return false;
-			} else {
+			if (val < 0) {
 				return true;
+			} else {
+				return false;
 			}
 		}
 	}
@@ -468,13 +468,21 @@ export default class Root extends PureComponent {
 																						${item.ico &&
 																							item
 																								.ico
-																								.price_usd}
+																								.price_usd &&
+																							parseFloat(
+																								item
+																									.ico
+																									.price_usd
+																							).toFixed(
+																								2
+																							)}
 																					</div>
 																					<div
 																						className={
-																							this.chargeColor.bind(
-																								this,
-																								item.ico
+																							this.chargeColor(
+																								item
+																									.ico
+																									.percent_change_24h
 																							)
 																								? "precents colorRed"
 																								: "precents"
