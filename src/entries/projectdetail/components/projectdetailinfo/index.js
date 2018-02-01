@@ -1,6 +1,6 @@
 import React, { PureComponent } from "react";
 import { I18n, Trans } from "react-i18next";
-import { getLocalTime } from "../../../../utils/util";
+import { getLocalTime, getMainMinHeight } from "../../../../utils/util";
 import { Link } from "react-router-dom";
 import GaiKuo from "../../../../components/gaikuo";
 import "./index.less";
@@ -9,7 +9,11 @@ class ProjectDetailInfo extends PureComponent {
 		super(props);
 		this.state = {
 			curDynamic: 0,
-			ulWidth: 0
+			ulWidth: 0,
+			isAjax: false,
+			page: 1,
+			total_page: 1,
+			is_end: false
 		};
 	}
 	componentWillMount() {}
@@ -18,6 +22,13 @@ class ProjectDetailInfo extends PureComponent {
 		this.initPage();
 	}
 	componentDidUpdate() {
+		if (!IsTouchDevice) {
+			let minH = getMainMinHeight();
+			document.querySelector("#mainBox").style.height = minH + "px";
+			document
+				.getElementById("dynamicScroll")
+				.addEventListener("scroll", this.dynamicScroll.bind(this));
+		}
 		let ulDomList = document.getElementById("projectDetailNavUl");
 		if (!ulDomList) {
 			this.setState({
@@ -26,7 +37,6 @@ class ProjectDetailInfo extends PureComponent {
 			return;
 		}
 		let liDomList = ulDomList.getElementsByTagName("li");
-		console.log(liDomList);
 		let ulWidth = 0;
 		for (let i = 0; i < liDomList.length; i++) {
 			ulWidth = ulWidth + liDomList[i].clientWidth + 12;
@@ -46,6 +56,43 @@ class ProjectDetailInfo extends PureComponent {
 			this.cancelProjectDot();
 		}
 	}
+	dynamicScroll() {
+		let dynamic = document.getElementById("dynamicScroll");
+		let cH = dynamic.clientHeight;
+		let sH = dynamic.scrollHeight;
+		let sT = dynamic.scrollTop;
+		if (!this.state.is_end && cH > sH - sT - 50) {
+			if (this.state.isAjax) {
+				return;
+			}
+			if (this.state.page > this.state.total_page) return;
+			this.setState({
+				isAjax: true
+			});
+			this.props
+				.getDynamicScrollList({
+					cid: this.props.projectDetail.id,
+					tag_id: this.state.curDynamic,
+					type: "[2,3]",
+					per_page: 10,
+					page: this.state.page + 1
+				})
+				.then(res => {
+					this.setState({
+						curDynamic: this.state.curDynamic,
+						page: this.state.page + 1,
+						isAjax: false,
+						total_page: res.data.last_page
+					});
+					if (this.state.page > this.state.total_page) {
+						this.setState({
+							is_end: true
+						});
+						Msg.prompt("没有更多了");
+					}
+				});
+		}
+	}
 	cancelProjectDot() {
 		// 取消项目红点
 		this.props.unProjectDot({
@@ -54,7 +101,7 @@ class ProjectDetailInfo extends PureComponent {
 	}
 	projectDynamicList(id, page) {
 		//获取项目动态
-		let perpage = 4;
+		let perpage = 10;
 		if (IsTouchDevice) {
 			perpage = 100;
 		}
@@ -68,8 +115,22 @@ class ProjectDetailInfo extends PureComponent {
 			})
 			.then(res => {
 				this.setState({
-					curDynamic: id
+					curDynamic: id,
+					page: page,
+					total_page: res.data.last_page
 				});
+				if (!IsTouchDevice) {
+					if (this.state.page >= this.state.total_page) {
+						this.setState({
+							is_end: true
+						});
+						Msg.prompt("没有更多了");
+					} else {
+						this.setState({
+							is_end: false
+						});
+					}
+				}
 			});
 	}
 	render() {
@@ -177,8 +238,11 @@ class ProjectDetailInfo extends PureComponent {
 								{projectDynamicList &&
 									projectDynamicList.data &&
 									projectDynamicList.data.length > 0 && (
-										<div>
-											<ul className="ui">
+										<div className="pdBoxList">
+											<ul
+												className="ui"
+												id="dynamicScroll"
+											>
 												{projectDynamicList.data.map(
 													(item, index) => {
 														return (
@@ -237,38 +301,40 @@ class ProjectDetailInfo extends PureComponent {
 													}
 												)}
 											</ul>
-											<div className="pageTurn m-hide">
-												{projectDynamicList.prev_page_url && (
-													<span
-														className="pageTurmLf more"
-														onClick={() => {
-															this.projectDynamicList(
-																curDynamic,
-																projectDynamicList.current_page -
-																	1
-															);
-														}}
-													/>
-												)}
-												{!projectDynamicList.prev_page_url && (
-													<span className="pageTurmLf" />
-												)}
-												{projectDynamicList.next_page_url && (
-													<span
-														className="pageTurmRt more"
-														onClick={() => {
-															this.projectDynamicList(
-																curDynamic,
-																projectDynamicList.current_page +
-																	1
-															);
-														}}
-													/>
-												)}
-												{!projectDynamicList.next_page_url && (
-													<span className="pageTurmRt" />
-												)}
-											</div>
+											{false && (
+												<div className="pageTurn m-hide">
+													{projectDynamicList.prev_page_url && (
+														<span
+															className="pageTurmLf more"
+															onClick={() => {
+																this.projectDynamicList(
+																	curDynamic,
+																	projectDynamicList.current_page -
+																		1
+																);
+															}}
+														/>
+													)}
+													{!projectDynamicList.prev_page_url && (
+														<span className="pageTurmLf" />
+													)}
+													{projectDynamicList.next_page_url && (
+														<span
+															className="pageTurmRt more"
+															onClick={() => {
+																this.projectDynamicList(
+																	curDynamic,
+																	projectDynamicList.current_page +
+																		1
+																);
+															}}
+														/>
+													)}
+													{!projectDynamicList.next_page_url && (
+														<span className="pageTurmRt" />
+													)}
+												</div>
+											)}
 										</div>
 									)}
 

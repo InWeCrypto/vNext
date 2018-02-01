@@ -8,6 +8,7 @@ export const PROJECTREMIND = `${PRE_FIX}PROJECTREMIND`;
 export const PROJECTCOLLECT = `${PRE_FIX}PROJECTCOLLECT`;
 export const PROJECTDYNAMIC = `${PRE_FIX}PROJECTDYNAMIC`;
 export const PROJECTDYNAMICLIST = `${PRE_FIX}PROJECTDYNAMICLIST`;
+export const DYNAMICSCROLLLIST = `${PRE_FIX}DYNAMICSCROLLLIST`;
 export const PROJECTSCORE = `${PRE_FIX}PROJECTSCORE`;
 export const PROJECTDOT = `${PRE_FIX}PROJECTDOT`;
 export const PROJECTKCHARTS = `${PRE_FIX}PROJECTKCHARTS`;
@@ -72,6 +73,12 @@ export const getProjectDynamicList = createAction(
 		});
 	}
 );
+export const getDynamicScrollList = createAction(DYNAMICSCROLLLIST, params => {
+	return http.get({
+		url: "article",
+		params: params
+	});
+});
 export const getProjectScore = createAction(PROJECTSCORE, params => {
 	return http.put({
 		url: `category/${params.c_id}/score`,
