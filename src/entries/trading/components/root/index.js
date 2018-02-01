@@ -233,7 +233,8 @@ export default class Root extends PureComponent {
 								)}
 								<div className="Pagination-box m-hide">
 									{trading &&
-										trading.data && (
+										trading.data &&
+										trading.data.length > 0 && (
 											<Pagination
 												defaultPageSize={
 													this.state.per_page

@@ -146,6 +146,26 @@
 	.tradingBox {
 		padding: 0.96rem 0.1rem 0 0.1rem;
 		box-sizing: border-box;
+		.ul .li {
+			border: 1px solid #f4f4f4;
+			transition: all 0.5s ease-in-out;
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0);
+			transform: translate(0, 0);
+			padding: 0.12rem 0.1rem;
+			&:hover {
+				box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+				transform: translate(0, -1%);
+			}
+			.tradingBoxImg {
+				img:hover {
+					transform: scale(1);
+				}
+			}
+			.tradingBoxCon {
+				border: 0;
+				padding: 0;
+			}
+		}
 	}
 }
 .mobile .trading {

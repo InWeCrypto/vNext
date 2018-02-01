@@ -202,9 +202,9 @@ export default class Root extends PureComponent {
 																			}
 																		</span>
 																		<b className="ellitext">
-																			{
+																			({
 																				item.long_name
-																			}
+																			})
 																		</b>
 																	</p>
 																</div>
@@ -233,14 +233,29 @@ export default class Root extends PureComponent {
 																	}}
 																/>
 															</div>
-															<div className="projectOpenLiCenter">
-																<div className="left">
+															{!IsTouchDevice && (
+																<div className="projectOpenLiIndu">
 																	{
 																		item.industry
 																	}
 																</div>
-																{type == 1 &&
-																	item.ico && (
+															)}
+															{type == 1 && (
+																<div className="projectOpenLiCenter">
+																	<div className="left m-hide">
+																		${item.ico &&
+																			item
+																				.ico
+																				.price_usd &&
+																			parseFloat(
+																				item
+																					.ico
+																					.price_usd
+																			).toFixed(
+																				2
+																			)}
+																	</div>
+																	{item.ico && (
 																		<div
 																			className={
 																				item
@@ -251,27 +266,18 @@ export default class Root extends PureComponent {
 																					: "right m-hide"
 																			}
 																		>
-																			${item
-																				.ico
-																				.price_usd &&
-																				parseFloat(
-																					item
-																						.ico
-																						.price_usd
-																				).toFixed(
-																					2
-																				)}
 																			<span
 																			>
-																				({
+																				{
 																					item
 																						.ico
 																						.percent_change_24h
-																				}%)
+																				}%
 																			</span>
 																		</div>
 																	)}
-															</div>
+																</div>
+															)}
 														</Link>
 													</li>
 												);

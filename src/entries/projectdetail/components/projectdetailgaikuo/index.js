@@ -728,6 +728,7 @@ class ProjectDetailGaiKuo extends PureComponent {
 													to={{
 														pathname: item.url
 													}}
+													target="_blank"
 												>
 													<p>+{item.name}</p>
 												</Link>
