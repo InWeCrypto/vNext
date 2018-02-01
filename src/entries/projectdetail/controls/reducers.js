@@ -6,6 +6,7 @@ import {
 	PROJECTCOLLECT,
 	PROJECTDYNAMIC,
 	PROJECTDYNAMICLIST,
+	DYNAMICSCROLLLIST,
 	PROJECTSCORE,
 	PROJECTDOT,
 	PROJECTKCHARTS,
@@ -41,7 +42,11 @@ export const projectDynamic = handleActions(
 );
 export const projectDynamicList = handleActions(
 	{
-		[PROJECTDYNAMICLIST]: (state, { payload }) => payload
+		[PROJECTDYNAMICLIST]: (state, { payload }) => payload,
+		[DYNAMICSCROLLLIST]: (state, { payload }) => {
+			state.data = state.data.concat(payload.data);
+			return state;
+		}
 	},
 	[]
 );

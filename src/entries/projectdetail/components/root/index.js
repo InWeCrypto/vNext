@@ -103,6 +103,7 @@ export default class Root extends PureComponent {
 			setProjectRemind,
 			getProjectCollect,
 			getProjectDynamicList,
+			getDynamicScrollList,
 			getProjectScore,
 			unProjectDot,
 			projectKdata,
@@ -236,6 +237,9 @@ export default class Root extends PureComponent {
 										projectDynamicList={projectDynamicList}
 										getProjectDynamicList={
 											getProjectDynamicList
+										}
+										getDynamicScrollList={
+											getDynamicScrollList
 										}
 										unProjectDot={unProjectDot}
 									/>
