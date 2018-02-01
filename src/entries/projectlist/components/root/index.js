@@ -408,11 +408,26 @@ export default class Root extends PureComponent {
 																				}}
 																			/>
 																		</div>
-																		<div className="projectListLiCenter">
-																			<div className="left m-hide">
+																		{!IsTouchDevice && (
+																			<div className="projectListLiIndu">
 																				{
 																					item.industry
 																				}
+																			</div>
+																		)}
+																		<div className="projectListLiCenter">
+																			<div className="left m-hide">
+																				${item.ico &&
+																					item
+																						.ico
+																						.price_usd &&
+																					parseFloat(
+																						item
+																							.ico
+																							.price_usd
+																					).toFixed(
+																						2
+																					)}
 																			</div>
 																			{item.ico && (
 																				<div
@@ -425,23 +440,13 @@ export default class Root extends PureComponent {
 																							: "right m-hide"
 																					}
 																				>
-																					${item
-																						.ico
-																						.price_usd &&
-																						parseFloat(
-																							item
-																								.ico
-																								.price_usd
-																						).toFixed(
-																							2
-																						)}
 																					<span
 																					>
-																						({
+																						{
 																							item
 																								.ico
 																								.percent_change_24h
-																						}%)
+																						}%
 																					</span>
 																				</div>
 																			)}
@@ -585,13 +590,13 @@ export default class Root extends PureComponent {
 																				}}
 																			/>
 																		</div>
-																		<div className="projectListLiCenter">
-																			<div className="left m-hide">
+																		{!IsTouchDevice && (
+																			<div className="projectListLiIndu">
 																				{
 																					item.industry
 																				}
 																			</div>
-																		</div>
+																		)}
 																	</Link>
 																</li>
 															);
@@ -678,13 +683,13 @@ export default class Root extends PureComponent {
 																				}}
 																			/>
 																		</div>
-																		<div className="projectListLiCenter">
-																			<div className="left m-hide">
+																		{!IsTouchDevice && (
+																			<div className="projectListLiIndu">
 																				{
 																					item.industry
 																				}
 																			</div>
-																		</div>
+																		)}
 																	</Link>
 																</li>
 															);
@@ -771,13 +776,13 @@ export default class Root extends PureComponent {
 																				}}
 																			/>
 																		</div>
-																		<div className="projectListLiCenter">
-																			<div className="left m-hide">
+																		{!IsTouchDevice && (
+																			<div className="projectListLiIndu">
 																				{
 																					item.industry
 																				}
 																			</div>
-																		</div>
+																		)}
 																	</Link>
 																</li>
 															);
