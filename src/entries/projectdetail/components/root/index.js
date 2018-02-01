@@ -66,9 +66,11 @@ export default class Root extends PureComponent {
 				return res;
 			})
 			.then(res => {
-				this.props.getCoinTimePrice({
-					ico_type: res.data.unit
-				});
+				if (this.state.gaikuo) {
+					this.props.getCoinTimePrice({
+						ico_type: res.data.unit
+					});
+				}
 			});
 		//获取项目动态
 		this.props.getProjectDynamic();
