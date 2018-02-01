@@ -540,15 +540,17 @@ export default class Root extends PureComponent {
 											</span>
 										</Link>
 									) : (
-										<div
-											className={
-												IsTouchDevice
-													? "nodata-box Center"
-													: "nodata-box"
-											}
-										>
-											{t("nodata", lng)}
-										</div>
+										getAjaxDown && (
+											<div
+												className={
+													IsTouchDevice
+														? "nodata-box Center"
+														: "nodata-box"
+												}
+											>
+												{t("nodata", lng)}
+											</div>
+										)
 									)}
 
 									{showArrow == "left" && (
