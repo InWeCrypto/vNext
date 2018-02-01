@@ -124,7 +124,7 @@ class ProjectDetailInfo extends PureComponent {
 						this.setState({
 							is_end: true
 						});
-						Msg.prompt("没有更多了");
+						// Msg.prompt("没有更多了");
 					} else {
 						this.setState({
 							is_end: false
@@ -235,108 +235,102 @@ class ProjectDetailInfo extends PureComponent {
 								</div>
 							)}
 							<div className="projectDetailCon1Box">
-								{projectDynamicList &&
-									projectDynamicList.data &&
-									projectDynamicList.data.length > 0 && (
-										<div className="pdBoxList">
-											<ul
-												className="ui"
-												id="dynamicScroll"
-											>
-												{projectDynamicList.data.map(
-													(item, index) => {
-														return (
-															<li
-																key={index}
-																className={
-																	item.type ==
-																	3
-																		? "infoVideo"
-																		: ""
-																}
+								<div className="pdBoxList">
+									<ul className="ui" id="dynamicScroll">
+										{projectDynamicList &&
+											projectDynamicList.data &&
+											projectDynamicList.data.length >
+												0 &&
+											projectDynamicList.data.map(
+												(item, index) => {
+													return (
+														<li
+															key={index}
+															className={
+																item.type == 3
+																	? "infoVideo"
+																	: ""
+															}
+														>
+															<Link
+																to={{
+																	pathname:
+																		"/newsdetail",
+																	search: `?art_id=${
+																		item.id
+																	}`
+																}}
 															>
-																<Link
-																	to={{
-																		pathname:
-																			"/newsdetail",
-																		search: `?art_id=${
-																			item.id
-																		}`
-																	}}
-																>
-																	<div className="imgBox">
-																		<img
-																			src={
-																				item.img
-																			}
-																			alt=""
-																		/>
-																	</div>
-																	<div className="infoBot">
-																		<p className="infoBotTitle ellitext">
-																			{
-																				item.title
-																			}
-																		</p>
-																		<div className="infoBotDate">
-																			<span
-																			>
-																				{getLocalTime(
-																					item.created_at
-																				)}
-																			</span>
-																			{item.is_sole && (
-																				<i
-																				>
-																					{t(
-																						"icon.original"
-																					)}
-																				</i>
+																<div className="imgBox">
+																	<img
+																		src={
+																			item.img
+																		}
+																		alt=""
+																	/>
+																</div>
+																<div className="infoBot">
+																	<p className="infoBotTitle ellitext">
+																		{
+																			item.title
+																		}
+																	</p>
+																	<div className="infoBotDate">
+																		<span>
+																			{getLocalTime(
+																				item.created_at
 																			)}
-																		</div>
+																		</span>
+																		{item.is_sole && (
+																			<i>
+																				{t(
+																					"icon.original"
+																				)}
+																			</i>
+																		)}
 																	</div>
-																</Link>
-															</li>
+																</div>
+															</Link>
+														</li>
+													);
+												}
+											)}
+									</ul>
+									{false && (
+										<div className="pageTurn m-hide">
+											{projectDynamicList.prev_page_url && (
+												<span
+													className="pageTurmLf more"
+													onClick={() => {
+														this.projectDynamicList(
+															curDynamic,
+															projectDynamicList.current_page -
+																1
 														);
-													}
-												)}
-											</ul>
-											{false && (
-												<div className="pageTurn m-hide">
-													{projectDynamicList.prev_page_url && (
-														<span
-															className="pageTurmLf more"
-															onClick={() => {
-																this.projectDynamicList(
-																	curDynamic,
-																	projectDynamicList.current_page -
-																		1
-																);
-															}}
-														/>
-													)}
-													{!projectDynamicList.prev_page_url && (
-														<span className="pageTurmLf" />
-													)}
-													{projectDynamicList.next_page_url && (
-														<span
-															className="pageTurmRt more"
-															onClick={() => {
-																this.projectDynamicList(
-																	curDynamic,
-																	projectDynamicList.current_page +
-																		1
-																);
-															}}
-														/>
-													)}
-													{!projectDynamicList.next_page_url && (
-														<span className="pageTurmRt" />
-													)}
-												</div>
+													}}
+												/>
+											)}
+											{!projectDynamicList.prev_page_url && (
+												<span className="pageTurmLf" />
+											)}
+											{projectDynamicList.next_page_url && (
+												<span
+													className="pageTurmRt more"
+													onClick={() => {
+														this.projectDynamicList(
+															curDynamic,
+															projectDynamicList.current_page +
+																1
+														);
+													}}
+												/>
+											)}
+											{!projectDynamicList.next_page_url && (
+												<span className="pageTurmRt" />
 											)}
 										</div>
 									)}
+								</div>
 
 								{(!projectDynamicList ||
 									!projectDynamicList.data ||
