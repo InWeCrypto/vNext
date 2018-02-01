@@ -199,12 +199,14 @@ export default class Root extends PureComponent {
 															/>
 														</div>
 														<div className="tradingBoxCon">
-															<p className="tradingBoxTitle ellitext">
+															<p className="tradingBoxTitle">
 																{item.title}
 															</p>
-															<p className="desc">
-																{item.desc}
-															</p>
+															{IsTouchDevice && (
+																<p className="desc">
+																	{item.desc}
+																</p>
+															)}
 															<div className="tradingBoxModConDate">
 																<p>
 																	{getLocalTime(

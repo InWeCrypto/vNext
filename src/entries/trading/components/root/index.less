@@ -152,6 +152,7 @@
 			box-shadow: 0 0 10px rgba(0, 0, 0, 0);
 			transform: translate(0, 0);
 			padding: 0.12rem 0.1rem;
+			margin-bottom: 0.3rem;
 			&:hover {
 				box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 				transform: translate(0, -1%);
@@ -164,6 +165,21 @@
 			.tradingBoxCon {
 				border: 0;
 				padding: 0;
+				.tradingBoxTitle {
+					height: 0.44rem;
+					white-space: normal;
+					overflow: hidden;
+					display: -webkit-box;
+					-webkit-box-orient: vertical;
+					-webkit-line-clamp: 2;
+					margin: 0.1rem auto 0.08rem;
+				}
+				.tradingBoxModConDate {
+					margin: 0;
+					p {
+						margin: 0;
+					}
+				}
 			}
 		}
 	}
