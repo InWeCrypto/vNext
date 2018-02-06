@@ -606,6 +606,14 @@ export default class Root extends PureComponent {
 																					}`
 																				}}
 																			>
+																				<div className="newsBoxModConShow">
+																					<img
+																						src={
+																							item.img
+																						}
+																						alt=""
+																					/>
+																				</div>
 																				<p className="desc">
 																					{
 																						item.title
@@ -625,14 +633,6 @@ export default class Root extends PureComponent {
 																							item
 																								.category
 																								.img
-																						}
-																						alt=""
-																					/>
-																				</div>
-																				<div className="newsBoxModConShow">
-																					<img
-																						src={
-																							item.img
 																						}
 																						alt=""
 																					/>
@@ -882,6 +882,23 @@ export default class Root extends PureComponent {
 																					}`
 																				}}
 																			>
+																				<div className="newsBoxModConShow">
+																					{IsTouchDevice && (
+																						<img
+																							className="videoIcon"
+																							src={
+																								videoIcon
+																							}
+																						/>
+																					)}
+																					<img
+																						className="cover"
+																						src={
+																							item.img
+																						}
+																						alt=""
+																					/>
+																				</div>
 																				<p className="desc">
 																					{
 																						item.title
@@ -909,23 +926,6 @@ export default class Root extends PureComponent {
 																								alt=""
 																							/>
 																						)}
-																				</div>
-																				<div className="newsBoxModConShow">
-																					{IsTouchDevice && (
-																						<img
-																							className="videoIcon"
-																							src={
-																								videoIcon
-																							}
-																						/>
-																					)}
-																					<img
-																						className="cover"
-																						src={
-																							item.img
-																						}
-																						alt=""
-																					/>
 																				</div>
 																				{IsTouchDevice && (
 																					<div className="modDateText">
