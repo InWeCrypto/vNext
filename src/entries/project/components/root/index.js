@@ -104,7 +104,6 @@ export default class Root extends PureComponent {
 	toProjectInfo(e, id) {
 		e.preventDefault();
 		window.location.href = `/projectdetail?c_id=${id}&type=info`;
-		console.log("da" + id);
 	}
 	render() {
 		const {
