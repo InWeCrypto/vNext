@@ -38,17 +38,33 @@
 			&:nth-child(4n) {
 				margin-right: 0;
 			}
+			a {
+				display: block;
+				padding: 0.1rem 0.1rem 0.08rem;
+				background: #ffffff;
+				border-radius: 0.04rem;
+				transform: translate(0, 0);
+				transition: all 0.5s ease-in-out;
+				box-shadow: 0 0 10px rgba(0, 0, 0, 0);
+				border: 1px solid #f4f4f4;
+				border-radius: 0.04rem;
+				&:hover {
+					box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+					transform: translate(0, -1%);
+				}
+			}
 			p.desc {
 				width: 100%;
 				position: relative;
-				line-height: 0.22rem;
-				height: 0.44rem;
+				line-height: 0.2rem;
+				height: 0.4rem;
 				overflow: hidden;
 				color: #333;
 				display: -webkit-box;
 				-webkit-box-orient: vertical;
 				-webkit-line-clamp: 2;
-				font-size: 0.16rem;
+				font-size: 0.14rem;
+				margin: 0.06rem 0 0;
 				transition: all 0.3s ease-in-out;
 				&:hover {
 					color: #ff571f;
@@ -59,10 +75,11 @@
 				height: 0.17rem;
 				color: #c9c6c6;
 				font-size: 12px;
-				margin-top: 0.14rem;
+				margin-top: 0.12rem;
 				p {
 					float: left;
 					line-height: 0.17rem;
+					margin-bottom: 0;
 				}
 				img {
 					float: right;
@@ -87,7 +104,7 @@
 
 				&:hover {
 					img {
-						transform: scale(1.1);
+						// transform: scale(1.1);
 					}
 				}
 			}

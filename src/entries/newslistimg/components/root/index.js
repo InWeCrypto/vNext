@@ -145,6 +145,12 @@ export default class Root extends PureComponent {
 															}`
 														}}
 													>
+														<div className="newsBoxModConShow">
+															<img
+																src={item.img}
+																alt=""
+															/>
+														</div>
 														<p className="desc">
 															{item.title}
 														</p>
@@ -167,12 +173,6 @@ export default class Root extends PureComponent {
 																		alt=""
 																	/>
 																)}
-														</div>
-														<div className="newsBoxModConShow">
-															<img
-																src={item.img}
-																alt=""
-															/>
 														</div>
 													</Link>
 												</li>

@@ -101,6 +101,10 @@ export default class Root extends PureComponent {
 				}
 			});
 	}
+	toProjectInfo(e, id) {
+		e.preventDefault();
+		window.location.href = `/projectdetail?c_id=${id}&type=info`;
+	}
 	render() {
 		const {
 			minH,
@@ -311,7 +315,15 @@ export default class Root extends PureComponent {
 																				}
 																			</span>
 																		</div>
-																		<div className="projectLiDesc">
+																		<div
+																			className="projectLiDesc"
+																			onClick={e => {
+																				this.toProjectInfo(
+																					e,
+																					item.id
+																				);
+																			}}
+																		>
 																			<p className="ellitext">
 																				{item.last_article &&
 																					item
@@ -319,7 +331,15 @@ export default class Root extends PureComponent {
 																						.title}
 																			</p>
 																		</div>
-																		<div className="projectLiImg">
+																		<div
+																			className="projectLiImg"
+																			onClick={e => {
+																				this.toProjectInfo(
+																					e,
+																					item.id
+																				);
+																			}}
+																		>
 																			{item.last_article &&
 																				item
 																					.last_article
@@ -335,7 +355,15 @@ export default class Root extends PureComponent {
 																					/>
 																				)}
 																		</div>
-																		<div className="projectLiDate">
+																		<div
+																			className="projectLiDate"
+																			onClick={e => {
+																				this.toProjectInfo(
+																					e,
+																					item.id
+																				);
+																			}}
+																		>
 																			{item.last_article &&
 																				getLocalTime(
 																					item

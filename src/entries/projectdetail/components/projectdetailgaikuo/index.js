@@ -74,6 +74,8 @@ class ProjectDetailGaiKuo extends PureComponent {
 			return;
 		}
 		if (!data || data.length <= 0 || data[0].length <= 0) {
+			let imgNoData = chart.getElementsByTagName("img");
+			if (imgNoData.length > 0 && imgNoData[0].src) return;
 			let img = document.createElement("img");
 			img.src = echartEmpty;
 			chart.innerHTML = "";

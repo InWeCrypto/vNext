@@ -291,7 +291,7 @@
 				ul {
 					flex-wrap: wrap;
 					width: 100%;
-					margin-left: -;
+					margin-left: -0.3rem;
 					li {
 						// max-width: 3.06rem;
 						width: 2.93rem;
@@ -333,7 +333,10 @@
 							height: 0.17rem;
 							line-height: 0.17rem;
 							font-size: 0.12rem;
-							margin-top: 0.1rem;
+                            margin-top: 0.1rem;
+                            span{
+                                display: block;
+                            }
 						}
 						.projectLiDesc {
 							margin-top: 0.2rem;
@@ -342,8 +345,11 @@
 							color: #acacac;
 							font-size: 0.16rem;
 						}
-						.projectLiImg img {
-							object-fit: cover;
+						.projectLiImg {
+							height: 1.42rem;
+							img {
+								object-fit: cover;
+							}
 						}
 					}
 				}
