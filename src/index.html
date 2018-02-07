@@ -54,6 +54,10 @@
                 //设置pc根字体大小
                 dw = 90;
                 document.getElementsByTagName("html")[0].style.fontSize = dw + "px";
+                setTimeout(function () {
+                    document.getElementsByTagName("body")[0].style.paddingLeft = 54 + "px";
+                    document.getElementsByTagName("body")[0].style.paddingRight = 54 + "px";
+                }, 0)
             } else {
                 let metaStr =
                     '<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0,user-scalable=0">'
