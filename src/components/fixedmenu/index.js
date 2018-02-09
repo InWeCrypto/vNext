@@ -75,7 +75,7 @@ class FixedMenu extends PureComponent {
                         )}
                         <div className={(() => this.setBoxClass())()}>
                             <div className="fixed-content">
-                                <div className="menu">
+                                <div className="menu ui jcenter">
                                     <div className="search">
                                         <b
                                             className="searchBtn"

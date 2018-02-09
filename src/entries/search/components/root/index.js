@@ -168,11 +168,13 @@ export default class Root extends PureComponent {
 													return (
 														<li
 															key={index}
-															style={{
-																width: "25%"
-																// height: liH,
-																// marginRight: liMR
-															}}
+															style={
+																{
+																	// width: "25%"
+																	// height: liH,
+																	// marginRight: liMR
+																}
+															}
 														>
 															<Link
 																to={{
@@ -183,16 +185,16 @@ export default class Root extends PureComponent {
 																		item.id
 																}}
 															>
-																<div className="projectOpenLiTop ui center">
-																	<div className="projectOpenLiTopLeft ui center">
+																<div className="projectListLiTop ui center">
+																	<div className="projectListLiTopLeft ui center">
 																		<div
 																			className={
 																				item.category_user &&
 																				item
 																					.category_user
 																					.is_favorite_dot
-																					? "projectOpenImg newMsg"
-																					: "projectOpenImg"
+																					? "projectListImg newMsg"
+																					: "projectListImg"
 																			}
 																		>
 																			<img
@@ -206,12 +208,19 @@ export default class Root extends PureComponent {
 																				{
 																					item.unit
 																				}
+																				<b className="ellitext">
+																					({
+																						item.long_name
+																					})
+																				</b>
+																				{IsTouchDevice && (
+																					<span className="industryText">
+																						{
+																							item.industry
+																						}
+																					</span>
+																				)}
 																			</span>
-																			<b className="ellitext">
-																				({
-																					item.long_name
-																				})
-																			</b>
 																		</p>
 																	</div>
 																	<div
@@ -220,23 +229,9 @@ export default class Root extends PureComponent {
 																			item
 																				.category_user
 																				.is_favorite
-																				? "projectOpenLiTopRight collect"
-																				: "projectOpenLiTopRight nocollect"
+																				? "projectListLiTopRight collect m-hide"
+																				: "projectListLiTopRight nocollect m-hide"
 																		}
-																		onClick={e => {
-																			let enable =
-																				item.category_user &&
-																				item
-																					.category_user
-																					.is_favorite
-																					? true
-																					: false;
-																			this.projectCollect(
-																				e,
-																				item.id,
-																				enable
-																			);
-																		}}
 																	/>
 																</div>
 																{!IsTouchDevice && (

@@ -7,6 +7,8 @@ import Header from "../../../../components/header";
 import Footer from "../../../../components/footer";
 import FixedMenu from "../../../../components/fixedmenu";
 import SearchPro from "../../../../components/searchPro";
+import mSearchPro from "../../../../assets/images/search_pro_ico@2x.png";
+
 import "./index.less";
 
 export default class Root extends PureComponent {
@@ -242,6 +244,20 @@ export default class Root extends PureComponent {
 								</Link>
                             </div> */}
 							{!IsTouchDevice && <SearchPro />}
+							{IsTouchDevice && (
+								<div className="m-searchPro">
+									<div
+										className="m-searchPro-box ui center jcenter"
+										onClick={e => {
+											window.location.href =
+												"/search?type=2&k=";
+										}}
+									>
+										<img src={mSearchPro} alt="" />
+										<span>搜索项目</span>
+									</div>
+								</div>
+							)}
 							{IsTouchDevice && (
 								<div
 									id="m-nav"

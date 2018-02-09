@@ -130,7 +130,7 @@ export default class Root extends PureComponent {
 		}
 	}
 	getNewsTextList(page) {
-		let per_page = 8;
+		let per_page = 4;
 		if (IsTouchDevice) {
 			per_page = 10;
 		}
@@ -150,7 +150,7 @@ export default class Root extends PureComponent {
 			});
 	}
 	getNewsImgList(page) {
-		let per_page = 8;
+		let per_page = 4;
 		if (IsTouchDevice) {
 			per_page = 10;
 		}
@@ -170,7 +170,7 @@ export default class Root extends PureComponent {
 			});
 	}
 	getNewsVideoList(page) {
-		let per_page = 8;
+		let per_page = 4;
 		if (IsTouchDevice) {
 			per_page = 10;
 		}
