@@ -3,7 +3,8 @@ export default {
 		news: "News",
 		candy: "Candy",
 		anno: "交易所公告",
-		follow: "Follow"
+		follow: "Follow",
+		project: "项目"
 	},
 	header: {
 		member: "个人中心",

@@ -6,6 +6,8 @@ import { getMainMinHeight, getQuery } from "../../../../utils/util";
 import Header from "../../../../components/header";
 import Footer from "../../../../components/footer";
 import FixedMenu from "../../../../components/fixedmenu";
+import SearchPro from "../../../../components/searchPro";
+
 import "./index.less";
 
 export default class Root extends PureComponent {
@@ -49,7 +51,7 @@ export default class Root extends PureComponent {
 	initPage(search) {
 		let annoBoxH = document.getElementById("mainBox").clientHeight;
 		let annoBoxLiH = 103;
-		let nums = Math.floor((annoBoxH - 150) / annoBoxLiH) * 4;
+		let nums = Math.floor((annoBoxH - 250) / annoBoxLiH) * 4;
 		let q = getQuery(search);
 		this.setState({
 			type: q.type || "1",
@@ -113,203 +115,209 @@ export default class Root extends PureComponent {
 						/>
 						<div id="mainBox" className="projectOpen ui">
 							{/* {project.last_page !== 1 && ( */}
-							<div
-								className={
-									project.prev_page_url
-										? "projectOpenLeft ui center show"
-										: "projectOpenLeft ui center"
-								}
-							>
-								{project.prev_page_url && (
-									<Link
-										to={{
-											pathname: "/projectopen",
-											search:
-												"?type=" +
-												type +
-												"&&page=" +
-												(project.current_page - 1)
-										}}
-									>
-										<span />
-									</Link>
-								)}
-								{!project.prev_page_url && <span />}
-							</div>
-							{/* )} */}
-							<div className="projectOpenCon ui">
-								<div className="projectOpenConChild">
-									<div className="projectOpenConChildTitle">
-										<span className="ellitext">
-											{type == 1 &&
-												t("project.trading", lng)}
-											{type == 2 &&
-												t("project.active", lng)}
-											{type == 3 &&
-												t("project.upcoming", lng)}
-											{type == 4 &&
-												t("project.ended", lng)}
-										</span>
-									</div>
-									<ul
-										id="projectOpenConChildUl"
-										className="projectOpenConChildUl"
-									>
-										{project &&
-											project.data &&
-											project.data.length > 0 &&
-											project.data.map((item, index) => {
-												return (
-													<li
-														key={index}
-														style={{
-															width: liW,
-															// height: liH,
-															marginRight: liMR
-														}}
-													>
-														<Link
-															to={{
-																pathname:
-																	"projectdetail",
-																search:
-																	"?c_id=" +
-																	item.id
-															}}
-														>
-															<div className="projectOpenLiTop ui center">
-																<div className="projectOpenLiTopLeft ui center">
-																	<div
-																		className={
-																			item.category_user &&
-																			item
-																				.category_user
-																				.is_favorite_dot
-																				? "projectOpenImg newMsg"
-																				: "projectOpenImg"
-																		}
-																	>
-																		<img
-																			src={
-																				item.img
-																			}
-																		/>
-																	</div>
-																	<p>
-																		<span className="ellitext">
-																			{
-																				item.unit
-																			}
-																		</span>
-																		<b className="ellitext">
-																			({
-																				item.long_name
-																			})
-																		</b>
-																	</p>
-																</div>
-																<div
-																	className={
-																		item.category_user &&
-																		item
-																			.category_user
-																			.is_favorite
-																			? "projectOpenLiTopRight collect"
-																			: "projectOpenLiTopRight nocollect"
-																	}
-																	onClick={e => {
-																		let enable =
-																			item.category_user &&
-																			item
-																				.category_user
-																				.is_favorite
-																				? true
-																				: false;
-																		this.projectCollect(
-																			e,
-																			item.id,
-																			enable
-																		);
+							{!IsTouchDevice && <SearchPro />}
+							<div className="ui f1">
+								<div
+									className={
+										project.prev_page_url
+											? "projectOpenLeft ui center show"
+											: "projectOpenLeft ui center"
+									}
+								>
+									{project.prev_page_url && (
+										<Link
+											to={{
+												pathname: "/projectopen",
+												search:
+													"?type=" +
+													type +
+													"&&page=" +
+													(project.current_page - 1)
+											}}
+										>
+											<span />
+										</Link>
+									)}
+									{!project.prev_page_url && <span />}
+								</div>
+								{/* )} */}
+								<div className="projectOpenCon ui">
+									<div className="projectOpenConChild">
+										<div className="projectOpenConChildTitle">
+											<span className="ellitext">
+												{type == 1 &&
+													t("project.trading", lng)}
+												{type == 2 &&
+													t("project.active", lng)}
+												{type == 3 &&
+													t("project.upcoming", lng)}
+												{type == 4 &&
+													t("project.ended", lng)}
+											</span>
+										</div>
+										<ul
+											id="projectOpenConChildUl"
+											className="projectOpenConChildUl"
+										>
+											{project &&
+												project.data &&
+												project.data.length > 0 &&
+												project.data.map(
+													(item, index) => {
+														return (
+															<li
+																key={index}
+																style={{
+																	width: liW,
+																	// height: liH,
+																	marginRight: liMR
+																}}
+															>
+																<Link
+																	to={{
+																		pathname:
+																			"projectdetail",
+																		search:
+																			"?c_id=" +
+																			item.id
 																	}}
-																/>
-															</div>
-															{!IsTouchDevice && (
-																<div className="projectOpenLiIndu">
-																	{
-																		item.industry
-																	}
-																</div>
-															)}
-															{type == 1 && (
-																<div className="projectOpenLiCenter">
-																	<div className="left m-hide">
-																		${item.ico &&
-																			item
-																				.ico
-																				.price_usd &&
-																			parseFloat(
-																				item
-																					.ico
-																					.price_usd
-																			).toFixed(
-																				2
-																			)}
-																	</div>
-																	{item.ico && (
+																>
+																	<div className="projectOpenLiTop ui center">
+																		<div className="projectOpenLiTopLeft ui center">
+																			<div
+																				className={
+																					item.category_user &&
+																					item
+																						.category_user
+																						.is_favorite_dot
+																						? "projectOpenImg newMsg"
+																						: "projectOpenImg"
+																				}
+																			>
+																				<img
+																					src={
+																						item.img
+																					}
+																				/>
+																			</div>
+																			<p>
+																				<span className="ellitext">
+																					{
+																						item.unit
+																					}
+																				</span>
+																				<b className="ellitext">
+																					({
+																						item.long_name
+																					})
+																				</b>
+																			</p>
+																		</div>
 																		<div
 																			className={
+																				item.category_user &&
 																				item
-																					.ico
-																					.percent_change_24h <
-																				0
-																					? "right m-hide downs"
-																					: "right m-hide"
+																					.category_user
+																					.is_favorite
+																					? "projectOpenLiTopRight collect"
+																					: "projectOpenLiTopRight nocollect"
 																			}
-																		>
-																			<span
-																			>
-																				{
+																			onClick={e => {
+																				let enable =
+																					item.category_user &&
 																					item
-																						.ico
-																						.percent_change_24h
-																				}%
-																			</span>
+																						.category_user
+																						.is_favorite
+																						? true
+																						: false;
+																				this.projectCollect(
+																					e,
+																					item.id,
+																					enable
+																				);
+																			}}
+																		/>
+																	</div>
+																	{!IsTouchDevice && (
+																		<div className="projectOpenLiIndu">
+																			{
+																				item.industry
+																			}
 																		</div>
 																	)}
-																</div>
-															)}
-														</Link>
-													</li>
-												);
-											})}
-									</ul>
+																	{type ==
+																		1 && (
+																		<div className="projectOpenLiCenter">
+																			<div className="left m-hide">
+																				${item.ico &&
+																					item
+																						.ico
+																						.price_usd &&
+																					parseFloat(
+																						item
+																							.ico
+																							.price_usd
+																					).toFixed(
+																						2
+																					)}
+																			</div>
+																			{item.ico && (
+																				<div
+																					className={
+																						item
+																							.ico
+																							.percent_change_24h <
+																						0
+																							? "right m-hide downs"
+																							: "right m-hide"
+																					}
+																				>
+																					<span
+																					>
+																						{
+																							item
+																								.ico
+																								.percent_change_24h
+																						}%
+																					</span>
+																				</div>
+																			)}
+																		</div>
+																	)}
+																</Link>
+															</li>
+														);
+													}
+												)}
+										</ul>
+									</div>
 								</div>
+								{/* {project.last_page !== 1 && ( */}
+								<div
+									className={
+										project.next_page_url
+											? "projectOpenRight show ui center"
+											: "projectOpenRight ui center"
+									}
+								>
+									{project.next_page_url && (
+										<Link
+											to={{
+												ppathname: "/projectopen",
+												search:
+													"?type=" +
+													type +
+													"&&page=" +
+													(project.current_page + 1)
+											}}
+										>
+											<span />
+										</Link>
+									)}
+									{!project.next_page_url && <span />}
+								</div>
+								{/* )} */}
 							</div>
-							{/* {project.last_page !== 1 && ( */}
-							<div
-								className={
-									project.next_page_url
-										? "projectOpenRight show ui center"
-										: "projectOpenRight ui center"
-								}
-							>
-								{project.next_page_url && (
-									<Link
-										to={{
-											ppathname: "/projectopen",
-											search:
-												"?type=" +
-												type +
-												"&&page=" +
-												(project.current_page + 1)
-										}}
-									>
-										<span />
-									</Link>
-								)}
-								{!project.next_page_url && <span />}
-							</div>
-							{/* )} */}
 						</div>
 					</div>
 				)}

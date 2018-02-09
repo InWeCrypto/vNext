@@ -11,8 +11,10 @@ export default withRouter(
 			home: {
 				articleList,
 				newsList,
+				project,
 				candyList,
 				ads,
+				ads2,
 				exchangeNotice,
 				userFavo
 			},
@@ -20,8 +22,10 @@ export default withRouter(
 		}) => ({
 			articleList,
 			newsList,
+			project,
 			candyList,
 			ads,
+			ads2,
 			exchangeNotice,
 			userFavo,
 			userInfo,

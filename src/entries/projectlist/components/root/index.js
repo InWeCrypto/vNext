@@ -6,6 +6,7 @@ import { getMainMinHeight, queryString } from "../../../../utils/util";
 import Header from "../../../../components/header";
 import Footer from "../../../../components/footer";
 import FixedMenu from "../../../../components/fixedmenu";
+import SearchPro from "../../../../components/searchPro";
 import "./index.less";
 
 export default class Root extends PureComponent {
@@ -13,7 +14,6 @@ export default class Root extends PureComponent {
 		super(props);
 		this.state = {
 			minH: "auto",
-
 			mounted: false
 		};
 	}
@@ -116,7 +116,7 @@ export default class Root extends PureComponent {
 	initPage() {
 		let annoBoxH = document.getElementById("mainBox").clientHeight;
 		let annoBoxLiH = 103;
-		let nums = Math.floor((annoBoxH - 150) / annoBoxLiH) || 4;
+		let nums = Math.floor((annoBoxH - 250) / annoBoxLiH) || 4;
 		// 默认条数4
 		if (IsTouchDevice) {
 			nums = 15;
@@ -212,7 +212,8 @@ export default class Root extends PureComponent {
 								>
 									<span />
 								</Link>
-							</div> */}
+                            </div> */}
+							{!IsTouchDevice && <SearchPro />}
 							{IsTouchDevice && (
 								<div
 									id="m-nav"
@@ -483,18 +484,20 @@ export default class Root extends PureComponent {
 																					<div
 																						className={
 																							this.chargeColor(
-																								item
-																									.ico
-																									.percent_change_24h
+																								item.ico &&
+																									item
+																										.ico
+																										.percent_change_24h
 																							)
 																								? "precents colorRed"
 																								: "precents"
 																						}
 																					>
-																						({item
-																							.ico
-																							.percent_change_24h >=
-																							0 &&
+																						({item.ico &&
+																							item
+																								.ico
+																								.percent_change_24h >=
+																								0 &&
 																							"+"}
 																						{item.ico &&
 																							item
