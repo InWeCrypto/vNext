@@ -89,7 +89,7 @@ export default class Root extends PureComponent {
 	setNewsList(page) {
 		this.props.getNewsList({
 			type: "[1]",
-			per_page: 5,
+			per_page: 3,
 			page: page
 		});
 	}
@@ -598,7 +598,7 @@ export default class Root extends PureComponent {
 														candyList.list.data &&
 														candyList.list.data
 															.length == 0 && (
-															<div className="noCandy ui center jcenter">
+															<div className="noCandy ui center">
 																<img
 																	src={
 																		noCandy
