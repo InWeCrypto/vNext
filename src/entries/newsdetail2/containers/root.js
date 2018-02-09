@@ -7,11 +7,18 @@ import * as globalActions from "../../../globalactions";
 //}),
 export default connect(
 	({
-		search: { search, searchPro },
+		newsdetail: {
+			newsDetail,
+			newsDetailCollect,
+			newsDetailComment,
+			newsDetailCommentL
+		},
 		globData: { lng, userInfo, commonMarket }
 	}) => ({
-		search,
-		searchPro,
+		newsDetail,
+		newsDetailCollect,
+		newsDetailComment,
+		newsDetailCommentL,
 		userInfo,
 		lng,
 		commonMarket

@@ -61,14 +61,14 @@ export default class Root extends PureComponent {
 			);
 		if (document.body.offsetWidth > 1366) {
 			document.getElementById("newsDetailLeft").style.marginLeft =
-				"-" + (contW / 2 + 36 + 27) + "px";
+				"-" + (contW / 2 + 36) + "px";
 			document.getElementById("newsDetailRight").style.marginLeft =
-				contW / 2 + 20 - 27 + "px";
+				contW / 2 + 20 + "px";
 		} else {
 			document.getElementById("newsDetailLeft").style.marginLeft =
-				"-" + (contW / 2 + 9 + 27) + "px";
+				"-" + (contW / 2 + 9) + "px";
 			document.getElementById("newsDetailRight").style.marginLeft =
-				contW / 2 + 47 - 27 + "px";
+				contW / 2 + 47 + "px";
 		}
 
 		this.setState({
@@ -249,6 +249,7 @@ export default class Root extends PureComponent {
 		});
 	}
 	textChange() {
+		return;
 		let obj = document.getElementById("textareaId");
 		if (obj.value.length > 300) obj.value = obj.value.slice(0, 300);
 		if (true) {
@@ -383,17 +384,19 @@ export default class Root extends PureComponent {
 							<FixedMenu changeLng={changeLng} lng={lng} />
 						)}
 
-						<Header
-							userInfo={userInfo}
-							registerUser={registerUser}
-							sendEmail={sendEmailCode}
-							loginIn={loginIn}
-							setReduxUserInfo={setReduxUserInfo}
-							forgetUser={forgetUser}
-							lng={lng}
-							commonMarket={commonMarket}
-							getHeaderMarket={getHeaderMarket}
-						/>
+						<div style={{ display: "none" }}>
+							<Header
+								userInfo={userInfo}
+								registerUser={registerUser}
+								sendEmail={sendEmailCode}
+								loginIn={loginIn}
+								setReduxUserInfo={setReduxUserInfo}
+								forgetUser={forgetUser}
+								lng={lng}
+								commonMarket={commonMarket}
+								getHeaderMarket={getHeaderMarket}
+							/>
+						</div>
 						<div id="mainBox" className="newsDetail ui">
 							<div
 								id="newsDetailLeft"
@@ -570,119 +573,14 @@ export default class Root extends PureComponent {
 											}}
 										/>
 									</div>
-									<p className="newsReadNums">
+									<p
+										className="newsReadNums"
+										style={{ marginBottom: "20px" }}
+									>
 										{newsDetail.click_rate}
 										{"  "}
 										{t("newsDetail.read", lng)}
 									</p>
-								</div>
-								<div className="newsDetailComment">
-									<div className="newsDetailCommentNums">
-										<b>{newsDetail.comment_count}</b>
-										{"  "}
-										{t("newsDetail.comment", lng)}
-									</div>
-									<div
-										className="newsDetailCommmentBox"
-										onClick={this.showApp.bind(this)}
-									>
-										<div className="newsDetailCommentBoxCenter ui center noEvent">
-											{this.state.isShowImg &&
-												!IsTouchDevice && (
-													<div className="newsDetailHeadImg">
-														<img
-															src={
-																userInfo &&
-																userInfo.img
-															}
-															alt=""
-														/>
-													</div>
-												)}
-											<textarea
-												name=""
-												id="textareaId"
-												placeholder={t(
-													"newsDetail.talk",
-													lng
-												)}
-												onFocus={() => {
-													this.inFocus();
-												}}
-												onBlur={() => {
-													this.outFocus();
-												}}
-												onChange={() => {
-													this.textChange();
-												}}
-											/>
-										</div>
-										<div className="newsDetailCommentBoxBtn clearfix m-hide">
-											<span
-												className="submit"
-												onClick={() => {
-													this.textSubmit();
-												}}
-											>
-												{t("newsDetail.sub", lng)}
-											</span>
-											<span
-												className="cancel"
-												onClick={() => {
-													this.textEmpty();
-												}}
-											>
-												{t("newsDetail.cancel", lng)}
-											</span>
-										</div>
-									</div>
-									<ul className="newsDetailCommentList">
-										{newsDetailCommentL &&
-											newsDetailCommentL.data &&
-											newsDetailCommentL.data.length >
-												0 &&
-											newsDetailCommentL.data.map(
-												(item, index) => {
-													return (
-														<li key={index}>
-															<div className="newsDetailCommentListHead ui center">
-																<div className="newsDetailHeadImg">
-																	<img
-																		src={
-																			item.user &&
-																			item
-																				.user
-																				.img
-																		}
-																		alt=""
-																	/>
-																</div>
-																<div className="newsDetailHeadInfo">
-																	<span className="newsDetailHeadName">
-																		{item.user &&
-																			item
-																				.user
-																				.name}
-																	</span>
-																	<span className="newsDetailHeadDate">
-																		{getLocalTime(
-																			item.created_at
-																		)}
-																	</span>
-																</div>
-															</div>
-															<div className="newsDetailCommentListContent">
-																<p>
-																	{
-																		item.content
-																	}
-																</p>
-															</div>
-														</li>
-													);
-												}
-											)}
-									</ul>
 								</div>
 							</div>
 
@@ -716,7 +614,7 @@ export default class Root extends PureComponent {
 								url={QcodeUrl}
 							/>
 						)}
-						{IsTouchDevice && <TurnApp />}
+						{/* {IsTouchDevice && <TurnApp />} */}
 						<ImgPreview imgsrc={previewImgSrc} />
 					</div>
 				)}

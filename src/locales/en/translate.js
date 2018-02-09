@@ -3,7 +3,8 @@ export default {
 		news: "News",
 		candy: "Candy",
 		anno: "Exchange Announcement",
-		follow: "Follow"
+		follow: "Follow",
+		project: "Project"
 	},
 	header: {
 		member: "Profile",

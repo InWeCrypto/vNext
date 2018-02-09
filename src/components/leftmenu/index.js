@@ -54,7 +54,7 @@ class LeftMenuBox extends PureComponent {
 							</NavLink>
 							<NavLink
 								to={{
-									pathname: "/project",
+									pathname: "/projectlist",
 									search: "?type="
 								}}
 								className="left-menu-item"

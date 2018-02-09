@@ -10,6 +10,7 @@ import News from "./entries/news";
 import NewsText from "./entries/newslisttext";
 import NewsImg from "./entries/newslistimg";
 import NewsDetail from "./entries/newsdetail";
+import NewsDetail2 from "./entries/newsdetail2";
 import Trading from "./entries/trading";
 import Announcment from "./entries/announcment";
 import Member from "./entries/member";
@@ -29,6 +30,7 @@ export default () => {
 			<Route path="/newslisttext" component={NewsText} />
 			<Route path="/newslistimg" component={NewsImg} />
 			<Route path="/newsdetail" component={NewsDetail} />
+			<Route path="/newsdetail2" component={NewsDetail2} />
 			<Route path="/trading" component={Trading} />
 			<Route path="/announcment" component={Announcment} />
 			<Route path="/member" component={Member} />

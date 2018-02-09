@@ -6,6 +6,7 @@ import { getMainMinHeight, queryString } from "../../../../utils/util";
 import Header from "../../../../components/header";
 import Footer from "../../../../components/footer";
 import FixedMenu from "../../../../components/fixedmenu";
+import SearchPro from "../../../../components/searchPro";
 import "./index.less";
 
 export default class Root extends PureComponent {
@@ -13,9 +14,10 @@ export default class Root extends PureComponent {
 		super(props);
 		this.state = {
 			minH: "auto",
-
-			mounted: false
+			mounted: false,
+			ico_list: []
 		};
+		this.timer = null;
 	}
 	componentWillReceiveProps(nextProps) {}
 	componentDidMount() {
@@ -48,6 +50,7 @@ export default class Root extends PureComponent {
 	}
 	componentWillUnmount() {
 		window.removeEventListener("scroll", this.handleScroll.bind(this));
+		clearTimeout(this.timer);
 	}
 	componentDidUpdate() {}
 	handleScroll() {
@@ -116,15 +119,29 @@ export default class Root extends PureComponent {
 	initPage() {
 		let annoBoxH = document.getElementById("mainBox").clientHeight;
 		let annoBoxLiH = 103;
-		let nums = Math.floor((annoBoxH - 150) / annoBoxLiH) || 4;
+		let nums = Math.floor((annoBoxH - 200) / annoBoxLiH) || 4;
 		// 默认条数4
 		if (IsTouchDevice) {
 			nums = 15;
 		}
-		this.props.getProject({
-			type: 1,
-			per_page: nums
-		});
+		this.props
+			.getProject({
+				type: 1,
+				per_page: nums
+			})
+			.then(res => {
+				if (res.code == 4000) {
+					let data = res.data.data;
+					let arr = [];
+					data.map((item, index) => {
+						arr.push(item.unit);
+					});
+					this.setState({
+						ico_list: arr
+					});
+					this.getIcoData(arr);
+				}
+			});
 		this.props.getProject2({
 			type: 2,
 			per_page: nums
@@ -137,6 +154,16 @@ export default class Root extends PureComponent {
 			type: 4,
 			per_page: nums
 		});
+	}
+	getIcoData(arr) {
+		this.props
+			.getIcoRank({
+				ico_list: arr || this.state.ico_list,
+				currency: "cny"
+			})
+			.then(() => {
+				this.timer = setTimeout(this.getIcoData.bind(this), 10000);
+			});
 	}
 	projectCollect(e, c_id, enable) {
 		e.preventDefault();
@@ -177,6 +204,7 @@ export default class Root extends PureComponent {
 			setReduxUserInfo,
 			forgetUser,
 			project,
+			icorank,
 			project2,
 			project3,
 			project4,
@@ -212,7 +240,8 @@ export default class Root extends PureComponent {
 								>
 									<span />
 								</Link>
-							</div> */}
+                            </div> */}
+							{!IsTouchDevice && <SearchPro />}
 							{IsTouchDevice && (
 								<div
 									id="m-nav"
@@ -417,64 +446,110 @@ export default class Root extends PureComponent {
 																		)}
 																		<div className="projectListLiCenter">
 																			<div className="left m-hide">
-																				${item.ico &&
-																					item
-																						.ico
+																				${icorank &&
+																					icorank[
+																						item
+																							.unit
+																					] &&
+																					icorank[
+																						item
+																							.unit
+																					]
 																						.price_usd &&
 																					parseFloat(
-																						item
-																							.ico
+																						icorank[
+																							item
+																								.unit
+																						]
 																							.price_usd
 																					).toFixed(
 																						2
 																					)}
 																			</div>
-																			{item.ico && (
-																				<div
-																					className={
-																						item
-																							.ico
-																							.percent_change_24h <
-																						0
-																							? "right m-hide downs"
-																							: "right m-hide"
-																					}
-																				>
-																					<span
+																			{icorank &&
+																				icorank[
+																					item
+																						.unit
+																				] &&
+																				icorank[
+																					item
+																						.unit
+																				]
+																					.percent_change_24h && (
+																					<div
+																						className={
+																							icorank[
+																								item
+																									.unit
+																							]
+																								.percent_change_24h <
+																							0
+																								? "right m-hide downs"
+																								: "right m-hide"
+																						}
 																					>
-																						{
-																							item
-																								.ico
-																								.percent_change_24h
-																						}%
-																					</span>
-																				</div>
-																			)}
+																						<span
+																						>
+																							{icorank[
+																								item
+																									.unit
+																							]
+																								.percent_change_24h >
+																								0 &&
+																								"+"}
+																							{
+																								icorank[
+																									item
+																										.unit
+																								]
+																									.percent_change_24h
+																							}%
+																						</span>
+																					</div>
+																				)}
 																			{IsTouchDevice && (
 																				<div
 																					className={
-																						item.ico
+																						icorank &&
+																						icorank[
+																							item
+																								.unit
+																						]
 																							? ""
 																							: "m-hide"
 																					}
 																				>
 																					<div
 																						className={
-																							item.ico &&
-																							item
-																								.ico
+																							icorank &&
+																							icorank[
+																								item
+																									.unit
+																							] &&
+																							icorank[
+																								item
+																									.unit
+																							]
 																								.price_usd
 																								? "money"
 																								: "money m-hide"
 																						}
 																					>
-																						${item.ico &&
-																							item
-																								.ico
+																						${icorank &&
+																							icorank[
+																								item
+																									.unit
+																							] &&
+																							icorank[
+																								item
+																									.unit
+																							]
 																								.price_usd &&
 																							parseFloat(
-																								item
-																									.ico
+																								icorank[
+																									item
+																										.unit
+																								]
 																									.price_usd
 																							).toFixed(
 																								2
@@ -483,22 +558,39 @@ export default class Root extends PureComponent {
 																					<div
 																						className={
 																							this.chargeColor(
-																								item
-																									.ico
-																									.percent_change_24h
+																								icorank[
+																									item
+																										.unit
+																								] &&
+																									icorank[
+																										item
+																											.unit
+																									]
+																										.percent_change_24h
 																							)
 																								? "precents colorRed"
 																								: "precents"
 																						}
 																					>
-																						({item
-																							.ico
-																							.percent_change_24h >=
-																							0 &&
-																							"+"}
-																						{item.ico &&
+																						({icorank[
 																							item
-																								.ico
+																								.unit
+																						] &&
+																							icorank[
+																								item
+																									.unit
+																							]
+																								.percent_change_24h >=
+																								0 &&
+																							"+"}
+																						{icorank[
+																							item
+																								.unit
+																						] &&
+																							icorank[
+																								item
+																									.unit
+																							]
 																								.percent_change_24h}%)
 																					</div>
 																				</div>

@@ -96,7 +96,7 @@ class FixedMenu extends PureComponent {
                                     </NavLink>
                                     <NavLink
                                         to={{
-                                            pathname: "/project"
+                                            pathname: "/projectlist"
                                         }}
                                         className="nav-item"
                                         activeClassName="cur"

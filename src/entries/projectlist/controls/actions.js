@@ -8,6 +8,7 @@ export const PROJECT3 = `${PRE_FIX}PROJECT3`;
 export const PROJECT4 = `${PRE_FIX}PROJECT4`;
 
 export const PROJECTM = `${PRE_FIX}PROJECTM`;
+export const ICORANK = `${PRE_FIX}ICORANK`;
 export const PROJECTM2 = `${PRE_FIX}PROJECTM2`;
 export const PROJECTM3 = `${PRE_FIX}PROJECTM3`;
 export const PROJECTM4 = `${PRE_FIX}PROJECTM4`;
@@ -22,6 +23,12 @@ export const getProject = createAction(PROJECT, params => {
 		.then(res => {
 			return res;
 		});
+});
+export const getIcoRank = createAction(ICORANK, params => {
+	return http.post({
+		url: "ico/ranks",
+		params: params
+	});
 });
 
 export const getProject2 = createAction(PROJECT2, params => {
