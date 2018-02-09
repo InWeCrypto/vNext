@@ -54,7 +54,7 @@ export default class Root extends PureComponent {
 		}
 	}
 	componentDidMount() {
-		document.title = "InWe-" + i18n.t("navMenu.home", this.props.lng);
+		document.title = "InWeCrypto";
 		setTimeout(() => {
 			let minH = getMainMinHeight();
 			let th = document.querySelector("#topText").clientHeight;
@@ -495,7 +495,7 @@ export default class Root extends PureComponent {
 																		}
 																	>
 																		<Link
-																			className="ui center"
+																			className="ui"
 																			to={{
 																				pathname:
 																					"/newsdetail",

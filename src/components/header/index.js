@@ -309,114 +309,119 @@ class Header extends PureComponent {
 								</Link>
 							</div>
 						)}
-
-						<div
-							id="headerBox"
-							className="header-box container ui center"
-						>
-							<div className="heder-left ui center jstart">
-								<img className="img" src={headerNews} />
-								<div className="headernews-box f1">
-									<div
-										className="headermarkets-list"
-										id="headerMarketList"
-									>
-										{commonMarket &&
-											commonMarket.length > 0 &&
-											commonMarket.map((item, index) => {
-												return (
-													<span
-														key={index}
-														className="headernews-item"
-														title={`${
-															item.symbol
-														} $${
-															item.price_usd
-														} ${(() => {
-															return item.percent_change_1h >=
-																0
-																? "+"
-																: "";
-														})()}${
-															item.percent_change_1h
-														}%`}
-													>
-														{item.symbol} ${
-															item.price_usd
-														}
-														&nbsp;
-														{(() => {
-															return item.percent_change_1h >=
-																0
-																? "+"
-																: "";
-														})()}
-														{item.percent_change_1h}%
-													</span>
-												);
-											})}
+						{!IsTouchDevice && <div className="header-hold" />}
+						<div className="headerSeat">
+							<div
+								id="headerBox"
+								className="header-box container ui center"
+							>
+								<div className="heder-left ui center jstart">
+									<img className="img" src={headerNews} />
+									<div className="headernews-box f1">
+										<div
+											className="headermarkets-list"
+											id="headerMarketList"
+										>
+											{commonMarket &&
+												commonMarket.length > 0 &&
+												commonMarket.map(
+													(item, index) => {
+														return (
+															<span
+																key={index}
+																className="headernews-item"
+																title={`${
+																	item.symbol
+																} $${
+																	item.price_usd
+																} ${(() => {
+																	return item.percent_change_1h >=
+																		0
+																		? "+"
+																		: "";
+																})()}${
+																	item.percent_change_1h
+																}%`}
+															>
+																{item.symbol} ${
+																	item.price_usd
+																}
+																&nbsp;
+																{(() => {
+																	return item.percent_change_1h >=
+																		0
+																		? "+"
+																		: "";
+																})()}
+																{
+																	item.percent_change_1h
+																}%
+															</span>
+														);
+													}
+												)}
+										</div>
 									</div>
 								</div>
-							</div>
-							<div className="heder-middle f1">
-								<Link
-									to={{
-										pathname: "/"
-									}}
-								>
-									InWeCrypto
-								</Link>
-							</div>
-							{!userInfo && (
-								<div className="heder-right f1 ui jend">
-									<span
-										onClick={this.Login.bind(this)}
-										className="rightbtn"
+								<div className="heder-middle f1">
+									<Link
+										to={{
+											pathname: "/"
+										}}
 									>
-										{t("signBox.signIn.signIn", lng)}
-									</span>
-									<span
-										onClick={this.openRegisterByHeader.bind(
-											this
-										)}
-										className="rightbtn"
-									>
-										{t("signBox.signIn.register", lng)}
-									</span>
+										InWeCrypto
+									</Link>
 								</div>
-							)}
-							{userInfo &&
-								userInfo.token && (
-									<div className="heder-right">
-										<div
-											className={
-												showMember
-													? "member memberBig"
-													: "member"
-											}
-											onClick={e => {
-												this.toggleMember(e);
-											}}
+								{!userInfo && (
+									<div className="heder-right f1 ui jend">
+										<span
+											onClick={this.Login.bind(this)}
+											className="rightbtn"
 										>
-											{/* <i className="member-info" /> */}
-											<img
-												className="img"
-												src={
-													userInfo.img
-														? userInfo.img
-														: defaultHeader
+											{t("signBox.signIn.signIn", lng)}
+										</span>
+										<span
+											onClick={this.openRegisterByHeader.bind(
+												this
+											)}
+											className="rightbtn"
+										>
+											{t("signBox.signIn.register", lng)}
+										</span>
+									</div>
+								)}
+								{userInfo &&
+									userInfo.token && (
+										<div className="heder-right">
+											<div
+												className={
+													showMember
+														? "member memberBig"
+														: "member"
 												}
-											/>
-										</div>
+												onClick={e => {
+													this.toggleMember(e);
+												}}
+											>
+												{/* <i className="member-info" /> */}
+												<img
+													className="img"
+													src={
+														userInfo.img
+															? userInfo.img
+															: defaultHeader
+													}
+												/>
+											</div>
 
-										<div
-											className={
-												showMember
-													? "member-more showMember"
-													: "member-more"
-											}
-										>
-											{/* <Link
+											<div
+												className={
+													showMember
+														? "member-more showMember"
+														: "member-more"
+												}
+											>
+												{/* <Link
 													to={{
 														pathname: "/member",
 														search: "?type=message"
@@ -431,68 +436,73 @@ class Header extends PureComponent {
 														未读消息
 													</span>
 												</Link> */}
-											<Link
-												to={{
-													pathname: "/member",
-													search: "?type=collection"
-												}}
-												className="member-item"
-											>
-												<span className="icon-box">
-													<i className="icon-personal" />
-												</span>
-												<span className="member-itemtext">
-													{t("header.member", lng)}
-												</span>
-											</Link>
-											<div className="member-item">
-												<span className="icon-box">
-													<i className="icon-out" />
-												</span>
-												<span
-													onClick={e => {
-														this.loginOut(e);
+												<Link
+													to={{
+														pathname: "/member",
+														search:
+															"?type=collection"
 													}}
-													className="member-itemtext"
+													className="member-item"
 												>
-													{t("header.quit", lng)}
-												</span>
+													<span className="icon-box">
+														<i className="icon-personal" />
+													</span>
+													<span className="member-itemtext">
+														{t(
+															"header.member",
+															lng
+														)}
+													</span>
+												</Link>
+												<div className="member-item">
+													<span className="icon-box">
+														<i className="icon-out" />
+													</span>
+													<span
+														onClick={e => {
+															this.loginOut(e);
+														}}
+														className="member-itemtext"
+													>
+														{t("header.quit", lng)}
+													</span>
+												</div>
 											</div>
 										</div>
-									</div>
-								)}
+									)}
 
-							{showLogin && (
-								<SignIn
-									loginIn={loginIn}
-									closeSign={this.closeSignIn.bind(this)}
-									openRegister={this.openRegisterByLogin.bind(
-										this
-									)}
-									openForget={this.openRegisterByForget.bind(
-										this
-									)}
-									openFast={this.openFastSign.bind(this)}
-									lng={lng}
-								/>
-							)}
-							{fastSign && (
-								<FastSign
-									close={this.closeFastSign.bind(this)}
-									lng={lng}
-								/>
-							)}
-							{showRegister && (
-								<Register
-									forgetUser={forgetUser}
-									isForget={isForget}
-									hasBack={registerHasBack}
-									close={this.closeRegister.bind(this)}
-									sendEmail={sendEmail}
-									registerUser={registerUser}
-									lng={lng}
-								/>
-							)}
+								{showLogin && (
+									<SignIn
+										loginIn={loginIn}
+										closeSign={this.closeSignIn.bind(this)}
+										openRegister={this.openRegisterByLogin.bind(
+											this
+										)}
+										openForget={this.openRegisterByForget.bind(
+											this
+										)}
+										openFast={this.openFastSign.bind(this)}
+										lng={lng}
+									/>
+								)}
+								{fastSign && (
+									<FastSign
+										close={this.closeFastSign.bind(this)}
+										lng={lng}
+									/>
+								)}
+								{showRegister && (
+									<Register
+										forgetUser={forgetUser}
+										isForget={isForget}
+										hasBack={registerHasBack}
+										close={this.closeRegister.bind(this)}
+										sendEmail={sendEmail}
+										registerUser={registerUser}
+										lng={lng}
+									/>
+								)}
+							</div>
 						</div>
 					</div>
 				)}

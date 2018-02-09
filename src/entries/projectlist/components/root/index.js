@@ -984,9 +984,9 @@ export default class Root extends PureComponent {
 																{t(
 																	"project.other",
 																	lng
-																)}
+																)}{" "}
 																{project.total -
-																	project.to}
+																	project.to}{" "}
 																{t(
 																	"project.otherend",
 																	lng
