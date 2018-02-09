@@ -3,6 +3,7 @@ import http from "../../../utils/ajax";
 
 const PRE_FIX = "PROJECTOPEN_";
 export const PROJECT = `${PRE_FIX}PROJECT`;
+export const ICORANK = `${PRE_FIX}ICORANK`;
 export const PROJECTCOLLECT = `${PRE_FIX}PROJECTCOLLECT`;
 
 export const getProject = createAction(PROJECT, params => {
@@ -14,6 +15,12 @@ export const getProject = createAction(PROJECT, params => {
 		.then(res => {
 			return res;
 		});
+});
+export const getIcoRank = createAction(ICORANK, params => {
+	return http.post({
+		url: "ico/ranks",
+		params: params
+	});
 });
 export const getProjectCollect = createAction(PROJECTCOLLECT, params => {
 	return http

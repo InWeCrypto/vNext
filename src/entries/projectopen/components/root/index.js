@@ -19,7 +19,8 @@ export default class Root extends PureComponent {
 			liH: "auto",
 			liMR: "auto",
 			type: 1,
-			page: 1
+			page: 1,
+			ico_list: []
 		};
 	}
 	componentWillReceiveProps(nextProps) {
@@ -64,7 +65,20 @@ export default class Root extends PureComponent {
 				page: q.page
 			})
 			.then(res => {
-				this.setState({});
+				if (res.code == 4000 && q.type == 1) {
+					let data = res.data.data;
+					let arr = [];
+					data.map((item, index) => {
+						arr.push(item.unit);
+					});
+					this.setState({
+						ico_list: arr
+					});
+					this.props.getIcoRank({
+						ico_list: arr,
+						currency: "cny"
+					});
+				}
 			});
 	}
 	projectCollect(e, c_id, enable) {
@@ -94,6 +108,7 @@ export default class Root extends PureComponent {
 			setReduxUserInfo,
 			forgetUser,
 			project,
+			icorank,
 			commonMarket,
 			getHeaderMarket
 		} = this.props;
@@ -249,39 +264,67 @@ export default class Root extends PureComponent {
 																		1 && (
 																		<div className="projectOpenLiCenter">
 																			<div className="left m-hide">
-																				${item.ico &&
-																					item
-																						.ico
+																				${icorank &&
+																					icorank[
+																						item
+																							.unit
+																					] &&
+																					icorank[
+																						item
+																							.unit
+																					]
 																						.price_usd &&
 																					parseFloat(
-																						item
-																							.ico
+																						icorank[
+																							item
+																								.unit
+																						]
 																							.price_usd
 																					).toFixed(
 																						2
 																					)}
 																			</div>
-																			{item.ico && (
-																				<div
-																					className={
-																						item
-																							.ico
-																							.percent_change_24h <
-																						0
-																							? "right m-hide downs"
-																							: "right m-hide"
-																					}
-																				>
-																					<span
+																			{icorank &&
+																				icorank[
+																					item
+																						.unit
+																				] &&
+																				icorank[
+																					item
+																						.unit
+																				]
+																					.percent_change_24h && (
+																					<div
+																						className={
+																							icorank[
+																								item
+																									.unit
+																							]
+																								.percent_change_24h <
+																							0
+																								? "right m-hide downs"
+																								: "right m-hide"
+																						}
 																					>
-																						{
-																							item
-																								.ico
-																								.percent_change_24h
-																						}%
-																					</span>
-																				</div>
-																			)}
+																						<span
+																						>
+																							{icorank[
+																								item
+																									.unit
+																							]
+																								.percent_change_24h >
+																								0 &&
+																								"+"}
+																							{
+																								icorank[
+																									item
+																										.unit
+																								]
+																									.percent_change_24h
+																							}%
+																						</span>
+																					</div>
+																				)}
 																		</div>
 																	)}
 																</Link>
