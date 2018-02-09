@@ -17,6 +17,7 @@ export default class Root extends PureComponent {
 			mounted: false,
 			ico_list: []
 		};
+		this.timer = null;
 	}
 	componentWillReceiveProps(nextProps) {}
 	componentDidMount() {
@@ -49,6 +50,7 @@ export default class Root extends PureComponent {
 	}
 	componentWillUnmount() {
 		window.removeEventListener("scroll", this.handleScroll.bind(this));
+		clearTimeout(this.timer);
 	}
 	componentDidUpdate() {}
 	handleScroll() {
@@ -137,10 +139,7 @@ export default class Root extends PureComponent {
 					this.setState({
 						ico_list: arr
 					});
-					this.props.getIcoRank({
-						ico_list: arr,
-						currency: "cny"
-					});
+					this.getIcoData(arr);
 				}
 			});
 		this.props.getProject2({
@@ -155,6 +154,16 @@ export default class Root extends PureComponent {
 			type: 4,
 			per_page: nums
 		});
+	}
+	getIcoData(arr) {
+		this.props
+			.getIcoRank({
+				ico_list: arr || this.state.ico_list,
+				currency: "cny"
+			})
+			.then(() => {
+				this.timer = setTimeout(this.getIcoData.bind(this), 10000);
+			});
 	}
 	projectCollect(e, c_id, enable) {
 		e.preventDefault();

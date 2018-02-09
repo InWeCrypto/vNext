@@ -22,6 +22,7 @@ export default class Root extends PureComponent {
 			page: 1,
 			ico_list: []
 		};
+		this.timer = null;
 	}
 	componentWillReceiveProps(nextProps) {
 		if (nextProps.location.search != this.props.location.search) {
@@ -49,6 +50,9 @@ export default class Root extends PureComponent {
 		}, 0);
 	}
 	componentDidUpdate() {}
+	componentWillUnmount() {
+		clearTimeout(this.timer);
+	}
 	initPage(search) {
 		let annoBoxH = document.getElementById("mainBox").clientHeight;
 		let annoBoxLiH = 103;
@@ -74,11 +78,18 @@ export default class Root extends PureComponent {
 					this.setState({
 						ico_list: arr
 					});
-					this.props.getIcoRank({
-						ico_list: arr,
-						currency: "cny"
-					});
+					this.getIcoData(arr);
 				}
+			});
+	}
+	getIcoData(arr) {
+		this.props
+			.getIcoRank({
+				ico_list: arr || this.state.ico_list,
+				currency: "cny"
+			})
+			.then(() => {
+				this.timer = setTimeout(this.getIcoData.bind(this), 10000);
 			});
 	}
 	projectCollect(e, c_id, enable) {
