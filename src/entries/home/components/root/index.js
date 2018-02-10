@@ -89,13 +89,13 @@ export default class Root extends PureComponent {
 	setNewsList(page) {
 		this.props.getNewsList({
 			type: "[1]",
-			per_page: 3,
+			per_page: 4,
 			page: page
 		});
 	}
 	setProjectList(page) {
 		this.props.getProject({
-			per_page: 6,
+			per_page: 10,
 			is_category: true
 		});
 	}
@@ -117,12 +117,12 @@ export default class Root extends PureComponent {
 	}
 	exchangeNotice() {
 		this.props.getExchangeNotice({
-			per_page: 2
+			per_page: 3
 		});
 		// if (this.props.userInfo) {
 		this.props.getUserFavo({
 			// user_favorite: true,
-			per_page: 3
+			per_page: 5
 		});
 		// }
 	}
@@ -426,52 +426,105 @@ export default class Root extends PureComponent {
 											)}
 										</div>
 									</div>
-									<div className="homeBoxArticleBottom">
-										<div className="homeBoxNewsAll">
-											<p className="homeBoxTitle">
-												{t("home.news", lng)}
-											</p>
-											<ul className="homeBoxNewsUl">
-												{newsList &&
-													newsList.data &&
-													newsList.data.length > 0 &&
-													newsList.data.map(
-														(item, index) => {
-															return (
-																<li key={index}>
-																	<Link
-																		to={{
-																			pathname:
-																				"/newsdetail",
-																			search:
-																				"?art_id=" +
-																				item.id
-																		}}
-																	>
-																		<p>
-																			{
-																				item.title
-																			}
-																		</p>
-																	</Link>
-																</li>
-															);
-														}
-													)}
-											</ul>
-										</div>
-										<div className="homeBoxReadMore">
-											<Link
-												to={{
-													pathname: "/news"
-												}}
+									<div className="homeBoxArticleBottom homeBoxList homeBoxCandy">
+										{!IsTouchDevice && (
+											<div
+												className={
+													ads.data &&
+													ads.data.length == 1
+														? "homeInweWallet one ui"
+														: "homeInweWallet ui"
+												}
 											>
-												<span className="readMore readMoreUnderLine">
-													read more
-												</span>
-												<b className="readMoreImg" />
-											</Link>
-										</div>
+												{ads.data &&
+													ads.data.length > 1 &&
+													sliderIndex1 !== 0 && (
+														<div className="walletLf ui center jcenter">
+															<span
+																className="more"
+																onClick={() => {
+																	this.slider1.slickPrev();
+																}}
+															/>
+														</div>
+													)}
+												{ads.data &&
+													ads.data.length > 1 &&
+													sliderIndex1 == 0 && (
+														<div className="walletLf ui center jcenter">
+															<span className="" />
+														</div>
+													)}
+												<div className="homeInweWalletUl f1 ui center">
+													<div
+														style={{
+															height: "100%",
+															width: "100%"
+														}}
+													>
+														{ads.data &&
+															ads.data.length >
+																0 && (
+																<Slider
+																	ref={c =>
+																		(this.slider1 = c)
+																	}
+																	{...settings1}
+																>
+																	{ads.data.map(
+																		(
+																			item,
+																			index
+																		) => {
+																			return (
+																				<a
+																					href={
+																						item.url
+																					}
+																					style={{
+																						display:
+																							"block"
+																					}}
+																					key={
+																						index
+																					}
+																				>
+																					<img
+																						src={
+																							item.img
+																						}
+																					/>
+																				</a>
+																			);
+																		}
+																	)}
+																</Slider>
+															)}
+													</div>
+												</div>
+												{ads.data &&
+													ads.data.length > 1 &&
+													ads.data.length - 1 !==
+														sliderIndex1 && (
+														<div className="walletRt ui center jcenter">
+															<span
+																className="more"
+																onClick={() => {
+																	this.slider1.slickNext();
+																}}
+															/>
+														</div>
+													)}
+												{ads.data &&
+													ads.data.length > 1 &&
+													ads.data.length - 1 ==
+														sliderIndex1 && (
+														<div className="walletRt ui center jcenter">
+															<span className="" />
+														</div>
+													)}
+											</div>
+										)}
 									</div>
 								</div>
 								<div className="homeRight ui f1">
@@ -547,11 +600,122 @@ export default class Root extends PureComponent {
 												</Link>
 											</div>
 										</div>
+										<div className="homeBoxList homeBoxNews">
+											<div className="homeBoxNewsTop">
+												<div className="homeBoxNewsAll">
+													<p className="homeBoxTitle">
+														{t("home.news", lng)}
+													</p>
+													<ul className="homeBoxNewsUl">
+														{newsList &&
+															newsList.data &&
+															newsList.data
+																.length > 0 &&
+															newsList.data.map(
+																(
+																	item,
+																	index
+																) => {
+																	return (
+																		<li
+																			key={
+																				index
+																			}
+																		>
+																			<Link
+																				to={{
+																					pathname:
+																						"/newsdetail",
+																					search:
+																						"?art_id=" +
+																						item.id
+																				}}
+																			>
+																				<p
+																				>
+																					{
+																						item.title
+																					}
+																				</p>
+																			</Link>
+																		</li>
+																	);
+																}
+															)}
+													</ul>
+												</div>
+												<div className="homeBoxReadMore">
+													<Link
+														to={{
+															pathname: "/news"
+														}}
+													>
+														<span className="readMore readMoreUnderLine">
+															read more
+														</span>
+														<b className="readMoreImg" />
+													</Link>
+												</div>
+											</div>
+											<div className="homeBoxNewsBottom">
+												<div className="homeBoxAnnoTop">
+													<p className="homeBoxTitle">
+														{t("home.anno", lng)}
+													</p>
+													<div className="homeBoxAnnoList">
+														{exchangeNotice &&
+															exchangeNotice.data &&
+															exchangeNotice.data
+																.length > 0 &&
+															exchangeNotice.data.map(
+																(
+																	item,
+																	index
+																) => {
+																	return (
+																		<p
+																			key={
+																				index
+																			}
+																			className="homeBoxAnnoTopP"
+																			onClick={this.openAnnobox.bind(
+																				this,
+																				item
+																			)}
+																		>
+																			+{
+																				item.source_name
+																			}：
+																			{
+																				item.desc
+																			}
+																		</p>
+																	);
+																}
+															)}
+													</div>
+												</div>
+												<div className="homeBoxReadMore">
+													<Link
+														to={{
+															pathname:
+																"/announcment"
+														}}
+													>
+														<span className="readMore readMoreUnderLine">
+															read more
+														</span>
+														<b className="readMoreImg" />
+													</Link>
+												</div>
+											</div>
+										</div>
 										<div
 											className="homeBoxList homeBoxCandy"
 											onClick={this.turnToCandy.bind(
 												this
 											)}
+											style={{ display: "none" }}
 										>
 											<div className="homeBoxCandyTop">
 												<p className="homeBoxTitle">
@@ -609,153 +773,8 @@ export default class Root extends PureComponent {
 														)}
 												</div>
 											</div>
-											{!IsTouchDevice && (
-												<div
-													className={
-														ads.data &&
-														ads.data.length == 1
-															? "homeInweWallet one ui"
-															: "homeInweWallet ui"
-													}
-												>
-													{ads.data &&
-														ads.data.length > 1 &&
-														sliderIndex1 !== 0 && (
-															<div className="walletLf ui center jcenter">
-																<span
-																	className="more"
-																	onClick={() => {
-																		this.slider1.slickPrev();
-																	}}
-																/>
-															</div>
-														)}
-													{ads.data &&
-														ads.data.length > 1 &&
-														sliderIndex1 == 0 && (
-															<div className="walletLf ui center jcenter">
-																<span className="" />
-															</div>
-														)}
-													<div className="homeInweWalletUl f1 ui center">
-														<div
-															style={{
-																height: "100%",
-																width: "100%"
-															}}
-														>
-															{ads.data &&
-																ads.data
-																	.length >
-																	0 && (
-																	<Slider
-																		ref={c =>
-																			(this.slider1 = c)
-																		}
-																		{...settings1}
-																	>
-																		{ads.data.map(
-																			(
-																				item,
-																				index
-																			) => {
-																				return (
-																					<a
-																						href={
-																							item.url
-																						}
-																						style={{
-																							display:
-																								"block"
-																						}}
-																						key={
-																							index
-																						}
-																					>
-																						<img
-																							src={
-																								item.img
-																							}
-																						/>
-																					</a>
-																				);
-																			}
-																		)}
-																	</Slider>
-																)}
-														</div>
-													</div>
-													{ads.data &&
-														ads.data.length > 1 &&
-														ads.data.length - 1 !==
-															sliderIndex1 && (
-															<div className="walletRt ui center jcenter">
-																<span
-																	className="more"
-																	onClick={() => {
-																		this.slider1.slickNext();
-																	}}
-																/>
-															</div>
-														)}
-													{ads.data &&
-														ads.data.length > 1 &&
-														ads.data.length - 1 ==
-															sliderIndex1 && (
-															<div className="walletRt ui center jcenter">
-																<span className="" />
-															</div>
-														)}
-												</div>
-											)}
 										</div>
 										<div className="homeBoxList homeBoxAnno homeBoxAnnoAll">
-											<div className="homeBoxAnnoTop">
-												<p className="homeBoxTitle">
-													{t("home.anno", lng)}
-												</p>
-												<div className="homeBoxAnnoList">
-													{exchangeNotice &&
-														exchangeNotice.data &&
-														exchangeNotice.data
-															.length > 0 &&
-														exchangeNotice.data.map(
-															(item, index) => {
-																return (
-																	<p
-																		key={
-																			index
-																		}
-																		className="homeBoxAnnoTopP"
-																		onClick={this.openAnnobox.bind(
-																			this,
-																			item
-																		)}
-																	>
-																		+{
-																			item.source_name
-																		}：
-																		{
-																			item.desc
-																		}
-																	</p>
-																);
-															}
-														)}
-												</div>
-											</div>
-											<div className="homeBoxReadMore">
-												<Link
-													to={{
-														pathname: "/announcment"
-													}}
-												>
-													<span className="readMore readMoreUnderLine">
-														read more
-													</span>
-													<b className="readMoreImg" />
-												</Link>
-											</div>
 											{!IsTouchDevice &&
 												userFavo &&
 												userFavo.data &&
@@ -811,6 +830,21 @@ export default class Root extends PureComponent {
 																	search:
 																		"?type=collection"
 																}}
+																onClick={e => {
+																	e.preventDefault();
+																	if (
+																		userInfo
+																	) {
+																		window.location.href =
+																			"/member?type=collection";
+																	} else {
+																		window.headerBox.setState(
+																			{
+																				showLogin: true
+																			}
+																		);
+																	}
+																}}
 															>
 																<span className="readMore readMoreUnderLine">
 																	read more
@@ -820,6 +854,70 @@ export default class Root extends PureComponent {
 														</div>
 													</div>
 												)}
+											<div className="homeBoxAnnoBottm">
+												<div className="homeBoxCandyTop">
+													<p className="homeBoxTitle">
+														{t("home.candy", lng)}?
+													</p>
+													<div className="homeBoxCandyTopAll">
+														<p className="homeCandyDate">
+															<b>{curDay}</b>/{
+																curMonth
+															}
+														</p>
+														{candyList.list &&
+															candyList.list
+																.data &&
+															candyList.list.data
+																.length > 0 &&
+															candyList.list.data.map(
+																(
+																	item,
+																	index
+																) => {
+																	return (
+																		<Link
+																			key={
+																				index
+																			}
+																			to={{
+																				pathname:
+																					"/candybowl"
+																			}}
+																		>
+																			<span
+																				key={
+																					index
+																				}
+																				className="homeCandySpan"
+																			>
+																				+{
+																					item.name
+																				}
+																			</span>
+																		</Link>
+																	);
+																}
+															)}
+														{candyList &&
+															candyList.list &&
+															candyList.list
+																.data &&
+															candyList.list.data
+																.length ==
+																0 && (
+																<div className="noCandy ui center">
+																	<img
+																		src={
+																			noCandy
+																		}
+																		alt=""
+																	/>
+																</div>
+															)}
+													</div>
+												</div>
+											</div>
 										</div>
 									</div>
 									<div className="homeRightBottom">

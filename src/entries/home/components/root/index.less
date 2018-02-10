@@ -29,8 +29,8 @@
 		}
 		.homeBoxTitle {
 			display: block;
-			max-height: 0.84rem;
-			line-height: 0.42rem;
+			max-height: 0.8rem;
+			line-height: 0.4rem;
 			font-size: 0.3rem;
 			color: #333;
 			font-weight: 200;
@@ -50,7 +50,7 @@
 			height: 0.14rem;
 			.readMore {
 				float: right;
-				line-height: 0.24rem;
+				line-height: 0.14rem;
 				color: #dedede;
 				font-size: 0.12rem;
 			}
@@ -191,11 +191,9 @@
 			flex-shrink: 0;
 			.homeBoxCandyTop {
 				width: 100%;
-				// margin: 0.3rem auto 0rem;
 				padding: 0 0.3rem 0rem;
 				overflow: hidden;
 				box-sizing: border-box;
-				// padding-bottom: 0.2rem;
 				overflow: hidden;
 				&:hover {
 					.homeBoxTitle {
@@ -357,54 +355,71 @@
 	}
 }
 .pc .homeBox {
-	.homeBoxList.homeBoxArticle {
-		flex-shrink: 0;
-		border-right: 0.01rem solid #ececec;
-		.homeBoxArticleTop {
-			padding-bottom: 0.4rem;
-			border-bottom: 1px solid #ececec;
-			.articleSlider {
-				height: auto;
-				.homeBoxTitle {
-					height: 0.84rem;
-				}
-				.homeBoxArticleImg {
-					height: 1.68rem;
-				}
-				.homeBoxArticleDesc {
-					height: 0.66rem;
-					-webkit-line-clamp: 3;
-				}
-			}
-			.homeBoxArticleBtn {
-				margin-top: 0.2rem;
-			}
+	.homeBoxList {
+		padding: 0 0.3rem;
+		.homeBoxTitle {
+			font-size: 0.28rem;
 		}
-		.homeBoxArticleBottom {
-			margin-top: 0.35rem;
-			.homeBoxNewsUl {
-				width: 100%;
-				margin: 0.3rem auto 0.2rem;
-				overflow: hidden;
-				li {
-					width: 100%;
-					max-height: 0.22rem;
-					overflow: hidden;
-					margin-top: 0.2rem;
-					&:first-child {
-						margin-top: 0;
+		&.homeBoxArticle {
+			flex-shrink: 0;
+			border-right: 0.01rem solid #ececec;
+			.homeBoxArticleTop {
+				padding-bottom: 0.2rem;
+				border-bottom: 1px solid #ececec;
+				.articleSlider {
+					height: auto;
+					.homeBoxTitle {
+						height: 0.8rem;
+						line-height: 0.4rem;
 					}
-					a {
-						color: #333;
-						p {
-							line-height: 0.22rem;
-							font-size: 0.16rem;
-							overflow: hidden;
-							text-overflow: ellipsis;
-							white-space: nowrap;
+					.homeBoxArticleImg {
+						height: 1.68rem;
+						margin: 0.2rem auto 0.18rem;
+					}
+					.homeBoxArticleDesc {
+						height: 0.78rem;
+						line-height: 0.26rem;
+						-webkit-line-clamp: 3;
+					}
+				}
+				.homeBoxArticleBtn {
+					margin-top: 0.2rem;
+				}
+			}
+			.homeBoxArticleBottom {
+				margin: 0.2rem auto 0;
+				border: 0;
+				padding: 0;
+				.homeInweWallet {
+					padding: 0;
+					.homeInweWalletUl {
+						height: auto;
+					}
+				}
+				.homeBoxNewsUl {
+					width: 100%;
+					margin: 0.3rem auto 0.2rem;
+					overflow: hidden;
+					li {
+						width: 100%;
+						max-height: 0.22rem;
+						overflow: hidden;
+						margin-top: 0.2rem;
+						&:first-child {
+							margin-top: 0;
+						}
+						a {
 							color: #333;
-							&:hover {
-								color: #0a9234;
+							p {
+								line-height: 0.22rem;
+								font-size: 0.16rem;
+								overflow: hidden;
+								text-overflow: ellipsis;
+								white-space: nowrap;
+								color: #333;
+								&:hover {
+									color: #0a9234;
+								}
 							}
 						}
 					}
@@ -421,30 +436,166 @@
 				}
 				&.homeBoxPro {
 					flex: 1;
-					.homeBoxNewsUl li {
-						img {
-							width: 16px;
-							height: 16px;
-							margin-right: 0.08rem;
-							flex-shrink: 0;
-							margin-top: 0.03rem;
+					.homeBoxNewsUl {
+						margin-top: 0.2rem;
+						li {
+							margin-top: 0.16rem;
+							img {
+								width: 14px;
+								height: 14px;
+								margin-right: 0.08rem;
+								flex-shrink: 0;
+								margin-top: 0.03rem;
+							}
+							p {
+								display: block;
+								height: 0.22rem;
+								white-space: nowrap;
+								overflow: hidden;
+								text-overflow: ellipsis;
+							}
+							&:first-child {
+								margin-top: 0;
+							}
 						}
 					}
 				}
-				&.homeBoxCandy {
-					.homeBoxCandyTop .homeBoxCandyTopAll {
-						.noCandy {
-							width: 100%;
-							img {
-								width: 0.67rem;
-								height: 0.69rem;
+				&.homeBoxNews {
+					.homeBoxNewsTop {
+						padding-bottom: 0.2rem;
+						border-bottom: 1px solid #ececec;
+						.homeBoxNewsAll {
+							.homeBoxNewsUl {
 								margin-top: 0.2rem;
+								li {
+									margin-top: 0.16rem;
+									&:first-child {
+										margin-top: 0;
+									}
+									p {
+										margin: 0;
+										display: block;
+										white-space: nowrap;
+										overflow: hidden;
+										text-overflow: ellipsis;
+									}
+								}
+							}
+						}
+					}
+					.homeBoxNewsBottom {
+						margin-top: 0.2rem;
+						padding-bottom: 0.2rem;
+						.homeBoxAnnoTop {
+							width: 100%;
+							&:hover .homeBoxTitle {
+								color: #ff571f;
+							}
+							.homeBoxAnnoList {
+								margin: 0.2rem auto 0rem;
+								.homeBoxAnnoTopP {
+									width: 100%;
+									max-height: 0.44rem;
+									line-height: 0.22rem;
+									font-size: 0.16rem;
+									color: #333;
+									display: -webkit-box;
+									-webkit-box-orient: vertical;
+									-webkit-line-clamp: 2;
+									margin-bottom: 0.2rem;
+									overflow: hidden;
+									:last-child {
+										margin-bottom: 0;
+									}
+									a {
+										color: #333;
+									}
+									&:hover {
+										color: #0a9234;
+									}
+								}
 							}
 						}
 					}
 				}
 				&.homeBoxAnno {
 					flex: 1;
+					.homeBoxFllow {
+						padding: 0;
+						border: 0;
+						padding-bottom: 0.2rem;
+						border-bottom: 1px solid #ececec;
+						.homeBoxFllowAll {
+							margin: 0;
+							.homeBoxFllowUl {
+								margin: 0.2rem auto 0;
+								li {
+									margin-bottom: 0.16rem;
+									&:last-child {
+										margin-bottom: 0;
+									}
+								}
+							}
+						}
+						.homeBoxReadMore {
+							padding: 0;
+						}
+					}
+					.homeBoxAnnoBottm {
+						margin-top: 0.2rem;
+						padding-bottom: 0.2rem;
+						.homeBoxCandyTop {
+							width: 100%;
+							padding: 0;
+							overflow: hidden;
+							box-sizing: border-box;
+							overflow: hidden;
+							&:hover {
+								.homeBoxTitle {
+									color: #ff571f;
+								}
+							}
+							.homeBoxCandyTopAll {
+								p.homeCandyDate {
+									width: 100%;
+									height: 0.42rem;
+									font-size: 0.12rem;
+									color: #262626;
+									margin-top: 0.16rem;
+									b {
+										font-size: 0.3rem;
+										color: #ff2800;
+										line-height: 0.42rem;
+									}
+								}
+								a {
+									display: block;
+									color: #333;
+									margin-top: 0.16rem;
+									span.homeCandySpan {
+										display: block;
+										width: 100%;
+										height: 0.22rem;
+										font-size: 0.16rem;
+										color: rgba(51, 51, 51, 1);
+										line-height: 0.22rem;
+										margin-top: 0.2rem;
+										&:hover {
+											color: #0a9234;
+										}
+									}
+								}
+								.noCandy {
+									width: 100%;
+									img {
+										width: 0.67rem;
+										height: 0.69rem;
+										margin-top: 0.2rem;
+									}
+								}
+							}
+						}
+					}
 				}
 			}
 		}
@@ -655,6 +806,28 @@
 							}
 						}
 					}
+					.homeBoxNewsBottom {
+						border-top: 1px solid #ececec;
+						.homeBoxAnnoTop {
+							padding: 0;
+							margin: 0;
+							border: 0;
+							.homeBoxAnnoList {
+								margin-top: 0.3rem;
+							}
+							.homeBoxAnnoTopP {
+								margin: 0;
+								margin-bottom: 0.3rem;
+								height: 0.48rem;
+								font-size: 0.28rem;
+								line-height: 0.4rem;
+								overflow: hidden;
+								text-overflow: ellipsis;
+								white-space: nowrap;
+								display: block;
+							}
+						}
+					}
 				}
 				&.homeBoxCandy {
 					.homeBoxTitle {
@@ -713,6 +886,46 @@
 							display: block;
 						}
 					}
+
+					.homeBoxCandyTop {
+						border-bottom: 0;
+						//margin-top: 0.15rem;
+						padding: 0;
+                        padding-bottom: 0.1rem;
+                        p.homeCandyDate {
+                            width: 100%;
+                            height: 0.42rem;
+                            color: #262626;
+                            margin-top: 0.16rem;
+							padding-bottom: 0.2rem;
+							font-size: 0.2rem;
+                            b {
+                                color: #ff2800;
+                                line-height: 0.42rem;
+								font-size: 0.4rem;
+								line-height: 0.56rem;
+                            }
+                        }
+						a {
+							display: block;
+							color: #333;
+							margin-top: 0.16rem;
+							.homeCandySpan {
+								height: 0.4rem;
+								margin-bottom: 0.3rem;
+								font-size: 0.28rem;
+								line-height: 0.4rem;
+							}
+						}
+						.noCandy {
+							width: 100%;
+							img {
+								width: 0.67rem;
+								height: 0.69rem;
+								margin-top: 0.2rem;
+							}
+						}
+					}
 				}
 				&.homeBoxWallet {
 					border-top: 0;
@@ -765,7 +978,7 @@
 								width: 16px;
 								height: 16px;
 								margin-right: 0.15rem;
-								margin-top: 0.06rem;
+								margin-top: 2px;
 								flex-shrink: 0;
 							}
 						}
@@ -780,6 +993,7 @@
 					position: relative;
 					img {
 						width: 100%;
+						height: 1.42rem;
 					}
 					.ads2Arrow {
 						position: absolute;

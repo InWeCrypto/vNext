@@ -239,7 +239,7 @@ export default class Root extends PureComponent {
 			speed: 500,
 			touchMove: false,
 			slidesToShow: 4,
-			slidesToScroll: 4,
+			slidesToScroll: 0,
 			afterChange: function(index) {
 				this.setState({
 					newsTextCur: index

@@ -2,7 +2,7 @@ export default {
 	home: {
 		news: "News",
 		candy: "Candy",
-		anno: "Exchange Announcement",
+		anno: "Exchange",
 		follow: "Follow",
 		project: "Project"
 	},
@@ -60,10 +60,10 @@ export default {
 	},
 	navMenu: {
 		home: "InWe",
-		project: "Project",
+		project: "Project Calendar",
 		news: "News",
 		candybowl: "Candybowl",
-		trading: "TradingView",
+		trading: "Trading View",
 		announcment: "Announcment",
 		search: "Search",
 		wallent: "Wallet"

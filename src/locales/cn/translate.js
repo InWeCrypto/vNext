@@ -60,7 +60,7 @@ export default {
 	},
 	navMenu: {
 		home: "首页",
-		project: "项目",
+		project: "项目日历",
 		news: "新闻",
 		candybowl: "糖果盒",
 		trading: "交易观点",
