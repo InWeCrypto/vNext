@@ -96,7 +96,7 @@ export default class Root extends PureComponent {
 	setProjectList(page) {
 		this.props.getProject({
 			per_page: 10,
-			is_category: true
+			home_article: true
 		});
 	}
 	getData(year, month, day) {
@@ -553,32 +553,30 @@ export default class Root extends PureComponent {
 																				pathname:
 																					"/newsdetail",
 																				search:
+																					item.last_article &&
 																					"?art_id=" +
-																					item.id
+																						item
+																							.last_article
+																							.id
 																			}}
 																		>
 																			<img
 																				src={
-																					item.category &&
-																					item
-																						.category
-																						.img
+																					item.img
 																				}
 																				alt=""
 																				onClick={e => {
 																					e.preventDefault();
 																					this.turnToPro(
-																						item.category &&
-																							item
-																								.category
-																								.id
+																						item.id
 																					);
 																				}}
 																			/>
 																			<p>
-																				{
-																					item.title
-																				}
+																				{item.last_article &&
+																					item
+																						.last_article
+																						.title}
 																			</p>
 																		</Link>
 																	</li>
