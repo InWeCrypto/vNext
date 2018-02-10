@@ -136,23 +136,25 @@ class ProjectDetailIco extends PureComponent {
 
 									<div className="projectDetailCenter2">
 										<span>{projectDetail.type_name}</span>
-										<p>
-											Token Sale{" "}
-											<i>
-												{(() => {
-													return this.getEndDay(
-														projectDetail.category_desc &&
-															projectDetail
-																.category_desc
-																.start_at,
-														projectDetail.category_desc &&
-															projectDetail
-																.category_desc
-																.end_at
-													);
-												})()}
-											</i>
-										</p>
+										{false && (
+											<p>
+												Token Sale{" "}
+												<i>
+													{(() => {
+														return this.getEndDay(
+															projectDetail.category_desc &&
+																projectDetail
+																	.category_desc
+																	.start_at,
+															projectDetail.category_desc &&
+																projectDetail
+																	.category_desc
+																	.end_at
+														);
+													})()}
+												</i>
+											</p>
+										)}
 									</div>
 								</div>
 								<div className="projectDetailConTopRight">

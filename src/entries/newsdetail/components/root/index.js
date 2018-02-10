@@ -61,14 +61,14 @@ export default class Root extends PureComponent {
 			);
 		if (document.body.offsetWidth > 1366) {
 			document.getElementById("newsDetailLeft").style.marginLeft =
-				"-" + (contW / 2 + 36 + 27) + "px";
+				"-" + (contW / 2 + 36 + 10) + "px";
 			document.getElementById("newsDetailRight").style.marginLeft =
-				contW / 2 + 20 - 27 + "px";
+				contW / 2 + 20 + 10 + "px";
 		} else {
 			document.getElementById("newsDetailLeft").style.marginLeft =
-				"-" + (contW / 2 + 9 + 27) + "px";
+				"-" + (contW / 2 + 36) + "px";
 			document.getElementById("newsDetailRight").style.marginLeft =
-				contW / 2 + 47 - 27 + "px";
+				contW / 2 + 20 + "px";
 		}
 
 		this.setState({
