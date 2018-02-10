@@ -429,15 +429,16 @@ export default class Root extends PureComponent {
 																				)}
 																			</p>
 
-																			<img
-																				src={
-																					item.category &&
-																					item
-																						.category
-																						.img
-																				}
-																				alt=""
-																			/>
+																			{item.category && (
+																				<img
+																					src={
+																						item
+																							.category
+																							.img
+																					}
+																					alt=""
+																				/>
+																			)}
 																		</div>
 																	</Link>
 																</li>
@@ -491,15 +492,16 @@ export default class Root extends PureComponent {
 																						)}
 																					</p>
 
-																					<img
-																						src={
-																							item.category &&
-																							item
-																								.category
-																								.img
-																						}
-																						alt=""
-																					/>
+																					{item.category && (
+																						<img
+																							src={
+																								item
+																									.category
+																									.img
+																							}
+																							alt=""
+																						/>
+																					)}
 																				</div>
 																			</Link>
 																		</div>
@@ -628,16 +630,17 @@ export default class Root extends PureComponent {
 																							item.created_at
 																						)}
 																					</p>
-																					<img
-																						className="m-hide"
-																						src={
-																							item.category &&
-																							item
-																								.category
-																								.img
-																						}
-																						alt=""
-																					/>
+																					{item.category && (
+																						<img
+																							className="m-hide"
+																							src={
+																								item
+																									.category
+																									.img
+																							}
+																							alt=""
+																						/>
+																					)}
 																				</div>
 																			</Link>
 																		</div>
@@ -680,16 +683,17 @@ export default class Root extends PureComponent {
 																					item.created_at
 																				)}
 																			</p>
-																			<img
-																				className="m-hide"
-																				src={
-																					item.category &&
-																					item
-																						.category
-																						.img
-																				}
-																				alt=""
-																			/>
+																			{item.category && (
+																				<img
+																					className="m-hide"
+																					src={
+																						item
+																							.category
+																							.img
+																					}
+																					alt=""
+																				/>
+																			)}
 																		</div>
 																		<div className="newsBoxModConShow">
 																			<img

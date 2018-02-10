@@ -559,6 +559,12 @@ export default class Root extends PureComponent {
 																							.last_article
 																							.id
 																			}}
+																			title={
+																				item.last_article &&
+																				item
+																					.last_article
+																					.title
+																			}
 																		>
 																			<img
 																				src={
@@ -588,7 +594,7 @@ export default class Root extends PureComponent {
 											<div className="homeBoxReadMore">
 												<Link
 													to={{
-														pathname: "/news"
+														pathname: "/projectlist"
 													}}
 												>
 													<span className="readMore readMoreUnderLine">
@@ -628,6 +634,9 @@ export default class Root extends PureComponent {
 																						"?art_id=" +
 																						item.id
 																				}}
+																				title={
+																					item.title
+																				}
 																			>
 																				<p
 																				>
