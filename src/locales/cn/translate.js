@@ -1,10 +1,10 @@
 export default {
 	home: {
-		news: "News",
-		candy: "Candy",
+		news: "新闻",
+		candy: "糖果盒",
 		anno: "交易所公告",
-		follow: "Follow",
-		project: "项目"
+		follow: "收藏",
+		project: "项目动态"
 	},
 	header: {
 		member: "个人中心",

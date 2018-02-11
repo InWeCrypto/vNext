@@ -1,10 +1,10 @@
 export default {
 	home: {
 		news: "News",
-		candy: "Candy",
+		candy: "Candybowl",
 		anno: "Exchange",
 		follow: "Follow",
-		project: "Project"
+		project: "Projects Update"
 	},
 	header: {
 		member: "Profile",
