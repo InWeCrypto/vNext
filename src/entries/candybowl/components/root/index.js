@@ -204,9 +204,11 @@ class Root extends PureComponent {
 										</div>
 										<div className="data-group">
 											{candyList &&
-												candyList.data &&
-												candyList.data.length > 0 &&
-												candyList.data.map(
+												candyList.list &&
+												candyList.list.data &&
+												candyList.list.data.length >
+													0 &&
+												candyList.list.data.map(
 													(item, index) => {
 														return (
 															<a
@@ -232,8 +234,10 @@ class Root extends PureComponent {
 													}
 												)}
 											{(!candyList ||
-												!candyList.data ||
-												candyList.data.length <= 0) && (
+												!candyList.list ||
+												!candyList.list.data ||
+												candyList.list.data.length <=
+													0) && (
 												<div
 													className="noBorder"
 													style={{

@@ -34,7 +34,7 @@ export const getNewsList = createAction(NEWSLIST, params => {
 export const getProject = createAction(PROJECT, params => {
 	return http
 		.get({
-			url: "article",
+			url: "category",
 			params: params
 		})
 		.then(res => {

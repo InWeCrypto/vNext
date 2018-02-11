@@ -108,7 +108,7 @@
 			&.searchProResultUl {
 				li {
 					float: left;
-					width: 100%;
+					width: 25%;
 					height: 1.06rem;
 					padding: 0.2rem 0.1rem;
 					box-sizing: border-box;
@@ -118,19 +118,19 @@
 					}
 					&:hover {
 						background-color: #f6f6f6;
-						& .projectOpenLiTopRight.nocollect {
+						& .projectListLiTopRight.nocollect {
 							background: url("../../../../assets/images/project_collect_ss.png")
 								no-repeat center center;
 							background-size: 100%;
 						}
 					}
-					.projectOpenLiTop {
+					.projectListLiTop {
 						width: 100%;
 						height: 0.4rem;
 						justify-content: space-between;
-						.projectOpenLiTopLeft {
+						.projectListLiTopLeft {
 							// width: 288px;
-							.projectOpenImg {
+							.projectListImg {
 								width: 0.26rem;
 								height: 0.26rem;
 								margin-right: 0.06rem;
@@ -173,7 +173,7 @@
 								}
 							}
 						}
-						.projectOpenLiTopRight {
+						.projectListLiTopRight {
 							width: 0.16rem;
 							height: 0.16rem;
 							background: url("../../../../assets/images/project_collect.png")
@@ -187,7 +187,7 @@
 							}
 						}
 					}
-					.projectOpenLiCenter {
+					.projectListLiCenter {
 						height: 0.2rem;
 						line-height: 0.2rem;
 						font-size: 14px;
@@ -359,6 +359,75 @@
 						border: 1px solid #a1c7b5;
 						font-size: 0.18rem;
 						line-height: 0.25rem;
+					}
+				}
+			}
+			&.searchProResultUl {
+				width: 6.9rem;
+				padding: 0;
+				margin: 0 auto;
+				li {
+					position: relative;
+					margin: 0 auto;
+					padding: 0;
+					width: 6.9rem;
+					height: 1rem;
+					border-bottom: 1px solid #ececec;
+
+					.projectListLiTop {
+						position: absolute;
+						left: 0;
+						top: 0;
+						z-index: 1;
+						display: block;
+						height: 100%;
+						width: 100%;
+						.projectListLiTopLeft {
+							display: block;
+							.projectListImg {
+								position: absolute;
+								left: 0;
+								top: 0.45rem;
+								width: 0.4rem;
+								height: 0.4rem;
+								img {
+									display: block;
+									width: 100%;
+									height: 100%;
+									object-fit: contain;
+								}
+							}
+							p {
+								overflow: visible;
+								span.ellitext {
+									position: absolute;
+									top: 0.44rem;
+									left: 0.6rem;
+									height: 0.42rem;
+									font-size: 0.3rem;
+									line-height: 0.42rem;
+									vertical-align: middle;
+									width: 5.5rem;
+									b.ellitext {
+										// position: absolute;
+										// top: 0.74rem;
+										// left: 0.6rem;
+										height: 0.2rem;
+										font-size: 0.14rem;
+										line-height: 0.2rem;
+										display: inline;
+									}
+									.industryText {
+										display: inline;
+										padding-left: 0.22rem;
+										font-size: 0.2rem;
+										line-height: 0.28rem;
+										color: #9b9b9b;
+										vertical-align: middle;
+									}
+								}
+							}
+						}
 					}
 				}
 			}

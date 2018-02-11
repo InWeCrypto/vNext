@@ -60,7 +60,7 @@ class Footer extends PureComponent {
 							footerFixed ? "footer-box fixed" : "footer-box"
 						}
 					>
-						{IsTouchDevice ? (
+						{IsTouchDevice && (
 							<div className="m-footer-container">
 								<div className="top">
 									<div className="iconContainer">
@@ -112,48 +112,54 @@ class Footer extends PureComponent {
 								</div>
 								<TurnApp />
 							</div>
-						) : (
-							<div className="container ui center ">
-								<div className="left">
-									<span className="sp">@InWeCrypto 2017</span>
-									<a
-										target="_blank"
-										href="https://t.me/inwecrypto"
-										className="item"
-									>
-										<i className="icon-tele" />
-									</a>
-									{/* <span className="item">
+						)}
+						{!IsTouchDevice && <div className="footer-hold" />}
+						{!IsTouchDevice && (
+							<div className="footerSeat">
+								<div className="container ui center ">
+									<div className="left">
+										<span className="sp">
+											@InWeCrypto 2017
+										</span>
+										<a
+											target="_blank"
+											href="https://t.me/inwecrypto"
+											className="item"
+										>
+											<i className="icon-tele" />
+										</a>
+										{/* <span className="item">
 										<i className="icon-wechat" />
 									</span> */}
-									<a
-										href="mailto:support@inwecrypto.com"
-										className="item"
-									>
-										<i className="icon-mail" />
-									</a>
-								</div>
-								<div className="f1 m-hide" />
-								<div className="right">
-									<div
-										className={(() =>
-											this.setLanguageType("en"))()}
-										onClick={() => {
-											this.changeLanguage("en");
-										}}
-									>
-										<div>EN</div>
-										<span className="line" />
+										<a
+											href="mailto:support@inwecrypto.com"
+											className="item"
+										>
+											<i className="icon-mail" />
+										</a>
 									</div>
-									<div
-										className={(() =>
-											this.setLanguageType("zh"))()}
-										onClick={() => {
-											this.changeLanguage("zh");
-										}}
-									>
-										<div>ZH</div>
-										<span className="line" />
+									<div className="f1 m-hide" />
+									<div className="right">
+										<div
+											className={(() =>
+												this.setLanguageType("en"))()}
+											onClick={() => {
+												this.changeLanguage("en");
+											}}
+										>
+											<div>EN</div>
+											<span className="line" />
+										</div>
+										<div
+											className={(() =>
+												this.setLanguageType("zh"))()}
+											onClick={() => {
+												this.changeLanguage("zh");
+											}}
+										>
+											<div>ZH</div>
+											<span className="line" />
+										</div>
 									</div>
 								</div>
 							</div>
