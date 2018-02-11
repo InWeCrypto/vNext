@@ -15,7 +15,7 @@ class searchIn extends PureComponent {
 		this.state = {
 			inputBg: false,
 			inputVal: "",
-			toggleOpen: false
+			toggleOpen: true
 		};
 	}
 	componentDidMount() {
@@ -48,15 +48,9 @@ class searchIn extends PureComponent {
 						}
 					>
 						<div className="searchInput ui center">
-							<img
-								src={searchIcon}
-								onClick={e => {
-									this.toggleBox(true);
-								}}
-								alt=""
-							/>
 							<input
 								type="text"
+								id="input-search"
 								onChange={e => {
 									this.setState({
 										inputVal: e.target.value
@@ -72,6 +66,14 @@ class searchIn extends PureComponent {
 										inputBg: false
 									});
 								}}
+							/>
+							<label htmlFor="input-search">搜索项目</label>
+							<img
+								src={searchIcon}
+								onClick={e => {
+									this.toggleBox(true);
+								}}
+								alt=""
 							/>
 						</div>
 						<div

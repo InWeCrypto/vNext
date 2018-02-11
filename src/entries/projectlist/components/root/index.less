@@ -173,78 +173,93 @@
 }
 .pc .projectList {
 	flex-direction: column;
-	.projectListCon .projectListConChild {
-		width: 30%;
-		.projectListConChildTitle {
-			span {
-				height: 0.33rem;
-				line-height: 0.33rem;
-				font-size: 0.24rem;
-			}
-		}
-		.projectListConChildUl li {
-			padding: 0.1rem;
-			margin-bottom: 0.1rem;
-			.projectListLiTop {
-				height: 0.36rem;
-				.projectListLiTopLeft {
-					.projectListImg {
-						width: 0.36rem;
+	padding: 0;
+	.left-menus {
+		width: 2rem;
+	}
+	.projectListBox {
+		// flex-direction: column;
+		.projectListCon {
+			margin-top: 0.25rem;
+
+			.projectListConChild {
+				width: 30%;
+				.projectListConChildTitle {
+					span {
+						height: 0.33rem;
+						line-height: 0.33rem;
+						font-size: 0.24rem;
+						padding-top: 0;
+					}
+				}
+				.projectListConChildUl li {
+					padding: 0.1rem;
+					margin-bottom: 0.1rem;
+					.projectListLiTop {
 						height: 0.36rem;
-					}
-					p {
-						// height: 0.36rem;
-						span {
-							display: inline-block;
+						.projectListLiTopLeft {
+							.projectListImg {
+								width: 0.36rem;
+								height: 0.36rem;
+							}
+							p {
+								// height: 0.36rem;
+								span {
+									display: inline-block;
+								}
+								b {
+									display: inline-block;
+									line-height: 0.14rem;
+									margin-left: 0;
+								}
+							}
 						}
-						b {
-							display: inline-block;
-							line-height: 0.14rem;
-							margin-left: 0;
+					}
+					.projectListLiIndu {
+						height: 0.17rem;
+						line-height: 0.17rem;
+						color: #acacac;
+						font-size: 12px;
+						margin-top: 0.05rem;
+						overflow: hidden;
+						text-overflow: ellipsis;
+						white-space: nowrap;
+					}
+					.projectListLiCenter {
+						margin-top: 0.05rem;
+						.left {
+							height: 0.2rem;
+							color: #4c4b4b;
+							line-height: 18px;
+							font-size: 0.14rem;
+						}
+						.right {
+							color: #0a9234;
 						}
 					}
 				}
-			}
-			.projectListLiIndu {
-				height: 0.17rem;
-				line-height: 0.17rem;
-				color: #acacac;
-				font-size: 12px;
-				margin-top: 0.05rem;
-				overflow: hidden;
-				text-overflow: ellipsis;
-				white-space: nowrap;
-			}
-			.projectListLiCenter {
-				margin-top: 0.05rem;
-				.left {
-					height: 0.2rem;
-					color: #4c4b4b;
-					line-height: 18px;
-					font-size: 0.14rem;
+				&:nth-child(2),
+				&:nth-child(3),
+				&:nth-child(4) {
+					.projectListConChildUl li .projectListLiIndu {
+						margin-top: 0.27rem;
+					}
 				}
-				.right {
-					color: #0a9234;
+				.projectListConChildMore span {
+					font-size: 0.12rem;
 				}
 			}
-		}
-		&:nth-child(2),
-		&:nth-child(3),
-		&:nth-child(4) {
-			.projectListConChildUl li .projectListLiIndu {
-				margin-top: 0.27rem;
-			}
-		}
-		.projectListConChildMore span {
-			font-size: 0.12rem;
 		}
 	}
 }
 .mobile #mainBox.projectList {
 	padding: 0;
 	width: 100%;
-    flex-direction: column;
-    .m-searchPro {
+	flex-direction: column;
+	.projectListBox {
+		flex-direction: column;
+	}
+	.m-searchPro {
 		width: 100%;
 		box-sizing: border-box;
 		padding: 0 0.3rem;

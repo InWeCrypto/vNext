@@ -792,7 +792,7 @@ export default class Root extends PureComponent {
 																{t(
 																	"home.follow",
 																	lng
-																)}…
+																)}
 															</p>
 															<ul className="homeBoxFllowUl">
 																{userFavo.data.map(
@@ -864,7 +864,7 @@ export default class Root extends PureComponent {
 											<div className="homeBoxAnnoBottm">
 												<div className="homeBoxCandyTop">
 													<p className="homeBoxTitle">
-														{t("home.candy", lng)}?
+														{t("home.candy", lng)}
 													</p>
 													<div className="homeBoxCandyTopAll">
 														<p className="homeCandyDate">
