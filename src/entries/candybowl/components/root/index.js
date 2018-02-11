@@ -249,6 +249,7 @@ class Root extends PureComponent {
 																}
 																key={index}
 																onClick={e => {
+                                                                    if(item.url &&item.url.length >0)return;
 																	this.openAnnobox(
 																		item.id
 																	);
