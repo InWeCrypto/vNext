@@ -475,60 +475,6 @@ export default class Root extends PureComponent {
 												}
 											)}
 									</div>
-									<div
-										className="newDetailConShare"
-										onClick={this.showApp.bind(this)}
-									>
-										<span className="rt noEvent">
-											<b
-												className={
-													showShareList
-														? "wxShare cur"
-														: "wxShare"
-												}
-												onClick={e => {
-													this.toggleShareList(e);
-												}}
-											/>
-										</span>
-										<span className="rt noEvent">
-											<b
-												className={
-													enable
-														? "collect active"
-														: "collect"
-												}
-												onClick={() => {
-													this.getNewsCollect(
-														newsDetail.id
-													);
-												}}
-											/>
-										</span>
-										{showShareList && (
-											<ul className="shareList ui center">
-												<li
-													onClick={this.showThisPageTocode.bind(
-														this
-													)}
-													className="wx"
-												/>
-												{/* <li className="pyq" /> */}
-												<li
-													onClick={this.openTele.bind(
-														this
-													)}
-													className="tele"
-												/>
-												<li
-													onClick={this.showThisPageTocode.bind(
-														this
-													)}
-													className="qq"
-												/>
-											</ul>
-										)}
-									</div>
 								</div>
 								<div className="newsDetailBox">
 									{/* 视频 */}

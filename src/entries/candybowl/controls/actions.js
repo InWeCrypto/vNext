@@ -3,6 +3,7 @@ import http from "../../../utils/ajax";
 
 const PRE_FIX = "CANDYBOWL_";
 export const CANDYLIST = `${PRE_FIX}CANDAYLIST`;
+export const CANDYBOW = `${PRE_FIX}CANDYBOW`;
 export const CANDYMONTH = `${PRE_FIX}CANDYMONTH`;
 export const CANDYWARN = `${PRE_FIX}CANDYWARN`;
 export const CANDYMUST = `${PRE_FIX}CANDYMUST`;
@@ -10,6 +11,11 @@ export const CANDYMUST = `${PRE_FIX}CANDYMUST`;
 export const getCandyList = createAction(CANDYLIST, query => {
 	return http.get({
 		url: `candy_bow${query}`
+	});
+});
+export const getCandyBow = createAction(CANDYBOW, query => {
+	return http.get({
+		url: `candy_bow/${query.id}`
 	});
 });
 export const getCandyMonth = createAction(CANDYMONTH, query => {
