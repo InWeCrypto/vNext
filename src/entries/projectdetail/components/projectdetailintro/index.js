@@ -1,9 +1,20 @@
 import React, { PureComponent } from "react";
 import { I18n, Trans } from "react-i18next";
+import { getLocalTime, getMainMinHeight } from "../../../../utils/util";
 import { Link } from "react-router-dom";
 import GaiKuo from "../../../../components/gaikuo";
 import "./index.less";
 class ProjectDetailIntro extends PureComponent {
+	constructor(props) {
+		super(props);
+		this.state = {};
+	}
+	componentDidMount() {
+		if (!IsTouchDevice) {
+			let minH = getMainMinHeight();
+			document.querySelector("#mainBox").style.height = minH + "px";
+		}
+	}
 	render() {
 		const {
 			lng,
@@ -15,8 +26,8 @@ class ProjectDetailIntro extends PureComponent {
 		return (
 			<I18n>
 				{(t, { I18n }) => (
-					<div className="ProjectDetailIntro ui f1">
-						<div className="projectDetailCon1 f1">
+					<div className="ProjectDetailIntro f1">
+						<div className="projectDetailCon1">
 							<div className="projectDetailConTop ui">
 								<div className="projectDetailConTopLeft">
 									<div className="projectDetailCenter1">

@@ -6,6 +6,9 @@ class AnnoBox extends PureComponent {
 	constructor() {
 		super();
 	}
+	componentDidMount() {
+		document.getElementById("acc-container").style.width = "100%";
+	}
 	closeClick() {
 		this.props.close();
 	}
@@ -16,24 +19,31 @@ class AnnoBox extends PureComponent {
 				{(t, { i18n }) => (
 					<div className="acc-detail">
 						<div className="acc-content">
-							<div className="acc-container">
-								<i
-									className="icon-close"
-									onClick={this.closeClick.bind(this)}
-								/>
-								<div className="acc-title">
-									{item.source_name}:
-									{item.desc}
+							<div className="acc-box ui">
+								<div className="acc-boxHide f1">
+									<div
+										id="acc-container"
+										className="acc-container"
+									>
+										<i
+											className="icon-close"
+											onClick={this.closeClick.bind(this)}
+										/>
+										<div className="acc-title">
+											{item.source_name}:
+											{item.desc}
+										</div>
+										<div className="acc-time">
+											{getLocalTime(item.created_at)}
+										</div>
+										<div
+											className="acc-text"
+											dangerouslySetInnerHTML={{
+												__html: item.content
+											}}
+										/>
+									</div>
 								</div>
-								<div className="acc-time">
-									{getLocalTime(item.created_at)}
-								</div>
-								<div
-									className="acc-text"
-									dangerouslySetInnerHTML={{
-										__html: item.content
-									}}
-								/>
 							</div>
 						</div>
 					</div>

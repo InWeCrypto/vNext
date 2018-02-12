@@ -4,7 +4,7 @@ export default {
 		candy: "Candybowl",
 		anno: "Exchange",
 		follow: "Follow",
-		project: "Projects Update"
+		project: "Project Updates"
 	},
 	header: {
 		member: "Profile",

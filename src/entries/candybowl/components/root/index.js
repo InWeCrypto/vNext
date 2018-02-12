@@ -5,6 +5,7 @@ import Header from "../../../../components/header";
 import Footer from "../../../../components/footer";
 import LeftMenu from "../../../../components/leftmenu";
 import Calendar from "../../../../components/calendar";
+import AnnoBox from "../../../../components/annobox";
 import "./index.less";
 class Root extends PureComponent {
 	constructor() {
@@ -16,7 +17,9 @@ class Root extends PureComponent {
 			emonth: "",
 			day: "",
 			year2: "",
-			month2: ""
+			month2: "",
+			showAnno: false,
+			annoItem: null
 		};
 	}
 	componentWillUpdate(nextProps, nextState) {
@@ -100,6 +103,29 @@ class Root extends PureComponent {
 			// }
 		});
 	}
+	openAnnobox(id) {
+		this.props
+			.getCandyBow({
+				id: id
+			})
+			.then(res => {
+				let item = res.data;
+				item.source_name = res.data.name;
+				item.created_at = `${res.data.year}-${res.data.month}-${
+					res.data.day
+				}`;
+				this.setState({
+					showAnno: true,
+					annoItem: item
+				});
+			});
+	}
+	closeAnnobox() {
+		this.setState({
+			showAnno: false,
+			annoItem: null
+		});
+	}
 	render() {
 		const {
 			lng,
@@ -116,7 +142,7 @@ class Root extends PureComponent {
 			getHeaderMarket,
 			candyMustList
 		} = this.props;
-		const { isToday, day, emonth } = this.state;
+		const { isToday, day, emonth, showAnno, annoItem } = this.state;
 
 		return (
 			<I18n>
@@ -221,10 +247,17 @@ class Root extends PureComponent {
 																		? item.url
 																		: "javascript:void(0)"
 																}
+																key={index}
+																onClick={e => {
+                                                                    if(item.url &&item.url.length >0)return;
+																	this.openAnnobox(
+																		item.id
+																	);
+																}}
 																className="data-item"
 															>
 																<div className="title">
-																	{item.title}
+																	{item.name}
 																</div>
 																<div className="content">
 																	{item.desc}
@@ -254,6 +287,13 @@ class Root extends PureComponent {
 								</div>
 							</div>
 						</div>
+
+						{showAnno && (
+							<AnnoBox
+								item={annoItem}
+								close={this.closeAnnobox.bind(this)}
+							/>
+						)}
 						<Footer lng={lng} changeLng={changeLng} />
 					</div>
 				)}
