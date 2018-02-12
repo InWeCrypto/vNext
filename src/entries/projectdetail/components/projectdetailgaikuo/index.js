@@ -566,8 +566,8 @@ class ProjectDetailGaiKuo extends PureComponent {
 														coinTimePrice.symbol}
 												</td>
 												<td>
-													${coinTimePrice &&
-														coinTimePrice.price_usd}
+													{projectDetail &&
+														projectDetail.ico_price}
 												</td>
 											</tr>
 										</tbody>
