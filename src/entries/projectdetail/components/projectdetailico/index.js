@@ -173,11 +173,15 @@ class ProjectDetailIco extends PureComponent {
 										<b />
 										<p>
 											{projectDetail.category_desc &&
+												projectDetail.category_desc
+													.start_at &&
 												projectDetail.category_desc.start_at
 													.slice(5, 10)
 													.replace(/-/, ".")}{" "}
 											-
 											{projectDetail.category_desc &&
+												projectDetail.category_desc
+													.end_at &&
 												projectDetail.category_desc.end_at
 													.slice(5, 10)
 													.replace(/-/, ".")}
