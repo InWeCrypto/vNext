@@ -73,7 +73,7 @@ class ProjectDetailInfo extends PureComponent {
 				.getDynamicScrollList({
 					cid: this.props.projectDetail.id,
 					tag_id: this.state.curDynamic,
-					type: "[2,3]",
+					type: "[2,3,6]",
 					per_page: 10,
 					page: this.state.page + 1
 				})
