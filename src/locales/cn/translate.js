@@ -1,9 +1,10 @@
 export default {
 	home: {
-		news: "News",
-		candy: "Candy",
+		news: "新闻",
+		candy: "糖果盒",
 		anno: "交易所公告",
-		follow: "Follow"
+		follow: "收藏",
+		project: "项目动态"
 	},
 	header: {
 		member: "个人中心",
@@ -59,7 +60,7 @@ export default {
 	},
 	navMenu: {
 		home: "首页",
-		project: "项目",
+		project: "项目日历",
 		news: "新闻",
 		candybowl: "糖果盒",
 		trading: "交易观点",
@@ -155,5 +156,7 @@ export default {
 	sure: "确定",
 	cannel: "取消",
 	nodata: "暂无数据",
-	unLongin: "请登录"
+	unLongin: "请登录",
+	wallent:
+		"InWeCrypto多资产钱包支持 BTC、ETH、NEO及ERC20和NEP5标准代币，可以智能、高效地管理多种资产，操作便捷。同时，钱包还包含InWeCrypto网站资讯，集媒体信息和数字资产安全存储于一身。"
 };

@@ -5,10 +5,18 @@ import * as globalActions from "../../../globalactions";
 
 export default connect(
 	({
-		projectlist: { project, project2, project3, project4, projectCollect },
+		projectlist: {
+			project,
+			icorank,
+			project2,
+			project3,
+			project4,
+			projectCollect
+		},
 		globData: { lng, userInfo, commonMarket }
 	}) => ({
 		project,
+		icorank,
 		project2,
 		project3,
 		project4,

@@ -1,9 +1,10 @@
 export default {
 	home: {
 		news: "News",
-		candy: "Candy",
-		anno: "Exchange Announcement",
-		follow: "Follow"
+		candy: "Candybowl",
+		anno: "Exchange",
+		follow: "Follow",
+		project: "Project Updates"
 	},
 	header: {
 		member: "Profile",
@@ -59,10 +60,10 @@ export default {
 	},
 	navMenu: {
 		home: "InWe",
-		project: "Project",
+		project: "Project Calendar",
 		news: "News",
 		candybowl: "Candybowl",
-		trading: "TradingView",
+		trading: "Trading View",
 		announcment: "Announcment",
 		search: "Search",
 		wallent: "Wallet"
@@ -156,5 +157,7 @@ export default {
 	sure: "Confirm",
 	cannel: "Cancel",
 	nodata: "No data available ",
-	unLongin: "Please Sign In"
+	unLongin: "Please Sign In",
+	wallent:
+		"InWeCrypto is a multi-asset wallet that supports BTC, ETH, NEO, as well as all ERC20 tokens and NEP5 tokens. It boasts multi-asset management, which is intelligent,efficient and easy to process. It also integrates information of InWeCrypto website and has the advantage of media information and secure storage of digital assets."
 };

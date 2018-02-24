@@ -1,5 +1,5 @@
 import { handleActions } from "redux-actions";
-import { PROJECT, PROJECTCOLLECT } from "./actions";
+import { PROJECT, ICORANK, PROJECTCOLLECT } from "./actions";
 
 export const project = handleActions(
 	{
@@ -15,6 +15,14 @@ export const project = handleActions(
 			});
 
 			return { ...state, data: data };
+		}
+	},
+	[]
+);
+export const icorank = handleActions(
+	{
+		[ICORANK]: (state, { payload }) => {
+			return payload;
 		}
 	},
 	[]

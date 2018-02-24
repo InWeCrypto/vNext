@@ -143,7 +143,7 @@ export default class Root extends PureComponent {
 												newslisttext.data.length > 0 &&
 												newslisttext.data.map(
 													(item, index) => {
-														if (index % 2 == 0) {
+														if (index % 2 == 1) {
 															return null;
 														}
 														return (
@@ -202,7 +202,7 @@ export default class Root extends PureComponent {
 												newslisttext.data.length > 0 &&
 												newslisttext.data.map(
 													(item, index) => {
-														if (index % 2 == 1) {
+														if (index % 2 == 0) {
 															return null;
 														}
 														return (

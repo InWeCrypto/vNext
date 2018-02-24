@@ -109,15 +109,7 @@ export default class Root extends PureComponent {
 									InWeCrypto Wallet
 								</span>
 								<p className="wallentLfCont">
-									InWeCrypto is a multi-asset wallet that
-									supports BTC, ETH, NEO, as well as all ERC20
-									tokens and NEP5 tokens. It boasts
-									multi-asset management, which is
-									intelligent,efficient and easy to process.
-									It also integrates information of InWeCrypto
-									website and has the advantage of media
-									information and secure storage of digital
-									assets.
+									{t("wallent", lng)}
 								</p>
 								<div className="wallentDown">
 									{(isAndroidOrIos() == "ios" ||

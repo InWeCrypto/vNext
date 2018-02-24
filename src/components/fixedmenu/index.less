@@ -20,24 +20,28 @@
 		top: 0;
 		height: 100%;
 		z-index: 11;
-		background: #09764b;
+		background: #fff;
 		box-sizing: border-box;
 		display: flex;
 		flex-flow: column;
 		overflow: hidden;
 		transition: all 0.3s linear;
+		&:not(.hide) {
+			box-shadow: 0px 0px 0.22rem 0px rgba(0, 0, 0, 0.09);
+		}
 		.fixed-content {
 			flex: 1;
 			box-sizing: border-box;
 			display: flex;
 			.menu {
 				width: 3rem;
-				padding: 1.5rem 0 0 0;
+				padding: 0.5rem 0 0 0;
 				overflow: hidden;
 				box-sizing: border-box;
+				flex-direction: column;
 				.nav-item {
 					display: block;
-					color: #005031;
+					color: #09764b;
 					box-sizing: border-box;
 					width: 2rem;
 					font-size: 0.16rem;
@@ -55,14 +59,14 @@
 						content: "";
 						width: 0;
 						height: 2px;
-						background: #fff;
+						background: RGBA(255, 87, 31, 1);
 						transition: all 0.3s ease-in-out;
 					}
 				}
 
 				.nav-item:hover {
 					.nav-text {
-						color: #fff;
+						color: RGBA(255, 87, 31, 1);
 						font-weight: 400;
 					}
 					.nav-text:after {
@@ -101,7 +105,7 @@
 						background: #ececec;
 					}
 					&:hover {
-						width: 0.4rem;
+						// width: 0.4rem;
 					}
 				}
 			}
@@ -188,10 +192,24 @@
 	}
 	.fixed-menu.hide {
 		left: -3rem;
-		background: #fff;
+		background: transparent;
 		.fixed-content {
-			.menu {
-				// width: 0;
+			.menuBtnCtrl {
+				animation: widthMove 2s ease-in-out infinite;
+				@keyframes widthMove {
+					0% {
+						width: 0.3rem;
+					}
+					50% {
+						width: 0.4rem;
+					}
+					100% {
+						width: 0.3rem;
+					}
+				}
+				i {
+					background: #ff571f;
+				}
 			}
 		}
 		.icon-more {

@@ -5,10 +5,11 @@ import * as globalActions from "../../../globalactions";
 
 export default connect(
 	({
-		projectopen: { project, projectCollect },
+		projectopen: { project, icorank, projectCollect },
 		globData: { lng, userInfo, commonMarket }
 	}) => ({
 		project,
+		icorank,
 		projectCollect,
 		userInfo,
 		lng,

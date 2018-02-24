@@ -2,6 +2,7 @@ import { handleActions } from "redux-actions";
 import {
 	PROJECT,
 	PROJECT2,
+	ICORANK,
 	PROJECT3,
 	PROJECT4,
 	PROJECTM,
@@ -35,6 +36,14 @@ export const project = handleActions(
 				...payload,
 				data: [...state.data, ...payload.data]
 			};
+		}
+	},
+	[]
+);
+export const icorank = handleActions(
+	{
+		[ICORANK]: (state, { payload }) => {
+			return payload;
 		}
 	},
 	[]

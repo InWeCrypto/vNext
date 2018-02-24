@@ -75,7 +75,7 @@ class FixedMenu extends PureComponent {
                         )}
                         <div className={(() => this.setBoxClass())()}>
                             <div className="fixed-content">
-                                <div className="menu">
+                                <div className="menu ui jcenter">
                                     <div className="search">
                                         <b
                                             className="searchBtn"
@@ -96,7 +96,7 @@ class FixedMenu extends PureComponent {
                                     </NavLink>
                                     <NavLink
                                         to={{
-                                            pathname: "/project"
+                                            pathname: "/projectlist"
                                         }}
                                         className="nav-item"
                                         activeClassName="cur"

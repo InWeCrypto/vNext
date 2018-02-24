@@ -130,7 +130,7 @@ export default class Root extends PureComponent {
 		}
 	}
 	getNewsTextList(page) {
-		let per_page = 8;
+		let per_page = 4;
 		if (IsTouchDevice) {
 			per_page = 10;
 		}
@@ -150,7 +150,7 @@ export default class Root extends PureComponent {
 			});
 	}
 	getNewsImgList(page) {
-		let per_page = 8;
+		let per_page = 4;
 		if (IsTouchDevice) {
 			per_page = 10;
 		}
@@ -170,7 +170,7 @@ export default class Root extends PureComponent {
 			});
 	}
 	getNewsVideoList(page) {
-		let per_page = 8;
+		let per_page = 4;
 		if (IsTouchDevice) {
 			per_page = 10;
 		}
@@ -239,7 +239,7 @@ export default class Root extends PureComponent {
 			speed: 500,
 			touchMove: false,
 			slidesToShow: 4,
-			slidesToScroll: 4,
+			slidesToScroll: 0,
 			afterChange: function(index) {
 				this.setState({
 					newsTextCur: index
@@ -429,14 +429,16 @@ export default class Root extends PureComponent {
 																				)}
 																			</p>
 
-																			<img
-																				src={
-																					item
-																						.category
-																						.img
-																				}
-																				alt=""
-																			/>
+																			{item.category && (
+																				<img
+																					src={
+																						item
+																							.category
+																							.img
+																					}
+																					alt=""
+																				/>
+																			)}
 																		</div>
 																	</Link>
 																</li>
@@ -490,14 +492,16 @@ export default class Root extends PureComponent {
 																						)}
 																					</p>
 
-																					<img
-																						src={
-																							item
-																								.category
-																								.img
-																						}
-																						alt=""
-																					/>
+																					{item.category && (
+																						<img
+																							src={
+																								item
+																									.category
+																									.img
+																							}
+																							alt=""
+																						/>
+																					)}
 																				</div>
 																			</Link>
 																		</div>
@@ -626,16 +630,17 @@ export default class Root extends PureComponent {
 																							item.created_at
 																						)}
 																					</p>
-																					<img
-																						className="m-hide"
-																						src={
-																							item.category &&
-																							item
-																								.category
-																								.img
-																						}
-																						alt=""
-																					/>
+																					{item.category && (
+																						<img
+																							className="m-hide"
+																							src={
+																								item
+																									.category
+																									.img
+																							}
+																							alt=""
+																						/>
+																					)}
 																				</div>
 																			</Link>
 																		</div>
@@ -678,16 +683,17 @@ export default class Root extends PureComponent {
 																					item.created_at
 																				)}
 																			</p>
-																			<img
-																				className="m-hide"
-																				src={
-																					item.category &&
-																					item
-																						.category
-																						.img
-																				}
-																				alt=""
-																			/>
+																			{item.category && (
+																				<img
+																					className="m-hide"
+																					src={
+																						item
+																							.category
+																							.img
+																					}
+																					alt=""
+																				/>
+																			)}
 																		</div>
 																		<div className="newsBoxModConShow">
 																			<img

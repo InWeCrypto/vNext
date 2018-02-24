@@ -20,6 +20,7 @@ export default class Root extends PureComponent {
 			liH: "auto",
 			inputBg: false,
 			k: "",
+			type: "",
 			isEnter: ""
 		};
 	}
@@ -42,7 +43,12 @@ export default class Root extends PureComponent {
 			event = event || window.event;
 			if (event.keyCode == 13) {
 				if (this.state.inputBg) {
-					window.location.href = "/search?k=" + this.state.k;
+					if (this.state.type == 2) {
+						window.location.href =
+							"/search?type=2&k=" + this.state.k;
+					} else {
+						window.location.href = "/search?k=" + this.state.k;
+					}
 				}
 			}
 		}.bind(this);
@@ -53,14 +59,22 @@ export default class Root extends PureComponent {
 		q.k = window.decodeURI(q.k);
 		this.setState({
 			k: q.k || "",
-			isEnter: q.k || ""
+			isEnter: q.k || "",
+			type: q.type
 		});
-		this.props.getSearch({
-			k: q.k
-		});
+		if (q.type == 2) {
+			// 搜索项目
+			this.props.getSearchPro({
+				keyword: q.k
+			});
+		} else {
+			this.props.getSearch({
+				k: q.k
+			});
+		}
 	}
 	render() {
-		const { minH, liH, page, inputBg, k, isEnter } = this.state;
+		const { minH, liH, page, inputBg, k, type, isEnter } = this.state;
 		const {
 			lng,
 			changeLng,
@@ -71,6 +85,7 @@ export default class Root extends PureComponent {
 			setReduxUserInfo,
 			forgetUser,
 			search,
+			searchPro,
 			commonMarket,
 			getHeaderMarket
 		} = this.props;
@@ -137,8 +152,140 @@ export default class Root extends PureComponent {
 										</p>
 									</div>
 								) : (
-									<ul className="searchResultUl">
-										{search &&
+									<ul
+										className={
+											type == 2
+												? "searchResultUl searchProResultUl"
+												: "searchResultUl"
+										}
+									>
+										{type == 2 &&
+											searchPro &&
+											searchPro.data &&
+											searchPro.data.length > 0 &&
+											searchPro.data.map(
+												(item, index) => {
+													return (
+														<li
+															key={index}
+															style={
+																{
+																	// width: "25%"
+																	// height: liH,
+																	// marginRight: liMR
+																}
+															}
+														>
+															<Link
+																to={{
+																	pathname:
+																		"projectdetail",
+																	search:
+																		"?c_id=" +
+																		item.id
+																}}
+															>
+																<div className="projectListLiTop ui center">
+																	<div className="projectListLiTopLeft ui center">
+																		<div
+																			className={
+																				item.category_user &&
+																				item
+																					.category_user
+																					.is_favorite_dot
+																					? "projectListImg newMsg"
+																					: "projectListImg"
+																			}
+																		>
+																			<img
+																				src={
+																					item.img
+																				}
+																			/>
+																		</div>
+																		<p>
+																			<span className="ellitext">
+																				{
+																					item.unit
+																				}
+																				<b className="ellitext">
+																					({
+																						item.long_name
+																					})
+																				</b>
+																				{IsTouchDevice && (
+																					<span className="industryText">
+																						{
+																							item.industry
+																						}
+																					</span>
+																				)}
+																			</span>
+																		</p>
+																	</div>
+																	<div
+																		className={
+																			item.category_user &&
+																			item
+																				.category_user
+																				.is_favorite
+																				? "projectListLiTopRight collect m-hide"
+																				: "projectListLiTopRight nocollect m-hide"
+																		}
+																	/>
+																</div>
+																{!IsTouchDevice && (
+																	<div className="projectOpenLiIndu">
+																		{
+																			item.industry
+																		}
+																	</div>
+																)}
+																{type == 1 && (
+																	<div className="projectOpenLiCenter">
+																		<div className="left m-hide">
+																			${item.ico &&
+																				item
+																					.ico
+																					.price_usd &&
+																				parseFloat(
+																					item
+																						.ico
+																						.price_usd
+																				).toFixed(
+																					2
+																				)}
+																		</div>
+																		{item.ico && (
+																			<div
+																				className={
+																					item
+																						.ico
+																						.percent_change_24h <
+																					0
+																						? "right m-hide downs"
+																						: "right m-hide"
+																				}
+																			>
+																				<span
+																				>
+																					{
+																						item
+																							.ico
+																							.percent_change_24h
+																					}%
+																				</span>
+																			</div>
+																		)}
+																	</div>
+																)}
+															</Link>
+														</li>
+													);
+												}
+											)}
+										{type != 2 &&
+											search &&
 											search.data &&
 											search.data.length > 0 &&
 											search.data.map((item, index) => {

@@ -6,6 +6,10 @@ import { getMainMinHeight, queryString } from "../../../../utils/util";
 import Header from "../../../../components/header";
 import Footer from "../../../../components/footer";
 import FixedMenu from "../../../../components/fixedmenu";
+import LeftMenu from "../../../../components/leftmenu";
+import SearchPro from "../../../../components/searchPro";
+import mSearchPro from "../../../../assets/images/search_pro_ico@2x.png";
+
 import "./index.less";
 
 export default class Root extends PureComponent {
@@ -13,9 +17,10 @@ export default class Root extends PureComponent {
 		super(props);
 		this.state = {
 			minH: "auto",
-
-			mounted: false
+			mounted: false,
+			ico_list: []
 		};
+		this.timer = null;
 	}
 	componentWillReceiveProps(nextProps) {}
 	componentDidMount() {
@@ -48,6 +53,7 @@ export default class Root extends PureComponent {
 	}
 	componentWillUnmount() {
 		window.removeEventListener("scroll", this.handleScroll.bind(this));
+		clearTimeout(this.timer);
 	}
 	componentDidUpdate() {}
 	handleScroll() {
@@ -116,15 +122,29 @@ export default class Root extends PureComponent {
 	initPage() {
 		let annoBoxH = document.getElementById("mainBox").clientHeight;
 		let annoBoxLiH = 103;
-		let nums = Math.floor((annoBoxH - 150) / annoBoxLiH) || 4;
+		let nums = Math.floor((annoBoxH - 200) / annoBoxLiH) || 4;
 		// 默认条数4
 		if (IsTouchDevice) {
 			nums = 15;
 		}
-		this.props.getProject({
-			type: 1,
-			per_page: nums
-		});
+		this.props
+			.getProject({
+				type: 1,
+				per_page: nums
+			})
+			.then(res => {
+				if (res.code == 4000) {
+					let data = res.data.data;
+					let arr = [];
+					data.map((item, index) => {
+						arr.push(item.unit);
+					});
+					this.setState({
+						ico_list: arr
+					});
+					this.getIcoData(arr);
+				}
+			});
 		this.props.getProject2({
 			type: 2,
 			per_page: nums
@@ -137,6 +157,16 @@ export default class Root extends PureComponent {
 			type: 4,
 			per_page: nums
 		});
+	}
+	getIcoData(arr) {
+		this.props
+			.getIcoRank({
+				ico_list: arr || this.state.ico_list,
+				currency: "cny"
+			})
+			.then(() => {
+				this.timer = setTimeout(this.getIcoData.bind(this), 10000);
+			});
 	}
 	projectCollect(e, c_id, enable) {
 		e.preventDefault();
@@ -177,6 +207,7 @@ export default class Root extends PureComponent {
 			setReduxUserInfo,
 			forgetUser,
 			project,
+			icorank,
 			project2,
 			project3,
 			project4,
@@ -187,9 +218,9 @@ export default class Root extends PureComponent {
 			<I18n>
 				{(t, { i18n }) => (
 					<div className="container">
-						{!IsTouchDevice && (
+						{/* {!IsTouchDevice && (
 							<FixedMenu changeLng={changeLng} lng={lng} />
-						)}
+						)} */}
 						<Header
 							userInfo={userInfo}
 							registerUser={registerUser}
@@ -212,738 +243,858 @@ export default class Root extends PureComponent {
 								>
 									<span />
 								</Link>
-							</div> */}
-							{IsTouchDevice && (
-								<div
-									id="m-nav"
-									className="projectListNav ui center"
-								>
-									<div
-										id="m-nav-c"
-										className="projectListNav-c ui center"
-									>
-										<p
-											className={
-												activeInde == 1 ? "active" : ""
-											}
-										>
-											<Link
-												to={{
-													pathname: "/projectlist",
-													search: "type=1"
-												}}
-											>
-												{t("project.trading", lng)}
-											</Link>
-										</p>
-										<p
-											className={
-												activeInde == 2 ? "active" : ""
-											}
-										>
-											<Link
-												to={{
-													pathname: "/projectlist",
-													search: "type=2"
-												}}
-											>
-												{t("project.active", lng)}
-											</Link>
-										</p>
-										<p
-											className={
-												activeInde == 3 ? "active" : ""
-											}
-										>
-											<Link
-												to={{
-													pathname: "/projectlist",
-													search: "type=3"
-												}}
-											>
-												{t("project.upcoming", lng)}
-											</Link>
-										</p>
-										<p
-											className={
-												activeInde == 4 ? "active" : ""
-											}
-										>
-											<Link
-												to={{
-													pathname: "/projectlist",
-													search: "type=4"
-												}}
-											>
-												{t("project.ended", lng)}
-											</Link>
-										</p>
+                            </div> */}
+							{!IsTouchDevice && <SearchPro />}
+							<div className="projectListBox ui f1">
+								{!IsTouchDevice && (
+									<div className="left-menus ui center m-hide">
+										<LeftMenu lng={lng} />
 									</div>
-								</div>
-							)}
-							<div className="projectListCon ui">
-								{[1, 2, 3, 4].map((item, index) => {
-									if (
-										IsTouchDevice &&
-										activeInde != index + 1
-									) {
-										return null;
-									}
-									return (
+								)}
+								{IsTouchDevice && (
+									<div className="m-searchPro">
 										<div
-											key={index}
-											className="projectListConChild"
+											className="m-searchPro-box ui center jcenter"
+											onClick={e => {
+												window.location.href =
+													"/search?type=2&k=";
+											}}
 										>
-											<div className="projectListConChildTitle m-hide">
-												<span className="ellitext">
-													{(() => {
-														switch (index) {
-															case 0:
-																return t(
-																	"project.trading",
-																	lng
-																);
-																break;
-															case 1:
-																return t(
-																	"project.active",
-																	lng
-																);
-																break;
-															case 2:
-																return t(
-																	"project.upcoming",
-																	lng
-																);
-																break;
-															case 3:
-																return t(
-																	"project.ended",
-																	lng
-																);
-																break;
-														}
-													})()}
-												</span>
-											</div>
-											<ul className="projectListConChildUl">
-												{index == 0 &&
-													project &&
-													project.data &&
-													project.data.length > 0 &&
-													project.data.map(
-														(item, index) => {
-															return (
-																<li key={index}>
-																	<Link
-																		to={{
-																			pathname:
-																				"projectdetail",
-																			search:
-																				"?c_id=" +
-																				item.id
-																		}}
-																	>
-																		<div className="projectListLiTop ui center">
-																			<div className="projectListLiTopLeft ui center">
-																				<div
-																					className={
-																						item.category_user &&
-																						item
-																							.category_user
-																							.is_favorite_dot
-																							? "projectListImg newMsg"
-																							: "projectListImg"
-																					}
-																				>
-																					<img
-																						src={
-																							item.img
-																						}
-																					/>
-																				</div>
-																				<p
-																				>
-																					<span className="ellitext">
-																						{
-																							item.unit
-																						}
-																						{IsTouchDevice && (
-																							<span className="industryText">
-																								{
-																									item.industry
-																								}
-																							</span>
-																						)}
-																					</span>
-																					<b className="ellitext">
-																						({
-																							item.long_name
-																						})
-																					</b>
-																				</p>
-																			</div>
-																			<div
-																				className={
-																					item.category_user &&
-																					item
-																						.category_user
-																						.is_favorite
-																						? "projectListLiTopRight collect m-hide"
-																						: "projectListLiTopRight nocollect m-hide"
-																				}
-																				onClick={e => {
-																					let enable =
-																						item.category_user &&
-																						item
-																							.category_user
-																							.is_favorite
-																							? true
-																							: false;
-																					this.projectCollect(
-																						e,
-																						item.id,
-																						enable
-																					);
-																				}}
-																			/>
-																		</div>
-																		{!IsTouchDevice && (
-																			<div className="projectListLiIndu">
-																				{
-																					item.industry
-																				}
-																			</div>
-																		)}
-																		<div className="projectListLiCenter">
-																			<div className="left m-hide">
-																				${item.ico &&
-																					item
-																						.ico
-																						.price_usd &&
-																					parseFloat(
-																						item
-																							.ico
-																							.price_usd
-																					).toFixed(
-																						2
-																					)}
-																			</div>
-																			{item.ico && (
-																				<div
-																					className={
-																						item
-																							.ico
-																							.percent_change_24h <
-																						0
-																							? "right m-hide downs"
-																							: "right m-hide"
-																					}
-																				>
-																					<span
-																					>
-																						{
-																							item
-																								.ico
-																								.percent_change_24h
-																						}%
-																					</span>
-																				</div>
-																			)}
-																			{IsTouchDevice && (
-																				<div
-																					className={
-																						item.ico
-																							? ""
-																							: "m-hide"
-																					}
-																				>
-																					<div
-																						className={
-																							item.ico &&
-																							item
-																								.ico
-																								.price_usd
-																								? "money"
-																								: "money m-hide"
-																						}
-																					>
-																						${item.ico &&
-																							item
-																								.ico
-																								.price_usd &&
-																							parseFloat(
-																								item
-																									.ico
-																									.price_usd
-																							).toFixed(
-																								2
-																							)}
-																					</div>
-																					<div
-																						className={
-																							this.chargeColor(
-																								item
-																									.ico
-																									.percent_change_24h
-																							)
-																								? "precents colorRed"
-																								: "precents"
-																						}
-																					>
-																						({item
-																							.ico
-																							.percent_change_24h >=
-																							0 &&
-																							"+"}
-																						{item.ico &&
-																							item
-																								.ico
-																								.percent_change_24h}%)
-																					</div>
-																				</div>
-																			)}
-																		</div>
-																	</Link>
-																</li>
-															);
-														}
-													)}
-												{index == 1 &&
-													project2 &&
-													project2.data &&
-													project2.data.length > 0 &&
-													project2.data.map(
-														(item, index) => {
-															return (
-																<li key={index}>
-																	<Link
-																		to={{
-																			pathname:
-																				"projectdetail",
-																			search:
-																				"?c_id=" +
-																				item.id
-																		}}
-																	>
-																		<div className="projectListLiTop ui center">
-																			<div className="projectListLiTopLeft ui center">
-																				<div
-																					className={
-																						item.category_user &&
-																						item
-																							.category_user
-																							.is_favorite_dot
-																							? "projectListImg newMsg"
-																							: "projectListImg"
-																					}
-																				>
-																					<img
-																						src={
-																							item.img
-																						}
-																					/>
-																				</div>
-																				<p
-																				>
-																					<span className="ellitext">
-																						{
-																							item.unit
-																						}
-																						{IsTouchDevice && (
-																							<span className="industryText">
-																								{
-																									item.industry
-																								}
-																							</span>
-																						)}
-																					</span>
-																					<b className="ellitext">
-																						({
-																							item.long_name
-																						})
-																					</b>
-																				</p>
-																			</div>
-																			<div
-																				className={
-																					item.category_user &&
-																					item
-																						.category_user
-																						.is_favorite
-																						? "projectListLiTopRight collect  m-hide"
-																						: "projectListLiTopRight nocollect  m-hide"
-																				}
-																				onClick={e => {
-																					let enable =
-																						item.category_user &&
-																						item
-																							.category_user
-																							.is_favorite
-																							? true
-																							: false;
-																					this.projectCollect(
-																						e,
-																						item.id,
-																						enable
-																					);
-																				}}
-																			/>
-																		</div>
-																		{!IsTouchDevice && (
-																			<div className="projectListLiIndu">
-																				{
-																					item.industry
-																				}
-																			</div>
-																		)}
-																	</Link>
-																</li>
-															);
-														}
-													)}
-												{index == 2 &&
-													project3 &&
-													project3.data &&
-													project3.data.length > 0 &&
-													project3.data.map(
-														(item, index) => {
-															return (
-																<li key={index}>
-																	<Link
-																		to={{
-																			pathname:
-																				"projectdetail",
-																			search:
-																				"?c_id=" +
-																				item.id
-																		}}
-																	>
-																		<div className="projectListLiTop ui center">
-																			<div className="projectListLiTopLeft ui center">
-																				<div
-																					className={
-																						item.category_user &&
-																						item
-																							.category_user
-																							.is_favorite_dot
-																							? "projectListImg newMsg"
-																							: "projectListImg"
-																					}
-																				>
-																					<img
-																						src={
-																							item.img
-																						}
-																					/>
-																				</div>
-																				<p
-																				>
-																					<span className="ellitext">
-																						{
-																							item.unit
-																						}
-																						{IsTouchDevice && (
-																							<span className="industryText">
-																								{
-																									item.industry
-																								}
-																							</span>
-																						)}
-																					</span>
-																					<b className="ellitext">
-																						({
-																							item.long_name
-																						})
-																					</b>
-																				</p>
-																			</div>
-																			<div
-																				className={
-																					item.category_user &&
-																					item
-																						.category_user
-																						.is_favorite
-																						? "projectListLiTopRight collect m-hide"
-																						: "projectListLiTopRight nocollect m-hide"
-																				}
-																				onClick={e => {
-																					let enable =
-																						item.category_user &&
-																						item
-																							.category_user
-																							.is_favorite
-																							? true
-																							: false;
-																					this.projectCollect(
-																						e,
-																						item.id,
-																						enable
-																					);
-																				}}
-																			/>
-																		</div>
-																		{!IsTouchDevice && (
-																			<div className="projectListLiIndu">
-																				{
-																					item.industry
-																				}
-																			</div>
-																		)}
-																	</Link>
-																</li>
-															);
-														}
-													)}
-												{index == 3 &&
-													project4 &&
-													project4.data &&
-													project4.data.length > 0 &&
-													project4.data.map(
-														(item, index) => {
-															return (
-																<li key={index}>
-																	<Link
-																		to={{
-																			pathname:
-																				"projectdetail",
-																			search:
-																				"?c_id=" +
-																				item.id
-																		}}
-																	>
-																		<div className="projectListLiTop ui center">
-																			<div className="projectListLiTopLeft ui center">
-																				<div
-																					className={
-																						item.category_user &&
-																						item
-																							.category_user
-																							.is_favorite_dot
-																							? "projectListImg newMsg"
-																							: "projectListImg"
-																					}
-																				>
-																					<img
-																						src={
-																							item.img
-																						}
-																					/>
-																				</div>
-																				<p
-																				>
-																					<span className="ellitext">
-																						{
-																							item.unit
-																						}
-																						{IsTouchDevice && (
-																							<span className="industryText">
-																								{
-																									item.industry
-																								}
-																							</span>
-																						)}
-																					</span>
-																					<b className="ellitext">
-																						({
-																							item.long_name
-																						})
-																					</b>
-																				</p>
-																			</div>
-																			<div
-																				className={
-																					item.category_user &&
-																					item
-																						.category_user
-																						.is_favorite
-																						? "projectListLiTopRight collect m-hide"
-																						: "projectListLiTopRight nocollect m-hide"
-																				}
-																				onClick={e => {
-																					let enable =
-																						item.category_user &&
-																						item
-																							.category_user
-																							.is_favorite
-																							? true
-																							: false;
-																					this.projectCollect(
-																						e,
-																						item.id,
-																						enable
-																					);
-																				}}
-																			/>
-																		</div>
-																		{!IsTouchDevice && (
-																			<div className="projectListLiIndu">
-																				{
-																					item.industry
-																				}
-																			</div>
-																		)}
-																	</Link>
-																</li>
-															);
-														}
-													)}
-											</ul>
-											{index == 0 &&
-												!(
-													project &&
-													project.data &&
-													project.data.length > 0
-												) &&
-												IsTouchDevice && (
-													<div
-														className={
-															IsTouchDevice
-																? "nodata-box Center"
-																: "nodata-box"
-														}
-													>
-														{t("nodata", lng)}
-													</div>
-												)}
-											{index == 1 &&
-												!(
-													project2 &&
-													project2.data &&
-													project2.data.length > 0
-												) &&
-												IsTouchDevice && (
-													<div
-														className={
-															IsTouchDevice
-																? "nodata-box Center"
-																: "nodata-box"
-														}
-													>
-														{t("nodata", lng)}
-													</div>
-												)}
-											{index == 2 &&
-												!(
-													project3 &&
-													project3.data &&
-													project3.data.length > 0
-												) &&
-												IsTouchDevice && (
-													<div
-														className={
-															IsTouchDevice
-																? "nodata-box Center"
-																: "nodata-box"
-														}
-													>
-														{t("nodata", lng)}
-													</div>
-												)}
-											{index == 3 &&
-												!(
-													project4 &&
-													project4.data &&
-													project4.data.length > 0
-												) &&
-												IsTouchDevice && (
-													<div
-														className={
-															IsTouchDevice
-																? "nodata-box Center"
-																: "nodata-box"
-														}
-													>
-														{t("nodata", lng)}
-													</div>
-												)}
-											<div className="projectListConChildMore m-hide">
+											<img src={mSearchPro} alt="" />
+											<span>搜索项目</span>
+										</div>
+									</div>
+								)}
+								{IsTouchDevice && (
+									<div
+										id="m-nav"
+										className="projectListNav ui center"
+									>
+										<div
+											id="m-nav-c"
+											className="projectListNav-c ui center"
+										>
+											<p
+												className={
+													activeInde == 1
+														? "active"
+														: ""
+												}
+											>
 												<Link
 													to={{
 														pathname:
-															"/projectopen",
-														search:
-															"?type=" +
-															(index + 1) +
-															"&&page=1"
+															"/projectlist",
+														search: "type=1"
 													}}
 												>
+													{t("project.trading", lng)}
+												</Link>
+											</p>
+											<p
+												className={
+													activeInde == 2
+														? "active"
+														: ""
+												}
+											>
+												<Link
+													to={{
+														pathname:
+															"/projectlist",
+														search: "type=2"
+													}}
+												>
+													{t("project.active", lng)}
+												</Link>
+											</p>
+											<p
+												className={
+													activeInde == 3
+														? "active"
+														: ""
+												}
+											>
+												<Link
+													to={{
+														pathname:
+															"/projectlist",
+														search: "type=3"
+													}}
+												>
+													{t("project.upcoming", lng)}
+												</Link>
+											</p>
+											<p
+												className={
+													activeInde == 4
+														? "active"
+														: ""
+												}
+											>
+												<Link
+													to={{
+														pathname:
+															"/projectlist",
+														search: "type=4"
+													}}
+												>
+													{t("project.ended", lng)}
+												</Link>
+											</p>
+										</div>
+									</div>
+								)}
+								<div className="projectListCon ui">
+									{[1, 2, 3, 4].map((item, index) => {
+										if (
+											IsTouchDevice &&
+											activeInde != index + 1
+										) {
+											return null;
+										}
+										return (
+											<div
+												key={index}
+												className="projectListConChild"
+											>
+												<div className="projectListConChildTitle m-hide">
+													<span className="ellitext">
+														{(() => {
+															switch (index) {
+																case 0:
+																	return t(
+																		"project.trading",
+																		lng
+																	);
+																	break;
+																case 1:
+																	return t(
+																		"project.active",
+																		lng
+																	);
+																	break;
+																case 2:
+																	return t(
+																		"project.upcoming",
+																		lng
+																	);
+																	break;
+																case 3:
+																	return t(
+																		"project.ended",
+																		lng
+																	);
+																	break;
+															}
+														})()}
+													</span>
+												</div>
+												<ul className="projectListConChildUl">
 													{index == 0 &&
-														project.total -
-															project.to !=
-															0 && (
-															<span className="ellitext">
-																{t(
-																	"project.other",
-																	lng
-																)}
-																{project.total -
-																	project.to}
-																{t(
-																	"project.otherend",
-																	lng
-																)}
-															</span>
+														project &&
+														project.data &&
+														project.data.length >
+															0 &&
+														project.data.map(
+															(item, index) => {
+																return (
+																	<li
+																		key={
+																			index
+																		}
+																	>
+																		<Link
+																			to={{
+																				pathname:
+																					"projectdetail",
+																				search:
+																					"?c_id=" +
+																					item.id
+																			}}
+																		>
+																			<div className="projectListLiTop ui center">
+																				<div className="projectListLiTopLeft ui center">
+																					<div
+																						className={
+																							item.category_user &&
+																							item
+																								.category_user
+																								.is_favorite_dot
+																								? "projectListImg newMsg"
+																								: "projectListImg"
+																						}
+																					>
+																						<img
+																							src={
+																								item.img
+																							}
+																						/>
+																					</div>
+																					<p
+																					>
+																						<span className="ellitext">
+																							{
+																								item.unit
+																							}
+																							{IsTouchDevice && (
+																								<span className="industryText">
+																									{
+																										item.industry
+																									}
+																								</span>
+																							)}
+																						</span>
+																						<b className="ellitext">
+																							({
+																								item.long_name
+																							})
+																						</b>
+																					</p>
+																				</div>
+																				<div
+																					className={
+																						item.category_user &&
+																						item
+																							.category_user
+																							.is_favorite
+																							? "projectListLiTopRight collect m-hide"
+																							: "projectListLiTopRight nocollect m-hide"
+																					}
+																					onClick={e => {
+																						let enable =
+																							item.category_user &&
+																							item
+																								.category_user
+																								.is_favorite
+																								? true
+																								: false;
+																						this.projectCollect(
+																							e,
+																							item.id,
+																							enable
+																						);
+																					}}
+																				/>
+																			</div>
+																			{!IsTouchDevice && (
+																				<div className="projectListLiIndu">
+																					{
+																						item.industry
+																					}
+																				</div>
+																			)}
+																			<div className="projectListLiCenter">
+																				<div className="left m-hide">
+																					${icorank &&
+																						icorank[
+																							item
+																								.unit
+																						] &&
+																						icorank[
+																							item
+																								.unit
+																						]
+																							.price_usd &&
+																						parseFloat(
+																							icorank[
+																								item
+																									.unit
+																							]
+																								.price_usd
+																						).toFixed(
+																							2
+																						)}
+																				</div>
+																				{icorank &&
+																					icorank[
+																						item
+																							.unit
+																					] &&
+																					icorank[
+																						item
+																							.unit
+																					]
+																						.percent_change_24h && (
+																						<div
+																							className={
+																								icorank[
+																									item
+																										.unit
+																								]
+																									.percent_change_24h <
+																								0
+																									? "right m-hide downs"
+																									: "right m-hide"
+																							}
+																						>
+																							<span
+																							>
+																								{icorank[
+																									item
+																										.unit
+																								]
+																									.percent_change_24h >
+																									0 &&
+																									"+"}
+																								{
+																									icorank[
+																										item
+																											.unit
+																									]
+																										.percent_change_24h
+																								}%
+																							</span>
+																						</div>
+																					)}
+																				{IsTouchDevice && (
+																					<div
+																						className={
+																							icorank &&
+																							icorank[
+																								item
+																									.unit
+																							]
+																								? ""
+																								: "m-hide"
+																						}
+																					>
+																						<div
+																							className={
+																								icorank &&
+																								icorank[
+																									item
+																										.unit
+																								] &&
+																								icorank[
+																									item
+																										.unit
+																								]
+																									.price_usd
+																									? "money"
+																									: "money m-hide"
+																							}
+																						>
+																							${icorank &&
+																								icorank[
+																									item
+																										.unit
+																								] &&
+																								icorank[
+																									item
+																										.unit
+																								]
+																									.price_usd &&
+																								parseFloat(
+																									icorank[
+																										item
+																											.unit
+																									]
+																										.price_usd
+																								).toFixed(
+																									2
+																								)}
+																						</div>
+																						<div
+																							className={
+																								this.chargeColor(
+																									icorank[
+																										item
+																											.unit
+																									] &&
+																										icorank[
+																											item
+																												.unit
+																										]
+																											.percent_change_24h
+																								)
+																									? "precents colorRed"
+																									: "precents"
+																							}
+																						>
+																							({icorank[
+																								item
+																									.unit
+																							] &&
+																								icorank[
+																									item
+																										.unit
+																								]
+																									.percent_change_24h >=
+																									0 &&
+																								"+"}
+																							{icorank[
+																								item
+																									.unit
+																							] &&
+																								icorank[
+																									item
+																										.unit
+																								]
+																									.percent_change_24h}%)
+																						</div>
+																					</div>
+																				)}
+																			</div>
+																		</Link>
+																	</li>
+																);
+															}
 														)}
 													{index == 1 &&
-														project2.total -
-															project2.to !=
-															0 && (
-															<span className="ellitext">
-																{t(
-																	"project.other",
-																	lng
-																)}
-																{project2.total -
-																	project2.to}
-																{t(
-																	"project.otherend",
-																	lng
-																)}
-															</span>
+														project2 &&
+														project2.data &&
+														project2.data.length >
+															0 &&
+														project2.data.map(
+															(item, index) => {
+																return (
+																	<li
+																		key={
+																			index
+																		}
+																	>
+																		<Link
+																			to={{
+																				pathname:
+																					"projectdetail",
+																				search:
+																					"?c_id=" +
+																					item.id
+																			}}
+																		>
+																			<div className="projectListLiTop ui center">
+																				<div className="projectListLiTopLeft ui center">
+																					<div
+																						className={
+																							item.category_user &&
+																							item
+																								.category_user
+																								.is_favorite_dot
+																								? "projectListImg newMsg"
+																								: "projectListImg"
+																						}
+																					>
+																						<img
+																							src={
+																								item.img
+																							}
+																						/>
+																					</div>
+																					<p
+																					>
+																						<span className="ellitext">
+																							{
+																								item.unit
+																							}
+																							{IsTouchDevice && (
+																								<span className="industryText">
+																									{
+																										item.industry
+																									}
+																								</span>
+																							)}
+																						</span>
+																						<b className="ellitext">
+																							({
+																								item.long_name
+																							})
+																						</b>
+																					</p>
+																				</div>
+																				<div
+																					className={
+																						item.category_user &&
+																						item
+																							.category_user
+																							.is_favorite
+																							? "projectListLiTopRight collect  m-hide"
+																							: "projectListLiTopRight nocollect  m-hide"
+																					}
+																					onClick={e => {
+																						let enable =
+																							item.category_user &&
+																							item
+																								.category_user
+																								.is_favorite
+																								? true
+																								: false;
+																						this.projectCollect(
+																							e,
+																							item.id,
+																							enable
+																						);
+																					}}
+																				/>
+																			</div>
+																			{!IsTouchDevice && (
+																				<div className="projectListLiIndu">
+																					{
+																						item.industry
+																					}
+																				</div>
+																			)}
+																		</Link>
+																	</li>
+																);
+															}
 														)}
 													{index == 2 &&
-														project3.total -
-															project3.to !=
-															0 && (
-															<span className="ellitext">
-																{t(
-																	"project.other",
-																	lng
-																)}
-																{project3.total -
-																	project3.to}
-																{t(
-																	"project.otherend",
-																	lng
-																)}
-															</span>
+														project3 &&
+														project3.data &&
+														project3.data.length >
+															0 &&
+														project3.data.map(
+															(item, index) => {
+																return (
+																	<li
+																		key={
+																			index
+																		}
+																	>
+																		<Link
+																			to={{
+																				pathname:
+																					"projectdetail",
+																				search:
+																					"?c_id=" +
+																					item.id
+																			}}
+																		>
+																			<div className="projectListLiTop ui center">
+																				<div className="projectListLiTopLeft ui center">
+																					<div
+																						className={
+																							item.category_user &&
+																							item
+																								.category_user
+																								.is_favorite_dot
+																								? "projectListImg newMsg"
+																								: "projectListImg"
+																						}
+																					>
+																						<img
+																							src={
+																								item.img
+																							}
+																						/>
+																					</div>
+																					<p
+																					>
+																						<span className="ellitext">
+																							{
+																								item.unit
+																							}
+																							{IsTouchDevice && (
+																								<span className="industryText">
+																									{
+																										item.industry
+																									}
+																								</span>
+																							)}
+																						</span>
+																						<b className="ellitext">
+																							({
+																								item.long_name
+																							})
+																						</b>
+																					</p>
+																				</div>
+																				<div
+																					className={
+																						item.category_user &&
+																						item
+																							.category_user
+																							.is_favorite
+																							? "projectListLiTopRight collect m-hide"
+																							: "projectListLiTopRight nocollect m-hide"
+																					}
+																					onClick={e => {
+																						let enable =
+																							item.category_user &&
+																							item
+																								.category_user
+																								.is_favorite
+																								? true
+																								: false;
+																						this.projectCollect(
+																							e,
+																							item.id,
+																							enable
+																						);
+																					}}
+																				/>
+																			</div>
+																			{!IsTouchDevice && (
+																				<div className="projectListLiIndu">
+																					{
+																						item.industry
+																					}
+																				</div>
+																			)}
+																		</Link>
+																	</li>
+																);
+															}
 														)}
 													{index == 3 &&
-														project4.total -
-															project4.to !=
-															0 && (
-															<span className="ellitext">
-																{t(
-																	"project.other",
-																	lng
-																)}
-																{project4.total -
-																	project4.to}
-																{t(
-																	"project.otherend",
-																	lng
-																)}
-															</span>
+														project4 &&
+														project4.data &&
+														project4.data.length >
+															0 &&
+														project4.data.map(
+															(item, index) => {
+																return (
+																	<li
+																		key={
+																			index
+																		}
+																	>
+																		<Link
+																			to={{
+																				pathname:
+																					"projectdetail",
+																				search:
+																					"?c_id=" +
+																					item.id
+																			}}
+																		>
+																			<div className="projectListLiTop ui center">
+																				<div className="projectListLiTopLeft ui center">
+																					<div
+																						className={
+																							item.category_user &&
+																							item
+																								.category_user
+																								.is_favorite_dot
+																								? "projectListImg newMsg"
+																								: "projectListImg"
+																						}
+																					>
+																						<img
+																							src={
+																								item.img
+																							}
+																						/>
+																					</div>
+																					<p
+																					>
+																						<span className="ellitext">
+																							{
+																								item.unit
+																							}
+																							{IsTouchDevice && (
+																								<span className="industryText">
+																									{
+																										item.industry
+																									}
+																								</span>
+																							)}
+																						</span>
+																						<b className="ellitext">
+																							({
+																								item.long_name
+																							})
+																						</b>
+																					</p>
+																				</div>
+																				<div
+																					className={
+																						item.category_user &&
+																						item
+																							.category_user
+																							.is_favorite
+																							? "projectListLiTopRight collect m-hide"
+																							: "projectListLiTopRight nocollect m-hide"
+																					}
+																					onClick={e => {
+																						let enable =
+																							item.category_user &&
+																							item
+																								.category_user
+																								.is_favorite
+																								? true
+																								: false;
+																						this.projectCollect(
+																							e,
+																							item.id,
+																							enable
+																						);
+																					}}
+																				/>
+																			</div>
+																			{!IsTouchDevice && (
+																				<div className="projectListLiIndu">
+																					{
+																						item.industry
+																					}
+																				</div>
+																			)}
+																		</Link>
+																	</li>
+																);
+															}
 														)}
-												</Link>
+												</ul>
+												{index == 0 &&
+													!(
+														project &&
+														project.data &&
+														project.data.length > 0
+													) &&
+													IsTouchDevice && (
+														<div
+															className={
+																IsTouchDevice
+																	? "nodata-box Center"
+																	: "nodata-box"
+															}
+														>
+															{t("nodata", lng)}
+														</div>
+													)}
+												{index == 1 &&
+													!(
+														project2 &&
+														project2.data &&
+														project2.data.length > 0
+													) &&
+													IsTouchDevice && (
+														<div
+															className={
+																IsTouchDevice
+																	? "nodata-box Center"
+																	: "nodata-box"
+															}
+														>
+															{t("nodata", lng)}
+														</div>
+													)}
+												{index == 2 &&
+													!(
+														project3 &&
+														project3.data &&
+														project3.data.length > 0
+													) &&
+													IsTouchDevice && (
+														<div
+															className={
+																IsTouchDevice
+																	? "nodata-box Center"
+																	: "nodata-box"
+															}
+														>
+															{t("nodata", lng)}
+														</div>
+													)}
+												{index == 3 &&
+													!(
+														project4 &&
+														project4.data &&
+														project4.data.length > 0
+													) &&
+													IsTouchDevice && (
+														<div
+															className={
+																IsTouchDevice
+																	? "nodata-box Center"
+																	: "nodata-box"
+															}
+														>
+															{t("nodata", lng)}
+														</div>
+													)}
+												<div className="projectListConChildMore m-hide">
+													<Link
+														to={{
+															pathname:
+																"/projectopen",
+															search:
+																"?type=" +
+																(index + 1) +
+																"&&page=1"
+														}}
+													>
+														{index == 0 &&
+															project.total -
+																project.to !=
+																0 && (
+																<span className="ellitext">
+																	{t(
+																		"project.other",
+																		lng
+																	)}{" "}
+																	{project.total -
+																		project.to}{" "}
+																	{t(
+																		"project.otherend",
+																		lng
+																	)}
+																</span>
+															)}
+														{index == 1 &&
+															project2.total -
+																project2.to !=
+																0 && (
+																<span className="ellitext">
+																	{t(
+																		"project.other",
+																		lng
+																	)}
+																	{project2.total -
+																		project2.to}
+																	{t(
+																		"project.otherend",
+																		lng
+																	)}
+																</span>
+															)}
+														{index == 2 &&
+															project3.total -
+																project3.to !=
+																0 && (
+																<span className="ellitext">
+																	{t(
+																		"project.other",
+																		lng
+																	)}
+																	{project3.total -
+																		project3.to}
+																	{t(
+																		"project.otherend",
+																		lng
+																	)}
+																</span>
+															)}
+														{index == 3 &&
+															project4.total -
+																project4.to !=
+																0 && (
+																<span className="ellitext">
+																	{t(
+																		"project.other",
+																		lng
+																	)}
+																	{project4.total -
+																		project4.to}
+																	{t(
+																		"project.otherend",
+																		lng
+																	)}
+																</span>
+															)}
+													</Link>
+												</div>
 											</div>
-										</div>
-									);
-								})}
+										);
+									})}
+								</div>
 							</div>
 						</div>
 						{IsTouchDevice && <div id="footerBox" />}
+						{!IsTouchDevice && (
+							<Footer changeLng={changeLng} lng={lng} />
+						)}
 					</div>
 				)}
 			</I18n>

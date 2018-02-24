@@ -1,5 +1,23 @@
 @import "../../assets/less/basestyle.less";
+.header-hold {
+	width: 100%;
+	height: 0.68rem;
+}
+.headerSeat {
+	width: 100%;
+	height: 0.68rem;
+	position: fixed;
+	background: #fff;
+	z-index: 10;
+	flex: 1;
+	width: 100%;
+	padding: 0 54px;
+	left: 0;
+	box-sizing: border-box;
+	top: 0;
+}
 .header-box {
+	margin: 0 auto;
 	padding-top: 0.2rem;
 	position: relative;
 	.heder-middle {
@@ -197,6 +215,9 @@
 }
 
 .mobile {
+	.headerSeat {
+		display: none;
+	}
 	.header-box {
 		display: none;
 	}

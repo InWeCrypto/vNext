@@ -11,6 +11,7 @@ import {
 import Header from "../../../../components/header";
 import Footer from "../../../../components/footer";
 import LeftMenu from "../../../../components/leftmenu";
+import mSearchPro from "../../../../assets/images/search_pro_ico@2x.png";
 import "./index.less";
 
 export default class Root extends PureComponent {
@@ -146,6 +147,20 @@ export default class Root extends PureComponent {
 							<div className="left-menus ui center m-hide">
 								<LeftMenu lng={lng} />
 							</div>
+							{IsTouchDevice && (
+								<div className="m-searchPro">
+									<div
+										className="m-searchPro-box ui center jcenter"
+										onClick={e => {
+											window.location.href =
+												"/search?type=2&k=";
+										}}
+									>
+										<img src={mSearchPro} alt="" />
+										<span>搜索项目</span>
+									</div>
+								</div>
+							)}
 							<div id="m-nav" className="leftTwoMenus ui center">
 								<div id="m-nav-c" className="leftTwoMenu">
 									<Link
