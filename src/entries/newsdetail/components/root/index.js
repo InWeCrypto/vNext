@@ -30,7 +30,8 @@ export default class Root extends PureComponent {
 			showShareList: false,
 			isShowQcode: false,
 			QcodeUrl: "",
-			previewImgSrc: ""
+			previewImgSrc: "",
+			showVideoType: true
 		};
 	}
 	componentWillReceiveProps(nextProps) {
@@ -284,6 +285,9 @@ export default class Root extends PureComponent {
 		} else {
 			// 不跳转
 			this.creatVideo(video, img);
+			this.setState({
+				showVideoType: false
+			});
 		}
 	}
 	toggleShareList(e) {
@@ -317,7 +321,7 @@ export default class Root extends PureComponent {
 				{
 					id: "J_prismPlayer",
 					width: "100%",
-					autoplay: false,
+					autoplay: true,
 					cover: img,
 					//支持播放地址播放,此播放优先级最高
 					source: video
@@ -360,7 +364,8 @@ export default class Root extends PureComponent {
 			share,
 			QcodeUrl,
 			isShowQcode,
-			previewImgSrc
+			previewImgSrc,
+			showVideoType
 		} = this.state;
 		const {
 			lng,
@@ -537,7 +542,8 @@ export default class Root extends PureComponent {
 										/>
 									)}
 									{this.state.newsType == 3 &&
-										this.state.isJump && (
+										!this.state.isJump &&
+										this.state.showVideoType && (
 											<div className="videoType">
 												<img
 													src={newsDetail.img}
