@@ -14,6 +14,7 @@ import gift from "../../../../assets/images/liwu_ico.png";
 import close from "../../../../assets/images/close_icoapp.png";
 import "./index.less";
 import { platform } from "os";
+import { Modal } from "antd";
 
 export default class Root extends PureComponent {
 	constructor(props) {
@@ -50,7 +51,11 @@ export default class Root extends PureComponent {
 		let code = this.state.subcode;
 		this.props.postOwnCode(code).then(res => {
 			if (res.code == 4000) {
-				alert("提交成功");
+				//alert("提交成功");
+				Modal.success({
+					title: "提示",
+					content: "提交成功"
+				});
 			}
 		});
 	}
