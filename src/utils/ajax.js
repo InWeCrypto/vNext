@@ -62,6 +62,10 @@ function request(method, url, params = {}, header = {}) {
 	if (userInfo && userInfo.data) {
 		headers.Authorization = JSON.parse(userInfo.data).token;
 	}
+	if (window.isShareapp) {
+		headers.Authorization = window.shareToken;
+	}
+
 	let _url = requestUrl + url;
 	let body;
 
@@ -79,6 +83,7 @@ function request(method, url, params = {}, header = {}) {
 	} else {
 		body = JSON.stringify(params);
 	}
+	console.log(headers);
 	return fetch(_url, {
 		method,
 		body,

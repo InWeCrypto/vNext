@@ -12,6 +12,20 @@ export const getQuery = query => {
 	});
 	return res;
 };
+//获取路由参数
+export const getRouteQuery = that => {
+	let query = that.props.location.search;
+	let res = {};
+	if (!query || query.length === 0) {
+		return {};
+	}
+	let arr = query.split("?")[1].split("&");
+	arr.forEach(item => {
+		let s = item.split("=");
+		res[s[0]] = s[1];
+	});
+	return res;
+};
 export const getMainMinHeight = () => {
 	let header = parseInt(
 		document.getElementById("headerBox").offsetHeight,
