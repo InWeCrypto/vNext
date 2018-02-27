@@ -79,7 +79,7 @@ export default class Root extends PureComponent {
 							非常感谢你们对InWeCrypto的关注与支持。在你们的支持下，我们将推出新一代安全可靠的移动端钱包--InWe钱包，钱包同时支持BTC，ETH，ERC20，还支持NEO的全局资产如NEO，GAS以及NEP5代币（即所有基于NEO主链开发的资产都能得到支持，类似ETH的ERC20）。为感谢广大用户的支持，我们将进行新一轮的回馈活动。
 							<br />
 							<br />
-							近期，NEO理事会将在NEO社区开启本体（ONT）的空投，根据每个neo地址的neo数量，以每个neo获得0.2个ONT来进行空投。针对此次活动，我们将为InWeCrypto的app端InWe钱包用户（IOS和Android）提供以下福利：
+							近期，NEO理事会将在NEO社区开启本体（ONT）的空投，根据每1个neo地址的neo数量，以每个neo获得0.2个ONT来进行空投。针对此次活动，我们将为InWeCrypto的app端InWe钱包用户（IOS和Android）提供以下福利：
 						</div>
 						<div className="title1">
 							<img src={title1} alt="" className="img" />
