@@ -27,13 +27,14 @@ export const getCandyMonth = createAction(CANDYMONTH, query => {
 			if (
 				res.code === 4000 &&
 				res.data &&
-				res.data.data &&
-				res.data.data.length > 0
+				res.data.list.data &&
+				res.data.list.data.length > 0
 			) {
 				let arr = [];
-				res.data.data.map((item, index) => {
+				res.data.list.data.map((item, index) => {
 					arr.push(`${item.year}-${item.month}-${item.day}`);
 				});
+
 				return {
 					code: res.code,
 					data: arr,

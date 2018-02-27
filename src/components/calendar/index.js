@@ -109,6 +109,7 @@ class Calendar extends PureComponent {
 	}
 	setCurrentDayClass(idx) {
 		let hasData = this.props.hasData ? this.props.hasData : [];
+
 		if (idx == this.state.curDay) {
 			return "day-item cur";
 		}
