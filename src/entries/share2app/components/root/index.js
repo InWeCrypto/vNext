@@ -97,7 +97,12 @@ export default class Root extends PureComponent {
 											className="img"
 										/>
 									</div>
-									<div className="mess1-title">{code}</div>
+
+									<div className="mess1-title">
+										<a href="http://inwecrypto.com/intruduce">
+											{code}
+										</a>
+									</div>
 									<div className="mess1-title2">
 										我的专属邀请码
 									</div>
