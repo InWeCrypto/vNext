@@ -861,7 +861,10 @@ export default class Root extends PureComponent {
 														</div>
 													</div>
 												)}
-											<div className="homeBoxAnnoBottm">
+											<div
+												className="homeBoxAnnoBottm"
+												style={{ display: "none" }}
+											>
 												<div className="homeBoxCandyTop">
 													<p className="homeBoxTitle">
 														{t("home.candy", lng)}
