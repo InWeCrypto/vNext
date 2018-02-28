@@ -52,8 +52,8 @@ class TurnApp extends PureComponent {
 
 	downloadApp() {
 		if (isAndroidOrIos() == "android") {
-			openInstallApp();
-			//window.location.href = getDownloadSit();
+			//openInstallApp();
+			window.location.href = getDownloadSit();
 		} else if (isAndroidOrIos() == "ios") {
 		}
 	}

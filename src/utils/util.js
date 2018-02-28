@@ -198,7 +198,7 @@ export const getDownloadSit = () => {
 	if (isAndroidOrIos() == "android") {
 		return "http://inwecrypto-china.oss-cn-shanghai.aliyuncs.com/inwecrypto.apk";
 	} else if (isAndroidOrIos() == "ios") {
-		return "";
+		return "https://www.pgyer.com/InWeCrypto";
 	}
 };
 

@@ -18,6 +18,11 @@ import wallent_phone from "../../../../assets/images/wallet_iPhone.png";
 import app_store from "../../../../assets/images/app_store.png";
 import google_play from "../../../../assets/images/google_play.png";
 import androidqrcode from "../../../../assets/images/androidqrcode.png";
+import iosqrcode from "../../../../assets/images/iosqrcode.png";
+
+import showLookImg from "../../../../assets/images/lookimg.png";
+import showUseImg from "../../../../assets/images/useimg.png";
+import closebtn from "../../../../assets/images/close_ico.png";
 
 export default class Root extends PureComponent {
 	constructor(props) {
@@ -55,11 +60,23 @@ export default class Root extends PureComponent {
 	}
 	downLoadAndroidApp() {
 		if (IsTouchDevice) {
-			openInstallApp();
-			//window.location.href = getDownloadSit();
+			//openInstallApp();
+			window.location.href = getDownloadSit();
 		} else {
 			this.setState({
-				showDownLoadPop: true
+				showDownLoadPop: true,
+				qrcodeIsIos: false
+			});
+		}
+	}
+	downLoadIosApp() {
+		if (IsTouchDevice) {
+			//openInstallApp();
+			window.location.href = getDownloadSit();
+		} else {
+			this.setState({
+				showDownLoadPop: true,
+				qrcodeIsIos: true
 			});
 		}
 	}
@@ -68,8 +85,37 @@ export default class Root extends PureComponent {
 			showDownLoadPop: false
 		});
 	}
+	showUse() {
+		this.setState({
+			showUse: true
+		});
+	}
+	showLook() {
+		this.setState({
+			showLook: true
+		});
+	}
+	showClose() {
+		this.setState({
+			showLook: false,
+			showUse: false
+		});
+	}
+	closeimg() {
+		this.setState({
+			showLook: false,
+			showUse: false
+		});
+	}
 	render() {
-		const { minH, liH, showDownLoadPop } = this.state;
+		const {
+			minH,
+			liH,
+			showDownLoadPop,
+			showLook,
+			showUse,
+			qrcodeIsIos
+		} = this.state;
 		const {
 			lng,
 			changeLng,
@@ -114,7 +160,12 @@ export default class Root extends PureComponent {
 								<div className="wallentDown">
 									{(isAndroidOrIos() == "ios" ||
 										!IsTouchDevice) && (
-										<div className="downLf">
+										<div
+											className="downLf"
+											onClick={this.downLoadIosApp.bind(
+												this
+											)}
+										>
 											<img src={app_store} alt="" />
 										</div>
 									)}
@@ -130,11 +181,43 @@ export default class Root extends PureComponent {
 										</div>
 									)}
 								</div>
+								<div className="progress m-hide">
+									<div className="titleing">使用教程</div>
+									<div
+										className="use"
+										onClick={this.showUse.bind(this)}
+									>
+										（一）&nbsp;钱包使用
+									</div>
+									<div
+										className="look"
+										onClick={this.showLook.bind(this)}
+									>
+										（二）&nbsp;查看/关注资讯
+									</div>
+								</div>
 							</div>
 							<div className="wallentRt m-hide">
 								<img src={wallent_phone} alt="" />
 							</div>
 						</div>
+						{(showLook || showUse) && (
+							<div>
+								<div className="fimgContainer">
+									{showLook && (
+										<img src={showLookImg} alt="" />
+									)}
+									{showUse && <img src={showUseImg} alt="" />}
+								</div>
+								<div
+									className="closebapp"
+									onClick={this.closeimg.bind(this)}
+								>
+									<img src={closebtn} alt="" />
+								</div>
+							</div>
+						)}
+
 						{showDownLoadPop && (
 							<div className="downloadPopup">
 								<div className="centerBox Center">
@@ -145,7 +228,11 @@ export default class Root extends PureComponent {
 									/>
 
 									<div className="qrcodeMess Center">
-										<img src={androidqrcode} alt="" />
+										{qrcodeIsIos ? (
+											<img src={iosqrcode} alt="" />
+										) : (
+											<img src={androidqrcode} alt="" />
+										)}
 									</div>
 								</div>
 							</div>
