@@ -158,5 +158,5 @@ export default {
 	nodata: "暂无数据",
 	unLongin: "请登录",
 	wallent:
-		"InWeCrypto多资产钱包支持 BTC、ETH、NEO及ERC20和NEP5标准代币，可以智能、高效地管理多种资产，操作便捷。同时，钱包还包含InWeCrypto网站资讯，集媒体信息和数字资产安全存储于一身。"
+		"InWeCrypto多资产钱包支持 ETH、NEO及ERC20和NEP5标准代币，可以智能、高效地管理多种资产，操作便捷。同时，钱包还包含InWeCrypto网站资讯，集媒体信息和数字资产安全存储于一身。"
 };
