@@ -122,6 +122,7 @@ class FixedMenu extends PureComponent {
                                         }}
                                         className="nav-item"
                                         activeClassName="cur"
+                                        style={{display: "none"}}
                                     >
                                         <span className="nav-text">
                                             {t("navMenu.candybowl", lng)}
