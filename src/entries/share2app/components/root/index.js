@@ -76,10 +76,10 @@ export default class Root extends PureComponent {
 							亲爱的InWeCrypto社区支持者们,
 							<br />
 							<br />
-							非常感谢你们对InWeCrypto的关注与支持。在你们的支持下，我们将推出新一代安全可靠的移动端钱包--InWe钱包，钱包同时支持BTC，ETH，ERC20，还支持NEO的全局资产如NEO，GAS以及NEP5代币（即所有基于NEO主链开发的资产都能得到支持，类似ETH的ERC20）。为感谢广大用户的支持，我们将进行新一轮的回馈活动。
+							非常感谢你们对InWeCrypto的关注与支持。在你们的支持下，我们将推出新一代安全可靠的移动端钱包——InWe钱包，钱包同时支持ETH，ERC20，还支持NEO的全局资产如NEO，GAS以及NEP5代币（即所有基于NEO主链开发的资产都能得到支持，类似ETH的ERC20）。为感谢广大用户的支持，我们将进行新一轮的回馈活动。
 							<br />
 							<br />
-							近期，NEO理事会将在NEO社区开启本体（ONT）的空投，根据每1个neo地址的neo数量，以每个neo获得0.2个ONT来进行空投。针对此次活动，我们将为InWeCrypto的app端InWe钱包用户（IOS和Android）提供以下福利：
+							近期，NEO理事会将在NEO社区开启本体（ONT）的空投，根据每个neo地址的neo数量，以每1个neo获得0.2个ONT来进行空投。针对此次活动，我们将为InWeCrypto的app端InWe钱包用户（IOS和Android）提供ONT空投奖励，本次空投总量为20000个ONT。
 						</div>
 						<div className="title1">
 							<img src={title1} alt="" className="img" />
@@ -116,12 +116,11 @@ export default class Root extends PureComponent {
 									</div>
 									<div className="rulemess">
 										a.
-										用户注册下载app端InWe钱包（IOS和Android）并持有neo资产，不仅可以获得NEO理事会的空投，也可获得我们的空投，即在InWe钱包里持有每100个NEO还可额外获得6个ONT的奖励（其中50%可自由交易，另50%自动锁仓）；
+										用户注册下载app端InWe钱包（IOS和Android）并持有neo资产，即可获得InWe钱包的空投，即在InWe钱包里持有每100个NEO可额外获得6个ONT的奖励（其中50%可自由交易，另50%自动锁仓）；
 										<br />
 										<br />
 										b.
-										下载app端InWe钱包（IOS和Android）的用户将获得邀请码，邀请朋友注册app端InWe
-										钱包并填写自己的邀请码即可获得额外奖励，即：
+										下载app端InWe钱包（IOS和Android）的用户将获得邀请码，邀请朋友注册app端InWe钱包并填写自己的邀请码即可获得额外奖励，即：
 										所邀请用户获得空投奖励的ONT的10%；
 										<br />
 										<br />
@@ -129,11 +128,14 @@ export default class Root extends PureComponent {
 										<br />
 										<br />
 										d.
+										本次空投，以注册用户并存放NEO资产的顺序开始，送完为止；
+										<br />
+										<br />
+										e.
 										ONT的发放时间将在3月3日后的几周内完成，在Ontology主网上线时会解锁另外50%代币，但具体依赖于Ontology测试网运行情况，时间约为2018年Q2季度）。
 										<br />
 										<br />
-										例如：在app端InWe钱包（IOS和Android）存100个NEO再邀请朋友，将获26个ONT（NEO基金会空投的20个ONT以及
-										InWe钱包空投的6个ONT）的空投，还有所邀请用户获得空投的ONT的10%。
+										例如：在app端InWe钱包（IOS和Android）存100个NEO再邀请朋友，并邀请10个朋友注册并使用InWe钱包存入NEO，10人共存入1000NEO，那么你将获6个ONT的空投，还有所邀请用户获得空投的ONT的10%，即1000x0.06x0.1=6ONT，共12ONT。
 									</div>
 
 									<p className="ps">
@@ -156,8 +158,7 @@ export default class Root extends PureComponent {
 							</button>
 						</div>
 						<div className="mess3">
-							本体（Ontology）是新一代多链式公有链基础平台，同时也是支持分布式信任生态的通用平台。
-							ONT将作为本体网络的功能性代币。
+							本体（Ontology）是新一代多链式公有链基础平台，同时也是支持分布式信任生态的通用平台。ONT将作为本体网络的功能性代币。
 							<br />
 							<br />
 							最后再次感谢大家对InWeCrypto的支持！我们将继续努力，推动InWe
