@@ -82,6 +82,7 @@ class LeftMenuBox extends PureComponent {
 									pathname: "/candybowl"
 								}}
 								className="left-menu-item"
+								style={{ display: "none" }}
 								activeClassName="cur"
 							>
 								<span className="line" />

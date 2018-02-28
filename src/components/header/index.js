@@ -288,6 +288,7 @@ class Header extends PureComponent {
 										pathname: "/candybowl"
 									}}
 									className="menuCell"
+									style={{ display: "none" }}
 								>
 									{t("navMenu.candybowl", lng)}
 								</Link>

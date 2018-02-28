@@ -121,6 +121,7 @@ export default class Root extends PureComponent {
 					} else {
 						isJumpBoll = false;
 					}
+
 					this.setState({
 						art_id: res.data.id,
 						newsType: res.data.type,
@@ -285,9 +286,9 @@ export default class Root extends PureComponent {
 		} else {
 			// 不跳转
 			this.creatVideo(video, img);
-			this.setState({
-				showVideoType: false
-			});
+			// this.setState({
+			// 	showVideoType: false
+			// });
 		}
 	}
 	toggleShareList(e) {
@@ -542,7 +543,6 @@ export default class Root extends PureComponent {
 										/>
 									)}
 									{this.state.newsType == 3 &&
-										!this.state.isJump &&
 										this.state.showVideoType && (
 											<div className="videoType">
 												<img
@@ -560,7 +560,11 @@ export default class Root extends PureComponent {
 												/>
 											</div>
 										)}
-
+									<div
+										dangerouslySetInnerHTML={{
+											__html: newsDetail.desc
+										}}
+									/>
 									<div
 										id="newsDetailsContentId"
 										className="newsDetailContent"
