@@ -101,6 +101,12 @@ export default class Root extends PureComponent {
 			showUse: false
 		});
 	}
+	closeimg() {
+		this.setState({
+			showLook: false,
+			showUse: false
+		});
+	}
 	render() {
 		const {
 			minH,
@@ -175,7 +181,7 @@ export default class Root extends PureComponent {
 										</div>
 									)}
 								</div>
-								<div className="progress m-hide Hide">
+								<div className="progress m-hide">
 									<div className="titleing">使用教程</div>
 									<div
 										className="use"
@@ -196,12 +202,19 @@ export default class Root extends PureComponent {
 							</div>
 						</div>
 						{(showLook || showUse) && (
-							<div className="fimgContainer">
-								<div className="closeb">
+							<div>
+								<div className="fimgContainer">
+									{showLook && (
+										<img src={showLookImg} alt="" />
+									)}
+									{showUse && <img src={showUseImg} alt="" />}
+								</div>
+								<div
+									className="closebapp"
+									onClick={this.closeimg.bind(this)}
+								>
 									<img src={closebtn} alt="" />
 								</div>
-								{showLook && <img src={showLookImg} alt="" />}
-								{showUse && <img src={showUseImg} alt="" />}
 							</div>
 						)}
 
