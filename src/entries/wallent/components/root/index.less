@@ -1,8 +1,10 @@
 .wallentBox {
+	position: relative;
 	width: 100%;
 	padding: 0 2.43rem;
 	box-sizing: border-box;
 	.wallentLf {
+		position: relative;
 		width: 100%;
 		padding-right: 1.4rem;
 		.wallentLfTitle {
@@ -38,7 +40,7 @@
 				color: #fff;
 				overflow: hidden;
 				&.downLf {
-					background: #ececec;
+					background: rgba(255, 87, 31, 1);
 					img {
 						width: 1.1rem;
 						max-width: 100%;
@@ -52,6 +54,20 @@
 						max-width: 100%;
 					}
 				}
+			}
+		}
+		.progress {
+			position: absolute;
+			left: 0;
+			bottom: -1.4rem;
+			font-size: 0.16rem;
+			.titleing {
+				color: #ff571f;
+			}
+			.use,
+			.look {
+				color: #333;
+				cursor: pointer;
 			}
 		}
 	}
@@ -110,6 +126,29 @@
 			}
 		}
 	}
+}
+.fimgContainer {
+	position: fixed;
+	left: 50%;
+	top: 0.2rem;
+	bottom: 0.8rem;
+	z-index: 10;
+	width: 6rem;
+	transform: translateX(-50%);
+	overflow: scroll;
+	img {
+		display: block;
+		width: 100%;
+	}
+}
+.closebapp {
+	position: fixed;
+	left: 50%;
+	transform: translateX(-50%);
+	bottom: 0.1rem;
+	width: 0.3rem;
+	height: 0.3rem;
+	cursor: pointer;
 }
 .mobile #mainBox.wallentBox {
 	display: block;
