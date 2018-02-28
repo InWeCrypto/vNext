@@ -560,11 +560,14 @@ export default class Root extends PureComponent {
 												/>
 											</div>
 										)}
-									<div
-										dangerouslySetInnerHTML={{
-											__html: newsDetail.desc
-										}}
-									/>
+									{this.state.newsType == 3 && (
+										<div
+											dangerouslySetInnerHTML={{
+												__html: newsDetail.desc
+											}}
+										/>
+									)}
+
 									<div
 										id="newsDetailsContentId"
 										className="newsDetailContent"
