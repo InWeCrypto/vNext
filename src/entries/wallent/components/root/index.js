@@ -181,7 +181,7 @@ export default class Root extends PureComponent {
 										</div>
 									)}
 								</div>
-								<div className="progress m-hide">
+								<div className="progress">
 									<div className="titleing">使用教程</div>
 									<div
 										className="use"
@@ -202,7 +202,7 @@ export default class Root extends PureComponent {
 							</div>
 						</div>
 						{(showLook || showUse) && (
-							<div>
+							<div className="showContainer">
 								<div className="fimgContainer">
 									{showLook && (
 										<img src={showLookImg} alt="" />
