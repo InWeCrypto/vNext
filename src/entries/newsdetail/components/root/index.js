@@ -542,25 +542,39 @@ export default class Root extends PureComponent {
 											id="J_prismPlayer"
 										/>
 									)}
-									{this.state.newsType == 3 &&
+									{(this.state.newsType == 3 ||
+										this.state.newsType == 6) &&
 										this.state.showVideoType && (
-											<div className="videoType">
+											<div
+												className="videoType"
+												onClick={() => {
+													if (
+														this.state.newsType == 6
+													) {
+														window.location.href =
+															newsDetail.url;
+													}
+												}}
+											>
 												<img
 													src={newsDetail.img}
 													alt=""
 												/>
-												<b
-													id="videoPlay"
-													onClick={() => {
-														this.videoPlay(
-															newsDetail.url,
-															newsDetail.video
-														);
-													}}
-												/>
+												{this.state.newsType == 3 && (
+													<b
+														id="videoPlay"
+														onClick={() => {
+															this.videoPlay(
+																newsDetail.url,
+																newsDetail.video
+															);
+														}}
+													/>
+												)}
 											</div>
 										)}
-									{this.state.newsType == 3 && (
+									{(this.state.newsType == 3 ||
+										this.state.newsType == 6) && (
 										<div
 											dangerouslySetInnerHTML={{
 												__html: newsDetail.desc

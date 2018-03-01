@@ -169,24 +169,39 @@ class ProjectDetailIco extends PureComponent {
 							</div>
 							<div className="projectDetailCon1Box ui">
 								<div className="projectDetailCon1BoxLeft">
-									<div className="projectDetailCon1BoxLeftDate">
-										<b />
-										<p>
-											{projectDetail.category_desc &&
-												projectDetail.category_desc
-													.start_at &&
-												projectDetail.category_desc.start_at
-													.slice(5, 10)
-													.replace(/-/, ".")}{" "}
-											-
-											{projectDetail.category_desc &&
-												projectDetail.category_desc
-													.end_at &&
-												projectDetail.category_desc.end_at
-													.slice(5, 10)
-													.replace(/-/, ".")}
-										</p>
-									</div>
+									{projectDetail.category_desc &&
+									projectDetail.category_desc.start_at &&
+									projectDetail.category_desc &&
+									projectDetail.category_desc.end_at ? (
+										<div className="projectDetailCon1BoxLeftDate">
+											<b />
+											<p>
+												{projectDetail.category_desc &&
+													projectDetail.category_desc
+														.start_at &&
+													projectDetail.category_desc.start_at
+														.slice(5, 10)
+														.replace(/-/, ".")}{" "}
+												-
+												{projectDetail.category_desc &&
+													projectDetail.category_desc
+														.end_at &&
+													projectDetail.category_desc.end_at
+														.slice(5, 10)
+														.replace(/-/, ".")}
+											</p>
+										</div>
+									) : (
+										<div className="projectDetailCon1BoxLeftDate">
+											<p>
+												{t(
+													"projectDetail.no_date",
+													lng
+												)}
+											</p>
+										</div>
+									)}
+
 									<div className="ul ">
 										<p
 											dangerouslySetInnerHTML={{

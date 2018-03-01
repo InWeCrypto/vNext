@@ -23,6 +23,7 @@ export default {
 		otherend: "projects waiting to be explored"
 	},
 	projectDetail: {
+		no_date: "None",
 		chat: "Your viewpoint...",
 		score: "Project Score",
 		volume: "Volume (24h)",
