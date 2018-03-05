@@ -108,7 +108,14 @@ export default class Root extends PureComponent {
     setAds() {
         this
             .props
-            .getAds({type: 1});
+            .getAds({type: 1})
+            .then(res => {
+                console.log()
+                document
+                    .getElementById("walletUl")
+                    .style
+                    .width = res.data.data.length * 3.3 + "rem";
+            });
         this
             .props
             .getAds2({type: 2});
@@ -149,7 +156,10 @@ export default class Root extends PureComponent {
     }
     getAdsWidth(ads) {
         if (ads && ads.data && ads.data.length) {
-            return ads.data.length * 4.98 + "rem";
+
+            return ads.data.data.length * 4.98 + "rem";
+        } else {
+            return "100%"
         }
     }
     render() {
@@ -206,7 +216,7 @@ export default class Root extends PureComponent {
                 speed: 500,
                 slidesToShow: 1,
                 slidesToScroll: 1,
-                // autoplay: true,
+                autoplay: true,
                 arrows: false,
                 accessibility: true,
                 adaptiveHeight: true,
@@ -736,23 +746,19 @@ export default class Root extends PureComponent {
                                 {IsTouchDevice && (
                                     <div className="homeBoxList homeBoxWallet">
                                         <div className="swiperBox">
-                                            <ul
-                                                className="walletUl"
-                                                style={{
-                                                width: this
-                                                    .getAdsWidth
-                                                    .bind(this, ads)
-                                            }}>
+                                            <ul className="walletUl" id="walletUl">
                                                 {ads.data && ads.data.length > 0 && ads
                                                     .data
                                                     .map((val, idx) => {
                                                         return (
                                                             <li
-                                                                style={ads.data.length == 1 && {
-                                                                margin: "0 auto",
-                                                                float: "none"
-                                                            }}
-                                                                key={val}
+                                                                style={ads.data.length == 1
+                                                                ? {
+                                                                    margin: "0 auto",
+                                                                    float: "none"
+                                                                }
+                                                                : {}}
+                                                                key={idx}
                                                                 className="walletImg"
                                                                 onClick={() => {
                                                                 window.location.href = val.url;
