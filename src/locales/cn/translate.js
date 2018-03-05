@@ -23,6 +23,7 @@ export default {
 		otherend: "个项目等你发现"
 	},
 	projectDetail: {
+		no_date: "暂无",
 		chat: "你的观点...",
 		score: "项目评分",
 		volume: "交易量 (24h)",
