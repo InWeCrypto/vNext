@@ -27,10 +27,16 @@ export const getRouteQuery = that => {
 	return res;
 };
 export const getMainMinHeight = () => {
-	let header = parseInt(
-		document.getElementById("headerBox").offsetHeight,
-		10
-	);
+    var headerBoxDom = document.getElementById("headerBox")
+    if(headerBoxDom){
+        var header = parseInt(
+            document.getElementById("headerBox").offsetHeight,
+            10
+        );
+    }else{
+        var header = 0
+    }
+	
 	let footer =
 		document.getElementById("footerBox") &&
 		parseInt(document.getElementById("footerBox").offsetHeight, 10);
