@@ -13,6 +13,7 @@ import NewsDetail from "./entries/newsdetail";
 import NewsDetail2 from "./entries/newsdetail2";
 import Trading from "./entries/trading";
 import Announcment from "./entries/announcment";
+import Announcmentdetail from "./entries/announcmentdetail";
 import Member from "./entries/member";
 import CandyBowl from "./entries/candybowl";
 import Search from "./entries/search";
@@ -34,6 +35,7 @@ export default () => {
 			<Route path="/newsdetail2" component={NewsDetail2} />
 			<Route path="/trading" component={Trading} />
 			<Route path="/announcment" component={Announcment} />
+			<Route path="/announcmentdetail" component={Announcmentdetail} />
 			<Route path="/member" component={Member} />
 			<Route path="/candybowl" component={CandyBowl} />
 			<Route path="/search" component={Search} />

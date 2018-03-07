@@ -124,6 +124,8 @@ export default class Root extends PureComponent {
 		}
 	}
 	showDetailClick(item) {
+
+        return;
 		this.setState({
 			showDetail: true,
 			showItem: item
@@ -225,15 +227,15 @@ export default class Root extends PureComponent {
 																	item
 																)}
 															>
-																{/* <Link
+																<Link
 																	to={{
 																		pathname:
-																			"newsdetail",
+																			"announcmentdetail",
 																		search:
 																			"?art_id=" +
 																			item.id
 																	}}
-																> */}
+																>
 																<div className="liBox">
 																	<p className="annoBoxLiText ellitext">
 																		+{
@@ -248,7 +250,7 @@ export default class Root extends PureComponent {
 																		)}
 																	</p>
 																</div>
-																{/* </Link> */}
+																</Link>
 															</li>
 														);
 													}
@@ -274,15 +276,15 @@ export default class Root extends PureComponent {
 																	item
 																)}
 															>
-																{/* <Link
+																<Link
 																	to={{
 																		pathname:
-																			"newsdetail",
+																			"announcmentdetail",
 																		search:
 																			"?art_id=" +
 																			item.id
 																	}}
-																> */}
+																>
 																<div className="liBox">
 																	<p className="annoBoxLiText ellitext">
 																		+{
@@ -297,7 +299,7 @@ export default class Root extends PureComponent {
 																		)}
 																	</p>
 																</div>
-																{/* </Link> */}
+																</Link>
 															</li>
 														);
 													}
