@@ -392,7 +392,7 @@ export default class Root extends PureComponent {
 							<FixedMenu changeLng={changeLng} lng={lng} />
 						)}
 
-						<div style={{ display: "none" }}>
+						<div>
 							<Header
 								userInfo={userInfo}
 								registerUser={registerUser}
