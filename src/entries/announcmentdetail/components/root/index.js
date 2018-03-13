@@ -43,25 +43,25 @@ export default class Root extends PureComponent {
         let contW = document
             .getElementById("newsDetailConBox")
             .offsetWidth - parseFloat(getComputedStyle(document.getElementById("newsDetailConBox"))["padding-left"], 10) - parseFloat(getComputedStyle(document.getElementById("newsDetailConBox"))["padding-right"], 10);
-        if (document.body.offsetWidth > 1366) {
-            document
-                .getElementById("newsDetailLeft")
-                .style
-                .marginLeft = "-" + (contW / 2 + 36 + 10) + "px";
-            document
-                .getElementById("newsDetailRight")
-                .style
-                .marginLeft = contW / 2 + 20 + 10 + "px";
-        } else {
-            document
-                .getElementById("newsDetailLeft")
-                .style
-                .marginLeft = "-" + (contW / 2 + 36) + "px";
-            document
-                .getElementById("newsDetailRight")
-                .style
-                .marginLeft = contW / 2 + 20 + "px";
-        }
+        // if (document.body.offsetWidth > 1366) {
+        //     document
+        //         .getElementById("newsDetailLeft")
+        //         .style
+        //         .marginLeft = "-" + (contW / 2 + 36 + 10) + "px";
+        //     document
+        //         .getElementById("newsDetailRight")
+        //         .style
+        //         .marginLeft = contW / 2 + 20 + 10 + "px";
+        // } else {
+        //     document
+        //         .getElementById("newsDetailLeft")
+        //         .style
+        //         .marginLeft = "-" + (contW / 2 + 36) + "px";
+        //     document
+        //         .getElementById("newsDetailRight")
+        //         .style
+        //         .marginLeft = contW / 2 + 20 + "px";
+        // }
 
         this.setState({minH: minH});
         document
@@ -101,10 +101,7 @@ export default class Root extends PureComponent {
                     } else {
                         isJumpBoll = false;
                     }
-                    if(res && res.data && res.data.title){
-                        console.log(res.data.title)
-                        document.getElementsByTagName("title")[0].text = res.data.title;
-                    }
+
                     this.setState({art_id: res.data.id, newsType: res.data.type, enable: enableBool, isJump: isJumpBoll});
                 }
                 //img点击放大
@@ -353,7 +350,7 @@ export default class Root extends PureComponent {
                             commonMarket={commonMarket}
                             getHeaderMarket={getHeaderMarket}/>
                         <div id="mainBox" className="newsDetail ui">
-                            <div
+                            {/* <div
                                 id="newsDetailLeft"
                                 className={newsDetail.article_prev
                                 ? "newsDetailLeft ui center show m-hide"
@@ -368,11 +365,11 @@ export default class Root extends PureComponent {
                                     </Link>
                                 )}
                                 {!newsDetail.article_prev && <span/>}
-                            </div>
+                            </div> */}
 
                             <div className="newsDetailCon f1" id="newsDetailConBox">
                                 <div className="newsDetailConTitle">
-                                    <span>{newsDetail.title}</span>
+                                    <span>{newsDetail.source_name}:{newsDetail.desc}</span>
                                 </div>
                                 <div className="newsMeta ui">
                                     <div className="newsDetailConMeta f1">
@@ -398,7 +395,7 @@ export default class Root extends PureComponent {
                                                 );
                                             })}
                                     </div>
-                                    <div
+                                    {/* <div
                                         className="newDetailConShare"
                                         onClick={this
                                         .showApp
@@ -427,7 +424,7 @@ export default class Root extends PureComponent {
                                                     onClick={this
                                                     .showThisPageTocode
                                                     .bind(this)}
-                                                    className="wx"/> {/* <li className="pyq" /> */}
+                                                    className="wx"/> 
                                                 <li
                                                     onClick={this
                                                     .openTele
@@ -440,7 +437,7 @@ export default class Root extends PureComponent {
                                                     className="qq"/>
                                             </ul>
                                         )}
-                                    </div>
+                                    </div> */}
                                 </div>
                                 <div className="newsDetailBox">
                                     {/* 视频 */}
@@ -477,11 +474,11 @@ export default class Root extends PureComponent {
                                             __html: newsDetail.content
                                         }}/>
                                     </div>
-                                    <p className="newsReadNums">
+                                    {/* <p className="newsReadNums">
                                         {newsDetail.click_rate}
                                         {"  "}
                                         {t("newsDetail.read", lng)}
-                                    </p>
+                                    </p> */}
                                 </div>
                                 {false && (
                                     <div className="newsDetailComment">
@@ -565,7 +562,7 @@ export default class Root extends PureComponent {
                                 )}
                             </div>
 
-                            <div
+                            {/* <div
                                 id="newsDetailRight"
                                 className={newsDetail.article_next
                                 ? "newsDetailRight show ui center m-hide"
@@ -580,7 +577,7 @@ export default class Root extends PureComponent {
                                     </Link>
                                 )}
                                 {!newsDetail.article_next && <span/>}
-                            </div>
+                            </div> */}
                         </div>
                         {/* <Footer lng={lng} changeLng={changeLng} /> */}
                         {isShowQcode && (<QcodeBox

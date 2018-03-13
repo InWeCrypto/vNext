@@ -1,0 +1,485 @@
+body,html{
+    padding: 0 !important;
+   
+}
+.e-hugeBox{
+    width: 100%;
+    min-width: 100%;
+    max-width: 100%;
+    img{
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    .headerBox{
+        position: relative;
+        width: 100%;
+        height: auto;
+        .navBox{
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: 10;
+            width: 100%;
+            height: .72rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            .eleft{
+                margin-left: 2.17rem;
+                height: 100%;
+                display: flex;
+                align-items: flex-end;
+                .logobox{
+                    width: .53rem;
+                    height: .34rem;
+                }
+                .logotextbox{
+                    position: relative;
+                    top: .06rem;
+                    margin-left: .13rem;
+                    width: 1.49rem;
+                    height: .25rem;
+                }
+            }
+            .eright{
+                margin-right: 2.19rem;
+                height: 100%;
+                display: flex;
+                align-items: flex-end;
+                color: #fff;
+                font-style: .24rem;
+                font-family:TwCenMT-Regular;
+                div{
+                    margin-left: .57rem;
+                    cursor: pointer;
+                }
+            }
+        }
+        .bgimgBox{
+            width: 100%;
+        }
+        .inweTextImg{
+            position: absolute;
+            left: .75rem;
+            top: 2.69rem;
+            z-index: 15;
+            width: 10rem;
+            height: 1.04rem;
+
+        }
+        .inweTitle{
+            position: absolute;
+            top: 4.06rem;
+            left: 3.67rem;
+            z-index: 15;
+            width: 6.92rem;
+            color: #fff;
+            .txt1{
+                font-size: .51rem;
+                line-height: .51rem;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                font-family:STHeitiSC-Light;
+            }
+            .txt2{
+                margin-top: .31rem;
+                font-size: .38rem;
+                line-height: .38rem;
+                font-family:TwCenMT-Regular;
+            }
+        }
+        .phoneImgBox{
+            position: absolute;
+            right: 3.33rem;
+            top: 1.71rem;
+            z-index: 20;
+            width: 3.99rem;
+            height: 8.15rem;
+        }
+    }
+    .downloadBox{
+        position: relative;
+        width: 100%;
+        background-color: #f9f9f9;
+        .rightIcon{
+            position: absolute;
+            right: 0;
+            top: 3.85rem;
+            z-index: 10;
+            width: 4.71rem;
+            pointer-events: none;
+        }
+        .downLoadHoldHei{
+            height: 1.79rem;
+        }
+        .content1{
+            position: relative;
+            z-index: 10;
+            margin: 0 auto;
+            width: 11.91rem;
+            .bgImg{
+                position: relative;
+                z-index: 15;
+                width: 100%;
+            }
+            .textMess{
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                z-index: 10;
+                width: 9.9rem;
+                height: 2.94rem;
+                background: #fff;
+                .icondot1{
+                    position: absolute;
+                    left: .41rem;
+                    top: .4rem;
+                    width: .23rem;
+                    height: .2rem;
+                }
+                .icondot2{
+                    position: absolute;
+                    right: .41rem;
+                    bottom: .4rem;
+                    width: .22rem;
+                    height: .2rem;
+                }
+                .txtbox{
+                    position: absolute;
+                    left: 50%;
+                    top: 50%;
+                    z-index: 10;
+                    transform: translate(-50%, -50%);
+                    width: 8.62rem;
+                    p{
+                        font-weight: 200;
+                        font-size: .25rem;
+                        line-height: .44rem;
+                        color: #333;
+                        text-align: center;
+                    }
+                }
+            }
+        }
+        .content2{
+            margin-top: 1.84rem;
+            &:after{
+                display: block;
+                content: "";
+                width: 100%;
+                height: 0;
+                overflow: hidden;
+            }
+            .c2-title{
+                .mess1{
+                    font-size: .4rem;
+                    color: #333;
+                    font-weight: 200;
+                    text-align: center;
+                }
+                .mess2{
+                    margin-top: .16rem;
+                    font-size: .2rem;
+                    color: #666;
+                    text-align: center;
+                }
+
+            }
+            .c2-list{
+                margin-top: .82rem;
+                display: flex;
+                justify-content: center;
+                div{
+                    margin: 0 .64rem;
+                }
+            }
+            .downloadBtn{
+                margin: 0 auto;
+                margin-top: .74rem;
+                margin-bottom: 1.28rem;
+                width: 1.84rem;
+                height: .46rem;
+                border-radius: .23rem;
+                background: linear-gradient(to right,#FF9978 ,#FF5B26);
+                text-align: center;
+                color: #fff;
+                line-height: .46rem;
+                font-size: .18rem;
+                font-weight: 200;
+                cursor: pointer;
+                a{
+                    color: #fff
+                }
+            }
+        }
+    }
+    .shadowBox{
+        width: 100%;
+        height: .55rem;
+        background: #f9f9f9 linear-gradient(to bottom, rgba(153,153,153,0.05), rgba(249,249,249,0));
+    }
+    .intrduceBox{
+        width: 100%;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        padding-bottom: 1.48rem;
+        background-color: #f9f9f9;
+        .bgImgLeft{
+            position: absolute;
+            top: 2.26rem;
+            left: 0;
+            z-index: 0;
+            width: 4.71rem;
+        }
+        .bgImgRight{
+            position: absolute;
+            top: 5.03rem;
+            right: 0;
+            z-index: 0;
+            width: 5.08rem;
+            
+        }
+        .intrMessContainer{
+            position: relative;
+            margin: 0 auto;
+            
+            .intrCell{
+                margin-top: 1.56rem;
+                width: 10.84rem;
+                height: 3.46rem;
+                display: flex;
+                justify-content: center;
+                font-weight: 200;
+                .cellText, .cellImg{
+                    width: 50%;
+                    height: 100%;
+                }
+                img{
+                    object-fit: contain;
+                }
+                .celltextContain{
+                    margin-left: 1.25rem;
+                    width: 2.78rem;
+                    .title{
+                        font-size: .4rem;
+                        color: #333;
+                        text-align: left;
+                    }
+                    .content{
+                        margin-top: .6rem;
+                        font-size: .2rem;
+                        color: #333;
+                        text-align: left;
+                    }
+                }
+                
+            }
+        }
+    }
+    .contactBox{
+        background: #fff;
+        width: 100%;
+        .title{
+            margin: 0 auto;
+            padding-top: .37rem;
+            color: #FF5B26;
+            font-size: .3rem;
+            text-align: center;
+        }
+        .imgBox{
+            margin: 0 auto;
+            margin-top: .25rem;
+            width: 1.29rem;
+            height: 1.29rem;
+            border-radius: 100%;
+        }
+        .iconBox{
+            margin-top: .52rem;
+            display: flex;
+            justify-content: center;
+            li{
+                margin: 0 .21rem;
+                width: .28rem;
+                height: .22rem;
+                img{
+                    object-fit: contain;
+                }
+            }
+        }
+        .footerText{
+            margin: 0 auto;
+            margin-top: .29rem;
+            padding-bottom: .24rem;
+            font-size: .14rem;
+            color: #333;
+            text-align: center;
+        }
+    }
+}
+
+.mobile{
+    #e-hugeBox{
+        .headerBox{
+            height: 9.2rem;
+            .eleft{
+                margin-left: 0.3rem;
+                
+            }
+            .eright{
+                margin-right: 0.3rem;
+                font-size: .2rem;
+                font-weight: 200;
+                line-height: .2rem;
+            }
+            .inweTextImg{
+                top: 2.6rem;
+                left: .33rem;
+                width: 6.67rem;
+                height: .7rem;
+            }
+            .inweTitle{
+                left: 1.55rem;
+                top: 3.52rem;
+                .txt1{
+                    font-size: .4rem;
+                    font-weight: 200;
+                }
+                .txt2{
+                    margin-top: .14rem;
+                    font-size: .3rem;
+                    font-weight: 200;
+                }
+            }
+            .phoneImgBox{
+                left: 2.29rem;
+                top: 4.7rem;
+                width: 2.93rem;
+                height: 6.02rem;
+            }
+        }
+        .downloadBox{
+            height: auto;
+            &:after{
+                display: block;
+                content: "";
+                width: 100%;
+                height: 0;
+                opacity: 0;
+                overflow: hidden;
+            }
+            .rightIcon{
+                top: 4.24rem;
+                z-index: 10;
+                width: 3.8rem;
+                pointer-events: none;
+            }
+            .content1{
+                margin-top: .8rem;
+                width: 100%;
+                .bgImg{
+                    margin: 0 auto;
+                    width: 6.78rem;
+                }
+                .textMess{
+                    width: 5.64rem;
+                    height: 2.12rem;
+                    .icondot1{
+                        width: .13rem;
+                        height: .12rem;
+                        left: .23rem;
+                        top: .22rem;
+                    }
+                    .icondot2{
+                        width: .13rem;
+                        height: .12rem;
+                        right: .23rem;
+                        bottom: .22rem;
+                    }
+                    .txtbox{
+                        width: 5rem;
+                        transform: translate(-50%, -50%) scale(.84);
+                        p{
+                            font-size: .24rem;
+                            font-weight: 200;
+                        }
+                    }
+                }
+            }
+            .content2{
+                margin-top: 1.3rem;
+                .c2-list{
+                    margin-top: .44rem;
+                    div{
+                        margin: 0 .5rem;
+                        height: 1rem;
+                        img{
+                            object-fit: contain;
+                        }
+                    }
+                }
+                .downloadBtn{
+                    margin-top: .83rem;
+                    margin-bottom: .73rem;
+                    width: 2.18rem;
+                    height: .54rem;
+                    border-radius: .27rem;
+                    line-height: .54rem;
+                    font-weight: 200;
+                    font-size: .24rem;
+                    a{
+                        color: #fff
+                    }
+                }
+                
+            }
+        }
+        .intrduceBox{
+            .bgImgLeft{
+                width: 1.72rem;
+                top: 2.6rem;
+            }
+            .bgImgRight{
+                width: 1.87rem;
+                top: 13rem;
+            }
+            .intrMessContainer{
+                margin-top: .87rem;
+                .intrCell{
+                    margin: 0 auto;
+                    margin-top: 1.83rem;
+                    width: 6.9rem;
+                    height: auto;
+                    &:first-child{
+                        margin-top: 0;
+                    }
+                    .cellText{
+                        .celltextContain{
+                            margin-left: 0;
+                            width: auto;
+                            .content{
+                                font-size: .2rem;
+                                line-height: .36rem;
+                            }
+                        }
+                        .ct_1{
+                            margin-left: .5rem;
+                        }
+                        .ct_2{
+                            margin-top: .3rem;
+                        }
+                        .ct_3{
+                            margin-top: .64rem;
+                            position: relative;
+                            left: .2rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

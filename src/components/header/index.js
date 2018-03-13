@@ -327,38 +327,41 @@ class Header extends PureComponent {
 												commonMarket.length > 0 &&
 												commonMarket.map(
 													(item, index) => {
-														return (
-															<span
-																key={index}
-																className="headernews-item"
-																title={`${
-																	item.symbol
-																} $${
-																	item.price_usd
-																} ${(() => {
-																	return item.percent_change_1h >=
-																		0
-																		? "+"
-																		: "";
-																})()}${
-																	item.percent_change_1h
-																}%`}
-															>
-																{item.symbol} ${
-																	item.price_usd
-																}
-																&nbsp;
-																{(() => {
-																	return item.percent_change_1h >=
-																		0
-																		? "+"
-																		: "";
-																})()}
-																{
-																	item.percent_change_1h
-																}%
-															</span>
-														);
+                                                        if(item){
+                                                            return (
+                                                                <span
+                                                                    key={index}
+                                                                    className="headernews-item"
+                                                                    title={`${
+                                                                        item.symbol
+                                                                    } $${
+                                                                        item.price_usd
+                                                                    } ${(() => {
+                                                                        return item.percent_change_1h >=
+                                                                            0
+                                                                            ? "+"
+                                                                            : "";
+                                                                    })()}${
+                                                                        item.percent_change_1h
+                                                                    }%`}
+                                                                >
+                                                                    {item.symbol} ${
+                                                                        item.price_usd
+                                                                    }
+                                                                    &nbsp;
+                                                                    {(() => {
+                                                                        return item.percent_change_1h >=
+                                                                            0
+                                                                            ? "+"
+                                                                            : "";
+                                                                    })()}
+                                                                    {
+                                                                        item.percent_change_1h
+                                                                    }%
+                                                                </span>
+                                                            );
+                                                        }
+														
 													}
 												)}
 										</div>

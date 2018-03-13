@@ -120,7 +120,11 @@ export default class Root extends PureComponent {
 						isJumpBoll = true; // 外部链接
 					} else {
 						isJumpBoll = false;
-					}
+                    }
+                    if(res && res.data && res.data.title){
+                        console.log(res.data.title)
+                        document.getElementsByTagName("title")[0].text = res.data.title;
+                    }
 					this.setState({
 						art_id: res.data.id,
 						newsType: res.data.type,

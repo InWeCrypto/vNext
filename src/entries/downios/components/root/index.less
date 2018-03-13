@@ -1,0 +1,271 @@
+body{
+    padding: 0 !important;
+}
+.e-hugeDownIosBox{
+    position: relative;
+    margin: 0 ;
+    max-width: 100%;
+    width: 100%;
+    min-width: 1280px;
+    overflow: hidden;
+    color: #333;
+    img{
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+    .imgCover1{
+        position: absolute;
+        right: 0;
+        top: 2.9rem;
+        z-index: 10;
+        width: 3.42rem;
+    }
+    .headerBox{
+        width: 100%;
+        background: #F7F7F7;
+        overflow: hidden;
+        .navBox{
+            margin-top: .22rem;
+            height: .5rem;
+            display: flex;
+            justify-content: space-between;
+            .eleft{
+                display: flex;
+                align-items: flex-end;
+                margin-left: 2.11rem;
+                .logobox{
+                    width: .5rem;
+                    height: .5rem;
+                }
+                .logotextbox{
+                    margin-left: .22rem;
+                    font-size: .28rem;
+                    color: #333;
+                    
+                }
+            }
+            .eright{
+                display: flex;
+                align-items: flex-end;
+                margin-right: 2.19rem;
+                font-size: .24rem;
+                div{
+                    margin-left: .66rem;
+                }
+            }
+        }
+        .mess1{
+            margin-top: 1.72rem;
+            text-align: center;
+            font-size: .4rem;
+            line-height: .4rem;
+            font-weight: 200;
+        }
+        .mess2{
+            margin-top: .47rem;
+            width: .2.04rem;
+            height: 2.04rem;
+        }
+        .mess3{
+            margin-top: .13rem;
+            margin-bottom: .97rem;
+            text-align: center;
+            font-size: .18rem;
+        }
+    }
+    .downloadBox{
+        position: relative;
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        height: 5.5rem;
+        background: #fff;
+        .mobileDownload{
+            margin-left: .6rem;
+            height: 100%;
+            .mmess1{
+                margin-top: 1.62rem;
+                font-size: .4rem;
+                font-weight: 200;
+            }
+            .mmess2{
+                margin-top: .37rem;
+                font-size: .18rem;
+                line-height: .42rem;
+            }
+           
+        }
+        .downloadPhoneImg{
+            margin-top: .64rem;
+            height: 5.12rem;
+        }
+    }
+    .pcDownloadBox{
+        position: relative;
+        width: 100%;
+        height: 5.5rem;
+        background: #F7F7F7;
+        display: flex;
+        justify-content: center;
+        .imgCover2{
+            position: absolute;
+            left: 0;
+            top: -0.67rem;
+            z-index: 10;
+            width: 4.5rem;
+        }
+        .imgCover3{
+            position: absolute;
+            right: 0;
+            top: 3.4rem;
+            z-index: 10;
+            width: 5.08rem;
+        }
+        .pcImg{
+            margin-top: .64rem;
+            margin-left: 1.2rem;
+            height: 5.1rem;
+        }       
+        .pcDownload{
+            height: 100%;
+            margin-left: 2.5rem;
+            .mess1{
+                margin-top: 1.79rem;
+                font-size: .4rem;
+                font-weight: 200;
+            }
+            .mess2{
+                margin-top: .41rem;
+                font-size: .18rem;
+                line-height: .42rem;
+            }
+        }
+    }
+    #openApp{
+        .mmess1{
+            margin-top: 2.27rem;
+        }
+        .mmess2{
+            margin-top: .41rem;
+        }
+    }
+    .contactBox{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        background: #f7f7f7;
+        .titlev{
+            margin-top: 1.53rem;
+            text-align: center;
+            font-size: .3rem;
+            color: #FF5B26;
+        }
+        .imgBox{
+            width: 1.3rem;
+            height: 1.3rem;
+            margin-top: .25rem;
+        }
+        .iconBox{
+            margin-top: .53rem;
+            display: flex;
+            justify-content: center;
+            li{
+                height: .22rem;
+                width: .28rem;
+                margin: 0 .2rem;
+            }
+        }
+        .footerText{
+            margin-top: .3rem;
+            margin-bottom: .24rem;
+            text-align: center;
+            font-size: .14rem;
+            
+        }
+    }
+}
+.mobile{
+    .e-hugeDownIosBox{
+        .imgCover1{
+            top: 2.3rem;
+        }
+        .headerBox{
+            .navBox{
+                justify-content: center;
+                .eleft{
+                    margin-left: 0;
+                }
+            }
+            .mess1{
+                margin-top: .84rem;
+            }
+        }
+        .downloadBox{
+            height: auto;
+            flex-direction: column-reverse;
+            .mobileDownload{
+                margin: 0;
+                .mmess1{
+                    margin-top: .74rem;
+                    margin-left: .96rem;
+                }
+                .mmess2{
+                    margin-left: .96rem;
+                    font-size: .22rem;
+                    line-height: .52rem;
+                    font-weight: 200;
+                }
+            }
+            .downloadPhoneImg{
+                margin-top: 0.1rem;
+                position: relative;
+                top: .22rem;
+            }
+        }
+        .pcDownloadBox{
+            height: auto;
+            flex-direction: column;
+            .pcDownload{
+                margin-left: 0;
+                .mess1{
+                    margin-top: .72rem;
+                    margin-left: .95rem;
+                }
+                .mess2{
+                    margin-left: .95rem;
+                    font-weight: 200;
+                    line-height: .52rem;
+                }
+            }
+            .pcImg{
+                margin: 0;
+                margin-top: .3rem;
+                position: relative;
+                top: .22rem;
+            }
+            .imgCover3{
+                top: 5.6rem;
+                width: 3.25rem;
+            }
+            .imgCover2{
+                width: 3.96rem;
+                top: 3.1rem;
+            }
+        }
+        #openApp{
+            .mmess1{
+                margin-top: .72rem;
+            }
+        }
+        .contactBox{
+            .titlev{
+                margin-top: .37rem;
+            }
+        }
+    }
+}
+

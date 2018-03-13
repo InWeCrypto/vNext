@@ -1,0 +1,423 @@
+body{
+    padding: 0 !important;
+}
+.e-hugeDownLoadBox{
+    position: relative;
+    margin: 0 ;
+    max-width: 100%;
+    width: 100%;
+    min-width: 1280px;
+    overflow: hidden;
+    color: #333;
+    img{
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+    .imgCover1{
+        position: absolute;
+        right: 0;
+        top: 2.9rem;
+        z-index: 10;
+        width: 3.42rem;
+    }
+    .headerBox{
+        width: 100%;
+        background: #F7F7F7;
+        overflow: hidden;
+        .navBox{
+            margin-top: .22rem;
+            height: .5rem;
+            display: flex;
+            justify-content: space-between;
+            .eleft{
+                display: flex;
+                align-items: flex-end;
+                margin-left: 2.11rem;
+                .logobox{
+                    width: .5rem;
+                    height: .5rem;
+                }
+                .logotextbox{
+                    margin-left: .22rem;
+                    font-size: .28rem;
+                    color: #333;
+                    
+                }
+            }
+            .eright{
+                display: flex;
+                align-items: flex-end;
+                margin-right: 2.19rem;
+                font-size: .24rem;
+                div{
+                    margin-left: .66rem;
+                }
+            }
+        }
+        .mess1{
+            margin-top: 1.72rem;
+            text-align: center;
+            font-size: .4rem;
+            line-height: .4rem;
+            font-weight: 200;
+        }
+        .mess2{
+            margin-top: .19rem;
+            margin-bottom: 1.14rem;
+            text-align: center;
+            font-size: .2rem;
+            color: #666;
+            font-weight: 200;
+        }
+    }
+    .downloadBox{
+        position: relative;
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        height: 5.5rem;
+        background: #fff;
+        .mobileDownload{
+            margin-right: 1.14rem;
+            height: 100%;
+            width: 3.48rem;
+            .mmess1{
+                margin-top: 1.9rem;
+                font-size: .3rem;
+                font-weight: 200;
+            }
+            .mmess2{
+                margin-top: .18rem;
+                font-size: .18rem;
+                font-weight: 200;
+                color: #999;
+            }
+            .btnBox{
+                display: flex;
+                justify-content:space-between;
+                margin-top: .54rem;
+                .ios{
+                    width: 1.56rem;
+                    height: .47rem;
+                    box-sizing: border-box;
+                    border-radius: .24rem;
+                    border: 1px solid #FF5B26;
+                    color: #FF5B26;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    cursor: pointer;
+                    .icon{
+                        display: block;
+                        width: .28rem;
+                        height: .31rem;
+                        background: url("../../../../assets/images/dios.png")
+							no-repeat center center / contain;
+                    }
+                    .text{
+                        margin-left: .16rem;
+                        font-size: .18rem;
+                        line-height: .47rem;
+                    }
+                    &:hover,&:active{
+                        background: #FF5B26;
+                        color: #fff;
+                        .icon{
+                            background: url("../../../../assets/images/dios_ico.png")
+							no-repeat center center / contain;
+                        }
+                    }
+                }
+                .and{
+                    width: 1.56rem;
+                    height: .47rem;
+                    box-sizing: border-box;
+                    border-radius: .24rem;
+                    border: 1px solid #008F2E;
+                    color: #008F2E;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    cursor: pointer;
+                    .icon{
+                        display: block;
+                        width: .28rem;
+                        height: .31rem;
+                        background: url("../../../../assets/images/dandroid.png")
+							no-repeat center center / contain;
+                    }
+                    .text{
+                        margin-left: .16rem;
+                        font-size: .18rem;
+                        line-height: .47rem;
+                    }
+                    &:hover,&:active{
+                        background: #008F2E;
+                        color: #fff;
+                        .icon{
+                            background: url("../../../../assets/images/dandroid_ico.png")
+							no-repeat center center / contain;
+                        }
+                    }
+                }
+            }
+        }
+        .downloadPhoneImg{
+            margin-left: 1.14rem;
+            margin-top: .38rem;
+            height: 5.12rem;
+        }
+    }
+    .pcDownloadBox{
+        position: relative;
+        width: 100%;
+        height: 5.5rem;
+        background: #F7F7F7;
+        display: flex;
+        justify-content: center;
+        overflow: hidden;
+        .imgCover2{
+            position: absolute;
+            left: 0;
+            top: 1.6rem;
+            z-index: 10;
+            width: 4.5rem;
+        }
+        .pcImg{
+            margin-right: .84rem;
+            margin-top: 1.23rem;
+            width: 5.51rem;
+            height: 3.76rem;
+            
+        }       
+        .pcDownload{
+            margin-left: .84rem;
+            height: 100%;
+            .mess1{
+                margin-top: 1.92rem;
+                font-size: .3rem;
+                font-weight: 200;
+                
+            }
+            .mess2{
+                margin-top: .17rem;
+                font-size: .18rem;
+                font-weight: 200;
+                color: #999;
+
+            }
+        }
+        .btnBox{
+            display: flex;
+            justify-content:space-between;
+            margin-top: .56rem;
+            .ios{
+                margin-right: .3rem;
+                width: 1.56rem;
+                height: .47rem;
+                box-sizing: border-box;
+                border-radius: .24rem;
+                border: 1px solid #D2D2D2;
+                color: #D2D2D2;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                cursor: pointer;
+                .icon{
+                    display: block;
+                    width: .28rem;
+                    height: .31rem;
+                    background: url("../../../../assets/images/dmac_ico.png")
+                        no-repeat center center / contain;
+                }
+                .text{
+                    margin-left: .16rem;
+                    font-size: .18rem;
+                    line-height: .47rem;
+                }
+                
+            }
+            .and{
+                width: 1.56rem;
+                height: .47rem;
+                box-sizing: border-box;
+                border-radius: .24rem;
+                border: 1px solid #D2D2D2;
+                color: #D2D2D2;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                cursor: pointer;
+                .icon{
+                    display: block;
+                    width: .28rem;
+                    height: .31rem;
+                    background: url("../../../../assets/images/dwindows.png")
+                        no-repeat center center / contain;
+                }
+                .text{
+                    margin-left: .16rem;
+                    font-size: .18rem;
+                    line-height: .47rem;
+                }
+                
+            }
+        }
+    }
+    .contactBox{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        background: #fff;
+        .titlev{
+            margin-top: .37rem;
+            text-align: center;
+            font-size: .3rem;
+            color: #FF5B26;
+        }
+        .imgBox{
+            width: 1.3rem;
+            height: 1.3rem;
+            margin-top: .25rem;
+        }
+        .iconBox{
+            margin-top: .53rem;
+            display: flex;
+            justify-content: center;
+            li{
+                height: .22rem;
+                width: .28rem;
+                margin: 0 .2rem;
+            }
+        }
+        .footerText{
+            margin-top: .3rem;
+            margin-bottom: .24rem;
+            text-align: center;
+            font-size: .14rem;
+            
+        }
+    }
+}
+
+.mobile{
+    #e-hugeDownLoadBox{
+        .imgCover1{
+            width: 2.96rem;
+            top: 2.35rem;
+        }
+        .headerBox{
+            .navBox{
+                justify-content: center;
+                .eleft{
+                    margin-left: 0;
+                }
+            }
+            .mess1{
+                margin-top: .83rem;
+            }
+            .mess2{
+                margin-bottom: .74rem;
+            }
+        }
+        .downloadBox{
+            height: auto;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            .mobileDownload{
+                width: 100%;
+                margin-right: 0;
+                .mmess1{
+                    text-align: center;
+                    margin-top: .48rem;
+                    font-size: .3rem;
+                }
+                .mmess2{
+                    margin-top: .16rem;
+                    text-align: center;
+                    font-size: .2rem;
+                    color: #999;
+                }
+                .btnBox{
+                    position: relative;
+                    z-index: 15;
+                    width: 100%;
+                    justify-content: center;
+
+                    .ios,.and{
+                        margin: 0 .23rem;
+                        width: 2.38rem;
+                        height: .72rem;
+                        border-radius: .36rem;
+                        .icon{
+                            width: .43rem;
+                            height: .48rem;
+                        }
+                        .text{
+                            line-height: .72rem;
+                            font-size: .28rem;
+                        }
+                    }
+                }
+            }
+            .downloadPhoneImg{
+                margin-left: 0;
+
+            }
+        }
+        .pcDownloadBox{
+            flex-direction: column-reverse;
+            justify-content: center;
+            align-items: center;
+            height: auto;
+            .imgCover2{
+                width: 3.97rem;
+                top: 2.4rem;
+            }
+            .pcImg{
+                margin: 0;
+                margin-top: .7rem;
+                margin-bottom: .53rem;
+            }
+            .pcDownload{
+                margin: 0;
+                width: 100%;
+                .mess1{
+                    text-align: center;
+                    margin-top: .48rem;
+                    font-size: .3rem;
+                }
+                .mess2{
+                    margin-top: .16rem;
+                    text-align: center;
+                    font-size: .2rem;
+                    color: #999;
+                }
+                .btnBox{
+                    width: 100%;
+                    justify-content: center;
+
+                    .ios,.and{
+                        margin: 0 .23rem;
+                        width: 2.38rem;
+                        height: .72rem;
+                        border-radius: .36rem;
+                        .icon{
+                            width: .43rem;
+                            height: .48rem;
+                        }
+                        .text{
+                            line-height: .72rem;
+                            font-size: .28rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
