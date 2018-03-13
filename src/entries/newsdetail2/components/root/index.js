@@ -122,6 +122,7 @@ export default class Root extends PureComponent {
 						isJumpBoll = false;
                     }
                     if(res && res.data && res.data.title){
+                        console.log(res.data.title)
                         document.getElementsByTagName("title")[0].text = res.data.title;
                     }
 					this.setState({
