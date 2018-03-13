@@ -13,6 +13,8 @@ export const getNewsDetail = createAction(NEWSDETAIL, params => {
 			url: "article/" + params.art_id
 		})
 		.then(res => {
+            
+            
 			return res;
 		});
 });

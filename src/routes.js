@@ -1,6 +1,9 @@
 import React from "react";
 import { Route, Switch, withRouter } from "react-router-dom";
 
+import Indexp from "./entries/index";
+import Download from "./entries/download";
+import Downios from "./entries/downios";
 import Home from "./entries/home";
 import Project from "./entries/project";
 import ProjectList from "./entries/projectlist";
@@ -23,7 +26,10 @@ import Share2app from "./entries/share2app";
 export default () => {
 	return (
 		<Switch>
-			<Route path="/" exact component={Home} />
+			<Route path="/" exact component={Indexp} />
+			<Route path="/download" exact component={Download} />
+			<Route path="/downios" exact component={Downios} />
+			<Route path="/home"  component={Home} />
 			<Route path="/project" component={Project} />
 			<Route path="/projectlist" component={ProjectList} />
 			<Route path="/projectopen" component={ProjectOpen} />
