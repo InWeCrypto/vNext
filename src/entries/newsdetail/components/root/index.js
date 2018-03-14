@@ -2,7 +2,7 @@ import React, {PureComponent} from "react";
 import {I18n, Trans} from "react-i18next";
 import {NavLink, Link} from "react-router-dom";
 import QcodeBox from "../../../../components/qcode";
-import {getMainMinHeight, getQuery, getLocalTime, addFixed2Body,isAndroidOrIos,getDownloadSit} from "../../../../utils/util.js";
+import {getMainMinHeight, getQuery, getLocalTime, addFixed2Body,isAndroidOrIos, getDownloadSit, setLocalItem} from "../../../../utils/util.js";
 import Header from "../../../../components/header";
 import Footer from "../../../../components/footer";
 import FixedMenu from "../../../../components/fixedmenu";
@@ -104,8 +104,16 @@ export default class Root extends PureComponent {
                     } else {
                         isJumpBoll = false;
                     }
+                    if(res.data && res.data.lang == "en"){
+                        this.props.changeLng("en");
+                        window.i18n.changeLanguage("en");
+                        setLocalItem("language", "en");
+                    }else if(res.data && res.data.lang == "zh"){
+                        this.props.changeLng("zh");
+                        window.i18n.changeLanguage("zh");
+                        setLocalItem("language", "zh");
+                    }
                     if(res && res.data && res.data.title){
-                        console.log(res.data.title)
                         document.getElementsByTagName("title")[0].text = res.data.title;
                     }
                     this.setState({art_id: res.data.id, newsType: res.data.type, enable: enableBool, isJump: isJumpBoll});
