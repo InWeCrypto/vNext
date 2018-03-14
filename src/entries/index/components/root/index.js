@@ -215,6 +215,7 @@ export default class Root extends PureComponent {
                                         {t("index.txt4", lng)}
                                     </Link>
                                 </div>
+                                <div className="downloadBtnHold"></div>
                             </div>
                         </div>
                         <div className="shadowBox"></div>
