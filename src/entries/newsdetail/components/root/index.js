@@ -328,7 +328,10 @@ export default class Root extends PureComponent {
             console.log(312)
             window.location.href = "/downios"
 		}
-	}
+    }
+    toIndexPage(){
+        window.location.href = "/"
+    }
     render() {
         const {
             minH,
@@ -375,7 +378,7 @@ export default class Root extends PureComponent {
                         {
                             !downloadHide && IsTouchDevice && (
                                 <div className="downloadBox newsDetail">
-                                    <div className="logoicon">
+                                    <div className="logoicon" onClick={this.toIndexPage.bind(this)}>
                                         <img src={logoapp} alt=""/>
                                     </div>
                                     <div className="textBox" >
