@@ -3,7 +3,7 @@ import {I18n, Trans} from "react-i18next";
 import {NavLink, Link} from "react-router-dom";
 import Slider from "react-slick";
 
-import {getMainMinHeight, getQuery,indexRemFun,setLocalItem, addClass, hasClass, removeClass, toPosition} from "../../../../utils/util";
+import {getMainMinHeight, getQuery,indexRemFun,setLocalItem, addClass, hasClass, removeClass, toPosition,isWeiXin} from "../../../../utils/util";
 import Header from "../../../../components/header";
 
 import logo from "../../../../assets/images/dfooter_logo.png";
@@ -40,7 +40,16 @@ export default class Root extends PureComponent {
         const pageBox = document.getElementById("e-hugeDownLoadBox");
     }
     toDownLoadAnd(){
-        window.location.href = "http://inwecrypto-china.oss-cn-shanghai.aliyuncs.com/inwecrypto.apk"
+        window.location.href = "https://www.pgyer.com/InWeCryptoAndroid";
+        // var iswx = isWeiXin();
+        // if(iswx){
+        //     this.setState({
+        //         showWxCover: true
+        //     })
+        // }else{
+        //     window.location.href = "https://www.pgyer.com/InWeCryptoAndroid";
+        //    // window.location.href = "http://inwecrypto-china.oss-cn-shanghai.aliyuncs.com/inwecrypto.apk"
+        // }
     }
     componentDidMount() {}
     pageScrollMover(){
@@ -65,7 +74,7 @@ export default class Root extends PureComponent {
 		setLocalItem("language", type);
     }
     render() {
-        const {lng, changeLng, registerUser, userInfo} = this.props;
+        const {lng, changeLng, registerUser, userInfo, showWxCover} = this.props;
         const {} = this.state;
         let isEnAndTouch = ((window.i18n.language == "en") && IsTouchDevice);
         return (
