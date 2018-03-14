@@ -329,12 +329,13 @@ export default class Root extends PureComponent {
 	}
 
 	downloadApp() {
-        window.location.href = "/download"
-		// if (isAndroidOrIos() == "android") {
-		// 	window.location.href = getDownloadSit();
-		// } else if (isAndroidOrIos() == "ios") {
-        //     window.location.href = "/downios"
-		// }
+        
+		if (isAndroidOrIos() == "android") {
+            window.location.href = "/download"
+			//window.location.href = getDownloadSit();
+		} else if (isAndroidOrIos() == "ios") {
+            window.location.href = "/downios"
+		}
     }
     toIndexPage(){
         window.location.href = "/"
