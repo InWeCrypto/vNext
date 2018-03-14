@@ -238,3 +238,34 @@ export const openInstallApp = () => {
 		}
 	}, config.timeout);
 };
+
+//平滑滚动
+export const toPosition = (id, e) => {
+    let targetDom = e.target;
+    let dom = document.getElementById(id);
+    let scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+    let position = dom.getBoundingClientRect().top + scrollTop;
+    clearInterval(targetDom.timer);  
+    let firstPos = -1, secondPos = -2;
+    //默认上次与本次位置不同
+    let goonFlag = true; 
+    targetDom.timer=setInterval(function(){  
+        var currentPos=document.documentElement.scrollTop || document.body.scrollTop, iSpeed=0;  
+        iSpeed=(position-currentPos)/8;  
+        iSpeed=iSpeed > 0 ? Math.ceil(iSpeed) : Math.floor(iSpeed);  
+        if((parseInt(position) != parseInt(currentPos)) && goonFlag ){  
+            window.scrollTo(0,currentPos+iSpeed); 
+            if(firstPos != secondPos){
+                //前后两次位置不同
+                firstPos = secondPos;
+                secondPos = currentPos+iSpeed
+            }else{
+                //位置相同，无法滚动至该元素
+                goonFlag = false;
+            }
+        }else{
+            //清理滚动  
+            clearInterval(targetDom.timer);  
+        }  
+    },1);  
+}

@@ -2,13 +2,16 @@ import React, {PureComponent} from "react";
 import {I18n, Trans} from "react-i18next";
 import {NavLink, Link} from "react-router-dom";
 import QcodeBox from "../../../../components/qcode";
-import {getMainMinHeight, getQuery, getLocalTime, addFixed2Body} from "../../../../utils/util.js";
+import {getMainMinHeight, getQuery, getLocalTime, addFixed2Body,isAndroidOrIos,getDownloadSit} from "../../../../utils/util.js";
 import Header from "../../../../components/header";
 import Footer from "../../../../components/footer";
 import FixedMenu from "../../../../components/fixedmenu";
 import TurnApp from "../../../../components/turnapp";
 import ImgPreview from "../../../../components/imgpreview";
 import origlePic from "../../../../assets/images/yuanchuang_pic.png";
+
+import fclose_icon from "../../../../assets/images/fclose_icon.png";
+import logoapp from "../../../../assets/images/logoapp.png";
 import "./index.less";
 import {platform} from "os";
 
@@ -311,6 +314,21 @@ export default class Root extends PureComponent {
             trunapp.setState({advHide: false});
         }
     }
+    closePop(e) {
+		this.setState({
+			downloadHide: true
+		});
+	}
+
+	downloadApp() {
+
+		if (isAndroidOrIos() == "android") {
+			window.location.href = getDownloadSit();
+		} else if (isAndroidOrIos() == "ios") {
+            console.log(312)
+            window.location.href = "/downios"
+		}
+	}
     render() {
         const {
             minH,
@@ -320,7 +338,8 @@ export default class Root extends PureComponent {
             QcodeUrl,
             isShowQcode,
             previewImgSrc,
-            showVideoType
+            showVideoType,
+            downloadHide
         } = this.state;
         const {
             lng,
@@ -341,17 +360,38 @@ export default class Root extends PureComponent {
                 {(t, {i18n}) => (
                     <div className="container">
                         {!IsTouchDevice && (<FixedMenu changeLng={changeLng} lng={lng}/>)}
-
-                        <Header
-                            userInfo={userInfo}
-                            registerUser={registerUser}
-                            sendEmail={sendEmailCode}
-                            loginIn={loginIn}
-                            setReduxUserInfo={setReduxUserInfo}
-                            forgetUser={forgetUser}
-                            lng={lng}
-                            commonMarket={commonMarket}
-                            getHeaderMarket={getHeaderMarket}/>
+                        <div style={{display: "none"}}>
+                            <Header
+                                userInfo={userInfo}
+                                registerUser={registerUser}
+                                sendEmail={sendEmailCode}
+                                loginIn={loginIn}
+                                setReduxUserInfo={setReduxUserInfo}
+                                forgetUser={forgetUser}
+                                lng={lng}
+                                commonMarket={commonMarket}
+                                getHeaderMarket={getHeaderMarket}/>
+                        </div>
+                        {
+                            !downloadHide && IsTouchDevice && (
+                                <div className="downloadBox newsDetail">
+                                    <div className="logoicon">
+                                        <img src={logoapp} alt=""/>
+                                    </div>
+                                    <div className="textBox" >
+                                        <span className="text1">InWeCrpyto</span>
+                                        <span className="text2">{t("index.downloadMess", lng)}</span>
+                                    </div>
+                                    <div className="downloadBtn" onClick={this.downloadApp.bind(this)}>
+                                        {t("index.downloadBtnMess", lng)}
+                                    </div>
+                                    {/* <div className="closeNtb" onClick={this.closePop.bind(this)}>
+                                        <img src={fclose_icon} alt=""/>
+                                    </div> */}
+                                </div>
+                            )
+                        }
+                       
                         <div id="mainBox" className="newsDetail ui">
                             <div
                                 id="newsDetailLeft"
@@ -553,8 +593,7 @@ export default class Root extends PureComponent {
                                                             </div>
                                                             <div className="newsDetailCommentListContent">
                                                                 <p>
-                                                                    {item.content
-}
+                                                                    {item.content}
                                                                 </p>
                                                             </div>
                                                         </li>
@@ -588,7 +627,7 @@ export default class Root extends PureComponent {
                             .closeQcode
                             .bind(this)}
                             url={QcodeUrl}/>)}
-                        {IsTouchDevice && <TurnApp/>}
+                        {/* {IsTouchDevice && <TurnApp/>} */}
                         <ImgPreview imgsrc={previewImgSrc}/>
                     </div>
                 )}

@@ -26,7 +26,7 @@ import Share2app from "./entries/share2app";
 export default () => {
 	return (
 		<Switch>
-			<Route path="/" exact component={Home} />
+			<Route path="/" exact component={Indexp} />
 			<Route path="/indexp" exact component={Indexp} />
 			<Route path="/download" exact component={Download} />
 			<Route path="/downios" exact component={Downios} />

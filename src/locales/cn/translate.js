@@ -1,5 +1,10 @@
 export default {
     index: {
+        downloadMess: "下载查看更多资讯",
+        downloadBtnMess: "下载",
+        download: "下载App",
+        contact: "联系我们",
+        language: "语言",
         title: "管理你的资产，管理你的态度",
         txt1_1: "多资产钱包目前支持ERC20和NEP5标准代币",
         txt1_2: "可以智能、高效地管理多种资产，操作便捷",
@@ -22,18 +27,19 @@ export default {
         txt15: "ERC20、NEP5集多资产于一身",
         txt16: "助记词备份，私钥本地安全保存",
         txt17: "一键添加，清晰查看余额变化",
-        txt18: "联系我们"
+        txt18: "联系我们",
+
     },
     download: {
         txt1: "移动端下载",
-        txt2: "一款有态度的app",
+        txt2: "一款有态度的App",
         txt3: "PC客户端下载",
         txt4: "敬请期待"
     },
     downios: {
-        txt1: "如何安装inwecrypto的iOS版APP",
+        txt1: "如何安装InWeCrypto的iOS版APP",
         txt2: "扫描二维码下载链接",
-        txt3: "下载app",
+        txt3: "下载App",
         txt4_1: "使用苹果手机自带的 Safari 浏览器打开安装链接，",
         txt4_2: "点击安装到手机上。 （注：若微信内无法打开下载",
         txt4_3: "链接，请复制下载网址到浏览器打开，进行安装步骤）",
@@ -41,7 +47,7 @@ export default {
         txt6_1: "新下载APP的用户会出现提示框“未受信任的企业级",
         txt6_2: "开发者”。此时需要打开：手机自带的设置 -> ",
         txt6_3: "通用 -> 设备管理 -> 选择应用 -> 点击信任。",
-        txt7: "打开app",
+        txt7: "打开App",
         txt8: "信任应用完毕后，打开App，就可以尽情体验了。"
     },
 	home: {
