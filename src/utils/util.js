@@ -102,8 +102,8 @@ export const getLocalItem = key => {
 };
 //cdy
 export const indexRemFun = () => {
-	var dw = document.body.clientWidth;
-    if(dw > 1280){
+    if (!IsTouchDevice){
+        var dw = document.body.clientWidth;
         dw = dw * 100 / 1920;
         document.getElementsByTagName("html")[0].style.fontSize = dw + "px";
     }
