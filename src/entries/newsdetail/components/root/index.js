@@ -370,7 +370,7 @@ export default class Root extends PureComponent {
             <I18n>
                 {(t, {i18n}) => (
                     <div className="container">
-                        {!IsTouchDevice && (<FixedMenu changeLng={changeLng} lng={lng}/>)}
+                        {/* {!IsTouchDevice && (<FixedMenu changeLng={changeLng} lng={lng}/>)} */}
                         <div style={{display: "none"}}>
                             <Header
                                 userInfo={userInfo}
@@ -405,6 +405,7 @@ export default class Root extends PureComponent {
                        
                         <div id="mainBox" className="newsDetail ui">
                             <div
+                                style={{display: "none"}}
                                 id="newsDetailLeft"
                                 className={newsDetail.article_prev
                                 ? "newsDetailLeft ui center show m-hide"
@@ -616,6 +617,7 @@ export default class Root extends PureComponent {
                             </div>
 
                             <div
+                                style={{display: "none"}}
                                 id="newsDetailRight"
                                 className={newsDetail.article_next
                                 ? "newsDetailRight show ui center m-hide"
