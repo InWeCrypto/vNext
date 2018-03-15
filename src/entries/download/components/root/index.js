@@ -73,6 +73,9 @@ export default class Root extends PureComponent {
 		window.i18n.changeLanguage(type);
 		setLocalItem("language", type);
     }
+    toIndex(){
+        window.location.href="/"
+    }
     render() {
         const {lng, changeLng, registerUser, userInfo, showWxCover} = this.props;
         const {} = this.state;
@@ -86,7 +89,7 @@ export default class Root extends PureComponent {
                         </div>
                         <div className="headerBox">
                             <div className="navBox">
-                                <div className="eleft">
+                                <div className="eleft" onClick={this.toIndex.bind(this)}>
                                     <div className="logobox">
                                         <img src={logo} alt=""/>
                                     </div>

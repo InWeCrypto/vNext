@@ -65,6 +65,9 @@ export default class Root extends PureComponent {
 		window.i18n.changeLanguage(type);
 		setLocalItem("language", type);
     }
+    toIndex(){
+        window.location.href="/"
+    }
     render() {
         const {lng, changeLng, registerUser, userInfo} = this.props;
         const {} = this.state;
@@ -77,13 +80,13 @@ export default class Root extends PureComponent {
                         </div>
                         <div className="headerBox">
                             <div className="navBox">
-                                <div className="eleft">
-                                    <div className="logobox">
-                                        <img src={logo} alt=""/>
-                                    </div>
-                                    <div className="logotextbox">
-                                        InWeCrypto
-                                    </div>
+                                <div className="eleft" onClick={this.toIndex.bind(this)}>
+                                        <div className="logobox">
+                                            <img src={logo} alt=""/>
+                                        </div>
+                                        <div className="logotextbox">
+                                            InWeCrypto
+                                        </div>
                                 </div>
                                 <div className="eright m-hide">
                                     <div onClick={toPosition.bind(this, "downloadBox")}>{t("index.download", lng)}</div>
