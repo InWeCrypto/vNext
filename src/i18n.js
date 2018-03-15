@@ -4,7 +4,7 @@ import LanguageDetector from "i18next-browser-languagedetector";
 import LanguageJson from "./locales/";
 import { reactI18nextModule } from "react-i18next";
 import language from "./locales/";
-import { getLocalItem, setLocalItem } from "./utils/util";
+import { getLocalItem, setLocalItem, getRouteQuery } from "./utils/util";
 var languageItem = getLocalItem("language");
 var languageType = languageItem ? languageItem.data : "zh";
 if (!languageItem) {
@@ -16,7 +16,7 @@ i18n
 	.use(reactI18nextModule) // if not using I18nextProvider
 	.init(
 		{
-			resources: language,
+			resources: language,                                                 
 			translations: ["translation"],
 			defaultNS: "translation",
 			fallbackLng: languageType,
@@ -38,6 +38,6 @@ i18n
 	);
 //监听语言变化，重载页面
 i18n.on("languageChanged", () => {
-	window.location.reload();
+	//window.location.reload();
 });
 export default i18n;

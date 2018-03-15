@@ -3,7 +3,7 @@ import {I18n, Trans} from "react-i18next";
 import {NavLink, Link} from "react-router-dom";
 import Slider from "react-slick";
 
-import {getMainMinHeight, getQuery,indexRemFun} from "../../../../utils/util";
+import {getMainMinHeight, getQuery,indexRemFun,setLocalItem, addClass, hasClass, removeClass, toPosition,isWeiXin} from "../../../../utils/util";
 import Header from "../../../../components/header";
 
 import logo from "../../../../assets/images/dfooter_logo.png";
@@ -16,6 +16,7 @@ import eicon5 from "../../../../assets/images/eicon5.png";
 
 import dyou_yingying from "../../../../assets/images/dyou_yingying.png";
 import dzuo_yingying from "../../../../assets/images/dzuo_yingying.png";
+import commendus from "../../../../assets/images/commendus.jpeg";
 
 
 
@@ -39,13 +40,46 @@ export default class Root extends PureComponent {
         const pageBox = document.getElementById("e-hugeDownLoadBox");
     }
     toDownLoadAnd(){
-        window.location.href = "http://inwecrypto-china.oss-cn-shanghai.aliyuncs.com/inwecrypto.apk"
+        window.location.href = "https://www.pgyer.com/InWeCryptoAndroid";
+        // var iswx = isWeiXin();
+        // if(iswx){
+        //     this.setState({
+        //         showWxCover: true
+        //     })
+        // }else{
+        //     window.location.href = "https://www.pgyer.com/InWeCryptoAndroid";
+        //    // window.location.href = "http://inwecrypto-china.oss-cn-shanghai.aliyuncs.com/inwecrypto.apk"
+        // }
     }
     componentDidMount() {}
-    
+    pageScrollMover(){
+        const pageBox = document.getElementById("e-hugeDownLoadBox");
+        parent.addEventListener("scroll", this.pageScrollFun)
+    }
+    pageScrollFun(){
+        var showBoxList = document.getElementsByClassName("showFlowBox");
+        var winHei = document.documentElement.clientHeight;
+        for(var i = 0; i < showBoxList.length; i++){
+            var boxDom = showBoxList[i];
+            if(boxDom.getBoundingClientRect().top < winHei - 50){
+                addClass(boxDom, "showTogger")
+            }else if(boxDom.getBoundingClientRect().top > winHei + 50){
+                removeClass(boxDom, "showTogger")
+            }
+        }
+    }
+    changeLanguage(type) {
+		this.props.changeLng(type);
+		window.i18n.changeLanguage(type);
+		setLocalItem("language", type);
+    }
+    toIndex(){
+        window.location.href="/"
+    }
     render() {
-        const {lng, changeLng, registerUser, userInfo} = this.props;
+        const {lng, changeLng, registerUser, userInfo, showWxCover} = this.props;
         const {} = this.state;
+        let isEnAndTouch = ((window.i18n.language == "en") && IsTouchDevice);
         return (
             <I18n>
                 {(t, {i18n}) => (
@@ -55,7 +89,7 @@ export default class Root extends PureComponent {
                         </div>
                         <div className="headerBox">
                             <div className="navBox">
-                                <div className="eleft">
+                                <div className="eleft" onClick={this.toIndex.bind(this)}>
                                     <div className="logobox">
                                         <img src={logo} alt=""/>
                                     </div>
@@ -64,15 +98,28 @@ export default class Root extends PureComponent {
                                     </div>
                                 </div>
                                 <div className="eright m-hide">
-                                    <div>Download</div>
-                                    <div>Contact</div>
-                                    <div>Language</div>
+                                    <div onClick={toPosition.bind(this, "downloadBox")}>{t("index.download", lng)}</div>
+                                    <div onClick={toPosition.bind(this, "contactBox")}>{t("index.contact", lng)}</div>
+                                    <div className="langChange">
+                                        {t("index.language", lng)}
+                                        <span className="langBox">
+                                            <p onClick={() => {
+                                                this.changeLanguage("en");
+                                            }}>ENGLISH</p>
+                                            <p  onClick={() => {
+                                                this.changeLanguage("zh");
+                                            }}>中文</p>
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
                             <p className="mess1">{t("index.txt2",lng)}</p>
-                            <p className="mess2">{t("index.txt3",lng)}</p>
+                            <p className={
+                                isEnAndTouch ? "mess2 isEnTouch" : "mess2"
+                            }>{t("index.txt3",lng)}</p>
+                            <div></div>
                         </div>
-                        <div className="downloadBox">
+                        <div className="downloadBox" id="downloadBox">
                             <div className="mobileDownload">
                                 <p className="mmess1">{t("download.txt1",lng)}</p>
                                 <p className="mmess2">{t("download.txt2",lng)}</p>
@@ -115,14 +162,21 @@ export default class Root extends PureComponent {
                                 </div>
                             </div>
                         </div>
-                        <div className="contactBox">
+                        <div className="contactBox" id="contactBox">
                             <div className="titlev">{t("index.txt18",lng)}</div>
                             <div className="imgBox">
                                 <img src={logo} alt=""/>
                             </div>
-                            <ul className="iconBox">
-                                <li><img src={eicon4} alt=""/></li>
-                                <li><img src={eicon3} alt=""/></li>
+                            <ul className="iconBox ">
+                                <li>
+                                    <a href="mailto:support@inwecrypto.com">
+                                        <img src={eicon4} alt=""/>
+                                    </a>
+                                </li>
+                                <li className="airportIcon">
+                                    <img src={eicon3} alt=""/>
+                                    <img className="airportQrcode" src={commendus} alt=""/>
+                                </li>
                                 <li><img src={eicon5} alt=""/></li>
                             </ul>
                             <div className="footerText">

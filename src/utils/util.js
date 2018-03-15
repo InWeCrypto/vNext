@@ -102,8 +102,8 @@ export const getLocalItem = key => {
 };
 //cdy
 export const indexRemFun = () => {
-	var dw = document.body.clientWidth;
-    if(dw > 1280){
+    if (!IsTouchDevice){
+        var dw = document.body.clientWidth;
         dw = dw * 100 / 1920;
         document.getElementsByTagName("html")[0].style.fontSize = dw + "px";
     }
@@ -238,3 +238,45 @@ export const openInstallApp = () => {
 		}
 	}, config.timeout);
 };
+
+//平滑滚动
+export const toPosition = (id, e) => {
+    let targetDom = e.target;
+    let dom = document.getElementById(id);
+    let scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+    let position = dom.getBoundingClientRect().top + scrollTop;
+    clearInterval(targetDom.timer);  
+    let firstPos = -1, secondPos = -2;
+    //默认上次与本次位置不同
+    let goonFlag = true; 
+    targetDom.timer=setInterval(function(){  
+        var currentPos=document.documentElement.scrollTop || document.body.scrollTop, iSpeed=0;  
+        iSpeed=(position-currentPos)/8;  
+        iSpeed=iSpeed > 0 ? Math.ceil(iSpeed) : Math.floor(iSpeed);  
+        if((parseInt(position) != parseInt(currentPos)) && goonFlag ){  
+            window.scrollTo(0,currentPos+iSpeed); 
+            if(firstPos != secondPos){
+                //前后两次位置不同
+                firstPos = secondPos;
+                secondPos = currentPos+iSpeed
+            }else{
+                //位置相同，无法滚动至该元素
+                goonFlag = false;
+            }
+        }else{
+            //清理滚动  
+            clearInterval(targetDom.timer);  
+        }  
+    },1);  
+}
+
+//判断微信环境
+export const isWeiXin = () => {
+    var ua = window.navigator.userAgent.toLowerCase();
+    console.log(ua);//mozilla/5.0 (iphone; cpu iphone os 9_1 like mac os x) applewebkit/601.1.46 (khtml, like gecko)version/9.0 mobile/13b143 safari/601.1
+    if (ua.match(/MicroMessenger/i) == 'micromessenger') {
+        return true;
+    } else {
+        return false;
+    }
+}

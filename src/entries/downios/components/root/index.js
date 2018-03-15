@@ -3,7 +3,7 @@ import {I18n, Trans} from "react-i18next";
 import {NavLink, Link} from "react-router-dom";
 import Slider from "react-slick";
 
-import {getMainMinHeight, getQuery,indexRemFun} from "../../../../utils/util";
+import {getMainMinHeight, getQuery,indexRemFun,setLocalItem, addClass, hasClass, removeClass, toPosition} from "../../../../utils/util";
 import Header from "../../../../components/header";
 
 import logo from "../../../../assets/images/dfooter_logo.png";
@@ -23,6 +23,7 @@ import fopenapp from "../../../../assets/images/fopenapp.png";
 import fdownloadapp from "../../../../assets/images/fdownloadapp.png";
 import fapplication_book from "../../../../assets/images/fapplication_book.png";
 import fiosqrcode from "../../../../assets/images/fiosqrcode.png";
+import commendus from "../../../../assets/images/commendus.jpeg";
 
 
 import "./index.less";
@@ -43,31 +44,64 @@ export default class Root extends PureComponent {
         }
     }
     componentDidMount() {}
-    
+    pageScrollMover(){
+        const pageBox = document.getElementById("e-hugeDownIosBox");
+        parent.addEventListener("scroll", this.pageScrollFun)
+    }
+    pageScrollFun(){
+        var showBoxList = document.getElementsByClassName("showFlowBox");
+        var winHei = document.documentElement.clientHeight;
+        for(var i = 0; i < showBoxList.length; i++){
+            var boxDom = showBoxList[i];
+            if(boxDom.getBoundingClientRect().top < winHei - 50){
+                addClass(boxDom, "showTogger")
+            }else if(boxDom.getBoundingClientRect().top > winHei + 50){
+                removeClass(boxDom, "showTogger")
+            }
+        }
+    }
+    changeLanguage(type) {
+		this.props.changeLng(type);
+		window.i18n.changeLanguage(type);
+		setLocalItem("language", type);
+    }
+    toIndex(){
+        window.location.href="/"
+    }
     render() {
         const {lng, changeLng, registerUser, userInfo} = this.props;
         const {} = this.state;
         return (
             <I18n>
                 {(t, {i18n}) => (
-                    <div className="container m-container e-hugeDownIosBox">
+                    <div className="container m-container e-hugeDownIosBox" id="e-hugeDownIosBox">
                         <div className="imgCover1">
                             <img src={dyou_yingying} alt=""/>
                         </div>
                         <div className="headerBox">
                             <div className="navBox">
-                                <div className="eleft">
-                                    <div className="logobox">
-                                        <img src={logo} alt=""/>
-                                    </div>
-                                    <div className="logotextbox">
-                                        InWeCrypto
-                                    </div>
+                                <div className="eleft" onClick={this.toIndex.bind(this)}>
+                                        <div className="logobox">
+                                            <img src={logo} alt=""/>
+                                        </div>
+                                        <div className="logotextbox">
+                                            InWeCrypto
+                                        </div>
                                 </div>
                                 <div className="eright m-hide">
-                                    <div>Download</div>
-                                    <div>Contact</div>
-                                    <div>Language</div>
+                                    <div onClick={toPosition.bind(this, "downloadBox")}>{t("index.download", lng)}</div>
+                                    <div onClick={toPosition.bind(this, "contactBox")}>{t("index.contact", lng)}</div>
+                                    <div className="langChange">
+                                        {t("index.language", lng)}
+                                        <span className="langBox">
+                                            <p onClick={() => {
+                                                this.changeLanguage("en");
+                                            }}>ENGLISH</p>
+                                            <p  onClick={() => {
+                                                this.changeLanguage("zh");
+                                            }}>中文</p>
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
                             <p className="mess1">{t("downios.txt1", lng)}</p>
@@ -76,7 +110,7 @@ export default class Root extends PureComponent {
                             </p>
                             <p className="mess3">{t("downios.txt2", lng)}</p>
                         </div>
-                        <div className="downloadBox">
+                        <div className="downloadBox" id="downloadBox">
                             <div className="downloadPhoneImg">
                                 <img src={fdownloadapp} alt=""/>
                             </div>
@@ -123,14 +157,21 @@ export default class Root extends PureComponent {
                                 </p>
                             </div>
                         </div>
-                        <div className="contactBox">
+                        <div className="contactBox" id="contactBox">
                             <div className="titlev">{t("index.txt18", lng)}</div>
                             <div className="imgBox">
                                 <img src={logo} alt=""/>
                             </div>
-                            <ul className="iconBox">
-                                <li><img src={eicon4} alt=""/></li>
-                                <li><img src={eicon3} alt=""/></li>
+                            <ul className="iconBox ">
+                                <li>
+                                    <a href="mailto:support@inwecrypto.com">
+                                        <img src={eicon4} alt=""/>
+                                    </a>
+                                </li>
+                                <li className="airportIcon">
+                                    <img src={eicon3} alt=""/>
+                                    <img className="airportQrcode" src={commendus} alt=""/>
+                                </li>
                                 <li><img src={eicon5} alt=""/></li>
                             </ul>
                             <div className="footerText">

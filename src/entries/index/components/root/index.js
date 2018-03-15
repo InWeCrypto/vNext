@@ -3,7 +3,7 @@ import {I18n, Trans} from "react-i18next";
 import {NavLink, Link} from "react-router-dom";
 import Slider from "react-slick";
 
-import {getMainMinHeight, getQuery,indexRemFun,setLocalItem} from "../../../../utils/util";
+import {getMainMinHeight, getQuery,indexRemFun,setLocalItem, addClass, hasClass, removeClass, toPosition,getLocalItem,remFun} from "../../../../utils/util";
 import Header from "../../../../components/header";
 
 import logo from "../../../../assets/images/eicon1.png";
@@ -32,6 +32,7 @@ import ebg_1 from "../../../../assets/images/ebg_1.png";
 import ebg_2 from "../../../../assets/images/ebg_2.png";
 import ebg_4 from "../../../../assets/images/ebg_4.png";
 import ebg_5 from "../../../../assets/images/ebg_5.png";
+import commendus from "../../../../assets/images/commendus.jpeg";
 
 import "./index.less";
 export default class Root extends PureComponent {
@@ -46,57 +47,42 @@ export default class Root extends PureComponent {
         window.addEventListener("resize",function() {
             indexRemFun();
         });
+        
+    }
+    componentDidMount() {
+        const that = this;
         //滚动动画
         this.pageScrollMover();
+        setTimeout(() => {
+            that.pageScrollFun();
+        },1000)
     }
     pageScrollMover(){
         const pageBox = document.getElementById("e-hugeBox");
         parent.addEventListener("scroll", this.pageScrollFun)
     }
     pageScrollFun(){
-
+        var showBoxList = document.getElementsByClassName("showFlowBox");
+        var winHei = document.documentElement.clientHeight;
+        for(var i = 0; i < showBoxList.length; i++){
+            var boxDom = showBoxList[i];
+            if(boxDom.getBoundingClientRect().top < winHei - 100){
+                addClass(boxDom, "showTogger")
+            }else if(boxDom.getBoundingClientRect().top > winHei - 100){
+                removeClass(boxDom, "showTogger")
+            }
+        }
     }
-    componentDidMount() {}
     changeLanguage(type) {
 		this.props.changeLng(type);
 		window.i18n.changeLanguage(type);
 		setLocalItem("language", type);
     }
-    //平滑滚动
-    toPosition(id, e){
-        let targetDom = e.target;
-        let dom = document.getElementById(id);
-        let scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-        let position = dom.getBoundingClientRect().top + scrollTop;
-        clearInterval(targetDom.timer);  
-        let firstPos = -1, secondPos = -2;
-        //默认上次与本次位置不同
-        let goonFlag = true; 
-        targetDom.timer=setInterval(function(){  
-            var currentPos=document.documentElement.scrollTop || document.body.scrollTop, iSpeed=0;  
-            iSpeed=(position-currentPos)/8;  
-            iSpeed=iSpeed > 0 ? Math.ceil(iSpeed) : Math.floor(iSpeed);  
-            if((parseInt(position) != parseInt(currentPos)) && goonFlag ){  
-                window.scrollTo(0,currentPos+iSpeed); 
-                if(firstPos != secondPos){
-                    //前后两次位置不同
-                    firstPos = secondPos;
-                    secondPos = currentPos+iSpeed
-                }else{
-                    //位置相同，无法滚动至该元素
-                    goonFlag = false;
-                }
-            }else{
-                //清理滚动  
-                clearInterval(targetDom.timer);  
-            }  
-        },1);  
-    }
     
     render() {
         const {lng, changeLng, registerUser, userInfo} = this.props;
         const {} = this.state;
-
+        let isEnAndTouch = ((window.i18n.language == "en") && IsTouchDevice);
         return (
             <I18n>
                 {(t, {i18n}) => (
@@ -128,9 +114,19 @@ export default class Root extends PureComponent {
                                         </div>
                                     ) : (
                                         <div className="eright">
-                                            <div onClick={this.toPosition.bind(this, "downloadBox")}>Download</div>
-                                            <div onClick={this.toPosition.bind(this, "contactBox")}> Contact</div>
-                                            <div>Language</div>
+                                            <div onClick={toPosition.bind(this, "downloadBox")}>{t("index.download", lng)}</div>
+                                            <div onClick={toPosition.bind(this, "contactBox")}>{t("index.contact", lng)}</div>
+                                            <div className="langChange">
+                                                {t("index.language", lng)}
+                                                <span className="langBox">
+                                                    <p onClick={() => {
+                                                        this.changeLanguage("en");
+                                                    }}>ENGLISH</p>
+                                                    <p  onClick={() => {
+                                                        this.changeLanguage("zh");
+                                                    }}>中文</p>
+                                                </span>
+                                            </div>
                                         </div>
                                     )
                                 }
@@ -141,24 +137,35 @@ export default class Root extends PureComponent {
                             <div className="inweTextImg">
                                 <img src={inwetextimg} alt=""/>
                             </div>
-                            <div className="inweTitle">
-                                <p className="txt1">{t("index.title", lng)}</p>
-                                <p className="txt2">In Crypto We Trust.</p>
+                            <div className={
+                                isEnAndTouch ? "inweTitle  entouch" : "inweTitle "
+                            }>
+                                {
+                                    isEnAndTouch ? 
+                                        (<p className="txt1 ">{t("index.txt1", lng)}</p> )
+                                            :
+                                        (<p className="txt1">{t("index.title", lng)}</p>)
+                                }
+                                {
+                                    !isEnAndTouch && <p className="txt2">In Crypto We Trust.</p>
+                                }
                             </div>
-                            <div className="phoneImgBox">
+                            <div className="phoneImgBox showFlowBox">
                                 <img src={phoneImg} alt=""/>
                             </div>
                         </div>
-                        <div className="downloadBox" id="downloadBox">
+                        <div className="downloadBox" >
                             <div className="rightIcon">
                                 <img src={eicon12} alt=""/>
                             </div>
                             <div className="downLoadHoldHei"></div>
-                            <div className="content1">
+                            <div className="content1 showFlowBox">
                                 <div className="bgImg">
                                     <img src={eicon6} alt=""/>
                                 </div>
-                                <div className="textMess">
+                                <div className={
+                                    isEnAndTouch ? "textMess jEnTouch" : "textMess"
+                                }>
                                     <div className="icondot1">
                                         <img src={elefticon} alt=""/>
                                     </div>
@@ -183,12 +190,14 @@ export default class Root extends PureComponent {
                                     }
                                 </div>
                             </div>
-                            <div className="content2">
-                                <div className="c2-title">
+                            <div className="content2" id="downloadBox">
+                                <div className="c2-title showFlowBox">
                                     <p className="mess1">{t("index.txt2", lng)}</p>
-                                    <p className="mess2">{t("index.txt3", lng)}</p>
+                                    <p className={
+                                        isEnAndTouch ? "mess2 jEntouch" : "mess2"
+                                    }>{t("index.txt3", lng)}</p>
                                 </div>
-                                <div className="c2-list">
+                                <div className="c2-list showFlowBox">
                                     <div className="phoneAnd">
                                         <img src={eicon13} alt=""/>
                                     </div>
@@ -202,11 +211,12 @@ export default class Root extends PureComponent {
                                         <img src={eicon16} alt=""/>
                                     </div>
                                 </div>
-                                <div className="downloadBtn">
+                                <div className="downloadBtn showFlowBox">
                                     <Link to="/download">
                                         {t("index.txt4", lng)}
                                     </Link>
                                 </div>
+                                <div className="downloadBtnHold"></div>
                             </div>
                         </div>
                         <div className="shadowBox"></div>
@@ -230,48 +240,58 @@ export default class Root extends PureComponent {
                                 }
                             </div>
                             <div className="intrMessContainer">
-                                <div className="intrCell">
-                                    <div className="cellImg">
+                                <div className={
+                                    isEnAndTouch ? "intrCell isEnTouch" : "intrCell"
+                                }>
+                                    <div className="cellImg showFlowBox">
                                         <img src={eiconzixun} alt=""/>
                                     </div>
-                                    <div className="cellText">
+                                    <div className="cellText showFlowBox">
                                         <div className="celltextContain ct_1">
                                             <p className="title">{t("index.txt5", lng)}</p>
                                             <p className="content">
-                                            {t("index.txt6", lng)}<br/>
-                                            {t("index.txt7", lng)}<br/>
-                                            {t("index.txt8", lng)}<br/>
-                                            {t("index.txt9", lng)}<br/>
+                                                <span>{t("index.txt6", lng)}</span><br/>
+                                                <span>{t("index.txt7", lng)}</span><br/>
+                                                <span>{t("index.txt8", lng)}</span><br/>
+                                                <span>{t("index.txt9", lng)}</span><br/>
                                             </p>
                                         </div>
                                     </div>
                                 </div>
-                                <div className="intrCell">
-                                    <div className="cellText">
+                                <div className={
+                                    isEnAndTouch ? "intrCell isEnTouch" : "intrCell"
+                                }>
+                                    <div className="cellText showFlowBox">
                                         <div className="celltextContain ct_2">
-                                            <p className="title">{t("index.txt10", lng)}</p>
-                                            <p className="content">
-                                            {t("index.txt11", lng)}<br/> 
-                                            {t("index.txt12", lng)}<br/> 
-                                            {t("index.txt13", lng)}<br/>
+                                            <p className={
+                                                ((window.i18n.language == "en") && !IsTouchDevice) ? "title jlngEnRight" : "title"
+                                            }>{t("index.txt10", lng)}</p>
+                                            <p className= {
+                                               ((window.i18n.language == "en") && !IsTouchDevice) ? "content jlngEnRight" : "content"
+                                            }>
+                                            <span>{t("index.txt11", lng)}</span><br/> 
+                                            <span>{t("index.txt12", lng)}</span><br/> 
+                                            <span>{t("index.txt13", lng)}</span><br/>
                                             </p>
                                         </div>
                                     </div>
-                                    <div className="cellImg">
+                                    <div className="cellImg showFlowBox">
                                         <img src={eproject} alt=""/>
                                     </div>
                                 </div>
-                                <div className="intrCell">
-                                    <div className="cellImg">
+                                <div className={
+                                    isEnAndTouch ? "intrCell isEnTouch" : "intrCell"
+                                }>
+                                    <div className="cellImg showFlowBox">
                                         <img src={eicon20} alt=""/>
                                     </div>
-                                    <div className="cellText">
+                                    <div className="cellText showFlowBox">
                                         <div className="celltextContain ct_3">
                                             <p className="title">{t("index.txt14", lng)}</p>
                                             <p className="content">
-                                            {t("index.txt15", lng)}<br/> 
-                                            {t("index.txt16", lng)}<br/> 
-                                            {t("index.txt17", lng)}<br/>
+                                            <span>{t("index.txt15", lng)}</span><br/> 
+                                            <span>{t("index.txt16", lng)}</span><br/> 
+                                            <span>{t("index.txt17", lng)}</span><br/>
                                             </p>
                                         </div>
                                     </div>
@@ -283,12 +303,19 @@ export default class Root extends PureComponent {
                             <div className="imgBox">
                                 <img src={elogo} alt=""/>
                             </div>
-                            <ul className="iconBox">
-                                <li><img src={eicon4} alt=""/></li>
-                                <li><img src={eicon3} alt=""/></li>
+                            <ul className="iconBox ">
+                                <li>
+                                    <a href="mailto:support@inwecrypto.com">
+                                        <img src={eicon4} alt=""/>
+                                    </a>
+                                </li>
+                                <li className="airportIcon">
+                                    <img src={eicon3} alt=""/>
+                                    <img className="airportQrcode" src={commendus} alt=""/>
+                                </li>
                                 <li><img src={eicon5} alt=""/></li>
                             </ul>
-                            <div className="footerText">
+                            <div className="footerText ">
                                 ©InWeCrypto 2018
                             </div>
                         </div>
