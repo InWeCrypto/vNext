@@ -327,6 +327,7 @@ body{
                 cursor: pointer;
                 &.airportIcon{
                     .airportQrcode{
+                        display: none;
                         opacity: 0;
                         position: absolute;
                         top: -1.84rem;
@@ -343,6 +344,7 @@ body{
                     }
                     &:hover{
                         .airportQrcode{
+                            display: block;
                             opacity: 1;
                         }
                     }
@@ -408,7 +410,6 @@ body{
                     z-index: 15;
                     width: 100%;
                     justify-content: center;
-
                     .ios,.and{
                         margin: 0 .23rem;
                         width: 2.38rem;
@@ -421,6 +422,26 @@ body{
                         .text{
                             line-height: .72rem;
                             font-size: .28rem;
+                        }
+                    }
+                    .ios{
+                        &:hover,&:active{
+                            color: #FF5B26;
+                            background: #fff;
+                            .icon{
+                                background: url("../../../../assets/images/dios.png")
+                                no-repeat center center / contain;
+                            }
+                        }
+                    }
+                    .and{
+                        &:hover,&:active{
+                            color: #008F2E;
+                            background: #fff;
+                            .icon{
+                                background: url("../../../../assets/images/dandroid.png")
+                                no-repeat center center / contain;
+                            }
                         }
                     }
                 }

@@ -5,7 +5,7 @@ export default {
         download: "下载App",
         contact: "联系我们",
         language: "语言",
-        title: "管理你的资产，管理你的态度",
+        title: "管理你的资产，有态度的投资",
         txt1_1: "多资产钱包目前支持ERC20和NEP5标准代币",
         txt1_2: "可以智能、高效地管理多种资产，操作便捷",
         txt1_3: "钱包还涵盖InWeCrypto丰富资讯、观点。",
