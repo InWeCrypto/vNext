@@ -154,7 +154,7 @@ export default class Root extends PureComponent {
                                 <img src={phoneImg} alt=""/>
                             </div>
                         </div>
-                        <div className="downloadBox" id="downloadBox">
+                        <div className="downloadBox" >
                             <div className="rightIcon">
                                 <img src={eicon12} alt=""/>
                             </div>
@@ -190,7 +190,7 @@ export default class Root extends PureComponent {
                                     }
                                 </div>
                             </div>
-                            <div className="content2">
+                            <div className="content2" id="downloadBox">
                                 <div className="c2-title showFlowBox">
                                     <p className="mess1">{t("index.txt2", lng)}</p>
                                     <p className={
