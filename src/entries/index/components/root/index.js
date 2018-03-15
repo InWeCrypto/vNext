@@ -3,7 +3,7 @@ import {I18n, Trans} from "react-i18next";
 import {NavLink, Link} from "react-router-dom";
 import Slider from "react-slick";
 
-import {getMainMinHeight, getQuery,indexRemFun,setLocalItem, addClass, hasClass, removeClass, toPosition,getLocalItem} from "../../../../utils/util";
+import {getMainMinHeight, getQuery,indexRemFun,setLocalItem, addClass, hasClass, removeClass, toPosition,getLocalItem,remFun} from "../../../../utils/util";
 import Header from "../../../../components/header";
 
 import logo from "../../../../assets/images/eicon1.png";
@@ -47,6 +47,7 @@ export default class Root extends PureComponent {
         window.addEventListener("resize",function() {
             indexRemFun();
         });
+        
     }
     componentDidMount() {
         const that = this;

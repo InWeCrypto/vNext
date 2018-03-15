@@ -117,6 +117,7 @@ export default class Root extends PureComponent {
                             <p className={
                                 isEnAndTouch ? "mess2 isEnTouch" : "mess2"
                             }>{t("index.txt3",lng)}</p>
+                            <div></div>
                         </div>
                         <div className="downloadBox" id="downloadBox">
                             <div className="mobileDownload">

@@ -20,11 +20,18 @@ if (IsTouchDevice) {
 	let body = document.getElementsByTagName("body")[0];
 	addClass(body, "pc");
 }
+window.addEventListener("orientationchange", function(event) {
+    if (window.orientation == 180 || window.orientation == 0) {
+        remFun();
+    }
+    if (window.orientation == 90 || window.orientation == -90) {
+        remFun();
+    }
+});
 // window.addEventListener("orientationchange", function(event) {
 // 	if (window.orientation == 180 || window.orientation == 0) {
 // 		remFun();
 // 		//location.reload();
-// 		alert(1);
 // 	}
 // 	if (window.orientation == 90 || window.orientation == -90) {
 // 		remFun();
