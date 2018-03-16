@@ -486,58 +486,46 @@ export default class Root extends PureComponent {
 									</div>
 								</div>
 								<div className="newsDetailBox">
-									{/* 视频 */}
-									{!this.state.isJump && (
-										<div
-											className="prism-player"
-											id="J_prismPlayer"
-										/>
-									)}
-									{this.state.newsType == 3 &&
-										!this.state.isJump &&
-										this.state.showVideoType && (
-											<div className="videoType">
-												<img
-													src={newsDetail.img}
-													alt=""
-												/>
-												<b
-													id="videoPlay"
-													onClick={() => {
-														this.videoPlay(
-															newsDetail.url,
-															newsDetail.video
-														);
-													}}
-												/>
-											</div>
-										)}
+                                    {/* 视频 */}
+                                    {!this.state.isJump && (<div className="prism-player" id="J_prismPlayer"/>)}
+                                    {(this.state.newsType == 3 || this.state.newsType == 6) && this.state.showVideoType && (
+                                        <div
+                                            className="videoType"
+                                            onClick={() => {
+                                            if (this.state.newsType == 6) {
+                                                window.location.href = newsDetail.url;
+                                            }
+                                        }}>
+                                            <img src={newsDetail.img} alt=""/> {this.state.newsType == 3 && (<b
+                                                id="videoPlay"
+                                                onClick={() => {
+                                                this.videoPlay(newsDetail.url, newsDetail.video);
+                                            }}/>)}
+                                        </div>
+                                    )}
+                                    {(this.state.newsType == 3 || this.state.newsType == 6) && (<div
+                                        dangerouslySetInnerHTML={{
+                                        __html: newsDetail.desc
+                                    }}/>)}
 
-									<div
-										id="newsDetailsContentId"
-										className="newsDetailContent"
-									>
-										{/* {this.state.newsType == 2 && (
+                                    <div id="newsDetailsContentId" className="newsDetailContent">
+                                        {/* {this.state.newsType == 2 && (
 											<img
 												src="http://img4.imgtn.bdimg.com/it/u=4004954884,1272926999&fm=214&gp=0.jpg"
 												alt=""
 											/>
 										)} */}
-										<div
-											dangerouslySetInnerHTML={{
-												__html: newsDetail.content
-											}}
-										/>
-									</div>
-									<p
-										className="newsReadNums"
-										style={{ marginBottom: "20px" }}
-									>
-										{newsDetail.click_rate}
-										{"  "}
-										{t("newsDetail.read", lng)}
-									</p>
-								</div>
+                                        <div
+                                            dangerouslySetInnerHTML={{
+                                            __html: newsDetail.content
+                                        }}/>
+                                    </div>
+                                    <p className="newsReadNums">
+                                        {newsDetail.click_rate}
+                                        {"  "}
+                                        {t("newsDetail.read", lng)}
+                                    </p>
+                                </div>
 							</div>
 
 							<div
