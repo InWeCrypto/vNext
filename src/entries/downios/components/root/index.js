@@ -68,6 +68,9 @@ export default class Root extends PureComponent {
     toIndex(){
         window.location.href="/"
     }
+    toIosPGY(){
+        window.location.href= "https://www.pgyer.com/InWeCrypto";
+    }
     render() {
         const {lng, changeLng, registerUser, userInfo} = this.props;
         const {} = this.state;
@@ -109,6 +112,11 @@ export default class Root extends PureComponent {
                                 <img src={fiosqrcode} alt=""/>
                             </p>
                             <p className="mess3">{t("downios.txt2", lng)}</p>
+                            {
+                                IsTouchDevice && (
+                                    <button className="downloadIosBtn" onClick={this.toIosPGY.bind(this)}>{t("index.downloadBtnMess", lng)}</button>
+                                )
+                            }
                         </div>
                         <div className="downloadBox" id="downloadBox">
                             <div className="downloadPhoneImg">
