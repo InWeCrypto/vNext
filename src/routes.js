@@ -22,6 +22,7 @@ import CandyBowl from "./entries/candybowl";
 import Search from "./entries/search";
 import Wallent from "./entries/wallent";
 import Share2app from "./entries/share2app";
+import Trinity from "./entries/trinity";
 
 export default () => {
 	return (
@@ -49,6 +50,7 @@ export default () => {
 			<Route path="/wallent" component={Wallent} />
 			<Route path="/app" component={Wallent} />
 			<Route path="/share2app" component={Share2app} />
+			<Route path="/trinity" component={Trinity} />
 		</Switch>
 	);
 };
