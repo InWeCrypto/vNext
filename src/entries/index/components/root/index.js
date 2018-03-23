@@ -114,7 +114,7 @@ export default class Root extends PureComponent {
                                         </div>
                                     ) : (
                                         <div className="eright">
-                                            <div onClick={toPosition.bind(this, "downloadBox")}>{t("index.download", lng)}</div>
+                                            {/* <div onClick={toPosition.bind(this, "downloadBox")}>{t("index.download", lng)}</div> */}
                                             <div onClick={toPosition.bind(this, "contactBox")}>{t("index.contact", lng)}</div>
                                             <div className="langChange">
                                                 {t("index.language", lng)}
@@ -148,6 +148,15 @@ export default class Root extends PureComponent {
                                 }
                                 {
                                     !isEnAndTouch && <p className="txt2">In Crypto We Trust.</p>
+                                }
+                                {
+                                    !IsTouchDevice && (
+                                        <div className="downloadBtn">
+                                            <Link to="/download">
+                                                {t("index.txt4", lng)}
+                                            </Link>
+                                        </div>
+                                    )
                                 }
                             </div>
                             <div className="phoneImgBox showFlowBox">
@@ -211,11 +220,15 @@ export default class Root extends PureComponent {
                                         <img src={eicon16} alt=""/>
                                     </div>
                                 </div>
-                                <div className="downloadBtn showFlowBox">
-                                    <Link to="/download">
-                                        {t("index.txt4", lng)}
-                                    </Link>
-                                </div>
+                                {
+                                    IsTouchDevice && (
+                                        <div className="downloadBtn showFlowBox">
+                                            <Link to="/download">
+                                                {t("index.txt4", lng)}
+                                            </Link>
+                                        </div>
+                                    )
+                                }
                                 <div className="downloadBtnHold"></div>
                             </div>
                         </div>
