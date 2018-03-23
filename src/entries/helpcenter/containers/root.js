@@ -7,11 +7,10 @@ import * as globalActions from "../../../globalactions";
 //}),
 export default connect(
 	({
-		helpcenter: { announcment, announcmentM },
+		helpcenter: { announcment },
 		globData: { lng, userInfo, commonMarket }
 	}) => ({
-        announcment,
-        announcmentM,
+    announcment,
 		userInfo,
 		lng,
 		commonMarket

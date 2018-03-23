@@ -25,7 +25,9 @@ export default class Root extends PureComponent {
 			nums: 8,
 			mounted: false,
 			showDetail: false,
-			showItem: null
+			showItem: null,
+			lang: '',
+			listInfo: {},
 		};
 	}
 	componentWillReceiveProps(nextProps) {
@@ -36,11 +38,12 @@ export default class Root extends PureComponent {
 	componentDidMount() {
 		window.addEventListener("scroll", this.handleScroll.bind(this));
 		window.AnnouncmentAjaxDone = true;
-
+		this.setState({lang: getQuery(location.search).lang||'zh'});
 		setTimeout(() => {
 			document.title =
 				"InWe-" + i18n.t("navMenu.announcment", this.props.lng);
 			let minH = getMainMinHeight();
+			const { announcment={} } = this.props;
 			let liH = minH / 2;
 			this.setState({
 				minH: minH,
@@ -48,8 +51,12 @@ export default class Root extends PureComponent {
 				mounted: true
 			});
 			document.querySelector("#mainBox").style.minHeight = minH + "px";
+			if(announcment.data && announcment.data.length) return;
 			this.initPage(this.props.location.search);
 		}, 0);
+	}
+	componentDidUpdate(){
+		window.AnnouncmentAjaxDone = true;
 	}
 	componentWillUnmount() {
 		window.removeEventListener("scroll", this.handleScroll.bind(this));
@@ -63,18 +70,20 @@ export default class Root extends PureComponent {
 		let pathName = location.pathname;
 		if (
 			footerToTopHei <= winHei &&
-			pathName == "/announcment" &&
+			pathName == "/helpcenter" &&
 			this.state.mounted
 		) {
 			var liDom = document.getElementsByClassName("annoucmentListLi");
-			//手机默认请求10条
-			if (liDom.length < 10) return;
-			var pageIndex = parseInt(liDom.length / 10) + 1;
+			//手机默认请求20条
+			if (liDom.length < 20) return;
+			var pageIndex = parseInt(liDom.length / 20) + 1;
 
 			if (window.AnnouncmentAjaxDone) {
 				window.AnnouncmentAjaxDone = false;
-				this.props.getAnnouncmentM({
-					per_page: 10,
+				this.props.getAnnouncment({
+					type: "[8,9,10,11]",
+					lang: this.state.lang,
+					per_page: 20,
 					page: pageIndex
 				});
 			}
@@ -96,15 +105,22 @@ export default class Root extends PureComponent {
 			nums: nums
 		});
 		if (IsTouchDevice) {
-			nums = 10;
+			nums = 20;
 		}
 		this.props.getAnnouncment({
+			type: "[8,9,10,11]",
+			lang: this.state.lang,
 			page: p.page || 1,
 			per_page: nums
+		}).then(( { data } ) => {
+			delete data.data;
+			this.setState({listInfo: {...data}})
 		});
 	}
 	changePagination(page) {
 		this.props.getAnnouncment({
+			type: "[8,9,10,11]",
+			lang: this.state.lang,
 			page: page,
 			per_page: this.state.nums
 		});
@@ -121,7 +137,6 @@ export default class Root extends PureComponent {
 		}
 	}
 	showDetailClick(item) {
-
         return;
 		this.setState({
 			showDetail: true,
@@ -149,6 +164,8 @@ export default class Root extends PureComponent {
 			commonMarket,
 			getHeaderMarket
 		} = this.props;
+		const { listInfo } = this.state;
+		
 		return (
 			<I18n>
 				{(t, { i18n }) => (
@@ -161,57 +178,8 @@ export default class Root extends PureComponent {
 									</div>
 								</div>
 							)}
-							<div id="annoBox" className="annoBox ui f1">
+							<div id="helpcenter" className="annoBox ui f1">
 								<div id="annoCon" className="annoCon ui f1">
-									<div className="f1 left">
-										<ul>
-											{announcment &&
-												announcment.data &&
-												announcment.data.length > 0 &&
-												announcment.data.map(
-													(item, index) => {
-														if (index % 2 == 1) {
-															return null;
-														}
-														return (
-															<li
-																key={index}
-																className="annoucmentListLi"
-																onClick={this.showDetailClick.bind(
-																	this,
-																	item
-																)}
-															>
-																<Link
-																	to={{
-																		pathname:
-																			"announcmentdetail",
-																		search:
-																			"?art_id=" +
-																			item.id
-																	}}
-																>
-																<div className="liBox">
-																	<p className="annoBoxLiText ellitext">
-																		+{
-																			item.source_name
-																		}：{
-																			item.desc
-																		}
-																	</p>
-																	<p className="annoBoxLiDate">
-																		{getLocalTime(
-																			item.created_at
-																		)}
-																	</p>
-																</div>
-																</Link>
-															</li>
-														);
-													}
-												)}
-										</ul>
-									</div>
 									<div className="f1">
 										<ul className="ui annoucmentListUl">
 											{announcment &&
@@ -219,9 +187,6 @@ export default class Root extends PureComponent {
 												announcment.data.length > 0 &&
 												announcment.data.map(
 													(item, index) => {
-														if (index % 2 == 0) {
-															return null;
-														}
 														return (
 															<li
 																key={index}
@@ -234,7 +199,7 @@ export default class Root extends PureComponent {
 																<Link
 																	to={{
 																		pathname:
-																			"announcmentdetail",
+																			"newsdetail2",
 																		search:
 																			"?art_id=" +
 																			item.id
@@ -242,16 +207,7 @@ export default class Root extends PureComponent {
 																>
 																<div className="liBox">
 																	<p className="annoBoxLiText ellitext">
-																		+{
-																			item.source_name
-																		}：{
-																			item.desc
-																		}
-																	</p>
-																	<p className="annoBoxLiDate">
-																		{getLocalTime(
-																			item.created_at
-																		)}
+																		{ item.title }
 																	</p>
 																</div>
 																</Link>
@@ -261,65 +217,21 @@ export default class Root extends PureComponent {
 												)}
 										</ul>
 									</div>
-									{/* <ul className="ui">
-										{[1, 2].map((item, index) => {
-											return (
-												<li key={index} className="">
-													<p className="annoBoxLiText ellitext">
-														+火币：火币全球专业站12月27日14:00上线NEO、GAS
-													</p>
-													<p className="annoBoxLiDate">
-														2017-11-16 11:35:33
-													</p>
-												</li>
-											);
-										})}
-									</ul> */}
 								</div>
 
-								{/* <div className="annoBoxArrow ui center m-hide">
-									{announcment.next_page_url && (
-										<Link
-											to={{
-												pathname: "/announcment",
-												search:
-													"?page=" +
-													(announcment.current_page +
-														1)
-											}}
-										>
-											<span
-												className={
-													announcment.next_page_url
-														? "rightArrow more"
-														: "rightArrow"
-												}
-											/>
-										</Link>
-									)}
-									{!announcment.next_page_url && (
-										<span
-											className={
-												announcment.next_page_url
-													? "rightArrow more"
-													: "rightArrow"
-											}
-										/>
-									)}
-                                </div> */}
 								<div
 									className="pagation-box m-hide"
 									id="pagationBox"
 								>
-									{announcment && (
+									{listInfo && (
 										<Pagination
 											defaultPageSize={
 												this.state.per_page
 											}
 											defaultCurrent={
-												announcment.current_page
+												listInfo.current_page
 											}
-											total={announcment.total}
+											total={listInfo.total}
 											onChange={this.changePagination.bind(
 												this
 											)}
