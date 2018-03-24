@@ -110,9 +110,10 @@ export const indexRemFun = () => {
 };
 export const remFun = () => {
 	if (IsTouchDevice) {
-		var dw = document.body.clientWidth;
+        var dw = document.body.clientWidth;
 		dw = dw * 100 / 750;
-		document.getElementsByTagName("html")[0].style.fontSize = dw + "px";
+        document.getElementsByTagName("html")[0].style.fontSize = dw + "px";
+        
 	}
 };
 export const addClass = (ele, cls) => {

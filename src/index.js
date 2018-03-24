@@ -22,10 +22,17 @@ if (IsTouchDevice) {
 }
 window.addEventListener("orientationchange", function(event) {
     if (window.orientation == 180 || window.orientation == 0) {
-        remFun();
+        var dw = document.body.clientWidth;
+        setTimeout(() => {
+            remFun();
+        }, 100);
+       
     }
     if (window.orientation == 90 || window.orientation == -90) {
-        remFun();
+        var dw = document.body.clientWidth;
+        setTimeout(() => {
+            remFun();
+        }, 100);
     }
 });
 // window.addEventListener("orientationchange", function(event) {
