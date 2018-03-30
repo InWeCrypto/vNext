@@ -23,7 +23,11 @@ import eicon15 from "../../../../assets/images/eicon15.png";
 import eicon14 from "../../../../assets/images/eicon14.png";
 import eicon13 from "../../../../assets/images/eicon13.png";
 import eicon12 from "../../../../assets/images/eicon12.png";
+import eicon7 from "../../../../assets/images/eicon7.png";
+import eicon7_1 from "../../../../assets/images/eicon7_1.png";
 import eicon6 from "../../../../assets/images/eicon6.png";
+import eicon6_1 from "../../../../assets/images/eicon6_1.png";
+
 import eicon5 from "../../../../assets/images/eicon5.png";
 import eicon4 from "../../../../assets/images/eicon4.png";
 import eicon3 from "../../../../assets/images/eicon3.png";
@@ -169,8 +173,15 @@ export default class Root extends PureComponent {
                             </div>
                             <div className="downLoadHoldHei"></div>
                             <div className="content1 showFlowBox">
-                                <div className="bgImg">
-                                    <img src={eicon6} alt=""/>
+                                <div className={ isEnAndTouch ? "bgImg jEnTouch" : "bgImg" }>
+                                    {
+                                        IsTouchDevice ? (
+                                            <img src={eicon6_1} alt=""/>
+                                        ) : (
+                                            <img src={eicon6} alt=""/>
+                                        )
+                                    }
+                                   
                                 </div>
                                 <div className={
                                     isEnAndTouch ? "textMess jEnTouch" : "textMess"
@@ -188,11 +199,14 @@ export default class Root extends PureComponent {
                                                 <p>{t("index.txt1_2", lng)}</p>
                                                 <p>{t("index.txt1_3", lng)}</p>
                                                 <p>{t("index.txt1_4", lng)}</p>
+                                                <p>{t("index.txt1_5", lng)}</p>
                                             </div>
                                         ) : (
                                             <div className="txtbox">
                                                 <p>{t("index.txt1_1", lng)}</p>
                                                 <p>{t("index.txt1_2", lng)}</p>
+                                                <p>{t("index.txt1_3", lng)}</p>
+                                                <p>{t("index.txt1_4", lng)}</p>
                                                 <p>{t("index.txt1_5", lng)}</p>
                                             </div>
                                         )
@@ -318,6 +332,16 @@ export default class Root extends PureComponent {
                             </div>
                             <ul className="iconBox ">
                                 <li>
+                                    <a href="https://discord.gg/afbXyfX">
+                                        <img src={eicon7_1} alt=""/>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://medium.com/@inwecrypto">
+                                        <img src={eicon7} alt=""/>
+                                    </a>
+                                </li>
+                                <li>
                                     <a href="mailto:support@inwecrypto.com">
                                         <img src={eicon4} alt=""/>
                                     </a>
@@ -326,7 +350,11 @@ export default class Root extends PureComponent {
                                     <img src={eicon3} alt=""/>
                                     <img className="airportQrcode" src={commendus} alt=""/>
                                 </li>
-                                <li><img src={eicon5} alt=""/></li>
+                                <li>
+                                	<a href="https://twitter.com/inwe_crypto">
+		                                <img src={eicon5} alt=""/>
+                                	</a>
+                                </li>
                             </ul>
                             <div className="footerText ">
                                 ©InWeCrypto 2018
