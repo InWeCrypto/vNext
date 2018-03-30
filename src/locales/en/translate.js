@@ -39,8 +39,9 @@ export default {
         
         
         
-        txt10: "Projects Database",
-        txt11: "All-round projects presentation with deep analysis",
+//      txt10: "Projects Database",
+        txt10: "Project Follow-up",
+        txt11: "Project overview with deep analysis",
         txt12: "Follow-up info of your favorite projects",
         txt13: "Join the community and share your ideas",
         

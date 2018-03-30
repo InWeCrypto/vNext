@@ -522,12 +522,16 @@ body,html{
                 .bgImg{
                     margin: 0 auto;
                     width: 6.78rem;
+                    min-height: 2.8rem;
+                    &.jEnTouch{
+                        min-height: 3.8rem;
+                    }
                 }
                 .textMess{
-                    width: 5.64rem;
-                    height: 3.3rem;
+                    width: 90%;
+                    height: 3.6rem;
                     &.jEnTouch{
-                        height: 2.6rem;
+                        height: 5rem;
                     }
                     .icondot1{
                         width: .13rem;
@@ -542,12 +546,14 @@ body,html{
                         bottom: .22rem;
                     }
                     .txtbox{
-                        width: 6rem;
+                        width: 100%;
+                        text-align: center;
                         transform: translate(-50%, -50%) scale(.84);
                         p{
                             font-size: .26rem;
                             font-weight: 200;
                             letter-spacing: 0.1em;
+                            display: inline;
                         }
                     }
                 }
@@ -586,10 +592,12 @@ body,html{
             .bgImgLeft{
                 width: 1.72rem;
                 top: 2.6rem;
+                display: none;
             }
             .bgImgRight{
                 width: 1.87rem;
                 top: 13rem;
+                display: none;
             }
             .intrMessContainer{
                 margin-top: .87rem;
@@ -598,19 +606,39 @@ body,html{
                     margin-top: 1.83rem;
                     width: 6.9rem;
                     height: auto;
+                    flex-direction: column-reverse;
+                    
+                    &:nth-of-type(2){
+                        flex-direction: column;
+                    }
                     &:first-child{
                         margin-top: 0;
                     }
+                    .cellImg{
+                        width: 100%;
+                    }
+                    &.isEnTouch .cellText .celltextContain{
+                        .content{
+                            text-align: left;
+                        }
+                    }
                     .cellText{
+                        width: 100%;
                         .celltextContain{
                             margin-left: 0;
                             width: auto;
+                            &.ct_1{
+                                margin-left: 0;
+                            }
                             .title{
                                 margin-top: 0;
+                                text-align: center;
                             }
                             .content{
+                                margin-top: 0.3rem;
                                 font-size: .2rem;
                                 line-height: .36rem;
+                                text-align: center;
                             }
                         }
                         .ct_1{

@@ -23,6 +23,7 @@ import eicon15 from "../../../../assets/images/eicon15.png";
 import eicon14 from "../../../../assets/images/eicon14.png";
 import eicon13 from "../../../../assets/images/eicon13.png";
 import eicon12 from "../../../../assets/images/eicon12.png";
+import eicon7 from "../../../../assets/images/eicon7.png";
 import eicon6 from "../../../../assets/images/eicon6.png";
 import eicon5 from "../../../../assets/images/eicon5.png";
 import eicon4 from "../../../../assets/images/eicon4.png";
@@ -169,7 +170,7 @@ export default class Root extends PureComponent {
                             </div>
                             <div className="downLoadHoldHei"></div>
                             <div className="content1 showFlowBox">
-                                <div className="bgImg">
+                                <div className={ isEnAndTouch ? "bgImg jEnTouch" : "bgImg" }>
                                     <img src={eicon6} alt=""/>
                                 </div>
                                 <div className={
@@ -188,11 +189,14 @@ export default class Root extends PureComponent {
                                                 <p>{t("index.txt1_2", lng)}</p>
                                                 <p>{t("index.txt1_3", lng)}</p>
                                                 <p>{t("index.txt1_4", lng)}</p>
+                                                <p>{t("index.txt1_5", lng)}</p>
                                             </div>
                                         ) : (
                                             <div className="txtbox">
                                                 <p>{t("index.txt1_1", lng)}</p>
                                                 <p>{t("index.txt1_2", lng)}</p>
+                                                <p>{t("index.txt1_3", lng)}</p>
+                                                <p>{t("index.txt1_4", lng)}</p>
                                                 <p>{t("index.txt1_5", lng)}</p>
                                             </div>
                                         )
@@ -317,6 +321,11 @@ export default class Root extends PureComponent {
                                 <img src={elogo} alt=""/>
                             </div>
                             <ul className="iconBox ">
+                                <li>
+                                    <a href="https://medium.com/@inwecrypto">
+                                        <img src={eicon7} alt=""/>
+                                    </a>
+                                </li>
                                 <li>
                                     <a href="mailto:support@inwecrypto.com">
                                         <img src={eicon4} alt=""/>
