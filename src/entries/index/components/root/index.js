@@ -326,7 +326,11 @@ export default class Root extends PureComponent {
                                     <img src={eicon3} alt=""/>
                                     <img className="airportQrcode" src={commendus} alt=""/>
                                 </li>
-                                <li><img src={eicon5} alt=""/></li>
+                                <li>
+                                	<a href="https://twitter.com/inwe_crypto">
+		                                <img src={eicon5} alt=""/>
+                                	</a>
+                                </li>
                             </ul>
                             <div className="footerText ">
                                 ©InWeCrypto 2018
