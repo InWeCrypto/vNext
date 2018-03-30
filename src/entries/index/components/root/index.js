@@ -24,6 +24,7 @@ import eicon14 from "../../../../assets/images/eicon14.png";
 import eicon13 from "../../../../assets/images/eicon13.png";
 import eicon12 from "../../../../assets/images/eicon12.png";
 import eicon7 from "../../../../assets/images/eicon7.png";
+import eicon7_1 from "../../../../assets/images/eicon7_1.png";
 import eicon6 from "../../../../assets/images/eicon6.png";
 import eicon6_1 from "../../../../assets/images/eicon6_1.png";
 
@@ -330,6 +331,11 @@ export default class Root extends PureComponent {
                                 <img src={elogo} alt=""/>
                             </div>
                             <ul className="iconBox ">
+                                <li>
+                                    <a href="https://discord.gg/afbXyfX">
+                                        <img src={eicon7_1} alt=""/>
+                                    </a>
+                                </li>
                                 <li>
                                     <a href="https://medium.com/@inwecrypto">
                                         <img src={eicon7} alt=""/>
