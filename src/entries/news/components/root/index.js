@@ -15,6 +15,10 @@ import LeftMenu from "../../../../components/leftmenu";
 import videoIcon from "../../../../assets/images/zixun_play.png";
 import "./index.less";
 
+
+var twitterCard = require('twitter-card.js');
+
+
 export default class Root extends PureComponent {
 	constructor(props) {
 		super(props);
@@ -28,6 +32,40 @@ export default class Root extends PureComponent {
 	}
 	componentWillReceiveProps(nextProps) {}
 	componentDidMount() {
+		
+		
+		
+		
+		twitterCard({
+		   "type" : "summary|summary-large|photo|image|gallery|player",
+		   "url"  : "https://www.evernote.com"
+		   "handle" : "@evernote",
+		   "creator": "@augburto",
+		   "title" : "Tweet Title",
+		   "description" : "Description included in tweet"
+		   "content" : {
+		        "gallery" : {
+		            "images" : ["https://www.image.com/1/"] // up to 4 images
+		        },
+		        "player"  : {
+		            "embed"  : "https://www.youtube.com/embed/xtG-JbiH-Gc",
+		            "image"  : "https://i.ytimg.com/vi/xtG-JbiH-Gc/mqdefault.jpg",
+		            "width"  :  350,
+		            "height" :  196
+		        }
+		    }
+		});
+			
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		document.body.scrollTop = document.documentElement.scrollTop = 0;
 		let type = queryString("type");
 		if (!type) {
