@@ -16,7 +16,7 @@ import videoIcon from "../../../../assets/images/zixun_play.png";
 import "./index.less";
 
 
-var twitterCard = require('twitter-card.js');
+var twitterCard = require('twitter-card');
 
 
 export default class Root extends PureComponent {
@@ -38,11 +38,11 @@ export default class Root extends PureComponent {
 		
 		twitterCard({
 		   "type" : "summary|summary-large|photo|image|gallery|player",
-		   "url"  : "https://www.evernote.com"
+		   "url"  : "https://www.evernote.com",
 		   "handle" : "@evernote",
 		   "creator": "@augburto",
 		   "title" : "Tweet Title",
-		   "description" : "Description included in tweet"
+		   "description" : "Description included in tweet",
 		   "content" : {
 		        "gallery" : {
 		            "images" : ["https://www.image.com/1/"] // up to 4 images
