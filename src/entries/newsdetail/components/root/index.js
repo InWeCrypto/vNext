@@ -366,10 +366,28 @@ export default class Root extends PureComponent {
             commonMarket,
             getHeaderMarket
         } = this.props;
+        
+        
+        const aa = "我是description；我是description；我是description；我是description；";
+        const bb = "http://testnet.inwecrypto.com/assets/img/eback.97e38e032.png";
+        const cc = "我是title";
+        const dd = "http://testnet.inwecrypto.com";
+        
+        
         return (
             <I18n>
                 {(t, {i18n}) => (
                     <div className="container">
+                    
+		                    <meta name ="twitter:card"content ="summary"/>
+												<meta name ="twitter:site"content ="@ nytimesbits"/>
+												<meta name ="twitter:creator"content ="@ nickbilton"/>
+												<meta property ="og:url"content ={dd}/>
+												<meta property ="og:title"content ={cc}/>
+												<meta property ="og:description"content ={aa} />
+												<meta property ="og:image"content ={bb}/>
+                    
+                    
                         {/* {!IsTouchDevice && (<FixedMenu changeLng={changeLng} lng={lng}/>)} */}
                         <div style={{display: "none"}}>
                             <Header

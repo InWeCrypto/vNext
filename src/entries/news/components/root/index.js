@@ -32,7 +32,7 @@ export default class Root extends PureComponent {
 	}
 	componentWillReceiveProps(nextProps) {}
 	componentDidMount() {
-		
+		/*
 		
 		
 		
@@ -57,7 +57,7 @@ export default class Root extends PureComponent {
 		});
 			
 		
-		
+		*/
 		
 		
 		
