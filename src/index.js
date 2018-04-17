@@ -1,5 +1,5 @@
 import React from "react";
-import createHistory from "history/createBrowserHistory";
+import createHistory from "history/createHashHistory";
 
 import { I18nextProvider } from "react-i18next";
 import storeFun from "./store";

@@ -36,6 +36,7 @@
 		"promise-polyfill": "^6.0.2",
 		"rimraf": "^2.6.1",
 		"style-loader": "^0.18.2",
+		"twitter-card": "0.0.1",
 		"underscore-template-loader": "^0.8.0",
 		"url-loader": "^0.5.9",
 		"webpack": "^3.5.5",
